@@ -1,11 +1,11 @@
-# US001 - Create a Task 
+# US001 - Register a skill
 
 
 ## 1. Requirements Engineering
 
 ### 1.1. User Story Description
 
-As HRM, I intend to register competencies that can be attributed to an employee.
+As HRM, I intend to register skills that can be apointed to a collaborator.
 
 ### 1.2. Customer Specifications and Clarifications 
 

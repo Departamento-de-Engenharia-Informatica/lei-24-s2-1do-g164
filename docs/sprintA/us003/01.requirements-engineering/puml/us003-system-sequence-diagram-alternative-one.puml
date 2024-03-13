@@ -3,28 +3,28 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-title System Sequence Diagram (SSD) - Alternative One
+title System Sequence Diagram (SSD) - US003
 
 autonumber
 
-actor "Organization\nEmployee" as Employee
+actor "HRM" as Employee
 participant ":System" as System
 
 activate Employee
 
-    Employee -> System : asks to create a new task
+    Employee -> System : asks to register a collaborator
     activate System
 
-        System --> Employee : requests data (i.e. reference, designation, informal\ndescription, technical description, duration, cost)
+        System --> Employee : shows the jobs list and asks to select one
     deactivate System
 
-    Employee -> System : types requested data
+    Employee -> System : selects a job
     activate System
 
-        System --> Employee : shows task category list and asks to select one
+    System --> Employee : requests data (name, birthday, admission date, address, cellphone \nnumber, e-mail, ID document number)
     deactivate System
 
-    Employee -> System : selects a task category
+    Employee -> System : types data
     activate System
 
         System --> Employee : shows all data and requests confirmation

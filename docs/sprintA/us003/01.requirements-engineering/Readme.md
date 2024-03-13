@@ -1,10 +1,10 @@
-# US003 - Create a Task 
+# US003 - Register a collaborator
 
 
 ## 1. Requirements Engineering
 
 ### 1.1. User Story Description
-As  HRM, I intend to register an employee with profession and fundamental attributes.
+As  HRM, I intend to register a collaborator with profession and fundamental attributes.
 
 ### 1.2. Customer Specifications and Clarifications 
 
@@ -16,9 +16,9 @@ As  HRM, I intend to register an employee with profession and fundamental attrib
 
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
+> **Question:** What are the fundamental attributes of a collaborator?
 >
-> **Answer:** Duration is estimated in days.
+> **Answer:** name, birthday, admission date, address, cellphone number, e-mail and ID number
 
 > **Question:** Monetary data is expressed in any particular currency?
 >
@@ -27,31 +27,32 @@ As  HRM, I intend to register an employee with profession and fundamental attrib
 ### 1.3. Acceptance Criteria
 
 * **AC1:** All required fields must be filled in.
-* **AC2:** The task reference must have at least 5 alphanumeric characters.
+* **AC2:** The cellphone number must have 9 digits.
 * **AC3:** When creating a task with an existing reference, the system must reject such operation and the user must be able to modify the typed reference.
 
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "US003 - Create a task category" as there must be at least one task category to classify the task being created.
+* There is a dependency on "US002 - Register a job" as there must be at least a job for a collaborator to be registered.
 
 ### 1.5 Input and Output Data
 
 **Input Data:**
 
 * Typed data:
-    * a reference
-    * a designation 
-    * an informal description
-    * a technical description
-    * an estimated duration
-    * an estimated cost
+    * name
+    * birthday 
+    * admission date
+    * address
+    * cellphone number
+    * e-mail
+    * ID number
 	
 * Selected data:
-    * a task category 
+    * a job
 
 **Output Data:**
 
-* List of existing task categories
+* List of existing jobs
 * (In)Success of the operation
 
 ### 1.6. System Sequence Diagram (SSD)

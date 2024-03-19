@@ -10,7 +10,7 @@ As  HRM, I intend to register a collaborator with profession and fundamental att
 
 **From the specifications document:**
 
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost, as well as a task category. 
+>	Each collaborator has a job and a set of skills that enable him to take on certain tasks.
 
 >	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
 
@@ -18,17 +18,18 @@ As  HRM, I intend to register a collaborator with profession and fundamental att
 
 > **Question:** What are the fundamental attributes of a collaborator?
 >
-> **Answer:** name, birthday, admission date, address, cellphone number, e-mail and ID number
+> **Answer:** Name, birthday, admission date, address, cellphone number, e-mail and ID number
 
-> **Question:** Monetary data is expressed in any particular currency?
+> **Question:** Does the HRM select the job from a list that we display?
 >
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POT (virtual currency internal to the platform).
+> **Answer:** Displaying or not, It's a matter of UX, the dev team should decide about it, but the valid jobs are the ones created within the US02.
 
 ### 1.3. Acceptance Criteria
 
 * **AC1:** All required fields must be filled in.
 * **AC2:** The cellphone number must have 9 digits.
-* **AC3:** When creating a task with an existing reference, the system must reject such operation and the user must be able to modify the typed reference.
+* **AC3:** The admission date must be typed using the format _dd-mm-yyyy_
+* **AC4:** Collaborators can't have the same ID number
 
 ### 1.4. Found out Dependencies
 
@@ -45,6 +46,7 @@ As  HRM, I intend to register a collaborator with profession and fundamental att
     * address
     * cellphone number
     * e-mail
+    * ID document type
     * ID number
 	
 * Selected data:
@@ -56,17 +58,12 @@ As  HRM, I intend to register a collaborator with profession and fundamental att
 * (In)Success of the operation
 
 ### 1.6. System Sequence Diagram (SSD)
+ 
+###
 
-**_Other alternatives might exist._**
+![System Sequence Diagram - Alternative One](svg/us003-system-sequence-diagram-alternative-one.svg)
 
-#### Alternative One
-
-![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
-
-#### Alternative Two
-
-![System Sequence Diagram - Alternative Two](svg/us006-system-sequence-diagram-alternative-two.svg)
 
 ### 1.7 Other Relevant Remarks
 
-* The created task stays in a "not published" state in order to distinguish from "published" tasks.
+* 

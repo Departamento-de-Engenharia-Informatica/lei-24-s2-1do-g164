@@ -15,25 +15,26 @@ activate Employee
     Employee -> System : asks to generate a team proposal
     activate System
 
-        System --> Employee : shows available team members
-    deactivate System
-
-    Employee -> System : selects team members
-    activate System
-
-        System --> Employee : requests data (team members skills)
+        System --> Employee : requests data (number of desired employees, team members skills)
     deactivate System
 
     Employee -> System : types data
     activate System
 
-        System --> Employee : shows all data and requests confirmation
+        System --> Employee : shows all data and requests confirmation or modification
     deactivate System
 
-    Employee -> System : confirms data
+    Employee -> System : modifies data
     activate System
 
-        System --> Employee : displays operation success
-    deactivate System
+        System --> Employee : shows all data and requests confirmation or modification
+
+       Employee -> System : confirms data
+        activate System
+
+            System --> Employee : displays operation success
+        deactivate System
+
+
 
 @enduml

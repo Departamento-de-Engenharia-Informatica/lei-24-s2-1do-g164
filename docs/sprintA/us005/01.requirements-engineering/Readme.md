@@ -5,54 +5,54 @@
 
 ### 1.1. User Story Description
 
-As HRM, I intend to automatically genera a team proposal.
+As HRM, I intend to automatically generate a team proposal.
 
 ### 1.2. Customer Specifications and Clarifications 
 
 **From the specifications document:**
 
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost, as well as a task category. 
-
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
+>	A team is characterized by having a specific number of collaborators, defined by the HRM.
+  
+>	There are specific skills that serve as criteria for selecting suitable team members.
 
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
+> **Question:** What are the input data to automatically generate a team?
 >
-> **Answer:** Duration is estimated in days.
+> **Answer:** The maximum size of the team (for instance 4)
+and the skill needed: 4 tree pruner and 1 light vehicle driver
+meaning that one team member have 2 skills.
 
-> **Question:** Monetary data is expressed in any particular currency?
+> **Question:** What should the output of the automation be? (should it just store the team proposal or show it to the customer?)  Will the team proposal be a document about all the instructions of each team member/worker?
 >
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POT (virtual currency internal to the platform).
+> **Answer:** The systems provide team proposals and HRM can accept of refuse the proposals.
+
+> **Question:** How does it generate the team if there are not enough employees?
+>
+> **Answer:** The system should provide information why it can't generate a team.
 
 ### 1.3. Acceptance Criteria
 
-* **AC1:** All required fields must be filled in.
-* **AC2:** The task reference must have at least 5 alphanumeric characters.
-* **AC3:** When creating a task with an existing reference, the system must reject such operation and the user must be able to modify the typed reference.
-
+* **AC1:** The size of the team must not exceed the value defined by the HRM.
+* **AC2:** The team members must have the skills provided by the HRM.
+* **AC3:** If there are not enough employees the system should provide information why it can´t generate a team. 
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "US003 - Create a task category" as there must be at least one task category to classify the task being created.
-
+* There is a dependency on "US003 - Register a collaborator" as there must be collaborators to create a team.
+* There is also a dependency on "US004 - Assign one or more skills" since a collaborator can have more than one skill.
 ### 1.5 Input and Output Data
 
 **Input Data:**
 
 * Typed data:
-    * a reference
-    * a designation 
-    * an informal description
-    * a technical description
-    * an estimated duration
-    * an estimated cost
+    * number of collaborators
 	
 * Selected data:
-    * a task category 
+    * skills of collaborators
 
 **Output Data:**
 
-* List of existing task categories
+* team proposal
 * (In)Success of the operation
 
 ### 1.6. System Sequence Diagram (SSD)
@@ -61,11 +61,9 @@ As HRM, I intend to automatically genera a team proposal.
 
 #### Alternative One
 
-![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
+![System Sequence Diagram - Alternative One](svg/us005-system-sequence-diagram.svg)
 
-#### Alternative Two
 
-![System Sequence Diagram - Alternative Two](svg/us006-system-sequence-diagram-alternative-two.svg)
 
 ### 1.7 Other Relevant Remarks
 

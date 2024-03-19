@@ -55,7 +55,7 @@ class Employee {
 Organization "1" - "0..*" Employee : has >
 Organization "1" - "0..*" Task: owns >
 'Task "*" -- "1" Employee: created by >
-Employee "1" -- "*" Task : creates >
+Employee "1" -- "*" Skill : has >
 'Employee "0..1" -- "1" User: acts as >
 Task "*" - "1" Category: cataloged as >
 @enduml

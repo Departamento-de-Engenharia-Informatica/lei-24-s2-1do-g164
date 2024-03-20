@@ -1,0 +1,57 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+
+class Organization {
+    name
+    vatNumber
+    website
+    phoneNumber
+    email
+}
+
+
+class HRM {
+       name
+        email
+        position
+        phone
+}
+
+class Collaborator {
+    name
+        birthday
+        admission date
+        address
+        cellphone number
+        e-mail
+        ID number
+}
+
+class TeamProposal {
+    team
+}
+
+class Team {
+    collaborators
+}
+
+class Skill {
+    name
+}
+
+Organization "1 " - " 1" HRM :  has >
+HRM "1" -- "*" Collaborator : creates >
+TeamProposal "1" --"1" Team: has >
+Team  -- Collaborator: has >
+Collaborator *-- Skill : has >
+
+@enduml

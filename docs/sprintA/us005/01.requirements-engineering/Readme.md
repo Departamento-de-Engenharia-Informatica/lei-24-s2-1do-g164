@@ -31,6 +31,15 @@ meaning that one team member have 2 skills.
 >
 > **Answer:** The system should provide information why it can't generate a team.
 
+> **Question:**  Does the HRM need to specify the task first for the team to be generated?
+> 
+> **Answer:** no
+
+> **Question:**  Should the generated team be assigned the task defined/default into the to-do list?
+>
+> **Answer:** no
+
+
 ### 1.3. Acceptance Criteria
 
 * **AC1:** The size of the team must not exceed the value defined by the HRM.

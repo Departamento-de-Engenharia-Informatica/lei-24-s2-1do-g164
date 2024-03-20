@@ -11,19 +11,29 @@ As a VPM, I intend to register a vehicle for inspection.
 
 **From the specifications document:**
 
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost, as well as a task category. 
+>	Each vehicle is characterized by having a unique vehicle ID.
 
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
+>	Each vehicle has a check-up which needs the vehicle ID, the date and the current kms.
 
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
+> **Question:**
+What information is needed when registering a vehicle for check up?
 >
-> **Answer:** Duration is estimated in days.
+> **Answer:**
+Vehicle ID,
+Date,
+current kms
 
-> **Question:** Monetary data is expressed in any particular currency?
+> **Question:**
+What is the unit of measurement used to estimate the check-up frequency (Kms, months, etc.)?
 >
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POT (virtual currency internal to the platform).
+> **Answer:**
+In real context all could be considered, in the scope of this project just kms will be considered.
+
+
+
+
 
 ### 1.3. Acceptance Criteria
 

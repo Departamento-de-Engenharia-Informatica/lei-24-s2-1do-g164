@@ -9,16 +9,6 @@ skinparam classAttributeIconSize 0
 hide circle
 hide methods
 
-
-class Organization {
-    name
-    vatNumber
-    website
-    phoneNumber
-    email
-}
-
-
 class HRM {
        name
         email
@@ -37,21 +27,21 @@ class Collaborator {
 }
 
 class TeamProposal {
-    team
 }
 
 class Team {
-    collaborators
+
 }
 
 class Skill {
     name
 }
 
-Organization "1 " - " 1" HRM :  has >
-HRM "1" -- "*" Collaborator : creates >
-TeamProposal "1" --"1" Team: has >
-Team  -- Collaborator: has >
-Collaborator *-- Skill : has >
+
+HRM "1 " -- "*" Collaborator : creates >
+HRM "1" -- "1  " TeamProposal : requests >
+TeamProposal "1 " --"1" Team: has >
+Team "1 " -- "1..*" Collaborator: has >
+Collaborator "1 " -- "0..* " Skill : has >
 
 @enduml

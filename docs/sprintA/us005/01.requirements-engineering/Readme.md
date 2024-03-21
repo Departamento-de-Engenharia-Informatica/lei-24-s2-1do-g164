@@ -1,4 +1,4 @@
-# US005 - Create a Task 
+# US005 -  Generate a team proposal
 
 
 ## 1. Requirements Engineering

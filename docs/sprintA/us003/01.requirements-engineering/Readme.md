@@ -64,4 +64,4 @@ As  HRM, I intend to register a collaborator with profession and fundamental att
 
 ### 1.7 Other Relevant Remarks
 
-* Thenh created task stays in a "not published" state in order to distinguish from "published" tasks.
+* Then created task stays in a "not published" state in order to distinguish from "published" tasks.

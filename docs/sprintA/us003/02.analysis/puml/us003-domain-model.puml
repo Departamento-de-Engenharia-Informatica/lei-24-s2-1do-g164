@@ -16,13 +16,7 @@ hide methods
 '  -description
 '}
 
-class Organization {
-    name
-    vatNumber
-    website
-    phoneNumber
-    email
-}
+
 
 class Collaborator {
     name
@@ -31,15 +25,13 @@ class Collaborator {
     address
     cellphone number
     e-mail
+    ID document type
     ID number
 }
 
 
 class HRM {
-    name
-    email
-    position
-    phone
+
 }
 
 
@@ -47,12 +39,9 @@ class Job{
     name
 }
 
-'Platform "1" -- "*" Organization : has registered >
-'Platform "1" -- "*" Category : defines >
-Organization "1" - "1" HRM : has >
+
 'Task "*" -- "1" HRM: created by >
 HRM "1" -- "*" Collaborator : creates >
-HRM "1" -- "*" Job : creates >
 'HRM "0..1" -- "1" User: acts as >
 Collaborator "1" -- "1" Job : has >
 

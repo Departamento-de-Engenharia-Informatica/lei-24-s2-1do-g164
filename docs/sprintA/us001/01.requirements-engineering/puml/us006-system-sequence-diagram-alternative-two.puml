@@ -3,7 +3,7 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-title System Sequence Diagram (SSD) - Alternative One
+title System Sequence Diagram (SSD) - Alternative Two
 
 autonumber
 
@@ -15,13 +15,13 @@ activate Employee
     Employee -> System : asks to create a new skill
     activate System
 
-        System --> Employee : requests data (name of the skill)
+        System --> Employee : requests data (upload a file)
     deactivate System
 
-    Employee -> System : types name of the skill
+    Employee -> System : selects file
     activate System
 
-        System --> Employee : shows new skill and requests confirmation
+        System --> Employee : shows all new skills and requests confirmation
     deactivate System
 
     Employee -> System : confirms data

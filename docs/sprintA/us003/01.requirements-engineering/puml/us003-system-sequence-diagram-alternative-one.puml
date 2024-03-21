@@ -21,7 +21,7 @@ activate Employee
     Employee -> System : selects a job
     activate System
 
-    System --> Employee : requests data (name, birthday, admission date, address, cellphone \nnumber, e-mail, ID document number)
+    System --> Employee : requests data (name, birthday, admission date, address, cellphone \nnumber, e-mail, ID document type and number)
     deactivate System
 
     Employee -> System : types data

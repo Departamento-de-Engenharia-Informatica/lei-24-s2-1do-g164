@@ -1,0 +1,48 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+'left to right direction
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+'title Domain Model
+
+'class Platform {
+'  -description
+'}
+
+
+
+class Collaborator {
+    name
+    birthday
+    admission date
+    address
+    cellphone number
+    e-mail
+    ID document type
+    ID number
+}
+
+
+class HRM {
+
+}
+
+
+class Job{
+    name
+}
+
+
+'Task "*" -- "1" HRM: created by >
+HRM "1" -- "*" Collaborator : creates >
+'HRM "0..1" -- "1" User: acts as >
+Collaborator "1" -- "1" Job : has >
+
+@enduml

@@ -20,16 +20,15 @@ As  HRM, I intend to register a collaborator with profession and fundamental att
 >
 > **Answer:** Name, birthday, admission date, address, cellphone number, e-mail and ID number
 
-> **Question:** Does the HRM select the job from a list that we display?
+> **Question:** Monetary data is expressed in any particular currency?
 >
-> **Answer:** Displaying or not, It's a matter of UX, the dev team should decide about it, but the valid jobs are the ones created within the US02.
+> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POT (virtual currency internal to the platform).
 
 ### 1.3. Acceptance Criteria
 
 * **AC1:** All required fields must be filled in.
 * **AC2:** The cellphone number must have 9 digits.
 * **AC3:** The admission date must be typed using the format _dd-mm-yyyy_
-* **AC4:** Collaborators can't have the same ID number
 
 ### 1.4. Found out Dependencies
 
@@ -46,7 +45,6 @@ As  HRM, I intend to register a collaborator with profession and fundamental att
     * address
     * cellphone number
     * e-mail
-    * ID document type
     * ID number
 	
 * Selected data:
@@ -61,9 +59,9 @@ As  HRM, I intend to register a collaborator with profession and fundamental att
  
 ###
 
-![System Sequence Diagram - Alternative One](svg/us003-system-sequence-diagram-alternative-one.svg)
+![System Sequence Diagram - Alternative One](svg/us003-system-sequence-diagram.svg)
 
 
 ### 1.7 Other Relevant Remarks
 
-* 
+* Then created task stays in a "not published" state in order to distinguish from "published" tasks.

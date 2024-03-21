@@ -1,11 +1,11 @@
-# US008 - Create a Task 
+# US008 - List the vehicles needing the check-up
 
 
 ## 1. Requirements Engineering
 
 ### 1.1. User Story Description
 
-As a VPM, I intend list the vehicles that need to be inspected. 
+As an FM, I want to list the vehicles needing the check-up 
 
 ### 1.2. Customer Specifications and Clarifications 
 
@@ -17,9 +17,9 @@ As a VPM, I intend list the vehicles that need to be inspected.
 
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
+> **Question:** What is needed for a vehicle to be considered as needing a check-up?
 >
-> **Answer:** Duration is estimated in days.
+> **Answer:** A vehicle appears on the list if it's current kms exceed 
 
 > **Question:** Monetary data is expressed in any particular currency?
 >
@@ -33,39 +33,21 @@ As a VPM, I intend list the vehicles that need to be inspected.
 
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "US003 - Create a task category" as there must be at least one task category to classify the task being created.
+* There is a dependency on "US006 - Create a task category" as there must be at least one task category to classify the task being created.
 
 ### 1.5 Input and Output Data
 
 **Input Data:**
 
-* Typed data:
-    * a reference
-    * a designation 
-    * an informal description
-    * a technical description
-    * an estimated duration
-    * an estimated cost
-	
-* Selected data:
-    * a task category 
+* n\a
 
 **Output Data:**
 
-* List of existing task categories
-* (In)Success of the operation
+* List of vehicles that need the check-up
 
 ### 1.6. System Sequence Diagram (SSD)
 
-**_Other alternatives might exist._**
-
-#### Alternative One
-
-![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
-
-#### Alternative Two
-
-![System Sequence Diagram - Alternative Two](svg/us006-system-sequence-diagram-alternative-two.svg)
+![System Sequence Diagram - Alternative One](svg/us008-system-sequence-diagram.svg)
 
 ### 1.7 Other Relevant Remarks
 

@@ -17,6 +17,7 @@ As a VPM, I intend to register a vehicle for inspection.
 
 **From the client clarifications:**
 
+
 > **Question:**
 What information is needed when registering a vehicle for check up?
 >

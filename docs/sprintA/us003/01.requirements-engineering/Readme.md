@@ -12,17 +12,14 @@ As  HRM, I intend to register a collaborator with profession and fundamental att
 
 >	Each collaborator has a job and a set of skills that enable him to take on certain tasks.
 
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
+>	The fundamental attributes are: name, birthdate, admission date, address, contact info (mobile and
+email), ID doc type and respective number. 
 
 **From the client clarifications:**
 
-> **Question:** What are the fundamental attributes of a collaborator?
->
-> **Answer:** Name, birthday, admission date, address, cellphone number, e-mail and ID number
-
-> **Question:** Monetary data is expressed in any particular currency?
->
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POT (virtual currency internal to the platform).
+> **Question:** Does the user select the job from a list that is displayed?
+> 
+> **Answer** Displaying the jobs or not is a matter of UX, the development team should decide about it. However, the valid jobs are the ones created within the US02.
 
 ### 1.3. Acceptance Criteria
 
@@ -45,8 +42,10 @@ As  HRM, I intend to register a collaborator with profession and fundamental att
     * address
     * cellphone number
     * e-mail
-    * ID number
+    * ID doc type
+    * ID doc number
 	
+
 * Selected data:
     * a job
 
@@ -64,4 +63,4 @@ As  HRM, I intend to register a collaborator with profession and fundamental att
 
 ### 1.7 Other Relevant Remarks
 
-* Then created task stays in a "not published" state in order to distinguish from "published" tasks.
+* n/a

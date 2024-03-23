@@ -27,7 +27,7 @@ activate Employee
     Employee -> System : confirms data
     activate System
 
-        System --> Employee : displays message of success (ie: "skill created")
+        System --> Employee : displays message of success (ie: "skills added to list")
     deactivate System
 
 @enduml

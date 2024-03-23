@@ -13,12 +13,14 @@ hide methods
 
 
 class Collaborator {
-    reference
-    description
-    informalDesc
-    technicalDesc
-    duration
-    cost
+    job
+    name
+    birthdate
+    admission date
+    address
+    contact info
+    ID document
+    ID number
 }
 
 class Skill {

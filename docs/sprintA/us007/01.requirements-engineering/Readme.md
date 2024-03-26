@@ -77,13 +77,9 @@ yes
 
 ### 1.6. System Sequence Diagram (SSD)
 
-**_Other alternatives might exist._**
+
 
 #### Alternative One
 
-![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
-
-#### Alternative Two
-
-![System Sequence Diagram - Alternative Two](svg/us006-system-sequence-diagram-alternative-two.svg)
+![System Sequence Diagram - Alternative One](svg/us007-system-sequence-diagram-alternative-one.svg)
 

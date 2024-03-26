@@ -5,15 +5,13 @@
 
 ### 1.1. User Story Description
 
-As an FM, I want to list the vehicles needing the check-up 
+As a FM, I want to list the vehicles needing the check-up. 
 
 ### 1.2. Customer Specifications and Clarifications 
 
 **From the specifications document:**
-
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost, as well as a task category. 
-
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
+ 
+>n/a
 
 **From the client clarifications:**
 

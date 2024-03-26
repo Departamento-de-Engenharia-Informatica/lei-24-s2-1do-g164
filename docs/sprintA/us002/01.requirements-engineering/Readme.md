@@ -4,12 +4,11 @@
 ## 1. Requirements Engineering
 
 ### 1.1. User Story Description
-
-As HRM, I intend to register a profession.
+As an HRM, I want to register a job that a collaborator need to have.
 
 ### 1.2. Customer Specifications and Clarifications 
 
-**From the specifications document:**
+**From the specifications document:**  
 
 >	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost, as well as a task category. 
 

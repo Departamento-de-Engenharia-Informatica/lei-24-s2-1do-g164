@@ -10,11 +10,19 @@ _Specifies functionalities that:
 
 ## Usability
 
-_Evaluates the user interface. It has several subcategories,
+Evaluates the user interface. It has several subcategories,
 among them: error prevention; interface aesthetics and design; help and
-documentation; consistency and standards._
+documentation; consistency and standards.
 
-(fill in here )
+* The application documentation must be in English language.
+
+* Javadoc must be used to generate useful documentation for Java code.
+
+* All the images/figures produced during the software development process should
+be recorded in SVG format.
+
+
+
 
 ## Reliability
 
@@ -34,7 +42,13 @@ _The supportability requirements gathers several characteristics, such as:
 testability, adaptability, maintainability, compatibility,
 configurability, installability, scalability and more._
 
-(fill in here )
+* The development team must implement unit tests for all methods, except for
+methods that implement Input/Output operations. The unit tests should be
+implemented using the JUnit 5 framework. 
+
+
+* The JaCoCo plugin should be used
+to generate the coverage report.
 
 ## +
 
@@ -42,7 +56,8 @@ configurability, installability, scalability and more._
 
 _Specifies or constraints the system design process. Examples may include: programming languages, software process, mandatory standards/patterns, use of development tools, class library, etc._
 
-(fill in here )
+The application must be developed in Java language using the IntelliJ IDE or
+NetBeans. The application’s graphical interface is to be developed in JavaFX 11.
 
 ### Implementation Constraints
 

@@ -15,20 +15,13 @@ activate Employee
     Employee -> System : asks to register a vehicle
 
 
-        System --> Employee : requests Brand, Model, Type, Tare,Gross Weight,Current Km, Register Date, Acquisition Date, Maintenance/Checkup Frequency
+        System --> Employee : requests data (i.e. Brand, Model, Type, Tare,Gross Weight,Current Km, Register Date, Acquisition Date, Maintenance/Checkup Frequency)
     deactivate System
 
-    Employee -> System : types the Brand, Model, Type, Tare,Gross Weight, Current Km, Register Date, Acquisition Date, Maintenance/Checkup Frequency (in Kms)
-
+    Employee -> System : types the data
     activate System
 
-        System --> Employee : shows task category list and asks to select one
-    deactivate System
-
-    Employee -> System : selects a task category
-    activate System
-
-        System --> Employee : shows all data and requests confirmation
+        System --> Employee : requests confirmation
     deactivate System
 
     Employee -> System : confirms data

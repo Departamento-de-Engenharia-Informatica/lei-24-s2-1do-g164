@@ -5,35 +5,31 @@
 
 ### 1.1. User Story Description
 
-As an FM, I want to list the vehicles needing the check-up 
+As a FM, I want to list the vehicles needing the check-up. 
 
 ### 1.2. Customer Specifications and Clarifications 
 
 **From the specifications document:**
-
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost, as well as a task category. 
-
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
+ 
+>n/a
 
 **From the client clarifications:**
 
 > **Question:** What is needed for a vehicle to be considered as needing a check-up?
 >
-> **Answer:** A vehicle appears on the list if it's current kms exceed 
+> **Answer:** A vehicle appears on the list if it's current kms exceed or there is a difference of less than 5% of the check-up frequency between the kms the vehicle had in the last check-up plus the check-up frequency.
 
-> **Question:** Monetary data is expressed in any particular currency?
+> **Question:** What data should be displayed for each vehicle in the list?
 >
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POT (virtual currency internal to the platform).
+> **Answer:** The list must clearly identify the vehicles through: plate number, brand, model and the reason that justified the checkup need.
 
 ### 1.3. Acceptance Criteria
 
-* **AC1:** All required fields must be filled in.
-* **AC2:** The task reference must have at least 5 alphanumeric characters.
-* **AC3:** When creating a task with an existing reference, the system must reject such operation and the user must be able to modify the typed reference.
+* **n/a**
 
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "US006 - Create a task category" as there must be at least one task category to classify the task being created.
+* There is a dependency on "US006-Register a vehicle" as there must be at least one vehicle to list.
 
 ### 1.5 Input and Output Data
 
@@ -43,7 +39,7 @@ As an FM, I want to list the vehicles needing the check-up
 
 **Output Data:**
 
-* List of vehicles that need the check-up
+* List of vehicles that need the check-up.
 
 ### 1.6. System Sequence Diagram (SSD)
 
@@ -51,4 +47,4 @@ As an FM, I want to list the vehicles needing the check-up
 
 ### 1.7 Other Relevant Remarks
 
-* The created task stays in a "not published" state in order to distinguish from "published" tasks.
+* If a check-up has never been registered for a vehicle its kms at last check-up are 0. 

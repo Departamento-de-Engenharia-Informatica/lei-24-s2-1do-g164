@@ -1,0 +1,32 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+'left to right direction
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+
+
+class Collaborator {
+    job
+    name
+    birthdate
+    admission date
+    address
+    contact info
+    ID document
+    ID number
+}
+
+class Skill {
+    Nome
+}
+
+
+Skill "1..*" - "1" Collaborator: is atributed to >
+@enduml

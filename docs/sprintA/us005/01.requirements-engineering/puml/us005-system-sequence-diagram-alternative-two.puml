@@ -28,10 +28,15 @@ activate Employee
     activate System
 
         System --> Employee : shows all data and requests confirmation or modification
- deactivate System
 
-       Employee -> System : confirms data
+       Employee -> System : modifies data
         activate System
+
+          System --> Employee : shows all data and requests confirmation or modification
+       deactivate System
+
+               Employee -> System : confirms data
+                activate System
 
             System --> Employee : displays operation success
         deactivate System

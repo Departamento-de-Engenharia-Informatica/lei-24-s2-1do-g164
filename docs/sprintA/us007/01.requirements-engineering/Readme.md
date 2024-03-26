@@ -1,4 +1,4 @@
-# US007 - Create a Task 
+# US007 -  Register Vehicle's Check-Up.
 
 
 ## 1. Requirements Engineering
@@ -17,6 +17,7 @@ As a VPM, I intend to register a vehicle for inspection.
 
 **From the client clarifications:**
 
+
 > **Question:**
 What information is needed when registering a vehicle for check up?
 >
@@ -31,6 +32,21 @@ What is the unit of measurement used to estimate the check-up frequency (Kms, mo
 > **Answer:**
 In real context all could be considered, in the scope of this project just kms will be considered.
 
+> **Question:**
+What are the validation requirements for the vehicle ID?
+>
+> **Answer:**
+After 2020: AA-00-AA
+between 2005-2020 00-AA-00
+between 1992-2005 00-00-XX
+
+
+> **Question:**
+Can a vehicle have more than one check-up?
+>
+> **Answer:**
+yes
+
 
 
 
@@ -38,32 +54,26 @@ In real context all could be considered, in the scope of this project just kms w
 ### 1.3. Acceptance Criteria
 
 * **AC1:** All required fields must be filled in.
-* **AC2:** The task reference must have at least 5 alphanumeric characters.
-* **AC3:** When creating a task with an existing reference, the system must reject such operation and the user must be able to modify the typed reference.
-
+* **AC2:** The vehicle ID must follow the requested forma(After 2020: AA-00-AA between 2005-2020 00-AA-00 between 1992-2005 00-00-XX).
+* **AC3:** The admission date must be typed using the format dd-mm-yyyy.
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "US003 - Create a task category" as there must be at least one task category to classify the task being created.
+* There is a dependency on "US006 - Register a vehicle" as a vheicle check-up needs an existing vehicle and some info like the current km, provided in US006.
 
 ### 1.5 Input and Output Data
 
 **Input Data:**
 
 * Typed data:
-    * a reference
-    * a designation 
-    * an informal description
-    * a technical description
-    * an estimated duration
-    * an estimated cost
+    * vehicle ID
+    * date
+    * current kms
 	
-* Selected data:
-    * a task category 
 
 **Output Data:**
 
-* List of existing task categories
 * (In)Success of the operation
+
 
 ### 1.6. System Sequence Diagram (SSD)
 
@@ -77,6 +87,3 @@ In real context all could be considered, in the scope of this project just kms w
 
 ![System Sequence Diagram - Alternative Two](svg/us006-system-sequence-diagram-alternative-two.svg)
 
-### 1.7 Other Relevant Remarks
-
-* The created task stays in a "not published" state in order to distinguish from "published" tasks.

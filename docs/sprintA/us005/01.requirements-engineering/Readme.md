@@ -39,6 +39,14 @@ meaning that one team member have 2 skills.
 >
 > **Answer:** no
 
+> **Question:**  Can a collaborator be in more than one team at the same time?
+>
+> **Answer:** no
+
+> **Question:**  I would like to ask if, in this US, there should be any more information in the team generated beyond the collaborators in which it consists?
+>
+> **Answer:** The information should contain each of team members and its skills.
+
 
 ### 1.3. Acceptance Criteria
 
@@ -61,7 +69,7 @@ meaning that one team member have 2 skills.
 
 **Output Data:**
 
-* team proposal
+* team proposal (team members and its skills)
 * (In)Success of the operation
 
 ### 1.6. System Sequence Diagram (SSD)
@@ -70,10 +78,8 @@ meaning that one team member have 2 skills.
 
 #### Alternative One
 
-![System Sequence Diagram - Alternative One](svg/us005-system-sequence-diagram.svg)
+![System Sequence Diagram - Alternative One](svg/us005-system-sequence-diagram-alternative-one.svg)
 
+#### Alternative Two
 
-
-### 1.7 Other Relevant Remarks
-
-* The created task stays in a "not published" state in order to distinguish from "published" tasks.
+![System Sequence Diagram - Alternative One](svg/us005-system-sequence-diagram-alternative-two.svg)

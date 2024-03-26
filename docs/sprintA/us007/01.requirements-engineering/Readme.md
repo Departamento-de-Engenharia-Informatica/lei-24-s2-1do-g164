@@ -5,7 +5,7 @@
 
 ### 1.1. User Story Description
 
-As a VPM, I intend to register a vehicle for inspection.
+As a FM, I intend to register a vehicle for inspection.
 
 ### 1.2. Customer Specifications and Clarifications 
 

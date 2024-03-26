@@ -33,5 +33,5 @@ class HRM{
 }
 
 
-HRM "1" - "1..*" job: cataloged as >
+HRM "1" - "1..*" job: creates a >
 @enduml

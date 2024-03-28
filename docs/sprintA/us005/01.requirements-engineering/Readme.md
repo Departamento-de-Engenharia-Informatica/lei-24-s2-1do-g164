@@ -50,7 +50,7 @@ meaning that one team member have 2 skills.
 
 ### 1.3. Acceptance Criteria
 
-* **AC1:** The size of the team must not exceed the value defined by the HRM.
+* **AC1:** The size of the team must be within the range of the values defined by the HRM.
 * **AC2:** The team members must have the skills provided by the HRM.
 * **AC3:** If there are not enough employees the system should provide information why it can´t generate a team. 
 ### 1.4. Found out Dependencies

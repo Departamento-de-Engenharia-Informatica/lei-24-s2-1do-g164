@@ -10,103 +10,111 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Business Transactions**
 
-* 
+* n/a
 
 ---
 
 **Transaction Line Itemss**
 
-* 
+* n/a
 
 ---
 
 **Product/Service related to a Transaction or Transaction Line Item**
 
-* 
+* n/a
 
 ---
 
 **Transaction Records**
 
-* 
+* n/a
 
 ---  
 
 **Roles of People or Organizations**
 
-* 
+* Role: HRM
+* Role: VFM
+* Role: Collaborator
+* Role: GSM
+* Role: GSU
 
 ---
 
 **Places**
 
-* 
+* Garden
+* Medium-sized park
+* Large-sized park
 
 ---
 
 **Noteworthy Events**
 
-* 
+* n/a
 
 ---
 
 **Physical Objects**
 
-* 
+* Vehicles
+* Machines
+* Equipment
 
 ---
 
 **Descriptions of Things**
 
-* 
+* n/a
 
 ---
 
 **Catalogs**
 
-* 
+* n/a
 
 ---
 
 **Containers**
 
-* 
+* n/a
 
 ---
 
 **Elements of Containers**
 
-* 
+* n/a
 
 ---
 
 **Organizations**
 
-* 
+* MS
 
 ---
 
 **Other External/Collaborating Systems**
 
-* 
+* n/a
 
 ---
 
 **Records of finance, work, contracts, legal matters**
 
-* 
+* n/a
 
 ---
 
 **Financial Instruments**
 
-* 
+* n/a
 
 ---
 
 **Documents mentioned/used to perform some work/**
 
-* 
+* n/a
 
 ---
 

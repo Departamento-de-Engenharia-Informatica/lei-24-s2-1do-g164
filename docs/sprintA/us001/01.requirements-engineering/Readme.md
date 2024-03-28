@@ -69,11 +69,11 @@ OR
 
 #### Alternative One - Type the name of one skill at a time
 
-![System Sequence Diagram - Alternative One](svg/us001-system-sequence-diagram-alternative-one-System_Sequence_Diagram__SSD____Alternative_One.svg)
+![System Sequence Diagram - Alternative One](svg/us001-system-sequence-diagram-alternative-one.svg)
 
 #### Alternative Two - Upload file with multiple skill's names
 
-![System Sequence Diagram - Alternative Two](svg/us001-system-sequence-diagram-alternative-two-System_Sequence_Diagram__SSD____Alternative_Two.svg)
+![System Sequence Diagram - Alternative Two](svg/us001-system-sequence-diagram-alternative-two.svg)
 
 
 ### 1.7 Other Relevant Remarks

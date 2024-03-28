@@ -74,7 +74,6 @@ meaning that one team member have 2 skills.
 
 ### 1.6. System Sequence Diagram (SSD)
 
-**_Other alternatives might exist._**
 
 #### Alternative One
 

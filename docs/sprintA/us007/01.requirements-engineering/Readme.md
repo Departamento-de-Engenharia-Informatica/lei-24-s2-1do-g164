@@ -48,6 +48,19 @@ Can a vehicle have more than one check-up?
 yes
 
 
+> **Question:**
+Does a vehicle need to be registered in US06 before being able to go for a check up in US07?
+> 
+> **Answer:**
+yes
+
+> **Question:**
+After registering a job/vehicle's checkup should a message (sucess or failure) or a resume of the register appear?
+>
+> **Answer:**
+the UX/UI is up to dev teams.
+
+
 
 
 

@@ -1,5 +1,5 @@
 @startuml
-'skinparam monochrome true
+'   skinparam monochrome true
 skinparam packageStyle rectangle
 'skinparam shadowing false
 
@@ -7,29 +7,44 @@ skinparam rectangle{
     BorderColor yellow
 }
 
-'title Use Case Diagram Example
 
 left to right direction
 
-rectangle "System Actors" as actors {
-    actor Freelancer
-    actor "Organization\nEmployee" as Employee
-}
+    actor Collaborator
+    actor GSM
+    actor GSU
+    note right of GSM
+        Actor identified but still
+        no concrete use cases
+    end note
+
+    note right of Collaborator
+        Actor identified but still
+        no concrete use cases
+    end note
+
+    note right of GSU
+            Actor identified but still
+            no concrete use cases
+    end note
 
 
-note right of Freelancer
-    Actor identified but still
-    no concrete use cases
-end note
 
-rectangle "Use Cases" as usecases{
-    usecase "UC6 - Create a Task" as UC6
-    Employee --> UC6
-}
-note right of actors
-    Rectangles and Titles are for
-    demonstration purposes only.
-    Omitt on your diagrams.
-end note
+    usecase "UC 006 - Register a vehicle with fundamental data" as UC6
+    "FM" --> UC6
+    usecase "UC 007 - Register vehicle for check-up" as UC7
+    "FM" --> UC7
+    usecase "UC 008 - List the vehicles needing a check-up" as UC8
+    "FM" --> UC8
+    usecase "UC 001 - Create a skill to be apointed to a collaborator" as UC1
+    "HRM" --> UC1
+    usecase "UC 002 - Create a job to be apointed to a collaborator" as UC2
+    "HRM" --> UC2
+    usecase "UC 003 - Register a collaborator with a job and fundamental characteristics" as UC3
+    "HRM" --> UC3
+    usecase "UC 004 - Assign one or more skills to a collaborator" as UC4
+    "HRM" --> UC4
+    usecase "UC 005 - Generate a team proposal automatically based on skills needed" as UC5
+    "HRM" --> UC5
 
 @enduml

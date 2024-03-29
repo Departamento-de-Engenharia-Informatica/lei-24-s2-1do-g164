@@ -8,11 +8,7 @@ skinparam classAttributeIconSize 0
 hide circle
 hide methods
 
-'title Domain Model
 
-'class Platform {
-'  -description
-'}
 
 class Organization {
     name
@@ -82,6 +78,7 @@ class VehicleCheckup {
 class Vehicle {
             brand
            model
+           vehicleID
            type
            tare
            gross
@@ -153,7 +150,7 @@ Vehicle "1   " -- "0..* " VehicleCheckup : has >
 FM "1 " -- "0..*  " VehicleCheckup : requests >
 GSU"  1  " -- "0..*          " Report: makes >
 GSU"  1  " -- "0..*   " Comment: makes >
-GSU"  1  " -- "0..*   " GreenSpacesUserPortal:  uses >
+GSU"  1  " -- "1   " GreenSpacesUserPortal:  uses >
 GreenSpacesUserPortal "1                 " -- "0..*   " Report : has >
 GreenSpacesUserPortal "1    " -- "0..*" Comment : has >
 

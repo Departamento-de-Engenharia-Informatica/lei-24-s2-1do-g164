@@ -104,8 +104,8 @@ class Agenda {
 }
 
 class AgendaEntry {
-    Time Interval
-    Date
+    timeInterval
+    date
 }
 
 class GreenSpacesUserPortal{
@@ -122,12 +122,13 @@ class Category {
     description
 }
 
-class Employee {
-    name
-    email
-    position
-    phone
+class ToDoList{
+
 }
+
+class ListOfVehiclesNeedingCheckUp {
+}
+
 
 SystemUser --|> HRM
 SystemUser --|> FM
@@ -156,23 +157,21 @@ GSU"  1  " -- "0..*   " GreenSpacesUserPortal:  uses >
 GreenSpacesUserPortal "1                 " -- "0..*   " Report : has >
 GreenSpacesUserPortal "1    " -- "0..*" Comment : has >
 
-'Platform "1" -- "*" Organization : has registered >
-'Platform "1" -- "*" Category : defines >
 Organization "1" - "*" SystemUser : has >
 Organization "1" - "0..*" Task: owns >
-'Task "*" -- "1" Employee: created by >
-Employee "1" -- "*" Task : creates >
-'Employee "0..1" -- "1" User: acts as >
-Task "*" - "1" Category: cataloged as >
-
-
-
+Task "1" - "1" Category: cataloged as >
+Task "1" - "1  " Team:   carried out by   >
+ToDoList "1" - "0..*" Task: contains >
 
 HRM "1 " -- "*" Collaborator : creates >
 HRM "1" -- "1  " TeamProposal : requests >
-TeamProposal "1 " --"1" Team: has >
+TeamProposal "1 " --"1        " Team: has >
 Team "1 " -- "1..*  " Collaborator: has >
 Collaborator "1 " -- "0..* " Skill : has >
 Collaborator "1 " -- "1 " Job : has >
-
+Organization "1" - "1" Agenda : has >
+Organization "1" - "*" GreenSpace: manages >
+GSU"1" - "*" GreenSpace: uses >
+GSM "1" - "*" GreenSpace: manages >
+ListOfVehiclesNeedingCheckUp "1" - "*" Vehicle : has >
 @enduml

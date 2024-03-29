@@ -20,6 +20,7 @@ class Organization {
     website
     phoneNumber
     email
+
 }
 
 class GreenSpace {
@@ -35,16 +36,18 @@ class SystemUser {
     email
     password
     phone
+
 }
 class HRM {
 }
 class FM {
 }
 class Collaborator {
-        birthday
-        admission date
-        address
-        ID number
+               birthdate
+               admissionDate
+               address
+               idDocType
+               idNumber
 }
 class GSM {
 }
@@ -71,26 +74,25 @@ class Task {
 }
 
 class VehicleCheckup {
-    VehicleID
-    Date
-    CurrentKms
+        vehicleID
+        date
+        currentKms
 }
 
 class Vehicle {
-      Brand
-      Model
-      Type
-      Tare
-      Gross
-      Weight
-      Current Km
-      Register Date
-      Acquisition Date
-      Maintenance/Checkup
-      Frequency
+            brand
+           model
+           type
+           tare
+           gross
+           weight
+           currentKm
+           registerDate
+           acquisitionDate
+           maintenance/checkupFrequency
 }
 
-class Machines {
+class Machine {
     name
 }
 
@@ -127,31 +129,6 @@ class Employee {
     phone
 }
 
-class TechnicalSkill{
-    shortDescription
-    fullDescription
-}
-
-class ActivityArea{
-    shortDescription
-    fullDescription
-}
-
-class FeatureTS{
-    mandatory
-}
-
-'class User {
-'    name
-'    email
-'    password
-'}
-class PostalAddress{
-    street
-    zipCode
-    city
-}
-
 SystemUser --|> HRM
 SystemUser --|> FM
 SystemUser --|> Collaborator
@@ -168,31 +145,33 @@ Agenda "1" -- "*" AgendaEntry : has >
 AgendaEntry "1" -- "1" Task : defines >
 AgendaEntry "1" -- "1" Team : defines >
 
-FM "  1  " -- "0..*   " Vehicle : registers >
-Vehicle "1   " -- "0..*  " VehicleCheckup : has >
+FM " 1" -- "0..*     " Vehicle : registers >
+FM "  1 " -- "*" Machine : manages >
+FM "  1    " -- "*" Equipment : manages >
+Vehicle "1   " -- "0..* " VehicleCheckup : has >
 FM "1 " -- "0..*  " VehicleCheckup : requests >
+GSU"  1  " -- "0..*          " Report: makes >
+GSU"  1  " -- "0..*   " Comment: makes >
+GSU"  1  " -- "0..*   " GreenSpacesUserPortal:  uses >
+GreenSpacesUserPortal "1                 " -- "0..*   " Report : has >
+GreenSpacesUserPortal "1    " -- "0..*" Comment : has >
 
 'Platform "1" -- "*" Organization : has registered >
 'Platform "1" -- "*" Category : defines >
-Organization "1" - "0..*" Employee : has >
+Organization "1" - "*" SystemUser : has >
 Organization "1" - "0..*" Task: owns >
 'Task "*" -- "1" Employee: created by >
 Employee "1" -- "*" Task : creates >
 'Employee "0..1" -- "1" User: acts as >
 Task "*" - "1" Category: cataloged as >
-TechnicalSkill "*" - "1" ActivityArea: regarding an >
 
-Category "*" - "*" TechnicalSkill :  : requires >
-(Category, TechnicalSkill) . FeatureTS
-
-Organization "1" -left "1" PostalAddress : located At >
 
 
 
 HRM "1 " -- "*" Collaborator : creates >
 HRM "1" -- "1  " TeamProposal : requests >
 TeamProposal "1 " --"1" Team: has >
-Team "1 " -- "1..*" Collaborator: has >
+Team "1 " -- "1..*  " Collaborator: has >
 Collaborator "1 " -- "0..* " Skill : has >
 Collaborator "1 " -- "1 " Job : has >
 

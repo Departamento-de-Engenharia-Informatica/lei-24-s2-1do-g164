@@ -6,6 +6,7 @@
 
 ![Domain Model](svg/us007-domain-model.svg)
 
+
 ### 2.2. Other Remarks
 
 n/a

@@ -3,41 +3,41 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-'left to right direction
+
 
 skinparam classAttributeIconSize 0
 
 hide circle
 hide methods
 
-class FM {
-    Name
-    ID
+class VFM {
+
 }
 
 class VehicleCheckup {
-    VehicleID
-    Date
-    CurrentKms
+vehicleID
+    currentKms
+    date
+
 }
 
 class Vehicle {
-      Brand
-      Model
-      Type
-      Tare
-      Gross
-      Weight
-      Current Km
-      Register Date
-      Acquisition Date
-      Maintenance/Checkup
-      Frequency
+      brand
+      vehicleID
+      model
+      type
+      tare
+      gross
+      weight
+      currentKms
+      registerDate
+      acquisitionDate
+      maintenance/checkupFrequency
 }
 
 
-FM "  1  " -- "0..*   " Vehicle : registers >
-Vehicle "1   " -- "0..*  " VehicleCheckup : has >
-FM "1 " -- "0..*  " VehicleCheckup : requests >
+VFM "1" -- "0..*   " Vehicle : registers >
+Vehicle "1   " -- "0..*                        " VehicleCheckup : has >
+VFM "           1 " -- "0..*   " VehicleCheckup : requests >
 
 @enduml

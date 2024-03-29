@@ -43,11 +43,11 @@ class HRM {
 class FM {
 }
 class Collaborator {
-               birthdate
-               admissionDate
-               address
-               idDocType
-               idNumber
+    birthday
+    admissionDate
+    address
+    idDocumentType
+    idDocumentNumber
 }
 class GSM {
 }
@@ -74,22 +74,21 @@ class Task {
 }
 
 class VehicleCheckup {
-        vehicleID
-        date
-        currentKms
+    vehicleID
+    date
+    currentKms
 }
 
 class Vehicle {
-            brand
-           model
-           type
-           tare
-           gross
-           weight
-           currentKm
-           registerDate
-           acquisitionDate
-           maintenance/checkupFrequency
+   brand
+   model
+   type
+   tare
+   grossWeight
+   currentKm
+   registerDate
+   acquisitionDate
+   checkupFrequency
 }
 
 class Machine {
@@ -164,6 +163,8 @@ Task "1" - "1  " Team:   carried out by   >
 ToDoList "1" - "0..*" Task: contains >
 
 HRM "1 " -- "*" Collaborator : creates >
+HRM "1 " -- "*" Job : creates >
+HRM "1 " -- "*" Skill : creates >
 HRM "1" -- "1  " TeamProposal : requests >
 TeamProposal "1 " --"1        " Team: has >
 Team "1 " -- "1..*  " Collaborator: has >

@@ -52,7 +52,7 @@ As an HRM, I want to register a job that a collaborator needs to have.
 ### 1.6. System Sequence Diagram (SSD)
 
 
-![System Sequence Diagram - Alternative One](svg/us002-system-sequence-diagram-alternative-one.svg)
+![System Sequence Diagram](svg/us002-system-sequence-diagram-alternative-one.svg)
 
 
 ### 1.7 Other Relevant Remarks

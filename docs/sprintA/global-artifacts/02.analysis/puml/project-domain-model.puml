@@ -8,7 +8,11 @@ skinparam classAttributeIconSize 0
 hide circle
 hide methods
 
+'title Domain Model
 
+'class Platform {
+'  -description
+'}
 
 class Organization {
     name
@@ -39,11 +43,11 @@ class HRM {
 class FM {
 }
 class Collaborator {
-               birthdate
-               admissionDate
-               address
-               idDocType
-               idNumber
+    birthday
+    admissionDate
+    address
+    idDocumentType
+    idDocumentNumber
 }
 class GSM {
 }
@@ -70,23 +74,21 @@ class Task {
 }
 
 class VehicleCheckup {
-        vehicleID
-        date
-        currentKms
+    vehicleID
+    date
+    currentKms
 }
 
 class Vehicle {
-            brand
-           model
-           vehicleID
-           type
-           tare
-           gross
-           weight
-           currentKm
-           registerDate
-           acquisitionDate
-           maintenance/checkupFrequency
+   brand
+   model
+   type
+   tare
+   grossWeight
+   currentKm
+   registerDate
+   acquisitionDate
+   checkupFrequency
 }
 
 class Machine {
@@ -150,7 +152,7 @@ Vehicle "1   " -- "0..* " VehicleCheckup : has >
 FM "1 " -- "0..*  " VehicleCheckup : requests >
 GSU"  1  " -- "0..*          " Report: makes >
 GSU"  1  " -- "0..*   " Comment: makes >
-GSU"  1  " -- "1   " GreenSpacesUserPortal:  uses >
+GSU"  1  " -- "0..*   " GreenSpacesUserPortal:  uses >
 GreenSpacesUserPortal "1                 " -- "0..*   " Report : has >
 GreenSpacesUserPortal "1    " -- "0..*" Comment : has >
 
@@ -161,6 +163,8 @@ Task "1" - "1  " Team:   carried out by   >
 ToDoList "1" - "0..*" Task: contains >
 
 HRM "1 " -- "*" Collaborator : creates >
+HRM "1 " -- "*" Job : creates >
+HRM "1 " -- "*" Skill : creates >
 HRM "1" -- "1  " TeamProposal : requests >
 TeamProposal "1 " --"1        " Team: has >
 Team "1 " -- "1..*  " Collaborator: has >

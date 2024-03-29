@@ -21,11 +21,17 @@ email), ID doc type and respective number.
 > 
 > **Answer** Displaying the jobs or not is a matter of UX, the development team should decide about it. However, the valid jobs are the ones created within the US02.
 
+> **Question:** What is the format for the numbers from the id document?
+> 
+> **Answer:** Each document type has specific formats like taxpayer number, citizen Card ou passport.
+
 ### 1.3. Acceptance Criteria
 
 * **AC1:** All required fields must be filled in.
 * **AC2:** The cellphone number must have 9 digits.
-* **AC3:** The admission date must be typed using the format _dd-mm-yyyy_
+* **AC3:** A collaborator can only have one job.
+* **AC4:** Each document type has its own number format that must be respected.
+* **AC5:** The admission date must be typed using the format _dd-mm-yyyy_
 
 ### 1.4. Found out Dependencies
 

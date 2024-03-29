@@ -17,7 +17,7 @@ As a FM, I want to list the vehicles needing the check-up.
 
 > **Question:** What is needed for a vehicle to be considered as needing a check-up?
 >
-> **Answer:** A vehicle appears on the list if it's current kms exceed or there is a difference of less than 5% of the check-up frequency between the kms the vehicle had in the last check-up plus the check-up frequency.
+> **Answer:** A vehicle appears on the list if its current kms exceed or there is a difference of less than 5% of the check-up frequency between the kms the vehicle had in the last check-up plus the check-up frequency.
 
 > **Question:** What data should be displayed for each vehicle in the list?
 >

@@ -21,12 +21,12 @@ hide methods
 class Collaborator {
     name
     birthday
-    admission date
+    admissionDate
     address
-    cellphone number
-    e-mail
-    ID document type
-    ID number
+    cellphoneNumber
+    email
+    idDocumentType
+    idDocumentNumber
 }
 
 

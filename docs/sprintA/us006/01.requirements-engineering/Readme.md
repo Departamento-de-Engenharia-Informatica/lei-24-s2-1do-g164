@@ -1,11 +1,11 @@
-# US006 - Create a Task 
+# US006 - Register a vehicle
 
 
 ## 1. Requirements Engineering
 
 ### 1.1. User Story Description
 
-As an FM, I want to register a vehicle.
+As an VFM, I want to register a vehicle.
 
 ### 1.2. Customer Specifications and Clarifications 
 

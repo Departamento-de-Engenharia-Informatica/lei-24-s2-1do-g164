@@ -1,4 +1,4 @@
-# US001 - Register a skill
+# US003 - Register a collaborator
 
 
 ## 1. Requirements Engineering

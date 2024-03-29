@@ -5,23 +5,26 @@
 
 ### 1.1. User Story Description
 
-As an organization employee, I want to create a new task in order to be further published.
+As an FM, I want to register a vehicle.
 
 ### 1.2. Customer Specifications and Clarifications 
 
 **From the specifications document:**
 
 >	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost, as well as a task category. 
-
+ 
 >	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
 
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
+> **Question:**What are the acceptance criteria?
+When are creating a job that already exit, what the system do?
 >
-> **Answer:** Duration is estimated in days.
+> **Answer:**
+By definition a set can´t have duplicates. Assuring no duplicates is not a business rule is a tecnichal issue.
 
-> **Question:** Monetary data is expressed in any particular currency?
+> **Question:**
+For the application to work does the FM need to fill all the attributes of the vehicle?
 >
 > **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POT (virtual currency internal to the platform).
 

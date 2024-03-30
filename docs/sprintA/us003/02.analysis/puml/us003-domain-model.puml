@@ -17,14 +17,18 @@ hide methods
 '}
 
 
+class SystemUser {
+    name
+    email
+    password
+    phone
+
+}
 
 class Collaborator {
-    name
     birthday
     admissionDate
     address
-    cellphoneNumber
-    email
     idDocumentType
     idDocumentNumber
 }
@@ -39,7 +43,7 @@ class Job{
     name
 }
 
-
+SystemUser --|> Collaborator
 'Task "*" -- "1" HRM: created by >
 HRM "1" -- "*" Collaborator : creates >
 'HRM "0..1" -- "1" User: acts as >

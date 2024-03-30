@@ -38,7 +38,7 @@ activate Employee
                Employee -> System : confirms data
                 activate System
 
-            System --> Employee : displays operation success
+            System --> Employee : displays operation success and shows the team
         deactivate System
 
 

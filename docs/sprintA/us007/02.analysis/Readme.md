@@ -1,4 +1,4 @@
-# US006 - Create a Task 
+#  US007 - Register Vehicle's Check-Up
 
 ## 2. Analysis
 
@@ -6,7 +6,3 @@
 
 ![Domain Model](svg/us007-domain-model.svg)
 
-
-### 2.2. Other Remarks
-
-n/a

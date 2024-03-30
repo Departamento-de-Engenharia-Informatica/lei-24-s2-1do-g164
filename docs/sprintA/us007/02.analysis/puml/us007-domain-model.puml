@@ -22,17 +22,17 @@ vehicleID
 }
 
 class Vehicle {
-      brand
-      vehicleID
-      model
-      type
-      tare
-      gross
-      weight
-      currentKms
-      registerDate
-      acquisitionDate
-      maintenance/checkupFrequency
+
+        brand
+        model
+        vehicleID
+        type
+        tare
+        grossWeight
+        currentKm
+        registerDate
+        acquisitionDate
+        checkupFrequency
 }
 
 

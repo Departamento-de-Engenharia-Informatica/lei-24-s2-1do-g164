@@ -5,7 +5,7 @@
 
 ### 1.1. User Story Description
 
-As a FM, I intend to register a vehicle for inspection.
+As a VFM, I intend to register a vehicle for inspection.
 
 ### 1.2. Customer Specifications and Clarifications 
 
@@ -64,11 +64,11 @@ the UX/UI is up to dev teams.
 
 
 
-### 1.3. Acceptance Criteria
+### 1.3. Acceptance Criteria 
 
 * **AC1:** All required fields must be filled in.
-* **AC2:** The vehicle ID must follow the requested forma(After 2020: AA-00-AA between 2005-2020 00-AA-00 between 1992-2005 00-00-XX).
-* **AC3:** The admission date must be typed using the format dd-mm-yyyy.
+* **AC2:** The vehicle ID must follow the requested format (After 2020: AA-00-AA between 2005-2020 00-AA-00 between 1992-2005 00-00-XX).
+* **AC3:** The date must be typed using the format dd-mm-yyyy.
 ### 1.4. Found out Dependencies
 
 * There is a dependency on "US006 - Register a vehicle" as a vheicle check-up needs an existing vehicle and some info like the current km, provided in US006.

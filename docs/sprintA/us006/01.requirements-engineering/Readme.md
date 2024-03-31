@@ -10,66 +10,66 @@ As an VFM, I want to register a vehicle.
 ### 1.2. Customer Specifications and Clarifications 
 
 **From the specifications document:**
+>Vehicles are needed to carry out the tasks assigned to the teams as well as to transport
+machines and equipment.
 
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost, as well as a task category. 
- 
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
-
-**From the client clarifications:**
-
-> **Question:**What are the acceptance criteria?
-When are creating a job that already exit, what the system do?
+> **Question:** Should the application identify a registered vehicle by a serial number or other attribute?
 >
 > **Answer:**
-By definition a set can´t have duplicates. Assuring no duplicates is not a business rule is a tecnichal issue.
+By plate id;
 
 > **Question:**
-For the application to work does the FM need to fill all the attributes of the vehicle?
+Should the application a group the vehicles by their brand, serial number or other attribute?
 >
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POT (virtual currency internal to the platform).
+> **Answer:** No requirements were set concerning groups of vehicles;
+
+> **Question:**
+If the Fm inserts the same vehicle by mistake, should it inform their user of the mistake and give him the option to add another vehicle?
+>
+> **Answer:** Duplication of data is not a business rule is technical one, since by definition in a set you cant have duplicates.
+
+> **Question:**
+When a vehicle is registered, are there specific requirements for accepting the brand? For example, does the system need to check if the brand is on a predetermined list? Does this also apply to the model or any other characteristics?
+>
+> **Answer:** no; one can consider a list os brands and a list of models previously inserted in the system, no need to go through validations.
+
+> **Question:**
+Can a fm register no vehicles or does he have to register at least one?
+> 
+> **Answer:** The VFM is a role or system user profile that has the rights to perform some system actions (like the ones described by the US06, US07 and US08).
+In theory If there is no need to register a vehicle, no vehicles will be registered but that would be rather odd.
 
 ### 1.3. Acceptance Criteria
 
-* **AC1:** All required fields must be filled in.
-* **AC2:** The task reference must have at least 5 alphanumeric characters.
+* **AC1:** The application needs to register vehicle by plate id.
+* **AC2:** The application can not register duplicate vehicles.
 * **AC3:** When creating a task with an existing reference, the system must reject such operation and the user must be able to modify the typed reference.
 
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "US003 - Create a task category" as there must be at least one task category to classify the task being created.
+* None. However, US007 will have a dependency on this user story, as a vehicle check-up needs to have its vehicle registered
 
 ### 1.5 Input and Output Data
 
 **Input Data:**
 
 * Typed data:
-    * a reference
-    * a designation 
-    * an informal description
-    * a technical description
-    * an estimated duration
-    * an estimated cost
-	
-* Selected data:
-    * a task category 
+* brand
+* model
+* vehicleID
+* type
+* tare
+* grossWeight
+* currentKm
+* registerData
+* acquisitionDate 
+* checkupFrequency
 
 **Output Data:**
 
-* List of existing task categories
 * (In)Success of the operation
-
-### 1.6. System Sequence Diagram (SSD)
-
-**_Other alternatives might exist._**
 
 #### Alternative One
 
 ![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
 
-#### Alternative Two
-
-![System Sequence Diagram - Alternative Two](svg/us006-system-sequence-diagram-alternative-two.svg)
-
-### 1.7 Other Relevant Remarks
-
-* The created task stays in a "not published" state in order to distinguish from "published" tasks.

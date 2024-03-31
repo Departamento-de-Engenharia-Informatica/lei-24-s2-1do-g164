@@ -7,7 +7,7 @@ title System Sequence Diagram (SSD)
 
 autonumber
 
-actor "FM" as Employee
+actor "VFM" as Employee
 participant ":System" as System
 
 activate Employee
@@ -15,7 +15,7 @@ activate Employee
     Employee -> System : asks to register a vehicle
 
 
-        System --> Employee : requests data (i.e. Brand, Model, Type, Tare,Gross Weight,Current Km, Register Date, Acquisition Date, Maintenance/Checkup Frequency)
+        System --> Employee : requests data (Brand, Model, Vehicle Id; Type, Tare,Gross Weight,Current Km, Register Date, Acquisition Date, Maintenance/Checkup Frequency)
     deactivate System
 
     Employee -> System : types the data

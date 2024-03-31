@@ -10,38 +10,24 @@ skinparam classAttributeIconSize 0
 hide circle
 hide methods
 
-'title Domain Model
-
-'class Platform {
-'  -description
-'}
-
-
-class vehicle
- {
-   Brand
-   Model
-   Type
-   Tare
-   Gross
-   Weight
-   Current Km
-   Register Date
-   Acquisition Date
-   Maintenance/Checkup
-   Frequency
-}
-'class User {
-'    name
-'    email
-'    password
-'}
-
-class FM{
-  name
-  id
+class Vehicle {
+   brand
+   model
+   vehicleID
+   type
+   tare
+   grossWeight
+   currentKm
+   registerDate
+   acquisitionDate
+   checkupFrequency
 }
 
 
-FM "1" - "1..*" vehicle: creates a >
+class VFM{
+
+}
+
+
+VFM "1" - "0..*" Vehicle: registers >
 @enduml

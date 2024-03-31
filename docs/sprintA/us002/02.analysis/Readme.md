@@ -1,4 +1,4 @@
-# US006 - Create a Task 
+#  US002 - Register a job
 
 ## 2. Analysis
 
@@ -6,6 +6,3 @@
 
 ![Domain Model](svg/us002-domain-model.svg)
 
-### 2.2. Other Remarks
-
-n/a

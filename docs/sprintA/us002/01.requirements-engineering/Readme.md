@@ -9,7 +9,8 @@ As an HRM, I want to register a job that a collaborator needs to have.
 
 **From the specifications document:**  
 
->	n/a 
+>A job is a main occupation that must be attributed to a collaborator.
+> 
 
 **From the client clarifications:**
 
@@ -25,25 +26,26 @@ As an HRM, I want to register a job that a collaborator needs to have.
 >
 > **Answer:** It can't.
 
+> **Question:** Can special characters and numbers be entered when registering a job?
+>
+> **Answer:** No.
+
 ### 1.3. Acceptance Criteria
 
 * **AC1:** The "Name" field must be filled.
-* **AC2:** A job's name must have at least 3 alphanumeric characters.
+* **AC2:**A job's name cannot have special characters and numbers.
 * **AC3:** A job's name must be unique.
 
 ### 1.4. Found out Dependencies
 
-* n/a
+* None. However, us003 will have a dependency on this user story, as there will need to be jobs to register a collaborator
 
 ### 1.5 Input and Output Data
 
 **Input Data:**
 
 * Typed data:
-    * name
-	
-* Selected data:
-    * n/a 
+    * name of the job
 
 **Output Data:**
 
@@ -55,6 +57,3 @@ As an HRM, I want to register a job that a collaborator needs to have.
 ![System Sequence Diagram](svg/us002-system-sequence-diagram-alternative-one.svg)
 
 
-### 1.7 Other Relevant Remarks
-
-* n/a

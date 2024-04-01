@@ -15,10 +15,10 @@ activate Employee
     Employee -> System : asks to  register a job
     activate System
 
-        System --> Employee : requests data (the name of the job)
+        System --> Employee : requests data (job's name)
     deactivate System
 
-    Employee -> System : types the name of the job
+    Employee -> System : types job's name
     activate System
 
         System --> Employee : shows the job name and requests confirmation

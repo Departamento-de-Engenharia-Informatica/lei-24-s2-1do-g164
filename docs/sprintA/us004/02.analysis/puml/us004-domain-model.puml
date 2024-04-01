@@ -10,23 +10,28 @@ skinparam classAttributeIconSize 0
 hide circle
 hide methods
 
+class SystemUser {
+    name
+    email
+    password
+    phone
+
+}
 
 
 class Collaborator {
-    job
-    name
     birthdate
-    admission date
+    admissionDate
     address
-    contact info
-    ID document
-    ID number
+    idDocumentType
+    idDocumentNumber
 }
 
 class Skill {
-    Nome
+    name
 }
 
 
 Skill "1..*" - "1" Collaborator: is atributed to >
+SystemUser --|> Collaborator
 @enduml

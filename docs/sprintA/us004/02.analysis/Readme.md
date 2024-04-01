@@ -1,4 +1,4 @@
-# US006 - Create a Task 
+# US004 - Assign one or more skills
 
 ## 2. Analysis
 

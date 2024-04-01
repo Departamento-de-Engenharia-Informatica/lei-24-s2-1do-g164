@@ -9,16 +9,24 @@ hide circle
 hide methods
 
 
+class SystemUser {
+    name
+    email
+    password
+    phone
+
+}
+
 class Skill {
     Name
 }
 
 class HRM {
-    name
-    ID
+
 }
 
 
 HRM "1" - "0..*" Skill : creates >
+SystemUser --|> HRM
 
 @enduml

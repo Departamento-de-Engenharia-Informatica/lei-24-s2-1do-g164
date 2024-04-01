@@ -13,6 +13,14 @@ class HRM {
 
 }
 
+class SystemUser {
+    name
+    email
+    password
+    phone
+
+}
+
 class Collaborator {
         birthdate
                        admissionDate
@@ -25,7 +33,8 @@ class TeamProposal {
 }
 
 class Team {
-size
+minimumSize
+maximumSize
 
 }
 
@@ -38,5 +47,7 @@ HRM "1" -- "1  " TeamProposal : requests >
 TeamProposal "1 " --"1" Team: has >
 Team "1  " -- "1..*                  " Collaborator: has >
 Collaborator "1 " -- "0..* " Skill : has >
+SystemUser --|> HRM
+SystemUser --|> Collaborator
 
 @enduml

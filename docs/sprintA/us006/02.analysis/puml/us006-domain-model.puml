@@ -10,6 +10,13 @@ skinparam classAttributeIconSize 0
 hide circle
 hide methods
 
+class SystemUser {
+    name
+    email
+    password
+    phone
+
+}
 class Vehicle {
    brand
    model
@@ -29,5 +36,6 @@ class VFM{
 }
 
 
-VFM "1" - "0..*" Vehicle: registers >
+VFM "1" - "*" Vehicle: registers >
+SystemUser --|> VFM
 @enduml

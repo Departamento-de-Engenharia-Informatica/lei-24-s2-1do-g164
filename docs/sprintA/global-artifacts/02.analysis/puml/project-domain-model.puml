@@ -36,10 +36,10 @@ class SystemUser {
 }
 class HRM {
 }
-class FM {
+class VFM {
 }
 class Collaborator {
-    birthday
+    birthdate
     admissionDate
     address
     idDocumentType
@@ -54,6 +54,8 @@ class TeamProposal {
 }
 
 class Team {
+minimumSize
+maximumSize
 }
 
 class Skill {
@@ -125,7 +127,7 @@ class ListOfVehiclesNeedingCheckUp {
 
 
 SystemUser --|> HRM
-SystemUser --|> FM
+SystemUser --|> VFM
 SystemUser --|> Collaborator
 SystemUser --|> GSM
 SystemUser --|> GSU
@@ -140,12 +142,12 @@ Agenda "1" -- "*" AgendaEntry : has >
 AgendaEntry "1" -- "1" Task : defines >
 AgendaEntry "1" -- "1" Team : defines >
 
-FM " 1" -- "*" Vehicle : registers >
-FM " 1" -- "*" ListOfVehiclesNeedingCheckUp : registers >
-FM "  1 " -- "*" Machine : manages >
-FM "  1    " -- "*" Equipment : manages >
+VFM " 1" -- "*" Vehicle : registers >
+VFM " 1" -- "*" ListOfVehiclesNeedingCheckUp : registers >
+VFM "  1 " -- "*" Machine : manages >
+VFM "  1    " -- "*" Equipment : manages >
 Vehicle "1   " -- "0..* " VehicleCheckup : has >
-FM "1 " -- "0..*  " VehicleCheckup : requests >
+VFM "1 " -- "0..*  " VehicleCheckup : requests >
 GSU"  1  " -- "0..*          " Report: makes >
 GSU"  1  " -- "0..*" Comment: makes >
 GSU"  1  " -- "1  " GreenSpacesUserPortal:  uses >

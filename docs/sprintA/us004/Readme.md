@@ -1,4 +1,4 @@
-# US006 - Create a Task 
+# US004 - Assign one or more skills
 
 [Requirements Engineering](01.requirements-engineering/Readme.md)
 

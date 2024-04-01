@@ -13,6 +13,8 @@ As an VFM, I want to register a vehicle.
 >Vehicles are needed to carry out the tasks assigned to the teams as well as to transport
 machines and equipment.
 
+> A VFM is responsible for registering 
+
 > **Question:** Should the application identify a registered vehicle by a serial number or other attribute?
 >
 > **Answer:**

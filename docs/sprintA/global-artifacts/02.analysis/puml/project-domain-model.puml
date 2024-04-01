@@ -8,13 +8,9 @@ skinparam classAttributeIconSize 0
 hide circle
 hide methods
 
-'title Domain Model
 
-'class Platform {
-'  -description
-'}
 
-class Organization {
+class MS {
     name
     vatNumber
     website
@@ -118,9 +114,7 @@ class Report{
     description
 }
 
-class Category {
-    description
-}
+
 
 class ToDoList{
 
@@ -146,20 +140,24 @@ Agenda "1" -- "*" AgendaEntry : has >
 AgendaEntry "1" -- "1" Task : defines >
 AgendaEntry "1" -- "1" Team : defines >
 
-FM " 1" -- "0..*     " Vehicle : registers >
+FM " 1" -- "*" Vehicle : registers >
+FM " 1" -- "*" ListOfVehiclesNeedingCheckUp : registers >
 FM "  1 " -- "*" Machine : manages >
 FM "  1    " -- "*" Equipment : manages >
 Vehicle "1   " -- "0..* " VehicleCheckup : has >
 FM "1 " -- "0..*  " VehicleCheckup : requests >
 GSU"  1  " -- "0..*          " Report: makes >
-GSU"  1  " -- "0..*   " Comment: makes >
+GSU"  1  " -- "0..*" Comment: makes >
 GSU"  1  " -- "1  " GreenSpacesUserPortal:  uses >
 GreenSpacesUserPortal "1                 " -- "0..*   " Report : has >
 GreenSpacesUserPortal "1    " -- "0..*" Comment : has >
 
-Organization "1" - "*" SystemUser : has >
-Organization "1" - "0..*" Task: owns >
-Task "1" - "1" Category: cataloged as >
+MS "1" - "*" SystemUser : has >
+MS "1  " - "0..*" Task: owns >
+MS "1" - "*" Machine : has >
+MS "1 " - "*" Vehicle : has >
+MS "1" - "*" Equipment : has >
+
 Task "1" - "1  " Team:   carried out by   >
 ToDoList "1" - "0..*" Task: contains >
 
@@ -171,9 +169,9 @@ TeamProposal "1 " --"1        " Team: has >
 Team "1 " -- "1..*  " Collaborator: has >
 Collaborator "1 " -- "0..* " Skill : has >
 Collaborator "1 " -- "1 " Job : has >
-Organization "1" - "1" Agenda : has >
-Organization "1" - "*" GreenSpace: manages >
+MS "1" - "1" Agenda : has >
+MS "1    " - "*" GreenSpace: manages >
 GSU"1" - "*" GreenSpace: uses >
 GSM "1" - "*" GreenSpace: manages >
-ListOfVehiclesNeedingCheckUp "1" - "*" Vehicle : has >
+ListOfVehiclesNeedingCheckUp "1  " - "*" Vehicle : has >
 @enduml

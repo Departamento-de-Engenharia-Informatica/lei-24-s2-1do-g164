@@ -132,10 +132,33 @@ An association is a relationship between instances of objects that indicates a r
 - etc.
 
 
-| Concept (A) 		|  Association   	|  Concept (B) |
-|----------	   		|:-------------:		|------:       |
-| C1  	| verb1    		 	| C2  |
-| ...  	| ...    		 	| ...  |
+| Concept (A) 		          |     Association   	     |             Concept (B) |
+|-------------------------|:-----------------------:|------------------------:|
+| HRM                     |         Creates         |                   Skill |
+| HRM                     |         Creates         |                     Job |
+| HRM                     |         Creates         |            Collaborator |
+| Collaborator            |           Has           |                     Job |
+| Skill                   |     is atributed to     |            Collaborator |
+| HRM                     |        requests         |            TeamProposal |
+| TeamProposal            |           has           |            Collaborator |
+| VehiclesNeedingCheck-Up |           has           |                 Vehicle |
+| VFM                     |        registers        |                 Vehicle |
+| VFM                     | regirsters for Check-up |                 Vehicle |
+| VFM                     |        requests         | VehiclesNeedingCheck-Up |
+| Task                    |      occures in a       |              GreenSpace |
+| Agenda                  |           has           |             AgendaEntry |
+| AgendaEntry             |         defines         |                    Task |
+| AgendaEntry             |         defines         |                    Team |
+| VFM                     |         manages         |                 Machine |
+| VFM                     |         manages         |               Equipment |
+| Vehicle                 |           has           |         VehicleCheck-up |
+| GSU                     |          makes          |                  Report |
+| GSU                     |          makes          |                 Comment |
+| GSU                     |          uses           |   GreenSpacesUserPortal |
+| GreenSpacesUserPortal   |           has           |                  Report |
+|                         |                         |                         |
+|                         |                         |                         |
+|                         |                         |                         |
 
 
 

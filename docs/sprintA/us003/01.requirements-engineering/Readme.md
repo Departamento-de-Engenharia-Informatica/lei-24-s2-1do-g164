@@ -25,6 +25,7 @@ email), ID doc type and respective number.
 > 
 > **Answer:** Each document type has specific formats like taxpayer number, citizen Card ou passport.
 
+
 ### 1.3. Acceptance Criteria
 
 * **AC1:** All required fields must be filled in.

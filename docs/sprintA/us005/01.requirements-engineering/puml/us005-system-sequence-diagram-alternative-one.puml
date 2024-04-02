@@ -27,7 +27,7 @@ activate Employee
     Employee -> System : selects data
     activate System
 
-        System --> Employee : shows all data and requests confirmation or modification
+        System --> Employee : shows all data and requests confirmation
  deactivate System
 
        Employee -> System : confirms data

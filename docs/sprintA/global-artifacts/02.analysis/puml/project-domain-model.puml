@@ -132,9 +132,9 @@ SystemUser <|-- Collaborator
 SystemUser <|-- GSM
 SystemUser <|-- GSU
 
-GreenSpace --|> Garden
-GreenSpace --|> MediumSizedPark
-GreenSpace --|> LargeSizedPark
+GreenSpace <|-- Garden
+GreenSpace <|-- MediumSizedPark
+GreenSpace <|-- LargeSizedPark
 
 Task "1" -- "1..*" GreenSpace : occurs in >
 
@@ -167,7 +167,7 @@ HRM "1 " -- "*" Collaborator : registers >
 HRM "1 " -- "*" Job : creates >
 HRM "1 " -- "*" Skill : creates >
 HRM "1" -- "1  " TeamProposal : requests >
-TeamProposal "1 " --"1        " Team: has >
+TeamProposal "1 " --"1 " Team: has >
 Team "1 " -- "1..*  " Collaborator: has >
 Skill "1..*" - "1" Collaborator: is atributed to >
 Collaborator "1 " -- "1 " Job : has >

@@ -134,32 +134,39 @@ An association is a relationship between instances of objects that indicates a r
 
 | Concept (A) 		          | Association   	 |                  Concept (B) |
 |-------------------------|:---------------:|-----------------------------:|
-| SystemUser              |                 |                          HRM |
-| HRM                     |     Creates     |                        Skill |
-| HRM                     |     Creates     |                          Job |
-| HRM                     |     Creates     |                 Collaborator |
+| HRM                     |  inherits from  |                   SystemUser |
+| HRM                     |     creates     |                        Skill |
+| HRM                     |     creates     |                          Job |
+| HRM                     |     creates     |                 Collaborator |
 | HRM                     |    requests     |                 TeamProposal |
+| VFM                     |  inherits from  |                   SystemUser |
 | VFM                     |    registers    |                      Vehicle |
 | VFM                     |    registers    |               VehicleCheckUp |
 | VFM                     |    requests     | ListOfVehiclesNeedingCheckUp |
 | VFM                     |     manages     |                      Machine |
 | VFM                     |     manages     |                    Equipment |
-| Collaborator            |       Has       |                          Job |
+| Collaborator            |  inherits from  |                   SystemUser |
+| Collaborator            |       has       |                          Job |
 | Skill                   | is atributed to |                 Collaborator |
-| TeamProposal            |       has       |                 Collaborator |
+| TeamProposal            |       has       |                         Team |
 | VehiclesNeedingCheck-Up |       has       |                      Vehicle |
 | Task                    |  occures in a   |                   GreenSpace |
+| Task                    | carried out by  |                         Team |
 | Agenda                  |       has       |                  AgendaEntry |
 | AgendaEntry             |     defines     |                         Task |
 | AgendaEntry             |     defines     |                         Team |
+| ToDoList                |    contains     |                         Task |
+| VFM                     |  inherits from  |                   SystemUser |
 | VFM                     |     manages     |                      Machine |
 | VFM                     |     manages     |                    Equipment |
 | Vehicle                 |       has       |              VehicleCheck-up |
+| GSU                     |  inherits from  |                   SystemUser |
 | GSU                     |      makes      |                       Report |
 | GSU                     |      makes      |                      Comment |
 | GSU                     |      uses       |        GreenSpacesUserPortal |
-| GreenSpacesUserPortal   |       has       |                       Report |
 | GSU                     |      uses       |                   GreenSpace |
+| GreenSpacesUserPortal   |       has       |                       Report |
+| GSM                     |  inherits from  |                   SystemUser |
 | GSM                     |     manages     |                   GreenSpace |
 | MS                      |       has       |                   SystemUser |
 | MS                      |       has       |                      Machine |
@@ -168,7 +175,9 @@ An association is a relationship between instances of objects that indicates a r
 | MS                      |       has       |                       Agenda |
 | MS                      |       has       |                    Equipment |
 | MS                      |     manages     |                   GreenSpace |
-| Vehicle                 |       has       |               VehicleCheckup |
+| Garden                  |  inherits from  |                   GreenSpace |
+| MediumSizedPark         |  inherits from  |                   GreenSpace |
+| LargeSizedPark          |  inherits from  |                   GreenSpace |
 
 
 

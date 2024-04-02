@@ -3,6 +3,8 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
+
+
 skinparam classAttributeIconSize 0
 
 hide circle
@@ -16,29 +18,34 @@ class SystemUser {
     phone
 
 }
-
-
 class VFM {
+
 }
 
-class ListOfVehiclesNeedingCheckUp {
+class VehicleCheckup {
+
+    currentKms
+    date
+
 }
 
 class Vehicle {
-   brand
-   model
-   vehicleID
-   type
-   tare
-   grossWeight
-   currentKm
-   registerDate
-   acquisitionDate
-   checkupFrequency
+
+        brand
+        model
+        vehicleID
+        type
+        tare
+        grossWeight
+        currentKm
+        registerDate
+        acquisitionDate
+        checkupFrequency
 }
 
 
-ListOfVehiclesNeedingCheckUp "1" - "*" Vehicle : has >
+VFM "1" -- "*" Vehicle : registers >
+Vehicle "1   " -- "0..*                        " VehicleCheckup : has >
+VFM "           1 " -- "0..*   " VehicleCheckup : requests >
 SystemUser --|> VFM
-VFM "1" - "*" ListOfVehiclesNeedingCheckUp: registers >
 @enduml

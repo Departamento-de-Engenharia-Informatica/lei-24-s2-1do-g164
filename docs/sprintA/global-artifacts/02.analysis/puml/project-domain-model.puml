@@ -72,7 +72,6 @@ class Task {
 }
 
 class VehicleCheckup {
-    vehicleID
     date
     currentKms
 }
@@ -122,9 +121,6 @@ class ToDoList{
 
 }
 
-class ListOfVehiclesNeedingCheckUp {
-}
-
 
 SystemUser --|> HRM
 SystemUser --|> VFM
@@ -143,7 +139,7 @@ AgendaEntry "1" -- "1" Task : defines >
 AgendaEntry "1" -- "1" Team : defines >
 
 VFM " 1" -- "*" Vehicle : registers >
-VFM " 1" -- "*" ListOfVehiclesNeedingCheckUp : registers >
+
 VFM "  1 " -- "*" Machine : manages >
 VFM "  1    " -- "*" Equipment : manages >
 Vehicle "1   " -- "0..* " VehicleCheckup : has >
@@ -175,5 +171,5 @@ MS "1" - "1" Agenda : has >
 MS "1    " - "*" GreenSpace: manages >
 GSU"1" - "*" GreenSpace: uses >
 GSM "1" - "*" GreenSpace: manages >
-ListOfVehiclesNeedingCheckUp "1  " - "*" Vehicle : has >
+
 @enduml

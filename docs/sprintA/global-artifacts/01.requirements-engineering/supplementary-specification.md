@@ -51,11 +51,18 @@ testability, adaptability, maintainability, compatibility,
 configurability, installability, scalability and more._
 
 * The development team must implement unit tests for all methods, except for
-methods that implement Input/Output operations. The unit tests should be
-implemented using the JUnit 5 framework. 
+methods that implement Input/Output operations.
 
 * The JaCoCo plugin should be used
 to generate the coverage report.
+
+* The app needs to support English language.
+
+* It should be easy to maintain and update.
+
+* The software should have good documentation.
+
+* The software should be compatible with future aplication updates.
 
 ## +
 
@@ -63,10 +70,10 @@ to generate the coverage report.
 
 _Specifies or constraints the system design process. Examples may include: programming languages, software process, mandatory standards/patterns, use of development tools, class library, etc._
 
-* The application must be developed in Java language using the IntelliJ IDE or 
-NetBeans. 
-
-* The application’s graphical interface is to be developed in JavaFX 11.
+* The application must be developed in Java 
+* The application will be developed using the IntelliJ IDE and graphical interface from JavaFX
+* The unit tests should be implemented using  JUnit 5.
+* The JaCoCo plugin will generate the coverage report.
 
 ### Implementation Constraints
 
@@ -74,20 +81,20 @@ _Specifies or constraints the code or construction of a system such
 as: mandatory standards/patterns, implementation languages,
 database integrity, resource limits, operating system._
 
-* Adopt recognized coding standards (e.g., CamelCase)
-
+*  The graphical interface needs to be developed in JavaFX.
+*  The application will be developed in Java language using the IntelliJ IDE.
+*  The app must support English language.
+*  The development team must implement unit tests for all methods, except for methods that implement Input/Output operations.
+*  The unit tests should be implemented using the JUnit 5 framework.
+*  The JaCoCo plugin will generate the coverage report.
+*  The team must adopt recognized coding standards (e.g., CamelCase);
 
 
 
 ### Interface Constraints
 
-_Specifies or constraints the features inherent to the interaction of the
-system being developed with other external systems._
-
-* n/a
+* The graphical interface needs to be developed in JavaFX.
 
 ### Physical Constraints
-
-_Specifies a limitation or physical requirement regarding the hardware used to house the system, as for example: material, shape, size or weight._
 
 * n/a

@@ -30,5 +30,5 @@ class HRM{
 
 
 HRM "1" - "*" job: creates  >
-SystemUser --|> HRM
+SystemUser <|-- HRM
 @enduml

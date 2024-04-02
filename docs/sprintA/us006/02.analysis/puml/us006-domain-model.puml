@@ -37,5 +37,5 @@ class VFM{
 
 
 VFM "1" - "*" Vehicle: registers >
-SystemUser --|> VFM
+SystemUser <|-- VFM
 @enduml

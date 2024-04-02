@@ -38,8 +38,8 @@ class Job{
     name
 }
 
-SystemUser --|> Collaborator
-SystemUser --|> HRM
+SystemUser <|- Collaborator
+SystemUser <|- HRM
 'Task "*" -- "1" HRM: created by >
 HRM "1 " -- "*" Collaborator : creates >
 'HRM "0..1" -- "1" User: acts as >

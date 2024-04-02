@@ -27,6 +27,6 @@ class HRM {
 
 
 HRM "1" - "0..*" Skill : creates >
-SystemUser --|> HRM
+SystemUser <|-- HRM
 
 @enduml

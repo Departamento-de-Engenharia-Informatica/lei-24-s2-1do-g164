@@ -31,11 +31,11 @@ left to right direction
 
 
     usecase "UC 006 - Register a vehicle with fundamental data" as UC6
-    "FM" --> UC6
+    "VFM" --> UC6
     usecase "UC 007 - Register vehicle for check-up" as UC7
-    "FM" --> UC7
+    "VFM" --> UC7
     usecase "UC 008 - List the vehicles needing a check-up" as UC8
-    "FM" --> UC8
+    "VFM" --> UC8
     usecase "UC 001 - Create a skill to be apointed to a collaborator" as UC1
     "HRM" --> UC1
     usecase "UC 002 - Create a job to be apointed to a collaborator" as UC2

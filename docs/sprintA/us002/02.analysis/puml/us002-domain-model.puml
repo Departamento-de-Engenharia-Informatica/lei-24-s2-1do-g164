@@ -11,6 +11,13 @@ hide circle
 hide methods
 
 
+class SystemUser {
+    name
+    email
+    password
+    phone
+
+}
 class job
  {
    name
@@ -23,4 +30,5 @@ class HRM{
 
 
 HRM "1" - "*" job: creates  >
+SystemUser --|> HRM
 @enduml

@@ -10,11 +10,6 @@ skinparam classAttributeIconSize 0
 hide circle
 hide methods
 
-'title Domain Model
-
-'class Platform {
-'  -description
-'}
 
 
 class SystemUser {
@@ -26,7 +21,7 @@ class SystemUser {
 }
 
 class Collaborator {
-    birthday
+    birthdate
     admissionDate
     address
     idDocumentType
@@ -44,8 +39,9 @@ class Job{
 }
 
 SystemUser --|> Collaborator
+SystemUser --|> HRM
 'Task "*" -- "1" HRM: created by >
-HRM "1" -- "*" Collaborator : creates >
+HRM "1 " -- "*" Collaborator : creates >
 'HRM "0..1" -- "1" User: acts as >
 Collaborator "1" -- "1" Job : has >
 

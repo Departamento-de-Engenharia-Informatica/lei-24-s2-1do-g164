@@ -8,6 +8,19 @@ skinparam classAttributeIconSize 0
 hide circle
 hide methods
 
+
+class SystemUser {
+    name
+    email
+    password
+    phone
+
+}
+
+
+class VFM {
+}
+
 class ListOfVehiclesNeedingCheckUp {
 }
 
@@ -26,5 +39,6 @@ class Vehicle {
 
 
 ListOfVehiclesNeedingCheckUp "1" - "*" Vehicle : has >
-
+SystemUser --|> VFM
+VFM "1" - "*" ListOfVehiclesNeedingCheckUp: registers >
 @enduml

@@ -13,6 +13,8 @@ As an VFM, I want to register a vehicle.
 >Vehicles are needed to carry out the tasks assigned to the teams as well as to transport
 machines and equipment.
 
+> A VFM is responsible for registering vehicles.
+
 > **Question:** Should the application identify a registered vehicle by a serial number or other attribute?
 >
 > **Answer:**
@@ -41,9 +43,9 @@ In theory If there is no need to register a vehicle, no vehicles will be registe
 
 ### 1.3. Acceptance Criteria
 
-* **AC1:** The application needs to register vehicle by plate id.
-* **AC2:** The application can not register duplicate vehicles.
-* **AC3:** When creating a task with an existing reference, the system must reject such operation and the user must be able to modify the typed reference.
+* **AC1:** A registered vehicle is identified by its plate id.
+* **AC2:** Duplicate vehicles can´t be registered.
+* **AC3:**  All required fields must be filled in.
 
 ### 1.4. Found out Dependencies
 
@@ -54,16 +56,16 @@ In theory If there is no need to register a vehicle, no vehicles will be registe
 **Input Data:**
 
 * Typed data:
-* brand
-* model
-* vehicleID
-* type
-* tare
-* grossWeight
-* currentKm
-* registerData
-* acquisitionDate 
-* checkupFrequency
+    * brand
+    * model 
+    * vehicle ID
+    * type
+    * tare
+    * grossWeight
+    * currentKm
+    * registerData
+    * acquisitionDate 
+     * checkupFrequency
 
 **Output Data:**
 

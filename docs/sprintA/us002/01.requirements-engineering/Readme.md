@@ -33,7 +33,7 @@ As an HRM, I want to register a job that a collaborator needs to have.
 ### 1.3. Acceptance Criteria
 
 * **AC1:** The "Name" field must be filled.
-* **AC2:**A job's name cannot have special characters and numbers.
+* **AC2:** A job's name cannot have special characters and numbers.
 * **AC3:** A job's name must be unique.
 
 ### 1.4. Found out Dependencies

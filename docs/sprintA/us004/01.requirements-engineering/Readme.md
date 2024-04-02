@@ -1,4 +1,4 @@
-# US004 - Create a Task 
+# US004 - Assign one or more skills
 
 
 ## 1. Requirements Engineering

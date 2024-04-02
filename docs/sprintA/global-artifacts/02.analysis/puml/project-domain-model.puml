@@ -126,11 +126,11 @@ class ListOfVehiclesNeedingCheckUp {
 }
 
 
-SystemUser --|> HRM
-SystemUser --|> VFM
-SystemUser --|> Collaborator
-SystemUser --|> GSM
-SystemUser --|> GSU
+SystemUser <|-- HRM
+SystemUser <|-- VFM
+SystemUser <|-- Collaborator
+SystemUser <|-- GSM
+SystemUser <|-- GSU
 
 GreenSpace --|> Garden
 GreenSpace --|> MediumSizedPark
@@ -143,11 +143,11 @@ AgendaEntry "1" -- "1" Task : defines >
 AgendaEntry "1" -- "1" Team : defines >
 
 VFM " 1" -- "*" Vehicle : registers >
-VFM " 1" -- "*" ListOfVehiclesNeedingCheckUp : registers >
+VFM " 1" -- "*" ListOfVehiclesNeedingCheckUp : requests >
 VFM "  1 " -- "*" Machine : manages >
 VFM "  1    " -- "*" Equipment : manages >
 Vehicle "1   " -- "0..* " VehicleCheckup : has >
-VFM "1 " -- "0..*  " VehicleCheckup : requests >
+VFM "1 " -- "0..*  " VehicleCheckup : registers >
 GSU"  1  " -- "0..*          " Report: makes >
 GSU"  1  " -- "0..*" Comment: makes >
 GSU"  1  " -- "1  " GreenSpacesUserPortal:  uses >

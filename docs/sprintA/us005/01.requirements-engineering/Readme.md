@@ -5,7 +5,7 @@
 
 ### 1.1. User Story Description
 
-As HRM, I intend to automatically generate a team proposal.
+As HRM, I want to automatically generate a team proposal.
 
 ### 1.2. Customer Specifications and Clarifications 
 
@@ -82,3 +82,7 @@ meaning that one team member have 2 skills.
 #### Alternative Two
 
 ![System Sequence Diagram - Alternative One](svg/us005-system-sequence-diagram-alternative-two.svg)
+
+### 1.7 Other Relevant Remarks
+
+* None

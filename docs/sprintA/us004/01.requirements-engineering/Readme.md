@@ -62,4 +62,4 @@ As HRM, I want to atribute one or more skills to a collaborator.
 
 ### 1.7 Other Relevant Remarks
 
-* The created task stays in a "not published" state in order to distinguish from "published" tasks.
+* None

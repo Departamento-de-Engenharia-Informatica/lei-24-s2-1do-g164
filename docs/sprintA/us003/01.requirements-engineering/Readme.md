@@ -4,7 +4,7 @@
 ## 1. Requirements Engineering
 
 ### 1.1. User Story Description
-As  HRM, I intend to register a collaborator with profession and fundamental attributes.
+As  HRM, I want    to register a collaborator with profession and fundamental attributes.
 
 ### 1.2. Customer Specifications and Clarifications 
 
@@ -69,4 +69,4 @@ email), ID doc type and respective number.
 
 ### 1.7 Other Relevant Remarks
 
-* n/a
+* None

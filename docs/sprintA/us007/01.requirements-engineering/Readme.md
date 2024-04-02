@@ -5,7 +5,7 @@
 
 ### 1.1. User Story Description
 
-As a VFM, I intend to register a vehicle for inspection.
+As a VFM, I want to register a vehicle for inspection.
 
 ### 1.2. Customer Specifications and Clarifications 
 
@@ -96,3 +96,6 @@ the UX/UI is up to dev teams.
 
 ![System Sequence Diagram - Alternative One](svg/us007-system-sequence-diagram-alternative-one.svg)
 
+### 1.7 Other Relevant Remarks
+
+* None

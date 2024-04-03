@@ -50,9 +50,9 @@ The following diagram illustrates an abstract structure of the application and i
 As soon as you open the application, a log-in possibility will be provided so than you can authehticate yourself.
 
 In order to do this, you have to insert your credentials asked: type your e-mail in first and then your password. 
-If your access data is corect, then  it’s going to appear a list with the options you have attributed to your role.
+If your access data is correct then  it’s going to appear a list with the options you have attributed to your role.
 
- ###  **3.1 Human Resource Manager**
+ ###  **3.1 Human Resource Manager(HRM)**
 As an HRM, you're responsible for managing collaborator skills, jobs, and team assignments. Here's how you can accomplish your tasks:
 
 **1. Registering Collaborator Skills:**
@@ -62,21 +62,21 @@ As an HRM, you're responsible for managing collaborator skills, jobs, and team a
 
 **2.  Registering Jobs:**
 * Log in to the system
-* Choose the option "Register a job
+* Choose the option "Register a job"
 * Enter the job name
 
-**3. Registering a collaborator with a job and fundamental
-characteristics:**
+**3. Registering a collaborator with a job and fundamental  characteristics:**
 * Log in to the system
+* Choose the option "Register a collaborator with a job and fundamental  characteristics"
 * Select the desired job for the collaborator from the options given
 * Insert the information about the collaborator(name, birthday, admission date, address, cellphone number, e-mail)
 * Select the type of IdDocument of the collaborator
 * Type the number of the Id of thw collaborator 
 
-**4. Assigning Skills to Collaborators:
-characteristics:**
+**4. Assigning Skills to Collaborators:**
 
 * Log in to the system
+* Choose the option "Assign Skills to Collaborators"
 * Select the collabborator to assign the skills from the options provided 
 * Select the skills from list to add to the collaborator
 
@@ -84,7 +84,27 @@ characteristics:**
 
 
 * Log in to the system
+*  Choose the option "Generate Team Proposals"
 * Type the minimum and then the maximum size of the desired team 
 * Select the desired skills for the collaborators of the team
+
+
+
+###  **3.2 Vehicle and Equipment Fleet Manager (VFM):**
+
+As a VFM, your role involves managing the fleet of vehicles and equipment. Here's what you can do step by step:
+
+**1. Registering Vehicles:**
+* Log in to the system
+* Choose the option "Register a vehicle"
+* Type the Brand, Model, Vehicle Id; Type, \nTare,Gross Weight, Current Km, Register Date, \nAcquisition Date, Maintenance/Checkup Frequency of the vehicle, as requested
+
+**2. Registering Vehicles Check-up:**
+* Log in to the system
+* Choose the option "Register a vehicle check-up"
+* Type the Vehicle ID, Date, Current kms of the vehicle
+
+
+
 
 

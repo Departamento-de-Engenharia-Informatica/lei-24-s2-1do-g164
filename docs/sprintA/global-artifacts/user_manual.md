@@ -52,7 +52,7 @@ In an increasingly urbanized world, access to green spaces plays a vital role in
 
 Recognizing the significance of green spaces in urban contexts, MusgoSublime (MS) is working to effectively manage these spaces. However, they encounter some obstacles when it comes to efficiently organizing, building, and sustaining urban green spaces.
 
-Therefore, MS has adopted this Software that serves as a comprehensive solution to the innumerable challenges encountered by this organization and others involved in similar endeavors.
+Therefore, MS has adopted this Software that serves as a comprehensive solution to the innumerable challenges encountered by this organization and others involved in similar endeavours.
 
 This manual is designed to provide you with all the necessary information to effectively utilize the application to manage green spaces for collective use in urban environments. 
 
@@ -66,7 +66,7 @@ Whether you are a Human Resources Manager (HRM), a Vehicle and Equipment Fleet M
 
 Through innovative approaches and meticulous administration, this application delivers a comprehensive software solution for planning, constructing, and maintaining green spaces. 
 
-In order to it, the system integrates various functionalities and tools tailored to the specific needs of the organizations, which are:
+In order to do it, the system integrates various functionalities and tools tailored to the specific needs of the organizations, which are:
 *  **Collaborator Management:** Human Resources Managers can efficiently manage the workforce by registering new collaborators, assigning jobs, and managing skills. This functionality enables effective allocation of resources based on expertise and availability.
 
 
@@ -91,10 +91,10 @@ The following diagram illustrates an abstract structure of the application and i
 
 ## 3. System Features
 
-As soon as you open the application, a log-in possibility will be provided so than you can authehticate yourself.
+As soon as you open the application, a log-in possibility will be provided so than you can authenticate yourself.
 
-In order to do this, you have to insert your credentials asked: type your e-mail in first and then your password. 
-If your access data is correct then  it’s going to appear a list with the options you have attributed to your role.
+In order to do this, you have to insert your credentials: type your e-mail in first and then your password. 
+If your access data is correct then a list with the options you have attributed to your role will appear.
 
  ###  **3.1 Human Resource Manager(HRM)**
 As an HRM, you're responsible for managing collaborator skills, jobs, and team assignments. Here's how you can accomplish your tasks:
@@ -115,14 +115,14 @@ As an HRM, you're responsible for managing collaborator skills, jobs, and team a
 * Select the desired job for the collaborator from the options given
 * Insert the information about the collaborator(name, birthday, admission date, address, cellphone number, e-mail)
 * Select the type of IdDocument of the collaborator
-* Type the number of the Id of thw collaborator 
+* Type the IdDocument's number of the collaborator 
 
 **4. Assigning Skills to Collaborators:**
 
 * Log in to the system
 * Choose the option "Assign Skills to Collaborators"
-* Select the collabborator to assign the skills from the options provided 
-* Select the skills from list to add to the collaborator
+* Select the collaborator to assign the skills from the options provided 
+* Select the skills from the list to add to the collaborator
 
 **5.  Generating Team Proposals:**
 
@@ -141,7 +141,7 @@ As a VFM, your role involves managing the fleet of vehicles and equipment. Here'
 **1. Registering Vehicles:**
 * Log in to the system
 * Choose the option "Register a vehicle"
-* Type the Brand, Model, Vehicle Id; Type, \nTare,Gross Weight, Current Km, Register Date, \nAcquisition Date, Maintenance/Checkup Frequency of the vehicle, as requested
+* Type the Brand, Model, Vehicle Id; Type, Tare, Gross Weight, Current Km, Register Date, Acquisition Date, Maintenance/Checkup Frequency of the vehicle, as requested
 
 **2. Registering Vehicles Check-up:**
 * Log in to the system

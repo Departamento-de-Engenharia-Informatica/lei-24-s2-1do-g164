@@ -11,9 +11,11 @@ As HRM, I want to automatically generate a team proposal.
 
 **From the specifications document:**
 
->	A team is characterized by having a specific number of collaborators, defined by the HRM.
-  
->	There are specific skills that serve as criteria for selecting suitable team members.
+> Teams are temporary associations of employees who will carry out a set of tasks in
+one or more green spaces.
+
+>When creating multipurpose teams, the number of members
+and the set of skills that must be covered are crucial.
 
 **From the client clarifications:**
 
@@ -51,18 +53,19 @@ meaning that one team member have 2 skills.
 ### 1.3. Acceptance Criteria
 
 * **AC1:** The size of the team must be within the range of the values defined by the HRM.
-* **AC2:** The team members must have the skills provided by the HRM.
-* **AC3:** If there are not enough employees the system should provide information why it can´t generate a team. 
+* **AC2:** The team members must have the skills desired by the HRM.
+* **AC3:** If there are not enough employees the system should provide information why it can not generate a team. 
 ### 1.4. Found out Dependencies
 
 * There is a dependency on "US003 - Register a collaborator" as there must be collaborators to create a team.
-* There is also a dependency on "US004 - Assign one or more skills" since a collaborator can have more than one skill.
+* There is also a dependency on "US004 - Assign one or more skills" since a collaborator must have one or more skills.
 ### 1.5 Input and Output Data
 
 **Input Data:**
 
 * Typed data:
-    * number of collaborators
+    * minimum number of collaborators
+    * maximum number of collaborators
 	
 * Selected data:
     * skills of collaborators

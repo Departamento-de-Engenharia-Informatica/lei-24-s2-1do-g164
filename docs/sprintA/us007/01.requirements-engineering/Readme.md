@@ -11,9 +11,7 @@ As a VFM, I want to register a vehicle for inspection.
 
 **From the specifications document:**
 
->	Each vehicle is characterized by having a unique vehicle ID.
-
->	Each vehicle has a check-up which needs the vehicle ID, the date and the current kms.
+  n/a
 
 **From the client clarifications:**
 
@@ -72,7 +70,7 @@ the UX/UI is up to dev teams.
 * **AC4:** To have a check-up the vehicle must already be registered.
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "US006 - Register a vehicle" as a vheicle check-up needs an existing vehicle and some info like the current km, provided in US006.
+* There is a dependency on "US006 - Register a vehicle", as to have a check-up the vehicle must already be registered.
 
 ### 1.5 Input and Output Data
 

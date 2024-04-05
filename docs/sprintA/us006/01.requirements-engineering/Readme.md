@@ -15,6 +15,9 @@ machines and equipment.
 
 > A VFM is responsible for registering vehicles.
 
+
+**From the client clarifications:**
+
 > **Question:** Should the application identify a registered vehicle by a serial number or other attribute?
 >
 > **Answer:**

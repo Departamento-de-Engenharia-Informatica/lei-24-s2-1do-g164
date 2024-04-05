@@ -15,7 +15,7 @@ activate Employee
     Employee -> System : asks to generate a team proposal
     activate System
 
-        System --> Employee : requests data (number of desired employees)
+        System --> Employee : requests data (minimum and maximum number of collaborators)
     deactivate System
 
     Employee -> System : types data

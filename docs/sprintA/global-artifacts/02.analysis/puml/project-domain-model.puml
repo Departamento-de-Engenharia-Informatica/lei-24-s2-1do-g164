@@ -72,7 +72,7 @@ class Task {
 }
 
 class VehicleCheckup {
-    vehicleID
+
     date
     currentKms
 }
@@ -122,9 +122,6 @@ class ToDoList{
 
 }
 
-class ListOfVehiclesNeedingCheckUp {
-}
-
 
 SystemUser <|-- HRM
 SystemUser <|-- VFM
@@ -143,11 +140,10 @@ AgendaEntry "1" -- "1" Task : defines >
 AgendaEntry "1" -- "1" Team : defines >
 
 VFM " 1" -- "*" Vehicle : registers >
-VFM " 1" -- "*" ListOfVehiclesNeedingCheckUp : requests >
 VFM "  1 " -- "*" Machine : manages >
 VFM "  1    " -- "*" Equipment : manages >
 Vehicle "1   " -- "0..* " VehicleCheckup : has >
-VFM "1 " -- "0..*  " VehicleCheckup : registers >
+VFM "1 " -- "*" VehicleCheckup : registers >
 GSU"  1  " -- "0..*          " Report: makes >
 GSU"  1  " -- "0..*" Comment: makes >
 GSU"  1  " -- "1  " GreenSpacesUserPortal:  uses >
@@ -168,12 +164,12 @@ HRM "1 " -- "*" Job : creates >
 HRM "1 " -- "*" Skill : creates >
 HRM "1" -- "1  " TeamProposal : requests >
 TeamProposal "1 " --"1 " Team: has >
-Team "1 " -- "1..*  " Collaborator: has >
+Team "1 " -- "*" Collaborator: has >
 Skill "1..*" - "1" Collaborator: is atributed to >
 Collaborator "1 " -- "1 " Job : has >
 MS "1" - "1" Agenda : has >
 MS "1    " - "*" GreenSpace: manages >
 GSU"1" - "*" GreenSpace: uses >
 GSM "1" - "*" GreenSpace: manages >
-ListOfVehiclesNeedingCheckUp "1  " - "*" Vehicle : has >
+
 @enduml

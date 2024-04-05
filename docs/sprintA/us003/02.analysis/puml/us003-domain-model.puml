@@ -42,7 +42,7 @@ SystemUser <|- Collaborator
 
 SystemUser <|- HRM
 
-HRM "1 " -- "*" Collaborator : creates >
+HRM "1 " -- "*" Collaborator :  registers >
 
 Collaborator "1" - "1" Job : has >
 

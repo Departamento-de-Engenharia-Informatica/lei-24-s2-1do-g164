@@ -11,7 +11,7 @@ As HRM, I want to atribute one or more skills to a collaborator.
 
 **From the specifications document:**
 
->   Each collaborator has a set of skills that enable him to perform/take on certain tasks/responsabilities.
+>   Each collaborator has a set of skills that enables him to perform/take on certain tasks/responsabilities.
 
 >   The skills atributed to each collaborator are crucial in the team formation process.
 

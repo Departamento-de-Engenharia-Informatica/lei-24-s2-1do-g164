@@ -27,15 +27,15 @@ As HRM, I want to register skills that can be apointed to a collaborator.
 
 > **Question:** Should the HRM be able to introduce multiple skills in one interaction?
 >
-> **Answer:** It is not required.
+> **Answer:** It is not required but if implemented it should be possible to introduce multiple skills via file upload.
 
 > **Question:** Does the HRM have the option to insert new skill by typing the name of the skill and by uploading a file?
 >
-> **Answer:** Both ways are accepted but only typing the name of the skill is required.
+> **Answer:** Both ways are accepted but only typing the name of one skill is required.
 
-> **Question:** Does the HRM receive a message of confirmation for the success of the oiperation?
+> **Question:** Does the HRM receive a message of confirmation for the success of the operation?
 >
-> **Answer:** It will depend if you opt for one skill or a set of skills is a batch. In general yes but the message needs to be diferent for each case. 
+> **Answer:** It will depend if you opt for one skill or a set of skills in a batch. General case yes but the message needs to be diferent for each case. 
 
 
 ### 1.3. Acceptance Criteria
@@ -63,7 +63,7 @@ OR
 
 **Output Data:**
 
-* (In)Success of the operation
+* Confirmation of (in)success of the operation
 
 ### 1.6. System Sequence Diagram (SSD)
 
@@ -71,7 +71,7 @@ OR
 
 ![System Sequence Diagram - Alternative One](svg/us001-system-sequence-diagram-alternative-one.svg)
 
-#### Alternative Two - Upload file with multiple skill's names
+#### Alternative Two - Upload file with multiple skill's names to be added
 
 ![System Sequence Diagram - Alternative Two](svg/us001-system-sequence-diagram-alternative-two.svg)
 

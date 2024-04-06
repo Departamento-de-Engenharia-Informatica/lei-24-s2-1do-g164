@@ -25,6 +25,12 @@ email), ID doc type and respective number.
 > 
 > **Answer:** Each document type has specific formats like taxpayer number, citizen Card ou passport.
 
+> **Question:** What should be the accepted format for the emails? Should only specific email services be accepted?
+>
+> **Answer** A valid email address consists of an email prefix and an email domain, both in acceptable formats.
+The prefix appears to the left of the @ symbol. The domain appears to the right of the @ symbol.
+For example, in the address example@mail.com, "example" is the email prefix, and "mail.com" is the email domain
+
 
 ### 1.3. Acceptance Criteria
 
@@ -33,7 +39,8 @@ email), ID doc type and respective number.
 * **AC3:** A collaborator can only have one job.
 * **AC4:** Each document type has its own number format that must be respected.
 * **AC5:** The admission date must be typed using the format _dd-mm-yyyy_
-
+* **AC6:** The email must have a prefix(on the left of the @) and a domain(on the right of the @)
+* 
 ### 1.4. Found out Dependencies
 
 * There is a dependency on "US002 - Register a job" as there must be at least a job for a collaborator to be registered.

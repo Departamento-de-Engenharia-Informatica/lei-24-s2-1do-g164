@@ -15,7 +15,7 @@ activate Employee
     Employee -> System : asks to register a vehicle
 
 
-        System --> Employee : requests data (Brand, Model, Vehicle Id; Type, \nTare,Gross Weight, Current Km, Register Date, \nAcquisition Date, Maintenance/Checkup Frequency)
+        System --> Employee : requests data (Brand, Model, Vehicle Id, Type, \nTare,Gross Weight, Current Km, Register Date, \nAcquisition Date, Maintenance/Checkup Frequency)
     deactivate System
 
     Employee -> System : types the data

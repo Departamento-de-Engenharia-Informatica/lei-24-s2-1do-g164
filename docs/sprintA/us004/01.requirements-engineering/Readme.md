@@ -37,8 +37,8 @@ As HRM, I want to atribute one or more skills to a collaborator.
 
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "1 - Register a skill" as there must be at least one skill to atribute a skill to a collaborator.
-* There is a deoendancy on "3 - Register a collaborator" as there must be at least one collaborator whom can be atributed skills.
+* There is a dependency on "US001 - Register a skill" as there must be at least one skill to atribute a skill to a collaborator.
+* There is a deoendancy on "US003 - Register a collaborator" as there must be at least one collaborator whom can be atributed skills.
 
 ### 1.5 Input and Output Data
 
@@ -53,8 +53,6 @@ As HRM, I want to atribute one or more skills to a collaborator.
 * (In)Success of the operation
 
 ### 1.6. System Sequence Diagram (SSD)
-
-**_Other alternatives might exist._**
 
 #### Alternative One
 

@@ -18,7 +18,7 @@ class SystemUser {
     phone
 
 }
-class job
+class Job
  {
    name
 }
@@ -29,6 +29,6 @@ class HRM{
 }
 
 
-HRM "1" - "*" job: creates  >
+HRM "1" - "*" Job: creates  >
 SystemUser <|-- HRM
 @enduml

@@ -7,7 +7,7 @@ title System Sequence Diagram (SSD)
 
 autonumber
 
-actor "FM" as Employee
+actor "VFM" as Employee
 participant ":System" as System
 
 activate Employee

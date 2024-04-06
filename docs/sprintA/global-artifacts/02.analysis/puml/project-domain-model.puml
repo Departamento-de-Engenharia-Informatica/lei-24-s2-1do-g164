@@ -137,21 +137,21 @@ Task "1" -- "1..*" GreenSpace : occurs in >
 
 Agenda "1" -- "*" AgendaEntry : has >
 AgendaEntry "1" -- "1" Task : defines >
-AgendaEntry "1" -- "1" Team : defines >
+
 
 VFM " 1" -- "*" Vehicle : registers >
 VFM "  1 " -- "*" Machine : manages >
 VFM "  1    " -- "*" Equipment : manages >
 Vehicle "1   " -- "0..* " VehicleCheckup : has >
 VFM "1 " -- "*" VehicleCheckup : registers >
-GSU"  1  " -- "0..*          " Report: makes >
-GSU"  1  " -- "0..*" Comment: makes >
+GSU"  1  " -- "0..*" Report: makes >
+GSU"  1  " -- "0..* " Comment: makes >
 GSU"  1  " -- "1  " GreenSpacesUserPortal:  uses >
-GreenSpacesUserPortal "1                 " -- "0..*   " Report : has >
-GreenSpacesUserPortal "1    " -- "0..*" Comment : has >
+GreenSpacesUserPortal "1  " -- "0..* " Report : has >
+GreenSpacesUserPortal "1 " -- "0..* " Comment : has >
 
 MS "1" - "*" SystemUser : has >
-MS "1  " - "0..*" Task: owns >
+MS "1  " - "*" Task: owns >
 MS "1" - "*" Machine : has >
 MS "1 " - "*" Vehicle : has >
 MS "1" - "*" Equipment : has >
@@ -166,10 +166,10 @@ HRM "1" -- "1  " TeamProposal : requests >
 TeamProposal "1 " --"1 " Team: has >
 Team "1 " -- "*" Collaborator: has >
 Skill "1..*" - "1" Collaborator: is atributed to >
-Collaborator "1 " -- "1 " Job : has >
+Collaborator "1 " -- "1" Job : has >
 MS "1" - "1" Agenda : has >
 MS "1    " - "*" GreenSpace: manages >
-GSU"1" - "*" GreenSpace: uses >
-GSM "1" - "*" GreenSpace: manages >
+GSU"1   " - "*" GreenSpace: uses >
+GSM "1 " - "*" GreenSpace: manages >
 
 @enduml

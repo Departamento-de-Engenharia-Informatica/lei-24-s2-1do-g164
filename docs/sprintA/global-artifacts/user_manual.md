@@ -84,8 +84,7 @@ In order to do it, the system integrates various functionalities and tools tailo
 
 ### 2.2 Structure of the application 
 
-The following diagram illustrates an abstract structure of the application and it makes clear the relation between each role and the features.
-
+The following diagram illustrates an abstract structure of the application and makes clear the relation between each role and the feature.
 ![Use Case Diagram](01.requirements-engineering/svg/use-case-diagram.svg)
 
 
@@ -93,7 +92,7 @@ The following diagram illustrates an abstract structure of the application and i
 
 As soon as you open the application, a log-in possibility will be provided so than you can authenticate yourself.
 
-In order to do this, you have to insert your credentials: type your e-mail in first and then your password. 
+To proceed, you must insert your credentials: your e-mail first and then your password. 
 If your access data is correct then a list with the options you have attributed to your role will appear.
 
  ###  **3.1 Human Resource Manager(HRM)**

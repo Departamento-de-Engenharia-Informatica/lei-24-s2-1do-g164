@@ -40,7 +40,6 @@ For example, in the address example@mail.com, "example" is the email prefix, and
 * **AC4:** Each document type has its own number format that must be respected.
 * **AC5:** The admission date must be typed using the format _dd-mm-yyyy_
 * **AC6:** The email must have a prefix(on the left of the @) and a domain(on the right of the @)
-* 
 ### 1.4. Found out Dependencies
 
 * There is a dependency on "US002 - Register a job" as there must be at least a job for a collaborator to be registered.

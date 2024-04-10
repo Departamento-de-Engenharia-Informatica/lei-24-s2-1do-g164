@@ -46,9 +46,10 @@ In theory If there is no need to register a vehicle, no vehicles will be registe
 
 ### 1.3. Acceptance Criteria
 
-* **AC1:** A registered vehicle is identified by its plate id.
+* **AC1:** A vehicle ID must be unique
 * **AC2:** Duplicate vehicles can´t be registered.
-* **AC3:**  All required fields must be filled in.
+* **AC3:** The vehicle ID must follow the requested format (After 2020: AA-00-AA between 2005-2020 00-AA-00 between 1992-2005 00-00-XX).
+* **AC4:**  All required fields must be filled in.
 
 ### 1.4. Found out Dependencies
 

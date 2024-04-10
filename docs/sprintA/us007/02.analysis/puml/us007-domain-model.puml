@@ -44,7 +44,7 @@ class Vehicle {
 
 
 VFM "1" - "*" Vehicle : registers >
-Vehicle "1   " -- "0..*                        " VehicleCheckup : registers >
+Vehicle "1   " -- "0..*                        " VehicleCheckup : has >
 VFM "           1 " - "0..*   " VehicleCheckup : requests >
 SystemUser <|- VFM
 @enduml

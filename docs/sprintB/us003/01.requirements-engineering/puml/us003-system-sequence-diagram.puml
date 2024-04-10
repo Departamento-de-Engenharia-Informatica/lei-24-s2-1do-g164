@@ -1,0 +1,51 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD) - US003
+
+autonumber
+
+actor "HRM" as Employee
+participant ":System" as System
+
+activate Employee
+
+    Employee -> System : asks to register a collaborator
+    activate System
+
+        System --> Employee : shows the jobs list and asks to select one
+    deactivate System
+
+    Employee -> System : selects a job
+    activate System
+
+    System --> Employee : requests data (name, birthday, admission date, address, cellphone \nnumber, e-mail)
+    deactivate System
+
+    Employee -> System : types data
+    activate System
+
+        System --> Employee : shows the  id document types and asks to select one
+    deactivate System
+
+    Employee -> System : selects an id document type
+        activate System
+
+            System --> Employee : requests id document's number
+        deactivate System
+
+    Employee -> System : types number
+        activate System
+
+            System --> Employee : shows all data and requests confirmation
+        deactivate System
+
+    Employee -> System : confirms data
+    activate System
+
+    System --> Employee : displays operation success
+    deactivate System
+
+@enduml

@@ -1,0 +1,37 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+'left to right direction
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+class SystemUser {
+    name
+    email
+    password
+    phone
+
+}
+
+
+class Collaborator {
+    birthdate
+    admissionDate
+    address
+    idDocumentType
+    idDocumentNumber
+}
+
+class Skill {
+    name
+}
+
+
+Skill "1..*" - "1" Collaborator: is atributed to >
+SystemUser <|-- Collaborator
+@enduml

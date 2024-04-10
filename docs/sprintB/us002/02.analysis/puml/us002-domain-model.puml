@@ -1,0 +1,34 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+'left to right direction
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+
+class SystemUser {
+    name
+    email
+    password
+    phone
+
+}
+class Job
+ {
+   name
+}
+
+
+class HRM{
+
+}
+
+
+HRM "1" - "*" Job: creates  >
+SystemUser <|-- HRM
+@enduml

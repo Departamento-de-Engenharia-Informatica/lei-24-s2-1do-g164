@@ -1,0 +1,41 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+'left to right direction
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+class SystemUser {
+    name
+    email
+    password
+    phone
+
+}
+class Vehicle {
+   brand
+   model
+   vehicleID
+   type
+   tare
+   grossWeight
+   currentKm
+   registerDate
+   acquisitionDate
+   checkupFrequency
+}
+
+
+class VFM{
+
+}
+
+
+VFM "1" - "*" Vehicle: registers >
+SystemUser <|-- VFM
+@enduml

@@ -1,0 +1,33 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD) - Alternative One
+
+autonumber
+
+actor "HRM" as Employee
+participant ":System" as System
+
+activate Employee
+
+    Employee -> System : asks to create a new skill
+    activate System
+
+        System --> Employee : requests data (name of the skill)
+    deactivate System
+
+    Employee -> System : types name of the skill
+    activate System
+
+        System --> Employee : shows new skill and requests confirmation
+    deactivate System
+
+    Employee -> System : confirms data
+    activate System
+
+        System --> Employee : displays message of success (ie: "skill created")
+    deactivate System
+
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+
+class SystemUser {
+    name
+    email
+    password
+    phone
+
+}
+
+class Skill {
+    name
+}
+
+class HRM {
+
+}
+
+
+HRM "1" - "0..*" Skill : creates >
+SystemUser <|-- HRM
+
+@enduml

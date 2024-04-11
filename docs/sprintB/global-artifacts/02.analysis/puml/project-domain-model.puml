@@ -39,6 +39,9 @@ class HRM {
 class VFM {
 }
 class Collaborator {
+    name
+    email
+    phone
     birthdate
     admissionDate
     address
@@ -125,7 +128,6 @@ class ToDoList{
 
 SystemUser <|-- HRM
 SystemUser <|-- VFM
-SystemUser <|-- Collaborator
 SystemUser <|-- GSM
 SystemUser <|-- GSU
 

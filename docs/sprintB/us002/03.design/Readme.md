@@ -1,4 +1,4 @@
-# US006 - Create a Task 
+# US002 - Register a job 
 
 ## 3. Design - User Story Realization 
 
@@ -28,13 +28,12 @@ _**Note that SSD - Alternative One is adopted.**_
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
-* Organization
-* Task
+* Job
 
 Other software classes (i.e. Pure Fabrication) identified: 
 
-* CreateTaskUI  
-* CreateTaskController
+* RegisterJobUI  
+* RegisterJobController
 
 
 ## 3.2. Sequence Diagram (SD)

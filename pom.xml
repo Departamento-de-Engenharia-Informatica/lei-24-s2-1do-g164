@@ -92,8 +92,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin}</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <source>10</source>
+                    <target>10</target>
                     <showWarnings>true</showWarnings>   <!-- Needs this -->
                     <compilerArgs>
                         <arg>-Xlint:all</arg>   <!-- recommended -->

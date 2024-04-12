@@ -61,14 +61,14 @@ In theory If there is no need to register a vehicle, no vehicles will be registe
 * Typed data:
     * brand
     * model 
-    * vehicle ID
+    * vehicleID
     * type
     * tare
     * grossWeight
     * currentKm
-    * registerData
+    * registerDate
     * acquisitionDate 
-     * checkupFrequency
+    * checkupFrequency
 
 **Output Data:**
 

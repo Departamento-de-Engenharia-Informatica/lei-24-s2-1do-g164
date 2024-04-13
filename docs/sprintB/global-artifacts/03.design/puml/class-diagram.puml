@@ -3,25 +3,25 @@ skinparam classAttributeIconSize 0
 
 class ApplicationSession
 {
-  +static getInstance()
-  +getCurrentSession()
+    +static getInstance()
+    +getCurrentSession()
 }
 
 class UserSession
 {
-  +isLoggedInWithRole(USER_ROLE)
+    +isLoggedInWithRole(USER_ROLE)
 }
 
-class "{NameOfUC}Controller" {
-    + {NameOfUC}Controller()
+class "{CreateSkills}Controller" {
+    + {CreateSkills}Controller()
     + methodX(...)
 }
 
-class "{NameOfUC}UI" {
+class "{CreateSkills}UI" {
 }
 
-"{NameOfUC}UI" ..> "{NameOfUC}Controller"
-"{NameOfUC}Controller" ..> ApplicationSession
-"{NameOfUC}Controller" ..> UserSession
+"{CreateSkills}UI" ..> "{CreateSkills}Controller"
+"{CreateSkills}Controller" ..> ApplicationSession
+"{CreateSkills}Controller" ..> UserSession
 
 @enduml

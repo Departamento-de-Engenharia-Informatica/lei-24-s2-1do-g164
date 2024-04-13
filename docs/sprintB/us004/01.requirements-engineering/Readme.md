@@ -31,9 +31,7 @@ As HRM, I want to atribute one or more skills to a collaborator.
 
 ### 1.3. Acceptance Criteria
 
-* **AC1:** All required fields must be filled in.
-* **AC2:** The task reference must have at least 5 alphanumeric characters.
-* **AC3:** When creating a task with an existing reference, the system must reject such operation and the user must be able to modify the typed reference.
+* A collaborator should be selected
 
 ### 1.4. Found out Dependencies
 
@@ -45,6 +43,7 @@ As HRM, I want to atribute one or more skills to a collaborator.
 **Input Data:**
 
 * Selected data:
+    * collaborator 
     * one/multiple skills
 
 **Output Data:**

@@ -39,7 +39,7 @@ activate HRM
     activate CTRL
       CTRL -> RepositorySingleton : getInstance()
       activate RepositorySingleton
-        RepositorySingleton -> CTRL : repositories
+        RepositorySingleton --> CTRL : repositories
       deactivate RepositorySingleton
 
       CTRL -> PLAT : getSkillRepository()
@@ -63,7 +63,7 @@ activate HRM
     activate CTRL
       CTRL -> RepositorySingleton : getInstance()
       activate RepositorySingleton
-        RepositorySingleton -> CTRL : repositories
+        RepositorySingleton --> CTRL : repositories
       deactivate RepositorySingleton
 
       CTRL -> PLAT : getCollaboratorRepository()
@@ -77,6 +77,15 @@ activate HRM
         CollaboratorRepository --> CTRL : collaboratorList
       deactivate CollaboratorRepository
       note bottom : select collaborators from collaboratorList\nbased on the min and max values and save in\nselectedCollaborators
+
+
+activate CTRL
+      CTRL -> RepositorySingleton : getInstance()
+      activate RepositorySingleton
+        RepositorySingleton --> CTRL : repositories
+      deactivate RepositorySingleton
+
+
 
       CTRL -> PLAT : getTeamRepository()
       activate PLAT

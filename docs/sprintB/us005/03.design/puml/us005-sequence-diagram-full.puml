@@ -1,0 +1,98 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "Human Resources Manager" as HRM
+participant ":CreateTeamProposalUI" as UI
+participant ":CreateTeamProposalController" as CTRL
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "skillRepository:\nSkillRepository" as SkillRepository
+participant "collaboratorRepository:\nCollaboratorRepository" as CollaboratorRepository
+participant "teamRepository:\nTeamRepository" as TeamRepository
+' participant "taskCategoryRepository:\nTaskCategoryRepository" as TaskCategoryRepository
+' participant ":ApplicationSession" as _APP
+' participant "appSession\n:ApplicationSession" as APP
+' participant "currentSession\n:UserSession" as SESSAO
+' participant "organizationRepository:\nOrganizationRepository" as OrganizationRepository
+' participant "organization\n:Organization" as ORG
+participant "team\n:Team" as TEAM
+
+activate HRM
+  HRM -> UI : asks to generate a team proposal
+  activate UI
+    UI -> CTRL** : create
+    UI --> HRM : asks maximum size
+  deactivate UI
+
+  HRM -> UI : sends maximum size
+  activate UI
+    UI --> HRM : asks minimum size
+  deactivate UI
+
+  HRM -> UI : sends minimum size
+  activate UI
+    UI -> CTRL : getSkills()
+    activate CTRL
+      CTRL -> RepositorySingleton : getInstance()
+      activate RepositorySingleton
+        RepositorySingleton -> CTRL : repositories
+      deactivate RepositorySingleton
+
+      CTRL -> PLAT : getSkillRepository()
+      activate PLAT
+        PLAT --> CTRL : skillRepository
+      deactivate PLAT
+
+      CTRL -> SkillRepository : getSkills()
+      activate SkillRepository
+        SkillRepository --> CTRL : skillList
+      deactivate SkillRepository
+      CTRL --> UI : skillList
+    deactivate CTRL
+
+    UI --> HRM : asks required skills
+  deactivate UI
+
+  HRM -> UI : sends required skills
+  activate UI
+    UI -> CTRL : createTeamProposal(min, max, skills)
+    activate CTRL
+      CTRL -> RepositorySingleton : getInstance()
+      activate RepositorySingleton
+        RepositorySingleton -> CTRL : repositories
+      deactivate RepositorySingleton
+
+      CTRL -> PLAT : getCollaboratorRepository()
+      activate PLAT
+        PLAT --> CTRL : collaboratorRepository
+      deactivate PLAT
+
+      CTRL -> CollaboratorRepository : getCollaboratorsBySkills(skills)
+      note right : filter collaborators\nbased on their skills
+      activate CollaboratorRepository
+        CollaboratorRepository --> CTRL : collaboratorList
+      deactivate CollaboratorRepository
+      note bottom : select collaborators from collaboratorList\nbased on the min and max values and save in\nselectedCollaborators
+
+      CTRL -> PLAT : getTeamRepository()
+      activate PLAT
+        PLAT --> CTRL : teamRepository
+      deactivate PLAT
+
+      CTRL -> TeamRepository : createTeam(selectedCollaborators)
+      activate TeamRepository
+        TeamRepository -> TEAM** : create(selectedCollaborators)
+        note right : team is created with a PENDING state
+        TeamRepository -> TeamRepository : addTeam()
+        TeamRepository --> CTRL : team
+      deactivate TeamRepository
+      CTRL --> UI : team
+    deactivate CTRL
+    UI --> HRM : shows created team
+  deactivate UI
+deactivate HRM
+@enduml

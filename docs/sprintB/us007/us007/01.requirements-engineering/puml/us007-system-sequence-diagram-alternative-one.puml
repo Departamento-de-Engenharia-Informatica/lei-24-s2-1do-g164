@@ -1,3 +1,11 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD) - Alternative One
+
+autonumber
 
 actor "VFM" as Employee
 participant ":System" as System

@@ -11,13 +11,7 @@ participant ":RegisterVehicleUI" as UI
 participant ":RegisterVehicleController" as CTRL
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT
-participant "vehicleRepository:\nVehicleRepository" as TaskCategoryRepository
-participant ":ApplicationSession" as _APP
-participant "appSession\n:ApplicationSession" as APP
-participant "currentSession\n:UserSession" as SESSAO
-participant "organizationRepository:\nOrganizationRepository" as OrganizationRepository
-participant "organization\n:Organization" as ORG
-participant "task\n:Task" as TAREFA
+participant "vehicleRepository:\nVehicleRepository" as VehicleRepository
 
 activate ADM
 
@@ -54,95 +48,24 @@ activate ADM
                 CTRL -> PLAT : getVehicleRepository()
                 activate PLAT
 
-                    PLAT -> CTRL : vehicleRepository
+                    PLAT --> CTRL : vehicleRepository
                 deactivate PLAT
 
-                CTRL -> TaskCategoryRepository : createVehicle(brand, model, vehicleID, type, tare,\n grossWeight, currentKm, registerDate,\n acquisitionDate, checkupFrequency)
-                activate TaskCategoryRepository
+                CTRL -> VehicleRepository : createVehicle(brand, model, vehicleID, type, tare,\n grossWeight, currentKm, registerDate,\n acquisitionDate, checkupFrequency)
+                activate VehicleRepository
 
-                    TaskCategoryRepository --> CTRL : status of creation
-                deactivate TaskCategoryRepository
-                    CTRL --> CTRL : taskCategory
+                VehicleRepository -> VehicleRepository : validateVehicle(vehicleID)
+                activate VehicleRepository
+                deactivate VehicleRepository
+
+
+                    VehicleRepository --> CTRL : status of creation
+                deactivate VehicleRepository
+                    CTRL --> UI : status of creation
+                    UI --> ADM : shows operation status
+                    deactivate UI
             deactivate CTRL
 
-            |||
-            CTRL -> CTRL : getEmployeeFromSession()
-            activate CTRL
 
-                CTRL -> _APP: getInstance()
-                activate _APP
-                    _APP -> CTRL: appSession
-                deactivate _APP
-
-
-                CTRL -> APP: getCurrentSession()
-                activate APP
-
-                    APP --> CTRL: currentSession
-                deactivate APP
-
-                CTRL -> SESSAO: email = getUserEmail()
-                activate SESSAO
-
-                    SESSAO --> CTRL: email
-                deactivate SESSAO
-
-
-                CTRL -> PLAT: getOrganizationRepository(email)
-                activate PLAT
-
-                    PLAT --> CTRL: organizationRepository
-                deactivate PLAT
-
-
-                CTRL -> OrganizationRepository: getOrganizationByEmployeeEmail(email)
-                activate OrganizationRepository
-
-                    loop [for each organization
-                        OrganizationRepository -> ORG : anyEmployeeHasEmail(email)
-                        activate ORG
-
-                             ORG --> OrganizationRepository : true/false
-                        deactivate ORG
-                    end
-                    OrganizationRepository --> CTRL : organization
-                deactivate OrganizationRepository
-
-                CTRL -> ORG: getEmployeeByEmail(email)
-                activate ORG
-
-                    ORG --> CTRL : employee
-                deactivate ORG
-
-                CTRL --> CTRL : employee
-            deactivate CTRL
-
-            |||
-            CTRL -> ORG: createTask(employee, reference, description,\ninformalDescription, technicalDescription,\nduration, cost, , taskCategory, employee)
-            activate ORG
-
-                ORG -> TAREFA**: create(employee, reference, description,\ninformalDescription, technicalDescription,\nduration, cost, taskCategory, employee)
-                ORG -> ORG: addTask (task)
-
-
-                activate ORG
-                    ORG -> ORG: validateTask(task)
-                    activate ORG
-                        ORG --> ORG
-                    deactivate ORG
-
-                    ORG --> ORG
-                deactivate ORG
-
-                ORG --> CTRL : task
-
-            deactivate ORG
-
-            CTRL --> UI: task
-            deactivate CTRL
-            UI --> ADM: displays operation success
-    deactivate UI
-
-deactivate ADM
 
 @enduml

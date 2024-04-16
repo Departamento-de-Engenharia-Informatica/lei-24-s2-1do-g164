@@ -7,11 +7,11 @@ autonumber
 
 'hide footbox
 actor " HRM" as ADM
-participant ":RegisterJobUI" as UI
-participant ":RegisterJobController" as CTRL
+participant ":RegisterVehicleUI" as UI
+participant ":RegisterVehicleController" as CTRL
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT
-participant "jobRepository:\nJobRepository" as JobRepository
+participant "vehicleRepository:\nVehicleRepository" as VehicleRepository
 
 activate ADM
 
@@ -35,7 +35,7 @@ activate ADM
     ADM -> UI : confirms
     activate UI
 
-        UI -> CTRL : createJob(jobName)
+        UI -> CTRL : createVehicle(brand, model, vehicleID, type, tare,\n grossWeight, currentKm, registerDate,\n acquisitionDate, checkupFrequency)
         activate CTRL
 
 
@@ -45,22 +45,22 @@ activate ADM
                     RepositorySingleton --> CTRL: repositories
                 deactivate RepositorySingleton
 
-                CTRL -> PLAT : getJobRepository()
+                CTRL -> PLAT : getVehicleRepository()
                 activate PLAT
 
-                    PLAT --> CTRL : jobRepository
+                    PLAT --> CTRL : vehicleRepository
                 deactivate PLAT
 
-                CTRL -> JobRepository : createJob(jobName)
-                activate JobRepository
+                CTRL -> VehicleRepository : createVehicle(brand, model, vehicleID, type, tare,\n grossWeight, currentKm, registerDate,\n acquisitionDate, checkupFrequency)
+                activate VehicleRepository
 
-                JobRepository -> JobRepository : validateJob(jobName)
-                activate JobRepository
-                deactivate JobRepository
+                VehicleRepository -> VehicleRepository : validateVehicle(vehicleID)
+                activate VehicleRepository
+                deactivate VehicleRepository
 
 
-                    JobRepository --> CTRL : status of creation
-                deactivate JobRepository
+                    VehicleRepository --> CTRL : status of creation
+                deactivate VehicleRepository
                     CTRL --> UI : status of creation
                     UI --> ADM : shows operation status
                     deactivate UI

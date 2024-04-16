@@ -7,7 +7,7 @@ skinparam shadowing false
 autonumber
 
 'hide footbox
-actor "Organization Employee" as ADM
+actor "HRM" as ADM
 participant ":RegisterSkillsUI" as UI
 participant ":RegisterSkillController" as CTRL
 participant ":Repositories" as RepositorySingleton
@@ -17,11 +17,11 @@ participant "skillsRepository:\nSkillsRepository" as skillsRepository
 
 activate ADM
 
-        ADM -> UI : asks to register a new skill
+        ADM -> UI : asks to register a new skills
         activate UI
-        UI --> ADM : requests
+        UI --> ADM : requests data (skill name)
         deactivate UI
-        ADM -> UI : types requested data (skill name)
+        ADM -> UI : types requested data (skillName)
         activate UI
         UI --> ADM : requests confirmation
         deactivate UI
@@ -52,23 +52,21 @@ activate ADM
 
                 skillsRepository -> skillsRepository : validateSkill()
                 activate skillsRepository
-
-                skillsRepository --> skillsRepository : validation result
                 deactivate skillsRepository
 
 
-                    skillsRepository --> CTRL : success of operation
+                    skillsRepository --> CTRL : status of operation
                 deactivate skillsRepository
 
 
 
-                CTRL --> UI : success of operation
+                CTRL --> UI : status of operation
             deactivate CTRL
 
-            UI -> UI : displaySuccessMessage()
+            UI -> UI : displayStatusMessage
             activate UI
 
-            UI --> ADM : operation success message
+            UI --> ADM : status of operation message
         deactivate UI
 
 

@@ -7,11 +7,11 @@
 
 As a VFM, I want to register a vehicle for inspection.
 
-### 1.2. Customer Specifications and Clarifications
+### 1.2. Customer Specifications and Clarifications 
 
 **From the specifications document:**
 
-n/a
+  n/a
 
 **From the client clarifications:**
 
@@ -48,7 +48,7 @@ yes
 
 > **Question:**
 Does a vehicle need to be registered in US06 before being able to go for a check up in US07?
->
+> 
 > **Answer:**
 yes
 
@@ -62,7 +62,7 @@ the UX/UI is up to dev teams.
 
 
 
-### 1.3. Acceptance Criteria
+### 1.3. Acceptance Criteria 
 
 * **AC1:** All required fields must be filled in.
 * **AC2:** The date must be typed using the format dd-mm-yyyy.
@@ -76,10 +76,10 @@ the UX/UI is up to dev teams.
 **Input Data:**
 
 * Typed data:
-
-  * date
-  * current kms
-
+    
+    * date
+    * current kms
+  
 * Selected data:
 
   * Vehicle

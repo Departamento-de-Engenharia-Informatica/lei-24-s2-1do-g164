@@ -6,22 +6,15 @@ skinparam shadowing false
 autonumber
 
 'hide footbox
-actor "Organization Employee" as ADM
-participant ":CreateTaskUI" as UI
-participant ":CreateTaskController" as CTRL
+actor "Human Resource Manager" as HRM
+participant ":AssignSkillsUI" as UI
+participant ":AssignSkillsController" as CTRL
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT
-participant "taskCategoryRepository:\nTaskCategoryRepository" as TaskCategoryRepository
-participant ":ApplicationSession" as _APP
-participant "appSession\n:ApplicationSession" as APP
-participant "currentSession\n:UserSession" as SESSAO
-participant "organizationRepository:\nOrganizationRepository" as OrganizationRepository
-participant "organization\n:Organization" as ORG
-participant "task\n:Task" as TAREFA
+participant "collaboratorRepository\n:CollaboratorRepository" as TaskCategoryRepository
+activate HRM
 
-activate ADM
-
-        ADM -> UI : asks to create a new task
+        HRM -> UI : asks to add skills to a colaborater
 
         activate UI
 
@@ -29,7 +22,7 @@ activate ADM
             'create CTRL
             UI -> CTRL** : create
 
-            UI -> CTRL : getTaskCategories()
+            UI -> CTRL : getCollaborators()
             activate CTRL
 
                 CTRL -> RepositorySingleton : getInstance()
@@ -38,37 +31,59 @@ activate ADM
                     RepositorySingleton --> CTRL: repositories
                 deactivate RepositorySingleton
 
-                CTRL -> PLAT : getTaskCategoryRepository()
+                CTRL -> PLAT : getCollaboratorRepository()
                 activate PLAT
 
-                    PLAT --> CTRL: taskCategoryRepository
+                    PLAT --> CTRL: collaboratorRepository()
                 deactivate PLAT
 
-                CTRL -> TaskCategoryRepository : getTaskCategories()
+                CTRL -> TaskCategoryRepository : getCollaborators()
                 activate TaskCategoryRepository
 
-                    TaskCategoryRepository --> CTRL : taskCategoryList
+                    TaskCategoryRepository --> CTRL : collaboratorsList
                 deactivate TaskCategoryRepository
 
-                CTRL --> UI : taskCategoryList
+                CTRL --> UI : collaboratorsList
             deactivate CTRL
 
-            UI --> ADM : shows task category list\n and asks to sleect one
+            UI --> HRM : shows task collaborator list\nand asks to select one
         deactivate UI
 
-    ADM -> UI : selects a task category
+    HRM -> UI : selects a collaborator
     activate UI
 
-        UI --> ADM : requests data
-    deactivate UI
+       UI -> CTRL : getSkills()
+           activate CTRL
+             CTRL -> RepositorySingleton : getInstance()
+             activate RepositorySingleton
+               RepositorySingleton -> CTRL : repositories
+             deactivate RepositorySingleton
 
-    ADM -> UI : types requested data (reference, description, \ninformal description, technical description,\nduration, cost)
+             CTRL -> PLAT : getSkillRepository()
+             activate PLAT
+               PLAT --> CTRL : skillRepository
+             deactivate PLAT
+
+             CTRL -> SkillRepository : getSkills()
+             activate SkillRepository
+               SkillRepository --> CTRL : skillList
+             deactivate SkillRepository
+             CTRL --> UI : skillList
+           deactivate CTRL
+
+           UI --> HRM : asks required skills
+         deactivate UI
+
+         HRM -> UI : sends required skills
+         activate UI
+
+    HRM ->RepositorySingleton : types requested data (reference, description, \ninformal description, technical description,\nduration, cost)
     activate UI
 
-        UI --> ADM : shows selected category and requested data
+        UI --> HRM : shows selected category and requested data
     deactivate UI
 
-    ADM -> UI : submits data
+    HRM -> UI : submits data
     activate UI
 
         UI -> CTRL : createTask(reference,\ndescription,\ninformalDescription,\ntechnicalDescription,\nduration, cost,\ntaskCategoryDescription)
@@ -172,9 +187,9 @@ activate ADM
 
             CTRL --> UI: task
             deactivate CTRL
-            UI --> ADM: displays operation success
+            UI --> HRM: displays operation success
     deactivate UI
 
-deactivate ADM
+deactivate HRM
 
 @enduml

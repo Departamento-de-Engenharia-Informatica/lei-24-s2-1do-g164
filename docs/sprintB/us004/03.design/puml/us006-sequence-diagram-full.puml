@@ -15,7 +15,7 @@ skinparam packageStyle rectangle
     participant "skillRepository\n:SkillRepository" as SkillRepository
     activate HRM
 
-            HRM -> UI : asks to add skills to a colaborater
+            HRM -> UI : asks to add skills to a colaborator
 
             activate UI
 
@@ -77,19 +77,28 @@ skinparam packageStyle rectangle
 
              HRM -> UI : sends required skills
              activate UI
-               UI -> CTRL :assignmentSkills()
+               UI -> CTRL :assignSkills()
                         activate CTRL
+               CTRL -> RepositorySingleton : getInstance()
+                                         activate RepositorySingleton
+                                           RepositorySingleton -> CTRL : repositories
+                                         deactivate RepositorySingleton
+
+                                         CTRL -> PLAT : getSkillRepository()
+                                         activate PLAT
+                                           PLAT --> CTRL : skillRepository
+                                         deactivate PLAT
+
+                                         CTRL -> SkillRepository : getSkills()
+                                         activate SkillRepository
+                                           SkillRepository --> CTRL : skillList
+                                         deactivate SkillRepository
+                                         CTRL --> UI : skillList
+                                       deactivate CTRL
 
 
 
-                    ORG --> CTRL : task
 
-                deactivate ORG
-
-                CTRL --> UI: task
-                deactivate CTRL
-                UI --> HRM: displays operation success
-        deactivate UI
 
     deactivate HRM
 

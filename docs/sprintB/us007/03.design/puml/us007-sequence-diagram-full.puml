@@ -1,0 +1,80 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "VFM" as VFM
+participant ":RegisterVehicleCheckupUI" as UI
+participant "RegisterVehicleCheckupController" as CTRL
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "vehicleRepository:\nVehicleRepository" as VehicleRepository
+participant "vehicle:\nVehicle" as vehicle
+activate VFM
+
+        VFM -> UI : asks to register a vehicle check-up
+
+        activate UI
+
+'            UI --> ADM : requests data (reference, description,  informal \n description, technical description, duration, cost)
+            'create CTRL
+            UI -> CTRL** : create
+
+            UI -> CTRL : getVehciles()
+            activate CTRL
+
+                CTRL -> RepositorySingleton : getInstance()
+                activate RepositorySingleton
+
+                    RepositorySingleton --> CTRL: repositories
+                deactivate RepositorySingleton
+
+                CTRL -> PLAT : getVehicleRepository()
+                activate PLAT
+
+                    PLAT --> CTRL: vehicleRepository
+                deactivate PLAT
+
+                CTRL -> VehicleRepository : getVehiclesNeedingCheckup()
+                activate VehicleRepository
+
+                    VehicleRepository --> CTRL : vehiclesList
+                deactivate VehicleRepository
+
+                CTRL --> UI : vehiclesList
+            deactivate CTRL
+
+            UI --> VFM : shows available vehicles and asks to select one
+        deactivate UI
+
+    VFM -> UI : selects a vehicle
+    activate UI
+
+        UI --> VFM : requests date and currentKms
+    deactivate UI
+
+    VFM -> UI : types requested data
+
+
+
+        UI -> CTRL : createVehicleCheckup(vehicle, date, currentKms)
+        activate CTRL
+activate  VehicleRepository
+
+                CTRL -> VehicleRepository : createVehicleCheckup(vehicle, date, currentKms)
+
+
+
+
+
+                  vehicle--> CTRL: status of register
+deactivate VehicleRepository
+
+CTRL --> UI : status of creation
+UI -->VFM : shows operation status
+deactivate VFM
+
+@enduml

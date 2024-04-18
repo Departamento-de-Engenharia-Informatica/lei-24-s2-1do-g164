@@ -26,5 +26,57 @@ public class Vehicle {
         this.lastCheckup = new VehicleCheckup("No checkup registered", 0);
     }
 
+    public String getBrand() {
+        return brand;
+    }
 
+    public String getModel() {
+        return model;
+    }
+
+    public String getVehicleID() {
+        return vehicleID;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public double getGrossWeight() {
+        return grossWeight;
+    }
+
+    public double getTare() {
+        return tare;
+    }
+
+    public int getCurrentKm() {
+        return currentKm;
+    }
+
+    public String getRegisterDate() {
+        return registerDate;
+    }
+
+    public String getAcquisitionDate() {
+        return acquisitionDate;
+    }
+
+    public int getCheckupFrequency() {
+        return checkupFrequency;
+    }
+
+    public VehicleCheckup getLastCheckup() {
+        return lastCheckup;
+    }
+
+    public boolean equals(Vehicle vehicle){
+        return vehicle.getVehicleID() == this.vehicleID;
+    }
+    public boolean needsCheckup() {
+        int difference = this.currentKm - this.lastCheckup.getCurrentKms();
+        double percentage = (double) difference / checkupFrequency;
+        return difference >= checkupFrequency || percentage < 0.05;
+    }
 }
+

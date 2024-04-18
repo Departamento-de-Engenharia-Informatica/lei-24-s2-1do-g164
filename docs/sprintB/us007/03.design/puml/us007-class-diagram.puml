@@ -1,3 +1,4 @@
+
  @startuml
 'skinparam monochrome true
 skinparam packageStyle rectangle
@@ -10,13 +11,13 @@ skinparam classAttributeIconSize 0
 'left to right direction
 
 
-class ":CreateTeamProposalUI" as CreateTeamProposalUI {
+class "RegisterVehicleCheckupUI" as RegisterVehicleCheckupUI {
 
-    +showCreatedTeam(Team)
+
 }
 
 
-class ":CreateTeamProposalController" as CreateTeamProposalController {
+class "RegisterVehicleCheckupController" as RegisterVehicleCheckupController {
 +getSkills()
     +createTeamProposal(min, max, skills)
 
@@ -59,7 +60,7 @@ class "Team" as Team {
 
  note right of "CollaboratorRepository" : filter collaborators\nbased on their skills
 
-CreateTeamProposalUI ..> CreateTeamProposalController
+RegisterVehicleCheckupUI..> RegisterVehicleCheckupController
 Repositories -> Repositories : instance
 CreateTeamProposalController ..> Repositories: repositories
 Repositories --> "1"SkillRepository

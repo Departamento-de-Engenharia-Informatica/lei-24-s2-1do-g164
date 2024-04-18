@@ -8,5 +8,13 @@ public class VehicleCheckup {
         this.date = date;
         this.currentKms = currentKms;
     }
+
+    public String getDate() {
+        return date;
+    }
+
+    public int getCurrentKms() {
+        return currentKms;
+    }
 }
 

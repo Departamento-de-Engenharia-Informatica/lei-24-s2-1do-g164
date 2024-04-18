@@ -11,7 +11,7 @@ public class Collaborator {
     private int idDocumentNumber;
     private Job job;
     private ArrayList<Skill> skills;
-    public Collaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, ArrayList<Skill> skills) {
+    public Collaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job) {
         this.name = name;
         this.phone = phone;
         this.birthdate = birthdate;
@@ -19,7 +19,7 @@ public class Collaborator {
         this.address = address;
         this.idDocumentNumber = idDocumentNumber;
         this.job = job;
-        this.skills = skills;
+        this.skills = new ArrayList<>();
     }
     public String getName() {
         return name;

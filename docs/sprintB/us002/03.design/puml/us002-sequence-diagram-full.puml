@@ -35,7 +35,7 @@ activate ADM
     ADM -> UI : confirms
     activate UI
 
-        UI -> CTRL : createJob(jobName)
+        UI -> CTRL : registerJob(jobName)
         activate CTRL
 
 
@@ -51,7 +51,7 @@ activate ADM
                     PLAT --> CTRL : jobRepository
                 deactivate PLAT
 
-                CTRL -> JobRepository : createJob(jobName)
+                CTRL -> JobRepository : registerJob(jobName)
                 activate JobRepository
 
                 JobRepository -> JobRepository : validateJob(jobName)

@@ -40,7 +40,7 @@ activate ADM
             activate UI
 
             UI -> CTRL** : create
-        UI -> CTRL : registerSkill(file)
+        UI -> CTRL : registerSkills(fileName)
         activate CTRL
 
         CTRL -> CTRL : readSkillsFromFile(file)
@@ -88,7 +88,7 @@ activate ADM
             activate UI
 
 
-        UI -> CTRL : registerSkills(skillName)
+        UI -> CTRL : registerSkill(skillName)
 
 
         activate CTRL

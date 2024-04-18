@@ -2,13 +2,15 @@ package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.application.session.ApplicationSession;
 
-public class Repositories {
+import java.io.Serializable;
+
+public class Repositories implements Serializable {
 
     private static Repositories instance;
     private final CollaboratorRepository collaboratorRepository;
 
 
-    private Repositories() {
+    private Repositories(){
         collaboratorRepository = new CollaboratorRepository();
 
     }

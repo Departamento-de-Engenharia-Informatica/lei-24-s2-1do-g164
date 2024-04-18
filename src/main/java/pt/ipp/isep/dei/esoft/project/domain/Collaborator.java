@@ -11,14 +11,46 @@ public class Collaborator {
     private int idDocumentNumber;
     private Job job;
     private ArrayList<Skill> skills;
+    public Collaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, ArrayList<Skill> skills) {
+        this.name = name;
+        this.phone = phone;
+        this.birthdate = birthdate;
+        this.admissionDate = admissionDate;
+        this.address = address;
+        this.idDocumentNumber = idDocumentNumber;
+        this.job = job;
+        this.skills = skills;
+    }
+    public String getName() {
+        return name;
+    }
+
+    public int getPhone() {
+        return phone;
+    }
+
+    public String getBirthdate() {
+        return birthdate;
+    }
+
+    public String getAdmissionDate() {
+        return admissionDate;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public int getIdDocumentNumber() {
+        return idDocumentNumber;
+    }
+
+    public Job getJob() {
+        return job;
+    }
 
     public boolean equals(Collaborator c){
-        if(c.phone == this.phone || c.name == c.name){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return c.getPhone() == this.phone || c.getName().equals(this.name);
     }
 }
 

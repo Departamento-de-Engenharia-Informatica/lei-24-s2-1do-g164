@@ -11,4 +11,14 @@ public class Collaborator {
     private int idDocumentNumber;
     private Job job;
     private ArrayList<Skill> skills;
+
+    public boolean equals(Collaborator c){
+        if(c.phone == this.phone || c.name == c.name){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
+

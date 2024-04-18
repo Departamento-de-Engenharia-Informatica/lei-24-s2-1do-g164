@@ -49,8 +49,24 @@ public class Collaborator {
         return job;
     }
 
+    public ArrayList<Skill> getSkills() {
+        return skills;
+    }
+
+    public boolean alreadyHasSkill(Skill skill){
+        for(Skill s : this.skills){
+            if(s.equals(skill)){
+                return true;
+            }
+        }
+        return false;
+    }
     public boolean equals(Collaborator c){
         return c.getPhone() == this.phone || c.getName().equals(this.name);
+    }
+
+    public void addSkill(Skill s){
+        this.skills.add(s);
     }
 }
 

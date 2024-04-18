@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.domain.Collaborator;
+import pt.ipp.isep.dei.esoft.project.domain.Skill;
 import pt.ipp.isep.dei.esoft.project.domain.Vehicle;
 
 import java.io.IOException;
@@ -13,8 +14,8 @@ public class CollaboratorRepository implements Serializable {
         return collaboratorList;
     }
 
-    public boolean createCollaborator(Collaborator collaborator){
-        if(!collaboratorAlreadyExist(collaborator)) {
+    public boolean registerCollaborator(Collaborator collaborator){
+        if(!collaboratorAlreadyExists(collaborator)) {
             collaboratorList.add(collaborator);
             return true;
         }
@@ -23,7 +24,7 @@ public class CollaboratorRepository implements Serializable {
         }
     }
 
-    public boolean collaboratorAlreadyExist(Collaborator collaborator){
+    public boolean collaboratorAlreadyExists(Collaborator collaborator){
         for(Collaborator c : collaboratorList) {
             if (c.equals(collaborator)) {
                 return true;
@@ -32,14 +33,28 @@ public class CollaboratorRepository implements Serializable {
         return false;
     }
 
-    public Collaborator getCollaboratorByPhone(String name){
-        for(Collaborator c : collaboratorList){
-            if(c.getName())
-        }
-    }
+
+    //public Collaborator getCollaboratorByName(String name){
+      //  for(Collaborator c : collaboratorList){
+        //    if(c.getName().equals(name)){
+          //      return c;
+            //}
+        //}
+        //return null;
+    //}
 
     public int size(){
         return this.collaboratorList.size();
+    }
+
+    public boolean assignSKill(Collaborator c, Skill s){
+        if(c.alreadyHasSkill(s)){
+            return false;
+        }
+        else{
+            c.addSkill(s);
+            return true;
+        }
     }
 
 }

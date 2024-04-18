@@ -32,6 +32,12 @@ public class CollaboratorRepository implements Serializable {
         return false;
     }
 
+    public Collaborator getCollaboratorByPhone(String name){
+        for(Collaborator c : collaboratorList){
+            if(c.getName())
+        }
+    }
+
     public int size(){
         return this.collaboratorList.size();
     }

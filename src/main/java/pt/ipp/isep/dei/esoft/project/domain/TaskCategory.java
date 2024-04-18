@@ -41,7 +41,7 @@ public class TaskCategory {
      *
      * @return A clone of the current task.
      */
-    public TaskCategory clone() {
+    public TaskCategory clone(){
         return new TaskCategory(this.description);
     }
 }

@@ -40,7 +40,6 @@ class VFM {
 }
 class Collaborator {
     name
-    email
     phone
     birthdate
     admissionDate
@@ -173,5 +172,5 @@ MS "1" - "1" Agenda : has >
 MS "1    " - "*" GreenSpace: manages >
 GSU"1   " - "*" GreenSpace: uses >
 GSM "1 " - "*" GreenSpace: manages >
-
+Team "1 " -- "*" Skill: has >
 @enduml

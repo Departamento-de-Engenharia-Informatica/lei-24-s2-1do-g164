@@ -2,17 +2,20 @@ package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.application.session.ApplicationSession;
 
-public class Repositories {
+import java.io.Serializable;
+
+public class Repositories implements Serializable {
 
     private static Repositories instance;
-    private final OrganizationRepository organizationRepository;
-    private final TaskCategoryRepository taskCategoryRepository;
-    private final AuthenticationRepository authenticationRepository;
+    private final CollaboratorRepository collaboratorRepository;
+    private final VehicleRepository vehicleRepository;
+    private final SkillRepository skillRepository;
 
-    private Repositories() {
-        organizationRepository = new OrganizationRepository();
-        taskCategoryRepository = new TaskCategoryRepository();
-        authenticationRepository = new AuthenticationRepository();
+
+    private Repositories(){
+        collaboratorRepository = new CollaboratorRepository();
+        vehicleRepository = new VehicleRepository();
+        skillRepository = new SkillRepository();
     }
 
     public static Repositories getInstance() {
@@ -24,15 +27,15 @@ public class Repositories {
         return instance;
     }
 
-    public OrganizationRepository getOrganizationRepository() {
-        return organizationRepository;
+    public CollaboratorRepository getCollaboratorRepository() {
+        return collaboratorRepository;
     }
 
-    public TaskCategoryRepository getTaskCategoryRepository() {
-        return taskCategoryRepository;
+    public VehicleRepository getVehicleRepository() {
+        return vehicleRepository;
     }
 
-    public AuthenticationRepository getAuthenticationRepository() {
-        return authenticationRepository;
+    public SkillRepository getSkillRepository() {
+        return skillRepository;
     }
 }

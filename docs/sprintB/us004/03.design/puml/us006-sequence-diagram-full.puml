@@ -35,14 +35,14 @@ skinparam packageStyle rectangle
                     CTRL -> PLAT : getCollaboratorRepository()
                     activate PLAT
 
-                        PLAT --> CTRL: collaboratorRepository()
+                        PLAT --> CTRL: collaboratorRepository
                     deactivate PLAT
 
-                    CTRL -> TaskCategoryRepository : getCollaborators()
-                    activate TaskCategoryRepository
+                    CTRL -> collaboratorRepository : getCollaborators()
+                    activate collaboratorRepository
 
-                        TaskCategoryRepository --> CTRL : collaboratorsList
-                    deactivate TaskCategoryRepository
+                        collaboratorRepository--> CTRL : collaboratorsList
+                    deactivate collaboratorRepository
 
                     CTRL --> UI : collaboratorsList
                 deactivate CTRL
@@ -72,19 +72,19 @@ skinparam packageStyle rectangle
                  CTRL --> UI : skillList
                deactivate CTRL
 
-              UI --> HRM : shows skills list and \nasks to select one
+              UI --> HRM : shows skills list and \nasks to select skills
                           deactivate UI
 
              HRM -> UI : sends required skills
              activate UI
-               UI -> CTRL :assignSkills()
+               UI -> CTRL :assignSkills(collaborator,skills)
                         activate CTRL
                CTRL -> RepositorySingleton : getInstance()
                                          activate RepositorySingleton
                                            RepositorySingleton -> CTRL : repositories
                                          deactivate RepositorySingleton
 
-                                         CTRL -> PLAT : getCollaboratorRepository()
+                                         CTRL -> PLAT : getCollaboratorRepository(collaborator, skills)
                                          activate PLAT
                                            PLAT --> CTRL : collaboratorRepository
                                          deactivate PLAT

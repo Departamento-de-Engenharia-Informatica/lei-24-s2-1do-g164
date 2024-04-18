@@ -18,16 +18,22 @@ activate Employee
         System --> Employee : requests data (upload a file)
     deactivate System
 
-    Employee -> System : selects file
+    Employee -> System : writes file path
     activate System
 
-        System --> Employee : shows all new skills and requests confirmation
+    Employee <-- System : requests confirmation
     deactivate System
 
-    Employee -> System : confirms data
+    Employee -> System : confirms
     activate System
 
-        System --> Employee : displays message of success (ie: "skills added to list")
+    System --> Employee : shows all new skills and requests confirmation
+    deactivate System
+
+    Employee -> System : confirms new skills
+    activate System
+
+    System --> Employee : displays status of operation message (ie: "skills added to list")
     deactivate System
 
 @enduml

@@ -17,26 +17,26 @@ public class RegisterSkillController {
         this.skillRepository = Repositories.getInstance().getSkillRepository();
     }
 
-    public boolean registerSkill(String skillName){
+    public boolean registerSkillFromText(String skillName){
 
         Skill skill = new Skill(skillName);
 
         return skillRepository.registerSkill(skill);
     }
 
-    public static ArrayList<String> readFromFile(String filePath){
+    private static ArrayList<String> readSkillsFromFile(String filePath){
 
-        // Create an ArrayList to store the words
+
         ArrayList<String> skillsToAdd = new ArrayList<>();
 
         try (Scanner scanner = new Scanner(new File(filePath))) {
 
-            // Set the delimiter pattern to split on newline or comma
-            scanner.useDelimiter("[,\n]");
+
+            scanner.useDelimiter("[,\n;]");
 
             while (scanner.hasNext()) {
-                String skillName = scanner.next().trim(); // Trim to remove leading/trailing spaces
-                if (!skillName.isEmpty()) { // Check if the word is not empty
+                String skillName = scanner.next().trim();
+                if (!skillName.isEmpty()) {
                     skillsToAdd.add(skillName);
                 }
             }
@@ -48,15 +48,18 @@ public class RegisterSkillController {
 
     }
 
-    public boolean registerSkills(String fileName){
+    public boolean registerSkillsFromFile(String fileName){
 
-        ArrayList<String> skillsToAdd = readFromFile(fileName);
-        boolean success = true;
+        ArrayList<String> skillsToAdd = readSkillsFromFile(fileName);
 
-        for (String s : skillsToAdd){
+        boolean success = false;
 
-            if(!registerSkill(s)){
-                success =false;
+        for (String skillName : skillsToAdd){
+
+            Skill s = new Skill(skillName);
+
+            if(skillRepository.registerSkill(s)){
+                success =true;
             }
 
         }

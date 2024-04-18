@@ -14,7 +14,7 @@ public class SkillRepository implements Serializable {
     }
 
     public boolean registerSkill(Skill skill){
-        if (validateSkill(skill)){
+        if (!skillAlreadyExists(skill)){
 
             skillList.add(skill);
 
@@ -25,7 +25,7 @@ public class SkillRepository implements Serializable {
     }
 
 
-    private boolean validateSkill(Skill skill) {
+    private boolean skillAlreadyExists(Skill skill) {
         for (Skill s : skillList){
             if (s.equals(skill)){
                 return true;

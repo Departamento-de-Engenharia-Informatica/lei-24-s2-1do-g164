@@ -11,11 +11,11 @@ skinparam packageStyle rectangle
     participant ":AssignSkillsController" as CTRL
     participant ":Repositories" as RepositorySingleton
     participant "repositories\n:Repositories" as PLAT
-    participant "collaboratorRepository\n:CollaboratorRepository" as TaskCategoryRepository
-    participant "skillRepository\n:SkillRepository" as SkillRepository
+    participant "skillRepository:\nSkillRepository" as SkillRepository
+    participant "collaboratorRepository:\nCollaboratorRepository" as collaboratorRepository
     activate HRM
 
-            HRM -> UI : asks to add skills to a colaborator
+            HRM -> UI : asks to add skills to a collaborator
 
             activate UI
 
@@ -35,14 +35,14 @@ skinparam packageStyle rectangle
                     CTRL -> PLAT : getCollaboratorRepository()
                     activate PLAT
 
-                        PLAT --> CTRL: collaboratorRepository()
+                        PLAT --> CTRL: collaboratorRepository
                     deactivate PLAT
 
-                    CTRL -> TaskCategoryRepository : getCollaborators()
-                    activate TaskCategoryRepository
+                    CTRL -> collaboratorRepository : getCollaborators()
+                    activate collaboratorRepository
 
-                        TaskCategoryRepository --> CTRL : collaboratorsList
-                    deactivate TaskCategoryRepository
+                        collaboratorRepository--> CTRL : collaboratorsList
+                    deactivate collaboratorRepository
 
                     CTRL --> UI : collaboratorsList
                 deactivate CTRL
@@ -72,29 +72,31 @@ skinparam packageStyle rectangle
                  CTRL --> UI : skillList
                deactivate CTRL
 
-               UI --> HRM : asks required skills
-             deactivate UI
+              UI --> HRM : shows skills list and \nasks to select skills
+                          deactivate UI
 
              HRM -> UI : sends required skills
              activate UI
-               UI -> CTRL :assignSkills()
+               UI -> CTRL :assignSkills(collaborator,skills)
                         activate CTRL
                CTRL -> RepositorySingleton : getInstance()
                                          activate RepositorySingleton
                                            RepositorySingleton -> CTRL : repositories
                                          deactivate RepositorySingleton
 
-                                         CTRL -> PLAT : getSkillRepository()
+                                         CTRL -> PLAT : getCollaboratorRepository(collaborator, skills)
                                          activate PLAT
-                                           PLAT --> CTRL : skillRepository
+                                           PLAT --> CTRL : collaboratorRepository
                                          deactivate PLAT
 
-                                         CTRL -> SkillRepository : getSkills()
-                                         activate SkillRepository
-                                           SkillRepository --> CTRL : skillList
-                                         deactivate SkillRepository
-                                         CTRL --> UI : skillList
+                                         CTRL -> collaboratorRepository : assignSkills
+                                       activate collaboratorRepository
+                                           collaboratorRepository --> CTRL : List of collaborator's current skills
+                                   deactivate collaboratorRepository
+                                         CTRL --> UI : List of collaborator's current skills
                                        deactivate CTRL
+                                       UI --> HRM :Show list of collaborator's current skills
+                                                    deactivate UI
 
 
 

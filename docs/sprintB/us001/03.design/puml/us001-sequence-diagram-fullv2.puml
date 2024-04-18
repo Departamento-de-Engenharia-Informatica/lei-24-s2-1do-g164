@@ -61,7 +61,7 @@ activate ADM
 
         loop
 
-        CTRL -> skillsRepository : registerSkills(skillName)
+        CTRL -> skillsRepository : registerSkill(skillName)
         activate skillsRepository
         skillsRepository -> skillsRepository : validateSkill(skills)
         activate skillsRepository
@@ -69,7 +69,7 @@ activate ADM
         skillsRepository -> skillsRepository : registerSkill(skills)
         activate skillsRepository
         deactivate skillsRepository
-        skillsRepository --> CTRL : status of operation for file upload
+        skillsRepository --> CTRL : status of operation of registration of multiple skills
         deactivate skillsRepository
 
         end

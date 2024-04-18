@@ -18,7 +18,7 @@ activate ADM
 
     ADM -> UI : asks to register new skills
     activate UI
-    UI --> ADM : requests method of input (single input or file upload)
+    UI --> ADM : requests input (single input or file)
     deactivate UI
 
 
@@ -28,19 +28,19 @@ activate ADM
 
 
 
-            ADM -> UI : uploads file
+            ADM -> UI : types file path
             activate UI
 
 
 
-            UI --> ADM : confirmation of file upload
+            UI --> ADM : confirmation of file path
             deactivate UI
 
-            ADM -> UI : confirms operation
+            ADM -> UI : confirms
             activate UI
 
             UI -> CTRL** : create
-        UI -> CTRL : registerSkills(fileName)
+        UI -> CTRL : registerSkillsFromFile(filePath)
         activate CTRL
 
         CTRL -> CTRL : readSkillsFromFile(file)
@@ -63,10 +63,10 @@ activate ADM
 
         CTRL -> skillsRepository : registerSkill(skillName)
         activate skillsRepository
-        skillsRepository -> skillsRepository : validateSkill(skills)
+        skillsRepository -> skillsRepository : skillAlready exists(skill)
         activate skillsRepository
         deactivate skillsRepository
-        skillsRepository -> skillsRepository : registerSkill(skills)
+        skillsRepository -> skillsRepository : registerSkill(skill)
         activate skillsRepository
         deactivate skillsRepository
         skillsRepository --> CTRL : status of operation of registration of multiple skills
@@ -108,10 +108,10 @@ activate ADM
         CTRL -> skillsRepository : registerSkill(skillName)
         activate skillsRepository
 
-        skillsRepository -> skillsRepository : validateSkill()
+        skillsRepository -> skillsRepository : skillAlreadyExists()
         activate skillsRepository
         deactivate skillsRepository
-        skillsRepository -> skillsRepository : registerSkill()
+        skillsRepository -> skillsRepository : registerSkill(skill)
         activate skillsRepository
         deactivate skillsRepository
         skillsRepository --> CTRL : status of operation for single skill

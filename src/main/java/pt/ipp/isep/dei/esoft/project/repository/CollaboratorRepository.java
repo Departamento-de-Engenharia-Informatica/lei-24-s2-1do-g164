@@ -11,8 +11,6 @@ import java.util.ArrayList;
 
 public class CollaboratorRepository implements Serializable {
     private final ArrayList<Collaborator> collaboratorList = new ArrayList<>();
-
-   private final ArrayList<Collaborator> collaboratorsWithSkill = new ArrayList<>();
     public ArrayList<Collaborator> getCollaboratorList() {
         return collaboratorList;
     }
@@ -60,16 +58,12 @@ public class CollaboratorRepository implements Serializable {
         }
     }
   public ArrayList<Collaborator> getCollaboratorsBySkills(Collaborator collaborator, Skill skill) {
-
-        for (Collaborator c : collaboratorList) {
+      ArrayList<Collaborator> collaboratorsWithSkill = new ArrayList<>();
+      for (Collaborator c : collaboratorList) {
             if (collaborator.alreadyHasSkill(skill)) {
                 collaboratorsWithSkill.add(collaborator);
             }
         }
         return collaboratorsWithSkill;
   }
-
-    public ArrayList<Collaborator> getCollaboratorsWithSkill() {
-        return collaboratorsWithSkill;
-    }
 }

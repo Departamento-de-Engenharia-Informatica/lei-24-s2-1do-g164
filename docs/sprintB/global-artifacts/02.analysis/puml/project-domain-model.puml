@@ -53,7 +53,6 @@ class GSU {
 }
 
 
-
 class Team {
 minimumSize
 maximumSize
@@ -156,17 +155,16 @@ MS "1" - "*" Machine : has >
 MS "1 " - "*" Vehicle : has >
 MS "1" - "*" Equipment : has >
 
-Task "1" - "1" Team:   carried out by   >
+Task "1" - "1  " Team:   carried out by   >
 ToDoList "1" - "0..*" Task: contains >
 
 HRM "1 " -- "*" Collaborator : registers >
 HRM "1 " -- "*" Job : creates >
 HRM "1 " -- "*" Skill : creates >
-HRM "1" -- "  *  " Team : generates >
-
+HRM "1 " -- "*" Team : generates >
 Team "1 " -- "*" Collaborator: has >
-Collaborator "1 " -- "  0..*" Skill : has >
-Collaborator "1 " -- "1  " Job : has >
+Collaborator "1" - "0..*" Skill: has >
+Collaborator "1 " -- "1" Job : has >
 MS "1" - "1" Agenda : has >
 MS "1    " - "*" GreenSpace: manages >
 GSU"1   " - "*" GreenSpace: uses >

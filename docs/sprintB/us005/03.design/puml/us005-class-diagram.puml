@@ -38,7 +38,7 @@ class "SkillRepository" as SkillRepository {
 
 
 class "CollaboratorRepository" as CollaboratorRepository {
-    +getCollaboratorsBySkills(skills)
+    +getCollaboratorsBySkills(collaborators, skills)
 }
 
 class "TeamRepository" as TeamRepository {

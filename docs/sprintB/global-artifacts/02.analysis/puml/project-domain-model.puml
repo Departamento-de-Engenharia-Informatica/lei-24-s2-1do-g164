@@ -52,8 +52,6 @@ class GSM {
 class GSU {
 }
 
-class TeamProposal {
-}
 
 class Team {
 minimumSize
@@ -163,10 +161,9 @@ ToDoList "1" - "0..*" Task: contains >
 HRM "1 " -- "*" Collaborator : registers >
 HRM "1 " -- "*" Job : creates >
 HRM "1 " -- "*" Skill : creates >
-HRM "1" -- "1  " TeamProposal : requests >
-TeamProposal "1 " --"1 " Team: has >
+HRM "1 " -- "*" Team : generates >
 Team "1 " -- "*" Collaborator: has >
-Skill "1..*" - "1" Collaborator: is atributed to >
+Collaborator "1" - "0..*" Skill: has >
 Collaborator "1 " -- "1" Job : has >
 MS "1" - "1" Agenda : has >
 MS "1    " - "*" GreenSpace: manages >

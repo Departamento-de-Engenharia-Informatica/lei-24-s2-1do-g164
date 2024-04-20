@@ -29,8 +29,7 @@ class Collaborator {
     idNumber
 }
 
-class TeamProposal {
-}
+
 
 class Team {
 minimumSize
@@ -43,11 +42,11 @@ class Skill {
 }
 
 HRM "1 " - "*" Collaborator : registers >
-HRM "1" - "1" TeamProposal : requests >
-TeamProposal "1 " - "1" Team: has >
-Team "1  " -- "*" Collaborator: has >
+HRM "1 " -- "*" Team : generates >
+Team "1 " -- "*" Collaborator: has >
+Team "1 " -- "*" Skill : has >
+HRM "1 " -- "*" Skill : creates >
 Collaborator "1 " - "0..* " Skill : has >
 SystemUser <|- HRM
-SystemUser <|-- Collaborator
 
 @enduml

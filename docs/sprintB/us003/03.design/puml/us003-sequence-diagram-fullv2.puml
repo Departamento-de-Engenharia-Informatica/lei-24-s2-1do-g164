@@ -1,0 +1,100 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+    skinparam shadowing false
+
+    autonumber
+
+    'hide footbox
+    actor "Human Resource Manager" as HRM
+    participant ":RegisterColaboratorUI" as UI
+    participant ":RegisterColaboratorController" as CTRL
+    participant ":Repositories" as RepositorySingleton
+    participant "repositories\n:Repositories" as PLAT
+    participant "jobRepository:\njobRepository" as SkillRepository
+    participant "collaboratorRepository:\nCollaboratorRepository" as collaboratorRepository
+    participant "DocumentTypeRepository" as DocumentTypeRepository
+    activate HRM
+
+            HRM -> UI : asks to register a collaborator
+            activate UI
+
+
+    '            UI --> ADM : requests data (reference, description,  informal \n description, technical description, duration, cost)
+                'create CTRL
+                UI -> CTRL** : create
+
+                UI -> CTRL : getJobs()
+                deactivate UI
+                activate CTRL
+
+                    CTRL -> RepositorySingleton : getInstance()
+                    activate RepositorySingleton
+
+                        RepositorySingleton --> CTRL: repositories
+                    deactivate RepositorySingleton
+
+                    CTRL -> PLAT : getJobRepository()
+                    activate PLAT
+
+                        PLAT --> CTRL: jobRepository
+                    deactivate PLAT
+
+                    CTRL -> collaboratorRepository : getJobs()
+                    activate collaboratorRepository
+
+                        collaboratorRepository--> CTRL : jobsList
+                    deactivate collaboratorRepository
+
+                    CTRL --> UI : JobsList
+                    deactivate RepositorySingleton
+                    activate UI
+                deactivate CTRL
+
+                UI --> HRM : shows job list and requests to select \none job for the new collaborator
+            deactivate UI
+
+        HRM -> UI : selects a job
+        activate UI
+        HRM <-- UI : requests data for the new collaborator \n(name, birthday, admission date, address\n cellphone number, e-mail)
+        deactivate UI
+        HRM -> UI : enters requested data
+        activate UI
+        UI -> DocumentTypeRepository : getDocumentTypeRepository()
+        activate "DocumentTypeRepository"
+        deactivate UI
+        DocumentTypeRepository -> UI : DocumentTypeRepository.values()
+        deactivate DocumentTypeRepository
+        activate UI
+
+        UI -> HRM : shows document type list and asks to select one
+        deactivate UI
+        HRM -> UI : selects document type
+        activate UI
+
+           UI -> CTRL : registerCollaborator()
+               activate CTRL
+                 CTRL -> RepositorySingleton : getInstance()
+                 activate RepositorySingleton
+                   RepositorySingleton -> CTRL : repositories
+                 deactivate RepositorySingleton
+
+                 CTRL -> PLAT : getCollaboratorRepository()
+                 activate PLAT
+                   PLAT --> CTRL : collaboratorRepository
+                 deactivate PLAT
+
+                 CTRL -> SkillRepository : registerCollaborator()
+                 activate SkillRepository
+                   SkillRepository --> CTRL : status of registration message
+                 deactivate SkillRepository
+                 CTRL --> UI : status of registration message
+               deactivate CTRL
+
+              UI --> HRM : shows status message
+                          deactivate UI
+
+
+    deactivate HRM
+
+@enduml

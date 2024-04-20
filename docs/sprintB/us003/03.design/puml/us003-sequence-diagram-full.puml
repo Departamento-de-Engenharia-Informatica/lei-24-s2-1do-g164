@@ -7,7 +7,7 @@ autonumber
 
 'hide footbox
 actor "Organization Employee" as ADM
-participant ":CreateTaskUI" as UI
+participant ":UI" as UI
 participant ":CreateTaskController" as CTRL
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT

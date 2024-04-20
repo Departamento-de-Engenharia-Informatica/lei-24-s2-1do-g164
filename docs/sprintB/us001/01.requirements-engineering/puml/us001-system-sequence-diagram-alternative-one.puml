@@ -3,7 +3,7 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-title System Sequence Diagram (SSD) - Alternative One
+title System Sequence Diagram (SSD) - Alternative Two
 
 autonumber
 
@@ -15,19 +15,19 @@ activate Employee
     Employee -> System : asks to create a new skill
     activate System
 
-        System --> Employee : requests data (name of the skill)
+    System --> Employee : requests data (type a skill name)
     deactivate System
 
-    Employee -> System : types name of the skill
+    Employee -> System : types skill name
     activate System
 
-        System --> Employee : shows new skill and requests confirmation
+    Employee <-- System : requests confirmation
     deactivate System
 
-    Employee -> System : confirms data
+    Employee -> System : confirms
     activate System
 
-        System --> Employee : displays message of success (ie: "skill created")
+    System --> Employee : displays status of operation message (ie: "skill added to list")
     deactivate System
 
 @enduml

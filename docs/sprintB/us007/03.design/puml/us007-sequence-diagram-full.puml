@@ -38,7 +38,7 @@ activate VFM
                     PLAT --> CTRL: vehicleRepository
                 deactivate PLAT
 
-                CTRL -> VehicleRepository : getVehiclesNeedingCheckup()
+                CTRL -> VehicleRepository : getVehiclesNeedingCheckup(vehicles)
                 activate VehicleRepository
 
                     VehicleRepository --> CTRL : vehiclesList

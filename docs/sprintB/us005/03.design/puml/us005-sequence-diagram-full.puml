@@ -71,7 +71,7 @@ activate HRM
         PLAT --> CTRL : collaboratorRepository
       deactivate PLAT
 
-      CTRL -> CollaboratorRepository : getCollaboratorsBySkills(skills)
+      CTRL -> CollaboratorRepository : getCollaboratorsBySkills(collaborators, skills)
       note right : filter collaborators\nbased on their skills
       activate CollaboratorRepository
         CollaboratorRepository --> CTRL : collaboratorList

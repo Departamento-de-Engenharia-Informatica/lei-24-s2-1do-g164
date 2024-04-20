@@ -25,7 +25,7 @@ As a FM, I want to list the vehicles needing the check-up.
 
 ### 1.3. Acceptance Criteria
 
-* **n/a**
+* A vehicle must fulfill the criteria to need a checkup in order to appear on the list.
 
 ### 1.4. Found out Dependencies
 

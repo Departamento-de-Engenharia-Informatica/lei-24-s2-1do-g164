@@ -60,11 +60,18 @@ skinparam packageStyle rectangle
         deactivate UI
         HRM -> UI : enters requested data
         activate UI
-        UI -> DocumentTypeRepository : getDocumentTypeRepository()
+        UI -> CTRL : getDocumentTypeList()
+        deactivate UI
+        activate CTRL
+        CTRL -> DocumentTypeRepository : getDocumentTypeList()
+
         activate "DocumentTypeRepository"
         deactivate UI
-        DocumentTypeRepository -> UI : DocumentTypeRepository.values()
+        DocumentTypeRepository -> CTRL : DocumentTypeRepository.values()
         deactivate DocumentTypeRepository
+                CTRL -> UI : documentTypeList
+
+        deactivate CTRL
         activate UI
 
         UI -> HRM : shows document type list and asks to select one
@@ -72,7 +79,8 @@ skinparam packageStyle rectangle
         HRM -> UI : selects document type
         activate UI
 
-           UI -> CTRL : registerCollaborator()
+           UI -> CTRL : registerCollaborator(name, phone, birthDate, admissionDate,\n address, idDocumentNumber, job, idDocumentType)
+               deactivate UI
                activate CTRL
                  CTRL -> RepositorySingleton : getInstance()
                  activate RepositorySingleton
@@ -84,14 +92,17 @@ skinparam packageStyle rectangle
                    PLAT --> CTRL : collaboratorRepository
                  deactivate PLAT
 
-                 CTRL -> SkillRepository : registerCollaborator()
-                 activate SkillRepository
-                   SkillRepository --> CTRL : status of registration message
-                 deactivate SkillRepository
-                 CTRL --> UI : status of registration message
+                 CTRL -> collaboratorRepository : registerCollaborator(name, phone, birthDate, admissionDate,\n address, idDocumentNumber, job, idDocumentType)
+                 activate collaboratorRepository
+
+
+                   collaboratorRepository --> CTRL : success
+                 deactivate collaboratorRepository
+                 CTRL --> UI : success
+                 activate UI
                deactivate CTRL
 
-              UI --> HRM : shows status message
+              UI --> HRM : shows sucess message
                           deactivate UI
 
 

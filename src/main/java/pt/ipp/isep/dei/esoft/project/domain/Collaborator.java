@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import pt.ipp.isep.dei.esoft.project.repository.DocumentTypeRepository;
+
 import java.util.ArrayList;
 
 public class Collaborator {
@@ -8,10 +10,11 @@ public class Collaborator {
     private String birthdate;
     private String admissionDate;
     private String address;
-    private int idDocumentNumber;
     private Job job;
+    private DocumentTypeRepository idDocumentType;
+    private int idDocumentNumber;
     private ArrayList<Skill> skills;
-    public Collaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job) {
+    public Collaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentTypeRepository idDocumentType) {
         this.name = name;
         this.phone = phone;
         this.birthdate = birthdate;

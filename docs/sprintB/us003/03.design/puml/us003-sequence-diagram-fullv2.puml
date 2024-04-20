@@ -13,7 +13,7 @@ skinparam packageStyle rectangle
     participant "repositories\n:Repositories" as PLAT
     participant "jobRepository:\njobRepository" as SkillRepository
     participant "collaboratorRepository:\nCollaboratorRepository" as collaboratorRepository
-        participant "sd"
+    participant "DocumentTypeRepository" as DocumentTypeRepository
     activate HRM
 
             HRM -> UI : asks to register a collaborator
@@ -25,6 +25,7 @@ skinparam packageStyle rectangle
                 UI -> CTRL** : create
 
                 UI -> CTRL : getJobs()
+                deactivate UI
                 activate CTRL
 
                     CTRL -> RepositorySingleton : getInstance()
@@ -46,6 +47,8 @@ skinparam packageStyle rectangle
                     deactivate collaboratorRepository
 
                     CTRL --> UI : JobsList
+                    deactivate RepositorySingleton
+                    activate UI
                 deactivate CTRL
 
                 UI --> HRM : shows job list and requests to select \none job for the new collaborator
@@ -57,9 +60,19 @@ skinparam packageStyle rectangle
         deactivate UI
         HRM -> UI : enters requested data
         activate UI
-        UI ->
+        UI -> DocumentTypeRepository : getDocumentTypeRepository()
+        activate "DocumentTypeRepository"
+        deactivate UI
+        DocumentTypeRepository -> UI : DocumentTypeRepository.values()
+        deactivate DocumentTypeRepository
+        activate UI
 
-           UI -> CTRL : registerCollabor()
+        UI -> HRM : shows document type list and asks to select one
+        deactivate UI
+        HRM -> UI : selects document type
+        activate UI
+
+           UI -> CTRL : registerCollaborator()
                activate CTRL
                  CTRL -> RepositorySingleton : getInstance()
                  activate RepositorySingleton
@@ -71,7 +84,7 @@ skinparam packageStyle rectangle
                    PLAT --> CTRL : collaboratorRepository
                  deactivate PLAT
 
-                 CTRL -> SkillRepository : registerCollabor()
+                 CTRL -> SkillRepository : registerCollaborator()
                  activate SkillRepository
                    SkillRepository --> CTRL : status of registration message
                  deactivate SkillRepository

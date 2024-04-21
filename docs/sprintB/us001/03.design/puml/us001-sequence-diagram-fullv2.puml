@@ -65,19 +65,17 @@ activate ADM
         CTRL -> skillsRepository : registerSkill(skillName)
         activate skillsRepository
 
+        skillsRepository -> skillsRepository : skillAlreadyExists(skillName)
+        activate skillsRepository
+        deactivate skillsRepository
         "skillsRepository" -> skill : Skill(skillName)
         activate skill
         "skillsRepository" <-- skill : skill
         deactivate skill
-
-        skillsRepository -> skillsRepository : skillAlready exists(skill)
-        activate skillsRepository
-        deactivate skillsRepository
-
-
         skillsRepository -> skillsRepository : registerSkill(skill)
         activate skillsRepository
         deactivate skillsRepository
+
         skillsRepository --> CTRL : status of operation of registration of multiple skills
         deactivate skillsRepository
 
@@ -117,12 +115,16 @@ activate ADM
         CTRL -> skillsRepository : registerSkill(skillName)
         activate skillsRepository
 
-        skillsRepository -> skillsRepository : skillAlreadyExists()
-        activate skillsRepository
-        deactivate skillsRepository
-        skillsRepository -> skillsRepository : registerSkill(skill)
-        activate skillsRepository
-        deactivate skillsRepository
+        skillsRepository -> skillsRepository : skillAlreadyExists(skillName)
+                activate skillsRepository
+                deactivate skillsRepository
+                "skillsRepository" -> skill : Skill(skillName)
+                activate skill
+                "skillsRepository" <-- skill : skill
+                deactivate skill
+                skillsRepository -> skillsRepository : registerSkill(skill)
+                activate skillsRepository
+                deactivate skillsRepository
         skillsRepository --> CTRL : status of operation for single skill
         deactivate skillsRepository
 

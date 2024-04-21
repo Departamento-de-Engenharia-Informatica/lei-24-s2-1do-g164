@@ -86,7 +86,7 @@ public class Utils {
         return selectsObject(list);
     }
 
-    static public int showAndSelectIndex(List list, String header) {
+    static public int showAndSelectIndex(List  list, String header) {
         showList(list, header);
         return selectsIndex(list);
     }

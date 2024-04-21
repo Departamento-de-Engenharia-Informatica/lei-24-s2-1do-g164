@@ -1,4 +1,5 @@
 @startuml
+skinparam classAttributeIconSize 0
 skinparam monochrome false
 skinparam packageStyle rectangle
 skinparam shadowing false
@@ -37,6 +38,7 @@ class VehicleRepository {
     + VehicleRepository()
     + getVehiclesRepository()
     + getVehicles()
+    + getVehiclesNeedingCheckupList()
 }
 
 
@@ -56,19 +58,20 @@ class Repositories {
 }
 
 
-class CreateTaskController {
-  + create()
-  + getVehicles()
+class ListVehivclesCheckupsController {
+-VehicleRepository
+  + getVehiclesNeedingCheckupList()
+
 }
 
 
 
-CreateTaskUI .> CreateTaskController
+ListVehiclesCheckupsUI .> ListVehivclesCheckupsController
 
 
 Repositories -->"1" VehicleRepository
 Repositories -> Repositories : instance
-CreateTaskController ..> Repositories : repositories
+ListVehivclesCheckupsController ..> Repositories : repositories
 Vehicle "*" <-- "1" VehicleRepository : has
 
 

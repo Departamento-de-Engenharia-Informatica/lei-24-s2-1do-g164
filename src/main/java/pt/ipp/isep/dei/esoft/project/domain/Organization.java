@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public class Organization {
     private final String vatNumber;
-    private final List<Employee> employees;
+    private final List<SystemUser> systemUsers;
     private final List<Task> tasks;
     private String name;
     private String website;
@@ -22,18 +22,18 @@ public class Organization {
      */
     public Organization(String vatNumber) {
         this.vatNumber = vatNumber;
-        employees = new ArrayList<>();
+        systemUsers = new ArrayList<>();
         tasks = new ArrayList<>();
     }
 
     /**
      * This method checks if an employee works for the organization.
      *
-     * @param employee The employee to be checked.
+     * @param systemUser The employee to be checked.
      * @return True if the employee works for the organization.
      */
-    public boolean employs(Employee employee) {
-        return employees.contains(employee);
+    public boolean employs(SystemUser systemUser) {
+        return systemUsers.contains(systemUser);
     }
 
     /**
@@ -46,12 +46,12 @@ public class Organization {
      * @param duration             The duration of the task to be created.
      * @param cost                 The cost of the task to be created.
      * @param taskCategory         The task category of the task to be created.
-     * @param employee             The employee of the task to be created.
+     * @param systemUser             The employee of the task to be created.
      * @return
      */
     public Optional<Task> createTask(String reference, String description, String informalDescription,
                                      String technicalDescription, int duration, double cost,
-                                     TaskCategory taskCategory, Employee employee) {
+                                     TaskCategory taskCategory, SystemUser systemUser) {
 
         //TODO: we could also check if the employee works for the organization before proceeding
         //checkIfEmployeeWorksForOrganization(employee);
@@ -61,7 +61,7 @@ public class Organization {
         Optional<Task> optionalValue = Optional.empty();
 
         Task task = new Task(reference, description, informalDescription, technicalDescription, duration, cost,
-                taskCategory, employee);
+                taskCategory, systemUser);
 
         if (addTask(task)) {
             optionalValue = Optional.of(task);
@@ -113,8 +113,8 @@ public class Organization {
      */
     public boolean anyEmployeeHasEmail(String email) {
         boolean result = false;
-        for (Employee employee : employees) {
-            if (employee.hasEmail(email)) {
+        for (SystemUser systemUser : systemUsers) {
+            if (systemUser.hasEmail(email)) {
                 result = true;
             }
         }
@@ -139,20 +139,20 @@ public class Organization {
     }
 
     //add employee to organization
-    public boolean addEmployee(Employee employee) {
+    public boolean addEmployee(SystemUser systemUser) {
         boolean success = false;
-        if (validateEmployee(employee)) {
-            success = employees.add(employee);
+        if (validateEmployee(systemUser)) {
+            success = systemUsers.add(systemUser);
         }
         return success;
     }
 
-    private boolean validateEmployee(Employee employee) {
-        return employeesDoNotContain(employee);
+    private boolean validateEmployee(SystemUser systemUser) {
+        return employeesDoNotContain(systemUser);
     }
 
-    private boolean employeesDoNotContain(Employee employee) {
-        return !employees.contains(employee);
+    private boolean employeesDoNotContain(SystemUser systemUser) {
+        return !systemUsers.contains(systemUser);
     }
 
     //Clone organization
@@ -163,8 +163,8 @@ public class Organization {
         clone.phone = (this.phone);
         clone.email = (this.email);
 
-        for (Employee in : this.employees) {
-            clone.employees.add(in.clone());
+        for (SystemUser in : this.systemUsers) {
+            clone.systemUsers.add(in.clone());
         }
 
 

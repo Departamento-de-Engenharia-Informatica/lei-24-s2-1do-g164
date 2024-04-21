@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
 
-import pt.ipp.isep.dei.esoft.project.domain.Employee;
+import pt.ipp.isep.dei.esoft.project.domain.SystemUser;
 import pt.ipp.isep.dei.esoft.project.domain.Organization;
 import pt.ipp.isep.dei.esoft.project.domain.Task;
 import pt.ipp.isep.dei.esoft.project.domain.TaskCategory;
@@ -29,9 +29,7 @@ public class CreateTaskController {
     }
 
     //Allows receiving the repositories as parameters for testing purposes
-    public CreateTaskController(OrganizationRepository organizationRepository,
-                                TaskCategoryRepository taskCategoryRepository,
-                                AuthenticationRepository authenticationRepository) {
+    public CreateTaskController(OrganizationRepository organizationRepository, TaskCategoryRepository taskCategoryRepository, AuthenticationRepository authenticationRepository) {
         this.organizationRepository = organizationRepository;
         this.taskCategoryRepository = taskCategoryRepository;
         this.authenticationRepository = authenticationRepository;
@@ -66,36 +64,31 @@ public class CreateTaskController {
         return authenticationRepository;
     }
 
-    public Optional<Task> createTask(String reference, String description, String informalDescription,
-                                     String technicalDescription, int duration, double cost,
-                                     String taskCategoryDescription) {
+    public Optional<Task> createTask(String reference, String description, String informalDescription, String technicalDescription, int duration, double cost, String taskCategoryDescription) {
 
         TaskCategory taskCategory = getTaskCategoryByDescription(taskCategoryDescription);
 
-        Employee employee = getEmployeeFromSession();
-        Optional<Organization> organization = getOrganizationRepository().getOrganizationByEmployee(employee);
+        SystemUser systemUser = getEmployeeFromSession();
+        Optional<Organization> organization = getOrganizationRepository().getOrganizationByEmployee(systemUser);
 
         Optional<Task> newTask = Optional.empty();
 
         if (organization.isPresent()) {
-            newTask = organization.get()
-                    .createTask(reference, description, informalDescription, technicalDescription, duration, cost,
-                            taskCategory, employee);
+            newTask = organization.get().createTask(reference, description, informalDescription, technicalDescription, duration, cost, taskCategory, systemUser);
         }
         return newTask;
     }
 
-    private Employee getEmployeeFromSession() {
+    private SystemUser getEmployeeFromSession() {
         Email email = getAuthenticationRepository().getCurrentUserSession().getUserId();
-        return new Employee(email.getEmail());
+        return new SystemUser(email.getEmail());
     }
 
     private TaskCategory getTaskCategoryByDescription(String taskCategoryDescription) {
         TaskCategoryRepository taskCategoryRepository = getTaskCategoryRepository();
 
         //Get the TaskCategory by its description
-        TaskCategory taskCategoryByDescription =
-                getTaskCategoryRepository().getTaskCategoryByDescription(taskCategoryDescription);
+        TaskCategory taskCategoryByDescription = getTaskCategoryRepository().getTaskCategoryByDescription(taskCategoryDescription);
         return taskCategoryByDescription;
 
     }

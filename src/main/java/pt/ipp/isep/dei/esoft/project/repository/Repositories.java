@@ -11,8 +11,12 @@ public class Repositories implements Serializable {
     private final VehicleRepository vehicleRepository;
     private final SkillRepository skillRepository;
 
+    private  final JobRepository jobRepository;
+
+
 
     private Repositories(){
+        jobRepository = new JobRepository();
         collaboratorRepository = new CollaboratorRepository();
         vehicleRepository = new VehicleRepository();
         skillRepository = new SkillRepository();
@@ -38,4 +42,9 @@ public class Repositories implements Serializable {
     public SkillRepository getSkillRepository() {
         return skillRepository;
     }
+
+    public JobRepository getJobRepository() {
+        return jobRepository;
+    }
+
 }

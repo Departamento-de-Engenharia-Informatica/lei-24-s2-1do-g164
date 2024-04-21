@@ -7,9 +7,9 @@ public class AssignSkillsController {
     private CollaboratorRepository collaboratorRepository;
     private AuthenticationRepository authenticationRepository;
 
-    public AssignSkillsController(){
-        getSkillRepository();
-    }
+    //public AssignSkillsController(){
+       // getSkillRepository();
+    //}
 
 }
 

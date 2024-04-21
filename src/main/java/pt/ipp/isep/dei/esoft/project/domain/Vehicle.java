@@ -1,10 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import pt.ipp.isep.dei.esoft.project.repository.VehicleTypeRepository;
+
 public class Vehicle {
     private String brand;
     private String model;
     private String vehicleID;
-    private String type;
+    private VehicleTypeRepository type;
     private double grossWeight;
     private double tare;
     private int currentKm;
@@ -12,7 +14,7 @@ public class Vehicle {
     private String acquisitionDate;
     private int checkupFrequency;
     private VehicleCheckup lastCheckup;
-    public Vehicle(String brand, String model, String vehicleID, String type, double grossWeight, double tare, int currentKm, String registerDate, String acquisitionDate, int checkupFrequency) {
+    public Vehicle(String brand, String model, String vehicleID, VehicleTypeRepository type, double grossWeight, double tare, int currentKm, String registerDate, String acquisitionDate, int checkupFrequency) {
         this.brand = brand;
         this.model = model;
         this.vehicleID = vehicleID;
@@ -38,7 +40,7 @@ public class Vehicle {
         return vehicleID;
     }
 
-    public String getType() {
+    public VehicleTypeRepository getType() {
         return type;
     }
 

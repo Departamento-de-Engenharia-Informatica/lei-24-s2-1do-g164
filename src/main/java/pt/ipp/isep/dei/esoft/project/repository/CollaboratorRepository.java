@@ -17,8 +17,8 @@ public class CollaboratorRepository implements Serializable {
         return collaboratorList;
     }
 
-    public boolean registerCollaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, String job, int idDocumentType){
-        Collaborator collaborator = new Collaborator(name, phone, birthdate, admissionDate, address, idDocumentNumber, new Job(job), getDocTypesList().get(idDocumentType));
+    public boolean registerCollaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentTypeRepository idDocumentType){
+        Collaborator collaborator = new Collaborator(name, phone, birthdate, admissionDate, address, idDocumentNumber, job, idDocumentType);
         if(!collaboratorAlreadyExists(collaborator)) {
             collaboratorList.add(collaborator);
             return true;
@@ -69,8 +69,4 @@ public class CollaboratorRepository implements Serializable {
         }
         return collaboratorsWithSkill;
   }
-
-    public ArrayList<DocumentTypeRepository> getDocTypesList(){
-        return new ArrayList<>(Arrays.asList(DocumentTypeRepository.values()));
-    }
 }

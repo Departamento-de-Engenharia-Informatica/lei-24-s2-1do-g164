@@ -17,11 +17,8 @@ public class RegisterSkillController {
         this.skillRepository = Repositories.getInstance().getSkillRepository();
     }
 
-    public boolean registerSkillFromText(String skillName){
-
-        Skill skill = new Skill(skillName);
-
-        return skillRepository.registerSkill(skill);
+    public boolean registerSkill(String skillName){
+        return skillRepository.registerSkill(skillName);
     }
 
     private static ArrayList<String> readSkillsFromFile(String filePath){
@@ -56,9 +53,7 @@ public class RegisterSkillController {
 
         for (String skillName : skillsToAdd){
 
-            Skill s = new Skill(skillName);
-
-            if(skillRepository.registerSkill(s)){
+            if(registerSkill(skillName)){
                 success =true;
             }
 

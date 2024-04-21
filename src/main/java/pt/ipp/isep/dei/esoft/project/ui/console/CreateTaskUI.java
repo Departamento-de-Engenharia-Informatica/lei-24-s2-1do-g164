@@ -42,8 +42,7 @@ public class CreateTaskUI implements Runnable {
     }
 
     private void submitData() {
-        Optional<Task> task = getController().createTask(taskReference, taskDescription, taskInformalDescription,
-                taskTechnicalDescription, taskDuration, taskCost, taskCategoryDescription);
+        Optional<Task> task = getController().createTask(taskReference, taskDescription, taskInformalDescription, taskTechnicalDescription, taskDuration, taskCost, taskCategoryDescription);
 
         if (task.isPresent()) {
             System.out.println("\nTask successfully created!");

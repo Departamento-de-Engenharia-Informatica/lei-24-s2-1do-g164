@@ -18,9 +18,7 @@ public class JobRepository implements Serializable {
         Job j = new Job(jobName);
 
         if (!jobAlreadyExists(j)){
-
             jobList.add(j);
-
             return true;
         }else{
             return false;

@@ -45,9 +45,9 @@ public class RegisterSkillController {
 
     }
 
-    public boolean registerSkillsFromFile(String fileName){
+    public boolean registerSkillsFromFile(String filePath){
 
-        ArrayList<String> skillsToAdd = readSkillsFromFile(fileName);
+        ArrayList<String> skillsToAdd = readSkillsFromFile(filePath);
 
         boolean success = false;
 

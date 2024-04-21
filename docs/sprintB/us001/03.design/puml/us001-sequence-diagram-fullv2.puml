@@ -12,6 +12,7 @@ participant ":RegisterSkillController" as CTRL
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT
 participant "skillsRepository:\nSkillsRepository" as skillsRepository
+participant "skill:Skill" as skill
 
 
 activate ADM
@@ -63,9 +64,17 @@ activate ADM
 
         CTRL -> skillsRepository : registerSkill(skillName)
         activate skillsRepository
+
+        "skillsRepository" -> skill : Skill(skillName)
+        activate skill
+        "skillsRepository" <-- skill : skill
+        deactivate skill
+
         skillsRepository -> skillsRepository : skillAlready exists(skill)
         activate skillsRepository
         deactivate skillsRepository
+
+
         skillsRepository -> skillsRepository : registerSkill(skill)
         activate skillsRepository
         deactivate skillsRepository

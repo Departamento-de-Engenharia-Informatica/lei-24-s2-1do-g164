@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.esoft.project.application.controller;
 import pt.ipp.isep.dei.esoft.project.domain.Skill;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.repository.SkillRepository;
+import pt.ipp.isep.dei.esoft.project.ui.console.RegisterSkillUI;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -22,24 +23,28 @@ public class RegisterSkillController {
     }
 
     private static ArrayList<String> readSkillsFromFile(String filePath){
-
+        boolean validPath = false;
 
         ArrayList<String> skillsToAdd = new ArrayList<>();
+        do {
+            try (Scanner scanner = new Scanner(new File(filePath))) {
+                validPath = true;
 
-        try (Scanner scanner = new Scanner(new File(filePath))) {
+                scanner.useDelimiter("[,\n;]");
 
-
-            scanner.useDelimiter("[,\n;]");
-
-            while (scanner.hasNext()) {
-                String skillName = scanner.next().trim();
-                if (!skillName.isEmpty()) {
-                    skillsToAdd.add(skillName);
+                while (scanner.hasNext()) {
+                    String skillName = scanner.next().trim();
+                    if (!skillName.isEmpty()) {
+                        skillsToAdd.add(skillName);
+                    }
                 }
+            } catch (FileNotFoundException e) {
+                System.out.println("\nFile not found: " + filePath);
+                Scanner sc = new Scanner(System.in);
+                System.out.print("\nFile path:");
+                filePath = sc.next();
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found: " + filePath);
-        }
+        }while (!validPath);
 
         return skillsToAdd;
 

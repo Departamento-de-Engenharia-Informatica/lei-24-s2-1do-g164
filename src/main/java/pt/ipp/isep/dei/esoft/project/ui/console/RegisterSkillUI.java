@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.esoft.project.ui.console;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterSkillController;
 import pt.ipp.isep.dei.esoft.project.domain.Skill;
+import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
 import java.util.List;
 import java.util.Optional;
@@ -41,13 +42,22 @@ public class RegisterSkillUI implements Runnable{
         }
 
         if (success) {
-            System.out.println("\nSkill successfully created!");
+            if (option == 1){
+                System.out.println("\nSkill successfully created!");
+            }else if (option == 2){
+                System.out.println("\nSkills successfully created!");
+            }
         } else {
-            System.out.println("\nSkill not created!");
+            if (option == 1){
+                System.out.println("\nSkill not created, skill already exists!");
+            }else if (option == 2){
+                System.out.println("\nSkills not created, skills already exist!");
+            }
         }
     }
 
-    private void requestData(int option) {
+    private void
+    requestData(int option) {
         if (option == 1){
             nameOrPath = requestSkillName();
         } else if (option == 2) {
@@ -63,22 +73,25 @@ public class RegisterSkillUI implements Runnable{
 
     private String requestSkillName() {
         Scanner input = new Scanner(System.in);
-        System.out.print("Skill name: ");
+        System.out.print("\nSkill name: ");
         return input.nextLine();
     }
 
     private int displayAndSelectTypeOfInput() {
+        System.out.println(" 1 - Skill name for single skill input");
+        System.out.println(" 2 - File path for multiple skill input");
 
-        int answer = -1;
-        Scanner input = new Scanner(System.in);
+        int value;
+        do {
+            String in = Utils.readLineFromConsole("\nSelect a type of input: ");
+            try {
+                assert in != null;
+                value = Integer.parseInt(in);
+            } catch (NumberFormatException ex) {
+                value = -1;
+            }
+        } while (value < 0 || value > 2);
 
-        while (answer < 1 || answer > 2) {
-            System.out.println(" 1 - Skill name for single skill input");
-            System.out.println(" 2 - File path for multiple skill input");
-            System.out.print("Select a type of input: ");
-            answer = input.nextInt();
-        }
-
-        return answer;
+        return value;
     }
 }

@@ -23,6 +23,7 @@ public class Bootstrap implements Runnable {
         Organization organization = new Organization("This Company");
         organization.addEmployee(new SystemUser("admin@this.app"));
         organization.addEmployee(new SystemUser("employee@this.app"));
+        organization.addEmployee(new SystemUser("t@t.tt"));
         organizationRepository.add(organization);
     }
 
@@ -48,6 +49,9 @@ public class Bootstrap implements Runnable {
                 AuthenticationController.ROLE_EMPLOYEE);
 
         authenticationRepository.addUserWithRole("Main Administrator", "admin@this.app", "admin",
+                AuthenticationController.ROLE_ADMIN);
+
+        authenticationRepository.addUserWithRole("Tester Administrator", "t@t.tt", "t",
                 AuthenticationController.ROLE_ADMIN);
 
         authenticationRepository.addUserWithRole("Employee", "employee@this.app", "pwd",

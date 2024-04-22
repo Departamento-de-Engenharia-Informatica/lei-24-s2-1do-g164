@@ -12,8 +12,8 @@ skinparam classAttributeIconSize 0
 class Skill {
     - String skillName
     + Skill(skillName)
-    + getName(): string
-    + getDescription(): string
+    + getName()
+    + getDescription()
 }
 
 class Repositories {
@@ -39,7 +39,6 @@ class SkillRepository {
 }
 
 class RegisterSkillController {
-    - skillRepository
 
     + RegisterSkillController()
     + registerSkill(skillName)

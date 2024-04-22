@@ -30,6 +30,10 @@ public class JobRepository implements Serializable {
         }
     }
 
+    public int size(){
+        return this.jobList.size();
+    }
+
     private  boolean jobIsValid(String jobName) {
         System.out.println(isValidJobName(jobName));
         System.out.println(jobNameIsUnique(jobName));
@@ -63,21 +67,6 @@ public class JobRepository implements Serializable {
             }
         }
         return true;
-    }
-
-
-
-    private boolean jobAlreadyExists(String jName) {
-        for (Job job : jobList){
-            if (job.equals(jName)){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public int size(){
-        return this.jobList.size();
     }
 
 }

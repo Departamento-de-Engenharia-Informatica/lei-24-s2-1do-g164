@@ -2,8 +2,6 @@ package pt.ipp.isep.dei.esoft.project.ui.console;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterSkillController;
 import pt.ipp.isep.dei.esoft.project.domain.Skill;
-import pt.ipp.isep.dei.esoft.project.domain.Task;
-import pt.ipp.isep.dei.esoft.project.domain.TaskCategory;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,10 +10,7 @@ import java.util.Scanner;
 public class RegisterSkillUI implements Runnable{
 
     private  final RegisterSkillController controller;
-
-
-    private String skillName;
-    private String filePath;
+    private String nameOrPath;
 
     public RegisterSkillUI(){
         controller = new RegisterSkillController();
@@ -40,9 +35,9 @@ public class RegisterSkillUI implements Runnable{
         boolean success = false;
 
         if (option == 1){
-            success = getController().registerSkill(skillName);
+            success = getController().registerSkill(nameOrPath);
         }else if (option == 2){
-            success = getController().registerSkillsFromFile(filePath);
+            success = getController().registerSkillsFromFile(nameOrPath);
         }
 
         if (success) {
@@ -54,11 +49,10 @@ public class RegisterSkillUI implements Runnable{
 
     private void requestData(int option) {
         if (option == 1){
-            skillName = requestSkillName();
+            nameOrPath = requestSkillName();
         } else if (option == 2) {
-            filePath = requestFilePath();
+            nameOrPath = requestFilePath();
         }
-
     }
 
     private String requestFilePath() {

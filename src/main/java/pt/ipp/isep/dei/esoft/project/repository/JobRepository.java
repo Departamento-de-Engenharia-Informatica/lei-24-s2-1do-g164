@@ -15,10 +15,12 @@ public class JobRepository implements Serializable {
 
     public boolean registerJob(String jobName){
 
-        Job j = new Job(jobName);
+        if (!jobAlreadyExists(jobName)){
 
-        if (!jobAlreadyExists(j)){
+            Job j = new Job(jobName);
+
             jobList.add(j);
+
             return true;
         }else{
             return false;
@@ -26,9 +28,9 @@ public class JobRepository implements Serializable {
     }
 
 
-    private boolean jobAlreadyExists(Job j) {
+    private boolean jobAlreadyExists(String jName) {
         for (Job job : jobList){
-            if (job.equals(j)){
+            if (job.equals(jName)){
                 return true;
             }
         }

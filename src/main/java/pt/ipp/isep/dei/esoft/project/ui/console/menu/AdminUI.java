@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.esoft.project.ui.console.menu;
 
 
+import pt.ipp.isep.dei.esoft.project.repository.JobRepository;
+import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.ui.console.CreateTaskUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.RegisterCollaboratorUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.ShowTextUI;

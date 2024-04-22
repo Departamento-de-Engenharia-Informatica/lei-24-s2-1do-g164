@@ -1,5 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.ui.console.utils;
 
+import pt.ipp.isep.dei.esoft.project.domain.Job;
+import pt.ipp.isep.dei.esoft.project.domain.TaskCategory;
+import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
+import pt.ipp.isep.dei.esoft.project.repository.JobRepository;
+import pt.ipp.isep.dei.esoft.project.repository.Repositories;
+import pt.ipp.isep.dei.esoft.project.repository.TaskCategoryRepository;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.text.ParseException;

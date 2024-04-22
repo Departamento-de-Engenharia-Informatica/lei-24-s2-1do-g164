@@ -4,6 +4,7 @@ import pt.ipp.isep.dei.esoft.project.application.controller.RegisterCollaborator
 import pt.ipp.isep.dei.esoft.project.domain.Job;
 import pt.ipp.isep.dei.esoft.project.repository.DocumentTypeRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -65,7 +66,7 @@ public class RegisterCollaboratorUI implements Runnable{
 
 
     private Job displayAndSelectJob(){
-        List<Job> jobList = controller.getJobList();
+        ArrayList<Job> jobList = controller.getJobList();
         int listSize = jobList.size();
         int answer = -1;
 
@@ -81,7 +82,7 @@ public class RegisterCollaboratorUI implements Runnable{
         return job;
     }
 
-    private void displayJobList(List<Job> jobList){
+    private void displayJobList(ArrayList<Job> jobList){
         int i = 1;
         for (Job job : jobList){
             System.out.println("  " + i + " - " + job.getJobName());

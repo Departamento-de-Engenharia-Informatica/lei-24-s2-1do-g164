@@ -7,8 +7,8 @@ public class Job {
         this.jobName = jobName;
     }
 
-    public boolean equals(Job j) {
-        return jobName.equals(j.getJobName());
+    public boolean equals(String jobName) {
+        return this.jobName.equals(jobName);
     }
 
     public String getJobName(){

@@ -37,7 +37,7 @@ public class VehicleRepository implements Serializable {
      */
     public boolean registerVehicle(String brand, String model, String vehicleID, VehicleTypeRepository type, double grossWeight, double tare, int currentKm, String registerDate, String acquisitionDate, int checkupFrequency) {
         Vehicle vehicle = new Vehicle(brand, model, vehicleID, type, grossWeight, tare, currentKm, registerDate, acquisitionDate, checkupFrequency);
-        if (vehicleIsUnique(vehicle) && isValidDateFormat(acquisitionDate) && isValidDateFormat(registerDate)) {
+        if (isVehicleUnique(vehicle) && isValidDateFormat(acquisitionDate) && isValidDateFormat(registerDate)) {
             vehicleList.add(vehicle);
             return true;
         } else {
@@ -51,7 +51,7 @@ public class VehicleRepository implements Serializable {
      * @param vehicle The vehicle to check.
      * @return {@code true} if the vehicle is unique, {@code false} if it already exists.
      */
-    private boolean vehicleIsUnique(Vehicle vehicle) {
+    private boolean isVehicleUnique(Vehicle vehicle) {
         for (Vehicle v : vehicleList) {
             if (v.equals(vehicle)) {
                 return false;

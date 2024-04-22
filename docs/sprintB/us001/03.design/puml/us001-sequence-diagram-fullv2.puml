@@ -69,7 +69,7 @@ activate ADM
         skillsRepository -> skillsRepository : nameIsValid(skillName)
         activate skillsRepository
         deactivate skillsRepository
-        skillsRepository -> skillsRepository : skillAlreadyExists(skillName)
+        skillsRepository -> skillsRepository : skillNameIsUnique(skillName)
         activate skillsRepository
         deactivate skillsRepository
         "skillsRepository" -> skill : Skill(skillName)
@@ -122,7 +122,7 @@ activate ADM
         skillsRepository -> skillsRepository : nameIsValid(skillName)
         activate skillsRepository
         deactivate skillsRepository
-        skillsRepository -> skillsRepository : skillAlreadyExists(skillName)
+        skillsRepository -> skillsRepository : skillNameIsUnique(skillName)
                 activate skillsRepository
                 deactivate skillsRepository
                 "skillsRepository" -> skill : Skill(skillName)

@@ -7,53 +7,72 @@ import pt.ipp.isep.dei.esoft.project.ui.console.menu.MenuItem;
 
 import java.util.Scanner;
 
-public class RegisterJobUI implements Runnable{
+/**
+ * RegisterJobUI - User interface for registering a job.
+ */
+public class RegisterJobUI implements Runnable {
 
-    private  final RegisterJobController controller;
+    private final RegisterJobController controller;
     private String jobName;
 
-    public RegisterJobUI(){
+    /**
+     * Constructs a new RegisterJobUI instance.
+     */
+    public RegisterJobUI() {
         controller = new RegisterJobController();
     }
 
-    public RegisterJobController getController(){
+    /**
+     * Gets the RegisterJobController associated with this UI.
+     *
+     * @return the RegisterJobController
+     */
+    public RegisterJobController getController() {
         return controller;
     }
 
+    /**
+     * Redirects to the HR Manager UI.
+     */
     private void redirectToHrmUI() {
         MenuItem item = new MenuItem(AuthenticationController.ROLE_HRM, new HrmUI());
         item.run();
     }
 
+    /**
+     * Runs the RegisterJobUI.
+     */
     public void run() {
         System.out.println("\n\n--- Register Job----------------------");
 
-
-
         requestJobName();
 
-        if (jobName.equals("0")){
+        if (jobName.equals("0")) {
             redirectToHrmUI();
         }
         submitData();
-
     }
 
+    /**
+     * Submits job data to the controller for registration.
+     */
     private void submitData() {
         boolean success;
         success = getController().registerJob(jobName);
 
-        if (success){
+        if (success) {
             System.out.println("\nJob successfully created!");
-        }else{
+        } else {
             System.out.println("\nJob not created, validation for this job name failed!");
-
         }
     }
 
+    /**
+     * Requests the user to input a job name.
+     */
     private void requestJobName() {
         Scanner input = new Scanner(System.in);
-        System.out.print("\nJob name (write 0 to go cancel): ");
+        System.out.print("\nJob name (write 0 to cancel): ");
         jobName = input.nextLine();
     }
 }

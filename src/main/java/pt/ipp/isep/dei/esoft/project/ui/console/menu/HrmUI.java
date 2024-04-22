@@ -1,10 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.ui.console.menu;
 
 
-import pt.ipp.isep.dei.esoft.project.ui.console.CreateTaskUI;
-import pt.ipp.isep.dei.esoft.project.ui.console.RegisterCollaboratorUI;
-import pt.ipp.isep.dei.esoft.project.ui.console.RegisterSkillUI;
-import pt.ipp.isep.dei.esoft.project.ui.console.ShowTextUI;
+import pt.ipp.isep.dei.esoft.project.ui.console.*;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
 import java.util.ArrayList;
@@ -21,6 +18,7 @@ public class HrmUI implements Runnable {
     public void run() {
         List<MenuItem> options = new ArrayList<MenuItem>();
         options.add(new MenuItem("Register New Skill", new RegisterSkillUI()));
+        options.add(new MenuItem("Register New Job", new RegisterJobUI()));
         options.add(new MenuItem("Create Task", new CreateTaskUI()));
         options.add(new MenuItem("Option 2", new ShowTextUI("You have chosen Option 2.")));
         options.add(new MenuItem("Register Collaborator", new RegisterCollaboratorUI()));

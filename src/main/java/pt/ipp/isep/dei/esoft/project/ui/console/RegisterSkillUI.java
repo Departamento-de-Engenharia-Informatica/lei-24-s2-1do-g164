@@ -1,9 +1,14 @@
 package pt.ipp.isep.dei.esoft.project.ui.console;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterSkillController;
+import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.Skill;
+import pt.ipp.isep.dei.esoft.project.ui.console.menu.HrmUI;
+import pt.ipp.isep.dei.esoft.project.ui.console.menu.MenuItem;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
+import pt.isep.lei.esoft.auth.mappers.dto.UserRoleDTO;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -27,9 +32,22 @@ public class RegisterSkillUI implements Runnable{
 
         int option = displayAndSelectTypeOfInput();
 
+        if (option == 0){
+            redirectToHrmUI();
+        }
+
         requestData(option);
 
+        if (nameOrPath.equals("0")){
+            redirectToHrmUI();
+        }
+
         submitData(option);
+    }
+
+    private void redirectToHrmUI() {
+            MenuItem item = new MenuItem(AuthenticationController.ROLE_HRM, new HrmUI());
+            item.run();
     }
 
     private void submitData(int option) {
@@ -79,6 +97,7 @@ public class RegisterSkillUI implements Runnable{
     private int displayAndSelectTypeOfInput() {
         System.out.println(" 1 - Skill name for single skill input");
         System.out.println(" 2 - File path for multiple skill input");
+        System.out.println(" 0 - Cancel");
 
         int value;
         do {

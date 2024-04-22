@@ -1,6 +1,9 @@
 package pt.ipp.isep.dei.esoft.project.ui.console;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterJobController;
+import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
+import pt.ipp.isep.dei.esoft.project.ui.console.menu.HrmUI;
+import pt.ipp.isep.dei.esoft.project.ui.console.menu.MenuItem;
 
 import java.util.Scanner;
 
@@ -17,12 +20,23 @@ public class RegisterJobUI implements Runnable{
         return controller;
     }
 
+    private void redirectToHrmUI() {
+        MenuItem item = new MenuItem(AuthenticationController.ROLE_HRM, new HrmUI());
+        item.run();
+    }
+
     public void run() {
-        System.out.println("\n\n--- Register Skill----------------------");
+        System.out.println("\n\n--- Register Job----------------------");
+
+
 
         requestJobName();
 
+        if (jobName.equals("0")){
+            redirectToHrmUI();
+        }
         submitData();
+
     }
 
     private void submitData() {
@@ -39,7 +53,7 @@ public class RegisterJobUI implements Runnable{
 
     private void requestJobName() {
         Scanner input = new Scanner(System.in);
-        System.out.print("\nJob name: ");
+        System.out.print("\nJob name (write 0 to go cancel): ");
         jobName = input.nextLine();
     }
 }

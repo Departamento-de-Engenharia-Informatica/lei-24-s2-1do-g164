@@ -1,8 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.ui.console.menu;
 
 
-import pt.ipp.isep.dei.esoft.project.repository.JobRepository;
-import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.ui.console.CreateTaskUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.RegisterCollaboratorUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.RegisterSkillUI;
@@ -16,8 +14,8 @@ import java.util.List;
  * @author Paulo Maio pam@isep.ipp.pt
  */
 
-public class AdminUI implements Runnable {
-    public AdminUI() {
+public class HrmUI implements Runnable {
+    public HrmUI() {
     }
 
     public void run() {

@@ -31,6 +31,7 @@ public class RegisterCollaboratorUI implements Runnable{
 
         job = displayAndSelectJob();
         idDocumentType = displayAndSelectDocumentType();
+
         requestData();
         submitData();
 
@@ -49,19 +50,17 @@ public class RegisterCollaboratorUI implements Runnable{
     private void requestData() {
         Scanner sc = new Scanner(System.in);
 
-        this.idDocumentNumber = requestIdDocumentNumber(sc);
+        this.idDocumentNumber = requestIdDocumentNumber();
 
-        this.name = requestName(sc);
+        this.name = requestName();
 
-        this.phone = requestPhone(sc);
+        this.phone = requestPhone();
 
-        this.birthdate = requestBirthdate(sc);
+        this.birthdate = requestBirthdate();
 
-        this.admissionDate = requestAdmissionDate(sc);
+        this.admissionDate = requestAdmissionDate();
 
-        this.address = requestAddress(sc);
-
-        sc.close();
+        this.address = requestAddress();
     }
 
 
@@ -115,34 +114,40 @@ public class RegisterCollaboratorUI implements Runnable{
         return docType;
     }
 
-    private String requestName(Scanner input) {
-        System.out.print("Enter Name: ");
-        return input.nextLine();
+    private String requestName() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter Name: ");
+        return sc.nextLine();
     }
 
-    private int requestIdDocumentNumber(Scanner input) {
-        System.out.print("Enter ID Document Type: ");
-        return input.nextInt();
+    private int requestIdDocumentNumber() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter Document Number: ");
+        return sc.nextInt();
     }
 
-    private int requestPhone(Scanner input) {
-        System.out.print("Enter Phone Number: ");
-        return input.nextInt();
+    private int requestPhone() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter Phone Number: ");
+        return sc.nextInt();
     }
 
-    private String requestBirthdate(Scanner input) {
-        System.out.print("Enter Birthdate (YYYY-MM-DD): ");
-        return input.nextLine();
+    private String requestBirthdate() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter Birth Date (DD-MM-YY): ");
+        return sc.nextLine();
     }
 
-    private String requestAdmissionDate(Scanner input) {
-        System.out.print("Enter Admission Date (YYYY-MM-DD): ");
-        return input.nextLine();
+    private String requestAdmissionDate() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter Admission Date (DD-MM-YY): ");
+        return sc.nextLine();
     }
 
-    private String requestAddress(Scanner input) {
-        System.out.print("Enter Address: ");
-        return input.nextLine();
+    private String requestAddress() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter Address: ");
+        return sc.nextLine();
     }
 }
 

@@ -5,6 +5,7 @@ import pt.ipp.isep.dei.esoft.project.domain.Job;
 import pt.ipp.isep.dei.esoft.project.repository.DocumentTypeRepository;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -116,20 +117,36 @@ public class RegisterCollaboratorUI implements Runnable{
 
     private String requestName() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter Name: ");
+        System.out.println("Enter Name (a-Z, no special characters or numbers): ");
         return sc.nextLine();
     }
 
     private int requestIdDocumentNumber() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter Document Number: ");
-        return sc.nextInt();
+        try {
+            System.out.println("Enter Document Number: ");
+            return sc.nextInt();
+        }
+        catch (InputMismatchException e){
+            System.out.println("Must be a number!");
+            System.out.println("Enter Document Number: ");
+            sc.nextLine();
+            return sc.nextInt();
+        }
     }
 
     private int requestPhone() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter Phone Number: ");
-        return sc.nextInt();
+        try{
+            System.out.println("Enter Phone Number (9 digits): ");
+            return sc.nextInt();
+        }
+        catch (InputMismatchException e){
+            System.out.println("Must be a number!");
+            System.out.println("Enter Phone Number (9 digits): ");
+            sc.nextLine();
+            return sc.nextInt();
+        }
     }
 
     private String requestBirthdate() {

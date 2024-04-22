@@ -17,135 +17,126 @@ participant "skill:Skill" as skill
 
 activate ADM
 
-    ADM -> UI : asks to register new skills
-    activate UI
-    UI --> ADM : requests input (single input or file)
-    deactivate UI
+ADM -> UI : asks to register new skills
+activate UI
+UI --> ADM : requests input (single input or file)
+deactivate UI
 
 
 
     ' Branch for handling file upload
-    alt file uploaded
+alt file uploaded
 
 
 
-            ADM -> UI : types file path
-            activate UI
+ADM -> UI : types file path and confirms
+activate UI
+
+UI -> CTRL** : create
+UI -> CTRL : registerSkillsFromFile(filePath)
+activate CTRL
+
+CTRL -> CTRL : readSkillsFromFile(file)
+activate CTRL
+deactivate CTRL
+
+CTRL -> RepositorySingleton : getInstance()
+activate RepositorySingleton
+
+RepositorySingleton --> CTRL: repositories
+deactivate RepositorySingleton
+
+CTRL -> PLAT : getSkillsRepository()
+activate PLAT
+
+PLAT --> CTRL: skillsRepository
+deactivate PLAT
+
+loop
+
+CTRL -> skillsRepository : registerSkill(skillName)
+activate skillsRepository
+
+skillsRepository -> skillsRepository : nameIsValid(skillName)
+activate skillsRepository
+deactivate skillsRepository
+skillsRepository -> skillsRepository : skillNameIsUnique(skillName)
+activate skillsRepository
+deactivate skillsRepository
+"skillsRepository" -> skill : Skill(skillName)
+activate skill
+"skillsRepository" <-- skill : skill
+deactivate skill
+skillsRepository -> skillsRepository : registerSkill(skill)
+activate skillsRepository
+deactivate skillsRepository
+
+skillsRepository --> CTRL : status of operation of registration of multiple skills
+deactivate skillsRepository
+
+end
+
+CTRL --> UI : status of operation for file upload
+deactivate CTRL
+UI -> UI : displayStatusMessage
+activate UI
+deactivate UI
+
+UI --> ADM : status of operation message for file upload
+deactivate UI
+else single skill input
+
+ADM -> UI : types requested data (skill name)
+activate UI
 
 
-
-            UI --> ADM : confirmation of file path
-            deactivate UI
-
-            ADM -> UI : confirms
-            activate UI
-
-            UI -> CTRL** : create
-        UI -> CTRL : registerSkillsFromFile(filePath)
-        activate CTRL
-
-        CTRL -> CTRL : readSkillsFromFile(file)
-                activate CTRL
-                deactivate CTRL
-
-        CTRL -> RepositorySingleton : getInstance()
-        activate RepositorySingleton
-
-        RepositorySingleton --> CTRL: repositories
-        deactivate RepositorySingleton
-
-        CTRL -> PLAT : getSkillsRepository()
-        activate PLAT
-
-        PLAT --> CTRL: skillsRepository
-        deactivate PLAT
-
-        loop
-
-        CTRL -> skillsRepository : registerSkill(skillName)
-        activate skillsRepository
+UI -> CTRL : registerSkill(skillName)
 
 
-        skillsRepository -> skillsRepository : nameIsValid(skillName)
-        activate skillsRepository
-        deactivate skillsRepository
-        skillsRepository -> skillsRepository : skillNameIsUnique(skillName)
-        activate skillsRepository
-        deactivate skillsRepository
-        "skillsRepository" -> skill : Skill(skillName)
-        activate skill
-        "skillsRepository" <-- skill : skill
-        deactivate skill
-        skillsRepository -> skillsRepository : registerSkill(skill)
-        activate skillsRepository
-        deactivate skillsRepository
+activate CTRL
 
-        skillsRepository --> CTRL : status of operation of registration of multiple skills
-        deactivate skillsRepository
+CTRL -> RepositorySingleton : getInstance()
+activate RepositorySingleton
 
-        end
+RepositorySingleton --> CTRL: repositories
+deactivate RepositorySingleton
 
-        CTRL --> UI : status of operation for file upload
-        deactivate CTRL
-        UI -> UI : displayStatusMessage
-        activate UI
-        deactivate UI
+CTRL -> PLAT : getSkillsRepository()
+activate PLAT
 
-        UI --> ADM : status of operation message for file upload
-        deactivate UI
-    else single skill input
+PLAT --> CTRL: skillsRepository
+deactivate PLAT
 
-        ADM -> UI : types requested data (skill name)
-            activate UI
+CTRL -> skillsRepository : registerSkill(skillName)
+activate skillsRepository
 
+skillsRepository -> skillsRepository : nameIsValid(skillName)
+activate skillsRepository
+deactivate skillsRepository
+skillsRepository -> skillsRepository : skillNameIsUnique(skillName)
+activate skillsRepository
+deactivate skillsRepository
+"skillsRepository" -> skill : Skill(skillName)
+activate skill
+"skillsRepository" <-- skill : skill
+deactivate skill
+skillsRepository -> skillsRepository : registerSkill(skill)
+activate skillsRepository
+deactivate skillsRepository
+skillsRepository --> CTRL : status of operation for single skill
+deactivate skillsRepository
 
-        UI -> CTRL : registerSkill(skillName)
+CTRL --> UI : status of operation for single skill
+deactivate CTRL
 
+UI -> UI : displayStatusMessage
+activate UI
+deactivate UI
 
-        activate CTRL
+UI --> ADM : status of operation message for single skill
+end
 
-        CTRL -> RepositorySingleton : getInstance()
-        activate RepositorySingleton
-
-        RepositorySingleton --> CTRL: repositories
-        deactivate RepositorySingleton
-
-        CTRL -> PLAT : getSkillsRepository()
-        activate PLAT
-
-        PLAT --> CTRL: skillsRepository
-        deactivate PLAT
-
-        CTRL -> skillsRepository : registerSkill(skillName)
-        activate skillsRepository
-
-        skillsRepository -> skillsRepository : nameIsValid(skillName)
-        activate skillsRepository
-        deactivate skillsRepository
-        skillsRepository -> skillsRepository : skillNameIsUnique(skillName)
-                activate skillsRepository
-                deactivate skillsRepository
-                "skillsRepository" -> skill : Skill(skillName)
-                activate skill
-                "skillsRepository" <-- skill : skill
-                deactivate skill
-                skillsRepository -> skillsRepository : registerSkill(skill)
-                activate skillsRepository
-                deactivate skillsRepository
-        skillsRepository --> CTRL : status of operation for single skill
-        deactivate skillsRepository
-
-        CTRL --> UI : status of operation for single skill
-        deactivate CTRL
-
-        UI -> UI : displayStatusMessage
-        activate UI
-        deactivate UI
-
-        UI --> ADM : status of operation message for single skill
-    end
-
-    deactivate UI
+deactivate UI
 
 deactivate ADM
 

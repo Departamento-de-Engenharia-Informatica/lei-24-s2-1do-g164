@@ -12,7 +12,7 @@ public class Repositories implements Serializable {
     private final SkillRepository skillRepository;
     private final TaskCategoryRepository taskCategoryRepository;
     private final AuthenticationRepository authenticationRepository;
-    private  final JobRepository jobRepository;
+    private final JobRepository jobRepository;
     private final OrganizationRepository organizationRepository;
 
 

@@ -18,8 +18,8 @@ class "RegisterVehicleCheckupUI" as RegisterVehicleCheckupUI {
 
 
 class "RegisterVehicleCheckupController" as RegisterVehicleCheckupController {
-+getSkills()
-    +createTeamProposal(min, max, skills)
++getVehicles()
+    +createVehicleCheckup(vehicle, date, currentKm)
 
 }
 
@@ -27,47 +27,39 @@ class "RegisterVehicleCheckupController" as RegisterVehicleCheckupController {
 
 class ":Repositories" as Repositories {
     +getInstance(): Repositories
-    +getSkillRepository(): SkillRepository
-    +getCollaboratorRepository()
-    +getTeamRepository()
-}
-
-class "SkillRepository" as SkillRepository {
-    +getSkills()
+    +getVehicleRepository(): VehicleRepository
 
 }
 
+class "VehicleRepository" as VehicleRepository {
+    +getVehiclesNeedingCheckup(vehicles)
+    +createVehicleCheckup(vehicle, date, currentKms)
 
-class "CollaboratorRepository" as CollaboratorRepository {
-    +getCollaboratorsBySkills(skills)
 }
 
-class "TeamRepository" as TeamRepository {
-    +createTeam(selectedCollaborators)
-    -addTeam(Team)
-}
-note bottom of TeamRepository: the selected collaborators were selected\nbased on the max and min size   on\nCreateTeamProposalController
 
-class "Team" as Team {
-    -Integer maxSize
-    -Integer minSize
-    -ArrayList<Skill> requiredSkills
-    -ArrayList<Collaborator> collaborators
+class "Vehicle" as Vehicle {
+      - String brand
+        - String model
+        - String vehicleID
+        - String type
+        - Double grossWeight
+        - Double tare
+        - Integer currentKm
+        - String registerDate
+        - String acquisitionDate
+        - Integer checkupFrequency
 
     +create(selectedCollaborators)
 
 }
-
- note right of "CollaboratorRepository" : filter collaborators\nbased on their skills
-
 RegisterVehicleCheckupUI..> RegisterVehicleCheckupController
 Repositories -> Repositories : instance
-CreateTeamProposalController ..> Repositories: repositories
-Repositories --> "1"SkillRepository
-Repositories -->"1" CollaboratorRepository
-Repositories --> "1"TeamRepository
-CreateTeamProposalController ..> TeamRepository: TeamRepository
-TeamRepository "1" --> "*"Team: team
-CreateTeamProposalController --> Team
+RegisterVehicleCheckupController ..> Repositories: repositories
+Repositories --> "1"VehicleRepository
+RegisterVehicleCheckupController ..> VehicleRepository: vehicleRepository
+RegisterVehicleCheckupController ..> Vehicle
+
+VehicleRepository"1"--> "*"Vehicle: vehicle
 
 @enduml

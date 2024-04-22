@@ -37,7 +37,7 @@ public class VehicleRepository implements Serializable {
         return this.vehicleList.size();
     }
 
-    public static ArrayList<Vehicle> getVehiclesNeedingCheckup(ArrayList<Vehicle> vehicles, int currentKms) {
+    public ArrayList<Vehicle> getVehiclesNeedingCheckup(ArrayList<Vehicle> vehicles) {
         ArrayList<Vehicle> vehiclesNeedingCheckup = new ArrayList<>();
 
         for (Vehicle v: vehicles) {

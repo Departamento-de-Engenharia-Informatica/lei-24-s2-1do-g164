@@ -68,5 +68,6 @@ Repositories --> "1"TeamRepository
 CreateTeamProposalController ..> TeamRepository: TeamRepository
 TeamRepository "1" --> "*"Team: team
 CreateTeamProposalController --> Team
-
+CreateTeamProposalController ..> SkillRepository: skillRepository
+CreateTeamProposalController ..> CollaboratorRepository: collaboratorRepository
 @enduml

@@ -61,9 +61,9 @@ public class CollaboratorRepository implements Serializable {
         }
         return success;
     }
-  public ArrayList<Collaborator> getCollaboratorsBySkills(Collaborator collaborator, Skill skill) {
-      ArrayList<Collaborator> collaboratorsWithSkill = new ArrayList<>();
-      for (Collaborator c : collaboratorList) {
+    public ArrayList<Collaborator> getCollaboratorsBySkills(Collaborator collaborator, Skill skill) {
+        ArrayList<Collaborator> collaboratorsWithSkill = new ArrayList<>();
+        for (Collaborator c : collaboratorList) {
             if (collaborator.alreadyHasSkill(skill)) {
                 collaboratorsWithSkill.add(collaborator);
             }

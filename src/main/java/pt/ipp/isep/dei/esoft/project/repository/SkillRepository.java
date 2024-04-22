@@ -18,7 +18,7 @@ public class SkillRepository implements Serializable {
     public boolean registerSkill(String skillName){
 
 
-        if (!skillAlreadyExists(skillName)){
+        if (skillisValid(skillName)){
 
             Skill skill = new Skill(skillName);
 
@@ -30,39 +30,39 @@ public class SkillRepository implements Serializable {
         }
     }
 
+    private  boolean skillisValid(String skillName) {
+        System.out.println(isValidSkillName(skillName));
+        System.out.println(skillNameIsUnique(skillName));
+        return isValidSkillName(skillName) && skillNameIsUnique(skillName);
+    }
 
-//    private static boolean isValidSkillName(String sName)
-//    {
-//
-//        // Regex to check valid username.
-//        String regex = "/[a-zA-Z\\s]+/g";
-//
-//        // Compile the ReGex
-//        Pattern p = Pattern.compile(regex);
-//
-//        // If the username is empty
-//        // return false
-//        if (sName == null) {
-//            return false;
-//        }
-//
-//        // Pattern class contains matcher() method
-//        // to find matching between given username
-//        // and regular expression.
-//        Matcher m = p.matcher(sName);
-//
-//        // Return if the username
-//        // matched the ReGex
-//        return m.matches();
-//    }
 
-    private boolean skillAlreadyExists(String sName) {
+    private static boolean isValidSkillName(String sName) {
+
+        // Regex to check valid username.
+        String regex = "^[a-zA-Z ]+$";
+
+        // Compile the ReGex
+        Pattern p = Pattern.compile(regex);
+
+
+        if (sName == null) {
+            return false;
+        }
+
+
+        Matcher m = p.matcher(sName);
+
+        return m.matches();
+    }
+
+    private boolean skillNameIsUnique(String sName) {
         for (Skill s : skillList){
             if (s.equals(sName)){
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     public int size(){

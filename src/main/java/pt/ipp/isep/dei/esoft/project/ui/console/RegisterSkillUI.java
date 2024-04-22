@@ -49,9 +49,9 @@ public class RegisterSkillUI implements Runnable{
             }
         } else {
             if (option == 1){
-                System.out.println("\nSkill not created, skill already exists!");
+                System.out.println("\nSkill not created, validation for this skill name failed!");
             }else if (option == 2){
-                System.out.println("\nSkills not created, skills already exist!");
+                System.out.println("\nSkills not created, no skills in the file passed validation!");
             }
         }
     }
@@ -85,7 +85,6 @@ public class RegisterSkillUI implements Runnable{
         do {
             String in = Utils.readLineFromConsole("\nSelect a type of input: ");
             try {
-                assert in != null;
                 value = Integer.parseInt(in);
             } catch (NumberFormatException ex) {
                 value = -1;

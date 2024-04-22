@@ -5,13 +5,36 @@ import pt.ipp.isep.dei.esoft.project.domain.Vehicle;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Repository class for managing vehicles.
+ */
 public class VehicleRepository implements Serializable {
     private final ArrayList<Vehicle> vehicleList = new ArrayList<>();
 
+    /**
+     * Retrieves the list of vehicles in the repository.
+     *
+     * @return The list of vehicles.
+     */
     public ArrayList<Vehicle> getVehicleList() {
         return vehicleList;
     }
 
+    /**
+     * Registers a new vehicle with the provided details.
+     *
+     * @param brand           The brand of the vehicle.
+     * @param model           The model of the vehicle.
+     * @param vehicleID       The unique identifier of the vehicle.
+     * @param type            The type of the vehicle.
+     * @param grossWeight     The gross weight of the vehicle.
+     * @param tare            The tare weight of the vehicle.
+     * @param currentKm       The current kilometers of the vehicle.
+     * @param registerDate    The registration date of the vehicle (in "DD-MM-YYYY" format).
+     * @param acquisitionDate The acquisition date of the vehicle (in "DD-MM-YYYY" format).
+     * @param checkupFrequency The checkup frequency of the vehicle (in kilometers).
+     * @return {@code true} if the vehicle is successfully registered, {@code false} otherwise.
+     */
     public boolean registerVehicle(String brand, String model, String vehicleID, VehicleTypeRepository type, double grossWeight, double tare, int currentKm, String registerDate, String acquisitionDate, int checkupFrequency) {
         Vehicle vehicle = new Vehicle(brand, model, vehicleID, type, grossWeight, tare, currentKm, registerDate, acquisitionDate, checkupFrequency);
         if (vehicleIsUnique(vehicle) && isValidDateFormat(acquisitionDate) && isValidDateFormat(registerDate)) {
@@ -22,6 +45,12 @@ public class VehicleRepository implements Serializable {
         }
     }
 
+    /**
+     * Checks if the given vehicle is unique (not already registered).
+     *
+     * @param vehicle The vehicle to check.
+     * @return {@code true} if the vehicle is unique, {@code false} if it already exists.
+     */
     private boolean vehicleIsUnique(Vehicle vehicle) {
         for (Vehicle v : vehicleList) {
             if (v.equals(vehicle)) {
@@ -31,6 +60,12 @@ public class VehicleRepository implements Serializable {
         return true;
     }
 
+    /**
+     * Validates if the provided date string has a valid "DD-MM-YYYY" format.
+     *
+     * @param dateString The date string to validate.
+     * @return {@code true} if the date format is valid, {@code false} otherwise.
+     */
     public static boolean isValidDateFormat(String dateString) {
         if (dateString.length() != 10) {
             return false;
@@ -55,6 +90,12 @@ public class VehicleRepository implements Serializable {
         return dateString.charAt(2) == '-' && dateString.charAt(5) == '-';
     }
 
+    /**
+     * Helper method to check if a string is numeric.
+     *
+     * @param str The string to check.
+     * @return {@code true} if the string is numeric, {@code false} otherwise.
+     */
     private static boolean isNumeric(String str) {
         for (char c : str.toCharArray()) {
             if (!Character.isDigit(c)) {
@@ -64,10 +105,21 @@ public class VehicleRepository implements Serializable {
         return true;
     }
 
+    /**
+     * Retrieves the number of vehicles in the repository.
+     *
+     * @return The number of vehicles.
+     */
     public int size() {
         return this.vehicleList.size();
     }
 
+    /**
+     * Retrieves vehicles that need a checkup based on their current state.
+     *
+     * @param vehicles The list of vehicles to check.
+     * @return The list of vehicles that need a checkup.
+     */
     public ArrayList<Vehicle> getVehiclesNeedingCheckup(ArrayList<Vehicle> vehicles) {
         ArrayList<Vehicle> vehiclesNeedingCheckup = new ArrayList<>();
 
@@ -79,4 +131,3 @@ public class VehicleRepository implements Serializable {
         return vehiclesNeedingCheckup;
     }
 }
-

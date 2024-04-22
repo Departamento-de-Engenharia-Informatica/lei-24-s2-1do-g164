@@ -73,7 +73,7 @@ public class Vehicle {
     }
 
     public boolean equals(Vehicle vehicle){
-        return vehicle.getVehicleID() == this.vehicleID;
+        return vehicle.getVehicleID().equals(this.vehicleID);
     }
     public boolean needsCheckup() {
         int difference = this.currentKm - this.lastCheckup.getCurrentKms();

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * RegisterSkillController - Controller class for registering skills.
+ * Controller class responsible for handling skill registration operations.
  */
 public class RegisterSkillController {
 

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Controller class for registering collaborators.
+ * Controller class responsible for handling collaborator registration operations.
  */
 public class RegisterCollaboratorController {
 

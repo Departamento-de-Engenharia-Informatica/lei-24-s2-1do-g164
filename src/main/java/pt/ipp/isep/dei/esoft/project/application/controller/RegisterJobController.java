@@ -4,7 +4,7 @@ import pt.ipp.isep.dei.esoft.project.repository.JobRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 
 /**
- * RegisterJobController - Controller class for registering jobs.
+ * Controller class responsible for handling job registration operations.
  */
 public class RegisterJobController {
 

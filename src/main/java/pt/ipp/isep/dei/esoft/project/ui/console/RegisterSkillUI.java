@@ -56,8 +56,7 @@ public class RegisterSkillUI implements Runnable{
         }
     }
 
-    private void
-    requestData(int option) {
+    private void requestData(int option) {
         if (option == 1){
             nameOrPath = requestSkillName();
         } else if (option == 2) {

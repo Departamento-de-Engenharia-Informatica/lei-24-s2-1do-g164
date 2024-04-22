@@ -5,7 +5,6 @@ import java.util.Objects;
 public class SystemUser {
     private final String email;
     private String name;
-    private String position;
     private String phone;
 
     public SystemUser(String email) {

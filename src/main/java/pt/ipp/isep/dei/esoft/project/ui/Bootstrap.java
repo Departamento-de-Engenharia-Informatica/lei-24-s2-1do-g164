@@ -23,7 +23,8 @@ public class Bootstrap implements Runnable {
         Organization organization = new Organization("This Company");
         organization.addEmployee(new SystemUser("admin@this.app"));
         organization.addEmployee(new SystemUser("employee@this.app"));
-        organization.addEmployee(new SystemUser("t@t.tt"));
+        organization.addEmployee(new SystemUser("hrm@hrm.app"));
+        organization.addEmployee(new SystemUser("vfm@vfm.app"));
         organizationRepository.add(organization);
     }
 
@@ -51,17 +52,66 @@ public class Bootstrap implements Runnable {
         authenticationRepository.addUserWithRole("Main Administrator", "admin@this.app", "admin",
                 AuthenticationController.ROLE_HRM);
 
-        authenticationRepository.addUserWithRole("HRM", "t@t.tt", "t",
+        authenticationRepository.addUserWithRole("João", "hrm@hrm.app", "a",
                 AuthenticationController.ROLE_HRM);
 
-        authenticationRepository.addUserWithRole("VFM", "vfm@vfm.app", "pwd",
+        authenticationRepository.addUserWithRole("Mário", "vfm@vfm.app", "a",
                 AuthenticationController.ROLE_VFM);
     }
 
     public void addJobs(){
         JobRepository jobRepository = Repositories.getInstance().getJobRepository();
-        jobRepository.registerJob("Mecanico");
-        jobRepository.registerJob("caloiro");
-        jobRepository.registerJob("barbeiro");
+        jobRepository.registerJob("Park Ranger");
+        jobRepository.registerJob("Landscape Architect");
+        jobRepository.registerJob("Arborist");
+        jobRepository.registerJob("Groundskeeper");
+        jobRepository.registerJob("Horticulturist");
+        jobRepository.registerJob("Botanist");
+        jobRepository.registerJob("Ecologist");
+        jobRepository.registerJob("Park Manager");
+        jobRepository.registerJob("Urban Forester");
+        jobRepository.registerJob("Natural Resource Manager");
+        jobRepository.registerJob("Park Maintenance Supervisor");
+        jobRepository.registerJob("Wildlife Biologist");
+        jobRepository.registerJob("Environmental Educator");
+        jobRepository.registerJob("Irrigation Specialist");
+        jobRepository.registerJob("Greenhouse Manager");
+        jobRepository.registerJob("Community Garden Coordinator");
+        jobRepository.registerJob("Trail Steward");
+        jobRepository.registerJob("Sustainability Coordinator");
+        jobRepository.registerJob("Park Events Coordinator");
+        jobRepository.registerJob("Conservation Technician");
+    }
+
+    public void addSkills(){
+        SkillRepository skillRepository = Repositories.getInstance().getSkillRepository();
+        skillRepository.registerSkill("Plant Identification");
+        skillRepository.registerSkill("Soil Management");
+        skillRepository.registerSkill("Pruning and Trimming");
+        skillRepository.registerSkill("Watering Techniques");
+        skillRepository.registerSkill("Pest and Disease Management");
+        skillRepository.registerSkill("Companion Planting");
+        skillRepository.registerSkill("Garden Design");
+        skillRepository.registerSkill("Propagation");
+        skillRepository.registerSkill("Seasonal Gardening");
+        skillRepository.registerSkill("Organic Gardening Practices");
+        skillRepository.registerSkill("Harvesting and Storage");
+        skillRepository.registerSkill("Tool Maintenance");
+        skillRepository.registerSkill("Environmental Awareness");
+        skillRepository.registerSkill("Botany");
+        skillRepository.registerSkill("Garden Photography");
+        skillRepository.registerSkill("Landscaping");
+        skillRepository.registerSkill("Container Gardening");
+        skillRepository.registerSkill("Herbalism");
+        skillRepository.registerSkill("Community Engagement");
+        skillRepository.registerSkill("Continuous Learning");
+        skillRepository.registerSkill("Plant Health Diagnosis");
+        skillRepository.registerSkill("Fertilization Techniques");
+        skillRepository.registerSkill("Mulching and Weed Control");
+        skillRepository.registerSkill("Seed Saving");
+        skillRepository.registerSkill("Rainwater Harvesting");
+        skillRepository.registerSkill("Wildlife Gardening");
+        skillRepository.registerSkill("Indoor Plant Care");
+
     }
 }

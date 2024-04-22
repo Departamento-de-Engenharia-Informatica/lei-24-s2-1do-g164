@@ -14,7 +14,8 @@ public class RegisterJobController {
     }
 
     public boolean registerJob(String jobName){
-
         return jobRepository.registerJob(jobName);
     }
+
+
 }

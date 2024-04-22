@@ -59,7 +59,7 @@ class SystemUser {
 class RegisterSkillUI {}
 
 SystemUser <|-- HRM
-HRM "1" --> "*" Skill : registers
+HRM  <-- Skill : registered by
 RegisterSkillController ..> Repositories : repositories
 RegisterSkillController ..> SkillRepository : skillRepository
 RegisterSkillController ..> Skill : skill

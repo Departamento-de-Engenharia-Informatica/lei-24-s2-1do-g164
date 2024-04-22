@@ -1,9 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
-import pt.ipp.isep.dei.esoft.project.domain.Collaborator;
-import pt.ipp.isep.dei.esoft.project.domain.Job;
-import pt.ipp.isep.dei.esoft.project.domain.Skill;
-import pt.ipp.isep.dei.esoft.project.domain.Vehicle;
+import pt.ipp.isep.dei.esoft.project.domain.*;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -61,13 +58,21 @@ public class CollaboratorRepository implements Serializable {
         }
         return success;
     }
-  public ArrayList<Collaborator> getCollaboratorsBySkills(Collaborator collaborator, Skill skill) {
-      ArrayList<Collaborator> collaboratorsWithSkill = new ArrayList<>();
-      for (Collaborator c : collaboratorList) {
-            if (collaborator.alreadyHasSkill(skill)) {
-                collaboratorsWithSkill.add(collaborator);
+
+
+
+    public ArrayList<Collaborator> getDeactivatedCollaboratorsBySkill(Skill skill){
+        ArrayList<Collaborator> selectedCollaborators = new ArrayList<>();
+        for(Collaborator c : this.collaboratorList) {
+            if (c.getSkills().contains(skill) && c.getStatus() == CollaboratorStatus.DEACTIVATED){
+                selectedCollaborators.add(c);
             }
         }
-        return collaboratorsWithSkill;
-  }
+
+        return selectedCollaborators;
+    }
+
+
 }
+
+

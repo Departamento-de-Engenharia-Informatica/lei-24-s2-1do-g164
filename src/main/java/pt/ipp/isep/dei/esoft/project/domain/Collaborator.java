@@ -14,6 +14,12 @@ public class Collaborator {
     private DocumentTypeRepository idDocumentType;
     private int idDocumentNumber;
     private ArrayList<Skill> skills;
+
+    private CollaboratorStatus status;
+
+
+
+
     public Collaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentTypeRepository idDocumentType) {
         this.name = name;
         this.phone = phone;
@@ -70,6 +76,14 @@ public class Collaborator {
 
     public void addSkill(Skill s){
         this.skills.add(s);
+    }
+
+    public void activateCollaborator() {
+    }
+
+
+    public CollaboratorStatus getStatus() {
+        return status;
     }
 }
 

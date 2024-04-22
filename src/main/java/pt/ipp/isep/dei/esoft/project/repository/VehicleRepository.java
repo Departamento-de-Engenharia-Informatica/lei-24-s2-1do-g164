@@ -1,61 +1,133 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
-import pt.ipp.isep.dei.esoft.project.domain.Collaborator;
-import pt.ipp.isep.dei.esoft.project.domain.Skill;
 import pt.ipp.isep.dei.esoft.project.domain.Vehicle;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Repository class for managing vehicles.
+ */
 public class VehicleRepository implements Serializable {
     private final ArrayList<Vehicle> vehicleList = new ArrayList<>();
 
-    public ArrayList<Vehicle> getVehicleList(){
+    /**
+     * Retrieves the list of vehicles in the repository.
+     *
+     * @return The list of vehicles.
+     */
+    public ArrayList<Vehicle> getVehicleList() {
         return vehicleList;
     }
 
-    public boolean registerVehicle(String brand, String model, String vehicleID, VehicleTypeRepository type, double grossWeight, double tare, int currentKm, String registerDate, String acquisitionDate, int checkupFrequency){
+    /**
+     * Registers a new vehicle with the provided details.
+     *
+     * @param brand           The brand of the vehicle.
+     * @param model           The model of the vehicle.
+     * @param vehicleID       The unique identifier of the vehicle.
+     * @param type            The type of the vehicle.
+     * @param grossWeight     The gross weight of the vehicle.
+     * @param tare            The tare weight of the vehicle.
+     * @param currentKm       The current kilometers of the vehicle.
+     * @param registerDate    The registration date of the vehicle (in "DD-MM-YYYY" format).
+     * @param acquisitionDate The acquisition date of the vehicle (in "DD-MM-YYYY" format).
+     * @param checkupFrequency The checkup frequency of the vehicle (in kilometers).
+     * @return {@code true} if the vehicle is successfully registered, {@code false} otherwise.
+     */
+    public boolean registerVehicle(String brand, String model, String vehicleID, VehicleTypeRepository type, double grossWeight, double tare, int currentKm, String registerDate, String acquisitionDate, int checkupFrequency) {
         Vehicle vehicle = new Vehicle(brand, model, vehicleID, type, grossWeight, tare, currentKm, registerDate, acquisitionDate, checkupFrequency);
-        if (validateVehicle(vehicle)){
-
+        if (isVehicleUnique(vehicle) && isValidDateFormat(acquisitionDate) && isValidDateFormat(registerDate)) {
             vehicleList.add(vehicle);
-
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    private boolean validateVehicle(Vehicle vehicle) {
-        for (Vehicle v : vehicleList){
-            if (v.equals(vehicle)){
-                return true;
+    /**
+     * Checks if the given vehicle is unique (not already registered).
+     *
+     * @param vehicle The vehicle to check.
+     * @return {@code true} if the vehicle is unique, {@code false} if it already exists.
+     */
+    private boolean isVehicleUnique(Vehicle vehicle) {
+        for (Vehicle v : vehicleList) {
+            if (v.equals(vehicle)) {
+                return false;
             }
         }
-        return false;
+        return true;
     }
-    public int size(){
+
+    /**
+     * Validates if the provided date string has a valid "DD-MM-YYYY" format.
+     *
+     * @param dateString The date string to validate.
+     * @return {@code true} if the date format is valid, {@code false} otherwise.
+     */
+    public static boolean isValidDateFormat(String dateString) {
+        if (dateString.length() != 10) {
+            return false;
+        }
+
+        String dayStr = dateString.substring(0, 2);
+        String monthStr = dateString.substring(3, 5);
+        String yearStr = dateString.substring(6);
+
+        if (!isNumeric(dayStr) || !isNumeric(monthStr) || !isNumeric(yearStr)) {
+            return false;
+        }
+
+        int day = Integer.parseInt(dayStr);
+        int month = Integer.parseInt(monthStr);
+        int year = Integer.parseInt(yearStr);
+
+        if (month < 1 || month > 12 || day < 1 || day > 31) {
+            return false;
+        }
+
+        return dateString.charAt(2) == '-' && dateString.charAt(5) == '-';
+    }
+
+    /**
+     * Helper method to check if a string is numeric.
+     *
+     * @param str The string to check.
+     * @return {@code true} if the string is numeric, {@code false} otherwise.
+     */
+    private static boolean isNumeric(String str) {
+        for (char c : str.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Retrieves the number of vehicles in the repository.
+     *
+     * @return The number of vehicles.
+     */
+    public int size() {
         return this.vehicleList.size();
     }
 
+    /**
+     * Retrieves vehicles that need a checkup based on their current state.
+     *
+     * @param vehicles The list of vehicles to check.
+     * @return The list of vehicles that need a checkup.
+     */
     public ArrayList<Vehicle> getVehiclesNeedingCheckup(ArrayList<Vehicle> vehicles) {
         ArrayList<Vehicle> vehiclesNeedingCheckup = new ArrayList<>();
 
-        for (Vehicle v: vehicles) {
-            if (v.needsCheckup()){
+        for (Vehicle v : vehicles) {
+            if (v.needsCheckup()) {
                 vehiclesNeedingCheckup.add(v);
             }
         }
         return vehiclesNeedingCheckup;
     }
-
-    public boolean vehicleAlreadyExist(Vehicle vehicle){
-            for(Vehicle v: vehicleList) {
-            if (v.equals(vehicle)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
 }

@@ -21,19 +21,9 @@ activate Employee
     Employee -> System : writes file path
     activate System
 
-    Employee <-- System : requests confirmation
-    deactivate System
 
-    Employee -> System : confirms
-    activate System
 
-    System --> Employee : shows all new skills and requests confirmation
-    deactivate System
-
-    Employee -> System : confirms new skills
-    activate System
-
-    System --> Employee : displays status of operation message (ie: "skills added to list")
+    System --> Employee : displays status of operation \nmessage (ie: "skills added to list")
     deactivate System
 
 @enduml

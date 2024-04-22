@@ -12,37 +12,37 @@ skinparam classAttributeIconSize 0
 class Skill {
     - String skillName
     + Skill(skillName)
-    + getName(): string
-    + getDescription(): string
+    + getName()
+    + getDescription()
 }
 
 class Repositories {
-    - collaboratorRepository
-    - vehicleRepository
-    - skillRepository
-    - jobRepository
+
 
     - Repositories()
-    + getInstance()
+    + getInstance() : Repositories
     + getCollaboratorRepository()
     + getVehicleRepository()
     + getSkillRepository()
     + getJobRepository()
+    + getAuthenticationRepository()
 }
 
 class SkillRepository {
-    - ArrayList skillList
-    + SkillRepository()
-    + registerSkill(skillName)
+
     + getSkillList()
+    + registerSkill(skillName)
+    + size()
+    - skillIsValid(skillName)
+    - isValidSkillName(skillName)
+    - skillNameIsUnique(skillName)
 }
 
 class RegisterSkillController {
-    - skillRepository
 
-    + RegisterSkillController(skillRepository: SkillRepository)
-    + registerNewSkill(skillName)
-    + registerSkillFromFile(filePath)
+    + RegisterSkillController()
+    + registerSkill(skillName)
+    + registerSkillsFromFile(filePath)
     - readSkillsFromFile(filePath)
 }
 
@@ -58,12 +58,14 @@ class SystemUser {
 class RegisterSkillUI {}
 
 SystemUser <|-- HRM
-HRM "1" --> "*" Skill : registers
+HRM  <-- Skill : registered by
 RegisterSkillController ..> Repositories : repositories
+RegisterSkillController ..> SkillRepository : skillRepository
+RegisterSkillController ..> Skill : skill
 
 RegisterSkillUI .> RegisterSkillController
 Repositories -->"1" SkillRepository
 Repositories -> Repositories : instance
-Skill "*" <-- "1" SkillRepository : has
+Skill "*" <-- SkillRepository
 
 @enduml

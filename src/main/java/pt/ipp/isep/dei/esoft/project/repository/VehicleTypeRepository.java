@@ -1,7 +1,10 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
+/**
+ * Enum representing types of vehicles used for vehicle registration.
+ */
 public enum VehicleTypeRepository {
-    LIGHT_VEHICLE,
-    HEAVY_VEHICLE,
-    TRACTOR;
+    LIGHT_VEHICLE, // Represents a light vehicle
+    HEAVY_VEHICLE, // Represents a heavy vehicle
+    TRACTOR        // Represents a tractor
 }

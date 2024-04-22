@@ -1,7 +1,5 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
-import java.util.Objects;
-
 public class Skill {
 
     private final String skillName;
@@ -17,6 +15,4 @@ public class Skill {
     public String getSkillName() {
         return skillName;
     }
-
-
 }

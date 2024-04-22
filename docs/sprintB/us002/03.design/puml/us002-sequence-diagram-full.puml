@@ -55,10 +55,13 @@ activate ADM
                 CTRL -> JobRepository : registerJob(jobName)
                 activate JobRepository
 
+                        JobRepository -> JobRepository : jobIsValid(skillName)
+                                activate JobRepository
+                                deactivate JobRepository
+                                JobRepository -> JobRepository : jobNameIsUnique(skillName)
+                                activate JobRepository
+                                deactivate JobRepository
 
-                        JobRepository -> JobRepository : jobAlreadyExists(jobName)
-                        activate JobRepository
-                        deactivate JobRepository
                         "JobRepository" -> job : Job(jobName)
                         activate job
                         "JobRepository" <-- job : skill

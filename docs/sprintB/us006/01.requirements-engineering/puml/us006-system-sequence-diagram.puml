@@ -13,21 +13,16 @@ participant ":System" as System
 activate Employee
 
     Employee -> System : asks to register a vehicle
+    activate System
 
-    System -> Employee : asks to select vehicle type
-
+    System --> Employee : asks to select vehicle type
+    deactivate System
     Employee -> System : selects vehicle type
-
+activate System
         System --> Employee : requests data (Brand, Model, Vehicle Id, \nTare,Gross Weight, Current Km, Register Date, \nAcquisition Date, Maintenance/Checkup Frequency)
     deactivate System
 
     Employee -> System : types the data
-    activate System
-
-        System --> Employee : requests confirmation
-    deactivate System
-
-    Employee -> System : confirms data
     activate System
 
         System --> Employee : displays operation success

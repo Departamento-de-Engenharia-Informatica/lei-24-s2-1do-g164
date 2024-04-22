@@ -18,16 +18,12 @@ activate Employee
     System --> Employee : requests data (type a skill name)
     deactivate System
 
-    Employee -> System : types skill name
+    Employee -> System : types skill name and confirms
     activate System
 
-    Employee <-- System : requests confirmation
-    deactivate System
 
-    Employee -> System : confirms
-    activate System
 
-    System --> Employee : displays status of operation message (ie: "skill added to list")
+    System --> Employee : displays status of operation \nmessage (ie: "skill added to list")
     deactivate System
 
 @enduml

@@ -21,29 +21,19 @@ activate Employee
     Employee -> System : selects a job
     activate System
 
-    System --> Employee : requests data (name, birthday, admission date, address, cellphone \nnumber, e-mail)
-    deactivate System
-
-    Employee -> System : types data
-    activate System
-
-        System --> Employee : shows the  id document types and asks to select one
+System --> Employee : shows the  id document types and asks to select one
     deactivate System
 
     Employee -> System : selects an id document type
         activate System
 
-            System --> Employee : requests id document's number
-        deactivate System
+    System --> Employee : requests data (id document's number, name, birthday, admission date, address, cellphone \nnumber, e-mail)
+    deactivate System
 
-    Employee -> System : types number
-        activate System
-
-            System --> Employee : shows all data and requests confirmation
-        deactivate System
-
-    Employee -> System : confirms data
+    Employee -> System : types data
     activate System
+
+
 
     System --> Employee : displays operation success
     deactivate System

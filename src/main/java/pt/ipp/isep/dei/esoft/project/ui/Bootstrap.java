@@ -1,13 +1,10 @@
 package pt.ipp.isep.dei.esoft.project.ui;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
-import pt.ipp.isep.dei.esoft.project.domain.Employee;
+import pt.ipp.isep.dei.esoft.project.domain.SystemUser;
 import pt.ipp.isep.dei.esoft.project.domain.Organization;
 import pt.ipp.isep.dei.esoft.project.domain.TaskCategory;
-import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
-import pt.ipp.isep.dei.esoft.project.repository.OrganizationRepository;
-import pt.ipp.isep.dei.esoft.project.repository.Repositories;
-import pt.ipp.isep.dei.esoft.project.repository.TaskCategoryRepository;
+import pt.ipp.isep.dei.esoft.project.repository.*;
 
 public class Bootstrap implements Runnable {
 
@@ -16,6 +13,7 @@ public class Bootstrap implements Runnable {
         addTaskCategories();
         addOrganization();
         addUsers();
+        addJobs();
     }
 
     private void addOrganization() {
@@ -23,8 +21,9 @@ public class Bootstrap implements Runnable {
         //get organization repository
         OrganizationRepository organizationRepository = Repositories.getInstance().getOrganizationRepository();
         Organization organization = new Organization("This Company");
-        organization.addEmployee(new Employee("admin@this.app"));
-        organization.addEmployee(new Employee("employee@this.app"));
+        organization.addEmployee(new SystemUser("admin@this.app"));
+        organization.addEmployee(new SystemUser("employee@this.app"));
+        organization.addEmployee(new SystemUser("t@t.tt"));
         organizationRepository.add(organization);
     }
 
@@ -52,7 +51,17 @@ public class Bootstrap implements Runnable {
         authenticationRepository.addUserWithRole("Main Administrator", "admin@this.app", "admin",
                 AuthenticationController.ROLE_ADMIN);
 
+        authenticationRepository.addUserWithRole("Tester Administrator", "t@t.tt", "t",
+                AuthenticationController.ROLE_ADMIN);
+
         authenticationRepository.addUserWithRole("Employee", "employee@this.app", "pwd",
                 AuthenticationController.ROLE_EMPLOYEE);
+    }
+
+    public void addJobs(){
+        JobRepository jobRepository = Repositories.getInstance().getJobRepository();
+        jobRepository.registerJob("Mecanico");
+        jobRepository.registerJob("caloiro");
+        jobRepository.registerJob("barbeiro");
     }
 }

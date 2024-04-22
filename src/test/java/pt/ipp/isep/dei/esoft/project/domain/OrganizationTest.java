@@ -84,15 +84,15 @@ class OrganizationTest {
     void testThatCreateTaskWorks() {
         Organization organization = new Organization("123456789");
 
-        Employee employee = new Employee("john.doe@this.company.com");
+        SystemUser systemUser = new SystemUser("john.doe@this.company.com");
         TaskCategory taskCategory = new TaskCategory("Task Category Description");
 
         Task expected = new Task("Task Description", "Task Category Description", "informal description",
-                "technical description", 1, 1d, taskCategory, employee);
+                "technical description", 1, 1d, taskCategory, systemUser);
 
         Optional<Task> task =
                 organization.createTask("Task Description", "Task Category Description", "informal description",
-                        "technical description", 1, 1d, taskCategory, employee);
+                        "technical description", 1, 1d, taskCategory, systemUser);
 
         assertNotNull(task);
         assertTrue(task.isPresent());
@@ -103,17 +103,17 @@ class OrganizationTest {
     void ensureAddingDuplicateTaskFails() {
         //Arrange
         Organization organization = new Organization("123456789");
-        Employee employee = new Employee("john.doe@this.company.com");
+        SystemUser systemUser = new SystemUser("john.doe@this.company.com");
         TaskCategory taskCategory = new TaskCategory("Task Category Description");
         //Add the first task
         Optional<Task> originalTask =
                 organization.createTask("Task Description", "Task Category Description", "informal description",
-                        "technical description", 1, 1d, taskCategory, employee);
+                        "technical description", 1, 1d, taskCategory, systemUser);
 
         //Act
         Optional<Task> duplicateTask =
                 organization.createTask("Task Description", "Task Category Description", "informal description",
-                        "technical description", 1, 1d, taskCategory, employee);
+                        "technical description", 1, 1d, taskCategory, systemUser);
 
         //Assert
         assertTrue(duplicateTask.isEmpty());
@@ -123,58 +123,58 @@ class OrganizationTest {
     @Test
     void ensureEmploysFails() {
         Organization organization = new Organization("123456789");
-        Employee employee = new Employee("john.doe@this.company.com");
+        SystemUser systemUser = new SystemUser("john.doe@this.company.com");
 
-        assertFalse(organization.employs(employee));
+        assertFalse(organization.employs(systemUser));
 
     }
 
     @Test
     void ensureEmploysSuccess() {
         Organization organization = new Organization("123456789");
-        Employee employee = new Employee("john.doe@this.company.com");
-        organization.addEmployee(employee);
-        assertTrue(organization.employs(employee));
+        SystemUser systemUser = new SystemUser("john.doe@this.company.com");
+        organization.addEmployee(systemUser);
+        assertTrue(organization.employs(systemUser));
     }
 
     @Test
     void ensureAnyEmployeeHasEmailFails() {
         Organization organization = new Organization("123456789");
-        Employee employee = new Employee("john.doe@this.company.com");
-        organization.addEmployee(employee);
+        SystemUser systemUser = new SystemUser("john.doe@this.company.com");
+        organization.addEmployee(systemUser);
         assertFalse(organization.anyEmployeeHasEmail("jane.doe@this.company.com"));
     }
 
     @Test
     void ensureAnyEmployeeHasEmailWorks() {
         Organization organization = new Organization("123456789");
-        Employee employee = new Employee("john.doe@this.company.com");
-        organization.addEmployee(employee);
+        SystemUser systemUser = new SystemUser("john.doe@this.company.com");
+        organization.addEmployee(systemUser);
         assertTrue(organization.anyEmployeeHasEmail("john.doe@this.company.com"));
     }
 
     @Test
     void ensureAddDuplicateEmployeeFails() {
         Organization organization = new Organization("123456789");
-        Employee employee = new Employee("john.doe@this.company.com");
-        assertTrue(organization.addEmployee(employee));
-        assertFalse(organization.addEmployee(employee));
+        SystemUser systemUser = new SystemUser("john.doe@this.company.com");
+        assertTrue(organization.addEmployee(systemUser));
+        assertFalse(organization.addEmployee(systemUser));
     }
 
     @Test
     void ensureAddEmployeeWorks() {
         Organization organization = new Organization("123456789");
-        Employee employee = new Employee("john.doe@this.company.com");
-        assertTrue(organization.addEmployee(employee));
+        SystemUser systemUser = new SystemUser("john.doe@this.company.com");
+        assertTrue(organization.addEmployee(systemUser));
     }
 
     @Test
     void ensureCloneWorks() {
         Organization organization = new Organization("123456789");
-        Employee employee = new Employee("john.doe@this.company.com");
-        organization.addEmployee(employee);
+        SystemUser systemUser = new SystemUser("john.doe@this.company.com");
+        organization.addEmployee(systemUser);
         organization.createTask("Task Description", "Task Category Description", "informal description",
-                "technical description", 1, 1d, new TaskCategory("Task Category Description"), employee);
+                "technical description", 1, 1d, new TaskCategory("Task Category Description"), systemUser);
 
         Organization clone = organization.clone();
         assertEquals(organization, clone);

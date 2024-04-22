@@ -1,0 +1,82 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam monochrome false
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+skinparam linetype orto
+class Vehicle {
+        brand
+        model
+        vehicleID
+        type
+        tare
+        grossWeight
+        currentKm
+        registerDate
+        acquisitionDate
+        checkupFrequency
+
+}
+
+class VehicleCheckup {
+    currentKms
+    date
+
+}
+
+
+class SystemUser {
+    name
+    email
+    password
+    phone
+}
+
+class VehicleRepository {
+    - ArrayList vehiclesList
+    + VehicleRepository()
+    + getVehiclesRepository()
+    + getVehicles()
+    + getVehiclesNeedingCheckupList()
+}
+
+
+class Repositories {
+    - collaboratorRepository
+    - vehicleRepository
+    - skillRepository
+    - jobRepository
+
+    - Repositories()
+    + getInstance()
+    + getCollaboratorRepository()
+    + getVehicleRepository()
+    + getSkillRepository()
+    + getJobRepository()
+
+}
+
+
+class ListVehivclesCheckupsController {
+-VehicleRepository
+  + getVehiclesNeedingCheckupList()
+
+}
+
+
+
+ListVehiclesCheckupsUI .> ListVehivclesCheckupsController
+
+
+Repositories -->"1" VehicleRepository
+Repositories -> Repositories : instance
+ListVehivclesCheckupsController ..> Repositories : repositories
+Vehicle "*" <-- "1" VehicleRepository : has
+
+
+FM "1" - "*" Vehicle : registers >
+Vehicle "1   " -- "0..*                        " VehicleCheckup : registers >
+FM "           1 " - "0..*   " VehicleCheckup : requests >
+SystemUser <|- FM
+@enduml

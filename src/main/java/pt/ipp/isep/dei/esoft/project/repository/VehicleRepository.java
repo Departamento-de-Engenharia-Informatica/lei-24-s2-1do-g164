@@ -14,7 +14,8 @@ public class VehicleRepository implements Serializable {
         return vehicleList;
     }
 
-    public boolean registerVehicle(Vehicle vehicle){
+    public boolean registerVehicle(String brand, String model, String vehicleID, VehicleTypeRepository type, double grossWeight, double tare, int currentKm, String registerDate, String acquisitionDate, int checkupFrequency){
+        Vehicle vehicle = new Vehicle(brand, model, vehicleID, type, grossWeight, tare, currentKm, registerDate, acquisitionDate, checkupFrequency);
         if (validateVehicle(vehicle)){
 
             vehicleList.add(vehicle);

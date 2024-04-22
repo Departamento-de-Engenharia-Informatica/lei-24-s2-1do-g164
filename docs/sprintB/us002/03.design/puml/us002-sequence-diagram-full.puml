@@ -12,6 +12,7 @@ participant ":RegisterJobController" as CTRL
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT
 participant "jobRepository:\nJobRepository" as JobRepository
+participant "job:Job" as job
 
 activate ADM
 
@@ -48,15 +49,23 @@ activate ADM
                 CTRL -> PLAT : getJobRepository()
                 activate PLAT
 
-                    PLAT --> CTRL : jobRepository
+                    PLAT --> CTRL : JobRepository
                 deactivate PLAT
 
                 CTRL -> JobRepository : registerJob(jobName)
                 activate JobRepository
 
-                JobRepository -> JobRepository : validateJob(jobName)
-                activate JobRepository
-                deactivate JobRepository
+
+                        JobRepository -> JobRepository : jobAlreadyExists(jobName)
+                        activate JobRepository
+                        deactivate JobRepository
+                        "JobRepository" -> job : Job(jobName)
+                        activate job
+                        "JobRepository" <-- job : skill
+                        deactivate job
+                        JobRepository -> JobRepository : registerSkill(skill)
+                        activate JobRepository
+                        deactivate JobRepository
 
 
                     JobRepository --> CTRL : status of creation

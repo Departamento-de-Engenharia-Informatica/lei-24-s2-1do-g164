@@ -10,12 +10,21 @@ public class Repositories implements Serializable {
     private final CollaboratorRepository collaboratorRepository;
     private final VehicleRepository vehicleRepository;
     private final SkillRepository skillRepository;
+    private final TaskCategoryRepository taskCategoryRepository;
+    private final AuthenticationRepository authenticationRepository;
+    private  final JobRepository jobRepository;
+    private final OrganizationRepository organizationRepository;
+
 
 
     private Repositories(){
+        jobRepository = new JobRepository();
         collaboratorRepository = new CollaboratorRepository();
         vehicleRepository = new VehicleRepository();
         skillRepository = new SkillRepository();
+        taskCategoryRepository = new TaskCategoryRepository();
+        authenticationRepository = new AuthenticationRepository();
+        organizationRepository = new OrganizationRepository();
     }
 
     public static Repositories getInstance() {
@@ -37,5 +46,20 @@ public class Repositories implements Serializable {
 
     public SkillRepository getSkillRepository() {
         return skillRepository;
+    }
+
+    public JobRepository getJobRepository() {
+        return jobRepository;
+    }
+
+    public AuthenticationRepository getAuthenticationRepository(){
+        return authenticationRepository;
+    }
+
+    public TaskCategoryRepository getTaskCategoryRepository() {
+        return taskCategoryRepository;
+    }
+    public OrganizationRepository getOrganizationRepository() {
+        return organizationRepository;
     }
 }

@@ -15,7 +15,7 @@ participant "vehicleRepository:\nVehicleRepository" as VehicleRepository
 
 activate ADM
 
-        ADM -> UI : asks to register a new job
+        ADM -> UI : asks to register a new vehicle
 
         activate UI
 
@@ -26,7 +26,7 @@ activate ADM
             UI --> ADM : requests data
         deactivate UI
 
-    ADM -> UI : types requested data (job name)
+    ADM -> UI : types requested data (brand, model, vehicleID, type, tare,\n grossWeight, currentKm, registerDate,\n acquisitionDate, checkupFrequency)
     activate UI
 
         UI --> ADM : requests confirmation
@@ -35,8 +35,10 @@ activate ADM
     ADM -> UI : confirms
     activate UI
 
-        UI -> CTRL : createVehicle(brand, model, vehicleID, type, tare,\n grossWeight, currentKm, registerDate,\n acquisitionDate, checkupFrequency)
+        UI -> CTRL : registerVehicle(brand, model, vehicleID, type, tare,\n grossWeight, currentKm, registerDate,\n acquisitionDate, checkupFrequency)
+        deactivate UI
         activate CTRL
+
 
 
                 CTRL -> RepositorySingleton : getInstance()
@@ -51,17 +53,18 @@ activate ADM
                     PLAT --> CTRL : vehicleRepository
                 deactivate PLAT
 
-                CTRL -> VehicleRepository : createVehicle(brand, model, vehicleID, type, tare,\n grossWeight, currentKm, registerDate,\n acquisitionDate, checkupFrequency)
+                CTRL -> VehicleRepository : registerVehicle(brand, model, vehicleID, type, tare,\n grossWeight, currentKm, registerDate,\n acquisitionDate, checkupFrequency)
                 activate VehicleRepository
 
-                VehicleRepository -> VehicleRepository : validateVehicle(vehicleID)
-                activate VehicleRepository
-                deactivate VehicleRepository
 
 
-                    VehicleRepository --> CTRL : status of creation
+
+                    VehicleRepository --> CTRL : success
+
                 deactivate VehicleRepository
-                    CTRL --> UI : status of creation
+
+                    CTRL --> UI : success
+                    deactivate CTRL
                     UI --> ADM : shows operation status
                     deactivate UI
             deactivate CTRL

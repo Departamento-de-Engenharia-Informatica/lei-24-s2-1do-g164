@@ -8,8 +8,8 @@ public class Skill {
         this.skillName = skillName;
     }
 
-    public boolean equals(Skill o) {
-        return skillName.equals(o.getSkillName());
+    public boolean equals(String skillName) {
+        return this.skillName.equals(skillName);
     }
 
     public String getSkillName() {

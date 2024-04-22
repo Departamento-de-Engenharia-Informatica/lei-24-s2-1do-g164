@@ -13,7 +13,7 @@ skinparam packageStyle rectangle
     participant "repositories\n:Repositories" as PLAT
     participant "jobRepository:\njobRepository" as SkillRepository
     participant "collaboratorRepository:\nCollaboratorRepository" as collaboratorRepository
-        participant "sd"
+    participant "DocumentTypeRepository" as DocumentTypeRepository
     activate HRM
 
             HRM -> UI : asks to register a collaborator
@@ -25,6 +25,7 @@ skinparam packageStyle rectangle
                 UI -> CTRL** : create
 
                 UI -> CTRL : getJobs()
+                deactivate UI
                 activate CTRL
 
                     CTRL -> RepositorySingleton : getInstance()
@@ -46,6 +47,8 @@ skinparam packageStyle rectangle
                     deactivate collaboratorRepository
 
                     CTRL --> UI : JobsList
+                    deactivate RepositorySingleton
+                    activate UI
                 deactivate CTRL
 
                 UI --> HRM : shows job list and requests to select \none job for the new collaborator
@@ -57,9 +60,27 @@ skinparam packageStyle rectangle
         deactivate UI
         HRM -> UI : enters requested data
         activate UI
-        UI ->
+        UI -> CTRL : getDocumentTypeList()
+        deactivate UI
+        activate CTRL
+        CTRL -> DocumentTypeRepository : getDocumentTypeList()
 
-           UI -> CTRL : registerCollabor()
+        activate "DocumentTypeRepository"
+        deactivate UI
+        DocumentTypeRepository -> CTRL : DocumentTypeRepository.values()
+        deactivate DocumentTypeRepository
+                CTRL -> UI : documentTypeList
+
+        deactivate CTRL
+        activate UI
+
+        UI -> HRM : shows document type list and asks to select one
+        deactivate UI
+        HRM -> UI : selects document type
+        activate UI
+
+           UI -> CTRL : registerCollaborator(name, phone, birthDate, admissionDate,\n address, idDocumentNumber, job, idDocumentType)
+               deactivate UI
                activate CTRL
                  CTRL -> RepositorySingleton : getInstance()
                  activate RepositorySingleton
@@ -71,14 +92,17 @@ skinparam packageStyle rectangle
                    PLAT --> CTRL : collaboratorRepository
                  deactivate PLAT
 
-                 CTRL -> SkillRepository : registerCollabor()
-                 activate SkillRepository
-                   SkillRepository --> CTRL : status of registration message
-                 deactivate SkillRepository
-                 CTRL --> UI : status of registration message
+                 CTRL -> collaboratorRepository : registerCollaborator(name, phone, birthDate, admissionDate,\n address, idDocumentNumber, job, idDocumentType)
+                 activate collaboratorRepository
+
+
+                   collaboratorRepository --> CTRL : success
+                 deactivate collaboratorRepository
+                 CTRL --> UI : success
+                 activate UI
                deactivate CTRL
 
-              UI --> HRM : shows status message
+              UI --> HRM : shows sucess message
                           deactivate UI
 
 

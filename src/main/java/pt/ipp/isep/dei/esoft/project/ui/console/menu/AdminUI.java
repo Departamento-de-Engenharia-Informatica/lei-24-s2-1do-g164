@@ -3,10 +3,7 @@ package pt.ipp.isep.dei.esoft.project.ui.console.menu;
 
 import pt.ipp.isep.dei.esoft.project.repository.JobRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
-import pt.ipp.isep.dei.esoft.project.ui.console.CreateTaskUI;
-import pt.ipp.isep.dei.esoft.project.ui.console.RegisterCollaboratorUI;
-import pt.ipp.isep.dei.esoft.project.ui.console.RegisterSkillUI;
-import pt.ipp.isep.dei.esoft.project.ui.console.ShowTextUI;
+import pt.ipp.isep.dei.esoft.project.ui.console.*;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
 import java.util.ArrayList;
@@ -27,6 +24,7 @@ public class AdminUI implements Runnable {
         options.add(new MenuItem("Option 2", new ShowTextUI("You have chosen Option 2.")));
         options.add(new MenuItem("Register Collaborator", new RegisterCollaboratorUI()));
         options.add(new MenuItem("Option 4", new ShowTextUI("You have chosen Option 4.")));
+        options.add(new MenuItem("Create Team Proposal", new CreateTeamProposalUI()));
 
         int option = 0;
         do {

@@ -1,10 +1,10 @@
 package pt.ipp.isep.dei.esoft.project.ui;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
-import pt.ipp.isep.dei.esoft.project.domain.SystemUser;
-import pt.ipp.isep.dei.esoft.project.domain.Organization;
-import pt.ipp.isep.dei.esoft.project.domain.TaskCategory;
+import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.*;
+
+import java.util.ArrayList;
 
 public class Bootstrap implements Runnable {
 
@@ -14,6 +14,8 @@ public class Bootstrap implements Runnable {
         addOrganization();
         addUsers();
         addJobs();
+        addSkills();
+        addCollaborators();
     }
 
     private void addOrganization() {
@@ -56,6 +58,35 @@ public class Bootstrap implements Runnable {
 
         authenticationRepository.addUserWithRole("Employee", "employee@this.app", "pwd",
                 AuthenticationController.ROLE_EMPLOYEE);
+    }
+
+    private void addCollaborators() {
+        JobRepository jobRepository = Repositories.getInstance().getJobRepository();
+        CollaboratorRepository collaboratorRepository = Repositories.getInstance().getCollaboratorRepository();
+
+        var skills = Repositories.getInstance().getSkillRepository().getSkillList();
+
+        var skills1 = new ArrayList<Skill>();
+        skills1.add(skills.get(0));
+        skills1.add(skills.get(1));
+
+        collaboratorRepository.registerCollaborator("Marco", 913456123, "04/07/2001",
+                "05/08/2020", "Rua das Aves", 123456789, new Job("Pintor"),
+                DocumentTypeRepository.ID_CARD, skills1);
+
+        var skills2 = new ArrayList<Skill>();
+        skills2.add(skills.get(1));
+        skills2.add(skills.get(2));
+
+        collaboratorRepository.registerCollaborator("Ana", 987456765, "08/10/2002",
+                "08/08/2021", "Rua das Aves", 789867899, new Job("Videografo"),
+                DocumentTypeRepository.ID_CARD, skills2);
+    }
+    public void addSkills(){
+        SkillRepository skillRepository = Repositories.getInstance().getSkillRepository();
+        skillRepository.registerSkill("Pintura");
+        skillRepository.registerSkill("Cozinha");
+        skillRepository.registerSkill("Videografia");
     }
 
     public void addJobs(){

@@ -1,14 +1,13 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
-import pt.ipp.isep.dei.esoft.project.domain.Collaborator;
-import pt.ipp.isep.dei.esoft.project.domain.Job;
-import pt.ipp.isep.dei.esoft.project.domain.Skill;
-import pt.ipp.isep.dei.esoft.project.domain.Vehicle;
+import pt.ipp.isep.dei.esoft.project.domain.*;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 
 public class CollaboratorRepository implements Serializable {
@@ -20,6 +19,20 @@ public class CollaboratorRepository implements Serializable {
 
     public boolean registerCollaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentTypeRepository idDocumentType) {
         Collaborator collaborator = new Collaborator(name, phone, birthdate, admissionDate, address, idDocumentNumber, job, idDocumentType);
+        if (!collaboratorAlreadyExists(collaborator)) {
+            collaboratorList.add(collaborator);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean registerCollaborator(String name, int phone, String birthdate, String admissionDate, String address,
+                                        int idDocumentNumber, Job job, DocumentTypeRepository idDocumentType,
+                                        ArrayList<Skill> skills) {
+        Collaborator collaborator = new Collaborator(name, phone, birthdate, admissionDate, address, idDocumentNumber,
+                job, idDocumentType, skills);
+
         if (!collaboratorAlreadyExists(collaborator)) {
             collaboratorList.add(collaborator);
             return true;
@@ -70,4 +83,28 @@ public class CollaboratorRepository implements Serializable {
         }
         return collaboratorsWithSkill;
   }
+
+//  public ArrayList<Collaborator> getCollaboratorsBySkills(List<Skill> skills){
+//      ArrayList<Collaborator> selectedCollaborators = new ArrayList<>();
+//      for(Collaborator c : collaboratorList) {
+//          for (Skill s : skills) {
+//              if (c.getSkills().contains(s) && !selectedCollaborators.contains(c)) {
+//                  selectedCollaborators.add(c);
+//              }
+//          }
+//      }
+//  }
+
+    public ArrayList<Collaborator> getDeactivatedCollaboratorsBySkill(Skill skill){
+        ArrayList<Collaborator> selectedCollaborators = new ArrayList<>();
+        for(Collaborator c : this.collaboratorList) {
+            if (c.getSkills().contains(skill) && c.getStatus() == CollaboratorStatus.DEACTIVATED){
+                selectedCollaborators.add(c);
+            }
+        }
+
+        return selectedCollaborators;
+    }
+
+
 }

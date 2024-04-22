@@ -14,7 +14,9 @@ public class Collaborator {
     private DocumentTypeRepository idDocumentType;
     private int idDocumentNumber;
     private ArrayList<Skill> skills;
-    public Collaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentTypeRepository idDocumentType) {
+    private CollaboratorStatus status;
+    public Collaborator(String name, int phone, String birthdate, String admissionDate, String address,
+                        int idDocumentNumber, Job job, DocumentTypeRepository idDocumentType) {
         this.name = name;
         this.phone = phone;
         this.birthdate = birthdate;
@@ -23,6 +25,19 @@ public class Collaborator {
         this.idDocumentNumber = idDocumentNumber;
         this.job = job;
         this.skills = new ArrayList<>();
+        this.status = CollaboratorStatus.DEACTIVATED;
+    }
+
+    public Collaborator(String name, int phone, String birthdate, String admissionDate, String address,
+                        int idDocumentNumber, Job job, DocumentTypeRepository idDocumentType, ArrayList<Skill> skills) {
+        this.name = name;
+        this.phone = phone;
+        this.birthdate = birthdate;
+        this.admissionDate = admissionDate;
+        this.address = address;
+        this.idDocumentNumber = idDocumentNumber;
+        this.job = job;
+        this.skills = skills;
     }
     public String getName() {
         return name;
@@ -56,6 +71,9 @@ public class Collaborator {
         return skills;
     }
 
+    public CollaboratorStatus getStatus() {
+        return this.getStatus();
+    }
     public boolean alreadyHasSkill(Skill skill){
         for(Skill s : this.skills){
             if(s.equals(skill)){
@@ -70,6 +88,9 @@ public class Collaborator {
 
     public void addSkill(Skill s){
         this.skills.add(s);
+    }
+    public void activateCollaborator() {
+        this.status = CollaboratorStatus.ACTIVATED;
     }
 }
 

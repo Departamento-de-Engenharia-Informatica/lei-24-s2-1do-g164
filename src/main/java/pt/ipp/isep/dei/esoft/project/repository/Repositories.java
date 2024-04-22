@@ -8,6 +8,11 @@ public class Repositories implements Serializable {
 
     private static Repositories instance;
     private final CollaboratorRepository collaboratorRepository;
+
+    private final TeamRepository teamRepository;
+
+
+
     private final VehicleRepository vehicleRepository;
     private final SkillRepository skillRepository;
     private final TaskCategoryRepository taskCategoryRepository;
@@ -18,6 +23,7 @@ public class Repositories implements Serializable {
 
 
     private Repositories(){
+        teamRepository = new TeamRepository();
         jobRepository = new JobRepository();
         collaboratorRepository = new CollaboratorRepository();
         vehicleRepository = new VehicleRepository();
@@ -61,5 +67,8 @@ public class Repositories implements Serializable {
     }
     public OrganizationRepository getOrganizationRepository() {
         return organizationRepository;
+    }
+
+    public TeamRepository getTeamRepository() { return teamRepository;
     }
 }

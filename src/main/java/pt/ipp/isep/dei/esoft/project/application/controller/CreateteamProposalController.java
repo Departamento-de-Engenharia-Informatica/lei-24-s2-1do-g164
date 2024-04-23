@@ -16,16 +16,16 @@ import java.util.InputMismatchException;
  * Controller class for creating team proposals.
  */
 public class CreateteamProposalController {
-
-
     private SkillRepository skillRepository;
     private TeamRepository teamRepository;
     private CollaboratorRepository collaboratorRepository;
 
+
+
     public CreateteamProposalController() {
-        skillRepository = Repositories.getInstance().getSkillRepository();
-        collaboratorRepository = Repositories.getInstance().getCollaboratorRepository();
-        teamRepository = Repositories.getInstance().getTeamRepository();
+        this.skillRepository = Repositories.getInstance().getSkillRepository();
+        this.collaboratorRepository = Repositories.getInstance().getCollaboratorRepository();
+        this.teamRepository = Repositories.getInstance().getTeamRepository();
 
     }
 
@@ -34,7 +34,7 @@ public class CreateteamProposalController {
     }
 
     public Team createTeamProposal(int max, int min, ArrayList<Skill> skills) {
-        return teamRepository.createTeamProposal(min, max, skills);
+       return teamRepository.createTeamProposal(max, min, skills);
     }
 }
 

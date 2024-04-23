@@ -20,10 +20,11 @@ public class TeamRepository implements Serializable {
 
     public Team createTeamProposal(int max, int min, ArrayList<Skill> skills){
 
+        collaboratorRepository = Repositories.getInstance().getCollaboratorRepository();
         var collaborators = new ArrayList<Collaborator>();
 
         for (var s : skills) {
-            var collaboratorsBySkill = this.collaboratorRepository.getDeactivatedCollaboratorsBySkill(skills);
+            var collaboratorsBySkill = collaboratorRepository.getDeactivatedCollaboratorsBySkill(skills);
 
             if (collaboratorsBySkill.size() == 0){
                 var errorMessage = new StringBuilder();

@@ -62,26 +62,49 @@ public class Bootstrap implements Runnable {
     }
 
     private void addCollaborators() {
+
+
         JobRepository jobRepository = Repositories.getInstance().getJobRepository();
         CollaboratorRepository collaboratorRepository = Repositories.getInstance().getCollaboratorRepository();
+        SkillRepository skillRepository = Repositories.getInstance().getSkillRepository();
 
-        var skills = Repositories.getInstance().getSkillRepository().getSkillList();
+        ArrayList<Skill> skills = skillRepository.getSkillList();
 
-        var skills1 = new ArrayList<Skill>();
-        skills1.add(skills.get(0));
-        skills1.add(skills.get(1));
 
-        collaboratorRepository.registerCollaborator("Marco", 913456123, "04/07/2001",
-                "05/08/2020", "Rua das Aves", 123456789, new Job("Pintor"),
-                DocumentTypeRepository.ID_CARD);
+        collaboratorRepository.registerCollaborator("Marco", 913456123, "04-07-2001",
+                "05-08-2020", "Rua das Aves", 12345678, new Job("Trail Steward"),
+                DocumentTypeRepository.ID_CARD, CollaboratorStatus.DEACTIVATED);
 
-        var skills2 = new ArrayList<Skill>();
-        skills2.add(skills.get(1));
-        skills2.add(skills.get(2));
 
-        collaboratorRepository.registerCollaborator("Ana", 987456765, "08/10/2002",
-                "08/08/2021", "Rua das Aves", 789867899, new Job("Videografo"),
-                DocumentTypeRepository.ID_CARD);
+        ArrayList<Skill> marcoSkills = new ArrayList<>();
+        marcoSkills.add(skillRepository.getSkillList().get(0));
+        marcoSkills.add(skillRepository.getSkillList().get(1));
+
+        collaboratorRepository.assignSkills(collaboratorRepository.getCollaboratorList().get(0), marcoSkills);
+
+
+        collaboratorRepository.registerCollaborator("Ana", 987456765, "08-10-2002",
+                "08-08-2021", "Rua das Aves", 78986789, new Job("Arborist"),
+                DocumentTypeRepository.ID_CARD, CollaboratorStatus.DEACTIVATED);
+
+
+        ArrayList<Skill> anaSkills = new ArrayList<>();
+        anaSkills.add(skillRepository.getSkillList().get(2));
+        marcoSkills.add(skillRepository.getSkillList().get(3));
+
+        collaboratorRepository.assignSkills(collaboratorRepository.getCollaboratorList().get(1), anaSkills);
+
+        collaboratorRepository.registerCollaborator("Ambrosio", 937996795, "08-10-2002",
+                "08-08-2021", "Rua das Aves", 54946780, new Job("Park Ranger"),
+                DocumentTypeRepository.ID_CARD, CollaboratorStatus.DEACTIVATED);
+
+
+        ArrayList<Skill> ambrosioSkills = new ArrayList<>();
+        ambrosioSkills.add(skillRepository.getSkillList().get(2));
+        marcoSkills.add(skillRepository.getSkillList().get(4));
+
+        collaboratorRepository.assignSkills(collaboratorRepository.getCollaboratorList().get(2), ambrosioSkills);
+
     }
 
     public void addJobs(){

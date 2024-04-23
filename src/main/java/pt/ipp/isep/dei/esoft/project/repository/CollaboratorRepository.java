@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.domain.Collaborator;
-import pt.ipp.isep.dei.esoft.project.domain.CollaboratorStatus;
 import pt.ipp.isep.dei.esoft.project.domain.Job;
 import pt.ipp.isep.dei.esoft.project.domain.Skill;
 
@@ -39,8 +38,8 @@ public class CollaboratorRepository implements Serializable {
      * @param idDocumentType   The ID document type repository of the collaborator.
      * @return {@code true} if the collaborator is successfully registered, {@code false} otherwise.
      */
-    public boolean registerCollaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentTypeRepository idDocumentType) {
-        Collaborator collaborator = new Collaborator(name, phone, birthdate, admissionDate, address, idDocumentNumber, job, idDocumentType);
+    public boolean registerCollaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentTypeRepository idDocumentType, CollaboratorStatus status) {
+        Collaborator collaborator = new Collaborator(name, phone, birthdate, admissionDate, address, idDocumentNumber, job, idDocumentType, status);
         if (collaboratorIsUnique(collaborator) && isValidName(name) && isValidPhone(phone) && isValidDateFormat(admissionDate) && isValidDateFormat(birthdate)) {
             collaboratorList.add(collaborator);
             return true;

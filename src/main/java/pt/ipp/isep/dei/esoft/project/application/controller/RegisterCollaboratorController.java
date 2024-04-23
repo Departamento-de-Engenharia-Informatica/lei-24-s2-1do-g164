@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
-import pt.ipp.isep.dei.esoft.project.domain.Collaborator;
+import pt.ipp.isep.dei.esoft.project.repository.CollaboratorStatus;
 import pt.ipp.isep.dei.esoft.project.domain.Job;
 import pt.ipp.isep.dei.esoft.project.repository.DocumentTypeRepository;
 import pt.ipp.isep.dei.esoft.project.repository.JobRepository;
@@ -40,7 +40,7 @@ public class RegisterCollaboratorController {
      * @return {@code true} if the collaborator is successfully registered, {@code false} otherwise.
      */
     public boolean registerCollaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentTypeRepository idDocumentType) {
-        return collaboratorRepository.registerCollaborator(name, phone, birthdate, admissionDate, address, idDocumentNumber, job, idDocumentType);
+        return collaboratorRepository.registerCollaborator(name, phone, birthdate, admissionDate, address, idDocumentNumber, job, idDocumentType, getCollaboratorStatusList().get(1) );
     }
 
     private CollaboratorRepository getCollaboratorRepository() {
@@ -76,4 +76,9 @@ public class RegisterCollaboratorController {
     public ArrayList<DocumentTypeRepository> getDocTypesList() {
         return new ArrayList<>(Arrays.asList(DocumentTypeRepository.values()));
     }
+
+    public ArrayList<CollaboratorStatus> getCollaboratorStatusList() {
+        return new ArrayList<>(Arrays.asList(CollaboratorStatus.values()));
+    }
+
 }

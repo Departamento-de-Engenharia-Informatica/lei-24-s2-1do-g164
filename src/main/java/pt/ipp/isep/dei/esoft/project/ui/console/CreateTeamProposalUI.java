@@ -15,52 +15,34 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * CreateTeamProposalUI class.
- * Provides a console-based user interface for creating team proposals.
- */
+
 public class CreateTeamProposalUI implements Runnable {
 
     private final CreateteamProposalController controller;
     private final SkillRepository skillRepository;
 
-    /**
-     * Constructor for CreateTeamProposalUI.
-     * Initializes the controller and skill repository.
-     */
+
     public CreateTeamProposalUI() {
         controller = new CreateteamProposalController();
         skillRepository = Repositories.getInstance().getSkillRepository();
     }
 
-    /**
-     * Retrieves the controller associated with this UI.
-     *
-     * @return The CreateteamProposalController instance.
-     */
     private CreateteamProposalController getController() {
         return controller;
     }
 
-    /**
-     * Redirects the user to the HRM user interface.
-     */
     private void redirectToHrmUI() {
         MenuItem item = new MenuItem(AuthenticationController.ROLE_HRM, new HrmUI());
         item.run();
     }
 
-    /**
-     * Runs the CreateTeamProposalUI.
-     * Displays available skills, prompts the user to specify team size and required skills,
-     * and creates a team proposal based on the input.
-     */
+
     @Override
     public void run() {
-        System.out.println("\n\n--- Register Job----------------------");
+        System.out.println("\n\n----------- Register Job----------------------");
         int max = requestMaxSize();
         int min = requestMinSize();
-        List<Skill> availableSkills = skillRepository.getSkillList();
+        ArrayList<Skill> availableSkills = skillRepository.getSkillList();
         displayAvailableSkills(availableSkills);
         ArrayList<Skill> skills = requestSkills(availableSkills);
 
@@ -73,33 +55,21 @@ public class CreateTeamProposalUI implements Runnable {
         }
     }
 
-    /**
-     * Prompts the user to enter the maximum size of the team.
-     *
-     * @return The maximum size of the team entered by the user.
-     */
+
     private int requestMaxSize() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Maximum size of the team: ");
         return sc.nextInt();
     }
 
-    /**
-     * Prompts the user to enter the minimum size of the team.
-     *
-     * @return The minimum size of the team entered by the user.
-     */
+
     private int requestMinSize() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Minimum size of the team: ");
         return sc.nextInt();
     }
 
-    /**
-     * Displays the available skills to the user.
-     *
-     * @param skills The list of available skills.
-     */
+
     private void displayAvailableSkills(List<Skill> skills) {
         System.out.println("\nAvailable skills:");
         for (int i = 0; i < skills.size(); i++) {
@@ -107,13 +77,7 @@ public class CreateTeamProposalUI implements Runnable {
         }
     }
 
-    /**
-     * Prompts the user to select the skills they want to add to the team proposal.
-     *
-     * @param skills The list of available skills.
-     * @return The list of skills selected by the user.
-     */
-    private ArrayList<Skill> requestSkills(List<Skill> skills) {
+    private ArrayList<Skill> requestSkills(ArrayList<Skill> skills) {
         Scanner input = new Scanner(System.in);
         ArrayList<Skill> selectedSkills = new ArrayList<>();
 
@@ -143,4 +107,7 @@ public class CreateTeamProposalUI implements Runnable {
 
         return selectedSkills;
     }
-}
+
+
+    }
+

@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.domain.Collaborator;
-import pt.ipp.isep.dei.esoft.project.domain.Job;
 import pt.ipp.isep.dei.esoft.project.domain.Skill;
 import pt.ipp.isep.dei.esoft.project.repository.*;
 
@@ -41,7 +40,7 @@ public class AssignSkillsController {
         return skillRepository.getSkillList();
     }
     public boolean assignSkills(Collaborator collaborator , ArrayList<Skill> skillsList){
-        return collaboratorRepository.assignSkill(collaborator,skillsList);
+        return collaboratorRepository.assignSkills(collaborator,skillsList);
     }
 }
 

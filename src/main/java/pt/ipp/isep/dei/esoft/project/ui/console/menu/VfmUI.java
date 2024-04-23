@@ -3,10 +3,7 @@ package pt.ipp.isep.dei.esoft.project.ui.console.menu;
 
 import pt.ipp.isep.dei.esoft.project.repository.JobRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
-import pt.ipp.isep.dei.esoft.project.ui.console.CreateTaskUI;
-import pt.ipp.isep.dei.esoft.project.ui.console.RegisterCollaboratorUI;
-import pt.ipp.isep.dei.esoft.project.ui.console.RegisterSkillUI;
-import pt.ipp.isep.dei.esoft.project.ui.console.ShowTextUI;
+import pt.ipp.isep.dei.esoft.project.ui.console.*;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
 import java.util.ArrayList;
@@ -22,7 +19,7 @@ public class VfmUI implements Runnable {
 
     public void run() {
         List<MenuItem> options = new ArrayList<MenuItem>();
-        options.add(new MenuItem("Register New Skill", new RegisterSkillUI()));
+        options.add(new MenuItem("Register New Vehicle", new RegisterVehicleUI()));
         options.add(new MenuItem("Create Task", new CreateTaskUI()));
         options.add(new MenuItem("Option 2", new ShowTextUI("You have chosen Option 2.")));
         options.add(new MenuItem("Register Collaborator", new RegisterCollaboratorUI()));
@@ -30,7 +27,7 @@ public class VfmUI implements Runnable {
 
         int option = 0;
         do {
-            option = Utils.showAndSelectIndex(options, "\n\n--- ADMIN MENU -------------------------");
+            option = Utils.showAndSelectIndex(options, "\n\n--- VFM MENU -------------------------");
 
             if ((option >= 0) && (option < options.size())) {
                 options.get(option).run();

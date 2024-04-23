@@ -1,7 +1,10 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
+import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.repository.SkillRepository;
+import pt.ipp.isep.dei.esoft.project.ui.console.menu.HrmUI;
+import pt.ipp.isep.dei.esoft.project.ui.console.menu.MenuItem;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -40,11 +43,20 @@ public class RegisterSkillController {
      */
     public boolean registerSkillsFromFile(String filePath) {
         ArrayList<String> skillsToAdd = readSkillsFromFile(filePath);
+        ArrayList<String> skillsAdded = new ArrayList<>();
         boolean success = false;
 
         for (String skillName : skillsToAdd) {
             if (registerSkill(skillName)) {
+                skillsAdded.add(skillName);
                 success = true;
+            }
+        }
+
+        if (success){
+            System.out.println("\n---SKILLS ADDED-----------------------");
+            for(String s : skillsAdded){
+                System.out.println("\nNew skill: " + s);
             }
         }
 
@@ -75,11 +87,20 @@ public class RegisterSkillController {
             } catch (FileNotFoundException e) {
                 System.out.println("\nFile not found: " + filePath);
                 Scanner sc = new Scanner(System.in);
-                System.out.print("\nFile path:");
+                System.out.print("\nFile path (write 0 to cancel):");
                 filePath = sc.next();
+                if (filePath.equals("0")){
+                        redirectToHrmUI();
+                        break;
+                }
             }
         } while (!validPath);
 
         return skillsToAdd;
+    }
+
+    private static void redirectToHrmUI() {
+        MenuItem item = new MenuItem(AuthenticationController.ROLE_HRM, new HrmUI());
+        item.run();
     }
 }

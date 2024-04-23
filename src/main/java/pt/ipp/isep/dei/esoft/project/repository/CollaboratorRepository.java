@@ -41,7 +41,7 @@ public class CollaboratorRepository implements Serializable {
      */
     public boolean registerCollaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentTypeRepository idDocumentType) {
         Collaborator collaborator = new Collaborator(name, phone, birthdate, admissionDate, address, idDocumentNumber, job, idDocumentType);
-        if (collaboratorIsUnique(collaborator) && isValidName(name) && isValidPhone(phone) && isValidDateFormat(admissionDate) && isValidDateFormat(birthdate)) {
+        if (collaboratorIsUnique(collaborator)) {
             collaboratorList.add(collaborator);
             return true;
         } else {
@@ -49,65 +49,6 @@ public class CollaboratorRepository implements Serializable {
         }
     }
 
-    /**
-     * Validates if the provided name is valid (contains only alphabetic characters and spaces).
-     *
-     * @param name The name to validate.
-     * @return {@code true} if the name is valid, {@code false} otherwise.
-     */
-    private static boolean isValidName(String name) {
-        String regex = "^[a-zA-Z ]+$";
-        Pattern p = Pattern.compile(regex);
-
-        if (name == null) {
-            return false;
-        }
-
-        Matcher m = p.matcher(name);
-        System.out.println("name" + m.matches());
-        return m.matches();
-    }
-
-    /**
-     * Validates if the provided phone number is valid (exactly 9 digits).
-     *
-     * @param phone The phone number to validate.
-     * @return {@code true} if the phone number is valid, {@code false} otherwise.
-     */
-    public static boolean isValidPhone(int phone) {
-        String phoneStr = Integer.toString(phone);
-        if (phoneStr.length() == 9) {
-            return isNumeric(phoneStr);
-        } else {
-            return false;
-        }
-    }
-
-    private static boolean isNumeric(String str) {
-        for (char c : str.toCharArray()) {
-            if (!Character.isDigit(c)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
-     * Validates if the provided date string has a valid "DD-MM-YYYY" format.
-     *
-     * @param dateString The date string to validate.
-     * @return {@code true} if the date format is valid, {@code false} otherwise.
-     */
-    public static boolean isValidDateFormat(String dateString) {
-        // Regex to check valid skill name (letters and spaces only).
-        String regex = "^(0[1-9]|[1-2][0-9]|3[01])-(0[1-9]|1[0-2])-(\\d{4})$";
-        Pattern p = Pattern.compile(regex);
-        if (dateString == null) {
-            return false;
-        }
-        Matcher m = p.matcher(dateString);
-        return m.matches();
-    }
 
     /**
      * Checks if the given collaborator is unique (not already registered).

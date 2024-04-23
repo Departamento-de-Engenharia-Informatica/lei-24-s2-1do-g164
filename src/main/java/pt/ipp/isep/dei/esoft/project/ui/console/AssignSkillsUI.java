@@ -32,14 +32,14 @@
         }
 
         private Collaborator displayAndSelectCollaborator() {
-            ArrayList<Collaborator> CollaboratortList = controller.getCollaboratorList();
-            int listSize = CollaboratortList.size();
+            ArrayList<Collaborator> collaboratortList = controller.getCollaboratorList();
+            int listSize = collaboratortList.size();
             int answer = -1;
 
             Scanner sc = new Scanner(System.in);
 
             while (answer < 0 || answer > listSize) {
-                displayCollaboratorList(CollaboratortList);
+                displayCollaboratorList(collaboratortList);
                 System.out.print("\nSelect the collaborator: ");
                 answer = sc.nextInt();
             }
@@ -47,7 +47,7 @@
             if (answer == 0) {
                 redirectToHrmUI();
             }
-            return CollaboratortList.get(answer - 1);
+            return collaboratortList.get(answer - 1);
         }
         private void displayCollaboratorList(ArrayList<Collaborator> CollaboratorList) {
             int i = 1;

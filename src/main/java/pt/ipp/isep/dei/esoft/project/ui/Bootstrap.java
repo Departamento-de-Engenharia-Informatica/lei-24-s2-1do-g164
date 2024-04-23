@@ -71,16 +71,16 @@ public class Bootstrap implements Runnable {
         skills1.add(skills.get(0));
         skills1.add(skills.get(1));
 
-        collaboratorRepository.registerCollaborator("Marco", 913456123, "04/07/2001",
-                "05/08/2020", "Rua das Aves", 123456789, new Job("Pintor"),
+        collaboratorRepository.registerCollaborator("Marco", 913456123, "04-07-2001",
+                "05-08-2020", "Rua das Aves", 123456789, new Job("Pintor"),
                 DocumentTypeRepository.ID_CARD);
 
         var skills2 = new ArrayList<Skill>();
         skills2.add(skills.get(1));
         skills2.add(skills.get(2));
 
-        collaboratorRepository.registerCollaborator("Ana", 987456765, "08/10/2002",
-                "08/08/2021", "Rua das Aves", 789867899, new Job("Videografo"),
+        collaboratorRepository.registerCollaborator("Ana", 987456765, "08-10-2002",
+                "08-08-2021", "Rua das Aves", 789867899, new Job("Videografo"),
                 DocumentTypeRepository.ID_CARD);
     }
 

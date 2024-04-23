@@ -6,7 +6,6 @@ import pt.ipp.isep.dei.esoft.project.domain.Job;
 import pt.ipp.isep.dei.esoft.project.repository.DocumentTypeRepository;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.HrmUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.MenuItem;
-
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -16,7 +15,6 @@ import java.util.Scanner;
  * User interface for registering a new collaborator.
  */
 public class RegisterCollaboratorUI implements Runnable {
-
     private final RegisterCollaboratorController controller;
     private String name;
     private int phone;

@@ -81,13 +81,13 @@ public class RegisterSkillUI implements Runnable {
             if (option == 1) {
                 System.out.println("\nSkill successfully created!");
             } else {
-                System.out.println("\nSkills successfully created!");
+                System.out.println("\nValid skills successfully created!");
             }
         } else {
             if (option == 1) {
-                System.out.println("\nSkill not created, validation for this skill name failed!");
+                System.out.println("\nSkill not created!");
             } else if (option == 2) {
-                System.out.println("\nSkills not created, no skills in the file passed validation!");
+                System.out.println("\nSkills not created, there is no valid skill!");
             }
         }
     }

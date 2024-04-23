@@ -63,7 +63,7 @@ public class RegisterJobUI implements Runnable {
         if (success) {
             System.out.println("\nJob successfully created!");
         } else {
-            System.out.println("\nJob not created, validation for this job name failed!");
+            System.out.println("\nJob not created!");
         }
     }
 

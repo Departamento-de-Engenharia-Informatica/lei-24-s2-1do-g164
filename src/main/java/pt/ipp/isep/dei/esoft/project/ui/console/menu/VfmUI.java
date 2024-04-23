@@ -16,8 +16,8 @@ import java.util.List;
  * @author Paulo Maio pam@isep.ipp.pt
  */
 
-public class AdminUI implements Runnable {
-    public AdminUI() {
+public class VfmUI implements Runnable {
+    public VfmUI() {
     }
 
     public void run() {

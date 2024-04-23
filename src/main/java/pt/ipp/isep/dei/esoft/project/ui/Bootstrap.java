@@ -73,7 +73,7 @@ public class Bootstrap implements Runnable {
 
         collaboratorRepository.registerCollaborator("Marco", 913456123, "04/07/2001",
                 "05/08/2020", "Rua das Aves", 123456789, new Job("Pintor"),
-                DocumentTypeRepository.ID_CARD, skills1);
+                DocumentTypeRepository.ID_CARD);
 
         var skills2 = new ArrayList<Skill>();
         skills2.add(skills.get(1));
@@ -81,13 +81,7 @@ public class Bootstrap implements Runnable {
 
         collaboratorRepository.registerCollaborator("Ana", 987456765, "08/10/2002",
                 "08/08/2021", "Rua das Aves", 789867899, new Job("Videografo"),
-                DocumentTypeRepository.ID_CARD, skills2);
-    }
-    public void addSkills(){
-        SkillRepository skillRepository = Repositories.getInstance().getSkillRepository();
-        skillRepository.registerSkill("Pintura");
-        skillRepository.registerSkill("Cozinha");
-        skillRepository.registerSkill("Videografia");
+                DocumentTypeRepository.ID_CARD);
     }
 
     public void addJobs(){

@@ -153,7 +153,7 @@ public class CollaboratorRepository implements Serializable {
      * @param skillsList The list of skills to assign.
      * @return {@code true} if at least one skill was assigned successfully, {@code false} otherwise.
      */
-    public boolean assignSkill(Collaborator c, ArrayList<Skill> skillsList) {
+    public boolean assignSkills(Collaborator c, ArrayList<Skill> skillsList) {
         boolean success = false;
         for (Skill s : skillsList) {
             if (!c.alreadyHasSkill(s)) {

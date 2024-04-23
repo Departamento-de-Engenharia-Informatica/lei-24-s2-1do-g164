@@ -79,6 +79,7 @@ public class Collaborator {
     }
 
     public void activateCollaborator() {
+        this.status= CollaboratorStatus.ACTIVATED;
     }
 
 

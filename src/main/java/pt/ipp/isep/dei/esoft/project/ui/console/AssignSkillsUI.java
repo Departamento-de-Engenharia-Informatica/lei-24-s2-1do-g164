@@ -31,7 +31,7 @@
             return controller;
         }
 
-        private Collaborator displayAndSelectJob() {
+        private Collaborator displayAndSelectCollaborator() {
             ArrayList<Collaborator> CollaboratortList = controller.getCollaboratorList();
             int listSize = CollaboratortList.size();
             int answer = -1;
@@ -104,12 +104,23 @@
 
 
 
-
-
-
         @Override
         public void run() {
-
+            Collaborator collaborator = displayAndSelectCollaborator();
+            System.out.println("\nColaborador selecionado:");
+            System.out.println("- Nome: " + collaborator.getName());
+            ArrayList<Skill> chosenSkills = displayAndSelectSkills();
+            if (!chosenSkills.isEmpty()) {
+                for (Skill skill : chosenSkills) {
+                    collaborator.addSkill(skill);
+                }
+                System.out.println("\nHabilidades atribuídas ao colaborador:");
+                for (Skill skill : chosenSkills) {
+                    System.out.println("- " + skill.getSkillName());
+                }
+            } else {
+                System.out.println("Nenhuma habilidade atribuída.");
+            }
         }
 
 

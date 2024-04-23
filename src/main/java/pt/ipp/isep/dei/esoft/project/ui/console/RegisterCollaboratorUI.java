@@ -187,6 +187,7 @@ public class RegisterCollaboratorUI implements Runnable {
         try {
             System.out.println("Enter Phone Number (9 digits): ");
             return sc.nextInt();
+
         } catch (InputMismatchException e) {
             System.out.println("Must be a number!");
             sc.nextLine(); // Consume invalid input

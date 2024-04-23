@@ -9,7 +9,7 @@ public class Vertice {
     }
 
     public Vertice(String nome) {
-        this.x = x;
+        this.x = nome;
     }
 
     public String getX() {
@@ -18,5 +18,9 @@ public class Vertice {
 
     public void setX(String x) {
         this.x = x;
+    }
+
+    public String toString(){
+        return x;
     }
 }

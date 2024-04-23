@@ -31,25 +31,24 @@
             return controller;
         }
 
-        private Collaborator displayAndSelectJob() {
-            ArrayList<Collaborator> CollaboratortList = controller.getCollaboratorList();
-            int listSize = CollaboratortList.size();
+        private Collaborator displayAndSelectCollaborator() {
+            ArrayList<Collaborator> collaboratortList = controller.getCollaboratorList();
+            int listSize = collaboratortList.size();
             int answer = -1;
 
             Scanner sc = new Scanner(System.in);
 
             while (answer < 0 || answer > listSize) {
-                displayCollaboratorList(CollaboratortList);
-                System.out.print("\nSelect the collaborator's job: ");
+                displayCollaboratorList(collaboratortList);
+                System.out.print("\nSelect the collaborator: ");
                 answer = sc.nextInt();
             }
 
             if (answer == 0) {
                 redirectToHrmUI();
             }
-            return CollaboratortList.get(answer - 1);
+            return collaboratortList.get(answer - 1);
         }
-
         private void displayCollaboratorList(ArrayList<Collaborator> CollaboratorList) {
             int i = 1;
             System.out.println();
@@ -59,8 +58,6 @@
             }
             System.out.println("  0 - Cancel");
         }
-
-
         private void displaySkillsList(ArrayList<Skill> SkillsList) {
             int i = 1;
             System.out.println();
@@ -70,7 +67,6 @@
             }
             System.out.println("  0 - Cancel");
         }
-
         private ArrayList<Skill> displayAndSelectSkills() {
             ArrayList<Skill> skillsList = controller.getSkillsList();
             int listSize = skillsList.size();
@@ -94,23 +90,26 @@
 
             return chosenSkills;
         }
-
-
         private void redirectToHrmUI() {
             MenuItem item = new MenuItem(AuthenticationController.ROLE_HRM, new HrmUI());
             item.run();
         }
-
-
-
-
-
-
-
         @Override
         public void run() {
-
+            Collaborator collaborator = displayAndSelectCollaborator();
+            System.out.println("\nColaborador selecionado:");
+            System.out.println("- Nome: " + collaborator.getName());
+            ArrayList<Skill> chosenSkills = displayAndSelectSkills();
+            if (!chosenSkills.isEmpty()) {
+                for (Skill skill : chosenSkills) {
+                    collaborator.addSkill(skill);
+                }
+                System.out.println("\nHabilidades atribuídas ao colaborador:");
+                for (Skill skill : chosenSkills) {
+                    System.out.println("- " + skill.getSkillName());
+                }
+            } else {
+                System.out.println("Nenhuma habilidade atribuída.");
+            }
         }
-
-
     }

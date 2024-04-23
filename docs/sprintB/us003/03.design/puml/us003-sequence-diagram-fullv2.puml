@@ -46,7 +46,7 @@ skinparam packageStyle rectangle
                         collaboratorRepository--> CTRL : jobsList
                     deactivate collaboratorRepository
 
-                    CTRL --> UI : JobsList
+                    CTRL --> UI : jobsList
                     deactivate RepositorySingleton
                     activate UI
                 deactivate CTRL
@@ -56,28 +56,29 @@ skinparam packageStyle rectangle
 
         HRM -> UI : selects a job
         activate UI
-        HRM <-- UI : requests data for the new collaborator \n(name, birthday, admission date, address\n cellphone number, e-mail)
+        UI -> CTRL : getDocumentTypeList()
+                deactivate UI
+                activate CTRL
+                CTRL -> DocumentTypeRepository : getDocumentTypeList()
+
+                activate "DocumentTypeRepository"
+                deactivate UI
+                DocumentTypeRepository -> CTRL : DocumentTypeRepository.values()
+                deactivate DocumentTypeRepository
+                        CTRL -> UI : documentTypeList
+
+                deactivate CTRL
+                activate UI
+
+                UI -> HRM : shows document type list and asks to select one
+                deactivate UI
+                HRM -> UI : selects document type
+                activate UI
+        HRM <-- UI : requests data for the new collaborator \n(name, birthday, admission date, address\n cellphone number, e-mail, ID Document Number)
         deactivate UI
         HRM -> UI : enters requested data
         activate UI
-        UI -> CTRL : getDocumentTypeList()
-        deactivate UI
-        activate CTRL
-        CTRL -> DocumentTypeRepository : getDocumentTypeList()
 
-        activate "DocumentTypeRepository"
-        deactivate UI
-        DocumentTypeRepository -> CTRL : DocumentTypeRepository.values()
-        deactivate DocumentTypeRepository
-                CTRL -> UI : documentTypeList
-
-        deactivate CTRL
-        activate UI
-
-        UI -> HRM : shows document type list and asks to select one
-        deactivate UI
-        HRM -> UI : selects document type
-        activate UI
 
            UI -> CTRL : registerCollaborator(name, phone, birthDate, admissionDate,\n address, idDocumentNumber, job, idDocumentType)
                deactivate UI

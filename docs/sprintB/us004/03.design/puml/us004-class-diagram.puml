@@ -23,12 +23,12 @@ class CollaboratorRepository {
     String address
     int idDocumentNumber
     Job job
-
-
+    DocumentTypeRepository idDocumentType
     + getCollaboratorRepository()
     + getCollaborators()
-    + registerCollaborator(Job job, DocumentTypeRepository idDocumentType)
-    - isValidName(String name)
+    + registerCollaborator()
+    - isValidName()
+    + isValidPhone()
 }
 
 

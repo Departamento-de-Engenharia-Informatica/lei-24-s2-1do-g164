@@ -33,8 +33,8 @@ public class CreateteamProposalController {
         return skillRepository.getSkillList();
     }
 
-    public Team createTeamProposal(int max, int min, ArrayList<Skill> skills) {
-        return teamRepository.createTeamProposal(min, max, skills);
-    }
+    //public Team createTeamProposal(int max, int min, ArrayList<Skill> skills) {
+      //  return teamRepository.createTeamProposal(min, max, skills);
+    //}
 }
 

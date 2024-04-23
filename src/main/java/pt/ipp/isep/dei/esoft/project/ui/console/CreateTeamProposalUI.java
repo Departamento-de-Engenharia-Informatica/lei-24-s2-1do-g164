@@ -65,7 +65,7 @@ public class CreateTeamProposalUI implements Runnable {
         ArrayList<Skill> skills = requestSkills(availableSkills);
 
         try {
-            Team team = controller.createTeamProposal(max, min, skills);
+            //Team team = controller.createTeamProposal(max, min, skills);
             System.out.println("\nTeam proposal created successfully!");
 
         } catch (InputMismatchException e) {

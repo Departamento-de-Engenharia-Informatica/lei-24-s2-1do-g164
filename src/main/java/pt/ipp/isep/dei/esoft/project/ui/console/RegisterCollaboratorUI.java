@@ -6,15 +6,20 @@ import pt.ipp.isep.dei.esoft.project.domain.Job;
 import pt.ipp.isep.dei.esoft.project.repository.DocumentTypeRepository;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.HrmUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.MenuItem;
+import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * User interface for registering a new collaborator.
  */
 public class RegisterCollaboratorUI implements Runnable {
+
     private final RegisterCollaboratorController controller;
     private String name;
     private int phone;
@@ -87,16 +92,22 @@ public class RegisterCollaboratorUI implements Runnable {
 
         Scanner sc = new Scanner(System.in);
 
-        while (answer < 0 || answer > listSize) {
-            displayJobList(jobList);
-            System.out.print("\nSelect the collaborator's job: ");
-            answer = sc.nextInt();
-        }
+        displayJobList(jobList);
+        int value;
+        do {
+            String in = Utils.readLineFromConsole("\nSelect a job: ");
+            try {
+                assert in != null;
+                value = Integer.parseInt(in);
+            } catch (NumberFormatException ex) {
+                value = -1;
+            }
+        } while (value < 0 || value > listSize);
 
-        if (answer == 0) {
+        if (value == 0) {
             redirectToHrmUI();
         }
-        return jobList.get(answer - 1);
+        return jobList.get(value - 1);
     }
 
     /**
@@ -125,14 +136,23 @@ public class RegisterCollaboratorUI implements Runnable {
         int answer = -1;
 
         Scanner sc = new Scanner(System.in);
+        displayDocumentTypeList(docTypesList);
+        int value;
+        do {
+            String in = Utils.readLineFromConsole("\nSelect a document type: ");
+            try {
+                assert in != null;
+                value = Integer.parseInt(in);
+            } catch (NumberFormatException ex) {
+                value = -1;
+            }
+        } while (value < 0 || value > listSize);
 
-        while (answer < 1 || answer > listSize) {
-            displayDocumentTypeList(docTypesList);
-            System.out.print("\nSelect the collaborator's ID Document's type: ");
-            answer = sc.nextInt();
+        if (value == 0) {
+            redirectToHrmUI();
         }
 
-        return docTypesList.get(answer - 1);
+        return docTypesList.get(value - 1);
     }
 
     /**
@@ -155,9 +175,11 @@ public class RegisterCollaboratorUI implements Runnable {
      * @return The entered name.
      */
     private String requestName() {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("\nEnter Name (a-Z, no special characters or numbers): ");
-        return sc.nextLine();
+        String value;
+        do {
+            value = Utils.readLineFromConsole("Enter Name (a-Z, no special characters or numbers): ");
+        } while (!isValidName(value));
+        return value;
     }
 
     /**
@@ -183,16 +205,18 @@ public class RegisterCollaboratorUI implements Runnable {
      * @return The entered phone number.
      */
     private int requestPhone() {
-        Scanner sc = new Scanner(System.in);
-        try {
-            System.out.print("\nEnter Phone Number (9 digits): ");
-            return sc.nextInt();
-
-        } catch (InputMismatchException e) {
-            System.out.print("\nMust be a number!");
-            sc.nextLine(); // Consume invalid input
-            return requestPhone(); // Retry input
-        }
+        int phone;
+        int value;
+        do {
+            String in = Utils.readLineFromConsole("Enter phone number (9 digits): ");
+            try {
+                assert in != null;
+                value = Integer.parseInt(in);
+            } catch (NumberFormatException ex) {
+                value = -1;
+            }
+        } while (!isValidPhone(value) || value < 0);
+        return value;
     }
 
     /**
@@ -202,8 +226,12 @@ public class RegisterCollaboratorUI implements Runnable {
      */
     private String requestBirthdate() {
         Scanner sc = new Scanner(System.in);
+        String birthDate;
+        do{
         System.out.print("\nEnter Birth Date (DD-MM-YYYY): ");
-        return sc.nextLine();
+        birthDate = sc.nextLine();
+        }while (!isValidDateFormat(birthDate));
+        return birthDate;
     }
 
     /**
@@ -213,8 +241,12 @@ public class RegisterCollaboratorUI implements Runnable {
      */
     private String requestAdmissionDate() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("\nEnter Admission Date (DD-MM-YYYY): ");
-        return sc.nextLine();
+        String admissionDate;
+        do{
+            System.out.print("\nEnter Admission Date (DD-MM-YYYY): ");
+            admissionDate = sc.nextLine();
+        }while (!isValidDateFormat(admissionDate));
+        return admissionDate;
     }
 
     /**
@@ -235,5 +267,48 @@ public class RegisterCollaboratorUI implements Runnable {
         MenuItem item = new MenuItem(AuthenticationController.ROLE_HRM, new HrmUI());
         item.run();
     }
+
+    private static boolean isValidDateFormat(String dateString) {
+        // Regex to check valid skill name (letters and spaces only).
+        String regex = "^(0[1-9]|[1-2][0-9]|3[01])-(0[1-9]|1[0-2])-(\\d{4})$";
+        Pattern p = Pattern.compile(regex);
+        if (dateString == null) {
+            return false;
+        }
+        Matcher m = p.matcher(dateString);
+        if(!m.matches()){
+            System.out.println("Invalid date format!");
+        }
+        return m.matches();
+    }
+
+    private static boolean isValidPhone(int phone) {
+        String phoneS = String.valueOf(phone);
+        String regex = "^\\d{9}$";
+        Pattern p = Pattern.compile(regex);
+        if (phoneS == null){
+            return false;
+        }
+        Matcher m = p.matcher(phoneS);
+        if(!m.matches()){
+            System.out.println("Invalid number format!");
+        }
+        return m.matches();
+    }
+
+    private static boolean isValidName(String name) {
+        // Regex to check valid skill name (letters and spaces only).
+        String regex = "^[a-zA-Z ]+$";
+        Pattern p = Pattern.compile(regex);
+        if (name == null) {
+            return false;
+        }
+        Matcher m = p.matcher(name);
+        if(!m.matches()){
+            System.out.println("Invalid name!");
+        }
+        return m.matches();
+    }
+
 
 }

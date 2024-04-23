@@ -168,11 +168,13 @@ public class CollaboratorRepository implements Serializable {
         return collaboratorsWithSkill;
     }
 
-    public ArrayList<Collaborator> getDeactivatedCollaboratorsBySkill(Skill skill){
+    public ArrayList<Collaborator> getDeactivatedCollaboratorsBySkill(ArrayList<Skill> skills){
         ArrayList<Collaborator> selectedCollaborators = new ArrayList<>();
         for(Collaborator c : this.collaboratorList) {
-            if (c.getSkills().contains(skill) && c.getStatus() == CollaboratorStatus.DEACTIVATED){
-                selectedCollaborators.add(c);
+            for(Skill s : skills) {
+                if (c.getSkills().contains(s) && c.getStatus() == CollaboratorStatus.DEACTIVATED) {
+                    selectedCollaborators.add(c);
+                }
             }
         }
 

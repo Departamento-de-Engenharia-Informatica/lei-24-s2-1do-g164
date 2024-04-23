@@ -61,4 +61,18 @@ public class Team {
     public void setCollaborators(ArrayList<Collaborator> collaborators){
         this.collaborators = collaborators;
     }
+
+
+    /**
+     * Generates a string representation of the Team object.
+     * @return A string containing information about the team, including its collaborators and skills.
+     */
+    @Override
+    public String toString() {
+        return "Team{" +
+                "collaborators=" + collaborators +
+                ", skills=" + skills +
+                '}';
+    }
+
 }

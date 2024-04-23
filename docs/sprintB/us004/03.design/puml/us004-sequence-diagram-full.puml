@@ -89,7 +89,7 @@ skinparam packageStyle rectangle
                                            PLAT --> CTRL : collaboratorRepository
                                          deactivate PLAT
 
-                                         CTRL -> collaboratorRepository : assignSkills
+                                         CTRL -> collaboratorRepository : assignSkills()
                                        activate collaboratorRepository
                                            collaboratorRepository --> CTRL : List of collaborator's current skills
                                    deactivate collaboratorRepository

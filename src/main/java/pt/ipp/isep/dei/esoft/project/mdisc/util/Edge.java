@@ -21,7 +21,12 @@ public class Edge {
             this.comp=comp;
         }
 
-        public Vertice getP1() {
+    @Override
+    public String toString() {
+        return (p1.toString() + "-" + p2.toString() + "-" + this.comp);
+    }
+
+    public Vertice getP1() {
             return p1;
         }
 

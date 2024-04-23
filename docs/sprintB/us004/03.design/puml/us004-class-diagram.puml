@@ -30,6 +30,16 @@ class CollaboratorRepository {
     - isValidName()
     + isValidPhone()
 }
+class Collaborator{
+name
+phone
+birthdate
+admissionDate
+address
+idDocumentNumber
+job
+idDocumentType
+}
 
 
 class Repositories {
@@ -73,8 +83,8 @@ class SkillRepository {
     + getSkillRepository()
     + getSkills()
     + assignSkills()
-    - skillIsValid(String skillName)
-    - isValidSkillName(String sName)
+    - skillIsValid()
+    - isValidSkillName()
 }
 
 class Skill {

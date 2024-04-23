@@ -99,27 +99,14 @@ public class CollaboratorRepository implements Serializable {
      * @return {@code true} if the date format is valid, {@code false} otherwise.
      */
     public static boolean isValidDateFormat(String dateString) {
-        if (dateString.length() != 10) {
+        // Regex to check valid skill name (letters and spaces only).
+        String regex = "^([0-2][0-9]|3[01])-(0[1-9]|1[0-2])-\\d{4}$\n";
+        Pattern p = Pattern.compile(regex);
+        if (dateString == null) {
             return false;
         }
-
-        String dayStr = dateString.substring(0, 2);
-        String monthStr = dateString.substring(3, 5);
-        String yearStr = dateString.substring(6);
-
-        if (!isNumeric(dayStr) || !isNumeric(monthStr) || !isNumeric(yearStr)) {
-            return false;
-        }
-
-        int day = Integer.parseInt(dayStr);
-        int month = Integer.parseInt(monthStr);
-        int year = Integer.parseInt(yearStr);
-
-        if (month < 1 || month > 12 || day < 1 || day > 31) {
-            return false;
-        }
-
-        return dateString.charAt(2) == '-' && dateString.charAt(5) == '-';
+        Matcher m = p.matcher(dateString);
+        return m.matches();
     }
 
     /**

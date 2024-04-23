@@ -24,7 +24,6 @@ participant "team\n:Team" as TEAM
 activate HRM
   HRM -> UI : asks to generate a team proposal
   activate UI
-    UI -> CTRL** : create
     UI --> HRM : asks maximum size
   deactivate UI
 
@@ -35,6 +34,7 @@ activate HRM
 
   HRM -> UI : sends minimum size
   activate UI
+    UI -> CTRL** : create
     UI -> CTRL : getSkills()
     activate CTRL
       CTRL -> RepositorySingleton : getInstance()

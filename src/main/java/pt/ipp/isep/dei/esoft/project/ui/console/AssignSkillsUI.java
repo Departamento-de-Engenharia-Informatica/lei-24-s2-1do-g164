@@ -40,7 +40,7 @@
 
             while (answer < 0 || answer > listSize) {
                 displayCollaboratorList(CollaboratortList);
-                System.out.print("\nSelect the collaborator's job: ");
+                System.out.print("\nSelect the collaborator: ");
                 answer = sc.nextInt();
             }
 
@@ -49,7 +49,6 @@
             }
             return CollaboratortList.get(answer - 1);
         }
-
         private void displayCollaboratorList(ArrayList<Collaborator> CollaboratorList) {
             int i = 1;
             System.out.println();
@@ -59,8 +58,6 @@
             }
             System.out.println("  0 - Cancel");
         }
-
-
         private void displaySkillsList(ArrayList<Skill> SkillsList) {
             int i = 1;
             System.out.println();
@@ -70,7 +67,6 @@
             }
             System.out.println("  0 - Cancel");
         }
-
         private ArrayList<Skill> displayAndSelectSkills() {
             ArrayList<Skill> skillsList = controller.getSkillsList();
             int listSize = skillsList.size();
@@ -94,16 +90,10 @@
 
             return chosenSkills;
         }
-
-
         private void redirectToHrmUI() {
             MenuItem item = new MenuItem(AuthenticationController.ROLE_HRM, new HrmUI());
             item.run();
         }
-
-
-
-
         @Override
         public void run() {
             Collaborator collaborator = displayAndSelectCollaborator();
@@ -122,6 +112,4 @@
                 System.out.println("Nenhuma habilidade atribuída.");
             }
         }
-
-
     }

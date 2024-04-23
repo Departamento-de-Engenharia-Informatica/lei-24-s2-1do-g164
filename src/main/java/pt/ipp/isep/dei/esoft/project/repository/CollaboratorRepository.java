@@ -64,7 +64,7 @@ public class CollaboratorRepository implements Serializable {
         }
 
         Matcher m = p.matcher(name);
-
+        System.out.println("name" + m.matches());
         return m.matches();
     }
 
@@ -100,7 +100,7 @@ public class CollaboratorRepository implements Serializable {
      */
     public static boolean isValidDateFormat(String dateString) {
         // Regex to check valid skill name (letters and spaces only).
-        String regex = "^([0-2][0-9]|3[01])-(0[1-9]|1[0-2])-\\d{4}$\n";
+        String regex = "^(0[1-9]|[1-2][0-9]|3[01])-(0[1-9]|1[0-2])-(\\d{4})$";
         Pattern p = Pattern.compile(regex);
         if (dateString == null) {
             return false;
@@ -168,11 +168,13 @@ public class CollaboratorRepository implements Serializable {
         return collaboratorsWithSkill;
     }
 
-    public ArrayList<Collaborator> getDeactivatedCollaboratorsBySkill(Skill skill){
+    public ArrayList<Collaborator> getDeactivatedCollaboratorsBySkill(ArrayList<Skill> skills){
         ArrayList<Collaborator> selectedCollaborators = new ArrayList<>();
         for(Collaborator c : this.collaboratorList) {
-            if (c.getSkills().contains(skill) && c.getStatus() == CollaboratorStatus.DEACTIVATED){
-                selectedCollaborators.add(c);
+            for(Skill s : skills) {
+                if (c.getSkills().contains(s) && c.getStatus() == CollaboratorStatus.DEACTIVATED) {
+                    selectedCollaborators.add(c);
+                }
             }
         }
 

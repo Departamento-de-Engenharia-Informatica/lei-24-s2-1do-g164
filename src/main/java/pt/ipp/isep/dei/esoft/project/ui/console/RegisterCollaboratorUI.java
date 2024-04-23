@@ -91,7 +91,7 @@ public class RegisterCollaboratorUI implements Runnable {
 
         while (answer < 0 || answer > listSize) {
             displayJobList(jobList);
-            System.out.println("Select the collaborator's job: ");
+            System.out.print("\nSelect the collaborator's job: ");
             answer = sc.nextInt();
         }
 
@@ -108,6 +108,7 @@ public class RegisterCollaboratorUI implements Runnable {
      */
     private void displayJobList(ArrayList<Job> jobList) {
         int i = 1;
+        System.out.println();
         for (Job job : jobList) {
             System.out.println("  " + i + " - " + job.getJobName());
             i++;
@@ -129,7 +130,7 @@ public class RegisterCollaboratorUI implements Runnable {
 
         while (answer < 1 || answer > listSize) {
             displayDocumentTypeList(docTypesList);
-            System.out.println("Select the collaborator's ID Document's type: ");
+            System.out.print("\nSelect the collaborator's ID Document's type: ");
             answer = sc.nextInt();
         }
 
@@ -143,6 +144,7 @@ public class RegisterCollaboratorUI implements Runnable {
      */
     private void displayDocumentTypeList(List<DocumentTypeRepository> documentTypeList) {
         int i = 1;
+        System.out.println();
         for (DocumentTypeRepository docType : documentTypeList) {
             System.out.println("  " + i + " - " + docType);
             i++;
@@ -156,7 +158,7 @@ public class RegisterCollaboratorUI implements Runnable {
      */
     private String requestName() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter Name (a-Z, no special characters or numbers): ");
+        System.out.print("\nEnter Name (a-Z, no special characters or numbers): ");
         return sc.nextLine();
     }
 
@@ -168,10 +170,10 @@ public class RegisterCollaboratorUI implements Runnable {
     private int requestIdDocumentNumber() {
         Scanner sc = new Scanner(System.in);
         try {
-            System.out.println("Enter Document Number: ");
+            System.out.print("\nEnter Document Number: ");
             return sc.nextInt();
         } catch (InputMismatchException e) {
-            System.out.println("Must be a number!");
+            System.out.println("\nMust be a number!");
             sc.nextLine(); // Consume invalid input
             return requestIdDocumentNumber(); // Retry input
         }
@@ -185,11 +187,11 @@ public class RegisterCollaboratorUI implements Runnable {
     private int requestPhone() {
         Scanner sc = new Scanner(System.in);
         try {
-            System.out.println("Enter Phone Number (9 digits): ");
+            System.out.print("\nEnter Phone Number (9 digits): ");
             return sc.nextInt();
 
         } catch (InputMismatchException e) {
-            System.out.println("Must be a number!");
+            System.out.print("\nMust be a number!");
             sc.nextLine(); // Consume invalid input
             return requestPhone(); // Retry input
         }
@@ -202,7 +204,7 @@ public class RegisterCollaboratorUI implements Runnable {
      */
     private String requestBirthdate() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter Birth Date (DD-MM-YY): ");
+        System.out.print("\nEnter Birth Date (DD-MM-YYYY): ");
         return sc.nextLine();
     }
 
@@ -213,7 +215,7 @@ public class RegisterCollaboratorUI implements Runnable {
      */
     private String requestAdmissionDate() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter Admission Date (DD-MM-YY): ");
+        System.out.print("\nEnter Admission Date (DD-MM-YYYY): ");
         return sc.nextLine();
     }
 
@@ -224,7 +226,7 @@ public class RegisterCollaboratorUI implements Runnable {
      */
     private String requestAddress() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter Address: ");
+        System.out.print("\nEnter Address: ");
         return sc.nextLine();
     }
 

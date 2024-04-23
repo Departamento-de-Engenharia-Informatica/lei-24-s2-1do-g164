@@ -34,7 +34,6 @@ class Repositories {
     + getSkillRepository()
     + getJobRepository()
     + getAuthenticationRepository()
-    + collaboratorAlreadyExists(collaborator)
 }
 
 class CollaboratorRepository {
@@ -43,8 +42,9 @@ class CollaboratorRepository {
     + registerCollaborator(name, phone, birthdate, admissionDate, address, idDocumentNumber, job, idDocumentType)
     + size()
     + assignSkills(collaborator, skills)
-    - isValidDateFormat(date)
-    -
+    + isCollaboratorUnique(collaborator)
+    +getDeactivatedCollaboratorsBySkills(skills)
+
 }
 
 class RegisterCollaboratorController {

@@ -7,8 +7,6 @@ import pt.ipp.isep.dei.esoft.project.domain.Skill;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Repository class for managing collaborators.
@@ -41,7 +39,7 @@ public class CollaboratorRepository implements Serializable {
      */
     public boolean registerCollaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentTypeRepository idDocumentType) {
         Collaborator collaborator = new Collaborator(name, phone, birthdate, admissionDate, address, idDocumentNumber, job, idDocumentType);
-        if (collaboratorIsUnique(collaborator)) {
+        if (isCollaboratorUnique(collaborator)) {
             collaboratorList.add(collaborator);
             return true;
         } else {
@@ -56,7 +54,7 @@ public class CollaboratorRepository implements Serializable {
      * @param collaborator The collaborator to check.
      * @return {@code true} if the collaborator is unique, {@code false} if it already exists.
      */
-    public boolean collaboratorIsUnique(Collaborator collaborator) {
+    public boolean isCollaboratorUnique(Collaborator collaborator) {
         for (Collaborator c : collaboratorList) {
             if (c.equals(collaborator)) {
                 return false;

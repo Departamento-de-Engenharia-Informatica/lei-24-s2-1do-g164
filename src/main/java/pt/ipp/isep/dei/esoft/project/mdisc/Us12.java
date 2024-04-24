@@ -3,6 +3,8 @@ package pt.ipp.isep.dei.esoft.project.mdisc;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.*;
 
 public class Us12 {
@@ -19,15 +21,18 @@ public class Us12 {
         }
     }
 
+
     public static void main(String[] args) {
-        String csvFile = "src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US13_JardimEspeciesNucleoRural.csv"; // Path to your CSV file
+        String csvFile = "src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US13_JardimDosSentimentos.csv"; // Path to your CSV file
         List<Edge> edges = readGraphFromCSV(csvFile);
 
         List<Edge> mstEdges = new ArrayList<>();
         int minCost = calculateMinimumSpanningTreeCost(edges, mstEdges);
 
         System.out.println("Minimum cost of the spanning tree: " + minCost);
-        System.out.println("Minimum cost path in MST: " + getMinimumCostPath(mstEdges));
+        System.out.println();
+        System.out.println("Minimum cost path in MST: " + getMinimumCostPath(mstEdges, "src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/output.csv"));
+        System.out.println("Graph exported into: files/output.csv");
     }
 
     public static ArrayList<Edge> readGraphFromCSV(String filename) {
@@ -54,7 +59,6 @@ public class Us12 {
     }
 
     public static int calculateMinimumSpanningTreeCost(List<Edge> edges, List<Edge> mstEdges) {
-        // Sort edges by weight
         edges.sort(Comparator.comparingInt(edge -> edge.weight));
 
         int minCost = 0;
@@ -65,7 +69,6 @@ public class Us12 {
             String rootY = find(parent, edge.to);
 
             if (!rootX.equals(rootY)) {
-                // Union operation
                 parent.put(rootX, rootY);
                 minCost += edge.weight;
                 mstEdges.add(edge);
@@ -85,24 +88,30 @@ public class Us12 {
         return node;
     }
 
-    public static String getMinimumCostPath(List<Edge> mstEdges) {
+    public static String getMinimumCostPath(List<Edge> mstEdges, String outputFilePath) {
         StringBuilder path = new StringBuilder();
         Set<String> visited = new HashSet<>();
 
-        for (Edge edge : mstEdges) {
-            if (!visited.contains(edge.from)) {
-                path.append(edge.from).append(" - ");
-                visited.add(edge.from);
-            }
-            if (!visited.contains(edge.to)) {
-                path.append(edge.to).append(" - ");
-                visited.add(edge.to);
-            }
-        }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath))) {
+            for (Edge edge : mstEdges) {
+                if (!visited.contains(edge.from)) {
+                    path.append(edge.from).append(" - ");
+                    visited.add(edge.from);
+                }
+                if (!visited.contains(edge.to)) {
+                    path.append(edge.to).append(" - ");
+                    visited.add(edge.to);
+                }
 
-        // Append the starting vertex to complete the cycle
-        if (!mstEdges.isEmpty()) {
-            path.append(mstEdges.get(0).from);
+                writer.write(edge.from + ";" + edge.to + ";" + edge.weight);
+                writer.newLine();
+            }
+            if (!mstEdges.isEmpty()) {
+                path.append(mstEdges.get(0).from);
+            }
+            writer.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         return path.toString();

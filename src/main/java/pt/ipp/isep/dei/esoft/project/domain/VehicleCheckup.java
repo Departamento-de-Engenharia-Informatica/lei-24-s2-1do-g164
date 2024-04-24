@@ -1,20 +1,36 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
-public class VehicleCheckup {
-    private String date;
-    private int currentKms;
+import java.util.ArrayList;
+import java.util.Date;
 
-    public VehicleCheckup(String date, int currentKms){
+public class VehicleCheckup {
+    private Date date;
+    private int currentKms;
+    Vehicle vehicle;
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setCurrentKms(int currentKms) {
+        this.currentKms = currentKms;
+    }
+
+
+
+    public VehicleCheckup(Vehicle vehicle ,Date date, int currentKms){
         this.date = date;
         this.currentKms = currentKms;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
     public int getCurrentKms() {
         return currentKms;
     }
+
+
 }
 

@@ -1,10 +1,8 @@
 package pt.ipp.isep.dei.esoft.project.ui.console;
 
-import pt.ipp.isep.dei.esoft.project.application.controller.CreateteamProposalController;
+import pt.ipp.isep.dei.esoft.project.application.controller.CreateTeamProposalController;
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.Skill;
-import pt.ipp.isep.dei.esoft.project.domain.TaskCategory;
-import pt.ipp.isep.dei.esoft.project.domain.Team;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.repository.SkillRepository;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.HrmUI;
@@ -18,16 +16,16 @@ import java.util.Scanner;
 
 public class CreateTeamProposalUI implements Runnable {
 
-    private final CreateteamProposalController controller;
+    private final CreateTeamProposalController controller;
     private final SkillRepository skillRepository;
 
 
     public CreateTeamProposalUI() {
-        controller = new CreateteamProposalController();
+        controller = new CreateTeamProposalController();
         skillRepository = Repositories.getInstance().getSkillRepository();
     }
 
-    private CreateteamProposalController getController() {
+    private CreateTeamProposalController getController() {
         return controller;
     }
 

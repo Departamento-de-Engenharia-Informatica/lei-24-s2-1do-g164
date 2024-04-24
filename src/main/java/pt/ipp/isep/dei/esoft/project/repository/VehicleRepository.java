@@ -4,6 +4,7 @@ import pt.ipp.isep.dei.esoft.project.domain.Vehicle;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Repository class for managing vehicles.
@@ -23,15 +24,15 @@ public class VehicleRepository implements Serializable {
     /**
      * Registers a new vehicle with the provided details.
      *
-     * @param brand           The brand of the vehicle.
-     * @param model           The model of the vehicle.
-     * @param vehicleID       The unique identifier of the vehicle.
-     * @param type            The type of the vehicle.
-     * @param grossWeight     The gross weight of the vehicle.
-     * @param tare            The tare weight of the vehicle.
-     * @param currentKm       The current kilometers of the vehicle.
-     * @param registerDate    The registration date of the vehicle (in "DD-MM-YYYY" format).
-     * @param acquisitionDate The acquisition date of the vehicle (in "DD-MM-YYYY" format).
+     * @param brand            The brand of the vehicle.
+     * @param model            The model of the vehicle.
+     * @param vehicleID        The unique identifier of the vehicle.
+     * @param type             The type of the vehicle.
+     * @param grossWeight      The gross weight of the vehicle.
+     * @param tare             The tare weight of the vehicle.
+     * @param currentKm        The current kilometers of the vehicle.
+     * @param registerDate     The registration date of the vehicle (in "DD-MM-YYYY" format).
+     * @param acquisitionDate  The acquisition date of the vehicle (in "DD-MM-YYYY" format).
      * @param checkupFrequency The checkup frequency of the vehicle (in kilometers).
      * @return {@code true} if the vehicle is successfully registered, {@code false} otherwise.
      */
@@ -129,5 +130,15 @@ public class VehicleRepository implements Serializable {
             }
         }
         return vehiclesNeedingCheckup;
+    }
+
+    public boolean createVehicleCheckup(Vehicle vehicle, Date date, int currentKm) {
+        if (vehicle != null && validar cenas){
+            vehicle.addCheckup(vehicle, date, currentKm);
+            return true;
+        }
+        return false;
+
+
     }
 }

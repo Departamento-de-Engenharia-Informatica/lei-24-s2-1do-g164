@@ -2,6 +2,8 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 import pt.ipp.isep.dei.esoft.project.repository.VehicleTypeRepository;
 
+import java.util.Date;
+
 /**
  * Represents a vehicle used within a project.
  */
@@ -22,15 +24,15 @@ public class Vehicle {
     /**
      * Constructs a new Vehicle instance with specified details.
      *
-     * @param brand           The brand of the vehicle.
-     * @param model           The model of the vehicle.
-     * @param vehicleID       The unique identifier of the vehicle.
-     * @param type            The type of the vehicle.
-     * @param grossWeight     The gross weight of the vehicle.
-     * @param tare            The tare weight of the vehicle.
-     * @param currentKm       The current kilometers driven by the vehicle.
-     * @param registerDate    The date when the vehicle was registered.
-     * @param acquisitionDate The date when the vehicle was acquired.
+     * @param brand            The brand of the vehicle.
+     * @param model            The model of the vehicle.
+     * @param vehicleID        The unique identifier of the vehicle.
+     * @param type             The type of the vehicle.
+     * @param grossWeight      The gross weight of the vehicle.
+     * @param tare             The tare weight of the vehicle.
+     * @param currentKm        The current kilometers driven by the vehicle.
+     * @param registerDate     The date when the vehicle was registered.
+     * @param acquisitionDate  The date when the vehicle was acquired.
      * @param checkupFrequency The frequency (in kilometers) for vehicle checkups.
      */
     public Vehicle(String brand, String model, String vehicleID, VehicleTypeRepository type, double grossWeight, double tare, int currentKm, String registerDate, String acquisitionDate, int checkupFrequency) {
@@ -44,7 +46,7 @@ public class Vehicle {
         this.registerDate = registerDate;
         this.acquisitionDate = acquisitionDate;
         this.checkupFrequency = checkupFrequency;
-        this.lastCheckup = new VehicleCheckup("No checkup registered", 0);
+        this.lastCheckup = new VehicleCheckup(null, null, 0);
     }
 
     /**
@@ -152,9 +154,17 @@ public class Vehicle {
      * @return {@code true} if the vehicle needs a checkup, {@code false} otherwise.
      */
     public boolean needsCheckup() {
+
+        if (lastCheckup == null) {
+            return true;
+        }
         int difference = this.currentKm - this.lastCheckup.getCurrentKms();
         double percentage = (double) difference / checkupFrequency;
         return difference >= checkupFrequency || percentage < 0.05;
+    }
+
+    public void addCheckup(Vehicle vehicle, Date date, int currentKm) {
+        this.lastCheckup = new VehicleCheckup(vehicle, date, currentKm);
     }
 
     /**
@@ -167,3 +177,5 @@ public class Vehicle {
         return vehicle.getVehicleID().equals(this.vehicleID);
     }
 }
+
+

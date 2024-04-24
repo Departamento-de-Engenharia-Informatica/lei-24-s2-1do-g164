@@ -75,11 +75,11 @@ activate SkillRepository
 
   HRM -> UI : sends required skills
   activate UI
-    UI -> CTRL : createTeamProposal(min, max, skills)
+    UI -> CTRL : createTeamProposal(max, min, skills)
     activate CTRL
 
 
-    CTRL -> TeamRepository : createTeamProposal(min, max, skills)
+    CTRL -> TeamRepository : createTeamProposal(max, min, skills)
     activate TeamRepository
 
     TeamRepository -> CollaboratorRepository : getDeactivatedCollaboratorsBySkills(skills)

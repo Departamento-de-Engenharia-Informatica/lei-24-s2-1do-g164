@@ -16,6 +16,7 @@ public class Bootstrap implements Runnable {
         addJobs();
         addSkills();
         addCollaborators();
+        addVehicles();
     }
 
     private void addOrganization() {
@@ -62,8 +63,6 @@ public class Bootstrap implements Runnable {
     }
 
     private void addCollaborators() {
-
-
         JobRepository jobRepository = Repositories.getInstance().getJobRepository();
         CollaboratorRepository collaboratorRepository = Repositories.getInstance().getCollaboratorRepository();
         SkillRepository skillRepository = Repositories.getInstance().getSkillRepository();
@@ -160,6 +159,15 @@ public class Bootstrap implements Runnable {
         skillRepository.registerSkill("Rainwater Harvesting");
         skillRepository.registerSkill("Wildlife Gardening");
         skillRepository.registerSkill("Indoor Plant Care");
+    }
 
+    public void addVehicles() {
+        VehicleRepository repo = Repositories.getInstance().getVehicleRepository();
+        repo.registerVehicle("Mercedes", "Class A", "87-UI-28", VehicleTypeRepository.LIGHT_VEHICLE,
+                1415, 1200, 25000, "02-07-2020", "12-09-2018", 20000);
+        repo.registerVehicle("BMW", "i8", "57-OI-98", VehicleTypeRepository.LIGHT_VEHICLE,
+                1215, 990, 90000, "12-12-2019", "10-10-2018", 40000);
+        repo.registerVehicle("Ford", "Carrinha", "80-07-LX", VehicleTypeRepository.HEAVY_VEHICLE,
+                9000, 8000, 200000, "25-12-2021", "25-12-2021", 300000);
     }
 }

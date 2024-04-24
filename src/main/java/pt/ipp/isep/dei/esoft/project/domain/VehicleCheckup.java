@@ -1,14 +1,13 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.InputMismatchException;
 
 public class VehicleCheckup {
-    private Date date;
+    private LocalDate date;
     private int currentKms;
-    Vehicle vehicle;
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -16,21 +15,25 @@ public class VehicleCheckup {
         this.currentKms = currentKms;
     }
 
+    public VehicleCheckup(LocalDate date, int currentKms) {
+        if (date.isBefore(LocalDate.now())) {
+            throw new InputMismatchException("Date provided for check-up should be after today's date");
+        }
 
+        if (currentKms < 0) {
+            throw new InputMismatchException("Current Kms should be a positive value");
+        }
 
-    public VehicleCheckup(Vehicle vehicle ,Date date, int currentKms){
         this.date = date;
         this.currentKms = currentKms;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
     public int getCurrentKms() {
         return currentKms;
     }
-
-
 }
 

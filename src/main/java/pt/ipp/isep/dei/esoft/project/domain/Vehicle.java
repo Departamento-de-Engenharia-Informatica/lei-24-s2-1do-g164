@@ -2,7 +2,12 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 import pt.ipp.isep.dei.esoft.project.repository.VehicleTypeRepository;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.InputMismatchException;
+import java.util.Optional;
 
 /**
  * Represents a vehicle used within a project.
@@ -19,7 +24,7 @@ public class Vehicle {
     private String registerDate;
     private String acquisitionDate;
     private int checkupFrequency;
-    private VehicleCheckup lastCheckup;
+    private ArrayList<VehicleCheckup> checkupList;
 
     /**
      * Constructs a new Vehicle instance with specified details.
@@ -46,7 +51,7 @@ public class Vehicle {
         this.registerDate = registerDate;
         this.acquisitionDate = acquisitionDate;
         this.checkupFrequency = checkupFrequency;
-        this.lastCheckup = new VehicleCheckup(null, null, 0);
+        this.checkupList = new ArrayList<>();
     }
 
     /**
@@ -144,8 +149,11 @@ public class Vehicle {
      *
      * @return The last performed checkup.
      */
-    public VehicleCheckup getLastCheckup() {
-        return lastCheckup;
+    public Optional<VehicleCheckup> getLastCheckup() {
+        if (this.checkupList.isEmpty()){
+            return Optional.empty();
+        }
+        return Optional.of(this.checkupList.getLast());
     }
 
     /**
@@ -154,17 +162,23 @@ public class Vehicle {
      * @return {@code true} if the vehicle needs a checkup, {@code false} otherwise.
      */
     public boolean needsCheckup() {
-
-        if (lastCheckup == null) {
-            return true;
+        if (checkupList.isEmpty()) {
+            return this.currentKm > this.checkupFrequency;
         }
-        int difference = this.currentKm - this.lastCheckup.getCurrentKms();
-        double percentage = (double) difference / checkupFrequency;
-        return difference >= checkupFrequency || percentage < 0.05;
+
+        int difference = this.currentKm - this.checkupList.getLast().getCurrentKms();
+        double percentage = (double) difference / this.checkupFrequency;
+
+        return difference >= this.checkupFrequency || percentage < 0.05;
     }
 
-    public void addCheckup(Vehicle vehicle, Date date, int currentKm) {
-        this.lastCheckup = new VehicleCheckup(vehicle, date, currentKm);
+    public void addCheckup(LocalDate date, int newCurrentKm) {
+        if (this.currentKm > newCurrentKm) {
+            throw new InputMismatchException("New current kilometers should be higher than the previous value");
+        }
+
+        this.checkupList.add(new VehicleCheckup(date, newCurrentKm));
+        this.currentKm = newCurrentKm;
     }
 
     /**
@@ -175,6 +189,22 @@ public class Vehicle {
      */
     public boolean equals(Vehicle vehicle) {
         return vehicle.getVehicleID().equals(this.vehicleID);
+    }
+
+    @Override
+    public String toString() {
+        var formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String date;
+
+        if (this.getLastCheckup().isEmpty()) {
+            date = "None";
+        } else {
+            date = this.getLastCheckup().get().getDate().format(formatter);
+        }
+
+        return  "Vehicle: " + this.brand + " (" + this.model + ")" +
+                " || ID: " + this.vehicleID +
+                " || Last Checkup: " + date;
     }
 }
 

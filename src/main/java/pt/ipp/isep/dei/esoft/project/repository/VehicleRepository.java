@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.esoft.project.repository;
 import pt.ipp.isep.dei.esoft.project.domain.Vehicle;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -121,10 +122,10 @@ public class VehicleRepository implements Serializable {
      * @param vehicles The list of vehicles to check.
      * @return The list of vehicles that need a checkup.
      */
-    public ArrayList<Vehicle> getVehiclesNeedingCheckup(ArrayList<Vehicle> vehicles) {
+    public ArrayList<Vehicle> getVehiclesNeedingCheckup() {
         ArrayList<Vehicle> vehiclesNeedingCheckup = new ArrayList<>();
 
-        for (Vehicle v : vehicles) {
+        for (Vehicle v : this.vehicleList) {
             if (v.needsCheckup()) {
                 vehiclesNeedingCheckup.add(v);
             }
@@ -132,13 +133,27 @@ public class VehicleRepository implements Serializable {
         return vehiclesNeedingCheckup;
     }
 
-    public boolean createVehicleCheckup(Vehicle vehicle, Date date, int currentKm) {
-        if (vehicle != null && validar cenas){
-            vehicle.addCheckup(vehicle, date, currentKm);
-            return true;
+    public ArrayList<Vehicle> getVehiclesWithoutBookedCheckup() {
+        ArrayList<Vehicle> vehicles = new ArrayList<>();
+
+        for (Vehicle v : this.vehicleList) {
+            var checkup = v.getLastCheckup();
+            if (checkup.isEmpty()) {
+                vehicles.add(v);
+            } else if (checkup.get().getDate().isBefore(LocalDate.now())) {
+                vehicles.add(v);
+            }
         }
-        return false;
-
-
+        return vehicles;
     }
+
+//    public boolean createVehicleCheckup(Vehicle vehicle, Date date, int currentKm) {
+//        if (vehicle != null && validar cenas){
+//            vehicle.addCheckup(vehicle, date, currentKm);
+//            return true;
+//        }
+//        return false;
+//
+//
+//    }
 }

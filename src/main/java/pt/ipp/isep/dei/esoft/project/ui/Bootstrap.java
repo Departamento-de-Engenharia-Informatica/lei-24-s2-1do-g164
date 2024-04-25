@@ -78,6 +78,8 @@ public class Bootstrap implements Runnable {
         ArrayList<Skill> marcoSkills = new ArrayList<>();
         marcoSkills.add(skillRepository.getSkillList().get(0));
         marcoSkills.add(skillRepository.getSkillList().get(1));
+        marcoSkills.add(skillRepository.getSkillList().get(3));
+        marcoSkills.add(skillRepository.getSkillList().get(4));
 
         collaboratorRepository.assignSkills(collaboratorRepository.getCollaboratorList().get(0), marcoSkills);
 
@@ -89,7 +91,6 @@ public class Bootstrap implements Runnable {
 
         ArrayList<Skill> anaSkills = new ArrayList<>();
         anaSkills.add(skillRepository.getSkillList().get(2));
-        marcoSkills.add(skillRepository.getSkillList().get(3));
 
         collaboratorRepository.assignSkills(collaboratorRepository.getCollaboratorList().get(1), anaSkills);
 
@@ -100,7 +101,6 @@ public class Bootstrap implements Runnable {
 
         ArrayList<Skill> ambrosioSkills = new ArrayList<>();
         ambrosioSkills.add(skillRepository.getSkillList().get(2));
-        marcoSkills.add(skillRepository.getSkillList().get(4));
 
         collaboratorRepository.assignSkills(collaboratorRepository.getCollaboratorList().get(2), ambrosioSkills);
 

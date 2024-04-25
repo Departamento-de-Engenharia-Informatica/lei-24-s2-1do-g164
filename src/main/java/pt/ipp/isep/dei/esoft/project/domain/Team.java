@@ -69,10 +69,7 @@ public class Team {
      */
     @Override
     public String toString() {
-        return "Team{" +
-                "collaborators=" + collaborators +
-                ", skills=" + skills +
-                '}';
+        return "Team: " + collaborators;
     }
 
 }

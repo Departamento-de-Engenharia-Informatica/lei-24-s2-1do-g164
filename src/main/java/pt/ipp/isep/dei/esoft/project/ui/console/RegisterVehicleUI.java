@@ -7,10 +7,13 @@ import pt.ipp.isep.dei.esoft.project.repository.DocumentTypeRepository;
 import pt.ipp.isep.dei.esoft.project.repository.VehicleTypeRepository;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.VfmUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.MenuItem;
+import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * User Interface class for vehicle registration.
@@ -50,7 +53,7 @@ public class RegisterVehicleUI implements Runnable {
      * Displays the list of vehicle types and allows the user to select one.
      *
      * @param vehicleTypeList The list of available vehicle types.
-     * @return The selected VehicleTypeRepository.
+     * @return The selected VehicleType.
      */
     private VehicleTypeRepository displayAndSelectVehicleType(List<VehicleTypeRepository> vehicleTypeList) {
         int i = 1;
@@ -59,14 +62,21 @@ public class RegisterVehicleUI implements Runnable {
             i++;
         }
         System.out.println("  0 - Cancel");
-
         int answer = -1;
         Scanner sc = new Scanner(System.in);
-
-        while (answer < 0 || answer > vehicleTypeList.size()) {
-            System.out.println("Select the vehicle's type: ");
-            answer = sc.nextInt();
-        }
+         do {
+                String in = Utils.readLineFromConsole("Select the vehicle's type (0 to cancel): ");
+                try {
+                    assert in != null;
+                    answer = Integer.parseInt(in);
+                    if(answer < 0 || answer > vehicleTypeList.size()){
+                        System.out.println("Invalid option!");
+                    }
+                } catch (NumberFormatException ex) {
+                    System.out.println("Invalid option!");
+                    answer = -1;
+                }
+            } while (answer < 0 || answer > vehicleTypeList.size());
 
         if (answer == 0) {
             redirectToVfmUI();
@@ -82,9 +92,21 @@ public class RegisterVehicleUI implements Runnable {
      * @return The entered current kilometers.
      */
     private int requestCurrentKm() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter Current Kilometers: ");
-        return sc.nextInt();
+        int value;
+        do {
+            String in = Utils.readLineFromConsole("Enter Current kilometers: ");
+            try {
+                assert in != null;
+                value = Integer.parseInt(in);
+                if(value < 0){
+                    System.out.println("Invalid number of kilometers!");
+                }
+            } catch (NumberFormatException ex) {
+                System.out.println("Invalid number of kilometers!");
+                value = -1;
+            }
+        } while (value < 0);
+        return value;
     }
 
     /**
@@ -93,9 +115,21 @@ public class RegisterVehicleUI implements Runnable {
      * @return The entered checkup frequency in kilometers.
      */
     private int requestCheckupFrequency() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter Checkup Frequency (km): ");
-        return sc.nextInt();
+        int value;
+        do {
+            String in = Utils.readLineFromConsole("Enter Checkup Frequency (km): ");
+            try {
+                assert in != null;
+                value = Integer.parseInt(in);
+                if(value < 0){
+                    System.out.println("Invalid number of kilometers!");
+                }
+            } catch (NumberFormatException ex) {
+                System.out.println("Invalid number of kilometers!");
+                value = -1;
+            }
+        } while (value < 0);
+        return value;
     }
 
     /**
@@ -104,9 +138,21 @@ public class RegisterVehicleUI implements Runnable {
      * @return The entered gross weight in kilograms.
      */
     private double requestGrossWeight() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter Gross Weight (kg): ");
-        return sc.nextDouble();
+        int value;
+        do {
+            String in = Utils.readLineFromConsole("Enter Gross Weight (kg): ");
+            try {
+                assert in != null;
+                value = Integer.parseInt(in);
+                if(value < 0){
+                    System.out.println("Invalid weight!");
+                }
+            } catch (NumberFormatException ex) {
+                System.out.println("Invalid weight");
+                value = -1;
+            }
+        } while (value < 0);
+        return value;
     }
 
     /**
@@ -115,9 +161,21 @@ public class RegisterVehicleUI implements Runnable {
      * @return The entered tare weight in kilograms.
      */
     private double requestTareWeight() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter Tare Weight (kg): ");
-        return sc.nextDouble();
+        int value;
+        do {
+            String in = Utils.readLineFromConsole("Enter Tare Weight (kg): ");
+            try {
+                assert in != null;
+                value = Integer.parseInt(in);
+                if(value < 0){
+                    System.out.println("Invalid weight!");
+                }
+            } catch (NumberFormatException ex) {
+                System.out.println("Invalid weight");
+                value = -1;
+            }
+        } while (value < 0);
+        return value;
     }
 
     /**
@@ -127,8 +185,12 @@ public class RegisterVehicleUI implements Runnable {
      */
     private String requestAcquisitionDate() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter Acquisition Date (DD-MM-YY): ");
-        return sc.nextLine();
+        String acquisitionDate;
+        do{
+            System.out.print("\nEnter Acquisition Date (DD-MM-YYYY): ");
+            acquisitionDate = sc.nextLine();
+        }while (!isValidDateFormat(acquisitionDate));
+        return acquisitionDate;
     }
 
     /**
@@ -138,8 +200,12 @@ public class RegisterVehicleUI implements Runnable {
      */
     private String requestRegisterDate() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter Register Date (DD-MM-YY): ");
-        return sc.nextLine();
+        String registerDate;
+        do{
+            System.out.print("\nEnter Register Date (DD-MM-YYYY): ");
+            registerDate = sc.nextLine();
+        }while (!isValidDateFormat(registerDate));
+        return registerDate;
     }
 
     /**
@@ -149,7 +215,7 @@ public class RegisterVehicleUI implements Runnable {
      */
     private String requestBrand() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter Brand: ");
+        System.out.print("\nEnter Brand: ");
         return sc.nextLine();
     }
 
@@ -160,7 +226,7 @@ public class RegisterVehicleUI implements Runnable {
      */
     private String requestModel() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter Model: ");
+        System.out.print("\nEnter Model: ");
         return sc.nextLine();
     }
 
@@ -171,8 +237,12 @@ public class RegisterVehicleUI implements Runnable {
      */
     private String requestVehicleID() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter Plate ID (XX-XX-XX): ");
-        return sc.nextLine();
+        String plate;
+        do{
+            System.out.print("\nEnter Plate ID (XX-XX-XX): ");
+            plate = sc.nextLine();
+        }while (!isValidPlateFormat(plate));
+        return plate;
     }
 
     /**
@@ -198,7 +268,7 @@ public class RegisterVehicleUI implements Runnable {
         if (success) {
             System.out.println("\nVehicle successfully registered!");
         } else {
-            System.out.println("\nVehicle registration failed!");
+            System.out.println("\nVehicle registration failed (already exists)!");
         }
     }
 
@@ -219,5 +289,33 @@ public class RegisterVehicleUI implements Runnable {
     private void redirectToVfmUI() {
         MenuItem item = new MenuItem(AuthenticationController.ROLE_VFM, new VfmUI());
         item.run();
+    }
+
+    private static boolean isValidPlateFormat(String dateString) {
+        // Regex to check valid skill name (letters and spaces only).
+        String regex = "^(([A-Z]{2}-\\d{2}-(\\d{2}|[A-Z]{2}))|(\\d{2}-(\\d{2}-[A-Z]{2}|[A-Z]{2}-\\d{2})))$";
+        Pattern p = Pattern.compile(regex);
+        if (dateString == null) {
+            return false;
+        }
+        Matcher m = p.matcher(dateString);
+        if(!m.matches()){
+            System.out.println("Invalid plate format!");
+        }
+        return m.matches();
+    }
+
+    private static boolean isValidDateFormat(String dateString) {
+        // Regex to check valid skill name (letters and spaces only).
+        String regex = "^(0[1-9]|[1-2][0-9]|3[01])-(0[1-9]|1[0-2])-(\\d{4})$";
+        Pattern p = Pattern.compile(regex);
+        if (dateString == null) {
+            return false;
+        }
+        Matcher m = p.matcher(dateString);
+        if(!m.matches()){
+            System.out.println("Invalid date format!");
+        }
+        return m.matches();
     }
 }

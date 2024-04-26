@@ -100,7 +100,7 @@ public class Bootstrap implements Runnable {
 
 
         ArrayList<Skill> ambrosioSkills = new ArrayList<>();
-        ambrosioSkills.add(skillRepository.getSkillList().get(2));
+        ambrosioSkills.add(skillRepository.getSkillList().get(5));
 
         collaboratorRepository.assignSkills(collaboratorRepository.getCollaboratorList().get(2), ambrosioSkills);
 

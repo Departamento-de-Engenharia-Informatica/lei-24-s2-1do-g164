@@ -43,9 +43,7 @@ class VehicleRepository {
     + registerVehicle(brand, model, vehicleID,\n type, grossWeight, tare, currentKm,\n registerDate, acquisitionDate,\n checkupFrequency)
     + size()
     + getVehiclesNeedingCheckup()
-    - isValidDateFormat(date)
     - isVehicleUnique(vehicle)
-    - isValidVehicleID(vehicleID)
 }
 
 class RegisterVehicleController {

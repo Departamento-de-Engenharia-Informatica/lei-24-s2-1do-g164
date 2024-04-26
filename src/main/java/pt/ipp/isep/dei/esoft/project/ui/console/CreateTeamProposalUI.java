@@ -1,14 +1,14 @@
 package pt.ipp.isep.dei.esoft.project.ui.console;
 
-import pt.ipp.isep.dei.esoft.project.application.controller.CreateteamProposalController;
+import pt.ipp.isep.dei.esoft.project.application.controller.CreateTeamProposalController;
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.Skill;
-import pt.ipp.isep.dei.esoft.project.domain.TaskCategory;
-import pt.ipp.isep.dei.esoft.project.domain.Team;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.repository.SkillRepository;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.HrmUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.MenuItem;
+import pt.ipp.isep.dei.esoft.project.ui.console.menu.VfmUI;
+import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -18,16 +18,17 @@ import java.util.Scanner;
 
 public class CreateTeamProposalUI implements Runnable {
 
-    private final CreateteamProposalController controller;
+    private final CreateTeamProposalController controller;
     private final SkillRepository skillRepository;
-
+    private int min, max;
+    private ArrayList<Skill> skills;
 
     public CreateTeamProposalUI() {
-        controller = new CreateteamProposalController();
+        controller = new CreateTeamProposalController();
         skillRepository = Repositories.getInstance().getSkillRepository();
     }
 
-    private CreateteamProposalController getController() {
+    private CreateTeamProposalController getController() {
         return controller;
     }
 
@@ -39,19 +40,56 @@ public class CreateTeamProposalUI implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("\n\n----------- Register Job----------------------");
-        int max = requestMaxSize();
-        int min = requestMinSize();
-        ArrayList<Skill> availableSkills = skillRepository.getSkillList();
-        displayAvailableSkills(availableSkills);
-        ArrayList<Skill> skills = requestSkills(availableSkills);
+        System.out.println("\n\n----------- Create Team Proposal----------------------");
+//        int max = requestMaxSize();
+//        int min = requestMinSize();
+//        ArrayList<Skill> availableSkills = skillRepository.getSkillList();
+//        displayAvailableSkills(availableSkills);
+//        ArrayList<Skill> skills = requestSkills(availableSkills);
+//
+//        try {
+//            //Team team = controller.createTeamProposal(max, min, skills);
+//            System.out.println("\nTeam proposal created successfully!");
+//
+//        } catch (InputMismatchException e) {
+//            System.out.println("\nError: " + e.getMessage());
+//        }
+        requestData();
+        submitData();
+    }
 
+    private void requestData() {
         try {
-            //Team team = controller.createTeamProposal(max, min, skills);
-            System.out.println("\nTeam proposal created successfully!");
+            this.max = Utils.readIntegerFromConsole("Type maximum number of collaborators:");
+            this.min = Utils.readIntegerFromConsole("Type minimum number of collaborators:");
+        } catch (NumberFormatException ex) {
+            System.out.println("Number is not in a valid format");
+            redirectToHrmUI();
+        }
 
-        } catch (InputMismatchException e) {
-            System.out.println("\nError: " + e.getMessage());
+        if (this.min > this.max) {
+            System.out.println("Minimum number cannot be higher than maximum number");
+            redirectToHrmUI();
+        }
+
+        var skills = this.controller.getSkillsList();
+        if (skills.isEmpty()){
+            System.out.println("No skills available");
+            redirectToHrmUI();
+        }
+
+        displayAvailableSkills(skills);
+        this.skills = requestSkills(skills);
+    }
+
+    private void submitData(){
+        try {
+            var team = this.controller.createTeamProposal(this.max, this.min, this.skills);
+            System.out.println("Team successfully created!");
+            System.out.println(team.toString());
+        } catch (InputMismatchException ex){
+            System.out.println(ex.getMessage());
+            redirectToHrmUI();
         }
     }
 
@@ -106,7 +144,7 @@ public class CreateTeamProposalUI implements Runnable {
         }
 
         return selectedSkills;
-    }
+        }
 
 
     }

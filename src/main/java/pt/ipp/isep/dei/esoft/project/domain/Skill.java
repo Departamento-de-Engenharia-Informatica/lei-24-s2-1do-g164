@@ -15,4 +15,9 @@ public class Skill {
     public String getSkillName() {
         return skillName;
     }
+
+    @Override
+    public String toString() {
+        return skillName;
+    }
 }

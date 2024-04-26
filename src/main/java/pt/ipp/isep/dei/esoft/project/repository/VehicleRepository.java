@@ -3,7 +3,9 @@ package pt.ipp.isep.dei.esoft.project.repository;
 import pt.ipp.isep.dei.esoft.project.domain.Vehicle;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Repository class for managing vehicles.
@@ -23,15 +25,15 @@ public class VehicleRepository implements Serializable {
     /**
      * Registers a new vehicle with the provided details.
      *
-     * @param brand           The brand of the vehicle.
-     * @param model           The model of the vehicle.
-     * @param vehicleID       The unique identifier of the vehicle.
-     * @param type            The type of the vehicle.
-     * @param grossWeight     The gross weight of the vehicle.
-     * @param tare            The tare weight of the vehicle.
-     * @param currentKm       The current kilometers of the vehicle.
-     * @param registerDate    The registration date of the vehicle (in "DD-MM-YYYY" format).
-     * @param acquisitionDate The acquisition date of the vehicle (in "DD-MM-YYYY" format).
+     * @param brand            The brand of the vehicle.
+     * @param model            The model of the vehicle.
+     * @param vehicleID        The unique identifier of the vehicle.
+     * @param type             The type of the vehicle.
+     * @param grossWeight      The gross weight of the vehicle.
+     * @param tare             The tare weight of the vehicle.
+     * @param currentKm        The current kilometers of the vehicle.
+     * @param registerDate     The registration date of the vehicle (in "DD-MM-YYYY" format).
+     * @param acquisitionDate  The acquisition date of the vehicle (in "DD-MM-YYYY" format).
      * @param checkupFrequency The checkup frequency of the vehicle (in kilometers).
      * @return {@code true} if the vehicle is successfully registered, {@code false} otherwise.
      */
@@ -120,14 +122,38 @@ public class VehicleRepository implements Serializable {
      * @param vehicles The list of vehicles to check.
      * @return The list of vehicles that need a checkup.
      */
-    public ArrayList<Vehicle> getVehiclesNeedingCheckup(ArrayList<Vehicle> vehicles) {
+    public ArrayList<Vehicle> getVehiclesNeedingCheckup() {
         ArrayList<Vehicle> vehiclesNeedingCheckup = new ArrayList<>();
 
-        for (Vehicle v : vehicles) {
+        for (Vehicle v : this.vehicleList) {
             if (v.needsCheckup()) {
                 vehiclesNeedingCheckup.add(v);
             }
         }
         return vehiclesNeedingCheckup;
     }
+
+    public ArrayList<Vehicle> getVehiclesWithoutBookedCheckup() {
+        ArrayList<Vehicle> vehicles = new ArrayList<>();
+
+        for (Vehicle v : this.vehicleList) {
+            var checkup = v.getLastCheckup();
+            if (checkup.isEmpty()) {
+                vehicles.add(v);
+            } else if (checkup.get().getDate().isBefore(LocalDate.now())) {
+                vehicles.add(v);
+            }
+        }
+        return vehicles;
+    }
+
+//    public boolean createVehicleCheckup(Vehicle vehicle, Date date, int currentKm) {
+//        if (vehicle != null && validar cenas){
+//            vehicle.addCheckup(vehicle, date, currentKm);
+//            return true;
+//        }
+//        return false;
+//
+//
+//    }
 }

@@ -1,16 +1,22 @@
 package pt.ipp.isep.dei.esoft.project.ui.console.utils;
 
+import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.Job;
 import pt.ipp.isep.dei.esoft.project.domain.TaskCategory;
 import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
 import pt.ipp.isep.dei.esoft.project.repository.JobRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.repository.TaskCategoryRepository;
+import pt.ipp.isep.dei.esoft.project.ui.console.menu.MenuItem;
+import pt.ipp.isep.dei.esoft.project.ui.console.menu.VfmUI;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -37,15 +43,11 @@ public class Utils {
 
     static public int readIntegerFromConsole(String prompt) {
         do {
-            try {
                 String input = readLineFromConsole(prompt);
 
                 int value = Integer.parseInt(input);
 
                 return value;
-            } catch (NumberFormatException ex) {
-                Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
-            }
         } while (true);
     }
 
@@ -63,19 +65,14 @@ public class Utils {
         } while (true);
     }
 
-    static public Date readDateFromConsole(String prompt) {
+    static public LocalDate readDateFromConsole(String prompt) {
         do {
-            try {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                 String strDate = readLineFromConsole(prompt);
 
-                SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-
-                Date date = df.parse(strDate);
+                LocalDate date = LocalDate.parse(strDate, formatter);
 
                 return date;
-            } catch (ParseException ex) {
-                Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
-            }
         } while (true);
     }
 
@@ -113,11 +110,16 @@ public class Utils {
 
     static public Object selectsObject(List list) {
         String input;
-        int value;
+        int value = -1;
         do {
-            input = Utils.readLineFromConsole("Type your option: ");
-            value = Integer.valueOf(input);
+            try {
+                input = Utils.readLineFromConsole("Type your option: ");
+                value = Integer.valueOf(input);
+            } catch(Exception ex) {
+                System.out.println("Enter a valid option");
+            }
         } while (value < 0 || value > list.size());
+
 
         if (value == 0) {
             return null;

@@ -88,5 +88,12 @@ public class Collaborator {
     public CollaboratorStatus getStatus() {
         return status;
     }
+
+    @Override
+    public String toString() {
+        return name + "[" +
+                 skills +
+                ']';
+    }
 }
 

@@ -12,13 +12,12 @@ skinparam classAttributeIconSize 0
 
 class ":CreateTeamProposalUI" as CreateTeamProposalUI {
 
-    +showCreatedTeam(Team)
 }
 
 
 class ":CreateTeamProposalController" as CreateTeamProposalController {
 +getSkills()
-    +createTeamProposal(min, max, skills)
+    +createTeamProposal(max, min, skills)
 
 }
 
@@ -36,14 +35,22 @@ class "SkillRepository" as SkillRepository {
 
 }
 
+class HRM {}
+
+class SystemUser {
+    name
+    email
+    password
+    phone
+}
 
 class "CollaboratorRepository" as CollaboratorRepository {
-    +getCollaboratorsBySkills(collaborators, skills)
+     getDeactivatedCollaboratorsBySkills(skills)
 }
 
 class "TeamRepository" as TeamRepository {
-    +createTeam(selectedCollaborators)
-    -addTeam(Team)
+    +createTeam(selectedCollaborators, skills )
+    -addTeam()
 }
 note bottom of TeamRepository: the selected collaborators were selected\nbased on the max and min size   on\nCreateTeamProposalController
 
@@ -58,7 +65,7 @@ class "Team" as Team {
 }
 
  note right of "CollaboratorRepository" : filter collaborators\nbased on their skills
-
+SystemUser <|-- HRM
 CreateTeamProposalUI ..> CreateTeamProposalController
 Repositories -> Repositories : instance
 CreateTeamProposalController ..> Repositories: repositories
@@ -66,8 +73,9 @@ Repositories --> "1"SkillRepository
 Repositories -->"1" CollaboratorRepository
 Repositories --> "1"TeamRepository
 CreateTeamProposalController ..> TeamRepository: TeamRepository
-TeamRepository "1" --> "*"Team: team
+TeamRepository  --> "*"Team
 CreateTeamProposalController --> Team
 CreateTeamProposalController ..> SkillRepository: skillRepository
 CreateTeamProposalController ..> CollaboratorRepository: collaboratorRepository
+HRM -->  Team: generates
 @enduml

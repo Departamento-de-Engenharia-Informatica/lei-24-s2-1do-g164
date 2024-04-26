@@ -23,7 +23,7 @@ public class Us12 {
 
 
     public static void main(String[] args) {
-        String csvFile = "src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US13_JardimDosSentimentos.csv"; // Path to your CSV file
+        String csvFile = "src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US13_JardimEspeciesNucleoRural.csv"; // Path to your CSV file
         List<Edge> edges = readGraphFromCSV(csvFile);
 
         List<Edge> mstEdges = new ArrayList<>();

@@ -13,7 +13,6 @@ import java.util.regex.Pattern;
 public class SkillRepository implements Serializable {
 
     private final ArrayList<Skill> skillList = new ArrayList<>();
-
     /**
      * Retrieves the list of skills.
      *
@@ -22,7 +21,6 @@ public class SkillRepository implements Serializable {
     public ArrayList<Skill> getSkillList() {
         return skillList;
     }
-
     /**
      * Registers a new skill.
      *
@@ -38,7 +36,6 @@ public class SkillRepository implements Serializable {
             return false;
         }
     }
-
     /**
      * Checks if a skill name is valid.
      *
@@ -48,7 +45,6 @@ public class SkillRepository implements Serializable {
     private boolean skillIsValid(String skillName) {
         return isValidSkillName(skillName) && skillNameIsUnique(skillName);
     }
-
     /**
      * Checks if a skill name is valid based on regex pattern.
      *
@@ -68,7 +64,6 @@ public class SkillRepository implements Serializable {
         }
         return m.matches();
     }
-
     /**
      * Checks if a skill name is unique within the repository.
      *
@@ -77,20 +72,12 @@ public class SkillRepository implements Serializable {
      */
     private boolean skillNameIsUnique(String sName) {
         for (Skill s : skillList) {
-            if (s.equals(sName)) {
+            if (s.getSkillName().equals(sName)) {
                 System.out.println("\nError: Skill already exists \"" + sName + "\"");
                 return false;
             }
         }
         return true;
-    }
+    }}
 
-    /**
-     * Gets the number of skills in the repository.
-     *
-     * @return the number of skills
-     */
-    public int size() {
-        return this.skillList.size();
-    }
-}
+

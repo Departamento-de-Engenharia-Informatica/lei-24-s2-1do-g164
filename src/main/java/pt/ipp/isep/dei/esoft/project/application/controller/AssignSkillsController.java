@@ -10,7 +10,8 @@ public class AssignSkillsController {
     private SkillRepository skillRepository;
     private CollaboratorRepository collaboratorRepository;
     private AuthenticationRepository authenticationRepository;
-    public AssignSkillsController(){
+
+    public AssignSkillsController() {
         getCollaboratorRepository();
         getSkillRepository();
     }
@@ -32,16 +33,28 @@ public class AssignSkillsController {
         return skillRepository;
     }
 
-    public ArrayList<Collaborator> getCollaboratorList(){
+    public ArrayList<Collaborator> getCollaboratorList() {
         return collaboratorRepository.getCollaboratorList();
     }
 
-    public ArrayList<Skill> getSkillsList(){
+    public ArrayList<Skill> getSkillsList() {
         return skillRepository.getSkillList();
     }
-    public boolean assignSkills(Collaborator collaborator , ArrayList<Skill> skillsList){
-        return collaboratorRepository.assignSkills(collaborator,skillsList);
+
+    public boolean assignSkills(Collaborator collaborator, ArrayList<Skill> skillsList) {
+
+        for (Skill skill : skillsList) {
+            if (collaborator.getSkills().contains(skill)) {
+
+                return false;
+            }
+        }
+
+
+        return false;
     }
 }
+
+
 
 

@@ -13,7 +13,6 @@ import java.util.regex.Pattern;
 public class JobRepository implements Serializable {
 
     private final ArrayList<Job> jobList = new ArrayList<>();
-
     /**
      * Retrieves the list of jobs.
      *
@@ -22,7 +21,6 @@ public class JobRepository implements Serializable {
     public ArrayList<Job> getJobList() {
         return jobList;
     }
-
     /**
      * Registers a new job.
      *
@@ -38,16 +36,6 @@ public class JobRepository implements Serializable {
             return false;
         }
     }
-
-    /**
-     * Gets the number of jobs in the repository.
-     *
-     * @return the number of jobs
-     */
-    public int size() {
-        return this.jobList.size();
-    }
-
     /**
      * Checks if a job name is valid.
      *
@@ -57,7 +45,6 @@ public class JobRepository implements Serializable {
     private boolean jobIsValid(String jobName) {
         return isValidJobName(jobName) && jobNameIsUnique(jobName);
     }
-
     /**
      * Checks if a job name is valid based on regex pattern.
      *
@@ -77,7 +64,6 @@ public class JobRepository implements Serializable {
         }
         return m.matches();
     }
-
     /**
      * Checks if a job name is unique within the repository.
      *

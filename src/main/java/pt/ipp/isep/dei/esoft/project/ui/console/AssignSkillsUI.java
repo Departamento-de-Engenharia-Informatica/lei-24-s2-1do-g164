@@ -80,7 +80,12 @@
                 System.out.println("\nSelect a skill number to assign it to the collaborator (0 to stop): ");
                 answer = sc.nextInt();
                 if (answer >= 1 && answer <= listSize) {
-                    chosenSkills.add(skillsList.get(answer - 1));
+                    Skill selectedSkill = skillsList.get(answer - 1);
+                    if (chosenSkills.contains(selectedSkill)) {
+                        System.out.println("Skill already assigned. Please select a different skill.");
+                    } else {
+                        chosenSkills.add(selectedSkill);
+                    }
                 } else if (answer == 0) {
                     redirectToHrmUI();
                 } else {
@@ -90,6 +95,7 @@
 
             return chosenSkills;
         }
+
         private void redirectToHrmUI() {
             MenuItem item = new MenuItem(AuthenticationController.ROLE_HRM, new HrmUI());
             item.run();

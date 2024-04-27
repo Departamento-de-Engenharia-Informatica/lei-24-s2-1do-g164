@@ -77,19 +77,19 @@
             int answer = -1;
             while (answer != 0) {
                 displaySkillsList(skillsList);
-                System.out.println("\nSelect a skill number to assign it to the collaborator (0 to stop): ");
+                System.out.print("\nSelect a skill number to assign it to the collaborator (0 to stop): ");
                 answer = sc.nextInt();
                 if (answer >= 1 && answer <= listSize) {
                     Skill selectedSkill = skillsList.get(answer - 1);
                     if (chosenSkills.contains(selectedSkill)) {
-                        System.out.println("Skill already assigned. Please select a different skill.");
+                        System.out.print("\nSkill already assigned. Please select a different skill.");
                     } else {
                         chosenSkills.add(selectedSkill);
                     }
                 } else if (answer == 0) {
                     redirectToHrmUI();
                 } else {
-                    System.out.println("Invalid input. Please enter a valid skill number.");
+                    System.out.print("\nInvalid input. Please enter a valid skill number.");
                 }
             }
 

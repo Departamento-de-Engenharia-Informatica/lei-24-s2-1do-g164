@@ -13,13 +13,11 @@ import java.util.Map;
 import static guru.nidi.graphviz.model.Factory.*;
 
 public class MST_PLOTTER {
-    public static void plotMST() throws IOException {
+    public static void plotMST(String filePath, String fName) throws IOException {
         Graph g = graph("MST");
 
-        // Path to your CSV file
-        String csvFilePath = "src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/output.csv";
+        String csvFilePath = filePath;
 
-        // Map to store nodes created from CSV
         Map<String, Node> nodeMap = new HashMap<>();
 
         // Read CSV file
@@ -66,6 +64,6 @@ public class MST_PLOTTER {
         }
 
         // Render the graph to a PNG file
-        Graphviz.fromGraph(g).width(900).render(Format.PNG).toFile(new File("src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/outputMST.png"));
+        Graphviz.fromGraph(g).width(900).render(Format.PNG).toFile(new File("src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/" + fName + ".png"));
     }
 }

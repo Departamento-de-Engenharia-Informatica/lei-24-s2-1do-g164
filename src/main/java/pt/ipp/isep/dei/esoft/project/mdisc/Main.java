@@ -1,55 +1,51 @@
 package pt.ipp.isep.dei.esoft.project.mdisc;
 
 import org.apache.log4j.BasicConfigurator;
+import pt.ipp.isep.dei.esoft.project.mdisc.util.Edge;
 import pt.ipp.isep.dei.esoft.project.mdisc.util.MST_PLOTTER;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.*;
 
-public class Us12 {
-
-    static class Edge {
-        String from;
-        String to;
-        int weight;
-
-        public Edge(String from, String to, int weight) {
-            this.from = from;
-            this.to = to;
-            this.weight = weight;
-        }
-    }
-
-
+public class Main {
     public static void main(String[] args) throws IOException {
         BasicConfigurator.configure();
         Scanner sc = new Scanner(System.in);
-        System.out.print("Type the name of the csv file you want to use: ");
-        String name = sc.nextLine();
-        String csvFile = "src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/" + name; // Path to your CSV file
-        List<Edge> edges = readGraphFromCSV(csvFile);
+        String csvFile;
+        List<Edge> edges;
 
+        while (true) {
+            System.out.print("\nType the name of the CSV file you want to use: ");
+            String name = sc.nextLine();
+            csvFile = "src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/" + name;
+            try {
+                edges = readGraphFromCSV(csvFile);
+                break;
+            } catch (FileNotFoundException e) {
+                System.out.println("File doesn't exist, make sure that it is in the files directory and that you typed the '.csv'");
+            }
+        }
         List<Edge> mstEdges = new ArrayList<>();
+        System.out.println("------------------LOADING----------------");
+        MST_PLOTTER.plotMST(csvFile,"input");
+        System.out.println("-----------------------------------------");
+        System.out.println("Input graph has been plotted into: files/input.png");
+        System.out.println("-----------------------------------------");
         int minCost = calculateMinimumSpanningTreeCost(edges, mstEdges);
-
         System.out.println("Minimum cost of the spanning tree: " + minCost);
+        System.out.println("-----------------------------------------");
         exportToCSV(mstEdges, "src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/output.csv");
         System.out.println("MST exported into: files/output.csv");
         System.out.println("-----------------------------------------");
-        MST_PLOTTER.plotMST();
-        System.out.println("-----------------------------------------");
+        MST_PLOTTER.plotMST("src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/output.csv","outputMST");
         System.out.println("The MST has been plotted into files/outputMST.png");
     }
 
-    public static ArrayList<Edge> readGraphFromCSV(String filename) {
+    public static ArrayList<Edge> readGraphFromCSV(String filename) throws FileNotFoundException{
         ArrayList<Edge> edges = new ArrayList<>();
         ArrayList<String> nodeSet = new ArrayList<>();
-
-        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+        BufferedReader br = new BufferedReader(new FileReader(filename));
+        try {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(";");
@@ -61,26 +57,34 @@ public class Us12 {
                 nodeSet.add(from);
                 nodeSet.add(to);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        } catch (FileNotFoundException e){
 
+        } catch (IOException e) {
+
+        }
+        finally {
+            try {
+                br.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
         return edges;
     }
 
     public static int calculateMinimumSpanningTreeCost(List<Edge> edges, List<Edge> mstEdges) {
-        edges.sort(Comparator.comparingInt(edge -> edge.weight));
+        edges.sort(Comparator.comparingInt(edge -> edge.getWeight()));
 
         int minCost = 0;
         Map<String, String> parent = new HashMap<>();
 
         for (Edge edge : edges) {
-            String rootX = find(parent, edge.from);
-            String rootY = find(parent, edge.to);
+            String rootX = find(parent, edge.getFrom());
+            String rootY = find(parent, edge.getTo());
 
             if (!rootX.equals(rootY)) {
                 parent.put(rootX, rootY);
-                minCost += edge.weight;
+                minCost += edge.getWeight();
                 mstEdges.add(edge);
             }
         }
@@ -99,12 +103,11 @@ public class Us12 {
     }
 
     public static void exportToCSV(List<Edge> mstEdges, String outputFilePath) {
-        StringBuilder path = new StringBuilder();
         Set<String> visited = new HashSet<>();
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath))) {
             for (Edge edge : mstEdges) {
-                writer.write(edge.from + ";" + edge.to + ";" + edge.weight);
+                writer.write(edge.getFrom() + ";" + edge.getTo() + ";" + edge.getWeight());
                 writer.newLine();
             }
             writer.flush();

@@ -39,7 +39,7 @@ public class VehicleRepository implements Serializable {
      */
     public boolean registerVehicle(String brand, String model, String vehicleID, VehicleTypeRepository type, double grossWeight, double tare, int currentKm, String registerDate, String acquisitionDate, int checkupFrequency) {
         Vehicle vehicle = new Vehicle(brand, model, vehicleID, type, grossWeight, tare, currentKm, registerDate, acquisitionDate, checkupFrequency);
-        if (isVehicleUnique(vehicle) && isValidDateFormat(acquisitionDate) && isValidDateFormat(registerDate)) {
+        if (isVehicleUnique(vehicle)) {
             vehicleList.add(vehicle);
             return true;
         } else {
@@ -68,29 +68,7 @@ public class VehicleRepository implements Serializable {
      * @param dateString The date string to validate.
      * @return {@code true} if the date format is valid, {@code false} otherwise.
      */
-    public static boolean isValidDateFormat(String dateString) {
-        if (dateString.length() != 10) {
-            return false;
-        }
 
-        String dayStr = dateString.substring(0, 2);
-        String monthStr = dateString.substring(3, 5);
-        String yearStr = dateString.substring(6);
-
-        if (!isNumeric(dayStr) || !isNumeric(monthStr) || !isNumeric(yearStr)) {
-            return false;
-        }
-
-        int day = Integer.parseInt(dayStr);
-        int month = Integer.parseInt(monthStr);
-        int year = Integer.parseInt(yearStr);
-
-        if (month < 1 || month > 12 || day < 1 || day > 31) {
-            return false;
-        }
-
-        return dateString.charAt(2) == '-' && dateString.charAt(5) == '-';
-    }
 
     /**
      * Helper method to check if a string is numeric.

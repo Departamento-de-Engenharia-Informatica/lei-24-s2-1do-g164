@@ -72,7 +72,7 @@ public class SkillRepository implements Serializable {
      */
     private boolean skillNameIsUnique(String sName) {
         for (Skill s : skillList) {
-            if (s.equals(sName)) {
+            if (s.getSkillName().equals(sName)) {
                 System.out.println("\nError: Skill already exists \"" + sName + "\"");
                 return false;
             }

@@ -12,6 +12,7 @@ participant ":RegisterVehicleController" as CTRL
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT
 participant "vehicleRepository:\nVehicleRepository" as VehicleRepository
+participant "VehicleTypeRepository" as VTPR
 
 activate ADM
 
@@ -19,24 +20,27 @@ activate ADM
 
         activate UI
 
-'            UI --> ADM : requests data (reference, description,  informal \n description, technical description, duration, cost)
-            'create CTRL
+        UI -> CTRL **: creates
+        UI -> CTRL : getVehicleTypesList()
+        activate CTRL
+        CTRL -> VTPR : getVehicleTypesList()
+        VTPR --> CTRL : VehicleTypeRepository.values()
+        CTRL --> UI : vehicleTypesList
+        deactivate CTRL
 
-
+            UI --> ADM : shows vehicle types and asks to select one
+            deactivate UI
+            ADM -> UI :  selects vehicle type
+            activate UI
             UI --> ADM : requests data
-        deactivate UI
+            deactivate UI
+
 
     ADM -> UI : types requested data (brand, model, vehicleID, type, tare,\n grossWeight, currentKm, registerDate,\n acquisitionDate, checkupFrequency)
-    activate UI
+            activate UI
 
-        UI --> ADM : requests confirmation
-    deactivate UI
-
-    ADM -> UI : confirms
-    activate UI
 
         UI -> CTRL : registerVehicle(brand, model, vehicleID, type, tare,\n grossWeight, currentKm, registerDate,\n acquisitionDate, checkupFrequency)
-        deactivate UI
         activate CTRL
 
 

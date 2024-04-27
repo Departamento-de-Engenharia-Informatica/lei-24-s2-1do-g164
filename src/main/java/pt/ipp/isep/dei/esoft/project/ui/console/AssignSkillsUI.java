@@ -107,12 +107,14 @@
             System.out.println("- Name: " + collaborator.getName());
             ArrayList<Skill> chosenSkills = displayAndSelectSkills();
             if (!chosenSkills.isEmpty()) {
-                for (Skill skill : chosenSkills) {
-                    collaborator.addSkill(skill);
+                if (controller.assignSkills(collaborator,chosenSkills)){
+                    System.out.println("Habilidades atribuídas ao colaborador:");
+                    for (Skill skill : chosenSkills) {
+                        System.out.println("- " + skill.getSkillName());
+                    }
                 }
-                System.out.println("\nHabilidades atribuídas ao colaborador:");
-                for (Skill skill : chosenSkills) {
-                    System.out.println("- " + skill.getSkillName());
+                else {
+                    System.out.println("O colaaborador ja tem essas skills");
                 }
             } else {
                 System.out.println("Nenhuma habilidade atribuída.");

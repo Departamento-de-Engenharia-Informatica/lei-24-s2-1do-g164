@@ -19,10 +19,6 @@ public class RegisterVehicleCheckupController {
     }
 
     public boolean createVehicleCheckup(Vehicle vehicle, LocalDate date, int currentKm){
-        if (vehicle != null) {
-            vehicle.addCheckup(date, currentKm);
-            return true;
-        }
-        return false;
+        return vehicleRepository.createVehicleCheckup(vehicle, date, currentKm);
     }
 }

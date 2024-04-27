@@ -40,7 +40,7 @@ public class RegisterVehicleCheckupUI implements Runnable {
         }
 
         try {
-            this.date = Utils.readDateFromConsole("Type date (dd-MM-yyyy):");
+            this.date = Utils.readDateFromConsole("Type date (DD-MM-YYYY):");
         } catch (DateTimeParseException ex) {
             System.out.println("Date is not in a valid format");
             this.redirectToVfmUI();

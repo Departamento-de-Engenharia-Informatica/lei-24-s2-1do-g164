@@ -77,19 +77,18 @@
             int answer = -1;
             while (answer != 0) {
                 displaySkillsList(skillsList);
-                System.out.println("\nSelect a skill number to assign it to the collaborator (0 to stop): ");
+                System.out.print("\nSelect a skill number to assign it to the collaborator (0 to stop): ");
                 answer = sc.nextInt();
                 if (answer >= 1 && answer <= listSize) {
                     Skill selectedSkill = skillsList.get(answer - 1);
                     if (chosenSkills.contains(selectedSkill)) {
-                        System.out.println("Skill already assigned. Please select a different skill.");
+                        System.out.print("\nSkill already assigned. Please select a different skill.");
                     } else {
                         chosenSkills.add(selectedSkill);
                     }
-                } else if (answer == 0) {
-                    redirectToHrmUI();
-                } else {
-                    System.out.println("Invalid input. Please enter a valid skill number.");
+
+                } else if (answer!=0){
+                    System.out.print("\nInvalid input. Please enter a valid skill number.");
                 }
             }
 
@@ -107,12 +106,14 @@
             System.out.println("- Name: " + collaborator.getName());
             ArrayList<Skill> chosenSkills = displayAndSelectSkills();
             if (!chosenSkills.isEmpty()) {
-                for (Skill skill : chosenSkills) {
-                    collaborator.addSkill(skill);
+                if (controller.assignSkills(collaborator,chosenSkills)){
+                    System.out.println("Habilidades atribuídas ao colaborador:");
+                    for (Skill skill : chosenSkills) {
+                        System.out.println("- " + skill.getSkillName());
+                    }
                 }
-                System.out.println("\nHabilidades atribuídas ao colaborador:");
-                for (Skill skill : chosenSkills) {
-                    System.out.println("- " + skill.getSkillName());
+                else {
+                    System.out.println("O colaaborador ja tem essas skills");
                 }
             } else {
                 System.out.println("Nenhuma habilidade atribuída.");

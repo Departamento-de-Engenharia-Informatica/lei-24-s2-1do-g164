@@ -91,9 +91,7 @@ public class Collaborator {
 
     @Override
     public String toString() {
-        return name + "[" +
-                 skills +
-                ']';
+        return name  + skills;
     }
 }
 

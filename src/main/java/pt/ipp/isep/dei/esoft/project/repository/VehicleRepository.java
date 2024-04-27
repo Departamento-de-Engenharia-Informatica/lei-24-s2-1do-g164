@@ -71,21 +71,6 @@ public class VehicleRepository implements Serializable {
 
 
     /**
-     * Helper method to check if a string is numeric.
-     *
-     * @param str The string to check.
-     * @return {@code true} if the string is numeric, {@code false} otherwise.
-     */
-    private static boolean isNumeric(String str) {
-        for (char c : str.toCharArray()) {
-            if (!Character.isDigit(c)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
      * Retrieves the number of vehicles in the repository.
      *
      * @return The number of vehicles.
@@ -123,6 +108,14 @@ public class VehicleRepository implements Serializable {
             }
         }
         return vehicles;
+    }
+
+    public boolean createVehicleCheckup(Vehicle vehicle, LocalDate date, int currentKm){
+        if (vehicle != null) {
+            vehicle.addCheckup(date, currentKm);
+            return true;
+        }
+        return false;
     }
 
 //    public boolean createVehicleCheckup(Vehicle vehicle, Date date, int currentKm) {

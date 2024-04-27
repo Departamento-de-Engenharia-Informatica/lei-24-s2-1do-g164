@@ -43,15 +43,7 @@ public class AssignSkillsController {
 
     public boolean assignSkills(Collaborator collaborator, ArrayList<Skill> skillsList) {
 
-        for (Skill skill : skillsList) {
-            if (collaborator.getSkills().contains(skill)) {
-
-                return false;
-            }
-        }
-
-
-        return false;
+        return collaboratorRepository.assignSkills(collaborator,skillsList);
     }
 }
 

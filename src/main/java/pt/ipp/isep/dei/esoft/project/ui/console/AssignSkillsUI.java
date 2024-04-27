@@ -86,9 +86,8 @@
                     } else {
                         chosenSkills.add(selectedSkill);
                     }
-                } else if (answer == 0) {
-                    redirectToHrmUI();
-                } else {
+
+                } else if (answer!=0){
                     System.out.print("\nInvalid input. Please enter a valid skill number.");
                 }
             }

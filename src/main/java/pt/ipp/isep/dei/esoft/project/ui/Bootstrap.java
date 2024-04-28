@@ -72,7 +72,7 @@ public class Bootstrap implements Runnable {
 
         collaboratorRepository.registerCollaborator("Marco", 913456123, "04-07-2001",
                 "05-08-2020", "Rua das Aves", 12345678, new Job("Trail Steward"),
-                DocumentTypeRepository.ID_CARD, CollaboratorStatus.DEACTIVATED);
+                DocumentTypeRepository.CITIZEN_CARD, CollaboratorStatus.DEACTIVATED, 123456789, "adeus@hotmail.pt");
 
 
         ArrayList<Skill> marcoSkills = new ArrayList<>();
@@ -86,7 +86,7 @@ public class Bootstrap implements Runnable {
 
         collaboratorRepository.registerCollaborator("Ana", 987456765, "08-10-2002",
                 "08-08-2021", "Rua das Aves", 78986789, new Job("Arborist"),
-                DocumentTypeRepository.ID_CARD, CollaboratorStatus.DEACTIVATED);
+                DocumentTypeRepository.CITIZEN_CARD, CollaboratorStatus.DEACTIVATED,123993123, "ola23@mial.com");
 
 
         ArrayList<Skill> anaSkills = new ArrayList<>();
@@ -96,7 +96,7 @@ public class Bootstrap implements Runnable {
 
         collaboratorRepository.registerCollaborator("Ambrosio", 937996795, "08-10-2002",
                 "08-08-2021", "Rua das Aves", 54946780, new Job("Park Ranger"),
-                DocumentTypeRepository.ID_CARD, CollaboratorStatus.DEACTIVATED);
+                DocumentTypeRepository.CITIZEN_CARD, CollaboratorStatus.DEACTIVATED, 123123123, "ola@mial.com");
 
 
         ArrayList<Skill> ambrosioSkills = new ArrayList<>();

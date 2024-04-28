@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.esoft.project.repository.CollaboratorStatus;
 import pt.ipp.isep.dei.esoft.project.repository.DocumentTypeRepository;
 
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CollaboratorTest {
@@ -22,9 +20,9 @@ public class CollaboratorTest {
         skill1 = new Skill("Design");
         skill2 = new Skill("Communication");
         job = new Job("Electrician");
-        docType = DocumentTypeRepository.ID_CARD;
+        docType = DocumentTypeRepository.CITIZEN_CARD;
 
-        collaborator = new Collaborator("John Doe", 123456789, "01-01-1990", "01-01-2020", "123 Main St", 987654321, job, docType, CollaboratorStatus.DEACTIVATED);
+        collaborator = new Collaborator("John Doe", 123456789, "01-01-1990", "01-01-2020", "123 Main St", 987654321, job, docType, CollaboratorStatus.DEACTIVATED, 451238965, "siii@euro.lol");
     }
 
     @Test
@@ -39,14 +37,8 @@ public class CollaboratorTest {
     }
 
     @Test
-    public void testEquals_SamePhone() {
-        Collaborator anotherCollaborator = new Collaborator("Jane Doe", 123456789, "02-02-1995", "01-01-2022", "456 Oak St", 123456789, job, docType, CollaboratorStatus.DEACTIVATED);
-        assertTrue(collaborator.equals(anotherCollaborator));
-    }
-
-    @Test
-    public void testEquals_SameName() {
-        Collaborator anotherCollaborator = new Collaborator("John Doe", 987654321, "01-01-1990", "01-01-2020", "123 Main St", 123456789, job, docType, CollaboratorStatus.DEACTIVATED);
+    public void testEquals_SameTaxpayerNumber() {
+        Collaborator anotherCollaborator = new Collaborator("Jane Doe", 123456789, "02-02-1995", "01-01-2022", "456 Oak St", 123456789, job, docType, CollaboratorStatus.DEACTIVATED, 451238965, "justinbuieber@popo.com");
         assertTrue(collaborator.equals(anotherCollaborator));
     }
 

@@ -107,16 +107,16 @@
             ArrayList<Skill> chosenSkills = displayAndSelectSkills();
             if (!chosenSkills.isEmpty()) {
                 if (controller.assignSkills(collaborator,chosenSkills)){
-                    System.out.println("Habilidades atribuídas ao colaborador:");
+                    System.out.println("Skills attributed to the collaborator:");
                     for (Skill skill : chosenSkills) {
                         System.out.println("- " + skill.getSkillName());
                     }
                 }
                 else {
-                    System.out.println("O colaaborador ja tem essas skills");
+                    System.out.println("The collaborator already has these skills");
                 }
             } else {
-                System.out.println("Nenhuma habilidade atribuída.");
+                System.out.println("No skills assigned");
             }
         }
     }

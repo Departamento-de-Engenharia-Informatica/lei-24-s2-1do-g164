@@ -35,17 +35,22 @@
             ArrayList<Collaborator> collaboratortList = controller.getCollaboratorList();
             int listSize = collaboratortList.size();
             int answer = -1;
-
             Scanner sc = new Scanner(System.in);
-
-            while (answer < 0 || answer > listSize) {
+            while (answer != 0) {
                 displayCollaboratorList(collaboratortList);
-                System.out.print("\nSelect the collaborator: ");
-                answer = sc.nextInt();
-            }
-
-            if (answer == 0) {
-                redirectToHrmUI();
+                System.out.println("\nSelect a collaborator number");
+                if (sc.hasNextInt()) {
+                    answer = sc.nextInt();
+                    if (answer >= 1 && answer <= listSize) {
+                        return collaboratortList.get(answer - 1);
+                    }
+                    if (answer == 0) {
+                        redirectToHrmUI();
+                    }
+                } else {
+                    System.out.print("\nInvalid input. Please enter a valid skill number.");
+                    sc.next();
+                }
             }
             return collaboratortList.get(answer - 1);
         }

@@ -1,4 +1,4 @@
-
+@startuml
 actor "VFM" as Employee
 participant ":System" as System
 
@@ -17,13 +17,6 @@ activate Employee
     deactivate System
 
     Employee -> System : types requested data
-    activate System
-
-
-        System --> Employee : shows all data and requests confirmation
-    deactivate System
-
-    Employee -> System : confirms data
     activate System
 
         System --> Employee : displays operation success

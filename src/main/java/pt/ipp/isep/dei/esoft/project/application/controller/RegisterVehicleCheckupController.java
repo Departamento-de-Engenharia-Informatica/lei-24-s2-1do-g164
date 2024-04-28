@@ -14,6 +14,11 @@ public class RegisterVehicleCheckupController {
         this.vehicleRepository= Repositories.getInstance().getVehicleRepository();
     }
 
+    /**
+     * Retrieves a list of vehicles without booked checkups.
+     *
+     * @return An ArrayList of vehicles without booked checkups.
+     */
     public ArrayList<Vehicle> getVehicles(){
         return vehicleRepository.getVehiclesWithoutBookedCheckup();
     }

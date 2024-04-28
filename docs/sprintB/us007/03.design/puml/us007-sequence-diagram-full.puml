@@ -23,7 +23,7 @@ activate VFM
             'create CTRL
             UI -> CTRL** : create
 
-            UI -> CTRL : getVehciles()
+            UI -> CTRL : getVehicles()
             activate CTRL
 
                 CTRL -> RepositorySingleton : getInstance()
@@ -38,7 +38,7 @@ activate VFM
                     PLAT --> CTRL: vehicleRepository
                 deactivate PLAT
 
-                CTRL -> VehicleRepository : getVehiclesNeedingCheckup(vehicles)
+                CTRL -> VehicleRepository : getVehiclesWithoutBookedCheckup()
                 activate VehicleRepository
 
                     VehicleRepository --> CTRL : vehiclesList
@@ -62,15 +62,21 @@ activate VFM
 
         UI -> CTRL : createVehicleCheckup(vehicle, date, currentKms)
         activate CTRL
-activate  VehicleRepository
+
+
+
 
                 CTRL -> VehicleRepository : createVehicleCheckup(vehicle, date, currentKms)
+activate  VehicleRepository
+
+VehicleRepository-> vehicle: addCheckup(date, currentKm)
+activate vehicle
 
 
 
+ VehicleRepository--> CTRL: status of creation
+ deactivate vehicle
 
-
-                  vehicle--> CTRL: status of register
 deactivate VehicleRepository
 
 CTRL --> UI : status of creation

@@ -191,6 +191,10 @@ public class Vehicle {
         return vehicle.getVehicleID().equals(this.vehicleID);
     }
 
+    /**
+     *
+     * @return all the vehicle essential details
+     */
     @Override
     public String toString() {
         var formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -202,10 +206,23 @@ public class Vehicle {
             date = this.getLastCheckup().get().getDate().format(formatter);
         }
 
-        return  "Vehicle: " + this.brand + " (" + this.model + ")" +
-                " || ID: " + this.vehicleID +
-                " || Last Checkup: " + date;
+
+        return "Vehicle{" +
+                "brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", vehicleID='" + vehicleID + '\'' +
+                ", type=" + type +
+                ", grossWeight=" + grossWeight +
+                ", tare=" + tare +
+                ", currentKm=" + currentKm +
+                ", registerDate='" + registerDate + '\'' +
+                ", acquisitionDate='" + acquisitionDate + '\'' +
+                ", checkupFrequency=" + checkupFrequency +
+                ", Last Checkup: " + date +
+                '}';
     }
+
 }
+
 
 

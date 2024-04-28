@@ -17,7 +17,7 @@ public class CreateTeamProposalService {
         this.collaboratorRepository = Repositories.getInstance().getCollaboratorRepository();
     }
 
-    public ArrayList<Collaborator> arrangeCollaborattorsBySkill(ArrayList<Skill> skills){
+    public ArrayList<Collaborator> arrangeCollaboratorsBySkill(ArrayList<Skill> skills){
         var collaborators = new ArrayList<Collaborator>();
 
         for (var s : skills) {

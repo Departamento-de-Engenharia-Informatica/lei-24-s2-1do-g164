@@ -29,6 +29,8 @@ public class RegisterCollaboratorUI implements Runnable {
     private Job job;
     private DocumentTypeRepository idDocumentType;
     private int idDocumentNumber;
+    private int taxpayerNumber;
+    private String email;
 
     /**
      * Constructs a new RegisterCollaboratorUI instance.
@@ -58,7 +60,7 @@ public class RegisterCollaboratorUI implements Runnable {
      * Submits the collected data to register a new collaborator.
      */
     private void submitData() {
-        boolean success = getController().registerCollaborator(name, phone, birthdate, admissionDate, address, idDocumentNumber, job, idDocumentType);
+        boolean success = getController().registerCollaborator(name, phone, birthdate, admissionDate, address, idDocumentNumber, job, idDocumentType, taxpayerNumber, email);
         if (success) {
             System.out.println("\nCollaborator successfully registered!");
         } else {
@@ -73,7 +75,9 @@ public class RegisterCollaboratorUI implements Runnable {
         Scanner sc = new Scanner(System.in);
 
         this.idDocumentNumber = requestIdDocumentNumber();
+        this.taxpayerNumber = requestTaxpayerNumber();
         this.name = requestName();
+        this.email = requestEmail();
         this.phone = requestPhone();
         this.birthdate = requestBirthdate();
         this.admissionDate = requestAdmissionDate();
@@ -199,6 +203,20 @@ public class RegisterCollaboratorUI implements Runnable {
         }
     }
 
+    private int requestTaxpayerNumber() {
+        int value;
+        do {
+            String in = Utils.readLineFromConsole("Enter Tax Payer Number (9 digits): ");
+            try {
+                assert in != null;
+                value = Integer.parseInt(in);
+            } catch (NumberFormatException ex) {
+                value = -1;
+            }
+        } while (!hasLessThanXdigits(value, 9) || value < 0);
+        return value;
+    }
+
     /**
      * Requests the collaborator's phone number from the user.
      *
@@ -215,8 +233,18 @@ public class RegisterCollaboratorUI implements Runnable {
             } catch (NumberFormatException ex) {
                 value = -1;
             }
-        } while (!isValidPhone(value) || value < 0);
+        } while (!hasLessThanXdigits(value, 9) || value < 0);
         return value;
+    }
+
+    private String requestEmail() {
+        Scanner sc = new Scanner(System.in);
+        String admissionDate;
+        do{
+            System.out.print("\nEnter E-mail: ");
+            admissionDate = sc.nextLine();
+        }while (!isValidEmailFormat(admissionDate));
+        return admissionDate;
     }
 
     /**
@@ -269,7 +297,6 @@ public class RegisterCollaboratorUI implements Runnable {
     }
 
     private static boolean isValidDateFormat(String dateString) {
-        // Regex to check valid skill name (letters and spaces only).
         String regex = "^(0[1-9]|[1-2][0-9]|3[01])-(0[1-9]|1[0-2])-(\\d{4})$";
         Pattern p = Pattern.compile(regex);
         if (dateString == null) {
@@ -282,9 +309,22 @@ public class RegisterCollaboratorUI implements Runnable {
         return m.matches();
     }
 
-    private static boolean isValidPhone(int phone) {
+    private static boolean isValidEmailFormat(String email) {
+        String regex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+        Pattern p = Pattern.compile(regex);
+        if (email == null) {
+            return false;
+        }
+        Matcher m = p.matcher(email);
+        if(!m.matches()){
+            System.out.println("Invalid email format!");
+        }
+        return m.matches();
+    }
+
+    private static boolean hasLessThanXdigits(int phone, int n_digits) {
         String phoneS = String.valueOf(phone);
-        String regex = "^\\d{9}$";
+        String regex = "^\\d{" + n_digits + "}$";
         Pattern p = Pattern.compile(regex);
         if (phoneS == null){
             return false;

@@ -15,25 +15,41 @@ public class CreateTeamProposalController {
     private TeamRepository teamRepository;
     private CreateTeamProposalService teamProposalService;
 
+
+    /**
+     * Constructs a CreateTeamProposalController object with initialized repositories and services.
+     */
     public CreateTeamProposalController() {
         this.skillRepository = Repositories.getInstance().getSkillRepository();
         this.teamRepository = Repositories.getInstance().getTeamRepository();
         this.teamProposalService = new CreateTeamProposalService();
     }
-
+    /**
+     * Retrieves a list of skills available in the system.
+     * @return An ArrayList of skills available in the system.
+     */
     public ArrayList<Skill> getSkillsList() {
         return skillRepository.getSkillList();
     }
 
+
+    /**
+     * Creates a team proposal based on the specified requirements and skills.
+     * @param max The maximum number of collaborators allowed in the team.
+     * @param min The minimum number of collaborators required in the team.
+     * @param skills The list of skills required for the team.
+     * @return The created team proposal.
+     * @throws InputMismatchException If the team proposal could not be created.
+     */
+
     public Team createTeamProposal(int max, int min, ArrayList<Skill> skills) {
-        var collaborators = teamProposalService.arrangeCollaborattorsBySkill(skills);
+        var collaborators = teamProposalService.arrangeCollaboratorsBySkill(skills);
 
         Team team = new Team(teamProposalService.arrangeTeam(max, min, skills, collaborators), skills);
         if(teamRepository.registerTeam(team)){
             for (var c : team.getCollaborators()) {
                 c.activateCollaborator();
             }
-
             return team;
         } else {
             throw new InputMismatchException("Could not create team");

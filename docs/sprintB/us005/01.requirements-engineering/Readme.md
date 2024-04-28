@@ -64,8 +64,9 @@ meaning that one team member have 2 skills.
 **Input Data:**
 
 * Typed data:
+*  * maximum number of collaborators
     * minimum number of collaborators
-    * maximum number of collaborators
+   
 	
 * Selected data:
     * skills of collaborators
@@ -73,6 +74,7 @@ meaning that one team member have 2 skills.
 **Output Data:**
 
 * team proposal (team members and its skills)
+* (In)Success of the operation
 
 
 ### 1.6. System Sequence Diagram (SSD)

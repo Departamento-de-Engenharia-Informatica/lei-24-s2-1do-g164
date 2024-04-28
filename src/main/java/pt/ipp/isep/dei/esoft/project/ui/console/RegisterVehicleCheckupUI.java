@@ -17,18 +17,24 @@ public class RegisterVehicleCheckupUI implements Runnable {
     private LocalDate date;
     private int currentKms;
 
-
+    /**
+     * Constructs a RegisterVehicleCheckupUI object with a new instance of RegisterVehicleCheckupController.
+     */
     public RegisterVehicleCheckupUI() {
         this.controller = new RegisterVehicleCheckupController();
     }
-
+    /**
+     * Executes the UI flow for registering a vehicle checkup.
+     */
     public void run() {
         System.out.println("\n\n--- Register Vehicle Checkup ------------------------");
-
         requestData();
         submitData();
     }
-
+    /**
+     * Requests input data from the user including vehicle selection, date, and current kilometers.
+     * Redirects to the Vehicle Fleet Management UI if no vehicles are found or if invalid data is entered.
+     */
     private void requestData(){
         if (this.controller.getVehicles().isEmpty()) {
             System.out.println("No vehicles found");
@@ -40,7 +46,7 @@ public class RegisterVehicleCheckupUI implements Runnable {
         }
 
         try {
-            this.date = Utils.readDateFromConsole("Type date (dd-MM-yyyy):");
+            this.date = Utils.readDateFromConsole("Type date (DD-MM-YYYY):");
         } catch (DateTimeParseException ex) {
             System.out.println("Date is not in a valid format");
             this.redirectToVfmUI();
@@ -61,7 +67,10 @@ public class RegisterVehicleCheckupUI implements Runnable {
             this.redirectToVfmUI();
         }
     }
-
+    /**
+     * Submits the input data to the controller for registering the vehicle checkup.
+     * Displays success or failure messages accordingly.
+     */
     private void submitData() {
         try {
             boolean checkup = this.controller.createVehicleCheckup(this.vehicle, this.date, this.currentKms);
@@ -74,7 +83,9 @@ public class RegisterVehicleCheckupUI implements Runnable {
             System.out.println("Vehicle checkup not created!: " + ex.getMessage());
         }
     }
-
+    /**
+     * Redirects the user to the Vehicle Fleet Management UI.
+     */
     private void redirectToVfmUI() {
         MenuItem item = new MenuItem(AuthenticationController.ROLE_VFM, new VfmUI());
         item.run();

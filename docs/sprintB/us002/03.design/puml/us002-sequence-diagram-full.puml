@@ -16,10 +16,12 @@ participant "job:Job" as job
 
 activate ADM
 
+
         ADM -> UI : asks to register a new job
 
-        activate UI
 
+        activate UI
+            UI -> CTRL**:create
 '            UI --> ADM : requests data (reference, description,  informal \n description, technical description, duration, cost)
             'create CTRL
 

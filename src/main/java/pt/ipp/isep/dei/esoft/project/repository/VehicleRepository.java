@@ -62,28 +62,6 @@ public class VehicleRepository implements Serializable {
         return true;
     }
 
-    /**
-     * Validates if the provided date string has a valid "DD-MM-YYYY" format.
-     *
-     * @param dateString The date string to validate.
-     * @return {@code true} if the date format is valid, {@code false} otherwise.
-     */
-
-
-    /**
-     * Helper method to check if a string is numeric.
-     *
-     * @param str The string to check.
-     * @return {@code true} if the string is numeric, {@code false} otherwise.
-     */
-    private static boolean isNumeric(String str) {
-        for (char c : str.toCharArray()) {
-            if (!Character.isDigit(c)) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     /**
      * Retrieves the number of vehicles in the repository.
@@ -97,7 +75,7 @@ public class VehicleRepository implements Serializable {
     /**
      * Retrieves vehicles that need a checkup based on their current state.
      *
-     * @param vehicles The list of vehicles to check.
+     *
      * @return The list of vehicles that need a checkup.
      */
     public ArrayList<Vehicle> getVehiclesNeedingCheckup() {
@@ -110,7 +88,10 @@ public class VehicleRepository implements Serializable {
         }
         return vehiclesNeedingCheckup;
     }
-
+    /**
+     * Retrieves vehicles without booked checkups or with checkups scheduled in the past.
+     * @return An ArrayList of vehicles without booked checkups or with checkups scheduled in the past.
+     */
     public ArrayList<Vehicle> getVehiclesWithoutBookedCheckup() {
         ArrayList<Vehicle> vehicles = new ArrayList<>();
 
@@ -125,13 +106,18 @@ public class VehicleRepository implements Serializable {
         return vehicles;
     }
 
-//    public boolean createVehicleCheckup(Vehicle vehicle, Date date, int currentKm) {
-//        if (vehicle != null && validar cenas){
-//            vehicle.addCheckup(vehicle, date, currentKm);
-//            return true;
-//        }
-//        return false;
-//
-//
-//    }
+    /**
+     * Creates a new vehicle checkup for the specified vehicle with the given date and current kilometers.
+     * @param vehicle The vehicle for which the checkup is to be created.
+     * @param date The date of the checkup.
+     * @param currentKm The current kilometers of the vehicle at the time of the checkup.
+     * @return true if the checkup is successfully created, false otherwise.
+     */
+    public boolean createVehicleCheckup(Vehicle vehicle, LocalDate date, int currentKm) {
+        if (vehicle != null) {
+            vehicle.addCheckup(date, currentKm);
+            return true;
+        }
+        return false;
+    }
 }

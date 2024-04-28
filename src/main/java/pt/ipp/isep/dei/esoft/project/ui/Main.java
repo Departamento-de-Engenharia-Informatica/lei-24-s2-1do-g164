@@ -10,12 +10,6 @@ public class Main {
         Bootstrap bootstrap = new Bootstrap();
         bootstrap.run();
 
-        JobRepository repo = new JobRepository();
-        repo.registerJob("caloiro");
-
-        for(Job job: repo.getJobList()){
-            System.out.println(job.getJobName());
-        }
         try {
             MainMenuUI menu = new MainMenuUI();
             menu.run();

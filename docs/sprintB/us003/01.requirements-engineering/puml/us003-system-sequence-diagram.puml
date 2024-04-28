@@ -27,7 +27,7 @@ System --> Employee : shows the  id document types and asks to select one
     Employee -> System : selects an id document type
         activate System
 
-    System --> Employee : requests data (id document's number, name, birthday, admission date, address, cellphone \nnumber, e-mail)
+    System --> Employee : requests data (id document's number, name, birthday, admission date, address, cellphone \nnumber, e-mail, taxpayer number)
     deactivate System
 
     Employee -> System : types data

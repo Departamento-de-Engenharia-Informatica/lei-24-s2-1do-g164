@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class AssignSkillsController {
     private SkillRepository skillRepository;
     private CollaboratorRepository collaboratorRepository;
-    private AuthenticationRepository authenticationRepository;
 
     public AssignSkillsController() {
         getCollaboratorRepository();

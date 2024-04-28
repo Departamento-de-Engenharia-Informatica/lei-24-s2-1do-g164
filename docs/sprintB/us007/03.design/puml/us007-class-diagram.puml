@@ -32,7 +32,7 @@ class ":Repositories" as Repositories {
 }
 
 class "VehicleRepository" as VehicleRepository {
-    +getVehiclesNeedingCheckup(vehicles)
+    +getVehiclesWithoutBookedCheckup()
     +createVehicleCheckup(vehicle, date, currentKms)
 
 }
@@ -50,7 +50,7 @@ class "Vehicle" as Vehicle {
         - String acquisitionDate
         - Integer checkupFrequency
 
-    +create(selectedCollaborators)
+    +addCheckup(date, currentKm)
 
 }
 RegisterVehicleCheckupUI..> RegisterVehicleCheckupController

@@ -16,12 +16,15 @@ class ":CreateTeamProposalUI" as CreateTeamProposalUI {
 
 
 class ":CreateTeamProposalController" as CreateTeamProposalController {
-+getSkills()
++getSkillsList()
     +createTeamProposal(max, min, skills)
 
 }
 
-
+class ":CreateTeamProposalService" as CreateTeamProposalService {
++arrangeCollaboratorsBySkill(skills)
++ arrangeTeam(max, min, skills, collaborators)
+}
 
 class ":Repositories" as Repositories {
     +getInstance(): Repositories
@@ -31,7 +34,7 @@ class ":Repositories" as Repositories {
 }
 
 class "SkillRepository" as SkillRepository {
-    +getSkills()
+    +getSkillsList()
 
 }
 
@@ -45,14 +48,13 @@ class SystemUser {
 }
 
 class "CollaboratorRepository" as CollaboratorRepository {
-     getDeactivatedCollaboratorsBySkills(skills)
+     +getDeactivatedCollaboratorsBySkills(skills)
 }
 
 class "TeamRepository" as TeamRepository {
-    +createTeam(selectedCollaborators, skills )
-    -addTeam()
+    +registerTeam(team)
+    -teamAlreadyExists(team)
 }
-note bottom of TeamRepository: the selected collaborators were selected\nbased on the max and min size   on\nCreateTeamProposalController
 
 class "Team" as Team {
     -Integer maxSize
@@ -60,11 +62,11 @@ class "Team" as Team {
     -ArrayList<Skill> requiredSkills
     -ArrayList<Collaborator> collaborators
 
-    +create(selectedCollaborators)
+   +create(teamMembers,skills)
 
 }
 
- note right of "CollaboratorRepository" : filter collaborators\nbased on their skills
+
 SystemUser <|-- HRM
 CreateTeamProposalUI ..> CreateTeamProposalController
 Repositories -> Repositories : instance
@@ -75,6 +77,7 @@ Repositories --> "1"TeamRepository
 CreateTeamProposalController ..> TeamRepository: TeamRepository
 TeamRepository  --> "*"Team
 CreateTeamProposalController --> Team
+CreateTeamProposalController ..> CreateTeamProposalService
 CreateTeamProposalController ..> SkillRepository: skillRepository
 CreateTeamProposalController ..> CollaboratorRepository: collaboratorRepository
 HRM -->  Team: generates

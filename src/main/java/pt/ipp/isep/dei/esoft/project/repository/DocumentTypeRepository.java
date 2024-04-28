@@ -5,6 +5,6 @@ package pt.ipp.isep.dei.esoft.project.repository;
  */
 public enum DocumentTypeRepository {
     PASSPORT,         // Represents a passport document type
-    ID_CARD,          // Represents an ID card document type
+    CITIZEN_CARD,          // Represents an ID card document type
     DRIVERS_LICENSE   // Represents a driver's license document type
 }

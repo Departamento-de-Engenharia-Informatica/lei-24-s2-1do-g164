@@ -39,8 +39,8 @@ public class RegisterCollaboratorController {
      * @param idDocumentType   The ID document type repository of the collaborator.
      * @return {@code true} if the collaborator is successfully registered, {@code false} otherwise.
      */
-    public boolean registerCollaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentTypeRepository idDocumentType) {
-        return collaboratorRepository.registerCollaborator(name, phone, birthdate, admissionDate, address, idDocumentNumber, job, idDocumentType, getCollaboratorStatusList().get(1) );
+    public boolean registerCollaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentTypeRepository idDocumentType, int taxpayerNumber, String email) {
+        return collaboratorRepository.registerCollaborator(name, phone, birthdate, admissionDate, address, idDocumentNumber, job, idDocumentType, getCollaboratorStatusList().get(1), taxpayerNumber, email);
     }
 
     private CollaboratorRepository getCollaboratorRepository() {

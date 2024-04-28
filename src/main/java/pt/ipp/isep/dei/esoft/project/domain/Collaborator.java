@@ -8,20 +8,18 @@ import java.util.ArrayList;
 public class Collaborator {
     private String name;
     private int phone;
+    private String email;
     private String birthdate;
     private String admissionDate;
     private String address;
     private Job job;
     private DocumentTypeRepository idDocumentType;
     private int idDocumentNumber;
+    private int taxpayerNumber;
     private ArrayList<Skill> skills;
-
     private CollaboratorStatus status;
 
-
-
-
-    public Collaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentTypeRepository idDocumentType, CollaboratorStatus status) {
+    public Collaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentTypeRepository idDocumentType, CollaboratorStatus status, int taxpayerNumber, String email) {
         this.name = name;
         this.phone = phone;
         this.birthdate = birthdate;
@@ -31,6 +29,8 @@ public class Collaborator {
         this.job = job;
         this.skills = new ArrayList<>();
         this.status= status;
+        this.taxpayerNumber = taxpayerNumber;
+        this.email = email;
     }
     public String getName() {
         return name;
@@ -73,7 +73,7 @@ public class Collaborator {
         return false;
     }
     public boolean equals(Collaborator c){
-        return c.getPhone() == this.phone || c.getName().equals(this.name);
+        return c.getTaxpayerNumber() == this.taxpayerNumber;
     }
 
     public void addSkill(Skill s){
@@ -84,6 +84,17 @@ public class Collaborator {
         this.status= CollaboratorStatus.ACTIVATED;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public DocumentTypeRepository getIdDocumentType() {
+        return idDocumentType;
+    }
+
+    public int getTaxpayerNumber() {
+        return taxpayerNumber;
+    }
 
     public CollaboratorStatus getStatus() {
         return status;

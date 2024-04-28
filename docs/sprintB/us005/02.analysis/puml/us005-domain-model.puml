@@ -27,6 +27,7 @@ class Collaborator {
     address
     idDocType
     idNumber
+    status
 }
 
 

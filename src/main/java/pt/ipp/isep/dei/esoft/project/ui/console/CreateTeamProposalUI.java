@@ -19,7 +19,7 @@ import java.util.Scanner;
 public class CreateTeamProposalUI implements Runnable {
 
     private final CreateTeamProposalController controller;
-    private final SkillRepository skillRepository;
+
     private int min, max;
     private ArrayList<Skill> skills;
 
@@ -28,7 +28,6 @@ public class CreateTeamProposalUI implements Runnable {
      */
     public CreateTeamProposalUI() {
         controller = new CreateTeamProposalController();
-        skillRepository = Repositories.getInstance().getSkillRepository();
     }
     /**
      * Retrieves the controller associated with this UI.
@@ -47,26 +46,12 @@ public class CreateTeamProposalUI implements Runnable {
         item.run();
     }
 
-
     /**
      * Executes the UI flow for creating a team proposal.
      */
     @Override
     public void run() {
         System.out.println("\n\n----------- Create Team Proposal----------------------");
-//        int max = requestMaxSize();
-//        int min = requestMinSize();
-//        ArrayList<Skill> availableSkills = skillRepository.getSkillList();
-//        displayAvailableSkills(availableSkills);
-//        ArrayList<Skill> skills = requestSkills(availableSkills);
-//
-//        try {
-//            //Team team = controller.createTeamProposal(max, min, skills);
-//            System.out.println("\nTeam proposal created successfully!");
-//
-//        } catch (InputMismatchException e) {
-//            System.out.println("\nError: " + e.getMessage());
-//        }
         requestData();
         submitData();
     }

@@ -8,6 +8,8 @@ import java.util.ArrayList;
 public class TeamRepository implements Serializable {
     ArrayList<Team> teams = new ArrayList<>();
 
+
+
     public boolean registerTeam(Team team){
         if (!teamAlreadyExists(team)){
             teams.add(team);
@@ -25,5 +27,8 @@ public class TeamRepository implements Serializable {
             }
         }
         return false;
+    }
+    public int size() {
+        return this.teams.size();
     }
 }

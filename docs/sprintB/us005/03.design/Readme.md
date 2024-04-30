@@ -6,23 +6,23 @@
 
 _**Note that SSD - Alternative One is adopted.**_
 
-| Interaction ID | Question: Which class is responsible for...   | Answer                       | Justification (with patterns)                                                                                 |
-|:-------------  |:----------------------------------------------|:-----------------------------|:--------------------------------------------------------------------------------------------------------------|
-| Step 1  		 | 	... interacting with the actor?              | CreateTeamProposalUI         | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. |
-| 			  		 | 	... coordinating the US?                     | CreateTeamProposalController | Controller                                                                                                    |
-| 			  		 | 	... instantiating a new Team Proposal?       | Team                         | Creator (Rule 1): in the DM Organization has a Task.                                                          |
-| 			  		 | ... knowing the user using the system?        | UserSession                  | IE: cf. A&A component documentation.                                                                          |
-| 			  		 | 							                                       | Organization                 | IE: knows/has its own Employees                                                                               |
-| 			  		 | 							                                       | Employee                     | IE: knows its own data (e.g. email)                                                                           |
-| Step 2  		 | 							                                       |                              |                                                                                                               |
-| Step 3  		 | 	...saving the inputted data?                 | Task                         | IE: object created in step 1 has its own data.                                                                |
-| Step 4  		 | 	...knowing the task categories to show?      | System                       | IE: Task Categories are defined by the Administrators.                                                        |
-| Step 5  		 | 	... saving the selected category?            | Task                         | IE: object created in step 1 is classified in one Category.                                                   |
-| Step 6  		 | 							                                       |                              |                                                                                                               |              
-| Step 7  		 | 	... validating all data (local validation)?  | Task                         | IE: owns its data.                                                                                            | 
-| 			  		 | 	... validating all data (global validation)? | Organization                 | IE: knows all its tasks.                                                                                      | 
-| 			  		 | 	... saving the created task?                 | Organization                 | IE: owns all its tasks.                                                                                       | 
-| Step 8  		 | 	... informing operation success?             | CreateTaskUI                 | IE: is responsible for user interactions.                                                                     | 
+| Interaction ID                                                      | Question: Which class is responsible for...                  | Answer                                           | Justification (with patterns)                                                                                 |
+|:--------------------------------------------------------------------|:-------------------------------------------------------------|:-------------------------------------------------|:--------------------------------------------------------------------------------------------------------------|
+| Step 1 (Ask to generate a team proposal) 		                         | 	... interacting with the actor?                             | CreateTeamProposalUI                             | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. |
+| 			  		                                                             | 	... coordinating the US?                                    | CreateTeamProposalController                     | Controller.                                                                                                   |
+| 	 Step 2 (Request data(max and min size))   		  		                  | 	... displaying the form for input data?                     | CreateTeamProposalUI                             | Pure Fabrication.                                                                                             |
+|
+| Step 3 (Type data)		                                         		  		 | ... validating data locally?                                 | CreateTeamProposalUI                             | IE: knows the inputted data.                                                                                  |
+| 	Step 4 (Show skill list and asks to select them)		   		            | 		...getting the skills list?   					                        | SkillRepository                                  | IE: has the data.                                                                                             |
+| 			  		                                                             | 	...displaying the list and form for input data?				         | CreateTeamProposalUI                             | Pure Fabrication.                                                                                             |
+|                                                                     | 							                                                      |                                                  |                                                                                                               || 	...saving the inputted data?                 | Task                         | IE: object created in step 1 has its own data.                                                                |
+| 		Step 5 (Select Skills)                                            | 	...storing the selected data temporarily?                   | CreateTeamProposalUI                             | Pure Fabrication.                                                                                             |
+| 		        Step 6 (Get Collaborators for the team)                   | 	... getting the list of available collaborators?            | CollaboratorRepository                           | IE: contains all the registered collaborators.                                                                |
+| 	                                                                   | 		... filtering the list of available collaborators?					    | CreateTeamProposalService                        | Service, handles business logic for selecting collaborators based on skills and availability.                 |                              |                                                                                                               |              
+| Step 6  	(Register a Team)	                                         | 	... registering a team with selected collaborators?         | TeamRepository                                   | IE: responsible for managing teams and their creation.                                                        | 
+| 			  		                                                             | 	... checking if the team already exists?                    | TeamRepository                                   | IE: handles operations related to team existence.                                                             | 
+| 		Step 7 (Displays status of operation) 		  		                      | ... informing operation success?                             | CreateTeamProposalUI                             | Pure Fabrication.                                                                                      | 
+
 
 ### Systematization ##
 
@@ -33,11 +33,13 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 * CreateTeamProposalUI
 * CreateTeamProposalController
+* CreateTeamProposalService
+* CollaboratorStatus
 
 
 ## 3.2. Sequence Diagram (SD)
 
-_**Note that SSD - Alternative Two is adopted.**_
+
 
 ### Full Diagram
 

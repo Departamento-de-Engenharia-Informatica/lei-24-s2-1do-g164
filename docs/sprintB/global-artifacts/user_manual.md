@@ -158,7 +158,7 @@ As a VFM, your role involves managing the fleet of vehicles and equipment. Here'
 ![hrmlogin](IMG\hrmformat.jpg)
 ![hrmlogin](IMG\vfmformat.jpg)
 
-**Step 3 **: The menu
+**Step 3**: The menu
 
 **HRM Menu:**![img.png](img.png)
 
@@ -169,10 +169,15 @@ As a VFM, your role involves managing the fleet of vehicles and equipment. Here'
 ![hrmmenu](IMG\VFMMENU.jpg)
 
 
-### 4.1.1 Development Team
+### 4.1.2 Development Team
 
 **Step 1**: To familiarize yourself with the team and their contact information, choose option number ("2")
 ![development team](IMG\developmentteam.jpg)
+
+### 4.1.3 Hmr menu
+    
+
+
 
 
 

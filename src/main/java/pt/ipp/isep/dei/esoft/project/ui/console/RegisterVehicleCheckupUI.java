@@ -51,8 +51,8 @@ public class RegisterVehicleCheckupUI implements Runnable {
             System.out.println("Date is not in a valid format");
             this.redirectToVfmUI();
         }
-        if (this.date.isBefore(LocalDate.now())) {
-            System.out.println("Date can't be before today's date");
+        if (this.date.isAfter(LocalDate.now())) {
+            System.out.println("Date can't be after today's date");
             this.redirectToVfmUI();
         }
 

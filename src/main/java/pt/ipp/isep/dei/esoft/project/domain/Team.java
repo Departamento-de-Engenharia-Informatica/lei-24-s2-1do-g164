@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Represents a team of collaborators with specific skills.
@@ -70,6 +71,9 @@ public class Team {
     @Override
     public String toString() {
         return "Team: " + collaborators;
+    }
+    public int hashCode() {
+        return Objects.hash(collaborators,skills);
     }
 
 }

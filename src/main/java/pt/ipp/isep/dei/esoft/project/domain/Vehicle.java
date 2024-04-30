@@ -173,6 +173,7 @@ public class Vehicle {
     }
 
     public void addCheckup(LocalDate date, int newCurrentKm) {
+
         if (this.currentKm > newCurrentKm) {
             throw new InputMismatchException("New current kilometers should be higher than the previous value");
         }

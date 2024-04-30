@@ -46,6 +46,7 @@ class Collaborator {
     address
     idDocumentType
     idDocumentNumber
+    status
 }
 class GSM {
 }

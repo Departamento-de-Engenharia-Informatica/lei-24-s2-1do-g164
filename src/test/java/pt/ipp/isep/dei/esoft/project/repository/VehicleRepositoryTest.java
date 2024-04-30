@@ -12,6 +12,7 @@ import java.util.Date;
 
 public class VehicleRepositoryTest {
     private VehicleRepository repository;
+    private Vehicle vehicle;
 
     @BeforeEach
     public void setUp() {
@@ -56,5 +57,25 @@ public class VehicleRepositoryTest {
         assertEquals(1, vehiclesWithoutBookedCheckup.size());
     }
 
-    // Add more tests for other methods if needed
+
+    @Test
+    public void testHasVehicleToRegisterVehicleCheckUp() {
+        repository.registerVehicle("Toyota", "Corolla", "AB-22-KL", VehicleTypeRepository.LIGHT_VEHICLE, 1500.0, 1200.0, 50000,
+                "01-01-2022", "01-01-2022", 10000);
+        vehicle = repository.getVehicleList().get(0);
+        LocalDate date = LocalDate.of(2024, 4, 30);
+        int currentKm = 50000;
+        boolean result = repository.createVehicleCheckup(vehicle, date, currentKm);
+        assertTrue(result);
+
+    }
+
+    @Test
+    public void testNoVehiclesToRegisterVehicleCheckUp() {
+        LocalDate date = LocalDate.of(2024, 4, 30);
+        int currentKm = 50000;
+        boolean result = repository.createVehicleCheckup(null, date, currentKm);
+        assertFalse(result);
+
+    }
 }

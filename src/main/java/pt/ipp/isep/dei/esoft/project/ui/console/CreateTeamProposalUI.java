@@ -59,17 +59,22 @@ public class CreateTeamProposalUI implements Runnable {
      * Requests input data from the user including the maximum and minimum number of collaborators and required skills.
      */
     private void requestData() {
-        try {
-            this.max = Utils.readIntegerFromConsole("Type maximum number of collaborators:");
-            this.min = Utils.readIntegerFromConsole("Type minimum number of collaborators:");
-        } catch (NumberFormatException ex) {
-            System.out.println("Number is not in a valid format");
-            redirectToHrmUI();
-        }
 
-        if (this.min > this.max) {
-            System.out.println("Minimum number cannot be higher than maximum number");
-            redirectToHrmUI();
+        boolean validInput = false;
+
+        while (!validInput) {
+            try {
+                this.max = Utils.readIntegerFromConsole("Type maximum number of collaborators:");
+                this.min = Utils.readIntegerFromConsole("Type minimum number of collaborators:");
+
+                if (this.min > this.max) {
+                    System.out.println("Minimum number cannot be higher than maximum number. Please try again.");
+                } else {
+                    validInput = true;
+                }
+            } catch (NumberFormatException ex) {
+                System.out.println("Number is not in a valid format. Please try again.");
+            }
         }
 
         var skills = this.controller.getSkillsList();
@@ -126,6 +131,7 @@ public class CreateTeamProposalUI implements Runnable {
      * @param skills The list of available skills.
      * @return An ArrayList of selected skills.
      */
+
 
     private ArrayList<Skill> requestSkills(ArrayList<Skill> skills) {
         Scanner input = new Scanner(System.in);

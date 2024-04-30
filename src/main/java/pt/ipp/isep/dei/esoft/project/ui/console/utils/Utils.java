@@ -67,12 +67,16 @@ public class Utils {
 
     static public LocalDate readDateFromConsole(String prompt) {
         do {
+            try {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                 String strDate = readLineFromConsole(prompt);
 
                 LocalDate date = LocalDate.parse(strDate, formatter);
 
                 return date;
+            } catch (DateTimeParseException ex) {
+                System.out.println("Date is not in a valid format. Please try again.");
+            }
         } while (true);
     }
 

@@ -35,7 +35,7 @@ public class RegisterVehicleCheckupUI implements Runnable {
      * Requests input data from the user including vehicle selection, date, and current kilometers.
      * Redirects to the Vehicle Fleet Management UI if no vehicles are found or if invalid data is entered.
      */
-    private void requestData(){
+    private void requestData() {
         if (this.controller.getVehicles().isEmpty()) {
             System.out.println("No vehicles found");
             redirectToVfmUI();
@@ -45,28 +45,37 @@ public class RegisterVehicleCheckupUI implements Runnable {
             this.redirectToVfmUI();
         }
 
-        try {
-            this.date = Utils.readDateFromConsole("Type date (DD-MM-YYYY):");
-        } catch (DateTimeParseException ex) {
-            System.out.println("Date is not in a valid format");
-            this.redirectToVfmUI();
-        }
-        if (this.date.isAfter(LocalDate.now())) {
-            System.out.println("Date can't be after today's date");
-            this.redirectToVfmUI();
-        }
 
         try {
-            this.currentKms = Utils.readIntegerFromConsole("Type current Kms (Last known Kms: " + this.vehicle.getCurrentKm() + "Kms):");
-        } catch (NumberFormatException ex) {
-            System.out.println("Current Kms are not in a valid format");
-            this.redirectToVfmUI();
+            do {
+                this.date = Utils.readDateFromConsole("Type date (DD-MM-YYYY):");
+                if (this.date.isAfter(LocalDate.now())) {
+                    System.out.println("Date can't be after today's date. Please try again.");
+                }
+            } while (this.date.isAfter(LocalDate.now()));
+        } catch (DateTimeParseException ex) {
+            System.out.println("Date is not in a valid format");
         }
-        if (this.currentKms < this.vehicle.getCurrentKm()) {
-            System.out.println("Current Kms should be higher than " + this.vehicle.getCurrentKm() + "Kms");
-            this.redirectToVfmUI();
+
+
+        try {
+            do {
+                try {
+                    this.currentKms = Utils.readIntegerFromConsole("Type current Kms (Last known Kms: " + this.vehicle.getCurrentKm() + "Kms):");
+                } catch (NumberFormatException ex) {
+                    System.out.println("Current Kms are not in a valid format");
+                    continue;
+                }
+
+                if (this.currentKms < this.vehicle.getCurrentKm()) {
+                    System.out.println("Current Kms should be higher than " + this.vehicle.getCurrentKm() + "Kms. Please try again.");
+                }
+            } while (this.currentKms < this.vehicle.getCurrentKm());
+
+        } catch (Exception e) {
         }
     }
+
     /**
      * Submits the input data to the controller for registering the vehicle checkup.
      * Displays success or failure messages accordingly.

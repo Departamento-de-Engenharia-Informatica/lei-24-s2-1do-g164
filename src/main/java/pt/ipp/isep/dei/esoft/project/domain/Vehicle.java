@@ -26,6 +26,8 @@ public class Vehicle {
     private int checkupFrequency;
     private ArrayList<VehicleCheckup> checkupList;
 
+    private final double PERCENTAGEM_TOLERANCIA = 0.05;
+
     /**
      * Constructs a new Vehicle instance with specified details.
      *
@@ -159,9 +161,9 @@ public class Vehicle {
      */
     public boolean needsCheckup() {
         int difference = this.currentKm - this.checkupList.get(checkupList.size()-1).getCurrentKms();
-        double percentage = (double) difference / this.checkupFrequency;
+        double percentageInKm = PERCENTAGEM_TOLERANCIA * this.checkupFrequency;
 
-        return difference >= this.checkupFrequency;
+        return difference + percentageInKm >= this.checkupFrequency;
     }
 
     public void addCheckup(LocalDate date, int newCurrentKm) {

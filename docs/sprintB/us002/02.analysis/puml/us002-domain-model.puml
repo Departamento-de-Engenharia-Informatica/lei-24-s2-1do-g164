@@ -24,11 +24,6 @@ class Job
 }
 
 
-class HRM{
 
-}
-
-
-HRM "1" - "*" Job: creates  >
-SystemUser <|-- HRM
+SystemUser "1" - "*" Job: creates  >
 @enduml

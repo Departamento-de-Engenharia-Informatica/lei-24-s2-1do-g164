@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.ui.console;
 
+import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterVehicleController;
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.VehicleCheckup;
@@ -241,7 +242,7 @@ public class RegisterVehicleUI implements Runnable {
         do{
             System.out.print("\nEnter Plate ID (XX-XX-XX): ");
             plate = sc.nextLine();
-        }while (!isValidPlateFormat(plate));
+        }while (!isValidPlateFormat(plate, this.registerDate));
         return plate;
     }
 
@@ -249,13 +250,13 @@ public class RegisterVehicleUI implements Runnable {
      * Collects all necessary data from the user to register a vehicle.
      */
     private void requestData() {
-        this.vehicleID = requestVehicleID();
         this.brand = requestBrand();
         this.model = requestModel();
         this.currentKm = requestCurrentKm();
         this.checkupFrequency = requestCheckupFrequency();
         this.acquisitionDate = requestAcquisitionDate();
         this.registerDate = requestRegisterDate();
+        this.vehicleID = requestVehicleID();
         this.grossWeight = requestGrossWeight();
         this.tare = requestTareWeight();
     }
@@ -291,14 +292,27 @@ public class RegisterVehicleUI implements Runnable {
         item.run();
     }
 
-    private static boolean isValidPlateFormat(String dateString) {
+    private static boolean isValidPlateFormat(String plateString, String date) {
+
+        // Get the length of the string
+        int length = date.length();
+        int year =Integer.parseInt( date.substring(length - 4));
+        String regex;
+        if (year > 2020) {
+            regex = "[A-Z]{2}-\\d{2}-[A-Z]{2}";
+        } else if (year >= 2005) {
+            regex = "\\d{2}-[A-Z]{2}-\\d{2}";
+        } else if (year >= 1992) {
+            regex = "\\d{2}-\\d{2}-[A-Z]{2}";
+        }else {
+            regex = "^(([A-Z]{2}-\\d{2}-(\\d{2}|[A-Z]{2}))|(\\d{2}-(\\d{2}-[A-Z]{2}|[A-Z]{2}-\\d{2})))$";
+        }
         // Regex to check valid skill name (letters and spaces only).
-        String regex = "^(([A-Z]{2}-\\d{2}-(\\d{2}|[A-Z]{2}))|(\\d{2}-(\\d{2}-[A-Z]{2}|[A-Z]{2}-\\d{2})))$";
         Pattern p = Pattern.compile(regex);
-        if (dateString == null) {
+        if (plateString == null) {
             return false;
         }
-        Matcher m = p.matcher(dateString);
+        Matcher m = p.matcher(plateString);
         if(!m.matches()){
             System.out.println("Invalid plate format!");
         }

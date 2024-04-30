@@ -32,12 +32,14 @@ public class MainTest{
                         long endTime = System.nanoTime();
                         long executionTime = (endTime - startTime) / 10000;
                         executionRecords.add(new ExecutionRecord(edges.size(), executionTime, file.getName()));
+                        System.out.println("b");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
             }
         }
+        System.out.println("a");
 
         // Plot the data
         SwingUtilities.invokeLater(() -> {

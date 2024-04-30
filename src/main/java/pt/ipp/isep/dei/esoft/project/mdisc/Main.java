@@ -73,8 +73,7 @@ public class Main {
     }
 
     public static int calculateMinimumSpanningTreeCost(List<Edge> edges, List<Edge> mstEdges) {
-        edges.sort(Comparator.comparingInt(edge -> edge.getWeight()));
-
+        bubbleSort(edges);
         int minCost = 0;
         Map<String, String> parent = new HashMap<>();
 
@@ -114,5 +113,23 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+        public static void bubbleSort(List<Edge> list) {
+            int n = list.size();
+            boolean swapped;
+
+            do {
+                swapped = false;
+                for (int i = 0; i < n - 1; i++) {
+                    if (list.get(i).getWeight() > list.get(i + 1).getWeight()) {
+                        Edge temp = list.get(i);
+                        list.set(i, list.get(i + 1));
+                        list.set(i + 1, temp);
+                        swapped = true;
+                    }
+                }
+                n--;
+            } while (swapped);
+
     }
 }

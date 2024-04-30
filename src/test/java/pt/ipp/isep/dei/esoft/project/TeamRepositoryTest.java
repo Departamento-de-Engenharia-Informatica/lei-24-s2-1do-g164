@@ -1,16 +1,21 @@
-package pt.ipp.isep.dei.esoft.project.domain;
+package pt.ipp.isep.dei.esoft.project;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.esoft.project.domain.Collaborator;
+import pt.ipp.isep.dei.esoft.project.domain.Job;
+import pt.ipp.isep.dei.esoft.project.domain.Skill;
+import pt.ipp.isep.dei.esoft.project.domain.Team;
+import pt.ipp.isep.dei.esoft.project.repository.CollaboratorRepository;
 import pt.ipp.isep.dei.esoft.project.repository.CollaboratorStatus;
 import pt.ipp.isep.dei.esoft.project.repository.DocumentTypeRepository;
+import pt.ipp.isep.dei.esoft.project.repository.TeamRepository;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TeamTest {
+class TeamRepositoryTest {
 
     private ArrayList<Collaborator> collaborators1;
     private ArrayList<Collaborator> collaborators2;
@@ -32,10 +37,11 @@ class TeamTest {
     private Team t3;
     private Job job;
     private DocumentTypeRepository docType;
-
-
+    private TeamRepository repo;
     @BeforeEach
     public void setUp() {
+        repo = new TeamRepository();
+
         collaborators1 = new ArrayList<>();
         collaborators2 = new ArrayList<>();
         skills1 = new ArrayList<>();
@@ -65,53 +71,40 @@ class TeamTest {
 
         t1 = new Team(collaborators1, skills1);
         t2 = new Team(collaborators2, skills2);
-        t3=new Team(collaborators1, skills1);
-    }
-
-
-    @Test
-    void ensureTeamsEquals() {
-        assertEquals(t1, t1);
+        t3 = new Team(collaborators1, skills1);
     }
 
     @Test
-    void ensureTwoTeamsWithDiferentCollaboratorsNotEqual() {
-        assertNotEquals(t1, t2);
-    }
-    @Test
-    void ensureTwoTeamsWithDiferentSkillsNotEqual() {
-        assertNotEquals(t1, t2);
-    }
-    @Test
-    void ensureTeamDoesNotEqualNull() {
-        assertNotEquals(t1, null);
+
+    void testTeamAlreadyExists() {
+        repo.registerTeam(t1);
+        boolean value = repo.registerTeam(t3);
+        assertFalse(value);
+
     }
 
     @Test
-    void ensureHashCodeIsEqualForEqualObjects() {
-        assertEquals(t1.hashCode(), t1.hashCode());
-    }
-    @Test
-    void ensureHashCodeIsNotEqualForDifferentObjects() {
-        assertNotEquals(t1.hashCode(), t2.hashCode());
+
+    void testTeamDoesntExists() {
+        repo.registerTeam(t1);
+      boolean value= repo.registerTeam(t2);
+        assertTrue(value);
     }
 
     @Test
-    void ensureGetSkillsReturnsCorrectSkills() {
-        ArrayList<Skill> result = t1.getSkills();
-        assertEquals(skills1, result);
-    }
-    @Test
-    void ensureGetCollaboratorsReturnsCorrectCollaborators() {
-        ArrayList<Collaborator> result = t1.getCollaborators();
-        assertEquals(collaborators1, result);
+    void testTeamIsAdded(){
+        repo.registerTeam(t1);
+        assertEquals(1, repo.size());
     }
 
-    @Test
-    void ensureSetSkillsUpdatesSkillsCorrectly() {
-        ArrayList<Skill> newSkills = new ArrayList<>(Arrays.asList(new Skill("NewSkill1"), new Skill("NewSkill2")));
-        t1.setSkills(newSkills);
-        assertEquals(newSkills, t1.getSkills());
-    }
+
+
+
+
+
+
+
+
+
 
 }

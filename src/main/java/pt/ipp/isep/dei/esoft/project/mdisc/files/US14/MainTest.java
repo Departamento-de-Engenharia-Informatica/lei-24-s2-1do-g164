@@ -41,7 +41,6 @@ public class MainTest{
         }
         System.out.println("a");
 
-        // Plot the data
         SwingUtilities.invokeLater(() -> {
             ExecutionTimePlotter plot = new ExecutionTimePlotter("Execution Records Plot", executionRecords);
             plot.setSize(800, 600);

@@ -36,8 +36,10 @@ public class CheckUpReportUI implements Runnable {
         if (List.isEmpty()) {
             System.out.println("No vehicles found");
         }else{
-            for (Vehicle v: List){
-                System.out.println(v.toString());
+            for (Vehicle v: List) {
+                if (v.needsCheckup()) {
+                    System.out.println(v.toString());
+                }
             }
         }
     }

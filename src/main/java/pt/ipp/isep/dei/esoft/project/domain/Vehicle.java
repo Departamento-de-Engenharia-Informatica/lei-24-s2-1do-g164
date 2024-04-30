@@ -52,6 +52,7 @@ public class Vehicle {
         this.acquisitionDate = acquisitionDate;
         this.checkupFrequency = checkupFrequency;
         this.checkupList = new ArrayList<>();
+        this.checkupList.add(new VehicleCheckup(LocalDate.now(), 0));
     }
 
     /**
@@ -149,12 +150,7 @@ public class Vehicle {
      *
      * @return The last performed checkup.
      */
-    public Optional<VehicleCheckup> getLastCheckup() {
-        if (this.checkupList.isEmpty()){
-            return Optional.empty();
-        }
-        return Optional.of(this.checkupList.getLast());
-    }
+
 
     /**
      * Checks if the vehicle needs a checkup based on its current kilometers driven and checkup frequency.
@@ -162,22 +158,13 @@ public class Vehicle {
      * @return {@code true} if the vehicle needs a checkup, {@code false} otherwise.
      */
     public boolean needsCheckup() {
-        if (checkupList.isEmpty()) {
-            return this.currentKm > this.checkupFrequency;
-        }
-
-        int difference = this.currentKm - this.checkupList.getLast().getCurrentKms();
+        int difference = this.currentKm - this.checkupList.get(checkupList.size()-1).getCurrentKms();
         double percentage = (double) difference / this.checkupFrequency;
 
-        return difference >= this.checkupFrequency || percentage < 0.05;
+        return difference >= this.checkupFrequency;
     }
 
     public void addCheckup(LocalDate date, int newCurrentKm) {
-
-        if (this.currentKm > newCurrentKm) {
-            throw new InputMismatchException("New current kilometers should be higher than the previous value");
-        }
-
         this.checkupList.add(new VehicleCheckup(date, newCurrentKm));
         this.currentKm = newCurrentKm;
     }
@@ -199,14 +186,7 @@ public class Vehicle {
     @Override
     public String toString() {
         var formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        String date;
-
-        if (this.getLastCheckup().isEmpty()) {
-            date = "None";
-        } else {
-            date = this.getLastCheckup().get().getDate().format(formatter);
-        }
-
+        String date = this.checkupList.get(checkupList.size()-1).getDate().format(formatter);
 
         return "Vehicle{" +
                 "brand='" + brand + '\'' +
@@ -221,6 +201,14 @@ public class Vehicle {
                 ", checkupFrequency=" + checkupFrequency +
                 ", Last Checkup: " + date +
                 '}';
+    }
+
+    public void setCurrentKm(int currentKm){
+        this.currentKm = currentKm;
+    }
+
+    public VehicleCheckup getLastCheckup(){
+        return this.checkupList.get(checkupList.size()-1);
     }
 
 }

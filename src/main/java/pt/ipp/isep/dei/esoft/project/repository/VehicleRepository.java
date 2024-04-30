@@ -92,19 +92,6 @@ public class VehicleRepository implements Serializable {
      * Retrieves vehicles without booked checkups or with checkups scheduled in the past.
      * @return An ArrayList of vehicles without booked checkups or with checkups scheduled in the past.
      */
-    public ArrayList<Vehicle> getVehiclesWithoutBookedCheckup() {
-        ArrayList<Vehicle> vehicles = new ArrayList<>();
-
-        for (Vehicle v : this.vehicleList) {
-            var checkup = v.getLastCheckup();
-            if (checkup.isEmpty()) {
-                vehicles.add(v);
-            } else if (checkup.get().getDate().isBefore(LocalDate.now())) {
-                vehicles.add(v);
-            }
-        }
-        return vehicles;
-    }
 
     /**
      * Creates a new vehicle checkup for the specified vehicle with the given date and current kilometers.
@@ -121,5 +108,10 @@ public class VehicleRepository implements Serializable {
             return true;
         }
         return false;
+    }
+
+    public boolean updateVehicleCurrentKm(Vehicle vehicle, int currentKm) {
+            vehicle.setCurrentKm(currentKm);
+            return true;
     }
 }

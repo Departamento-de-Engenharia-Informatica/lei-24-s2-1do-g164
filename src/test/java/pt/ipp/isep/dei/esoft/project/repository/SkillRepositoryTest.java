@@ -44,7 +44,7 @@ public class SkillRepositoryTest {
     }
 
     @Test
-    void ensureAddingDifferentSkills() {
+    void ensureAddingDifferentSkillsSuccess() {
         //Arrange
         SkillRepository skillRepository = new SkillRepository();
         String skill1 = "Skill a";

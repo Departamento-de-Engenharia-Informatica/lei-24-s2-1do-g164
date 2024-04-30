@@ -24,7 +24,7 @@ public class RegisterVehicleCheckupController {
      * @return An ArrayList of vehicles without booked checkups.
      */
     public ArrayList<Vehicle> getVehicles(){
-        return vehicleRepository.getVehiclesWithoutBookedCheckup();
+        return vehicleRepository.getVehicleList();
     }
     /**
      * Creates a vehicle checkup record for the specified vehicle.

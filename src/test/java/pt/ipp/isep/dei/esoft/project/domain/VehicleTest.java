@@ -33,7 +33,7 @@ public class VehicleTest {
     public void testAddCheckup() {
         vehicle.addCheckup(LocalDate.of(2024, 6, 1), 120000);
         assertEquals(120000, vehicle.getCurrentKm());
-        assertEquals(120000, vehicle.getLastCheckup().get().getCurrentKms());
+        assertEquals(120000, vehicle.getLastCheckup().getCurrentKms());
     }
 
     @Test

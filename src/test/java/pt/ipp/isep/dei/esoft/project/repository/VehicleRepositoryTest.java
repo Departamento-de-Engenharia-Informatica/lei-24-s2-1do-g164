@@ -53,7 +53,7 @@ public class VehicleRepositoryTest {
         repository.registerVehicle("Ford", "Fiesta", "AB-12-KL", VehicleTypeRepository.TRACTOR, 1300.0, 1100.0, 35000,
                 "01-02-2022", "01-02-2022", 8000);
         repository.createVehicleCheckup(repository.getVehicleList().get(1), LocalDate.now(), 40000);
-        ArrayList<Vehicle> vehiclesWithoutBookedCheckup = repository.getVehiclesWithoutBookedCheckup();
+        ArrayList<Vehicle> vehiclesWithoutBookedCheckup = repository.getVehicleList();
         assertEquals(1, vehiclesWithoutBookedCheckup.size());
     }
 

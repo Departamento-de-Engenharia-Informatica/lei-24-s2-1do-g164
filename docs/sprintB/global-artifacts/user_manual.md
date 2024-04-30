@@ -138,7 +138,7 @@ As an HRM, you're responsible for managing collaborator skills, jobs, and team a
 As a VFM, your role involves managing the fleet of vehicles and equipment. Here's what you can do step by step:
 
 **1. Registering Vehicles:**
-* Log in to the system
+* Log in to the system 
 * Choose the option "Register a vehicle"
 * Type the Brand, Model, Vehicle Id; Type, Tare, Gross Weight, Current Km, Register Date, Acquisition Date, Maintenance/Checkup Frequency of the vehicle, as requested
 
@@ -147,7 +147,37 @@ As a VFM, your role involves managing the fleet of vehicles and equipment. Here'
 * Choose the option "Register a vehicle check-up"
 * Type the Vehicle ID, Date, Current kms of the vehicle
 
+## 4. Features 
+### 4.1. User Features - Main Menu
+### 4.1.1 Login UI
+**Step 1**: Select “Do Login” by the corresponding number (“1”)
+![Login Overview](IMG\login2.jpg)
+
+**Step 2**: Enter your credentials. Depending on your role, you will be directed to either the HRM or VFM menu.
+
+![hrmlogin](IMG\hrmformat.jpg)
+![hrmlogin](IMG\vfmformat.jpg)
+
+**Step 3 **: The menu
+
+**HRM Menu:**![img.png](img.png)
+
+![hrmmenu](IMG\HRMMENU.jpg)
+
+**VFM Menu:**
+
+![hrmmenu](IMG\VFMMENU.jpg)
+
+
+### 4.1.1 Development Team
+
+**Step 1**: To familiarize yourself with the team and their contact information, choose option number ("2")
+![development team](IMG\developmentteam.jpg)
 
 
 
+
+
+
+ 
 

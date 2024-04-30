@@ -1,4 +1,4 @@
-# US008 - Create a Task 
+# US008 - List the vehicles needing the check-up
 
 ## 3. Design - User Story Realization 
 

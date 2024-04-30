@@ -73,20 +73,22 @@ public class Main {
     }
 
     public static int calculateMinimumSpanningTreeCost(List<Edge> edges, List<Edge> mstEdges) {
-        edges.sort(Comparator.comparingInt(edge -> edge.getWeight()));
-
+        bubbleSort(edges);
+        int nNodes = countUniqueNodes(edges);
         int minCost = 0;
         Map<String, String> parent = new HashMap<>();
-
-        for (Edge edge : edges) {
-            String rootX = find(parent, edge.getFrom());
-            String rootY = find(parent, edge.getTo());
-
-            if (!rootX.equals(rootY)) {
-                parent.put(rootX, rootY);
-                minCost += edge.getWeight();
-                mstEdges.add(edge);
+        int n = 0;
+        while (n < nNodes-1) {
+            for (Edge edge : edges) {
+                String rootX = find(parent, edge.getFrom());
+                String rootY = find(parent, edge.getTo());
+                if (!rootX.equals(rootY)) {
+                    parent.put(rootX, rootY);
+                    minCost += edge.getWeight();
+                    mstEdges.add(edge);
+                }
             }
+            n++;
         }
 
         return minCost;
@@ -114,5 +116,34 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+        public static void bubbleSort(List<Edge> list) {
+            int n = list.size();
+            boolean swapped;
+
+            do {
+                swapped = false;
+                for (int i = 0; i < n - 1; i++) {
+                    if (list.get(i).getWeight() > list.get(i + 1).getWeight()) {
+                        Edge temp = list.get(i);
+                        list.set(i, list.get(i + 1));
+                        list.set(i + 1, temp);
+                        swapped = true;
+                    }
+                }
+                n--;
+            } while (swapped);
+
+    }
+
+    public static int countUniqueNodes(List<Edge> edges) {
+        Set<String> uniqueNodes = new HashSet<>();
+
+        for (Edge edge : edges) {
+            uniqueNodes.add(edge.getFrom()); // Add 'fromNode' to set of unique nodes
+            uniqueNodes.add(edge.getTo());   // Add 'toNode' to set of unique nodes
+        }
+
+        return uniqueNodes.size(); // Return the count of unique nodes
     }
 }

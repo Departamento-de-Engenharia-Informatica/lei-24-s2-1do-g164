@@ -30,7 +30,7 @@ public class MainTest{
                         long startTime = System.nanoTime();
                         Main.calculateMinimumSpanningTreeCost(edges, mstEdges);
                         long endTime = System.nanoTime();
-                        long executionTime = (endTime - startTime) / 100;
+                        long executionTime = (endTime - startTime) / 10000;
                         executionRecords.add(new ExecutionRecord(edges.size(), executionTime, file.getName()));
                     } catch (IOException e) {
                         e.printStackTrace();

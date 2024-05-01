@@ -166,6 +166,11 @@ public class Vehicle {
         return difference + percentageInKm >= this.checkupFrequency;
     }
 
+    /**
+     * Adds a vehicle checkup to the list of checkups and updates the current kilometers of the vehicle.
+     *
+     * @param vehicleCheckup The vehicle checkup to add.
+     */
     public void addCheckup(VehicleCheckup vehicleCheckup) {
         this.checkupList.add(vehicleCheckup);
         this.currentKm = vehicleCheckup.getCurrentKms();

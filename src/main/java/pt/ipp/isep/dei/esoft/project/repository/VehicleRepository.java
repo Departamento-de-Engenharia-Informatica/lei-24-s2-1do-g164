@@ -22,6 +22,7 @@ public class VehicleRepository implements Serializable {
         return vehicleList;
     }
 
+
     /**
      * Registers a new vehicle with the provided details.
      *

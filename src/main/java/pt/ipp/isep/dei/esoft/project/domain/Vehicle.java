@@ -187,22 +187,7 @@ public class Vehicle {
      */
     @Override
     public String toString() {
-        var formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        String date = this.checkupList.get(checkupList.size()-1).getDate().format(formatter);
-
-        return "Vehicle{" +
-                "brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", vehicleID='" + vehicleID + '\'' +
-                ", type=" + type +
-                ", grossWeight=" + grossWeight +
-                ", tare=" + tare +
-                ", currentKm=" + currentKm +
-                ", registerDate='" + registerDate + '\'' +
-                ", acquisitionDate='" + acquisitionDate + '\'' +
-                ", checkupFrequency=" + checkupFrequency +
-                ", Last Checkup: " + date +
-                '}';
+        return " |Plate| " + vehicleID + " |Model| " + brand + " " + model + " |Current Km| " + currentKm + " |Check-up Frequency| " + checkupFrequency + " |Last Check-up Km| " + this.getLastCheckup().getCurrentKms() + " |Next Check-up Km| " + (this.getLastCheckup().getCurrentKms()+this.checkupFrequency);
     }
 
     public void setCurrentKm(int currentKm){

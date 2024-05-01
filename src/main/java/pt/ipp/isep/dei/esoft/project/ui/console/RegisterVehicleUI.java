@@ -269,7 +269,8 @@ public class RegisterVehicleUI implements Runnable {
         if (success) {
             System.out.println("\nVehicle successfully registered!");
         } else {
-            System.out.println("\nVehicle registration failed (already exists)!");
+            System.out.println("\nVehicle registration failed!");
+            System.out.print("There already exists a vehicle with the same Plate ID!");
         }
     }
 
@@ -320,7 +321,6 @@ public class RegisterVehicleUI implements Runnable {
     }
 
     private static boolean isValidDateFormat(String dateString) {
-        // Regex to check valid skill name (letters and spaces only).
         String regex = "^(0[1-9]|[1-2][0-9]|3[01])-(0[1-9]|1[0-2])-(\\d{4})$";
         Pattern p = Pattern.compile(regex);
         if (dateString == null) {

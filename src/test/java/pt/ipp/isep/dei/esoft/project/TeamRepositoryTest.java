@@ -51,6 +51,7 @@ class TeamRepositoryTest {
         s2 = new Skill("Electrician");
         skills1.add(s1);
         skills1.add(s2);
+
         s3 = new Skill("Landscaping");
         s4 = new Skill("Propagation");
         skills2.add(s3);
@@ -75,20 +76,15 @@ class TeamRepositoryTest {
     }
 
     @Test
-
     void testTeamAlreadyExists() {
         repo.registerTeam(t1);
-        boolean value = repo.registerTeam(t3);
-        assertFalse(value);
-
+        assertFalse(repo.registerTeam(t3));
     }
 
     @Test
-
-    void testTeamDoesntExists() {
+    void testTeamDoesntExist() {
         repo.registerTeam(t1);
-      boolean value= repo.registerTeam(t2);
-        assertTrue(value);
+        assertTrue(repo.registerTeam(t2));
     }
 
     @Test

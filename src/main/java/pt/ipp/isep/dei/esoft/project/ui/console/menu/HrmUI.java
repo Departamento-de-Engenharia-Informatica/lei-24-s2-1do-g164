@@ -22,7 +22,7 @@ public class HrmUI implements Runnable {
 
         int option = 0;
         do {
-            option = Utils.showAndSelectIndex(options, "\n\n--- HRM MENU -------------------------");
+            option = Utils.showAndSelectIndex(options, "\n\n---------- HRM MENU ----------");
 
             if ((option >= 0) && (option < options.size())) {
                 options.get(option).run();

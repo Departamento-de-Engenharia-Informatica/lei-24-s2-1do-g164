@@ -25,13 +25,15 @@ public class VehicleTest {
 
     @Test
     public void testNeedsCheckup_WithPreviousCheckup() {
-        vehicle.addCheckup(LocalDate.of(2024, 6, 1), 12000);
+        VehicleCheckup checkup = new VehicleCheckup(LocalDate.of(2024, 6, 1), 12000);
+        vehicle.addCheckup(checkup);
         assertFalse(vehicle.needsCheckup());
     }
 
     @Test
     public void testAddCheckup() {
-        vehicle.addCheckup(LocalDate.of(2024, 6, 1), 120000);
+        VehicleCheckup checkup = new VehicleCheckup(LocalDate.of(2024, 6, 1), 120000);
+        vehicle.addCheckup(checkup);
         assertEquals(120000, vehicle.getCurrentKm());
         assertEquals(120000, vehicle.getLastCheckup().getCurrentKms());
     }

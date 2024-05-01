@@ -17,9 +17,7 @@ import java.util.Scanner;
 
 
 public class CreateTeamProposalUI implements Runnable {
-
     private final CreateTeamProposalController controller;
-
     private int min, max;
     private ArrayList<Skill> skills;
 
@@ -28,13 +26,6 @@ public class CreateTeamProposalUI implements Runnable {
      */
     public CreateTeamProposalUI() {
         controller = new CreateTeamProposalController();
-    }
-    /**
-     * Retrieves the controller associated with this UI.
-     * @return The CreateTeamProposalController object associated with this UI.
-     */
-    private CreateTeamProposalController getController() {
-        return controller;
     }
 
     /**
@@ -55,6 +46,7 @@ public class CreateTeamProposalUI implements Runnable {
         requestData();
         submitData();
     }
+
     /**
      * Requests input data from the user including the maximum and minimum number of collaborators and required skills.
      */
@@ -101,38 +93,22 @@ public class CreateTeamProposalUI implements Runnable {
         }
     }
 
-
-    private int requestMaxSize() {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Maximum size of the team: ");
-        return sc.nextInt();
-    }
-
-
-    private int requestMinSize() {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Minimum size of the team: ");
-        return sc.nextInt();
-    }
-
     /**
      * Displays the available skills to the user.
      * @param skills The list of available skills.
      */
-
     private void displayAvailableSkills(List<Skill> skills) {
         System.out.println("\nAvailable skills:");
         for (int i = 0; i < skills.size(); i++) {
             System.out.println((i + 1) + ". " + skills.get(i).getSkillName());
         }
     }
+
     /**
      * Requests the user to select the skills required for the team.
      * @param skills The list of available skills.
      * @return An ArrayList of selected skills.
      */
-
-
     private ArrayList<Skill> requestSkills(ArrayList<Skill> skills) {
         Scanner input = new Scanner(System.in);
         ArrayList<Skill> selectedSkills = new ArrayList<>();
@@ -163,7 +139,5 @@ public class CreateTeamProposalUI implements Runnable {
 
         return selectedSkills;
         }
-
-
     }
 

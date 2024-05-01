@@ -166,9 +166,9 @@ public class Vehicle {
         return difference + percentageInKm >= this.checkupFrequency;
     }
 
-    public void addCheckup(LocalDate date, int newCurrentKm) {
-        this.checkupList.add(new VehicleCheckup(date, newCurrentKm));
-        this.currentKm = newCurrentKm;
+    public void addCheckup(VehicleCheckup vehicleCheckup) {
+        this.checkupList.add(vehicleCheckup);
+        this.currentKm = vehicleCheckup.getCurrentKms();
     }
 
     /**

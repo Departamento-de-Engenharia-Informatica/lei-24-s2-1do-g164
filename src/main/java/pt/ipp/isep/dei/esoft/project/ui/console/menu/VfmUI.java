@@ -27,7 +27,7 @@ public class VfmUI implements Runnable {
 
         int option = 0;
         do {
-            option = Utils.showAndSelectIndex(options, "\n\n--- VFM MENU -------------------------");
+            option = Utils.showAndSelectIndex(options, "\n\n---------- VFM MENU ----------");
 
             if ((option >= 0) && (option < options.size())) {
                 options.get(option).run();

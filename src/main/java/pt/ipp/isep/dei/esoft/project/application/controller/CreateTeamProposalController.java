@@ -32,7 +32,6 @@ public class CreateTeamProposalController {
         return skillRepository.getSkillList();
     }
 
-
     /**
      * Creates a team proposal based on the specified requirements and skills.
      * @param max The maximum number of collaborators allowed in the team.
@@ -41,7 +40,6 @@ public class CreateTeamProposalController {
      * @return The created team proposal.
      * @throws InputMismatchException If the team proposal could not be created.
      */
-
     public Team createTeamProposal(int max, int min, ArrayList<Skill> skills) {
         var collaborators = teamProposalService.arrangeCollaboratorsBySkill(skills);
 

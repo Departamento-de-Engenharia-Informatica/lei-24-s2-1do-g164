@@ -67,7 +67,6 @@ public class VehicleRepositoryTest {
         int currentKm = 50000;
         boolean result = repository.createVehicleCheckup(vehicle, date, currentKm);
         assertTrue(result);
-
     }
 
     @Test
@@ -76,6 +75,5 @@ public class VehicleRepositoryTest {
         int currentKm = 50000;
         boolean result = repository.createVehicleCheckup(null, date, currentKm);
         assertFalse(result);
-
     }
 }

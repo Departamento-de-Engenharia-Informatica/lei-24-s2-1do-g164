@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.domain.Vehicle;
+import pt.ipp.isep.dei.esoft.project.domain.VehicleCheckup;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -103,8 +104,9 @@ public class VehicleRepository implements Serializable {
 
 
     public boolean createVehicleCheckup(Vehicle vehicle, LocalDate date, int currentKm) {
+        var vehicleCheckup = new VehicleCheckup(date, currentKm);
         if (vehicle != null) {
-            vehicle.addCheckup(date, currentKm);
+            vehicle.addCheckup(vehicleCheckup);
             return true;
         }
         return false;

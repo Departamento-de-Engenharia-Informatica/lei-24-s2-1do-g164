@@ -2,6 +2,10 @@ pt.ipp.isep.dei.esoft.project.application.controller
 pt.ipp.isep.dei.esoft.project.application.controller.authorization
 pt.ipp.isep.dei.esoft.project.application.session
 pt.ipp.isep.dei.esoft.project.domain
+pt.ipp.isep.dei.esoft.project.domain.service
+pt.ipp.isep.dei.esoft.project.mdisc
+pt.ipp.isep.dei.esoft.project.mdisc.files.US14
+pt.ipp.isep.dei.esoft.project.mdisc.util
 pt.ipp.isep.dei.esoft.project.repository
 pt.ipp.isep.dei.esoft.project.ui
 pt.ipp.isep.dei.esoft.project.ui.console

@@ -3,10 +3,14 @@ package pt.ipp.isep.dei.esoft.project.domain;
 import pt.ipp.isep.dei.esoft.project.repository.VehicleTypeRepository;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.InputMismatchException;
+import java.util.Optional;
 
 /**
- * Represents a vehicle in the system.
+ * Represents a vehicle used within a project.
  */
 public class Vehicle {
 
@@ -144,26 +148,27 @@ public class Vehicle {
     }
 
     /**
+     * Retrieves the last performed checkup on the vehicle.
+     *
+     * @return The last performed checkup.
+     */
+
+
+    /**
      * Checks if the vehicle needs a checkup based on its current kilometers driven and checkup frequency.
      *
      * @return {@code true} if the vehicle needs a checkup, {@code false} otherwise.
      */
     public boolean needsCheckup() {
-        int difference = this.currentKm - this.checkupList.get(checkupList.size() - 1).getCurrentKms();
+        int difference = this.currentKm - this.checkupList.get(checkupList.size()-1).getCurrentKms();
         double percentageInKm = PERCENTAGEM_TOLERANCIA * this.checkupFrequency;
 
         return difference + percentageInKm >= this.checkupFrequency;
     }
 
-    /**
-     * Adds a new checkup for the vehicle.
-     *
-     * @param date         The date of the checkup.
-     * @param newCurrentKm The new current kilometers value.
-     */
-    public void addCheckup(LocalDate date, int newCurrentKm) {
-        this.checkupList.add(new VehicleCheckup(date, newCurrentKm));
-        this.currentKm = newCurrentKm;
+    public void addCheckup(VehicleCheckup vehicleCheckup) {
+        this.checkupList.add(vehicleCheckup);
+        this.currentKm = vehicleCheckup.getCurrentKms();
     }
 
     /**
@@ -177,30 +182,38 @@ public class Vehicle {
     }
 
     /**
-     * Retrieves the last performed checkup on the vehicle.
      *
-     * @return The last performed checkup.
-     */
-    public VehicleCheckup getLastCheckup() {
-        return this.checkupList.get(checkupList.size() - 1);
-    }
-
-    /**
-     * Generates a string representation of the vehicle.
-     *
-     * @return A string containing essential details of the vehicle.
+     * @return all the vehicle essential details
      */
     @Override
     public String toString() {
-        return " |Plate| " + vehicleID + " |Model| " + brand + " " + model + " |Current Km| " + currentKm + " |Check-up Frequency| " + checkupFrequency + " |Last Check-up Km| " + this.getLastCheckup().getCurrentKms() + " |Next Check-up Km| " + (this.getLastCheckup().getCurrentKms() + this.checkupFrequency);
+        var formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String date = this.checkupList.get(checkupList.size()-1).getDate().format(formatter);
+
+        return "Vehicle{" +
+                "brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", vehicleID='" + vehicleID + '\'' +
+                ", type=" + type +
+                ", grossWeight=" + grossWeight +
+                ", tare=" + tare +
+                ", currentKm=" + currentKm +
+                ", registerDate='" + registerDate + '\'' +
+                ", acquisitionDate='" + acquisitionDate + '\'' +
+                ", checkupFrequency=" + checkupFrequency +
+                ", Last Checkup: " + date +
+                '}';
     }
 
-    /**
-     * Sets the current kilometers driven by the vehicle.
-     *
-     * @param currentKm The new current kilometers value.
-     */
-    public void setCurrentKm(int currentKm) {
+    public void setCurrentKm(int currentKm){
         this.currentKm = currentKm;
     }
+
+    public VehicleCheckup getLastCheckup(){
+        return this.checkupList.get(checkupList.size()-1);
+    }
+
 }
+
+
+

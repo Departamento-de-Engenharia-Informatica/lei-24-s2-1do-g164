@@ -32,11 +32,11 @@ public class CheckUpReportUI implements Runnable {
      * Requests data from the controller and displays the list/report
      */
     private void requestData(){
-        ArrayList<Vehicle> List = this.controller.getVehicles();
-        if (List.isEmpty()) {
+        ArrayList<Vehicle> list = this.controller.getVehiclesNeedingCheckup();
+        if (list.isEmpty()) {
             System.out.println("No vehicles found");
         }else{
-            for (Vehicle v: List) {
+            for (Vehicle v: list) {
                 if (v.needsCheckup()) {
                     System.out.println(v.toString());
                 }

@@ -65,6 +65,7 @@ public class RegisterCollaboratorUI implements Runnable {
             System.out.println("\nCollaborator successfully registered!");
         } else {
             System.out.println("\nCollaborator registration failed!");
+            System.out.print("There already exists a Collaborator with the same Taxpayer Number!");
         }
     }
 
@@ -103,7 +104,11 @@ public class RegisterCollaboratorUI implements Runnable {
             try {
                 assert in != null;
                 value = Integer.parseInt(in);
+                if(value < 0 || value > listSize){
+                    System.out.print("Invalid option!");
+                }
             } catch (NumberFormatException ex) {
+                System.out.print("Invalid option!");
                 value = -1;
             }
         } while (value < 0 || value > listSize);
@@ -147,7 +152,11 @@ public class RegisterCollaboratorUI implements Runnable {
             try {
                 assert in != null;
                 value = Integer.parseInt(in);
+                if(value < 0 || value > listSize){
+                    System.out.print("Invalid option!");
+                }
             } catch (NumberFormatException ex) {
+                System.out.print("Invalid option!");
                 value = -1;
             }
         } while (value < 0 || value > listSize);
@@ -197,9 +206,9 @@ public class RegisterCollaboratorUI implements Runnable {
             System.out.print("\nEnter Document Number: ");
             return sc.nextInt();
         } catch (InputMismatchException e) {
-            System.out.println("\nMust be a number!");
-            sc.nextLine(); // Consume invalid input
-            return requestIdDocumentNumber(); // Retry input
+            System.out.println("Must be a number!");
+            sc.nextLine();
+            return requestIdDocumentNumber();
         }
     }
 

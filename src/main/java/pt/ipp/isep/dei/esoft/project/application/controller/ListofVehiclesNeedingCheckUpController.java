@@ -23,7 +23,7 @@ public class ListofVehiclesNeedingCheckUpController {
      * Retrieves a list of vehicles needing a check-up
      * @return ArrayList of Vehicles objects representing vehicles needing a check-up
      */
-    public  ArrayList<Vehicle> getVehicles() {
+    public  ArrayList<Vehicle> getVehiclesNeedingCheckup() {
         return vehicleRepository.getVehiclesNeedingCheckup();
     }
 

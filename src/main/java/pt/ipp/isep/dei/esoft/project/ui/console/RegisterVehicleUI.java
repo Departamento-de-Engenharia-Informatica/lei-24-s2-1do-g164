@@ -65,19 +65,19 @@ public class RegisterVehicleUI implements Runnable {
         System.out.println("  0 - Cancel");
         int answer = -1;
         Scanner sc = new Scanner(System.in);
-         do {
-                String in = Utils.readLineFromConsole("Select the vehicle's type (0 to cancel): ");
-                try {
-                    assert in != null;
-                    answer = Integer.parseInt(in);
-                    if(answer < 0 || answer > vehicleTypeList.size()){
-                        System.out.println("Invalid option!");
-                    }
-                } catch (NumberFormatException ex) {
+        do {
+            String in = Utils.readLineFromConsole("Select the vehicle's type (0 to cancel): ");
+            try {
+                assert in != null;
+                answer = Integer.parseInt(in);
+                if(answer < 0 || answer > vehicleTypeList.size()){
                     System.out.println("Invalid option!");
-                    answer = -1;
                 }
-            } while (answer < 0 || answer > vehicleTypeList.size());
+            } catch (NumberFormatException ex) {
+                System.out.println("Invalid option!");
+                answer = -1;
+            }
+        } while (answer < 0 || answer > vehicleTypeList.size());
 
         if (answer == 0) {
             redirectToVfmUI();
@@ -269,7 +269,8 @@ public class RegisterVehicleUI implements Runnable {
         if (success) {
             System.out.println("\nVehicle successfully registered!");
         } else {
-            System.out.println("\nVehicle registration failed (already exists)!");
+            System.out.println("\nVehicle registration failed!");
+            System.out.print("There already exists a vehicle with the same Plate ID!");
         }
     }
 
@@ -292,9 +293,15 @@ public class RegisterVehicleUI implements Runnable {
         item.run();
     }
 
+    /**
+     * Validates the format of the plate string based on the acquisition date.
+     *
+     * @param plateString The plate ID string to validate.
+     * @param date        The acquisition date of the vehicle.
+     * @return True if the plate format is valid for the given acquisition date, false otherwise.
+     */
     private static boolean isValidPlateFormat(String plateString, String date) {
 
-        // Get the length of the string
         int length = date.length();
         int year =Integer.parseInt( date.substring(length - 4));
         String regex;
@@ -307,7 +314,6 @@ public class RegisterVehicleUI implements Runnable {
         }else {
             regex = "^(([A-Z]{2}-\\d{2}-(\\d{2}|[A-Z]{2}))|(\\d{2}-(\\d{2}-[A-Z]{2}|[A-Z]{2}-\\d{2})))$";
         }
-        // Regex to check valid skill name (letters and spaces only).
         Pattern p = Pattern.compile(regex);
         if (plateString == null) {
             return false;
@@ -319,8 +325,13 @@ public class RegisterVehicleUI implements Runnable {
         return m.matches();
     }
 
+    /**
+     * Validates the format of the date string.
+     *
+     * @param dateString The date string to validate.
+     * @return True if the date format is valid, false otherwise.
+     */
     private static boolean isValidDateFormat(String dateString) {
-        // Regex to check valid skill name (letters and spaces only).
         String regex = "^(0[1-9]|[1-2][0-9]|3[01])-(0[1-9]|1[0-2])-(\\d{4})$";
         Pattern p = Pattern.compile(regex);
         if (dateString == null) {

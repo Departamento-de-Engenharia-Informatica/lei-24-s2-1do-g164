@@ -1,17 +1,15 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.domain.Vehicle;
-import pt.ipp.isep.dei.esoft.project.domain.VehicleCheckup;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Repository class for managing vehicles.
  */
 public class VehicleRepository implements Serializable {
+
     private final ArrayList<Vehicle> vehicleList = new ArrayList<>();
 
     /**
@@ -63,7 +61,6 @@ public class VehicleRepository implements Serializable {
         return true;
     }
 
-
     /**
      * Retrieves the number of vehicles in the repository.
      *
@@ -75,7 +72,6 @@ public class VehicleRepository implements Serializable {
 
     /**
      * Retrieves vehicles that need a checkup based on their current state.
-     *
      *
      * @return The list of vehicles that need a checkup.
      */
@@ -89,31 +85,36 @@ public class VehicleRepository implements Serializable {
         }
         return vehiclesNeedingCheckup;
     }
-    /**
-     * Retrieves vehicles without booked checkups or with checkups scheduled in the past.
-     * @return An ArrayList of vehicles without booked checkups or with checkups scheduled in the past.
-     */
+
 
     /**
      * Creates a new vehicle checkup for the specified vehicle with the given date and current kilometers.
-     * @param vehicle The vehicle for which the checkup is to be created.
-     * @param date The date of the checkup.
-     * @param currentKm The current kilometers of the vehicle at the time of the checkup.
+     *
+     * @param vehicle    The vehicle for which the checkup is to be created.
+     * @param date       The date of the checkup.
+     * @param currentKm  The current kilometers of the vehicle at the time of the checkup.
      * @return true if the checkup is successfully created, false otherwise.
      */
-
-
     public boolean createVehicleCheckup(Vehicle vehicle, LocalDate date, int currentKm) {
-        var vehicleCheckup = new VehicleCheckup(date, currentKm);
         if (vehicle != null) {
-            vehicle.addCheckup(vehicleCheckup);
+            vehicle.addCheckup(date, currentKm);
             return true;
         }
         return false;
     }
 
+    /**
+     * Updates the current kilometers of a vehicle.
+     *
+     * @param vehicle    The vehicle for which to update the current kilometers.
+     * @param currentKm  The updated current kilometers value.
+     * @return true if the current kilometers are successfully updated, false otherwise.
+     */
     public boolean updateVehicleCurrentKm(Vehicle vehicle, int currentKm) {
+        if (vehicle != null) {
             vehicle.setCurrentKm(currentKm);
             return true;
+        }
+        return false;
     }
 }

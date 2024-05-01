@@ -5,6 +5,7 @@ import pt.ipp.isep.dei.esoft.project.mdisc.util.Edge;
 import pt.ipp.isep.dei.esoft.project.mdisc.util.MST_PLOTTER;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Main {
@@ -27,7 +28,7 @@ public class Main {
         }
         List<Edge> mstEdges = new ArrayList<>();
         System.out.println("------------------LOADING----------------");
-        MST_PLOTTER.plotMST(csvFile,"input");
+        //MST_PLOTTER.plotMST(csvFile,"input");
         System.out.println("-----------------------------------------");
         System.out.println("Input graph has been plotted into: files/input.png");
         System.out.println("-----------------------------------------");
@@ -37,7 +38,7 @@ public class Main {
         exportToCSV(mstEdges, "src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/output.csv");
         System.out.println("MST exported into: files/output.csv");
         System.out.println("-----------------------------------------");
-        MST_PLOTTER.plotMST("src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/output.csv","outputMST");
+        //MST_PLOTTER.plotMST("src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/output.csv","outputMST");
         System.out.println("The MST has been plotted into files/outputMST.png");
     }
 
@@ -105,8 +106,6 @@ public class Main {
     }
 
     public static void exportToCSV(List<Edge> mstEdges, String outputFilePath) {
-        Set<String> visited = new HashSet<>();
-
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath))) {
             for (Edge edge : mstEdges) {
                 writer.write(edge.getFrom() + ";" + edge.getTo() + ";" + edge.getWeight());
@@ -117,33 +116,30 @@ public class Main {
             e.printStackTrace();
         }
     }
-        public static void bubbleSort(List<Edge> list) {
-            int n = list.size();
-            boolean swapped;
-
-            do {
-                swapped = false;
-                for (int i = 0; i < n - 1; i++) {
-                    if (list.get(i).getWeight() > list.get(i + 1).getWeight()) {
-                        Edge temp = list.get(i);
-                        list.set(i, list.get(i + 1));
-                        list.set(i + 1, temp);
-                        swapped = true;
-                    }
-                }
-                n--;
-            } while (swapped);
-
-    }
 
     public static int countUniqueNodes(List<Edge> edges) {
         Set<String> uniqueNodes = new HashSet<>();
 
         for (Edge edge : edges) {
-            uniqueNodes.add(edge.getFrom()); // Add 'fromNode' to set of unique nodes
-            uniqueNodes.add(edge.getTo());   // Add 'toNode' to set of unique nodes
+            uniqueNodes.add(edge.getFrom());
+            uniqueNodes.add(edge.getTo());
         }
 
-        return uniqueNodes.size(); // Return the count of unique nodes
+        return uniqueNodes.size();
+    }
+
+    public static void bubbleSort(List<Edge> arr) {
+        int n = arr.size();
+
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - 1 - i; j++) {
+                if (arr.get(j).getWeight() > arr.get(j+1).getWeight()) {
+                    // Swap arr[j] and arr[j+1]
+                    Edge temp = arr.get(j);
+                    arr.set(j, arr.get(j+1));
+                    arr.set(j+1, temp);
+                }
+            }
+        }
     }
 }

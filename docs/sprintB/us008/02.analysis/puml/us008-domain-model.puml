@@ -30,6 +30,7 @@ class VehicleCheckup {
 
 class Vehicle {
 
+
         brand
         model
         vehicleID
@@ -40,6 +41,7 @@ class Vehicle {
         registerDate
         acquisitionDate
         checkupFrequency
+        checkUpList
 }
 
 

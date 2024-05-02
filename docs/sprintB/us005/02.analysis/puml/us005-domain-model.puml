@@ -22,13 +22,15 @@ class SystemUser {
 }
 
 class Collaborator {
-    birthdate
-    admissionDate
-    address
-    idDocType
-    idNumber
-    status
-}
+   name
+      phone
+      birthdate
+      admissionDate
+      address
+      idDocumentType
+      idDocumentNumber
+      status
+      }
 
 
 

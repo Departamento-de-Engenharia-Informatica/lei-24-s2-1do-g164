@@ -26,8 +26,42 @@ activate HRM
       UI -> CTRL** : create
       activate CTRL
 
-       CTRL-> CreateTeamProposalService**: create
-      deactivate CTRL
+              CTRL -> RepositorySingleton : getInstance()
+                    activate RepositorySingleton
+
+                      RepositorySingleton --> CTRL : repositories
+                    deactivate RepositorySingleton
+
+
+                     CTRL -> PLAT : getSkillRepository()
+                     activate PLAT
+                     PLAT --> CTRL : skillRepository
+                     deactivate PLAT
+
+                     CTRL -> PLAT : getTeamRepository()
+
+                     activate PLAT
+
+                    PLAT --> CTRL : teamRepository
+                      deactivate PLAT
+
+              CTRL->CreateTeamProposalService**: create
+                  deactivate CTRL
+
+                CreateTeamProposalService  -> RepositorySingleton : getInstance()
+                activate CreateTeamProposalService
+                                      activate RepositorySingleton
+
+                                        RepositorySingleton --> CreateTeamProposalService : repositories
+                                      deactivate RepositorySingleton
+
+
+                                       CreateTeamProposalService -> PLAT : getCollaboratorRepository()
+                                       activate PLAT
+                                       PLAT --> CreateTeamProposalService : collaboratorRepository
+                                       deactivate PLAT
+
+deactivate CreateTeamProposalService
     UI --> HRM : asks maximum size
 deactivate UI
 
@@ -43,30 +77,17 @@ deactivate UI
 activate UI
     UI -> CTRL : getSkillsList()
 
-
-    activate CTRL
-      CTRL -> RepositorySingleton : getInstance()
-      activate RepositorySingleton
-        RepositorySingleton --> CTRL : repositories
-      deactivate RepositorySingleton
-
-      CTRL -> PLAT : getSkillRepository()
-      activate PLAT
-
-
-       PLAT --> CTRL : skillRepository
-       deactivate PLAT
-       deactivate skillRepository
-
-
+activate CTRL
 
 CTRL -> SkillRepository: getSkillsList()
 activate SkillRepository
+deactivate CTRL
 
         SkillRepository --> CTRL : skillList
-
+    activate CTRL
       deactivate SkillRepository
       CTRL --> UI : skillList
+
 
     deactivate CTRL
 
@@ -84,15 +105,6 @@ deactivate UI
     CTRL -> CreateTeamProposalService : arrangeCollaboratorsBySkill(skills)
     activate CreateTeamProposalService
 
-
-CreateTeamProposalService->RepositorySingleton: getInstance()
-activate RepositorySingleton
-RepositorySingleton--> CreateTeamProposalService: repositories
-deactivate RepositorySingleton
-CreateTeamProposalService -> PLAT: getCollaboratorRepository()
-activate PLAT
-PLAT--> CreateTeamProposalService: collaboratorRepository
-deactivate PLAT
 
     CreateTeamProposalService-> CollaboratorRepository : getDeactivatedCollaboratorsBySkills(skills)
           note right : filter collaborators\nbased on their skills
@@ -112,18 +124,11 @@ deactivate CreateTeamProposalService
 
 
 
-CTRL -> TEAM : create(teamMembers,skills)
+CTRL -> TEAM** : create(teamMembers,skills)
 activate TEAM
 TEAM-->CTRL: team
+deactivate TEAM
 
-    CTRL->RepositorySingleton: getInstance()
-activate RepositorySingleton
-RepositorySingleton--> CTRL: repositories
-deactivate RepositorySingleton
-CTRL -> PLAT: getTeamRepository()
-activate PLAT
-PLAT--> CTRL: TeamRepository
-deactivate PLAT
 
 CTRL -> TeamRepository : registerTeam(team)
 
@@ -137,13 +142,13 @@ activate TeamRepository
 alt success
 
         TeamRepository --> CTRL : success
+        note bottom: loops over each collaborator and activates them
 
 
       CTRL --> UI : team
 
-    deactivate CTRL
     UI --> HRM : shows success message and the\ncreated team
-  deactivate UI
+
 else insuccess
  TeamRepository --> CTRL : insuccess
 
@@ -151,7 +156,7 @@ else insuccess
       CTRL --> UI : insuccess message
 
     deactivate CTRL
-    UI --> HRM : sinsuccess message
+    UI --> HRM : insuccess message
   deactivate UI
 
  end

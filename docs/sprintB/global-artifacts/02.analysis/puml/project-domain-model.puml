@@ -79,16 +79,17 @@ class VehicleCheckup {
 }
 
 class Vehicle {
-   brand
-   model
-   vehicleID
-   type
-   tare
-   grossWeight
-   currentKm
-   registerDate
-   acquisitionDate
-   checkupFrequency
+        brand
+        model
+        vehicleID
+        type
+        tare
+        grossWeight
+        currentKm
+        registerDate
+        acquisitionDate
+        checkupFrequency
+        checkUpList
 }
 
 class Machine {

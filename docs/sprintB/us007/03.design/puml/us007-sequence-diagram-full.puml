@@ -13,36 +13,40 @@ participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT
 participant "vehicleRepository:\nVehicleRepository" as VehicleRepository
 participant "vehicle:\nVehicle" as vehicle
+participant "vehicleCheckup:\nVehicleCheckup" as checkup
 activate VFM
 
         VFM -> UI : asks to register a vehicle check-up
 
         activate UI
 
-'            UI --> ADM : requests data (reference, description,  informal \n description, technical description, duration, cost)
-            'create CTRL
+'
             UI -> CTRL** : create
+               activate CTRL
+            CTRL -> RepositorySingleton : getInstance()
+                            activate RepositorySingleton
+
+
+                                RepositorySingleton --> CTRL: repositories
+                            deactivate RepositorySingleton
+
+                            CTRL -> PLAT : getVehicleRepository()
+                            activate PLAT
+
+                                PLAT --> CTRL: vehicleRepository
+                            deactivate PLAT
+
 
             UI -> CTRL : getVehicles()
-            activate CTRL
 
-                CTRL -> RepositorySingleton : getInstance()
-                activate RepositorySingleton
 
-                    RepositorySingleton --> CTRL: repositories
-                deactivate RepositorySingleton
-
-                CTRL -> PLAT : getVehicleRepository()
-                activate PLAT
-
-                    PLAT --> CTRL: vehicleRepository
-                deactivate PLAT
 
                 CTRL -> VehicleRepository : getVehicles()
                 activate VehicleRepository
 
                     VehicleRepository --> CTRL : vehiclesList
                 deactivate VehicleRepository
+
 
                 CTRL --> UI : vehiclesList
             deactivate CTRL
@@ -57,30 +61,33 @@ activate VFM
     deactivate UI
 
     VFM -> UI : types requested data
+    activate UI
 
 
 
         UI -> CTRL : createVehicleCheckup(vehicle, date, currentKms)
         activate CTRL
 
-
-
-
-                CTRL -> VehicleRepository : createVehicleCheckup(vehicle, date, currentKms)
+        CTRL -> VehicleRepository : createVehicleCheckup(vehicle, date, currentKms)
 activate  VehicleRepository
 
-VehicleRepository-> vehicle: addCheckup(date, currentKm)
+VehicleRepository -> checkup**: create(date, currentKms)
+activate checkup
+    checkup --> VehicleRepository: vehicleCheckup
+deactivate checkup
+
+VehicleRepository -> vehicle: addCheckup(checkup)
 activate vehicle
-
-
-
- VehicleRepository--> CTRL: status of creation
- deactivate vehicle
+    note bottom: adds checkup to checkupList \nand updates currentKms
+deactivate vehicle
+VehicleRepository--> CTRL: status of creation
 
 deactivate VehicleRepository
 
 CTRL --> UI : status of creation
+deactivate CTRL
 UI -->VFM : shows operation status
+deactivate UI
 deactivate VFM
 
 @enduml

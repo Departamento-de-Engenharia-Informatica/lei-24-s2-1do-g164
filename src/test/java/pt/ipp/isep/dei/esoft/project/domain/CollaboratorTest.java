@@ -58,7 +58,7 @@ public class CollaboratorTest {
 
     @Test
     public void testToString() {
-        String expected = "John Doe[]";
+        String expected = "John Doe []";
         assertEquals(expected, collaborator.toString());
     }
 }

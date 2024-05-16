@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.Scanner;
 
 /**
- * Create Task UI (console). This option is only available for administrators for demonstration purposes.
+ * Manages the user interface for creating a task.
  */
 public class CreateTaskUI implements Runnable {
 
@@ -21,16 +21,28 @@ public class CreateTaskUI implements Runnable {
     private int taskDuration;
     private double taskCost;
     private String taskCategoryDescription;
-    private String empployeeEmail;
+    private String employeeEmail;
 
+    /**
+     * Constructs a new CreateTaskUI instance.
+     */
     public CreateTaskUI() {
         controller = new CreateTaskController();
     }
 
+    /**
+     * Gets the controller.
+     *
+     * @return The controller.
+     */
     private CreateTaskController getController() {
         return controller;
     }
 
+    /**
+     * Runs the CreateTaskUI.
+     */
+    @Override
     public void run() {
         System.out.println("\n\n--- Create Task ------------------------");
 
@@ -41,6 +53,9 @@ public class CreateTaskUI implements Runnable {
         submitData();
     }
 
+    /**
+     * Submits the task creation data.
+     */
     private void submitData() {
         Optional<Task> task = getController().createTask(taskReference, taskDescription, taskInformalDescription, taskTechnicalDescription, taskDuration, taskCost, taskCategoryDescription);
 
@@ -51,65 +66,103 @@ public class CreateTaskUI implements Runnable {
         }
     }
 
+    /**
+     * Requests data from the user.
+     */
     private void requestData() {
 
-        //Request the Task Reference from the console
+        // Request the Task Reference from the console
         taskReference = requestTaskReference();
 
-        //Request the Task Description from the console
+        // Request the Task Description from the console
         taskDescription = requestTaskDescription();
 
-        //Request the Task Informal Description from the console
+        // Request the Task Informal Description from the console
         taskInformalDescription = requestTaskInformalDescription();
 
-        //Request the Task Technical Description from the console
+        // Request the Task Technical Description from the console
         taskTechnicalDescription = requestTaskTechnicalDescription();
 
-        //Request the Task Duration from the console
+        // Request the Task Duration from the console
         taskDuration = requestTaskDuration();
 
-        //Request the Task Cost from the console
+        // Request the Task Cost from the console
         taskCost = requestTaskCost();
     }
 
+    /**
+     * Requests the task cost from the user.
+     *
+     * @return The task cost.
+     */
     private double requestTaskCost() {
         Scanner input = new Scanner(System.in);
         System.out.print("Task Cost: ");
         return input.nextDouble();
     }
 
+    /**
+     * Requests the task duration from the user.
+     *
+     * @return The task duration.
+     */
     private int requestTaskDuration() {
         Scanner input = new Scanner(System.in);
         System.out.print("Task Duration: ");
         return input.nextInt();
     }
 
+    /**
+     * Requests the task technical description from the user.
+     *
+     * @return The task technical description.
+     */
     private String requestTaskTechnicalDescription() {
         Scanner input = new Scanner(System.in);
         System.out.print("Task Technical Description: ");
         return input.nextLine();
     }
 
+    /**
+     * Requests the task informal description from the user.
+     *
+     * @return The task informal description.
+     */
     private String requestTaskInformalDescription() {
         Scanner input = new Scanner(System.in);
         System.out.print("Task Informal Description: ");
         return input.nextLine();
     }
 
+    /**
+     * Requests the task description from the user.
+     *
+     * @return The task description.
+     */
     private String requestTaskDescription() {
         Scanner input = new Scanner(System.in);
         System.out.print("Task Description: ");
         return input.nextLine();
     }
 
+    /**
+     * Requests the task reference from the user.
+     *
+     * @return The task reference.
+     */
     private String requestTaskReference() {
         Scanner input = new Scanner(System.in);
         System.out.print("Task Reference: ");
         return input.nextLine();
     }
 
+    /**
+     * Displays the task categories and allows the user to select one.
+     *
+     * @return The selected task category description.
+     */
     private String displayAndSelectTaskCategory() {
-        //Display the list of task categories
+        // Display the list of task categories
         List<TaskCategory> taskCategories = controller.getTaskCategories();
 
         int listSize = taskCategories.size();
@@ -123,12 +176,16 @@ public class CreateTaskUI implements Runnable {
             answer = input.nextInt();
         }
 
-        String description = taskCategories.get(answer - 1).getDescription();
-        return description;
+        return taskCategories.get(answer - 1).getDescription();
     }
 
+    /**
+     * Displays the task category options.
+     *
+     * @param taskCategories The list of task categories to display.
+     */
     private void displayTaskCategoryOptions(List<TaskCategory> taskCategories) {
-        //display the task categories as a menu with number options to select
+        // Display the task categories as a menu with number options to select
         int i = 1;
         for (TaskCategory taskCategory : taskCategories) {
             System.out.println("  " + i + " - " + taskCategory.getDescription());

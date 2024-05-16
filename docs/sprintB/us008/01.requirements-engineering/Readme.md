@@ -10,8 +10,8 @@ As a FM, I want to list the vehicles needing the check-up.
 ### 1.2. Customer Specifications and Clarifications 
 
 **From the specifications document:**
- 
->n/a
+
+> The list must clearly identify the vehicles through: plate number, brand, model, current kms, checkup frequency, kms at last checkup, and the kms the vehicle must have at the next checkup.
 
 **From the client clarifications:**
 
@@ -29,7 +29,7 @@ As a FM, I want to list the vehicles needing the check-up.
 
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "US006-Register a vehicle" as there must be at least one vehicle to list.
+* There is a dependency on "US006 - Register a vehicle" as there must be at least one vehicle to list.
 
 ### 1.5 Input and Output Data
 

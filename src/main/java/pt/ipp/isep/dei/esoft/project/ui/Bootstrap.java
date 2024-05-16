@@ -10,7 +10,6 @@ public class Bootstrap implements Runnable {
 
     //Add some task categories to the repository as bootstrap
     public void run() {
-        addTaskCategories();
         addOrganization();
         addUsers();
         addJobs();
@@ -23,26 +22,10 @@ public class Bootstrap implements Runnable {
         //TODO: add organizations bootstrap here
         //get organization repository
         OrganizationRepository organizationRepository = Repositories.getInstance().getOrganizationRepository();
-        Organization organization = new Organization("This Company");
-        organization.addEmployee(new SystemUser("admin@this.app"));
-        organization.addEmployee(new SystemUser("employee@this.app"));
+        Organization organization = new Organization("MusgoSublime");
         organization.addEmployee(new SystemUser("hrm@hrm.app"));
         organization.addEmployee(new SystemUser("vfm@vfm.app"));
         organizationRepository.add(organization);
-    }
-
-    private void addTaskCategories() {
-        //TODO: add bootstrap Task Categories here
-
-        //get task category repository
-        TaskCategoryRepository taskCategoryRepository = Repositories.getInstance().getTaskCategoryRepository();
-        taskCategoryRepository.add(new TaskCategory("Analysis"));
-        taskCategoryRepository.add(new TaskCategory("Design"));
-        taskCategoryRepository.add(new TaskCategory("Implementation"));
-        taskCategoryRepository.add(new TaskCategory("Development"));
-        taskCategoryRepository.add(new TaskCategory("Testing"));
-        taskCategoryRepository.add(new TaskCategory("Deployment"));
-        taskCategoryRepository.add(new TaskCategory("Maintenance"));
     }
 
     private void addUsers() {
@@ -52,13 +35,10 @@ public class Bootstrap implements Runnable {
         authenticationRepository.addUserRole(AuthenticationController.ROLE_VFM,
                 AuthenticationController.ROLE_VFM);
 
-        authenticationRepository.addUserWithRole("Main Administrator", "admin@this.app", "admin",
+        authenticationRepository.addUserWithRole("João", "hrm@hrm.app", "joao1234",
                 AuthenticationController.ROLE_HRM);
 
-        authenticationRepository.addUserWithRole("João", "hrm@hrm.app", "a",
-                AuthenticationController.ROLE_HRM);
-
-        authenticationRepository.addUserWithRole("Mário", "vfm@vfm.app", "a",
+        authenticationRepository.addUserWithRole("Mário", "vfm@vfm.app", "mario2236",
                 AuthenticationController.ROLE_VFM);
     }
 
@@ -71,7 +51,7 @@ public class Bootstrap implements Runnable {
 
 
         collaboratorRepository.registerCollaborator("Marco", 913456123, "04-07-2001",
-                "05-08-2020", "Rua das Aves", 12345678, new Job("Trail Steward"),
+                "05-08-2020", "Rua das Aves", 12845678, new Job("Trail Steward"),
                 DocumentTypeRepository.CITIZEN_CARD, CollaboratorStatus.DEACTIVATED, 123456789, "adeus@hotmail.pt");
 
 
@@ -96,7 +76,7 @@ public class Bootstrap implements Runnable {
 
         collaboratorRepository.registerCollaborator("Ambrosio", 937996795, "08-10-2002",
                 "08-08-2021", "Rua das Aves", 54946780, new Job("Park Ranger"),
-                DocumentTypeRepository.CITIZEN_CARD, CollaboratorStatus.DEACTIVATED, 123123123, "ola@mial.com");
+                DocumentTypeRepository.CITIZEN_CARD, CollaboratorStatus.DEACTIVATED, 123883123, "ola@mial.com");
 
 
         ArrayList<Skill> ambrosioSkills = new ArrayList<>();
@@ -104,6 +84,18 @@ public class Bootstrap implements Runnable {
         ambrosioSkills.add(skillRepository.getSkillList().get(2));
 
         collaboratorRepository.assignSkills(collaboratorRepository.getCollaboratorList().get(2), ambrosioSkills);
+
+        collaboratorRepository.registerCollaborator("Rita", 917996795, "08-10-2002",
+                "08-08-2021", "Rua das Aves", 89087650, new Job("Botanist"),
+                DocumentTypeRepository.CITIZEN_CARD, CollaboratorStatus.DEACTIVATED, 123103123, "ola@mial.com");
+
+        ArrayList<Skill> ritaSkills = new ArrayList<>();
+        ritaSkills.add(skillRepository.getSkillList().get(5));
+        ritaSkills.add(skillRepository.getSkillList().get(6));
+        ritaSkills.add(skillRepository.getSkillList().get(7));
+        ritaSkills.add(skillRepository.getSkillList().get(8));
+
+        collaboratorRepository.assignSkills(collaboratorRepository.getCollaboratorList().get(3), ritaSkills);
 
     }
 

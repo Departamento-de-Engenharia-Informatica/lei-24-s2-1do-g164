@@ -18,13 +18,7 @@ activate Employee
         System --> Employee : requests data (job's name)
     deactivate System
 
-    Employee -> System : types job's name
-    activate System
-
-        System --> Employee : shows the job name and requests confirmation
-    deactivate System
-
-    Employee -> System : confirms data
+    Employee -> System : types job's name and confirms
     activate System
 
         System --> Employee : displays operation success

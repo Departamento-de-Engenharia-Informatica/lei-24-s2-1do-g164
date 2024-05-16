@@ -28,7 +28,7 @@ public class Main {
         }
         List<Edge> mstEdges = new ArrayList<>();
         System.out.println("------------------LOADING----------------");
-        //MST_PLOTTER.plotMST(csvFile,"input");
+        MST_PLOTTER.plotMST(csvFile,"input");
         System.out.println("-----------------------------------------");
         System.out.println("Input graph has been plotted into: files/input.png");
         System.out.println("-----------------------------------------");
@@ -38,7 +38,7 @@ public class Main {
         exportToCSV(mstEdges, "src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/output.csv");
         System.out.println("MST exported into: files/output.csv");
         System.out.println("-----------------------------------------");
-        //MST_PLOTTER.plotMST("src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/output.csv","outputMST");
+        MST_PLOTTER.plotMST("src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/output.csv","outputMST");
         System.out.println("The MST has been plotted into files/outputMST.png");
     }
 

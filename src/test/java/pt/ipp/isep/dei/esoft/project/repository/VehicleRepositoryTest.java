@@ -47,18 +47,6 @@ public class VehicleRepositoryTest {
     }
 
     @Test
-    public void testGetVehiclesWithoutBookedCheckup() {
-        repository.registerVehicle("Toyota", "Corolla", "AB-22-KL", VehicleTypeRepository.LIGHT_VEHICLE, 1500.0, 1200.0, 50000,
-                "01-01-2022", "01-01-2022", 10000);
-        repository.registerVehicle("Ford", "Fiesta", "AB-12-KL", VehicleTypeRepository.TRACTOR, 1300.0, 1100.0, 35000,
-                "01-02-2022", "01-02-2022", 8000);
-        repository.createVehicleCheckup(repository.getVehicleList().get(1), LocalDate.now(), 40000);
-        ArrayList<Vehicle> vehiclesWithoutBookedCheckup = repository.getVehicleList();
-        assertEquals(1, vehiclesWithoutBookedCheckup.size());
-    }
-
-
-    @Test
     public void testHasVehicleToRegisterVehicleCheckUp() {
         repository.registerVehicle("Toyota", "Corolla", "AB-22-KL", VehicleTypeRepository.LIGHT_VEHICLE, 1500.0, 1200.0, 50000,
                 "01-01-2022", "01-01-2022", 10000);

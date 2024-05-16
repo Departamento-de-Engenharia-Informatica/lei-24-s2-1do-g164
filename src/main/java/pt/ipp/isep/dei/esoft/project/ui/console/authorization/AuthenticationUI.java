@@ -13,16 +13,21 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * @author Paulo Maio pam@isep.ipp.pt
+ * Manages the authentication user interface.
  */
-
 public class AuthenticationUI implements Runnable {
     private final AuthenticationController ctrl;
 
+    /**
+     * Initializes a new instance of AuthenticationUI.
+     */
     public AuthenticationUI() {
         ctrl = new AuthenticationController();
     }
 
+    /**
+     * Runs the authentication user interface.
+     */
     public void run() {
         boolean success = doLogin();
 
@@ -43,6 +48,11 @@ public class AuthenticationUI implements Runnable {
         this.logout();
     }
 
+    /**
+     * Gets the menu items for different user roles.
+     *
+     * @return The list of menu items.
+     */
     private List<MenuItem> getMenuItemForRoles() {
         List<MenuItem> rolesUI = new ArrayList<>();
         rolesUI.add(new MenuItem(AuthenticationController.ROLE_HRM, new HrmUI()));
@@ -52,6 +62,11 @@ public class AuthenticationUI implements Runnable {
         return rolesUI;
     }
 
+    /**
+     * Performs the login process.
+     *
+     * @return True if login is successful, false otherwise.
+     */
     private boolean doLogin() {
         System.out.println("\n\n--- LOGIN UI ---------------------------");
 
@@ -71,10 +86,19 @@ public class AuthenticationUI implements Runnable {
         return success;
     }
 
+    /**
+     * Logs out the user.
+     */
     private void logout() {
         ctrl.doLogout();
     }
 
+    /**
+     * Redirects to the UI corresponding to the user's role.
+     *
+     * @param rolesUI The list of menu items corresponding to user roles.
+     * @param role    The selected user role.
+     */
     private void redirectToRoleUI(List<MenuItem> rolesUI, UserRoleDTO role) {
         boolean found = false;
         Iterator<MenuItem> it = rolesUI.iterator();
@@ -90,6 +114,12 @@ public class AuthenticationUI implements Runnable {
         }
     }
 
+    /**
+     * Allows the user to select a role.
+     *
+     * @param roles The list of available roles.
+     * @return The selected user role.
+     */
     private UserRoleDTO selectsRole(List<UserRoleDTO> roles) {
         if (roles.size() == 1) {
             return roles.get(0);

@@ -195,25 +195,23 @@ public class Vehicle {
         var formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String date = this.checkupList.get(checkupList.size()-1).getDate().format(formatter);
 
-        return "Vehicle{" +
-                "brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", vehicleID='" + vehicleID + '\'' +
-                ", type=" + type +
-                ", grossWeight=" + grossWeight +
-                ", tare=" + tare +
-                ", currentKm=" + currentKm +
-                ", registerDate='" + registerDate + '\'' +
-                ", acquisitionDate='" + acquisitionDate + '\'' +
-                ", checkupFrequency=" + checkupFrequency +
-                ", Last Checkup: " + date +
-                '}';
+        return String.format(" |Vehicle ID| %-7s |Brand| %-12s |Model| %-10s |Current KMs| %7s |Check-up Frequency| %6s |Km at last Check-up| %7s |Km at next Check-up| %7s", vehicleID,brand,model,currentKm,checkupFrequency,this.getLastCheckup().getCurrentKms(),(this.getLastCheckup().getCurrentKms()+this.checkupFrequency));
     }
 
+    /**
+     * Sets the current kilometers of the vehicle.
+     *
+     * @param currentKm the new value for the current kilometers
+     */
     public void setCurrentKm(int currentKm){
         this.currentKm = currentKm;
     }
 
+    /**
+     * Retrieves the last vehicle checkup from the list of checkups.
+     *
+     * @return the last VehicleCheckup object added to the list
+     */
     public VehicleCheckup getLastCheckup(){
         return this.checkupList.get(checkupList.size()-1);
     }

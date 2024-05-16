@@ -8,21 +8,37 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * Represents the application session.
+ */
 public class ApplicationSession {
     private final AuthenticationRepository authenticationRepository;
     private static final String CONFIGURATION_FILENAME = "src/main/resources/config.properties";
     private static final String COMPANY_DESIGNATION = "Company.Designation";
 
+    /**
+     * Initializes a new instance of ApplicationSession.
+     */
     private ApplicationSession() {
         this.authenticationRepository = Repositories.getInstance().getAuthenticationRepository();
         Properties props = getProperties();
     }
 
+    /**
+     * Retrieves the current user session.
+     *
+     * @return The current user session.
+     */
     public UserSession getCurrentSession() {
         pt.isep.lei.esoft.auth.UserSession userSession = this.authenticationRepository.getCurrentUserSession();
         return new UserSession(userSession);
     }
 
+    /**
+     * Retrieves the properties from the configuration file.
+     *
+     * @return The properties from the configuration file.
+     */
     private Properties getProperties() {
         Properties props = new Properties();
 
@@ -42,6 +58,11 @@ public class ApplicationSession {
 
     private static ApplicationSession singleton = null;
 
+    /**
+     * Retrieves the singleton instance of ApplicationSession.
+     *
+     * @return The singleton instance of ApplicationSession.
+     */
     public static ApplicationSession getInstance() {
         if (singleton == null) {
             synchronized (ApplicationSession.class) {

@@ -98,12 +98,15 @@ skinparam packageStyle rectangle
 
 
                    collaboratorRepository --> CTRL : success
+
+
                  deactivate collaboratorRepository
                  CTRL --> UI : success
+                    deactivate CTRL
                  activate UI
                deactivate CTRL
 
-              UI --> HRM : shows sucess message
+              UI --> HRM : shows success message
                           deactivate UI
 
 

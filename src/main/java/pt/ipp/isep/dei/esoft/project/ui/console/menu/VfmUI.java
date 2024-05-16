@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.esoft.project.ui.console.menu;
 
-
 import pt.ipp.isep.dei.esoft.project.repository.JobRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.ui.console.*;
@@ -10,13 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Paulo Maio pam@isep.ipp.pt
+ * Manages the VFM user interface menu.
  */
-
 public class VfmUI implements Runnable {
+    /**
+     * Initializes a new instance of VfmUI.
+     */
     public VfmUI() {
     }
 
+    /**
+     * Runs the VFM user interface menu.
+     */
     public void run() {
         List<MenuItem> options = new ArrayList<MenuItem>();
         options.add(new MenuItem("Register New Vehicle", new RegisterVehicleUI()));

@@ -2,13 +2,31 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 import java.util.Objects;
 
+/**
+ * Represents a system user.
+ */
 public class SystemUser {
     private final String email;
     private String name;
     private String phone;
 
+    /**
+     * Initializes a new instance of SystemUser.
+     *
+     * @param email The email of the user.
+     */
     public SystemUser(String email) {
         this.email = email;
+    }
+
+    /**
+     * Checks if this user has the specified email.
+     *
+     * @param email The email to check.
+     * @return True if the user has the specified email, false otherwise.
+     */
+    public boolean hasEmail(String email) {
+        return this.email.equals(email);
     }
 
     @Override
@@ -27,11 +45,6 @@ public class SystemUser {
     public int hashCode() {
         return Objects.hash(email);
     }
-
-    public boolean hasEmail(String email) {
-        return this.email.equals(email);
-    }
-
 
     /**
      * Clone method.

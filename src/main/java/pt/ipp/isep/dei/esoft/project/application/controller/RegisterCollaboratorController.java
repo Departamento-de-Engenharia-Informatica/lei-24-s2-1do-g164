@@ -37,6 +37,8 @@ public class RegisterCollaboratorController {
      * @param idDocumentNumber The ID document number of the collaborator.
      * @param job              The job of the collaborator.
      * @param idDocumentType   The ID document type repository of the collaborator.
+     * @param taxpayerNumber   The taxpayer number of the collaborator.
+     * @param email            The email of the collaborator.
      * @return {@code true} if the collaborator is successfully registered, {@code false} otherwise.
      */
     public boolean registerCollaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentTypeRepository idDocumentType, int taxpayerNumber, String email) {
@@ -77,6 +79,11 @@ public class RegisterCollaboratorController {
         return new ArrayList<>(Arrays.asList(DocumentTypeRepository.values()));
     }
 
+    /**
+     * Retrieves a list of all available collaborator statuses.
+     *
+     * @return an ArrayList containing all CollaboratorStatus values
+     */
     public ArrayList<CollaboratorStatus> getCollaboratorStatusList() {
         return new ArrayList<>(Arrays.asList(CollaboratorStatus.values()));
     }

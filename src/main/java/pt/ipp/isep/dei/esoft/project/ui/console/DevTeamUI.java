@@ -1,14 +1,20 @@
 package pt.ipp.isep.dei.esoft.project.ui.console;
 
 /**
- * @author Paulo Maio pam@isep.ipp.pt
+ * Represents the user interface for displaying the development team information.
  */
 public class DevTeamUI implements Runnable {
 
+    /**
+     * Constructs a new DevTeamUI instance.
+     */
     public DevTeamUI() {
-
     }
 
+    /**
+     * Runs the DevTeamUI, displaying the development team information.
+     */
+    @Override
     public void run() {
         System.out.println("\n");
         System.out.println("---------- DEVELOPMENT TEAM ----------");
@@ -18,4 +24,3 @@ public class DevTeamUI implements Runnable {
         System.out.println("  Vasco Azevedo - 1230776@isep.ipp.pt");
     }
 }
-

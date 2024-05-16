@@ -33,7 +33,6 @@ public class CreateTeamProposalService {
      * @return An ArrayList of Collaborator objects arranged by skill match.
      * @throws InputMismatchException if no collaborators are found for any skill.
      */
-
     public ArrayList<Collaborator> arrangeCollaboratorsBySkill(ArrayList<Skill> skills){
         var collaborators = new ArrayList<Collaborator>();
 

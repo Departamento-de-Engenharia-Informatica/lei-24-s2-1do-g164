@@ -26,6 +26,8 @@ public class RegisterVehicleCheckupController {
     public ArrayList<Vehicle> getVehicles(){
         return vehicleRepository.getVehicleList();
     }
+
+
     /**
      * Creates a vehicle checkup record for the specified vehicle.
      *

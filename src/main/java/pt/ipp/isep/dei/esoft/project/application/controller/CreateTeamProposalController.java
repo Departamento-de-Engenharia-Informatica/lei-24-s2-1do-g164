@@ -42,7 +42,6 @@ public class CreateTeamProposalController {
      */
     public Team createTeamProposal(int max, int min, ArrayList<Skill> skills) {
         var collaborators = teamProposalService.arrangeCollaboratorsBySkill(skills);
-
         Team team = new Team(teamProposalService.arrangeTeam(max, min, skills, collaborators), skills);
         if(teamRepository.registerTeam(team)){
             for (var c : team.getCollaborators()) {

@@ -74,6 +74,12 @@ public class Skill {
         return skillName;
     }
 
+    /**
+     * Returns a hash code value for the object. This method is typically used
+     * in conjunction with the {@code equals} method to compare objects for equality.
+     *
+     * @return a hash code value for this object
+     */
     @Override
     public int hashCode() {
         return Objects.hash(skillName);

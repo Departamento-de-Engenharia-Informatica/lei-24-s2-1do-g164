@@ -48,6 +48,15 @@ public class RegisterVehicleController {
         return new ArrayList<>(Arrays.asList(VehicleTypeRepository.values()));
     }
 
+    /**
+     * Retrieves the vehicle repository instance.
+     *
+     * If the vehicle repository instance is not initialized, it initializes
+     * it by obtaining it from the Repositories singleton class. Subsequent calls
+     * return the already initialized repository instance.
+     *
+     * @return the vehicle repository instance
+     */
     private VehicleRepository getVehicleRepository() {
         if (vehicleRepository == null) {
             Repositories repositories = Repositories.getInstance();

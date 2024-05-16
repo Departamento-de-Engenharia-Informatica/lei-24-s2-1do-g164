@@ -1,17 +1,24 @@
 package pt.ipp.isep.dei.esoft.project.ui.console.menu;
 
-
 import pt.ipp.isep.dei.esoft.project.ui.console.*;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Manages the HRM user interface menu.
+ */
 public class HrmUI implements Runnable {
+    /**
+     * Initializes a new instance of HrmUI.
+     */
     public HrmUI() {
     }
 
+    /**
+     * Runs the HRM user interface menu.
+     */
     public void run() {
         List<MenuItem> options = new ArrayList<MenuItem>();
         options.add(new MenuItem("Register New Skill", new RegisterSkillUI()));

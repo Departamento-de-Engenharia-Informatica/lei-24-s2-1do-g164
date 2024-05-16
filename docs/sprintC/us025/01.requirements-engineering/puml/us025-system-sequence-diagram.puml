@@ -1,0 +1,28 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD)
+
+autonumber
+
+actor "GSM" as GSM
+participant ":System" as System
+
+activate GSM
+
+    GSM -> System : asks to cancel an entry in the Agenda.
+    activate System
+
+        System --> GSM : shows available entries
+    deactivate System
+
+    GSM -> System : selects entry
+    activate System
+
+        System --> GSM : display operation successs
+        deactivate System
+
+
+@enduml

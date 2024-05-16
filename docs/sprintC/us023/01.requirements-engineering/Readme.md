@@ -1,17 +1,17 @@
-# US008 - List the vehicles needing the check-up
-
+# US23 - Assign a team to an entry in the agenda
 
 ## 1. Requirements Engineering
 
 ### 1.1. User Story Description
 
-As a FM, I want to list the vehicles needing the check-up. 
+As a GSM, I want to assign a Team to an entry in the Agenda
 
 ### 1.2. Customer Specifications and Clarifications 
 
 **From the specifications document:**
 
-> The list must clearly identify the vehicles through: plate number, brand, model, current kms, checkup frequency, kms at last checkup, and the kms the vehicle must have at the next checkup.
+> The Agenda is made up of entries that relate to a task (which was previously in the To-Do List) and 
+the team that will carry out the tasks.
 
 **From the client clarifications:**
 
@@ -25,26 +25,31 @@ As a FM, I want to list the vehicles needing the check-up.
 
 ### 1.3. Acceptance Criteria
 
-* A vehicle must fulfill the criteria to need a checkup in order to appear on the list.
+* **AC1:** A message must be sent to all team members informing
+  them about the assignment.
+
+* **AC2:** Different email services can send the message. These services must be defined through a configuration file to allow the use
+  of different platforms (e.g. Gmail, DEI’s email service, etc.).
 
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "US006 - Register a vehicle" as there must be at least one vehicle to list.
+* There is a dependency on "US007 - Generate a Team Proposal" as there must be at least one team to assign an entry.
+* There is also a dependency on "US22 - Add entry to the agenda" because in order to assign teams to an entry, there must be existing entries.
 
 ### 1.5 Input and Output Data
 
 **Input Data:**
 
-* n\a
+* Selected data:
+  * Team
+  * Entry
 
 **Output Data:**
 
-* List of vehicles that need the check-up.
-
+* (In)success message of team assignment and notification sent
 ### 1.6. System Sequence Diagram (SSD)
 
-![System Sequence Diagram - Alternative One](svg/us008-system-sequence-diagram.svg)
+![System Sequence Diagram - Alternative One](svg/us23-system-sequence-diagram.svg)
 
 ### 1.7 Other Relevant Remarks
 
-* If a check-up has never been registered for a vehicle its kms at last check-up are 0. 

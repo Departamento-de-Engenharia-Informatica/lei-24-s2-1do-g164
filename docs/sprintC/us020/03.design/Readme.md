@@ -1,4 +1,4 @@
-# US008 - List the vehicles needing the check-up
+# US020 - Register a Green Space
 
 ## 3. Design - User Story Realization 
 
@@ -31,8 +31,8 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 This diagram shows the full sequence of interactions between the classes involved in the realization of this user story.
 
-![Sequence Diagram - Full](svg/us008-sequence-diagram-full.svg)
+![Sequence Diagram - Full](svg/us020-sequence-diagram-full.svg)
 
 ## 3.3. Class Diagram (CD)
 
-![Class Diagram](svg/us008-class-diagram.svg)
+![Class Diagram](svg/us020-class-diagram.svg)

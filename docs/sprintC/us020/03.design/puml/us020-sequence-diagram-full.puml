@@ -1,0 +1,89 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+    skinparam shadowing false
+
+    autonumber
+
+    'hide footbox
+    actor "Green Spaces Manager" as HRM
+    participant ":RegisterGreenSpaceUI" as UI
+    participant ":RegisterGreenSpaceController" as CTRL
+    participant ":Repositories" as RepositorySingleton
+    participant "repositories\n:Repositories" as PLAT
+    participant "greenSpacesRepository:\nCollaboratorRepository" as collaboratorRepository
+    participant "GreenSpaceTypeRepository" as DocumentTypeRepository
+    activate HRM
+
+            HRM -> UI : asks to register a green space
+            activate UI
+
+
+    '            UI --> ADM : requests data (reference, description,  informal \n description, technical description, duration, cost)
+                'create CTRL
+                UI -> CTRL** : create
+
+
+
+                UI --> HRM : shows green space type list and requests to select \none job for the new collaborator
+            deactivate UI
+
+        HRM -> UI : selects a green space type
+        activate UI
+        UI -> CTRL : getGreenSpaceTypeList()
+                deactivate UI
+                activate CTRL
+                CTRL -> DocumentTypeRepository : getGreenSpaceTypeList()
+
+                activate "DocumentTypeRepository"
+                deactivate UI
+                DocumentTypeRepository -> CTRL : GreenSpaceTypeRepository.values()
+                deactivate DocumentTypeRepository
+                        CTRL -> UI : greenSpaceTypeList
+
+                deactivate CTRL
+                activate UI
+
+                UI -> HRM : shows green space type list and asks to select one
+                deactivate UI
+                HRM -> UI : selects green space type
+                activate UI
+        HRM <-- UI : requests data for the new green space (name, address, area)
+        deactivate UI
+        HRM -> UI : enters requested data
+        activate UI
+
+
+           UI -> CTRL : registerGreenSpace(name, address, area)
+               deactivate UI
+               activate CTRL
+                 CTRL -> RepositorySingleton : getInstance()
+                 activate RepositorySingleton
+                   RepositorySingleton -> CTRL : repositories
+                 deactivate RepositorySingleton
+
+                 CTRL -> PLAT : getGreenSpaceRepository()
+                 activate PLAT
+                   PLAT --> CTRL : greenSpaceRepository
+                 deactivate PLAT
+
+                 CTRL -> collaboratorRepository : registerGreenSpace(name, address, area)
+                 activate collaboratorRepository
+
+
+                   collaboratorRepository --> CTRL : success
+
+
+                 deactivate collaboratorRepository
+                 CTRL --> UI : success
+                    deactivate CTRL
+                 activate UI
+               deactivate CTRL
+
+              UI --> HRM : shows success message
+                          deactivate UI
+
+
+    deactivate HRM
+
+@enduml

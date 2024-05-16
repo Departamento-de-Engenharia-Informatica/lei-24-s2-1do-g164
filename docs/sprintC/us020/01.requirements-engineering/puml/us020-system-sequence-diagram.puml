@@ -1,0 +1,35 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD)
+
+autonumber
+
+actor "GSM" as Employee
+participant ":System" as System
+
+activate Employee
+
+    Employee -> System : asks to register a green space
+    activate System
+
+        System --> Employee : shows green space types and asks to select one
+    deactivate System
+
+    Employee -> System : selects green space type
+        activate System
+
+            System --> Employee : asks to type the data (name, address, area)
+        deactivate System
+
+        Employee -> System : types the data
+            activate System
+
+            System --> Employee : displays operation success
+        deactivate System
+
+
+
+@enduml

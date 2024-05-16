@@ -1,32 +1,55 @@
 @startuml
-skinparam classAttributeIconSize 0
 'skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 skinparam linetype polyline
 'skinparam linetype orto
+
 skinparam classAttributeIconSize 0
 
-class Vehicle {
-        brand
-        model
-        vehicleID
-        type
-        tare
-        grossWeight
-        currentKm
-        registerDate
-        acquisitionDate
-        checkupFrequency
+'left to right direction
+
+class GreenSpace {
+    - greenSpaceType
+    - name
+    - address
+    - area
+    + equals()
+}
+
+class Repositories {
+
+
+    - Repositories()
+    + getInstance() : Repositories
+    + getCollaboratorRepository()
+    + getVehicleRepository()
+    + getSkillRepository()
+    + getJobRepository()
+    + getAuthenticationRepository()
+    + getGreenSpaceRepository()
+    + getTeamRepository()
+    + getAgendaEntryRepository()
+    + getToDoListEntryRepository()
 
 }
 
-class VehicleCheckup {
-    currentKms
-    date
-
+class GreenSpaceRepository {
+    + getGreenSpaceList()
+    + registerGreenSpace(name, address, area)
+    + size()
+    - isUnique(greenSpace)
 }
 
+class RegisterGreenSpaceController {
+
+    + RegisterGreenSpaceController()
+    + registerGreenSpace(name, area)
+    - getGreenSpaceRepository()
+    - getGreenSpaceTypeList()
+}
+
+class GSM {}
 
 class SystemUser {
     name
@@ -35,49 +58,16 @@ class SystemUser {
     phone
 }
 
-class VehicleRepository {
-    - ArrayList vehiclesList
-    + getVehiclesRepository()
-    + getVehicles()
-    + getVehiclesNeedingCheckupList()
-}
 
+SystemUser <|-- GSM
+GSM  <-- GreenSpace : registered by
+RegisterGreenSpaceController ..> Repositories : repositories
+RegisterGreenSpaceController ..> GreenSpaceRepository : greenSpaceRepository
+RegisterGreenSpaceController ..> GreenSpace : greenSpace
 
-class Repositories {
-    - collaboratorRepository
-    - vehicleRepository
-    - skillRepository
-    - jobRepository
-
-    - Repositories()
-    + getInstance()
-    + getCollaboratorRepository()
-    + getVehicleRepository()
-    + getSkillRepository()
-    + getJobRepository()
-
-}
-
-
-class ListVehivclesCheckupsController {
--VehicleRepository
-  + getVehiclesNeedingCheckupList()
-
-}
-
-
-
-ListVehiclesCheckupsUI .> ListVehivclesCheckupsController
-
-
-Repositories -->"1" VehicleRepository
+RegisterGreenSpaceUI .> RegisterGreenSpaceController
+Repositories -->"1" GreenSpaceRepository
 Repositories -> Repositories : instance
-ListVehivclesCheckupsController ..> Repositories : repositories
-Vehicle "*" <-- "1" VehicleRepository : has
+GreenSpace "*" <-- GreenSpaceRepository
 
-
-FM "1" - "*" Vehicle : registers >
-Vehicle "1   " -- "0..*                        " VehicleCheckup : registers >
-FM "           1 " - "0..*   " VehicleCheckup : requests >
-SystemUser <|- FM
 @enduml

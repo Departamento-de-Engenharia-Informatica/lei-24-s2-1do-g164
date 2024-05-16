@@ -1,11 +1,16 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import pt.ipp.isep.dei.esoft.project.repository.GreenSpaceType;
+
 public class GreenSpace {
+
+    private GreenSpaceType type;
     private String name;
     private String address;
     private int area;
 
-    public GreenSpace(String name, String address, int area){
+    public GreenSpace(GreenSpaceType type,String name, String address, int area){
+        this.type = type;
         this.name = name;
         this.address = address;
         this.area = area;
@@ -39,5 +44,13 @@ public class GreenSpace {
 
     public void setArea(int area) {
         this.area = area;
+    }
+
+    public GreenSpaceType getType() {
+        return type;
+    }
+
+    public void setType(GreenSpaceType type) {
+        this.type = type;
     }
 }

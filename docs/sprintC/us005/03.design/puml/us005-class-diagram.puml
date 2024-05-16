@@ -1,0 +1,84 @@
+ @startuml
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+
+skinparam classAttributeIconSize 0
+
+'left to right direction
+
+
+class ":CreateTeamProposalUI" as CreateTeamProposalUI {
+
+}
+
+
+class ":CreateTeamProposalController" as CreateTeamProposalController {
++getSkillsList()
+    +createTeamProposal(max, min, skills)
+
+}
+
+class ":CreateTeamProposalService" as CreateTeamProposalService {
++arrangeCollaboratorsBySkill(skills)
++ arrangeTeam(max, min, skills, collaborators)
+}
+
+class ":Repositories" as Repositories {
+    +getInstance(): Repositories
+    +getSkillRepository(): SkillRepository
+    +getCollaboratorRepository()
+    +getTeamRepository()
+}
+
+class "SkillRepository" as SkillRepository {
+    +getSkillsList()
+
+}
+
+class HRM {}
+
+class SystemUser {
+    name
+    email
+    password
+    phone
+}
+
+class "CollaboratorRepository" as CollaboratorRepository {
+     +getDeactivatedCollaboratorsBySkills(skills)
+}
+
+class "TeamRepository" as TeamRepository {
+    +registerTeam(team)
+    -teamAlreadyExists(team)
+}
+
+class "Team" as Team {
+    -Integer maxSize
+    -Integer minSize
+    -ArrayList<Skill> requiredSkills
+    -ArrayList<Collaborator> collaborators
+
+   +create(teamMembers,skills)
+
+}
+
+
+SystemUser <|-- HRM
+CreateTeamProposalUI ..> CreateTeamProposalController
+Repositories -> Repositories : instance
+CreateTeamProposalController ..> Repositories: repositories
+Repositories --> "1"SkillRepository
+Repositories -->"1" CollaboratorRepository
+Repositories --> "1"TeamRepository
+CreateTeamProposalController ..> TeamRepository: TeamRepository
+TeamRepository  --> "*"Team
+CreateTeamProposalController --> Team
+CreateTeamProposalController ..> CreateTeamProposalService
+CreateTeamProposalController ..> SkillRepository: skillRepository
+CreateTeamProposalController ..> CollaboratorRepository: collaboratorRepository
+HRM -->  Team: generates
+@enduml

@@ -1,0 +1,85 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor " HRM" as ADM
+participant ":RegisterJobUI" as UI
+participant ":RegisterJobController" as CTRL
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "jobRepository:\nJobRepository" as JobRepository
+participant "job:Job" as job
+
+activate ADM
+
+
+        ADM -> UI : asks to register a new job
+
+
+        activate UI
+            UI -> CTRL**:create
+'            UI --> ADM : requests data (reference, description,  informal \n description, technical description, duration, cost)
+            'create CTRL
+
+
+            UI --> ADM : requests data
+        deactivate UI
+
+    ADM -> UI : types requested data (job name)
+    activate UI
+
+        UI --> ADM : requests confirmation
+    deactivate UI
+
+    ADM -> UI : confirms
+    activate UI
+
+        UI -> CTRL : registerJob(jobName)
+        activate CTRL
+
+
+                CTRL -> RepositorySingleton : getInstance()
+                activate RepositorySingleton
+
+                    RepositorySingleton --> CTRL: repositories
+                deactivate RepositorySingleton
+
+                CTRL -> PLAT : getJobRepository()
+                activate PLAT
+
+                    PLAT --> CTRL : JobRepository
+                deactivate PLAT
+
+                CTRL -> JobRepository : registerJob(jobName)
+                activate JobRepository
+
+                        JobRepository -> JobRepository : jobIsValid(skillName)
+                                activate JobRepository
+                                deactivate JobRepository
+                                JobRepository -> JobRepository : jobNameIsUnique(skillName)
+                                activate JobRepository
+                                deactivate JobRepository
+
+                        "JobRepository" -> job : Job(jobName)
+                        activate job
+                        "JobRepository" <-- job : skill
+                        deactivate job
+                        JobRepository -> JobRepository : registerSkill(skill)
+                        activate JobRepository
+                        deactivate JobRepository
+
+
+                    JobRepository --> CTRL : status of creation
+                deactivate JobRepository
+                    CTRL --> UI : status of creation
+                    UI --> ADM : shows operation status
+                    deactivate UI
+            deactivate CTRL
+
+
+
+@enduml

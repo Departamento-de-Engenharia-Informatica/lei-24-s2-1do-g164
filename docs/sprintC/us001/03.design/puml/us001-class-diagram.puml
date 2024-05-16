@@ -1,0 +1,72 @@
+@startuml
+ skinparam monochrome false
+
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+skinparam linetype orto
+
+skinparam classAttributeIconSize 0
+
+'left to right direction
+
+class Skill {
+    - String skillName
+    + Skill(skillName)
+    + getName()
+    + getDescription()
+}
+
+class Repositories {
+
+
+    - Repositories()
+    + getInstance() : Repositories
+    + getCollaboratorRepository()
+    + getVehicleRepository()
+    + getSkillRepository()
+    + getJobRepository()
+    + getAuthenticationRepository()
+}
+
+class SkillRepository {
+
+    + getSkillList()
+    + registerSkill(skillName)
+    + size()
+    - skillIsValid(skillName)
+    - isValidSkillName(skillName)
+    - skillNameIsUnique(skillName)
+}
+
+class RegisterSkillController {
+
+    + RegisterSkillController()
+    + registerSkill(skillName)
+    + registerSkillsFromFile(filePath)
+    - readSkillsFromFile(filePath)
+}
+
+class HRM {}
+
+class SystemUser {
+    name
+    email
+    password
+    phone
+}
+
+class RegisterSkillUI {}
+
+SystemUser <|-- HRM
+HRM  <-- Skill : registered by
+RegisterSkillController ..> Repositories : repositories
+RegisterSkillController ..> SkillRepository : skillRepository
+RegisterSkillController ..> Skill : skill
+
+RegisterSkillUI .> RegisterSkillController
+Repositories -->"1" SkillRepository
+Repositories -> Repositories : instance
+Skill "*" <-- SkillRepository
+
+@enduml

@@ -1,0 +1,143 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "HRM" as ADM
+participant ":RegisterSkillsUI" as UI
+participant ":RegisterSkillController" as CTRL
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "skillsRepository:\nSkillsRepository" as skillsRepository
+participant "skill:Skill" as skill
+
+
+activate ADM
+
+ADM -> UI : asks to register new skills
+activate UI
+UI --> ADM : requests input (single input or file)
+deactivate UI
+
+
+
+    ' Branch for handling file upload
+alt file uploaded
+
+
+
+ADM -> UI : types file path and confirms
+activate UI
+
+UI -> CTRL** : create
+UI -> CTRL : registerSkillsFromFile(filePath)
+activate CTRL
+
+CTRL -> CTRL : readSkillsFromFile(file)
+activate CTRL
+deactivate CTRL
+
+CTRL -> RepositorySingleton : getInstance()
+activate RepositorySingleton
+
+RepositorySingleton --> CTRL: repositories
+deactivate RepositorySingleton
+
+CTRL -> PLAT : getSkillsRepository()
+activate PLAT
+
+PLAT --> CTRL: skillsRepository
+deactivate PLAT
+
+loop
+
+CTRL -> skillsRepository : registerSkill(skillName)
+activate skillsRepository
+
+skillsRepository -> skillsRepository : nameIsValid(skillName)
+activate skillsRepository
+deactivate skillsRepository
+skillsRepository -> skillsRepository : skillNameIsUnique(skillName)
+activate skillsRepository
+deactivate skillsRepository
+"skillsRepository" -> skill : Skill(skillName)
+activate skill
+"skillsRepository" <-- skill : skill
+deactivate skill
+skillsRepository -> skillsRepository : registerSkill(skill)
+activate skillsRepository
+deactivate skillsRepository
+
+skillsRepository --> CTRL : status of operation of registration of multiple skills
+deactivate skillsRepository
+
+end
+
+CTRL --> UI : status of operation for file upload
+deactivate CTRL
+UI -> UI : displayStatusMessage
+activate UI
+deactivate UI
+
+UI --> ADM : status of operation message for file upload
+deactivate UI
+else single skill input
+
+ADM -> UI : types requested data (skill name)
+activate UI
+
+
+UI -> CTRL : registerSkill(skillName)
+
+
+activate CTRL
+
+CTRL -> RepositorySingleton : getInstance()
+activate RepositorySingleton
+
+RepositorySingleton --> CTRL: repositories
+deactivate RepositorySingleton
+
+CTRL -> PLAT : getSkillsRepository()
+activate PLAT
+
+PLAT --> CTRL: skillsRepository
+deactivate PLAT
+
+CTRL -> skillsRepository : registerSkill(skillName)
+activate skillsRepository
+
+skillsRepository -> skillsRepository : nameIsValid(skillName)
+activate skillsRepository
+deactivate skillsRepository
+skillsRepository -> skillsRepository : skillNameIsUnique(skillName)
+activate skillsRepository
+deactivate skillsRepository
+"skillsRepository" -> skill : Skill(skillName)
+activate skill
+"skillsRepository" <-- skill : skill
+deactivate skill
+skillsRepository -> skillsRepository : registerSkill(skill)
+activate skillsRepository
+deactivate skillsRepository
+skillsRepository --> CTRL : status of operation for single skill
+deactivate skillsRepository
+
+CTRL --> UI : status of operation for single skill
+deactivate CTRL
+
+UI -> UI : displayStatusMessage
+activate UI
+deactivate UI
+
+UI --> ADM : status of operation message for single skill
+end
+
+deactivate UI
+
+deactivate ADM
+
+@enduml

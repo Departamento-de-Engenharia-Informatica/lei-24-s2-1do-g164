@@ -1,0 +1,55 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+class HRM {
+
+}
+
+class SystemUser {
+    name
+    email
+    password
+    phone
+
+}
+
+class Collaborator {
+   name
+      phone
+      birthdate
+      admissionDate
+      address
+      idDocumentType
+      idDocumentNumber
+      status
+      }
+
+
+
+class Team {
+minimumSize
+maximumSize
+
+}
+
+class Skill {
+    name
+}
+
+HRM "1 " - "*" Collaborator : registers >
+HRM "1 " -- "*" Team : generates >
+Team "1 " -- "*" Collaborator: has >
+Team "1 " -- "*" Skill : has >
+HRM "1 " -- "*" Skill : creates >
+Collaborator "1 " - "0..* " Skill : has >
+SystemUser <|- HRM
+
+@enduml

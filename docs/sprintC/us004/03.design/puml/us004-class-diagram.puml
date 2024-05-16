@@ -1,0 +1,102 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam monochrome false
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+skinparam linetype orto
+
+
+class SystemUser {
+    name
+    email
+    password
+    phone
+}
+
+class CollaboratorRepository {
+    - ArrayList collaboratorList
+    String name
+    int phone
+    String birthdate
+    String admissionDate
+    String address
+    int idDocumentNumber
+    Job job
+    DocumentTypeRepository idDocumentType
+    + getCollaboratorRepository()
+    + getCollaborators()
+    + registerCollaborator()
+    - isValidName()
+    + isValidPhone()
+}
+class Collaborator{
+name
+phone
+birthdate
+admissionDate
+address
+idDocumentNumber
+job
+idDocumentType
+}
+
+
+class Repositories {
+    - collaboratorRepository
+    - vehicleRepository
+    - skillRepository
+    - jobRepository
+
+    - Repositories()
+    + getInstance()
+    + getCollaboratorRepository()
+    + getVehicleRepository()
+    + getSkillRepository()
+    + getJobRepository()
+
+}
+class SystemUser {
+    name
+    email
+    password
+    phone
+
+}
+class AssignSkillsController{
+-SkillRepository
++getCollaboratorRepository()
++getSkillRepository()
++getCollaboratorList()
++getSkillsList()
+
+}
+
+class AssignSkillsUI{
+
+}
+
+
+
+class SkillRepository {
+    - ArrayList skillList
+    + getSkillRepository()
+    + getSkills()
+    + assignSkills()
+    - skillIsValid()
+    - isValidSkillName()
+}
+
+class Skill {
+    name
+}
+Repositories -->"1" CollaboratorRepository
+Repositories -->"1" SkillRepository
+Skill "*" <-- "1" SkillRepository : has
+Collaborator "*" <-- "1" CollaboratorRepository : has
+Skill "1..*" - "1" Collaborator: is atributed to >
+SystemUser <|-- Collaborator
+AssignSkillsUI .> AssignSkillsController
+AssignSkillsController ..> Repositories : repositories
+
+@enduml

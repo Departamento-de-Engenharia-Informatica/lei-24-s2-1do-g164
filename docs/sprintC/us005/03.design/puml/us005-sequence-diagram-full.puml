@@ -1,0 +1,164 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "Human Resources Manager" as HRM
+participant ":CreateTeamProposalUI" as UI
+participant ":CreateTeamProposalController" as CTRL
+participant ":CreateTeamProposalService" as CreateTeamProposalService
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "skillRepository:\nSkillRepository" as SkillRepository
+
+participant "teamRepository:\nTeamRepository" as TeamRepository
+participant "collaboratorRepository:\nCollaboratorRepository" as CollaboratorRepository
+participant "team\n:Team" as TEAM
+
+
+
+activate HRM
+  HRM -> UI : asks to generate a team proposal
+  activate UI
+
+      UI -> CTRL** : create
+      activate CTRL
+
+              CTRL -> RepositorySingleton : getInstance()
+                    activate RepositorySingleton
+
+                      RepositorySingleton --> CTRL : repositories
+                    deactivate RepositorySingleton
+
+
+                     CTRL -> PLAT : getSkillRepository()
+                     activate PLAT
+                     PLAT --> CTRL : skillRepository
+                     deactivate PLAT
+
+                     CTRL -> PLAT : getTeamRepository()
+
+                     activate PLAT
+
+                    PLAT --> CTRL : teamRepository
+                      deactivate PLAT
+
+              CTRL->CreateTeamProposalService**: create
+                  deactivate CTRL
+
+                CreateTeamProposalService  -> RepositorySingleton : getInstance()
+                activate CreateTeamProposalService
+                                      activate RepositorySingleton
+
+                                        RepositorySingleton --> CreateTeamProposalService : repositories
+                                      deactivate RepositorySingleton
+
+
+                                       CreateTeamProposalService -> PLAT : getCollaboratorRepository()
+                                       activate PLAT
+                                       PLAT --> CreateTeamProposalService : collaboratorRepository
+                                       deactivate PLAT
+
+deactivate CreateTeamProposalService
+    UI --> HRM : asks maximum size
+deactivate UI
+
+
+
+  HRM -> UI : sends maximum size
+activate UI
+    UI --> HRM : asks minimum size
+deactivate UI
+
+  HRM -> UI : sends minimum size
+
+activate UI
+    UI -> CTRL : getSkillsList()
+
+activate CTRL
+
+CTRL -> SkillRepository: getSkillsList()
+activate SkillRepository
+deactivate CTRL
+
+        SkillRepository --> CTRL : skillList
+    activate CTRL
+      deactivate SkillRepository
+      CTRL --> UI : skillList
+
+
+    deactivate CTRL
+
+    UI --> HRM : asks required skills
+deactivate UI
+
+  HRM -> UI : sends required skills
+ activate UI
+    UI -> CTRL : createTeamProposal(max, min, skills)
+
+
+    activate CTRL
+
+
+    CTRL -> CreateTeamProposalService : arrangeCollaboratorsBySkill(skills)
+    activate CreateTeamProposalService
+
+
+    CreateTeamProposalService-> CollaboratorRepository : getDeactivatedCollaboratorsBySkills(skills)
+          note right : filter collaborators\nbased on their skills
+
+          activate CollaboratorRepository
+
+            CollaboratorRepository --> CreateTeamProposalService: selectedCollaborators
+            deactivate CollaboratorRepository
+CreateTeamProposalService-->CTRL: selectedCollaborators
+
+CTRL-> CreateTeamProposalService: arrangeTeam(max, min, skills, collaborators)
+
+   note bottom : select collaborators from selectedCollaborators\nbased on the min and max values and save in\nteamMembers
+CreateTeamProposalService --> CTRL: teamMembers
+deactivate CreateTeamProposalService
+
+
+
+
+CTRL -> TEAM** : create(teamMembers,skills)
+activate TEAM
+TEAM-->CTRL: team
+deactivate TEAM
+
+
+CTRL -> TeamRepository : registerTeam(team)
+
+
+
+activate TeamRepository
+
+
+        TeamRepository -> TeamRepository : teamAlreadyExists(team)
+        note bottom: checks if the team already exists based\non collaborators and skills and returns a boolean
+alt success
+
+        TeamRepository --> CTRL : success
+        note bottom: loops over each collaborator and activates them
+
+
+      CTRL --> UI : team
+
+    UI --> HRM : shows success message and the\ncreated team
+
+else insuccess
+ TeamRepository --> CTRL : insuccess
+
+
+      CTRL --> UI : insuccess message
+
+    deactivate CTRL
+    UI --> HRM : insuccess message
+  deactivate UI
+
+ end
+deactivate HRM
+@enduml

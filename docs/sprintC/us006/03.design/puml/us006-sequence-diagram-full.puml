@@ -1,0 +1,78 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor " VFM" as ADM
+participant ":RegisterVehicleUI" as UI
+participant ":RegisterVehicleController" as CTRL
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "vehicleRepository:\nVehicleRepository" as VehicleRepository
+participant "VehicleTypeRepository" as VTPR
+
+activate ADM
+
+        ADM -> UI : asks to register a new vehicle
+
+        activate UI
+
+        UI -> CTRL **: creates
+        UI -> CTRL : getVehicleTypesList()
+        activate CTRL
+        CTRL -> VTPR : getVehicleTypesList()
+        VTPR --> CTRL : VehicleTypeRepository.values()
+        CTRL --> UI : vehicleTypesList
+        deactivate CTRL
+
+            UI --> ADM : shows vehicle types and asks to select one
+            deactivate UI
+            ADM -> UI :  selects vehicle type
+            activate UI
+            UI --> ADM : requests data
+            deactivate UI
+
+
+    ADM -> UI : types requested data (brand, model, vehicleID, type, tare,\n grossWeight, currentKm, registerDate,\n acquisitionDate, checkupFrequency)
+            activate UI
+
+
+        UI -> CTRL : registerVehicle(brand, model, vehicleID, type, tare,\n grossWeight, currentKm, registerDate,\n acquisitionDate, checkupFrequency)
+        activate CTRL
+
+
+
+                CTRL -> RepositorySingleton : getInstance()
+                activate RepositorySingleton
+
+                    RepositorySingleton --> CTRL: repositories
+                deactivate RepositorySingleton
+
+                CTRL -> PLAT : getVehicleRepository()
+                activate PLAT
+
+                    PLAT --> CTRL : vehicleRepository
+                deactivate PLAT
+
+                CTRL -> VehicleRepository : registerVehicle(brand, model, vehicleID, type, tare,\n grossWeight, currentKm, registerDate,\n acquisitionDate, checkupFrequency)
+                activate VehicleRepository
+
+
+
+
+                    VehicleRepository --> CTRL : success
+
+                deactivate VehicleRepository
+
+                    CTRL --> UI : success
+                    deactivate CTRL
+                    UI --> ADM : shows operation status
+                    deactivate UI
+            deactivate CTRL
+
+
+
+@enduml

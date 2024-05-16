@@ -1,0 +1,65 @@
+
+ @startuml
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+
+skinparam classAttributeIconSize 0
+
+'left to right direction
+
+
+class "RegisterVehicleCheckupUI" as RegisterVehicleCheckupUI {
+
+
+}
+
+
+class "RegisterVehicleCheckupController" as RegisterVehicleCheckupController {
++getVehicles()
+    +createVehicleCheckup(vehicle, date, currentKm)
+
+}
+
+
+
+class ":Repositories" as Repositories {
+    +getInstance(): Repositories
+    +getVehicleRepository(): VehicleRepository
+
+}
+
+class "VehicleRepository" as VehicleRepository {
+    +getVehicles()
+    +createVehicleCheckup(vehicle, date, currentKms)
+
+}
+
+
+class "Vehicle" as Vehicle {
+      - String brand
+        - String model
+        - String vehicleID
+        - String type
+        - Double grossWeight
+        - Double tare
+        - Integer currentKm
+        - String registerDate
+        - String acquisitionDate
+        - Integer checkupFrequency
+
+    +addCheckup(date, currentKm)
+
+}
+RegisterVehicleCheckupUI..> RegisterVehicleCheckupController
+Repositories -> Repositories : instance
+RegisterVehicleCheckupController ..> Repositories: repositories
+Repositories --> "1"VehicleRepository
+RegisterVehicleCheckupController ..> VehicleRepository: vehicleRepository
+RegisterVehicleCheckupController ..> Vehicle
+
+VehicleRepository"1"--> "*"Vehicle: vehicle
+
+@enduml

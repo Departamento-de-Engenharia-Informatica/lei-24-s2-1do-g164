@@ -1,0 +1,92 @@
+@startuml
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+
+skinparam classAttributeIconSize 0
+
+'left to right direction
+
+class Collaborator {
+    - name
+    - phone
+    - birthDate
+    - admissionDate
+    - address
+    - job
+    - idDocumentType
+    - idDocumentNumber
+    - skills
+    + alreadyHasSkill()
+    + equals()
+    + addSkill()
+}
+
+class Repositories {
+
+
+    - Repositories()
+    + getInstance() : Repositories
+    + getCollaboratorRepository()
+    + getVehicleRepository()
+    + getSkillRepository()
+    + getJobRepository()
+    + getAuthenticationRepository()
+}
+
+class CollaboratorRepository {
+    - collaboratorList
+    + getCollaboratorList()
+    + registerCollaborator(name, phone, birthdate, admissionDate, address, idDocumentNumber, job, idDocumentType)
+    + size()
+    + assignSkills(collaborator, skills)
+    + isCollaboratorUnique(collaborator)
+    +getDeactivatedCollaboratorsBySkills(skills)
+
+}
+
+class RegisterCollaboratorController {
+
+    + RegisterCollaboratorController()
+    + registerVehicle(brand, model, vehicleID, type, grossWeight, tare,\n currentKm, registerDate, acquisitionDate, checkupFrequency)
+    - getCollaboratorRepository()
+    - getJobRepository()
+    - getVehicleTypesList()
+    - getJobList()
+    - getDocTypeList()
+}
+
+class JobRepository {
+    + getJobList()
+    + registerJob(jobName)
+    + size()
+    - jobIsValid(jobName)
+    - isValidJobName(jobName)
+    - jobNameIsUnique(jobName)
+}
+
+class HRM {}
+
+class SystemUser {
+    name
+    email
+    password
+    phone
+}
+
+
+SystemUser <|-- HRM
+HRM  <-- Collaborator : registered by
+RegisterCollaboratorController ..> Repositories : repositories
+RegisterCollaboratorController ..> CollaboratorRepository : collaboratorRepository
+RegisterCollaboratorController ..> JobRepository : jobRepository
+RegisterCollaboratorController ..> Collaborator : collaborator
+
+CollaboratorVehicleUI .> RegisterCollaboratorController
+Repositories -->"1" CollaboratorRepository
+Repositories -> Repositories : instance
+Collaborator "*" <-- CollaboratorRepository
+
+@enduml

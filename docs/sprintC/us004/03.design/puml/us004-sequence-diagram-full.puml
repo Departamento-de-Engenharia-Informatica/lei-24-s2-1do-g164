@@ -1,0 +1,107 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+    skinparam shadowing false
+
+    autonumber
+
+    'hide footbox
+    actor "Human Resource Manager" as HRM
+    participant ":AssignSkillsUI" as UI
+    participant ":AssignSkillsController" as CTRL
+    participant ":Repositories" as RepositorySingleton
+    participant "repositories\n:Repositories" as PLAT
+    participant "skillRepository:\nSkillRepository" as SkillRepository
+    participant "collaboratorRepository:\nCollaboratorRepository" as collaboratorRepository
+    activate HRM
+
+            HRM -> UI : asks to add skills to a collaborator
+
+            activate UI
+
+    '            UI --> ADM : requests data (reference, description,  informal \n description, technical description, duration, cost)
+                'create CTRL
+                UI -> CTRL** : create
+
+                UI -> CTRL : getCollaborators()
+                activate CTRL
+
+                    CTRL -> RepositorySingleton : getInstance()
+                    activate RepositorySingleton
+
+                        RepositorySingleton --> CTRL: repositories
+                    deactivate RepositorySingleton
+
+                    CTRL -> PLAT : getCollaboratorRepository()
+                    activate PLAT
+
+                        PLAT --> CTRL: collaboratorRepository
+                    deactivate PLAT
+
+                    CTRL -> collaboratorRepository : getCollaborators()
+                    activate collaboratorRepository
+
+                        collaboratorRepository--> CTRL : collaboratorsList
+                    deactivate collaboratorRepository
+
+                    CTRL --> UI : collaboratorsList
+                deactivate CTRL
+
+                UI --> HRM : shows collaborator list\nand asks to select one
+            deactivate UI
+
+        HRM -> UI : selects a collaborator
+        activate UI
+
+           UI -> CTRL : getSkills()
+               activate CTRL
+                 CTRL -> RepositorySingleton : getInstance()
+                 activate RepositorySingleton
+                   RepositorySingleton -> CTRL : repositories
+                 deactivate RepositorySingleton
+
+                 CTRL -> PLAT : getSkillRepository()
+                 activate PLAT
+                   PLAT --> CTRL : skillRepository
+                 deactivate PLAT
+
+                 CTRL -> SkillRepository : getSkills()
+                 activate SkillRepository
+                   SkillRepository --> CTRL : skillList
+                 deactivate SkillRepository
+                 CTRL --> UI : skillList
+               deactivate CTRL
+
+              UI --> HRM : shows skills list and \nasks to select skills
+                          deactivate UI
+
+             HRM -> UI : sends required skills
+             activate UI
+               UI -> CTRL :assignSkills(collaborator,skills)
+                        activate CTRL
+               CTRL -> RepositorySingleton : getInstance()
+                                         activate RepositorySingleton
+                                           RepositorySingleton -> CTRL : repositories
+                                         deactivate RepositorySingleton
+
+                                         CTRL -> PLAT : getCollaboratorRepository(collaborator, skills)
+                                         activate PLAT
+                                           PLAT --> CTRL : collaboratorRepository
+                                         deactivate PLAT
+
+                                         CTRL -> collaboratorRepository : assignSkills()
+                                       activate collaboratorRepository
+                                           collaboratorRepository --> CTRL : List of collaborator's current skills
+                                   deactivate collaboratorRepository
+                                         CTRL --> UI : List of collaborator's current skills
+                                       deactivate CTRL
+                                       UI --> HRM :Show list of collaborator's current skills
+                                                    deactivate UI
+
+
+
+
+
+    deactivate HRM
+
+@enduml

@@ -1,0 +1,81 @@
+@startuml
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+
+skinparam classAttributeIconSize 0
+
+'left to right direction
+
+class Vehicle {
+    - brand
+    - model
+    - vehicleID
+    - type
+    - grossWeight
+    - tare
+    - currentKm
+    - registerDate
+    - acquisitionDate
+    - checkupFrequency
+    + Vehicle(brand, model, vehicleID,\n type, grossWeight, tare, currentKm,\n registerDate, acquisitionDate,\n checkupFrequency)
+    + equals()
+    + needsCheckup()
+}
+
+class Repositories {
+
+
+    - Repositories()
+    + getInstance() : Repositories
+    + getCollaboratorRepository()
+    + getVehicleRepository()
+    + getSkillRepository()
+    + getJobRepository()
+    + getAuthenticationRepository()
+}
+
+class VehicleRepository {
+    -vehicleList
+    + getVehicleList()
+    + registerVehicle(brand, model, vehicleID,\n type, grossWeight, tare, currentKm,\n registerDate, acquisitionDate,\n checkupFrequency)
+    + size()
+    + getVehiclesNeedingCheckup()
+    - isVehicleUnique(vehicle)
+}
+
+class RegisterVehicleController {
+
+    + RegisterVehicleController()
+    + registerVehicle(brand, model, vehicleID, type, grossWeight, tare,\n currentKm, registerDate, acquisitionDate, checkupFrequency)
+    - getVehicleRepository()
+    - getVehicleTypesList()
+}
+
+class VehicleTypeRepository{}
+
+class VFM {}
+
+class SystemUser {
+    name
+    email
+    password
+    phone
+}
+
+
+SystemUser <|-- VFM
+VFM  <-- Vehicle : registered by
+RegisterVehicleController ..> Repositories : repositories
+RegisterVehicleController ..> VehicleRepository : vehicleRepository
+RegisterVehicleController ..> VehicleTypeRepository : VehicleTypeRepository.values()
+RegisterVehicleController ..> Vehicle : vehicle
+
+RegisterVehicleUI .> RegisterVehicleController
+Repositories -->"1" VehicleRepository
+Repositories -> Repositories : instance
+Vehicle "*" <-- VehicleRepository
+
+@enduml

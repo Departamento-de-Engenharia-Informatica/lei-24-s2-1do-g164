@@ -1,0 +1,43 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD) - US005
+
+autonumber
+
+actor "HRM" as Employee
+participant ":System" as System
+
+activate Employee
+
+    Employee -> System : asks to generate a team proposal
+    activate System
+
+        System --> Employee : requests maximum number of collaborators
+    deactivate System
+
+    Employee -> System : types maximum number
+    activate System
+
+        System --> Employee : requests minimum number of collaborators
+    deactivate System
+
+    Employee -> System : types minimum number
+    activate System
+
+        System --> Employee : shows all skills
+ deactivate System
+
+    Employee -> System : selects skills
+    activate System
+
+
+
+            System --> Employee : displays operation success and shows the team
+        deactivate System
+
+
+
+@enduml

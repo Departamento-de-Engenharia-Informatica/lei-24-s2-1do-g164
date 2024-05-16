@@ -1,0 +1,29 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD)
+
+autonumber
+
+actor "HRM" as Employee
+participant ":System" as System
+
+activate Employee
+
+    Employee -> System : asks to  register a job
+    activate System
+
+        System --> Employee : requests data (job's name)
+    deactivate System
+
+    Employee -> System : types job's name and confirms
+    activate System
+
+        System --> Employee : displays operation success
+    deactivate System
+
+
+
+@enduml

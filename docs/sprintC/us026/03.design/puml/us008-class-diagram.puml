@@ -16,29 +16,7 @@ class SystemUser {
 
 class CollaboratorRepository {
     - ArrayList collaboratorList
-    String name
-    int phone
-    String birthdate
-    String admissionDate
-    String address
-    int idDocumentNumber
-    Job job
-    DocumentTypeRepository idDocumentType
-    + getCollaboratorRepository()
-    + getCollaborators()
-    + registerCollaborator()
-    - isValidName()
-    + isValidPhone()
-}
-class Collaborator{
-name
-phone
-birthdate
-admissionDate
-address
-idDocumentNumber
-job
-idDocumentType
+
 }
 
 
@@ -47,13 +25,14 @@ class Repositories {
     - vehicleRepository
     - skillRepository
     - jobRepository
-
+    - EntryRepository
     - Repositories()
     + getInstance()
     + getCollaboratorRepository()
     + getVehicleRepository()
     + getSkillRepository()
     + getJobRepository()
+    + getEntryRepository()
 
 }
 class SystemUser {
@@ -63,38 +42,47 @@ class SystemUser {
     phone
 
 }
-class AssignSkillsController{
--SkillRepository
-+getCollaboratorRepository()
-+getSkillRepository()
-+getCollaboratorList()
-+getSkillsList()
+class AssignVehicleController{
+-VehicleRepository
++getEntryRepository()
++getVehicleRepositoryRepository()
++getEntryList()
++getVehicleList()
 
 }
 
-class AssignSkillsUI{
+class AssignVehiclessUI{
 
 }
 
 
 
-class SkillRepository {
-    - ArrayList skillList
-    + getSkillRepository()
-    + getSkills()
-    + assignSkills()
-    - skillIsValid()
-    - isValidSkillName()
+class VehicleRepository {
+    - ArrayList VehicleList
+    + getVehicleRepository()
+    + getVehicle()
+    + assignVehicle()
+    - vehicleIsValid()
+    - isValidVehicleName()
 }
 
-class Skill {
-    name
+class Vehicle {
+      name
+      phone
+      birthdate
+      admissionDate
+      address
+      idDocumentType
+      idDocumentNumber
+      status
 }
 Repositories -->"1" CollaboratorRepository
-Repositories -->"1" SkillRepository
-Skill "*" <-- "1" SkillRepository : has
-Collaborator "*" <-- "1" CollaboratorRepository : has
-Skill "1..*" - "1" Collaborator: is atributed to >
-SystemUser <|-- Collaborator
-AssignSkillsUI .> AssignSkillsController
-AssignSkillsController ..> Repositories : repositories
+Repositories -->"1" VehicleRepository
+Vehicle "*" <-- "1" VehicleRepository : has
+Entry "*" <-- "1" EntryRepository : has
+Vehicle "1..*" - "1" Entry: is atributed to >
+SystemUser <|-- Entry
+AssignVehicleUI .> AssignVehicleController
+AssignVehicleController ..> Repositories : repositories
+
+@enduml

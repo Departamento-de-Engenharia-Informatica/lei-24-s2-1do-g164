@@ -18,7 +18,7 @@ class SystemUser {
     phone
 
 }
-class VFM {
+class GSM {
 
 }
 
@@ -45,8 +45,8 @@ class Vehicle {
 }
 
 
-VFM "1" - "*" Vehicle : registers >
+GSM "1" - "*" Vehicle : registers >
 Vehicle "1   " -- "0..*                        " VehicleCheckup : registers >
-VFM "           1 " - "0..*   " VehicleCheckup : requests >
-SystemUser <|- VFM
+GSM "           1 " - "0..*   " VehicleCheckup : requests >
+SystemUser <|- GSM
 @enduml

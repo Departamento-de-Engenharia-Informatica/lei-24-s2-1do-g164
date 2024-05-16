@@ -1,17 +1,18 @@
-# US008 - List the vehicles needing the check-up
+# US025 - Cancel an entry in the Agenda.
 
 
 ## 1. Requirements Engineering
 
 ### 1.1. User Story Description
-
-As a FM, I want to list the vehicles needing the check-up. 
+As a GSM, I want to Cancel an entry in the Agenda.
 
 ### 1.2. Customer Specifications and Clarifications 
 
 **From the specifications document:**
 
-> The list must clearly identify the vehicles through: plate number, brand, model, current kms, checkup frequency, kms at last checkup, and the kms the vehicle must have at the next checkup.
+> The Agenda is made up of entries that relate to a task with a status (Planned, Postponed, Canceled,
+Done).
+
 
 **From the client clarifications:**
 
@@ -25,7 +26,8 @@ As a FM, I want to list the vehicles needing the check-up.
 
 ### 1.3. Acceptance Criteria
 
-* A vehicle must fulfill the criteria to need a checkup in order to appear on the list.
+* **AC1:**  A canceled task should not be deleted but rather change its
+state.
 
 ### 1.4. Found out Dependencies
 
@@ -35,16 +37,15 @@ As a FM, I want to list the vehicles needing the check-up.
 
 **Input Data:**
 
-* n\a
+* Selected data
+    * Entry
 
 **Output Data:**
 
-* List of vehicles that need the check-up.
+* (In)success of the operation 
 
 ### 1.6. System Sequence Diagram (SSD)
 
-![System Sequence Diagram - Alternative One](svg/us008-system-sequence-diagram.svg)
+![System Sequence Diagram - Alternative One](svg/us025-system-sequence-diagram.svg)
 
 ### 1.7 Other Relevant Remarks
-
-* If a check-up has never been registered for a vehicle its kms at last check-up are 0. 

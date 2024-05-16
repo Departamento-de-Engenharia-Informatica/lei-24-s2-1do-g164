@@ -12,11 +12,29 @@ participant ":System" as System
 
 activate Employee
 
-    Employee -> System : asks to list the vehicles needing a check-up
+    Employee -> System : asks to add a new entry from the "To Do List"\n to tbe Agenda
     activate System
 
-        System --> Employee : displays the vehicles that need a check-up
+        System --> Employee : displays the "To Do List" entries that are\n not in the Agenda
     deactivate System
+
+    Employee -> System : selects the desired entry
+        activate System
+
+            System --> Employee : asks for a date for the entry on the Agenda
+        deactivate System
+
+        Employee -> System : selects date for the entry
+            activate System
+
+                System --> Employee : asks for confirmation
+            deactivate System
+
+            Employee -> System : confirms
+                activate System
+
+                    System --> Employee : displays message of (in)success
+                deactivate System
 
 
 @enduml

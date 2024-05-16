@@ -3,13 +3,12 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-
+'left to right direction
 
 skinparam classAttributeIconSize 0
 
 hide circle
 hide methods
-
 
 class SystemUser {
     name
@@ -18,35 +17,26 @@ class SystemUser {
     phone
 
 }
-class VFM {
+
+
+class Entry {
 
 }
 
-class VehicleCheckup {
-    currentKms
-    date
-
-}
-
-class Vehicle {
-
-
-        brand
-        model
-        vehicleID
-        type
-        tare
-        grossWeight
-        currentKm
-        registerDate
-        acquisitionDate
-        checkupFrequency
-        checkUpList
+class Vehicle{
+      name
+      phone
+      birthdate
+      admissionDate
+      address
+      idDocumentType
+      idDocumentNumber
+      status
 }
 
 
-VFM "1" - "*" Vehicle : registers >
-Vehicle "1   " -- "0..*                        " VehicleCheckup : registers >
-VFM "           1 " - "0..*   " VehicleCheckup : requests >
-SystemUser <|- VFM
+
+
+Vehicle "1..*" - "1" Entry: is atributed to >
+SystemUser <|-- Entry
 @enduml

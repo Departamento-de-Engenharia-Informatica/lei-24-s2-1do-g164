@@ -7,16 +7,36 @@ title System Sequence Diagram (SSD)
 
 autonumber
 
-actor "VFM" as Employee
+actor "GSM" as Employee
 participant ":System" as System
 
 activate Employee
 
-    Employee -> System : asks to list the vehicles needing a check-up
+    Employee -> System : asks to add vehicles to an entry in the agenda
     activate System
 
-        System --> Employee : displays the vehicles that need a check-up
+        System --> Employee :shows list of entries and the list of vehicles
     deactivate System
+
+     Employee -> System : chooses an entry
+        activate System
+
+
+
+         Employee -> System : chooses vehicles from list to add
+
+
+                System --> Employee : shows all vehicles to be appointed and requests confirmation
+            deactivate System
+
+             Employee -> System : confirms vehicles
+                activate System
+
+            System --> Employee : displays operation success
+                deactivate System
+
+
+
 
 
 @enduml

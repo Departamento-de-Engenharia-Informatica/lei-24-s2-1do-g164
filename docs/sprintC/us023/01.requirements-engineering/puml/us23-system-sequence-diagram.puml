@@ -1,0 +1,26 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD)
+
+autonumber
+
+actor "GSM" as GSM
+participant ":System" as System
+
+activate GSM
+
+    GSM -> System : asks to assign a team to an entry in the agenda
+    activate System
+
+    System --> GSM : shows existing teams with their respective tasks\n and the agenda entries
+    deactivate System
+
+    GSM -> System : selects the desired team and the entry
+    activate System
+
+    System --> GSM : confirmation of team assignment and notification sent
+
+@enduml

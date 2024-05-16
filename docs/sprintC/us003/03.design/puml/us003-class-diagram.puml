@@ -50,10 +50,9 @@ class CollaboratorRepository {
 class RegisterCollaboratorController {
 
     + RegisterCollaboratorController()
-    + registerVehicle(brand, model, vehicleID, type, grossWeight, tare,\n currentKm, registerDate, acquisitionDate, checkupFrequency)
+    + registerCollaborator(name, phone, birthDate, admissionDate,\n address, idDocumentNumber, job, idDocumentType)
     - getCollaboratorRepository()
     - getJobRepository()
-    - getVehicleTypesList()
     - getJobList()
     - getDocTypeList()
 }

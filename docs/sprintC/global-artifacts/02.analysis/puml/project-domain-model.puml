@@ -187,4 +187,7 @@ GreenSpace"1" -- "1" ToDoList: has >
 GreenSpace"1" -- "1" Agenda: has >
 AgendaEntry"1"-- "1" Team: assigned to >
 AgendaEntry"1"-- "1" Vehicle: assigned to >
+GSM "1" -- "*" AgendaEntry: manages >
+GSM "1" -- "*" ToDoListEntry: manages >
+
 @enduml

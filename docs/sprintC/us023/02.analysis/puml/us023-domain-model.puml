@@ -68,7 +68,7 @@ Team "1 " -- "*" Collaborator: has >
 Team "1 " -- "*" Skill : has >
 Collaborator "1 " - "0..* " Skill : has >
 SystemUser <|- GSM
-GSM"1" - "*" AgendaEntry: adds >
+GSM"1" - "*" AgendaEntry: manages >
 AgendaEntry"1"-- "1  " Team: assigned to >
 Agenda "1" -- "*" AgendaEntry : has >
 AgendaEntry "1" -- "1  " Task : defines >

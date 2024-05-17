@@ -22,31 +22,25 @@ class GSM {
 
 }
 
-class VehicleCheckup {
-    currentKms
+
+class Agenda {
+}
+
+class AgendaEntry {
+
+    timeInterval
     date
-
-}
-
-class Vehicle {
-
-
-        brand
-        model
-        vehicleID
-        type
-        tare
-        grossWeight
-        currentKm
-        registerDate
-        acquisitionDate
-        checkupFrequency
-        checkUpList
 }
 
 
-GSM "1" - "*" Vehicle : registers >
-Vehicle "1   " -- "0..*                        " VehicleCheckup : registers >
-GSM "           1 " - "0..*   " VehicleCheckup : requests >
+class Task {
+    description
+    recurrency
+    duration
+}
+
+Agenda "1" -- "*" AgendaEntry : has >
+AgendaEntry "1" -- "1  " Task : defines >
 SystemUser <|- GSM
+GSM "1" -- "*" AgendaEntry: manages >
 @enduml

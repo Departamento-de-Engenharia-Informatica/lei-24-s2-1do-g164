@@ -1,5 +1,4 @@
-# US008 - List the vehicles needing the check-up
-
+#  US025 - Cancel an entry in the Agenda.
 ## 3. Design - User Story Realization 
 
 ### 3.1. Rationale

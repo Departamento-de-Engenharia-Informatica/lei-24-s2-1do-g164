@@ -7,12 +7,12 @@ title System Sequence Diagram (SSD)
 
 autonumber
 
-actor "VFM" as Employee
+actor "GSM" as Employee
 participant ":System" as System
 
 activate Employee
 
-    Employee -> System : asks to add a new entry from the "To Do List"\n to tbe Agenda
+    Employee -> System : asks to add a new entry from the "To Do List"\n to the Agend
     activate System
 
         System --> Employee : displays the "To Do List" entries that are\n not in the Agenda
@@ -26,12 +26,6 @@ activate Employee
 
         Employee -> System : selects date for the entry
             activate System
-
-                System --> Employee : asks for confirmation
-            deactivate System
-
-            Employee -> System : confirms
-                activate System
 
                     System --> Employee : displays message of (in)success
                 deactivate System

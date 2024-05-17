@@ -7,7 +7,7 @@ title System Sequence Diagram (SSD)
 
 autonumber
 
-actor "VFM" as Employee
+actor "GSM" as Employee
 participant ":System" as System
 
 activate Employee
@@ -15,23 +15,17 @@ activate Employee
     Employee -> System : asks to postpone an entry in the Agenda
     activate System
 
-        System --> Employee : shows the list of entries in the Agenda and asks to\nselect one
+        System --> Employee : shows the list of entries in the Agenda\nand planned dates and asks to select one
     deactivate System
 
     Employee -> System : selects an entry
         activate System
 
-            System --> Employee : shows the current date planed and asks to select\na new one
-        deactivate System
+        System --> Employee : asks to select a new date
+                    deactivate System
 
         Employee -> System : selects new date for the entry
             activate System
-
-                System --> Employee : shows information and asks confirmation
-            deactivate System
-
-            Employee -> System : confirms
-                activate System
 
                     System --> Employee : shows message of (in)success
 

@@ -165,8 +165,10 @@ MS "1" - "*" Machine : has >
 MS "1 " - "*" Vehicle : has >
 MS "1" - "*" Equipment : has >
 
-Task "1" - "1  " Team:   carried out by   >
-ToDoListEntry "1" - "*" Task: contains >
+
+
+Team "1" - "*" Task:   carries  >
+ToDoListEntry "1" - "*" Task: defines >
 
 HRM "1 " -- "*" Collaborator : registers >
 HRM "1 " -- "*" Job : creates >
@@ -181,8 +183,8 @@ GSU"1   " - "*" GreenSpace: uses >
 GSM "1 " - "*" GreenSpace: manages >
 Team "1 " -- "*" Skill: has >
 ToDoList "1" -- "*" ToDoListEntry: has >
-GreenSpace"1" -- "1" ToDoList: has>
-GreenSpace"1" -- "1" Agenda: has>
-AgendaEntry"1"-- "1" Team: assigned to>
-AgendaEntry"1"-- "1" Vehicle: assigned to>
+GreenSpace"1" -- "1" ToDoList: has >
+GreenSpace"1" -- "1" Agenda: has >
+AgendaEntry"1"-- "1" Team: assigned to >
+AgendaEntry"1"-- "1" Vehicle: assigned to >
 @enduml

@@ -19,11 +19,15 @@ As a GSM, I want to register a Green Space.
 >
 > **Answer:** Areas are measured in hectares.
 > 
+> > **Question:** Can two Green Spaces have the same name?
+>
+> **Answer:** No.
+> 
 ### 1.3. Acceptance Criteria
 
 * The area is measured in hectares and must be a number.
-* A green space must have a type.
 * All required fields must be filled.
+* The green space's name must be unique
 
 ### 1.4. Found out Dependencies
 

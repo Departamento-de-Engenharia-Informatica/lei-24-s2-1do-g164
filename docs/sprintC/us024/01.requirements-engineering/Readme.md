@@ -1,45 +1,44 @@
-# US008 - List the vehicles needing the check-up
+# US008 - Postpone an agenda entry
 
 
 ## 1. Requirements Engineering
 
 ### 1.1. User Story Description
 
-As a FM, I want to list the vehicles needing the check-up. 
+As a GSM, I want to postpone an entry on the agenda. 
 
 ### 1.2. Customer Specifications and Clarifications 
 
 **From the specifications document:**
 
-> The list must clearly identify the vehicles through: plate number, brand, model, current kms, checkup frequency, kms at last checkup, and the kms the vehicle must have at the next checkup.
+>The new date accepted  needs to be after the current date (postpone).
 
 **From the client clarifications:**
 
-> **Question:** What is needed for a vehicle to be considered as needing a check-up?
+> **Question:** The date you want to postpone in this US24 is the date referring to the "approximate expected duration" field when we registered the task?
 >
-> **Answer:** A vehicle appears on the list if its current kms exceed or there is a difference of less than 5% of the check-up frequency between the kms the vehicle had in the last check-up plus the check-up frequency.
-
-> **Question:** What data should be displayed for each vehicle in the list?
->
-> **Answer:** The list must clearly identify the vehicles through: plate number, brand, model and the reason that justified the checkup need.
+> **Answer:** No. Sometimes, for various reasons (e.g. insufficient staff, faulty equipment or adverse weather conditions) a task has to be postponed to a new date; task duration is not directly related to this.
 
 ### 1.3. Acceptance Criteria
 
-* A vehicle must fulfill the criteria to need a checkup in order to appear on the list.
+* The date has to be a valid day of a month
+* The new date needs to be after the previous one
 
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "US006 - Register a vehicle" as there must be at least one vehicle to list.
+* There is a dependency on "US022 - Add entry to the Agenda" as there must be at least one entry in the agenda to change it's date.
 
 ### 1.5 Input and Output Data
 
 **Input Data:**
 
-* n\a
+* Selected data
+  * entry from agenda
+  * new date
 
 **Output Data:**
 
-* List of vehicles that need the check-up.
+* Message of (in)succcess.
 
 ### 1.6. System Sequence Diagram (SSD)
 

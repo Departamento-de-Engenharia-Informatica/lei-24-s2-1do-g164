@@ -1,4 +1,4 @@
-@startuml
+\@startuml
 skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
@@ -18,7 +18,7 @@ class SystemUser {
     phone
 
 }
-class VFM {
+class GSM {
 
 }
 
@@ -29,8 +29,6 @@ class VehicleCheckup {
 }
 
 class Vehicle {
-
-
         brand
         model
         vehicleID
@@ -45,8 +43,10 @@ class Vehicle {
 }
 
 
-VFM "1" - "*" Vehicle : registers >
+GSM "1" - "*" Vehicle : registers >
 Vehicle "1   " -- "0..*                        " VehicleCheckup : registers >
-VFM "           1 " - "0..*   " VehicleCheckup : requests >
-SystemUser <|- VFM
+GSM "           1 " - "0..*   " VehicleCheckup : requests >
+SystemUser <|- GSM
+
+
 @enduml

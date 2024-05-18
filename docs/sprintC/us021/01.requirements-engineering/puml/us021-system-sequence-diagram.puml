@@ -1,0 +1,39 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD)
+
+autonumber
+
+actor "GSM" as Employee
+participant ":System" as System
+
+activate Employee
+
+    Employee -> System : asks to add a new entry to the to-do list
+    activate System
+
+        System --> Employee : shows the green spaces list and asks to select one
+    deactivate System
+
+    Employee -> System : selects a green space
+    activate System
+
+System --> Employee : shows the degrees of urgency list
+    deactivate System
+
+    Employee -> System : selects a degree of urgency
+        activate System
+
+    System --> Employee : requests data (name, description, expected duration, )
+    deactivate System
+
+    Employee -> System : types data
+    activate System
+
+    System --> Employee : displays operation success
+    deactivate System
+
+@enduml

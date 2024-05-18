@@ -18,6 +18,8 @@ public class Repositories implements Serializable {
     private final AuthenticationRepository authenticationRepository;
     private final JobRepository jobRepository;
     private final OrganizationRepository organizationRepository;
+    private final GreenSpaceRepository greenSpaceRepository;
+    private final ToDoEntryRepository toDoEntryRepository;
 
     /**
      * Initializes a new instance of Repositories.
@@ -31,6 +33,8 @@ public class Repositories implements Serializable {
         taskCategoryRepository = new TaskCategoryRepository();
         authenticationRepository = new AuthenticationRepository();
         organizationRepository = new OrganizationRepository();
+        toDoEntryRepository = new ToDoEntryRepository();
+        greenSpaceRepository = new GreenSpaceRepository();
     }
 
     /**
@@ -45,6 +49,14 @@ public class Repositories implements Serializable {
             }
         }
         return instance;
+    }
+
+    public GreenSpaceRepository getGreenSpaceRepository() {
+        return greenSpaceRepository;
+    }
+
+    public ToDoEntryRepository getToDoEntryRepository() {
+        return toDoEntryRepository;
     }
 
     /**

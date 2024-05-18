@@ -42,8 +42,8 @@ As a GSM, I want to postpone an entry on the agenda.
 
 ### 1.6. System Sequence Diagram (SSD)
 
-![System Sequence Diagram - Alternative One](svg/us008-system-sequence-diagram.svg)
+![System Sequence Diagram - Alternative One](svg/us024-system-sequence-diagram.svg)
 
 ### 1.7 Other Relevant Remarks
 
-* If a check-up has never been registered for a vehicle its kms at last check-up are 0. 
+* None

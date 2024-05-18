@@ -18,7 +18,6 @@ public class CreateTeamProposalUI implements Runnable {
     private int min, max;
     private ArrayList<Skill> skills;
 
-    private Team team;
 
     /**
      * Constructs a CreateTeamProposalUI object with initialized controller and skill repository.
@@ -45,7 +44,7 @@ public class CreateTeamProposalUI implements Runnable {
         requestData();
         Team team = submitData();
         if (team != null) {
-            promptForDecision(team);
+            confirmsTeam(team);
         }
         }
 
@@ -101,32 +100,39 @@ public class CreateTeamProposalUI implements Runnable {
         }
     }
 
-    private void promptForDecision(Team team) {
+    private void confirmsTeam(Team team) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\nDo you want to accept or refuse the team proposal?");
         System.out.println("1. Accept");
         System.out.println("2. Refuse");
         System.out.print("Select an option: ");
 
-        int choice;
-        try {
-            choice = Integer.parseInt(scanner.nextLine());
-            switch (choice) {
-                case 1:
-                    controller.acceptTeamProposal(team);
-                    System.out.println("Team proposal accepted!");
-                    break;
-                case 2:
-                    controller.refuseTeamProposal(team);
-                    System.out.println("Team proposal refused!");
-                    run();
-                default:
-                    System.out.println("Invalid option. Please try again.");
-                    promptForDecision(team);
+        while (true) {
+            try {
+                int choice = Integer.parseInt(scanner.nextLine());
+                switch (choice) {
+                    case 1:
+                        if (controller.acceptTeamProposal(team)) {
+                            System.out.println("Team proposal accepted!");
+                        } else {
+                            System.out.println("Failed to accept team proposal.");
+                        }
+                        return;
+                    case 2:
+                        if (controller.refuseTeamProposal(team)) {
+                            System.out.println("Team proposal refused!");
+                        } else {
+                            System.out.println("Failed to refuse team proposal.");
+                        }
+                        run();
+                        return;
+                    default:
+                        System.out.println("Invalid option. Please try again.");
+                        run();
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number.");
             }
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid input. Please enter a number.");
-            promptForDecision(team);
         }
     }
 

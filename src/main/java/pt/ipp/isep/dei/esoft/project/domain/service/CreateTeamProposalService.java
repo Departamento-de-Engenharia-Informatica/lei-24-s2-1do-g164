@@ -39,7 +39,6 @@ public class CreateTeamProposalService {
 
     public void acceptTeamProposal(Team team) {
         team.setStatus(TeamStatus.ACCEPTED);
-        teamRepository.registerTeam(team);
     }
 
     /**

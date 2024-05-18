@@ -47,6 +47,10 @@ public class CreateTeamProposalController {
     public boolean acceptTeamProposal(Team team) {
         try {
             teamProposalService.acceptTeamProposal(team);
+            teamRepository.registerTeam(team);
+            for (var collaborator : team.getCollaborators()) {
+                collaborator.activateCollaborator();
+            }
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -59,7 +63,7 @@ public class CreateTeamProposalController {
             teamProposalService.refuseTeamProposal(team);
             return true;
         } catch (Exception e) {
-            e.printStackTrace(); // Handle or log the exception
+            e.printStackTrace();
             return false;
         }
     }
@@ -74,14 +78,7 @@ public class CreateTeamProposalController {
     public Team createTeamProposal(int max, int min, ArrayList<Skill> skills) {
         var collaborators = teamProposalService.arrangeCollaboratorsBySkill(skills);
         Team team = new Team(teamProposalService.arrangeTeam(max, min, skills, collaborators), skills, TeamStatus.PENDING);
-        if(teamRepository.registerTeam(team)){
-            for (var c : team.getCollaborators()) {
-                c.activateCollaborator();
-            }
             return team;
-        } else {
-            throw new InputMismatchException("Could not create team");
-        }
     }
 }
 

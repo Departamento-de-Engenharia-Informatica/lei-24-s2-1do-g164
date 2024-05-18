@@ -7,15 +7,15 @@ title System Sequence Diagram (SSD)
 
 autonumber
 
-actor "VFM" as Employee
+actor "GSM" as GSM
 participant ":System" as System
 
-activate Employee
+activate GSM
 
-    Employee -> System : asks to list the vehicles needing a check-up
+    GSM -> System : asks to list all green spaces managed by him
     activate System
 
-        System --> Employee : displays the vehicles that need a check-up
+        System --> GSM : shows list of green spaces
     deactivate System
 
 

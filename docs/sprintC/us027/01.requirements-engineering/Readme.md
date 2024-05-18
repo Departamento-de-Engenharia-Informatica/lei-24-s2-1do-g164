@@ -1,17 +1,17 @@
-# US008 - List the vehicles needing the check-up
-
+# US027 - List all green spaces managed by a GSM
 
 ## 1. Requirements Engineering
 
 ### 1.1. User Story Description
 
-As a FM, I want to list the vehicles needing the check-up. 
+As a GSM, I need to list all green spaces managed by me.
 
 ### 1.2. Customer Specifications and Clarifications 
 
 **From the specifications document:**
 
-> The list must clearly identify the vehicles through: plate number, brand, model, current kms, checkup frequency, kms at last checkup, and the kms the vehicle must have at the next checkup.
+>  The GSM is the person responsible for managing
+the green spaces in charge of the organization.
 
 **From the client clarifications:**
 
@@ -25,7 +25,9 @@ As a FM, I want to list the vehicles needing the check-up.
 
 ### 1.3. Acceptance Criteria
 
-* A vehicle must fulfill the criteria to need a checkup in order to appear on the list.
+* **AC1:** The list of green spaces must be sorted by size in descending order. The sorting algorithm to be used by the application
+  must be defined through a configuration file. At least two sorting
+  algorithms should be available.
 
 ### 1.4. Found out Dependencies
 
@@ -35,15 +37,14 @@ As a FM, I want to list the vehicles needing the check-up.
 
 **Input Data:**
 
-* n\a
+
 
 **Output Data:**
 
-* List of vehicles that need the check-up.
-
+* List of green spaces
 ### 1.6. System Sequence Diagram (SSD)
 
-![System Sequence Diagram - Alternative One](svg/us008-system-sequence-diagram.svg)
+![System Sequence Diagram - Alternative One](svg/us027-system-sequence-diagram.svg)
 
 ### 1.7 Other Relevant Remarks
 

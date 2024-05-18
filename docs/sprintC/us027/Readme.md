@@ -1,4 +1,4 @@
-#  US008 - List the vehicles needing the check-up
+#  US027 - List all green spaces managed by a GSM
 [Requirements Engineering](01.requirements-engineering/Readme.md)
 
 [Analysis](02.analysis/Readme.md)

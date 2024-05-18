@@ -1,4 +1,4 @@
-# US008 - List the vehicles needing the check-up
+# US027 - List all green spaces managed by a GSM
 
 ## 3. Design - User Story Realization 
 

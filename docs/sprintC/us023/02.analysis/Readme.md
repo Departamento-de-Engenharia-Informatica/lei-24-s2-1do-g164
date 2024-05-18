@@ -1,4 +1,4 @@
-# US008 - List the vehicles needing the check-up 
+# US23 - Assign a team to an entry in the agenda 
 
 ## 2. Analysis
 

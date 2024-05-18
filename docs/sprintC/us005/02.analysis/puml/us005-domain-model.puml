@@ -51,5 +51,7 @@ Team "1 " -- "*" Skill : has >
 HRM "1 " -- "*" Skill : creates >
 Collaborator "1 " - "0..* " Skill : has >
 SystemUser <|- HRM
+Collaborator -|> SystemUser
+
 
 @enduml

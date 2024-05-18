@@ -10,6 +10,10 @@ import java.io.File;
 
 public class MainApp extends Application {
 
+    public static void main(String[] args) {
+        launch();
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         File file = new File("src\\main\\resources\\fxml\\main.fxml");
@@ -19,7 +23,5 @@ public class MainApp extends Application {
         primaryStage.show();
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+
 }

@@ -1,16 +1,13 @@
 package pt.ipp.isep.dei.esoft.project.ui.console;
 
-import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterVehicleController;
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.VehicleCheckup;
-import pt.ipp.isep.dei.esoft.project.repository.DocumentTypeRepository;
-import pt.ipp.isep.dei.esoft.project.repository.VehicleTypeRepository;
+import pt.ipp.isep.dei.esoft.project.repository.ENUM.VehicleTypeRepository;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.VfmUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.MenuItem;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;

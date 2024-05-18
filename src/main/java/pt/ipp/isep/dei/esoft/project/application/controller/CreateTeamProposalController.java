@@ -3,6 +3,7 @@ import pt.ipp.isep.dei.esoft.project.domain.Skill;
 import pt.ipp.isep.dei.esoft.project.domain.Team;
 import pt.ipp.isep.dei.esoft.project.domain.service.CreateTeamProposalService;
 import pt.ipp.isep.dei.esoft.project.repository.*;
+import pt.ipp.isep.dei.esoft.project.repository.ENUM.TeamStatus;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -46,7 +47,6 @@ public class CreateTeamProposalController {
     public boolean acceptTeamProposal(Team team) {
         try {
             teamProposalService.acceptTeamProposal(team);
-
             return true;
         } catch (Exception e) {
             e.printStackTrace();

@@ -6,6 +6,8 @@ import pt.ipp.isep.dei.esoft.project.domain.Collaborator;
 import pt.ipp.isep.dei.esoft.project.domain.Job;
 import pt.ipp.isep.dei.esoft.project.domain.Skill;
 import pt.ipp.isep.dei.esoft.project.repository.*;
+import pt.ipp.isep.dei.esoft.project.repository.ENUM.CollaboratorStatus;
+import pt.ipp.isep.dei.esoft.project.repository.ENUM.DocumentTypeRepository;
 
 import java.util.ArrayList;
 import java.util.Arrays;

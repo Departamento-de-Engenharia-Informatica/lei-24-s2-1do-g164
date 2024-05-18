@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
-import pt.ipp.isep.dei.esoft.project.repository.EntryStatus;
-import pt.ipp.isep.dei.esoft.project.repository.GreenSpaceType;
+import pt.ipp.isep.dei.esoft.project.repository.ENUM.EntryStatus;
 
 public class ToDoEntry {
     private String description;

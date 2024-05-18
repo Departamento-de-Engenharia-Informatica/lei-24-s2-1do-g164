@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
-import pt.ipp.isep.dei.esoft.project.repository.GreenSpaceType;
+import pt.ipp.isep.dei.esoft.project.repository.ENUM.GreenSpaceType;
 
 public class GreenSpace {
 

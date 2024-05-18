@@ -30,7 +30,10 @@ class AgendaEntry {
 
     timeInterval
     date
+    entryStatus
 }
+
+
 
 
 class Task {

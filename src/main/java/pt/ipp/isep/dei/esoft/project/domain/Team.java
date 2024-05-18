@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
-import pt.ipp.isep.dei.esoft.project.repository.TeamStatus;
+import pt.ipp.isep.dei.esoft.project.repository.ENUM.TeamStatus;
 
 import java.util.ArrayList;
 import java.util.Objects;

@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
-import pt.ipp.isep.dei.esoft.project.repository.CollaboratorStatus;
-import pt.ipp.isep.dei.esoft.project.repository.DocumentTypeRepository;
+import pt.ipp.isep.dei.esoft.project.repository.ENUM.CollaboratorStatus;
+import pt.ipp.isep.dei.esoft.project.repository.ENUM.DocumentTypeRepository;
 
 import java.util.ArrayList;
 

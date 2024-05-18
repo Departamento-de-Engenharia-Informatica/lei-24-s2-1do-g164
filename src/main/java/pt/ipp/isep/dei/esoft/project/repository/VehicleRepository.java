@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.domain.Vehicle;
 import pt.ipp.isep.dei.esoft.project.domain.VehicleCheckup;
+import pt.ipp.isep.dei.esoft.project.repository.ENUM.VehicleTypeRepository;
 
 import java.io.Serializable;
 import java.time.LocalDate;

@@ -23,36 +23,16 @@ class SystemUser {
 
 }
 
-class Collaborator {
-   name
-      phone
-      birthdate
-      admissionDate
-      address
-      idDocumentType
-      idDocumentNumber
-      status
-      }
-
-
-
 class Team {
 minimumSize
 maximumSize
 
 }
 
-class Skill {
-    name
-}
-
-
 class Agenda {
 }
 
 class AgendaEntry {
-
-    timeInterval
     date
 }
 
@@ -64,9 +44,7 @@ class Task {
 }
 
 
-Team "1 " -- "*" Collaborator: has >
-Team "1 " -- "*" Skill : has >
-Collaborator "1 " - "0..* " Skill : has >
+
 SystemUser <|- GSM
 GSM"1" - "*" AgendaEntry: manages >
 AgendaEntry"1"-- "1  " Team: assigned to >

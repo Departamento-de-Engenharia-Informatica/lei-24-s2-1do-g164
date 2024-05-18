@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.esoft.project.repository;
+package pt.ipp.isep.dei.esoft.project.repository.ENUM;
 
 /**
  * Enum representing types of identification documents used for collaborator registration.

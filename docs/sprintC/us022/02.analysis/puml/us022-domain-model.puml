@@ -22,31 +22,26 @@ class GSM {
 
 }
 
-class VehicleCheckup {
-    currentKms
+class AgendaEntry {
     date
+    team
+    vehicles
+}
+
+class ToDoEntry {
+        status
+        description
+        associatedGS
+        expectedDuration
+        degreeOfUrgency
+        adress
+
 
 }
 
-class Vehicle {
-        brand
-        model
-        vehicleID
-        type
-        tare
-        grossWeight
-        currentKm
-        registerDate
-        acquisitionDate
-        checkupFrequency
-        checkUpList
-}
-
-
-GSM "1" - "*" Vehicle : registers >
-Vehicle "1   " -- "0..*                        " VehicleCheckup : registers >
-GSM "           1 " - "0..*   " VehicleCheckup : requests >
+GSM "1" - "*" AgendaEntry : registers >
 SystemUser <|- GSM
+AgendaEntry --|> ToDoEntry
 
 
 @enduml

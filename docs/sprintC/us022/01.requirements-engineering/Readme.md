@@ -23,6 +23,15 @@ As a GSM, I want to add an entry from the to do list to the Agenda.
 >
 > **Answer:** For the current proof-of-concept there is no need to distinguish between recurring and occasional tasks.
 
+
+> **Question:** When the GSM plans a task (that was previously in To-Do) into the Agenda, what aditional data/information does he need to input when planning?
+>
+> **Answer:** The starting date for the task. Later the GSM will be able to add the Team and vehicles (if required).
+
+> **Question:** When a new entry is added to the Agenda, the status of that task will be, by default, set to "planned", right?
+>
+> **Answer:** "Pending" as default for to-do list entries and "Planned" as default for Agenda entries, sounds good.
+
 ### 1.3. Acceptance Criteria
 
 * The new entry must be associated with a green space man aged by the GSM.

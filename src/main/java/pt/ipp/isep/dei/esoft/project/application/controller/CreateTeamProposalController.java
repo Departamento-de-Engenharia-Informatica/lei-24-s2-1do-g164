@@ -32,6 +32,37 @@ public class CreateTeamProposalController {
         return skillRepository.getSkillList();
     }
 
+
+    /**
+     * Refuses a team proposal by setting its status to 'REFUSED'.
+     *
+     * @param team The team to refuse.
+     */
+    /**
+     * Refuses a team proposal by setting its status to 'REFUSED'.
+     *
+     * @param team The team to refuse.
+     */
+    public boolean acceptTeamProposal(Team team) {
+        try {
+            teamProposalService.acceptTeamProposal(team);
+
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean refuseTeamProposal(Team team) {
+        try {
+            teamProposalService.refuseTeamProposal(team);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace(); // Handle or log the exception
+            return false;
+        }
+    }
     /**
      * Creates a team proposal based on the specified requirements and skills.
      * @param max The maximum number of collaborators allowed in the team.
@@ -42,7 +73,7 @@ public class CreateTeamProposalController {
      */
     public Team createTeamProposal(int max, int min, ArrayList<Skill> skills) {
         var collaborators = teamProposalService.arrangeCollaboratorsBySkill(skills);
-        Team team = new Team(teamProposalService.arrangeTeam(max, min, skills, collaborators), skills);
+        Team team = new Team(teamProposalService.arrangeTeam(max, min, skills, collaborators), skills, TeamStatus.PENDING);
         if(teamRepository.registerTeam(team)){
             for (var c : team.getCollaborators()) {
                 c.activateCollaborator();

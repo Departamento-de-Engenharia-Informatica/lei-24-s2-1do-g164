@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.esoft.project.repository.CollaboratorStatus;
 import pt.ipp.isep.dei.esoft.project.repository.DocumentTypeRepository;
+import pt.ipp.isep.dei.esoft.project.repository.TeamStatus;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -63,9 +64,9 @@ class TeamTest {
         collaborators2.add(c3);
         collaborators2.add(c4);
 
-        t1 = new Team(collaborators1, skills1);
-        t2 = new Team(collaborators2, skills2);
-        t3=new Team(collaborators1, skills1);
+        t1 = new Team(collaborators1, skills1, TeamStatus.PENDING);
+        t2 = new Team(collaborators2, skills2,  TeamStatus.PENDING);
+        t3=new Team(collaborators1, skills1, TeamStatus.PENDING);
     }
 
 

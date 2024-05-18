@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import pt.ipp.isep.dei.esoft.project.repository.TeamStatus;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -16,15 +18,18 @@ public class Team {
      */
     private ArrayList<Collaborator> collaborators;
 
+    private TeamStatus status;
+
     /**
      * Constructs a team with given collaborators and skills.
      *
      * @param collaborators The list of collaborators in the team.
      * @param skills        The list of skills possessed by the team.
      */
-    public Team(ArrayList<Collaborator> collaborators, ArrayList<Skill> skills){
+    public Team(ArrayList<Collaborator> collaborators, ArrayList<Skill> skills, TeamStatus team_status){
         this.collaborators = collaborators;
         this.skills = skills;
+        this.status = TeamStatus.PENDING;
     }
 
     /**
@@ -63,6 +68,13 @@ public class Team {
         this.collaborators = collaborators;
     }
 
+    public TeamStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(TeamStatus status) {
+        this.status = status;
+    }
 
     /**
      * Generates a string representation of the Team object.

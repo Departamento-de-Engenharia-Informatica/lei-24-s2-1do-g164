@@ -3,13 +3,10 @@ package pt.ipp.isep.dei.esoft.project.ui.console;
 import pt.ipp.isep.dei.esoft.project.application.controller.CreateTeamProposalController;
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.Skill;
-import pt.ipp.isep.dei.esoft.project.repository.Repositories;
-import pt.ipp.isep.dei.esoft.project.repository.SkillRepository;
+import pt.ipp.isep.dei.esoft.project.domain.Team;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.HrmUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.MenuItem;
-import pt.ipp.isep.dei.esoft.project.ui.console.menu.VfmUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
-
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -20,6 +17,8 @@ public class CreateTeamProposalUI implements Runnable {
     private final CreateTeamProposalController controller;
     private int min, max;
     private ArrayList<Skill> skills;
+
+    private Team team;
 
     /**
      * Constructs a CreateTeamProposalUI object with initialized controller and skill repository.
@@ -44,8 +43,12 @@ public class CreateTeamProposalUI implements Runnable {
     public void run() {
         System.out.println("\n\n----------- Create Team Proposal----------------------");
         requestData();
-        submitData();
-    }
+        Team team = submitData();
+        if (team != null) {
+            promptForDecision(team);
+        }
+        }
+
 
     /**
      * Requests input data from the user including the maximum and minimum number of collaborators and required skills.
@@ -70,7 +73,7 @@ public class CreateTeamProposalUI implements Runnable {
         }
 
         var skills = this.controller.getSkillsList();
-        if (skills.isEmpty()){
+        if (skills.isEmpty()) {
             System.out.println("No skills available");
             redirectToHrmUI();
         }
@@ -81,63 +84,104 @@ public class CreateTeamProposalUI implements Runnable {
 
     /**
      * Submits the input data to the controller for creating the team proposal.
+     *
+     * @return
      */
-    private void submitData(){
+    private Team submitData() {
+
         try {
-            var team = this.controller.createTeamProposal(this.max, this.min, this.skills);
-            System.out.println("Team successfully created!");
+            Team team = this.controller.createTeamProposal(this.max, this.min, this.skills);
+            System.out.println("Team proposal created!");
             System.out.println(team.toString());
-        } catch (InputMismatchException ex){
+            return team;
+        } catch (InputMismatchException ex) {
             System.out.println(ex.getMessage());
             redirectToHrmUI();
+            return null;
         }
     }
 
-    /**
-     * Displays the available skills to the user.
-     * @param skills The list of available skills.
-     */
-    private void displayAvailableSkills(List<Skill> skills) {
-        System.out.println("\nAvailable skills:");
-        for (int i = 0; i < skills.size(); i++) {
-            System.out.println((i + 1) + ". " + skills.get(i).getSkillName());
+    private void promptForDecision(Team team) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\nDo you want to accept or refuse the team proposal?");
+        System.out.println("1. Accept");
+        System.out.println("2. Refuse");
+        System.out.print("Select an option: ");
+
+        int choice;
+        try {
+            choice = Integer.parseInt(scanner.nextLine());
+            switch (choice) {
+                case 1:
+                    controller.acceptTeamProposal(team);
+                    System.out.println("Team proposal accepted!");
+                    break;
+                case 2:
+                    controller.refuseTeamProposal(team);
+                    System.out.println("Team proposal refused!");
+                    run();
+                default:
+                    System.out.println("Invalid option. Please try again.");
+                    promptForDecision(team);
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Please enter a number.");
+            promptForDecision(team);
         }
     }
 
-    /**
-     * Requests the user to select the skills required for the team.
-     * @param skills The list of available skills.
-     * @return An ArrayList of selected skills.
-     */
-    private ArrayList<Skill> requestSkills(ArrayList<Skill> skills) {
-        Scanner input = new Scanner(System.in);
-        ArrayList<Skill> selectedSkills = new ArrayList<>();
 
-        boolean addingSkills = true;
-        while (addingSkills) {
-            System.out.print("Enter the index of the skill you want to add (or type 'done' to finish): ");
-            System.out.println("type 'exit' to cancel");
-            String userInput = input.nextLine();
-
-            if (userInput.equalsIgnoreCase("done")) {
-                addingSkills = false;
-            } else if (userInput.equalsIgnoreCase("exit")) {
-                redirectToHrmUI();
-            } else {
-                try {
-                    int index = Integer.parseInt(userInput) - 1;
-                    if (index >= 0 && index < skills.size()) {
-                        selectedSkills.add(skills.get(index));
-                    } else {
-                        System.out.println("Invalid index. Please try again.");
-                    }
-                } catch (NumberFormatException e) {
-                    System.out.println("Invalid input. Please enter a number.");
-                }
+        /**
+         * Displays the available skills to the user.
+         *
+         * @param skills The list of available skills.
+         */
+        private void displayAvailableSkills (List < Skill > skills) {
+            System.out.println("\nAvailable skills:");
+            for (int i = 0; i < skills.size(); i++) {
+                System.out.println((i + 1) + ". " + skills.get(i).getSkillName());
             }
         }
 
-        return selectedSkills;
+
+        /**
+         * Requests the user to select the skills required for the team.
+         *
+         * @param skills The list of available skills.
+         * @return An ArrayList of selected skills.
+         */
+
+        private ArrayList<Skill> requestSkills (ArrayList < Skill > skills) {
+            Scanner input = new Scanner(System.in);
+            ArrayList<Skill> selectedSkills = new ArrayList<>();
+
+            boolean addingSkills = true;
+            while (addingSkills) {
+                System.out.print("Enter the index of the skill you want to add (or type 'done' to finish): ");
+                System.out.println("type 'exit' to cancel");
+                String userInput = input.nextLine();
+
+                if (userInput.equalsIgnoreCase("done")) {
+                    addingSkills = false;
+                } else if (userInput.equalsIgnoreCase("exit")) {
+                    redirectToHrmUI();
+                } else {
+                    try {
+                        int index = Integer.parseInt(userInput) - 1;
+                        if (index >= 0 && index < skills.size()) {
+                            selectedSkills.add(skills.get(index));
+                        } else {
+                            System.out.println("Invalid index. Please try again.");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid input. Please enter a number.");
+                    }
+                }
+            }
+
+            return selectedSkills;
         }
+
     }
+
 

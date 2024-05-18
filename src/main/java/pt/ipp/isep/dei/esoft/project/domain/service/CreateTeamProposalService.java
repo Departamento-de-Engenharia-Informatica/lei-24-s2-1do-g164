@@ -2,8 +2,11 @@ package pt.ipp.isep.dei.esoft.project.domain.service;
 
 import pt.ipp.isep.dei.esoft.project.domain.Collaborator;
 import pt.ipp.isep.dei.esoft.project.domain.Skill;
+import pt.ipp.isep.dei.esoft.project.domain.Team;
 import pt.ipp.isep.dei.esoft.project.repository.CollaboratorRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
+import pt.ipp.isep.dei.esoft.project.repository.TeamRepository;
+import pt.ipp.isep.dei.esoft.project.repository.TeamStatus;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,6 +20,7 @@ import java.util.InputMismatchException;
 
 public class CreateTeamProposalService {
     private CollaboratorRepository collaboratorRepository;
+    private TeamRepository teamRepository;
 
     /**
      * Constructor for CreateTeamProposalService.
@@ -24,6 +28,27 @@ public class CreateTeamProposalService {
      */
     public CreateTeamProposalService() {
         this.collaboratorRepository = Repositories.getInstance().getCollaboratorRepository();
+        this.teamRepository = Repositories.getInstance().getTeamRepository();
+    }
+
+    /**
+     * Accepts a team proposal by setting its status to 'ACCEPTED'.
+     *
+     * @param team The team to accept.
+     */
+
+    public void acceptTeamProposal(Team team) {
+        team.setStatus(TeamStatus.ACCEPTED);
+        teamRepository.registerTeam(team);
+    }
+
+    /**
+     * Refuses a team proposal by setting its status to 'REFUSED'.
+     *
+     * @param team The team to refuse.
+     */
+    public void refuseTeamProposal(Team team) {
+        team.setStatus(TeamStatus.REFUSED);
     }
 
     /**

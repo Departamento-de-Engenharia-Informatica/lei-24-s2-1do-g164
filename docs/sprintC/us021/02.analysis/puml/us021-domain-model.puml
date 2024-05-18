@@ -24,16 +24,15 @@ class GSM {
 
 
 
-class ToDoListEntry {
-        name
-        description
-        greenSpace
-        expectedDuration
-        degreeUrgency
-        entryStatus
+class ToDoEntry {
+    description
+    greenSpace
+    expectedDuration
+    degreeUrgency
+    entryStatus
 }
 
 
-GSM "1" - "*" ToDoListEntry : registers >
+GSM "1" - "*" ToDoEntry : registers >
 SystemUser <|- GSM
 @enduml

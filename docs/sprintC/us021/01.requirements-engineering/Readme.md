@@ -37,7 +37,6 @@ As a GSM, I want to add a new entry to the To-Do List.
 **Input Data:**
 
 * Typed Data:
-    * Entry name
     * Entry description
     * Expected duration
 * Selected Data:

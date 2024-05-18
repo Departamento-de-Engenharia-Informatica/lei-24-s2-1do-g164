@@ -8,8 +8,8 @@ import java.util.ArrayList;
 public class ToDoEntryRepository {
     private ArrayList<ToDoEntry> toDoEntryList= new ArrayList<>();
 
-    public boolean registerToDoEntry(String name, String description, int expectedDuration, EntryStatus entryStatus, GreenSpace greenSpace){
-        ToDoEntry td = new ToDoEntry(name, description, expectedDuration, entryStatus, greenSpace);
+    public boolean registerToDoEntry(String description, int expectedDuration, EntryStatus entryStatus, GreenSpace greenSpace){
+        ToDoEntry td = new ToDoEntry(description, expectedDuration, entryStatus, greenSpace);
         if(toDoEntryIsUnique(td)){
             toDoEntryList.add(td);
             return true;

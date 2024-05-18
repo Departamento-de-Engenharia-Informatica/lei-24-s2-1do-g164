@@ -4,30 +4,21 @@ import pt.ipp.isep.dei.esoft.project.repository.EntryStatus;
 import pt.ipp.isep.dei.esoft.project.repository.GreenSpaceType;
 
 public class ToDoEntry {
-    private String name;
     private String description;
     private int expectedDuration;
     private EntryStatus entryStatus;
     private GreenSpace greenSpace;
 
-    public ToDoEntry(String name, String description, int expectedDuration, EntryStatus entryStatus, GreenSpace greenSpace){
-        this.name = name;
+    public ToDoEntry(String description, int expectedDuration, EntryStatus entryStatus, GreenSpace greenSpace){
         this.description = description;
         this.expectedDuration = expectedDuration;
         this.entryStatus = entryStatus;
         this.greenSpace = greenSpace;
     }
     public boolean equals(ToDoEntry td1) {
-        return this.name.equals(td1.getName());
+        return this.description.equals(td1.getDescription());
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getDescription() {
         return description;

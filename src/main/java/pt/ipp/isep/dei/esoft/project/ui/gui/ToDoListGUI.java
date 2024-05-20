@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
-public class ToDoListUI extends Application {
+public class ToDoListGUI extends Application {
     public static void main(String[] args) {
         launch(args);
     }

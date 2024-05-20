@@ -42,11 +42,10 @@ public class VehicleRepository implements Serializable {
     public boolean registerVehicle(String brand, String model, String vehicleID, VehicleTypeRepository type, double grossWeight, double tare, int currentKm, String registerDate, String acquisitionDate, int checkupFrequency) {
         Vehicle vehicle = new Vehicle(brand, model, vehicleID, type, grossWeight, tare, currentKm, registerDate, acquisitionDate, checkupFrequency);
         if (isVehicleUnique(vehicle)) {
-            vehicleList.add(vehicle);
-            return true;
-        } else {
-            return false;
+            return vehicleList.add(vehicle);
         }
+        return false;
+
     }
 
     /**
@@ -93,9 +92,9 @@ public class VehicleRepository implements Serializable {
     /**
      * Creates a new vehicle checkup for the specified vehicle with the given date and current kilometers.
      *
-     * @param vehicle    The vehicle for which the checkup is to be created.
-     * @param date       The date of the checkup.
-     * @param currentKm  The current kilometers of the vehicle at the time of the checkup.
+     * @param vehicle   The vehicle for which the checkup is to be created.
+     * @param date      The date of the checkup.
+     * @param currentKm The current kilometers of the vehicle at the time of the checkup.
      * @return true if the checkup is successfully created, false otherwise.
      */
 
@@ -111,8 +110,8 @@ public class VehicleRepository implements Serializable {
     /**
      * Updates the current kilometers of a vehicle.
      *
-     * @param vehicle    The vehicle for which to update the current kilometers.
-     * @param currentKm  The updated current kilometers value.
+     * @param vehicle   The vehicle for which to update the current kilometers.
+     * @param currentKm The updated current kilometers value.
      * @return true if the current kilometers are successfully updated, false otherwise.
      */
     public boolean updateVehicleCurrentKm(Vehicle vehicle, int currentKm) {

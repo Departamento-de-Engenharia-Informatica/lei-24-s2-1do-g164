@@ -59,7 +59,7 @@ class Repositories {
 }
 
 
-class ListVehivclesCheckupsController {
+class RegisterAgendaEntryController {
 -VehicleRepository
   + getVehiclesNeedingCheckupList()
 
@@ -67,12 +67,12 @@ class ListVehivclesCheckupsController {
 
 
 
-ListVehiclesCheckupsUI .> ListVehivclesCheckupsController
+RegisterAgendaEntryUI .> RegisterAgendaEntryController
 
 
 Repositories -->"1" VehicleRepository
 Repositories -> Repositories : instance
-ListVehivclesCheckupsController ..> Repositories : repositories
+RegisterAgendaEntryController ..> Repositories : repositories
 Vehicle "*" <-- "1" VehicleRepository : has
 
 

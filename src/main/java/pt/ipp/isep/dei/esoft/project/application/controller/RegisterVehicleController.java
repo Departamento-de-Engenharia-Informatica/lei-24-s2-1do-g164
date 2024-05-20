@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
+import pt.ipp.isep.dei.esoft.project.dto.CreateVehicleDTO;
 import pt.ipp.isep.dei.esoft.project.repository.*;
 import pt.ipp.isep.dei.esoft.project.repository.ENUM.VehicleTypeRepository;
 
@@ -19,23 +20,17 @@ public class RegisterVehicleController {
         getVehicleRepository();
     }
 
+
     /**
-     * Registers a new vehicle with the provided details.
+     * Register vehicle boolean.
      *
-     * @param brand           The brand of the vehicle.
-     * @param model           The model of the vehicle.
-     * @param vehicleID       The vehicle ID.
-     * @param type            The type of the vehicle (enum).
-     * @param grossWeight     The gross weight of the vehicle.
-     * @param tare            The tare weight of the vehicle.
-     * @param currentKm       The current kilometers of the vehicle.
-     * @param registerDate    The registration date of the vehicle (in "DD-MM-YYYY" format).
-     * @param acquisitionDate The acquisition date of the vehicle (in "DD-MM-YYYY" format).
-     * @param checkupFrequency The checkup frequency of the vehicle (in kilometers).
-     * @return {@code true} if the vehicle is successfully registered, {@code false} otherwise.
+     * @param dto  the dto
+     * @param type the type
+     * @return the boolean
      */
-    public boolean registerVehicle(String brand, String model, String vehicleID, VehicleTypeRepository type, double grossWeight, double tare, int currentKm, String registerDate, String acquisitionDate, int checkupFrequency){
-        return vehicleRepository.registerVehicle(brand, model, vehicleID, type, grossWeight, tare, currentKm, registerDate, acquisitionDate, checkupFrequency);
+    public boolean registerVehicle(CreateVehicleDTO dto, VehicleTypeRepository type){
+        return vehicleRepository.registerVehicle(dto.brand, dto.model, dto.vehicleID, type, dto.grossWeight, dto.tare,
+                dto.currentKm, dto.registerDate, dto.acquisitionDate, dto.checkupFrequency);
     }
 
     /**

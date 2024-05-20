@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.esoft.project.ui.console;
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterVehicleController;
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.VehicleCheckup;
+import pt.ipp.isep.dei.esoft.project.dto.CreateVehicleDTO;
 import pt.ipp.isep.dei.esoft.project.repository.ENUM.VehicleTypeRepository;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.VfmUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.MenuItem;
@@ -67,7 +68,7 @@ public class RegisterVehicleUI implements Runnable {
             try {
                 assert in != null;
                 answer = Integer.parseInt(in);
-                if(answer < 0 || answer > vehicleTypeList.size()){
+                if (answer < 0 || answer > vehicleTypeList.size()) {
                     System.out.println("Invalid option!");
                 }
             } catch (NumberFormatException ex) {
@@ -96,7 +97,7 @@ public class RegisterVehicleUI implements Runnable {
             try {
                 assert in != null;
                 value = Integer.parseInt(in);
-                if(value < 0){
+                if (value < 0) {
                     System.out.println("Invalid number of kilometers!");
                 }
             } catch (NumberFormatException ex) {
@@ -119,7 +120,7 @@ public class RegisterVehicleUI implements Runnable {
             try {
                 assert in != null;
                 value = Integer.parseInt(in);
-                if(value < 0){
+                if (value < 0) {
                     System.out.println("Invalid number of kilometers!");
                 }
             } catch (NumberFormatException ex) {
@@ -142,7 +143,7 @@ public class RegisterVehicleUI implements Runnable {
             try {
                 assert in != null;
                 value = Integer.parseInt(in);
-                if(value < 0){
+                if (value < 0) {
                     System.out.println("Invalid weight!");
                 }
             } catch (NumberFormatException ex) {
@@ -165,7 +166,7 @@ public class RegisterVehicleUI implements Runnable {
             try {
                 assert in != null;
                 value = Integer.parseInt(in);
-                if(value < 0){
+                if (value < 0) {
                     System.out.println("Invalid weight!");
                 }
             } catch (NumberFormatException ex) {
@@ -184,10 +185,10 @@ public class RegisterVehicleUI implements Runnable {
     private String requestAcquisitionDate() {
         Scanner sc = new Scanner(System.in);
         String acquisitionDate;
-        do{
+        do {
             System.out.print("\nEnter Acquisition Date (DD-MM-YYYY): ");
             acquisitionDate = sc.nextLine();
-        }while (!isValidDateFormat(acquisitionDate));
+        } while (!isValidDateFormat(acquisitionDate));
         return acquisitionDate;
     }
 
@@ -199,10 +200,10 @@ public class RegisterVehicleUI implements Runnable {
     private String requestRegisterDate() {
         Scanner sc = new Scanner(System.in);
         String registerDate;
-        do{
+        do {
             System.out.print("\nEnter Register Date (DD-MM-YYYY): ");
             registerDate = sc.nextLine();
-        }while (!isValidDateFormat(registerDate));
+        } while (!isValidDateFormat(registerDate));
         return registerDate;
     }
 
@@ -236,10 +237,10 @@ public class RegisterVehicleUI implements Runnable {
     private String requestVehicleID() {
         Scanner sc = new Scanner(System.in);
         String plate;
-        do{
+        do {
             System.out.print("\nEnter Plate ID (XX-XX-XX): ");
             plate = sc.nextLine();
-        }while (!isValidPlateFormat(plate, this.registerDate));
+        } while (!isValidPlateFormat(plate, this.registerDate));
         return plate;
     }
 
@@ -262,7 +263,8 @@ public class RegisterVehicleUI implements Runnable {
      * Submits the collected data to the controller to register the vehicle.
      */
     private void submitData() {
-        boolean success = controller.registerVehicle(brand, model, vehicleID, type, grossWeight, tare, currentKm, registerDate, acquisitionDate, checkupFrequency);
+        CreateVehicleDTO dto = new CreateVehicleDTO(brand, model, vehicleID, grossWeight, tare, currentKm, registerDate, acquisitionDate, checkupFrequency);
+        boolean success = controller.registerVehicle(dto, type);
         if (success) {
             System.out.println("\nVehicle successfully registered!");
         } else {
@@ -300,7 +302,7 @@ public class RegisterVehicleUI implements Runnable {
     private static boolean isValidPlateFormat(String plateString, String date) {
 
         int length = date.length();
-        int year =Integer.parseInt( date.substring(length - 4));
+        int year = Integer.parseInt(date.substring(length - 4));
         String regex;
         if (year > 2020) {
             regex = "[A-Z]{2}-\\d{2}-[A-Z]{2}";
@@ -308,7 +310,7 @@ public class RegisterVehicleUI implements Runnable {
             regex = "\\d{2}-[A-Z]{2}-\\d{2}";
         } else if (year >= 1992) {
             regex = "\\d{2}-\\d{2}-[A-Z]{2}";
-        }else {
+        } else {
             regex = "^(([A-Z]{2}-\\d{2}-(\\d{2}|[A-Z]{2}))|(\\d{2}-(\\d{2}-[A-Z]{2}|[A-Z]{2}-\\d{2})))$";
         }
         Pattern p = Pattern.compile(regex);
@@ -316,7 +318,7 @@ public class RegisterVehicleUI implements Runnable {
             return false;
         }
         Matcher m = p.matcher(plateString);
-        if(!m.matches()){
+        if (!m.matches()) {
             System.out.println("Invalid plate format!");
         }
         return m.matches();
@@ -335,7 +337,7 @@ public class RegisterVehicleUI implements Runnable {
             return false;
         }
         Matcher m = p.matcher(dateString);
-        if(!m.matches()){
+        if (!m.matches()) {
             System.out.println("Invalid date format!");
         }
         return m.matches();

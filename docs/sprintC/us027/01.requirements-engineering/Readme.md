@@ -15,9 +15,9 @@ the green spaces in charge of the organization.
 
 **From the client clarifications:**
 
-> **Question:** What is needed for a vehicle to be considered as needing a check-up?
+> **Question:** which info about Green Spaces do you want the GSM see when listing? only the name ?
 >
-> **Answer:** A vehicle appears on the list if its current kms exceed or there is a difference of less than 5% of the check-up frequency between the kms the vehicle had in the last check-up plus the check-up frequency.
+> **Answer:** Each de team can decide about the aspects related to UX/UI.
 
 > **Question:** What data should be displayed for each vehicle in the list?
 >
@@ -31,13 +31,11 @@ the green spaces in charge of the organization.
 
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "US006 - Register a vehicle" as there must be at least one vehicle to list.
+* There is a dependency on "US020 - Register a Green Space" as it can only be possible to list green spaces if they have been already registered.
 
 ### 1.5 Input and Output Data
 
 **Input Data:**
-
-
 
 **Output Data:**
 
@@ -47,5 +45,4 @@ the green spaces in charge of the organization.
 ![System Sequence Diagram - Alternative One](svg/us027-system-sequence-diagram.svg)
 
 ### 1.7 Other Relevant Remarks
-
-* If a check-up has never been registered for a vehicle its kms at last check-up are 0. 
+none

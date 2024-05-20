@@ -16,13 +16,20 @@ Done).
 
 **From the client clarifications:**
 
-> **Question:** What is needed for a vehicle to be considered as needing a check-up?
->
-> **Answer:** A vehicle appears on the list if its current kms exceed or there is a difference of less than 5% of the check-up frequency between the kms the vehicle had in the last check-up plus the check-up frequency.
+> **Question:** Does the task associated with the Agenda entry in which this happens remain in the To-do List or can it be removed, unlike what happens in the Agenda? Or even, would this process be different between a completed task and a canceled task?
+> 
+> **Answer:** Yes. I suppose when a task goes to the Agenda, it leaves the To-Do list but maybe a different flow could be considered.
 
-> **Question:** What data should be displayed for each vehicle in the list?
+
+> **Question:**When a task is cancelled, is it possible to put it back on the agenda again later?
 >
-> **Answer:** The list must clearly identify the vehicles through: plate number, brand, model and the reason that justified the checkup need.
+> **Answer:** yes
+
+> **Question:** When we cancel a task, do we move it again to the To-Do List?
+>
+> **Answer:** no
+
+
 
 ### 1.3. Acceptance Criteria
 

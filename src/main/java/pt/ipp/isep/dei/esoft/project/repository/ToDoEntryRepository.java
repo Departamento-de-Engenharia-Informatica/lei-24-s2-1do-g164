@@ -27,4 +27,8 @@ public class ToDoEntryRepository {
         }
         return true;
     }
+
+    public ArrayList<ToDoEntry> getToDoEntryList() {
+        return toDoEntryList;
+    }
 }

@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.esoft.project.ui.gui.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -12,6 +13,8 @@ import pt.ipp.isep.dei.esoft.project.domain.GreenSpace;
 import pt.ipp.isep.dei.esoft.project.dto.ToDoEntryDTO;
 import pt.ipp.isep.dei.esoft.project.repository.ENUM.GreenSpaceType;
 import pt.ipp.isep.dei.esoft.project.repository.ENUM.UrgencyDegree;
+
+import java.util.ArrayList;
 
 public class RegisterToDoEntryGUIController {
     @FXML
@@ -36,10 +39,31 @@ public class RegisterToDoEntryGUIController {
     }
 
     public void registerToDoEntry(ActionEvent event) {
-        System.out.println("yee");
-        controller.registerToDoEntry(new ToDoEntryDTO(txtDescription.getText(), Integer.valueOf(txtExpectedDuration.getText()), new GreenSpace(GreenSpaceType.GARDEN, "aa", "merda23", 12), cmbUrgencyDegree.getValue()));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
+        try {
+            int expectedDuration = Integer.parseInt(txtExpectedDuration.getText());
+            ToDoEntryDTO dto = new ToDoEntryDTO(txtDescription.getText(), expectedDuration, new GreenSpace(GreenSpaceType.GARDEN, "aa", "merda23", 12), cmbUrgencyDegree.getValue());
+            if(controller.registerToDoEntry(dto)) {
+                toDoListGUIController.txtToDoListText.clear();
+                ArrayList<ToDoEntryDTO> toDoEntryDTOsList = controller.getToDoEntryDTOsList();
+                for(ToDoEntryDTO toDoEntryDTO : toDoEntryDTOsList){
+                    toDoListGUIController.txtToDoListText.appendText(toDoEntryDTO.toString() + "\n");
+                }
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.close();
+            }
+            else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Failed!");
+                alert.setHeaderText("There already exists a task with this name!");
+                alert.show();
+            }
+        }
+        catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Failed!");
+            alert.setHeaderText("Invalid inputs");
+            alert.show();
+        }
     }
 
     public void closeWindow(ActionEvent event) {

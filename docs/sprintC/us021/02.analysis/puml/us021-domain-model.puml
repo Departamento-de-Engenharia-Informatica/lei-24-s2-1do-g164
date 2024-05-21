@@ -25,10 +25,11 @@ class GSM {
 
 
 class ToDoEntry {
+    status
     description
     greenSpace
     expectedDuration
-    degreeUrgency
+    urgencyDegree
     entryStatus
 }
 

@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.domain.Vehicle;
 import pt.ipp.isep.dei.esoft.project.domain.VehicleCheckup;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.VehicleTypeRepository;
+import pt.ipp.isep.dei.esoft.project.repository.ENUM.VehicleType;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -39,7 +39,7 @@ public class VehicleRepository implements Serializable {
      * @param checkupFrequency The checkup frequency of the vehicle (in kilometers).
      * @return {@code true} if the vehicle is successfully registered, {@code false} otherwise.
      */
-    public boolean registerVehicle(String brand, String model, String vehicleID, VehicleTypeRepository type, double grossWeight, double tare, int currentKm, String registerDate, String acquisitionDate, int checkupFrequency) {
+    public boolean registerVehicle(String brand, String model, String vehicleID, VehicleType type, double grossWeight, double tare, int currentKm, String registerDate, String acquisitionDate, int checkupFrequency) {
         Vehicle vehicle = new Vehicle(brand, model, vehicleID, type, grossWeight, tare, currentKm, registerDate, acquisitionDate, checkupFrequency);
         if (isVehicleUnique(vehicle)) {
             return vehicleList.add(vehicle);

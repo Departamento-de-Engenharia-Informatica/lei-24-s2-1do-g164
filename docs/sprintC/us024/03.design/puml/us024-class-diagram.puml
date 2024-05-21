@@ -1,0 +1,91 @@
+@startuml
+skinparam classAttributeIconSize 0
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+skinparam classAttributeIconSize 0
+
+title Class Diagram
+
+
+class ToDoEntry{
+    greenSpace
+    description
+    urgencyDegree
+    status
+    expectedDuration
+}
+
+class AgendaEntry {
+    date
+    associatedTeam
+    associatedVehicles
+}
+
+class AgendaEntryDTO {
+    entryID
+    description
+    plannedDate
+    status
+}
+
+class SystemUser {
+    name
+    email
+    password
+    phone
+}
+
+class AgendaEntryRepository {
+    - ArrayList<AgendaEntry> agendaEntries
+    + getAgendaEntries()
+    + updateEntryDate(AgendaEntry, newDate)
+}
+
+class Repositories {
+    - agendaEntryRepository
+
+    - Repositories()
+    + getInstance()
+    + getAgendaEntryRepository()
+    + #placeholderMethod#()
+}
+
+class AgendaEntryMapper {
+    + toDTO(agendaEntry)
+    + toEntity(agendaEntryDTO, newDate)
+    + toEntity(agendaEntryDTO)
+}
+
+class AgendaController {
+    - AgendaEntryRepository agendaEntryRepository
+    - AgendaEntryMapper agendaEntryMapper
+    + getAgendaEntries()
+    + updateAgendaEntryDate(agendaEntryDTO, newDate)
+}
+
+class AgendaUI {
+    - AgendaController agendaController
+    + displayAgendaEntries(List<agendaEntryDTO>)
+    + selectEntry()
+    + selectNewDate()
+    + displayMessage(success)
+}
+
+AgendaUI .> AgendaController
+AgendaController ..> Repositories : repositories
+Repositories --> "1" AgendaEntryRepository
+Repositories -> Repositories : instance
+AgendaController .> AgendaEntryMapper
+AgendaController --> AgendaEntryRepository : uses
+
+SystemUser <|- GSM
+ToDoEntry <|-- AgendaEntry
+
+GSM "1" -- "1" AgendaUI
+AgendaEntry "*" <-- "1" AgendaEntryRepository : manages
+AgendaEntryDTO "*" <-- "1" AgendaEntryMapper : creates
+
+@enduml

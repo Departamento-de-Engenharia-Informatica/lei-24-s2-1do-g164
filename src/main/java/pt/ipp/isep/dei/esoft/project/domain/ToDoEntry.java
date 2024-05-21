@@ -1,17 +1,21 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
 import pt.ipp.isep.dei.esoft.project.repository.ENUM.EntryStatus;
+import pt.ipp.isep.dei.esoft.project.repository.ENUM.UrgencyDegree;
 
 public class ToDoEntry {
     private String description;
     private int expectedDuration;
     private EntryStatus entryStatus;
     private GreenSpace greenSpace;
+    private UrgencyDegree urgencyDegree;
 
-    public ToDoEntry(String description, int expectedDuration, EntryStatus entryStatus, GreenSpace greenSpace){
+
+    public ToDoEntry(String description, int expectedDuration, GreenSpace greenSpace, UrgencyDegree urgencyDegree){
         this.description = description;
         this.expectedDuration = expectedDuration;
-        this.entryStatus = entryStatus;
+        this.entryStatus = EntryStatus.PENDING;
+        this.urgencyDegree = urgencyDegree;
         this.greenSpace = greenSpace;
     }
     public boolean equals(ToDoEntry td1) {
@@ -49,5 +53,13 @@ public class ToDoEntry {
 
     public void setGreenSpace(GreenSpace greenSpace) {
         this.greenSpace = greenSpace;
+    }
+
+    public UrgencyDegree getUrgencyDegree() {
+        return urgencyDegree;
+    }
+
+    public void setUrgencyDegree(UrgencyDegree urgencyDegree) {
+        this.urgencyDegree = urgencyDegree;
     }
 }

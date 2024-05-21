@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.VehicleTypeRepository;
+import pt.ipp.isep.dei.esoft.project.repository.ENUM.VehicleType;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -14,7 +14,7 @@ public class Vehicle {
     private String brand;
     private String model;
     private String vehicleID;
-    private VehicleTypeRepository type;
+    private VehicleType type;
     private double grossWeight;
     private double tare;
     private int currentKm;
@@ -39,7 +39,7 @@ public class Vehicle {
      * @param acquisitionDate  The date when the vehicle was acquired.
      * @param checkupFrequency The frequency (in kilometers) for vehicle checkups.
      */
-    public Vehicle(String brand, String model, String vehicleID, VehicleTypeRepository type, double grossWeight, double tare, int currentKm, String registerDate, String acquisitionDate, int checkupFrequency) {
+    public Vehicle(String brand, String model, String vehicleID, VehicleType type, double grossWeight, double tare, int currentKm, String registerDate, String acquisitionDate, int checkupFrequency) {
         this.brand = brand;
         this.model = model;
         this.vehicleID = vehicleID;
@@ -86,7 +86,7 @@ public class Vehicle {
      *
      * @return The type of the vehicle.
      */
-    public VehicleTypeRepository getType() {
+    public VehicleType getType() {
         return type;
     }
 

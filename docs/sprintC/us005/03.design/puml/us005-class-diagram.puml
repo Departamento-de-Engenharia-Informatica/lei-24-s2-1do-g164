@@ -18,12 +18,17 @@ class ":CreateTeamProposalUI" as CreateTeamProposalUI {
 class ":CreateTeamProposalController" as CreateTeamProposalController {
 +getSkillsList()
     +createTeamProposal(max, min, skills)
+    +acceptTeamProposal(team)
+    +refuseTeamProposal(team)
 
 }
 
 class ":CreateTeamProposalService" as CreateTeamProposalService {
 +arrangeCollaboratorsBySkill(skills)
 + arrangeTeam(max, min, skills, collaborators)
+ +acceptTeamProposal(team)
++refuseTeamProposal(team)
+
 }
 
 class ":Repositories" as Repositories {
@@ -61,8 +66,8 @@ class "Team" as Team {
     -Integer minSize
     -ArrayList<Skill> requiredSkills
     -ArrayList<Collaborator> collaborators
+    -Status
 
-   +create(teamMembers,skills)
 
 }
 

@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.esoft.project.ui.console;
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterCollaboratorController;
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.Job;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.DocumentTypeRepository;
+import pt.ipp.isep.dei.esoft.project.repository.ENUM.DocumentType;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.HrmUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.MenuItem;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
@@ -27,7 +27,7 @@ public class RegisterCollaboratorUI implements Runnable {
     private String admissionDate;
     private String address;
     private Job job;
-    private DocumentTypeRepository idDocumentType;
+    private DocumentType idDocumentType;
     private int idDocumentNumber;
     private int taxpayerNumber;
     private String email;
@@ -139,8 +139,8 @@ public class RegisterCollaboratorUI implements Runnable {
      *
      * @return The selected document type.
      */
-    private DocumentTypeRepository displayAndSelectDocumentType() {
-        List<DocumentTypeRepository> docTypesList = controller.getDocTypesList();
+    private DocumentType displayAndSelectDocumentType() {
+        List<DocumentType> docTypesList = controller.getDocTypesList();
         int listSize = docTypesList.size();
         int answer = -1;
 
@@ -173,10 +173,10 @@ public class RegisterCollaboratorUI implements Runnable {
      *
      * @param documentTypeList The list of document types to display.
      */
-    private void displayDocumentTypeList(List<DocumentTypeRepository> documentTypeList) {
+    private void displayDocumentTypeList(List<DocumentType> documentTypeList) {
         int i = 1;
         System.out.println();
-        for (DocumentTypeRepository docType : documentTypeList) {
+        for (DocumentType docType : documentTypeList) {
             System.out.println("  " + i + " - " + docType);
             i++;
         }

@@ -4,7 +4,7 @@ import pt.ipp.isep.dei.esoft.project.application.controller.RegisterVehicleContr
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.VehicleCheckup;
 import pt.ipp.isep.dei.esoft.project.dto.CreateVehicleDTO;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.VehicleTypeRepository;
+import pt.ipp.isep.dei.esoft.project.repository.ENUM.VehicleType;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.VfmUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.MenuItem;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
@@ -23,7 +23,7 @@ public class RegisterVehicleUI implements Runnable {
     private String brand;
     private String model;
     private String vehicleID;
-    private VehicleTypeRepository type;
+    private VehicleType type;
     private double grossWeight;
     private double tare;
     private int currentKm;
@@ -54,9 +54,9 @@ public class RegisterVehicleUI implements Runnable {
      * @param vehicleTypeList The list of available vehicle types.
      * @return The selected VehicleType.
      */
-    private VehicleTypeRepository displayAndSelectVehicleType(List<VehicleTypeRepository> vehicleTypeList) {
+    private VehicleType displayAndSelectVehicleType(List<VehicleType> vehicleTypeList) {
         int i = 1;
-        for (VehicleTypeRepository vType : vehicleTypeList) {
+        for (VehicleType vType : vehicleTypeList) {
             System.out.println("  " + i + " - " + vType);
             i++;
         }

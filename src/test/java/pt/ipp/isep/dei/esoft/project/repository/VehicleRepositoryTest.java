@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.esoft.project.repository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.esoft.project.domain.Vehicle;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.VehicleTypeRepository;
+import pt.ipp.isep.dei.esoft.project.repository.ENUM.VehicleType;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,25 +21,25 @@ public class VehicleRepositoryTest {
 
     @Test
     public void testRegisterVehicle() {
-        assertTrue(repository.registerVehicle("Toyota", "Corolla", "AB-11-EE", VehicleTypeRepository.TRACTOR, 1500.0, 1200.0, 50000,
+        assertTrue(repository.registerVehicle("Toyota", "Corolla", "AB-11-EE", VehicleType.TRACTOR, 1500.0, 1200.0, 50000,
                 "01-01-2022", "01-01-2022", 10000));
         assertEquals(1, repository.size());
     }
 
     @Test
     public void testRegisterDuplicateVehicle() {
-        repository.registerVehicle("Toyota", "Corolla", "AB-22-KL", VehicleTypeRepository.TRACTOR, 1500.0, 1200.0, 50000,
+        repository.registerVehicle("Toyota", "Corolla", "AB-22-KL", VehicleType.TRACTOR, 1500.0, 1200.0, 50000,
                 "01-01-2022", "01-01-2022", 10000);
-        assertFalse(repository.registerVehicle("Toyota", "Corolla", "AB-22-KL", VehicleTypeRepository.TRACTOR, 1500.0, 1200.0, 50000,
+        assertFalse(repository.registerVehicle("Toyota", "Corolla", "AB-22-KL", VehicleType.TRACTOR, 1500.0, 1200.0, 50000,
                 "01-01-2022", "01-01-2022", 10000));
         assertEquals(1, repository.size());
     }
 
     @Test
     public void testGetVehiclesNeedingCheckup() {
-        repository.registerVehicle("Toyota", "Corolla", "AB-23-KL", VehicleTypeRepository.LIGHT_VEHICLE, 1500.0, 1200.0, 50000,
+        repository.registerVehicle("Toyota", "Corolla", "AB-23-KL", VehicleType.LIGHT_VEHICLE, 1500.0, 1200.0, 50000,
                 "01-01-2022", "01-01-2022", 10000);
-        repository.registerVehicle("Ford", "Fiesta", "AB-22-KL", VehicleTypeRepository.HEAVY_VEHICLE, 1300.0, 1100.0, 35000,
+        repository.registerVehicle("Ford", "Fiesta", "AB-22-KL", VehicleType.HEAVY_VEHICLE, 1300.0, 1100.0, 35000,
                 "01-02-2022", "01-02-2022", 8000);
 
         ArrayList<Vehicle> vehiclesNeedingCheckup = repository.getVehiclesNeedingCheckup();
@@ -48,7 +48,7 @@ public class VehicleRepositoryTest {
 
     @Test
     public void testHasVehicleToRegisterVehicleCheckUp() {
-        repository.registerVehicle("Toyota", "Corolla", "AB-22-KL", VehicleTypeRepository.LIGHT_VEHICLE, 1500.0, 1200.0, 50000,
+        repository.registerVehicle("Toyota", "Corolla", "AB-22-KL", VehicleType.LIGHT_VEHICLE, 1500.0, 1200.0, 50000,
                 "01-01-2022", "01-01-2022", 10000);
         vehicle = repository.getVehicleList().get(0);
         LocalDate date = LocalDate.of(2024, 4, 30);

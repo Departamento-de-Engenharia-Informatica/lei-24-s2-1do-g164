@@ -130,35 +130,61 @@ TEAM-->CTRL: team
 deactivate TEAM
 
 
-CTRL -> TeamRepository : registerTeam(team)
+
 
 
 
 activate TeamRepository
 
 
-        TeamRepository -> TeamRepository : teamAlreadyExists(team)
-        note bottom: checks if the team already exists based\non collaborators and skills and returns a boolean
 alt success
 
         TeamRepository --> CTRL : success
-        note bottom: loops over each collaborator and activates them
 
+deactivate TeamRepository
 
       CTRL --> UI : team
+      deactivate CTRL
 
-    UI --> HRM : shows success message and the\ncreated team
-
-else insuccess
- TeamRepository --> CTRL : insuccess
+    UI --> HRM : shows success message and the\ncreated team and asks to accept or refuse the team
 
 
-      CTRL --> UI : insuccess message
+  alt accepts
 
-    deactivate CTRL
-    UI --> HRM : insuccess message
-  deactivate UI
+  HRM-> UI: accepts team
 
+  UI -> CTRL: acceptTeamProposal(team)
+  activate CTRL
+
+  note left :loops over each collaborator and activates them
+   activate CreateTeamProposalService
+ CTRL-> CreateTeamProposalService :acceptTeamProposal(team)
+  note right: change of team status to ACCEPTED
+ deactivate CreateTeamProposalService
+
+
+CTRL-> TeamRepository: registerTeam
+ activate TeamRepository
+        TeamRepository -> TeamRepository : teamAlreadyExists(team)
+               note bottom: checks if the team already exists based\non collaborators and skills and returns a boolean
+TeamRepository--> CTRL: success
+deactivate TeamRepository
+CTRL--> UI: success
+deactivate CTRL
+UI--> HRM: success message
+
+else refuses
+
+HRM-> UI: refuses team
+UI-> CTRL: refuseTeamProposal(team)
+activate CTRL
+    activate CreateTeamProposalService
+CTRL-> CreateTeamProposalService: refuseTeamProposal(team)
+deactivate CTRL
+  note bottom: change of team status to REFUSED
+  deactivate CreateTeamProposalService
+  UI--> HRM: asks for data again\n and repeats all process
  end
+
 deactivate HRM
 @enduml

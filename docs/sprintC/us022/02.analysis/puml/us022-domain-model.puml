@@ -36,7 +36,7 @@ class ToDoEntry {
         entryStatus
 }
 
-GSM "1" - "*" AgendaEntry : registers >
+GSM "1" - "*" AgendaEntry : manages >
 SystemUser <|- GSM
 AgendaEntry --|> ToDoEntry
 

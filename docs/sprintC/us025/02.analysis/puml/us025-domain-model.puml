@@ -27,23 +27,20 @@ class Agenda {
 }
 
 class AgendaEntry {
-
-    timeInterval
     date
-    entryStatus
+
 }
 
-
-
-
-class Task {
-    description
-    recurrency
-    duration
+class ToDoEntry {
+        status
+        description
+        associatedGS
+        expectedDuration
+        degreeOfUrgency
+        adress
 }
-
 Agenda "1" -- "*" AgendaEntry : has >
-AgendaEntry "1" -- "1  " Task : defines >
 SystemUser <|- GSM
 GSM "1" -- "*" AgendaEntry: manages >
+AgendaEntry --|> ToDoEntry
 @enduml

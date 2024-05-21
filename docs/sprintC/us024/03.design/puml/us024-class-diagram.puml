@@ -9,11 +9,19 @@ skinparam classAttributeIconSize 0
 
 title Class Diagram
 
-class AgendaEntry {
-    entryID
+
+class ToDoEntry{
+    greenSpace
     description
-    plannedDate
+    urgencyDegree
     status
+    expectedDuration
+}
+
+class AgendaEntry {
+    date
+    associatedTeam
+    associatedVehicles
 }
 
 class AgendaEntryDTO {
@@ -42,28 +50,29 @@ class Repositories {
     - Repositories()
     + getInstance()
     + getAgendaEntryRepository()
+    + #placeholderMethod#()
 }
 
 class AgendaEntryMapper {
-    + toDTO(AgendaEntry)
-    + toEntity(AgendaEntryDTO, newDate)
+    + toDTO(agendaEntry)
+    + toEntity(agendaEntryDTO, newDate)
+    + toEntity(agendaEntryDTO)
 }
 
 class AgendaController {
     - AgendaEntryRepository agendaEntryRepository
     - AgendaEntryMapper agendaEntryMapper
     + getAgendaEntries()
-    + updateAgendaEntryDate(AgendaEntryDTO, newDate)
+    + updateAgendaEntryDate(agendaEntryDTO, newDate)
 }
 
 class AgendaUI {
     - AgendaController agendaController
-    + displayAgendaEntries(List<AgendaEntryDTO>)
+    + displayAgendaEntries(List<agendaEntryDTO>)
     + selectEntry()
     + selectNewDate()
     + displayMessage(success)
 }
-
 
 AgendaUI .> AgendaController
 AgendaController ..> Repositories : repositories
@@ -72,10 +81,11 @@ Repositories -> Repositories : instance
 AgendaController .> AgendaEntryMapper
 AgendaController --> AgendaEntryRepository : uses
 
-SystemUser <|- Employee
+SystemUser <|- GSM
+ToDoEntry <|-- AgendaEntry
 
-Employee "1" -- "1" AgendaUI
-AgendaEntry "*" <-- "1" AgendaEntryRepository : stores
+GSM "1" -- "1" AgendaUI
+AgendaEntry "*" <-- "1" AgendaEntryRepository : manages
 AgendaEntryDTO "*" <-- "1" AgendaEntryMapper : creates
 
 @enduml

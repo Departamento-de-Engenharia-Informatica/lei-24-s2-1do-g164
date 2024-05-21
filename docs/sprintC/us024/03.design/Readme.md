@@ -25,7 +25,9 @@ _**Note that SSD - Alternative One is adopted.**_
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
+
 * None, all classes are already used in US022
+* None, used classes already used in US022
 
 
 Other software classes (i.e. Pure Fabrication) identified: 
@@ -39,8 +41,8 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 This diagram shows the full sequence of interactions between the classes involved in the realization of this user story.
 
-![Sequence Diagram - Full](svg/us024-sequence-diagram-full.svg)
+![Sequence Diagram - Full](svg/us024-sequence-diagram-full-System_Sequence_Diagram__SSD_.svg)
 
 ## 3.3. Class Diagram (CD)
 
-![Class Diagram](svg/us024-class-diagram.svg)
+![Class Diagram](svg/us024-class-diagram-Class_Diagram.svg)

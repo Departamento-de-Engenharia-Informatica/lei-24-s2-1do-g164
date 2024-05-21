@@ -66,21 +66,6 @@ public class CreateVehicleDTO {
         this.checkupFrequency = checkupFrequency;
     }
 
-    @Override
-    public String toString() {
-        return "CreateVehicleDTO{" +
-                "brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", vehicleID='" + vehicleID + '\'' +
-                ", grossWeight=" + grossWeight +
-                ", tare=" + tare +
-                ", currentKm=" + currentKm +
-                ", registerDate='" + registerDate + '\'' +
-                ", acquisitionDate='" + acquisitionDate + '\'' +
-                ", checkupFrequency=" + checkupFrequency +
-                '}';
-    }
-
     /**
      * Instantiates a new Create vehicle dto.
      */

@@ -33,7 +33,7 @@ class ToDoEntry {
         description
         associatedGS
         expectedDuration
-        degreeOfUrgency
+        urgencyDegree
         adress
 
 

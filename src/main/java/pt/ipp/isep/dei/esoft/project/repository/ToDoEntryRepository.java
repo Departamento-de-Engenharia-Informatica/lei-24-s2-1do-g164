@@ -1,8 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
+import pt.ipp.isep.dei.esoft.project.domain.GreenSpace;
 import pt.ipp.isep.dei.esoft.project.domain.ToDoEntry;
+import pt.ipp.isep.dei.esoft.project.repository.ENUM.EntryStatus;
+import pt.ipp.isep.dei.esoft.project.repository.ENUM.UrgencyDegree;
 
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 public class ToDoEntryRepository {
     private ArrayList<ToDoEntry> toDoEntryList= new ArrayList<>();

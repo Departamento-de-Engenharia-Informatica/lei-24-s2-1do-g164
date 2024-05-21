@@ -1,0 +1,102 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "GSM" as Employee
+participant ":AgendaUI" as UI
+participant ":AgendaController" as CTRL
+participant ":Repositories" as RepositorySingleton
+participant "ToDoEntryRepository\n:toDoEntryRepository" as TaskRepo
+participant "AgendaEntryRepository:\nagendaEntryRepository"
+participant "ToDoEntryMapper"
+participant "ToDoEntryDTO"
+participant "AgendaEntryMapper"
+
+activate Employee
+
+    Employee -> UI : asks to add a new entry from the "To Do List"\n to the Agenda
+    activate UI
+
+        UI -> CTRL : getAvailableToDoEntries()
+        activate CTRL
+
+            CTRL -> RepositorySingleton : getInstance()
+            activate RepositorySingleton
+
+                RepositorySingleton --> CTRL: repositories
+            deactivate RepositorySingleton
+
+            CTRL -> TaskRepo : getToDoEntriesNotInAgenda()
+            activate TaskRepo
+
+                TaskRepo --> CTRL : a vailableToDoEntryList
+            deactivate TaskRepo
+
+
+                CTRL -> "ToDoEntryMapper" :getToDoEntriesDTOs()
+                activate "ToDoEntryMapper"
+
+
+                loop for each toDoEntry in availableYoDoEntryList
+                                           ToDoEntryMapper -> ToDoEntryMapper: toDoEntryDTO = ToDTO(toDoEntry)
+                                           activate ToDoEntryMapper
+                                               ToDoEntryMapper -> ToDoEntryDTO**: create(toDoEntry)
+                                               ToDoEntryMapper -> "ToDoEntryMapper": add(toDoEntryDTO)
+                                           deactivate ToDoEntryMapper
+                                       end
+
+
+                "ToDoEntryMapper" -->  CTRL :toDoEntryDTOList
+                deactivate "ToDoEntryMapper"
+
+
+
+
+
+            CTRL --> UI : AvailableToDoEntryDTOList
+        deactivate CTRL
+
+        UI --> Employee : displays the "To Do List" entries that are\n not in the Agenda
+    deactivate UI
+
+    Employee -> UI : selects the desired entry
+    activate UI
+
+        UI --> Employee : asks for a date for the entry on the Agenda
+    deactivate UI
+
+    Employee -> UI : selects date for the entry
+    activate UI
+
+        UI -> CTRL : addTaskToAgenda(toDoEntryDTO, date)
+        activate CTRL
+
+        CTRL -> "AgendaEntryMapper" :registerAgendaEntry(toDoEntryDTO, date)
+                        activate "AgendaEntryMapper"
+
+                               "AgendaEntryMapper" -> "AgendaEntryMapper" : agendaEntry = toEntity(EntryDTO, date)
+
+
+                        "AgendaEntryMapper" -->  CTRL :agendaEntry
+                        deactivate "AgendaEntryMapper"
+
+
+
+            CTRL -> "AgendaEntryRepository:\nagendaEntryRepository" : addEntryToAgenda(agendaEntry)
+            activate "AgendaEntryRepository:\nagendaEntryRepository"
+
+                "AgendaEntryRepository:\nagendaEntryRepository"--> CTRL : success/failure
+            deactivate "AgendaEntryRepository:\nagendaEntryRepository"
+
+            CTRL --> UI : displays message of (in)success
+        deactivate CTRL
+
+        UI --> Employee : displays message of (in)success
+    deactivate UI
+
+deactivate Employee
+
+@enduml

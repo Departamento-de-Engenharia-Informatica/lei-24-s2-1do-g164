@@ -10,7 +10,6 @@ public class ToDoEntry {
     private GreenSpace greenSpace;
     private UrgencyDegree urgencyDegree;
 
-
     public ToDoEntry(String description, int expectedDuration, GreenSpace greenSpace, UrgencyDegree urgencyDegree){
         this.description = description;
         this.expectedDuration = expectedDuration;
@@ -18,6 +17,16 @@ public class ToDoEntry {
         this.urgencyDegree = urgencyDegree;
         this.greenSpace = greenSpace;
     }
+
+    @Override
+    public String toString() {
+        return description + " - " +
+                "Expected Duration: " + expectedDuration + " - " +
+                "Status: " + entryStatus + " - " +
+                "Green Space: " + greenSpace.getName() + " - " +
+                "Urgency Degree: " + urgencyDegree;
+    }
+
     public boolean equals(ToDoEntry td1) {
         return this.description.equals(td1.getDescription());
     }

@@ -8,6 +8,8 @@ import pt.ipp.isep.dei.esoft.project.repository.GreenSpaceRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.repository.ToDoEntryRepository;
 
+import java.util.ArrayList;
+
 public class RegisterToDoEntryController {
     private ToDoEntryRepository toDoEntryRepository;
     private GreenSpaceRepository greenSpaceRepository;
@@ -22,6 +24,14 @@ public class RegisterToDoEntryController {
 
     public boolean registerToDoEntry(ToDoEntryDTO toDoEntryDTO) {
         return toDoEntryRepository.registerToDoEntry(toDoEntryMapper.toEntity(toDoEntryDTO));
+    }
+
+    private ArrayList<ToDoEntry> getToDoEntryList(){
+        return toDoEntryRepository.getToDoEntryList();
+    }
+
+    public ArrayList<ToDoEntryDTO> getToDoEntryDTOsList() {
+        return toDoEntryMapper.toDtoList(getToDoEntryList());
     }
 
     private ToDoEntryRepository getToDoEntryRepository() {

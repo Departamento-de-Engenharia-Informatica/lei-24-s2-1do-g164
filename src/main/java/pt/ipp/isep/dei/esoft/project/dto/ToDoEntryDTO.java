@@ -18,4 +18,13 @@ public class ToDoEntryDTO {
         this.urgencyDegree = urgencyDegree;
         this.entryStatus = entryStatus;
     }
+
+    public ToDoEntryDTO(String description, int expectedDuration, GreenSpace greenSpace,UrgencyDegree urgencyDegree) {
+        this.description = description;
+        this.expectedDuration = expectedDuration;
+        this.greenSpace = greenSpace;
+        this.urgencyDegree = urgencyDegree;
+        this.entryStatus = EntryStatus.PENDING;
+    }
+
 }

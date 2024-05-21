@@ -1,57 +1,107 @@
 @startuml
 skinparam monochrome true
 skinparam packageStyle rectangle
-skinparam shadowing false
+    skinparam shadowing false
 
-autonumber
+    autonumber
 
-'hide footbox
-actor "FM" as ADM
-participant ":ListVehivclesCheckupsUI" as UI
-participant ":ListVehivclesCheckupsController" as CTRL
-participant ":Repositories" as RepositorySingleton
-participant "repositories\n:Repositories" as PLAT
-participant "vehiclesRepository:\nVehiclesRepository" as TaskCategoryRepository
+    'hide footbox
+    actor "Green Space Manager" as HRM
+    participant ":AssignVehiclesUI" as UI
+    participant ":AssignVehiclesController" as CTRL
+    participant ":Repositories" as RepositorySingleton
+    participant "repositories\n:Repositories" as PLAT
+    participant "vehicleRepository:\nVehicleRepository" as SkillRepository
+    participant "entryRepository:\nEntryRepository" as entryRepository
+    activate HRM
 
+            HRM -> UI : asks to add vehicles to an entry in the agenda
 
-activate ADM
+            activate UI
 
-        ADM -> UI : asks to list the vehicles that need the check-up.
+    '            UI --> ADM : requests data (reference, description,  informal \n description, technical description, duration, cost)
+                'create CTRL
+                UI -> CTRL** : create
 
-        activate UI
+                UI -> CTRL : getEntries()
+                activate CTRL
 
-'            UI --> ADM : requests data (reference, description,  informal \n description, technical description, duration, cost)
-            'create CTRL
-            UI -> CTRL** : create
+                    CTRL -> RepositorySingleton : getInstance()
+                    activate RepositorySingleton
 
-            UI -> CTRL : getVehicles()
-            activate CTRL
+                        RepositorySingleton --> CTRL: repositories
+                    deactivate RepositorySingleton
 
-                CTRL -> RepositorySingleton : getInstance()
-                activate RepositorySingleton
+                    CTRL -> PLAT : getEntryRepository()
+                    activate PLAT
 
-                    RepositorySingleton --> CTRL: repositories
-                deactivate RepositorySingleton
+                        PLAT --> CTRL: entryRepository
+                    deactivate PLAT
 
-                CTRL -> PLAT : getVehiclesRepository()
-                activate PLAT
+                    CTRL -> entryRepository : getEntry()
+                    activate entryRepository
 
-                    PLAT --> CTRL: VehiclesRepository()
-                deactivate PLAT
+                        entryRepository--> CTRL : entriesList
+                    deactivate entryRepository
 
-                CTRL -> TaskCategoryRepository : getVehicles()
-                activate TaskCategoryRepository
-
-                    TaskCategoryRepository --> CTRL : VehiclesList
-                deactivate TaskCategoryRepository
-
-                CTRL --> UI : VehiclesList
-            deactivate CTRL
-
-            UI --> ADM : shows Vehicles list
-        deactivate UI
+                    CTRL --> UI : entriesList
 
 
-deactivate ADM
 
-@enduml
+
+
+
+           UI -> CTRL : getVehicles()
+
+                 CTRL -> RepositorySingleton : getInstance()
+                 activate RepositorySingleton
+                   RepositorySingleton -> CTRL : repositories
+                 deactivate RepositorySingleton
+
+                 CTRL -> PLAT : getVehicleRepository()
+                 activate PLAT
+                   PLAT --> CTRL : vehicleRepository
+                 deactivate PLAT
+
+                 CTRL -> SkillRepository : getVehicles()
+                 activate SkillRepository
+                   SkillRepository --> CTRL : vehiclesList
+                 deactivate SkillRepository
+                 CTRL --> UI :vehiclesList
+               deactivate CTRL
+
+              UI --> HRM : shows list of entries and the list of vehicles \nand asks to select a entry
+                          deactivate UI
+
+             HRM -> UI : chooses an entry
+
+             activate UI
+              HRM -> UI : chooses vehicles from list to add
+               UI -> CTRL :assignVehicles(entries,vehicles)
+                        activate CTRL
+               CTRL -> RepositorySingleton : getInstance()
+                                         activate RepositorySingleton
+                                           RepositorySingleton -> CTRL : repositories
+                                         deactivate RepositorySingleton
+
+                                         CTRL -> PLAT : getEntryRepository(entry,vehicles)
+                                         activate PLAT
+                                           PLAT --> CTRL : entryRepository
+                                         deactivate PLAT
+
+                                         CTRL -> entryRepository : assignVehicles()
+                                       activate entryRepository
+                                           entryRepository --> CTRL : List of entry's current vehicles
+                                   deactivate entryRepository
+                                         CTRL --> UI : List of entry's current vehicles
+                                       deactivate CTRL
+                                       UI --> HRM :Show list of entry's current vehicles
+                                                    deactivate UI
+
+
+
+
+
+    deactivate HRM
+
+@endumlenduml

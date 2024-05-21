@@ -13,6 +13,7 @@ public class ToDoEntryRepository {
 
     public boolean registerToDoEntry(ToDoEntry td) {
         if(toDoEntryIsUnique(td)){
+            System.out.println(toDoEntryList);
             return toDoEntryList.add(td);
         }
         return false;

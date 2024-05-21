@@ -5,8 +5,8 @@ import pt.ipp.isep.dei.esoft.project.dto.ToDoEntryDTO;
 
 public class ToDoEntryMapper {
 
-    public ToDoEntry toEntity(ToDoEntryDTO registerToDoEntryDTO){
-        return new ToDoEntry(registerToDoEntryDTO.description, registerToDoEntryDTO.expectedDuration, registerToDoEntryDTO.greenSpace, registerToDoEntryDTO.urgencyDegree);
+    public ToDoEntry toEntity(ToDoEntryDTO toDoEntryDTO){
+        return new ToDoEntry(toDoEntryDTO.description, toDoEntryDTO.expectedDuration, toDoEntryDTO.greenSpace, toDoEntryDTO.urgencyDegree);
     }
 
     public ToDoEntryDTO toDto(ToDoEntry toDoEntry){

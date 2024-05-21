@@ -14,8 +14,6 @@ participant ":Repositories" as RepositorySingleton
 participant "AgendaEntryRepository\n:agendaEntryRepository" as AgendaRepo
 participant "AgendaEntryMapper"
 participant "AgendaEntryDTO"
-participant "agendaEntryDTOList\n:List<AgendaEntryDTO>" as AEDTOL
-
 activate Employee
 
     Employee -> UI : asks to postpone an entry in the Agenda
@@ -40,13 +38,10 @@ activate Employee
             activate "AgendaEntryMapper"
 
             loop for each agendaEntry in agendaEntryList
-                "AgendaEntryMapper" -> "AgendaEntryMapper" : agendaEntryDTO = toDTO(agendaEntry)
-                activate "AgendaEntryMapper"
-                    "AgendaEntryMapper" -> "AgendaEntryDTO" : create(agendaEntry)
-                    activate AEDTOL
-                    "AgendaEntryMapper" -> AEDTOL : add(agendaEntryDTO)
-                    deactivate AEDTOL
-                deactivate "AgendaEntryMapper"
+                "AgendaEntryMapper" -> "AgendaEntryDTO" : agendaEntryDTO = toDTO(agendaEntry)
+                activate "AgendaEntryDTO"
+
+                deactivate "AgendaEntryDTO"
             end
 
             "AgendaEntryMapper" --> CTRL : agendaEntryDTOList
@@ -67,13 +62,19 @@ activate Employee
     Employee -> UI : selects new date for the entry
     activate UI
 
-        UI -> CTRL : updateAgendaEntryDate(agendaEntryDTO, newDate)
+        UI -> "AgendaEntryDTO" : agendaEntryDTO.date = newDate
+        activate "AgendaEntryDTO"
+        deactivate "AgendaEntryDTO"
+
+        UI -> CTRL : updateAgendaEntryDate(agendaEntryDTO)
         activate CTRL
 
-            CTRL -> "AgendaEntryMapper" : updateAgendaEntry(agendaEntryDTO, newDate)
+            CTRL -> "AgendaEntryMapper" : updateAgendaEntry(agendaEntryDTO)
             activate "AgendaEntryMapper"
 
-                "AgendaEntryMapper" -> "AgendaEntryMapper" : agendaEntry = toEntity(agendaEntryDTO, newDate)
+                "AgendaEntryMapper" -> "AgendaEntryMapper" : agendaEntry = toEntity(agendaEntryDTO)
+                activate "AgendaEntryMapper"
+                deactivate
             "AgendaEntryMapper" --> CTRL : agendaEntry
             deactivate "AgendaEntryMapper"
 

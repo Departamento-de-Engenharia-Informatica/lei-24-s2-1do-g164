@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
+import com.kitfox.svg.A;
 import pt.ipp.isep.dei.esoft.project.application.session.ApplicationSession;
 
 import java.io.Serializable;
@@ -20,11 +21,13 @@ public class Repositories implements Serializable {
     private final OrganizationRepository organizationRepository;
     private final GreenSpaceRepository greenSpaceRepository;
     private final ToDoEntryRepository toDoEntryRepository;
+    private final AgendaEntryRepository agendaEntryRepository;
 
     /**
      * Initializes a new instance of Repositories.
      */
     private Repositories(){
+        this.agendaEntryRepository = new AgendaEntryRepository();
         teamRepository = new TeamRepository();
         jobRepository = new JobRepository();
         collaboratorRepository = new CollaboratorRepository();
@@ -49,6 +52,10 @@ public class Repositories implements Serializable {
             }
         }
         return instance;
+    }
+
+    public AgendaEntryRepository getAgendaEntryRepository() {
+        return agendaEntryRepository;
     }
 
     public GreenSpaceRepository getGreenSpaceRepository() {

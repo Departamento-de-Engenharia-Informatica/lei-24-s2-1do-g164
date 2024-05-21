@@ -6,9 +6,9 @@ skinparam shadowing false
 autonumber
 
 'hide footbox
-actor "FM" as ADM
-participant ":ListVehivclesCheckupsUI" as UI
-participant ":ListVehivclesCheckupsController" as CTRL
+actor "Collaborator" as ADM
+participant ":ListTasksBetweenDatesUI" as UI
+participant ":ListTasksBetweenDatesController" as CTRL
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT
 participant "vehiclesRepository:\nVehiclesRepository" as TaskCategoryRepository
@@ -16,7 +16,7 @@ participant "vehiclesRepository:\nVehiclesRepository" as TaskCategoryRepository
 
 activate ADM
 
-        ADM -> UI : asks to list the vehicles that need the check-up.
+        ADM -> UI : asks to consult the tasks assigned to him between two dates.
 
         activate UI
 

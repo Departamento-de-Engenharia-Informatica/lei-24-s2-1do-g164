@@ -33,7 +33,7 @@ class ToDoEntry{
 
 
 
-Collaborator "1" - "*" ToDoEntry : registers >
+Collaborator "1" - "*" ToDoEntry:   carries  >
 
 SystemUser <|- Collaborator
 @enduml

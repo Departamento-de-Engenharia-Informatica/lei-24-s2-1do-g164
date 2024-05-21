@@ -2,7 +2,6 @@ package pt.ipp.isep.dei.esoft.project.dto;
 
 import pt.ipp.isep.dei.esoft.project.domain.GreenSpace;
 import pt.ipp.isep.dei.esoft.project.domain.Team;
-import pt.ipp.isep.dei.esoft.project.domain.ToDoEntry;
 import pt.ipp.isep.dei.esoft.project.domain.Vehicle;
 import pt.ipp.isep.dei.esoft.project.repository.ENUM.EntryStatus;
 import pt.ipp.isep.dei.esoft.project.repository.ENUM.UrgencyDegree;
@@ -34,7 +33,7 @@ public class AgendaEntryDTO {
         this.entryStatus = EntryStatus.PLANNED;
     }
 
-    public AgendaEntryDTO(String description, int expectedDuration, GreenSpace greenSpace, UrgencyDegree urgencyDegree,LocalDate date, Team team, ArrayList<Vehicle> vehicles) {
+    public AgendaEntryDTO(String description, int expectedDuration, GreenSpace greenSpace, UrgencyDegree urgencyDegree, EntryStatus entryStatus, LocalDate date, Team team, ArrayList<Vehicle> vehicles) {
         this.description = description;
         this.expectedDuration = expectedDuration;
         this.greenSpace = greenSpace;

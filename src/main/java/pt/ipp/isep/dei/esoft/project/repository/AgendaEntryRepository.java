@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class AgendaEntryRepository {
 
-    private ArrayList<AgendaEntry> agendaEntryList= new ArrayList<>();
+    private final ArrayList<AgendaEntry> agendaEntryList= new ArrayList<>();
 
     public boolean addEntryToAgenda(AgendaEntry ag) {
         if(agendaEntryIsUnique(ag)){
@@ -25,8 +25,11 @@ public class AgendaEntryRepository {
         return true;
     }
 
-    public ArrayList<AgendaEntry> getToDoEntryList() {
+    public ArrayList<AgendaEntry> getAgendaEntryList() {
         return agendaEntryList;
     }
 
+    public boolean postponeEntryInAgenda(AgendaEntry entity) {
+        return true;
+    }
 }

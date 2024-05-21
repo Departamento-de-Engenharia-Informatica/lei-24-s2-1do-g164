@@ -27,7 +27,6 @@ According to the taken rationale, the conceptual classes promoted to software cl
 
 
 * None, all classes are already used in US022
-* None, used classes already used in US022
 
 
 Other software classes (i.e. Pure Fabrication) identified: 

@@ -15,8 +15,8 @@ public class RegisterAgendaEntryController {
 
     private AgendaEntryRepository agendaEntryRepository = new AgendaEntryRepository();
     private ToDoEntryRepository toDoEntryRepository = new ToDoEntryRepository();
-    private AgendaEntryMapper agendaEntryMapper;
-    private ToDoEntryMapper toDoEntryMapper;
+    private final AgendaEntryMapper agendaEntryMapper;
+    private final ToDoEntryMapper toDoEntryMapper;
 
     public RegisterAgendaEntryController(){
         getAgendaEntryRepository();
@@ -29,12 +29,12 @@ public class RegisterAgendaEntryController {
         return agendaEntryRepository.addEntryToAgenda(agendaEntryMapper.toEntity(agendaEntryDTO));
     }
 
-    private ArrayList<ToDoEntry> getToDoEntryList(){
+    private ArrayList<ToDoEntry> getAvailableToDoEntryList(){
         return toDoEntryRepository.getToDoEntryList();
     }
 
     public ArrayList<ToDoEntryDTO> getToDoEntryDTOsList() {
-        return toDoEntryMapper.toDtoList(getToDoEntryList());
+        return toDoEntryMapper.toDtoList(getAvailableToDoEntryList());
     }
 
 

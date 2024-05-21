@@ -15,13 +15,22 @@ As a FM, I want to list the vehicles needing the check-up.
 
 **From the client clarifications:**
 
-> **Question:** What is needed for a vehicle to be considered as needing a check-up?
+> **Question:**
+Should all company vehicles be available to assign them to a calendar entry, or only vehicles with up-to-date maintenance?
 >
-> **Answer:** A vehicle appears on the list if its current kms exceed or there is a difference of less than 5% of the check-up frequency between the kms the vehicle had in the last check-up plus the check-up frequency.
+> **Answer:** All vehicles that are not assigned to a task in the same period.
+In a real context we also need to manage (un)availability of vehicles due to overhauls or breakdowns but it is not necessary in this proof of concept
 
-> **Question:** What data should be displayed for each vehicle in the list?
+> **Question:**
+What are the criteries to accept a assign of a Vehicle to a Entry?
+Only Vehicle with no Entry's can be assigned ?
+Only Vehicles with no Entry on the day selected ?
+It is possible to add any kind of vehicles?
+what are the maximum number of vehicles that can be added to a entry?
 >
-> **Answer:** The list must clearly identify the vehicles through: plate number, brand, model and the reason that justified the checkup need.
+> **Answer:** The vehicle needs to be available in the period.
+Yes, any can of vehicles can be assigned.
+
 
 ### 1.3. Acceptance Criteria
 

@@ -15,13 +15,26 @@ As a FM, I want to list the vehicles needing the check-up.
 
 **From the client clarifications:**
 
-> **Question:** What is needed for a vehicle to be considered as needing a check-up?
->
-> **Answer:** A vehicle appears on the list if its current kms exceed or there is a difference of less than 5% of the check-up frequency between the kms the vehicle had in the last check-up plus the check-up frequency.
+**From the client clarifications:**
 
-> **Question:** What data should be displayed for each vehicle in the list?
+> **Question:**
+Can an employee record more than one completed task at a time?
 >
-> **Answer:** The list must clearly identify the vehicles through: plate number, brand, model and the reason that justified the checkup need.
+> **Answer:** It's a matter of UX/UI, each dev team can decide about it.
+
+> **Question:**
+When a collaborator records a task, it should be asked for any observations regarding the completed task?
+>
+> **Answer:** Maybe if optional, not mandatory.
+
+>**Question**
+As far as I understand, when a GSM wants to cancel a task or a Collaborator wants to record the completion of a task, the task just changes its status in the Agenda to "Canceled" or "Done", respectively.
+So, my question is the following: does the task associated with the Agenda entry in which this happens remain in the To-do List or can it be removed, unlike what happens in the Agenda? Or even, would this process be different between a completed task and a canceled task?
+>
+> **Answer**
+Yes.
+I suppose when a task goes to the Agenda, it leaves the To-Do list but maybe a different flow could be considered.
+
 
 ### 1.3. Acceptance Criteria
 

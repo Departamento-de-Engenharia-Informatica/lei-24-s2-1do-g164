@@ -32,31 +32,22 @@ activate Employee
             CTRL -> TaskRepo : getToDoEntriesNotInAgenda()
             activate TaskRepo
 
-                TaskRepo --> CTRL : a vailableToDoEntryList
+                TaskRepo --> CTRL : availableToDoEntryList
             deactivate TaskRepo
 
+            CTRL -> "ToDoEntryMapper" : getToDoEntriesDTOs(availableToDoEntryList)
+            activate "ToDoEntryMapper"
 
-                CTRL -> "ToDoEntryMapper" :getToDoEntriesDTOs()
-                activate "ToDoEntryMapper"
+            loop for each toDoEntry in availableToDoEntryList
+                ToDoEntryMapper -> ToDoEntryDTO: toDoEntryDTO = toDTO(toDoEntry)
+                activate ToDoEntryDTO
+                deactivate ToDoEntryDTO
+            end
 
+            ToDoEntryMapper --> CTRL: toDoEntryDTOList
+            deactivate ToDoEntryMapper
 
-                loop for each toDoEntry in availableYoDoEntryList
-                                           ToDoEntryMapper -> ToDoEntryMapper: toDoEntryDTO = ToDTO(toDoEntry)
-                                           activate ToDoEntryMapper
-                                               ToDoEntryMapper -> ToDoEntryDTO**: create(toDoEntry)
-                                               ToDoEntryMapper -> "ToDoEntryMapper": add(toDoEntryDTO)
-                                           deactivate ToDoEntryMapper
-                                       end
-
-
-                "ToDoEntryMapper" -->  CTRL :toDoEntryDTOList
-                deactivate "ToDoEntryMapper"
-
-
-
-
-
-            CTRL --> UI : AvailableToDoEntryDTOList
+            CTRL --> UI : availableToDoEntryDTOList
         deactivate CTRL
 
         UI --> Employee : displays the "To Do List" entries that are\n not in the Agenda
@@ -65,30 +56,29 @@ activate Employee
     Employee -> UI : selects the desired entry
     activate UI
 
-        UI --> Employee : asks for a date for the entry on the Agenda
+        UI -> Employee : asks for a date for the entry on the Agenda
     deactivate UI
 
     Employee -> UI : selects date for the entry
     activate UI
 
-        UI -> CTRL : addTaskToAgenda(toDoEntryDTO, date)
+        UI -> AgendaEntryDTO : create(toDoEntryDTO, date)
+        UI <-- AgendaEntryDTO : agendaEntryDTO
+
+        UI -> CTRL : addEntryToAgenda(agendaEntryDTO)
         activate CTRL
 
-        CTRL -> "AgendaEntryMapper" :registerAgendaEntry(toDoEntryDTO, date)
-                        activate "AgendaEntryMapper"
+            CTRL -> "AgendaEntryMapper" : registerAgendaEntry(agendaEntryDTO)
+            activate "AgendaEntryMapper"
 
-                               "AgendaEntryMapper" -> "AgendaEntryMapper" : agendaEntry = toEntity(EntryDTO, date)
-
-
-                        "AgendaEntryMapper" -->  CTRL :agendaEntry
-                        deactivate "AgendaEntryMapper"
-
-
+                AgendaEntryMapper -> AgendaEntry : toEntity(agendaEntryDTO)
+                AgendaEntryMapper --> CTRL : agendaEntry
+            deactivate "AgendaEntryMapper"
 
             CTRL -> "AgendaEntryRepository:\nagendaEntryRepository" : addEntryToAgenda(agendaEntry)
             activate "AgendaEntryRepository:\nagendaEntryRepository"
 
-                "AgendaEntryRepository:\nagendaEntryRepository"--> CTRL : success/failure
+                "AgendaEntryRepository:\nagendaEntryRepository" --> CTRL : success/failure
             deactivate "AgendaEntryRepository:\nagendaEntryRepository"
 
             CTRL --> UI : displays message of (in)success

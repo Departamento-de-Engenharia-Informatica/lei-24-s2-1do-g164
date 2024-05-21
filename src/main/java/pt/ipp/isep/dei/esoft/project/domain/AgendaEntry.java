@@ -6,7 +6,7 @@ import pt.ipp.isep.dei.esoft.project.repository.ENUM.UrgencyDegree;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class AgendaEntry extends ToDoEntry{
+public class AgendaEntry extends ToDoEntry {
     private LocalDate date;
     private Team associatedTeam;
     private ArrayList<Vehicle> associatedVehicles;
@@ -41,5 +41,9 @@ public class AgendaEntry extends ToDoEntry{
         this.associatedVehicles = vehicles;
         this.setEntryStatus(EntryStatus.PLANNED);
         this.date = date;
+    }
+
+    public void cancelEntry() {
+        this.setEntryStatus(EntryStatus.CANCELLED);
     }
 }

@@ -32,4 +32,11 @@ public class AgendaEntryRepository {
     public boolean postponeEntryInAgenda(AgendaEntry entity) {
         return true;
     }
+    public void update(AgendaEntry updatedEntry) {
+        for (AgendaEntry entry : agendaEntryList) {
+            if (entry.getDescription().equals(updatedEntry.getDescription())) {
+                entry.setEntryStatus(updatedEntry.getEntryStatus());
+            }
+        }
+    }
 }

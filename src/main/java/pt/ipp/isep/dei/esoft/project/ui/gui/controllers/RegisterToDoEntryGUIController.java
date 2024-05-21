@@ -43,11 +43,7 @@ public class RegisterToDoEntryGUIController {
             int expectedDuration = Integer.parseInt(txtExpectedDuration.getText());
             ToDoEntryDTO dto = new ToDoEntryDTO(txtDescription.getText(), expectedDuration, new GreenSpace(GreenSpaceType.GARDEN, "aa", "merda23", 12), cmbUrgencyDegree.getValue());
             if(controller.registerToDoEntry(dto)) {
-                toDoListGUIController.txtToDoListText.clear();
-                ArrayList<ToDoEntryDTO> toDoEntryDTOsList = controller.getToDoEntryDTOsList();
-                for(ToDoEntryDTO toDoEntryDTO : toDoEntryDTOsList){
-                    toDoListGUIController.txtToDoListText.appendText(toDoEntryDTO.toString() + "\n");
-                }
+                toDoListGUIController.update();
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.close();
             }

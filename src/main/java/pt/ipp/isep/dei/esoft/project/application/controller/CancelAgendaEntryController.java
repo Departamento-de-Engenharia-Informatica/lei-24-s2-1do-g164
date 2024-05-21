@@ -18,7 +18,6 @@ public class CancelAgendaEntryController {
         this.agendaEntryRepository = Repositories.getInstance().getAgendaEntryRepository();
         this.agendaEntryMapper= new AgendaEntryMapper();
     }
-
     public ArrayList<AgendaEntryDTO> getAgendaEntryDTOList() {
         ArrayList<AgendaEntry> agendaEntryList = agendaEntryRepository.getAgendaEntryList();
         return agendaEntryMapper.toDtoList(agendaEntryList);
@@ -34,3 +33,4 @@ public class CancelAgendaEntryController {
         return true;
     }
 }
+

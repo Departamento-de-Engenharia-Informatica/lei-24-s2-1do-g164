@@ -1,0 +1,87 @@
+@startuml
+skinparam classAttributeIconSize 0
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+skinparam classAttributeIconSize 0
+
+class AgendaEntry {
+    date
+    associatedTeam
+    associatedVehicles
+}
+
+class AgendaEntryDTO {
+
+    date
+    greenSpace
+    description
+    expectedDuration
+    urgencyDegree
+    entryStatus
+    associatedTeam
+    associatedVehicles
+
+}
+
+class SystemUser {
+    name
+    email
+    password
+    phone
+}
+
+
+class AgendaEntryRepository {
+    - ArrayList<AgendaEntry> agendaEntries
+    + getAgendaEntryList()
+    + update(agendaEntry)
+}
+
+class Repositories {
+    - agendaEntryRepository
+    - toDoEntryRepository
+
+    - Repositories()
+    + getInstance()
+    + getAgendaEntryRepository()
+
+}
+
+class AgendaEntryMapper {
+    + toDTO(agendaEntry)
+    + toEntity(agendaEntryDTO, newDate)
+    + toEntity(agendaEntryDTO)
+}
+
+
+class CancelAgendaEntryController {
+    - AgendaEntryRepository agendaEntryRepository
+    - AgendaEntryMapper agendaEntryMapper
+
+    + getAgendaEntryDTOList()
+    +cancelsEntry(AgendaEntry)
+}
+
+class AgendaUI {
+
+}
+
+AgendaUI .> CancelAgendaEntryController
+CancelAgendaEntryController ..> Repositories : repositories
+Repositories --> "1" AgendaEntryRepository
+Repositories -> Repositories : instance
+CancelAgendaEntryController .> AgendaEntryMapper
+CancelAgendaEntryController --> AgendaEntryRepository : uses
+
+SystemUser <|- GSM
+ToDoEntry <|-- AgendaEntry
+
+GSM "1" -- "1" AgendaUI
+AgendaEntry "*" <-- "1" AgendaEntryRepository : stores
+AgendaEntryDTO "*" <-- "1" AgendaEntryMapper : creates
+
+
+@enduml

@@ -18,35 +18,20 @@ class SystemUser {
     phone
 
 }
-class VFM {
+class Collaborator {
 
 }
 
-class VehicleCheckup {
-    currentKms
+
+
+class AgendaEntry {
+
     date
-
-}
-
-class Vehicle {
-
-
-        brand
-        model
-        vehicleID
-        type
-        tare
-        grossWeight
-        currentKm
-        registerDate
-        acquisitionDate
-        checkupFrequency
-        checkUpList
 }
 
 
-VFM "1" - "*" Vehicle : registers >
-Vehicle "1   " -- "0..*                        " VehicleCheckup : registers >
-VFM "           1 " - "0..*   " VehicleCheckup : requests >
-SystemUser <|- VFM
+
+
+Collaborator "1" - "*" AgendaEntry:   carries  >
+SystemUser <|- Collaborator
 @enduml

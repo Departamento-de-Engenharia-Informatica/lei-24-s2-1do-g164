@@ -9,9 +9,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import pt.ipp.isep.dei.esoft.project.application.controller.RegisterToDoEntryController;
+import pt.ipp.isep.dei.esoft.project.dto.ToDoEntryDTO;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ToDoListGUIController {
 
@@ -23,6 +26,21 @@ public class ToDoListGUIController {
     TextArea txtToDoListText;
     @FXML
     BorderPane borderPane;
+
+    private RegisterToDoEntryController controller = new RegisterToDoEntryController();
+
+    @FXML
+    private void initialize(){
+        update();
+    }
+
+    public void update(){
+        txtToDoListText.clear();
+        ArrayList<ToDoEntryDTO> toDoEntryDTOsList = controller.getToDoEntryDTOsList();
+        for(ToDoEntryDTO toDoEntryDTO : toDoEntryDTOsList){
+            txtToDoListText.appendText(toDoEntryDTO.toString() + "\n");
+        }
+    }
 
     public void openRegisterToDoWindow(ActionEvent event) {
         try {

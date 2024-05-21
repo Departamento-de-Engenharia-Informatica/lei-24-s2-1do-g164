@@ -4,7 +4,7 @@ import pt.ipp.isep.dei.esoft.project.domain.Collaborator;
 import pt.ipp.isep.dei.esoft.project.domain.Job;
 import pt.ipp.isep.dei.esoft.project.domain.Skill;
 import pt.ipp.isep.dei.esoft.project.repository.ENUM.CollaboratorStatus;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.DocumentTypeRepository;
+import pt.ipp.isep.dei.esoft.project.repository.ENUM.DocumentType;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -41,7 +41,7 @@ public class CollaboratorRepository implements Serializable {
      * @param email            The email address of the collaborator.
      * @return {@code true} if the collaborator is successfully registered, {@code false} otherwise.
      */
-    public boolean registerCollaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentTypeRepository idDocumentType, CollaboratorStatus status, int taxpayerNumber, String email) {
+    public boolean registerCollaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentType idDocumentType, CollaboratorStatus status, int taxpayerNumber, String email) {
         Collaborator collaborator = new Collaborator(name, phone, birthdate, admissionDate, address, idDocumentNumber, job, idDocumentType, status, taxpayerNumber, email);
         if (collaboratorIsUnique(collaborator)) {
             collaboratorList.add(collaborator);

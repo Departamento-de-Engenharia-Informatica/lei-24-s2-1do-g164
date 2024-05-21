@@ -8,7 +8,7 @@ import pt.ipp.isep.dei.esoft.project.domain.Skill;
 import pt.ipp.isep.dei.esoft.project.domain.Team;
 import pt.ipp.isep.dei.esoft.project.repository.*;
 import pt.ipp.isep.dei.esoft.project.repository.ENUM.CollaboratorStatus;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.DocumentTypeRepository;
+import pt.ipp.isep.dei.esoft.project.repository.ENUM.DocumentType;
 import pt.ipp.isep.dei.esoft.project.repository.ENUM.TeamStatus;
 
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ class TeamRepositoryTest {
     private Team t2;
     private Team t3;
     private Job job;
-    private DocumentTypeRepository docType;
+    private DocumentType docType;
     private TeamRepository repo;
     @BeforeEach
     public void setUp() {
@@ -58,7 +58,7 @@ class TeamRepositoryTest {
         skills2.add(s4);
 
         job = new Job("Designer");
-        docType = DocumentTypeRepository.CITIZEN_CARD;
+        docType = DocumentType.CITIZEN_CARD;
 
         c1 = new Collaborator("John Doe", 123456789, "01-01-1990", "01-01-2020", "123 Main St", 987699321, job, docType, CollaboratorStatus.DEACTIVATED, 451238965, "siii@euro.lol");
         c2 = new Collaborator("Alice Vieira", 928456689, "15-07-2006", "01-01-2020", "123 Main St", 983554321, job, docType, CollaboratorStatus.DEACTIVATED, 451238965, "siii@euro.lol");

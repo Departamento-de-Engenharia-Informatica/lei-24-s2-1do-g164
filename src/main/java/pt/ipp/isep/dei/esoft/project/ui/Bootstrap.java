@@ -4,8 +4,8 @@ import pt.ipp.isep.dei.esoft.project.application.controller.authorization.Authen
 import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.*;
 import pt.ipp.isep.dei.esoft.project.repository.ENUM.CollaboratorStatus;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.DocumentTypeRepository;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.VehicleTypeRepository;
+import pt.ipp.isep.dei.esoft.project.repository.ENUM.DocumentType;
+import pt.ipp.isep.dei.esoft.project.repository.ENUM.VehicleType;
 
 import java.util.ArrayList;
 
@@ -55,7 +55,7 @@ public class Bootstrap implements Runnable {
 
         collaboratorRepository.registerCollaborator("Marco", 913456123, "04-07-2001",
                 "05-08-2020", "Rua das Aves", 12845678, new Job("Trail Steward"),
-                DocumentTypeRepository.CITIZEN_CARD, CollaboratorStatus.DEACTIVATED, 123456789, "adeus@hotmail.pt");
+                DocumentType.CITIZEN_CARD, CollaboratorStatus.DEACTIVATED, 123456789, "adeus@hotmail.pt");
 
 
         ArrayList<Skill> marcoSkills = new ArrayList<>();
@@ -69,7 +69,7 @@ public class Bootstrap implements Runnable {
 
         collaboratorRepository.registerCollaborator("Ana", 987456765, "08-10-2002",
                 "08-08-2021", "Rua das Aves", 78986789, new Job("Arborist"),
-                DocumentTypeRepository.CITIZEN_CARD, CollaboratorStatus.DEACTIVATED,123993123, "ola23@mial.com");
+                DocumentType.CITIZEN_CARD, CollaboratorStatus.DEACTIVATED,123993123, "ola23@mial.com");
 
 
         ArrayList<Skill> anaSkills = new ArrayList<>();
@@ -79,7 +79,7 @@ public class Bootstrap implements Runnable {
 
         collaboratorRepository.registerCollaborator("Ambrosio", 937996795, "08-10-2002",
                 "08-08-2021", "Rua das Aves", 54946780, new Job("Park Ranger"),
-                DocumentTypeRepository.CITIZEN_CARD, CollaboratorStatus.DEACTIVATED, 123883123, "ola@mial.com");
+                DocumentType.CITIZEN_CARD, CollaboratorStatus.DEACTIVATED, 123883123, "ola@mial.com");
 
 
         ArrayList<Skill> ambrosioSkills = new ArrayList<>();
@@ -90,7 +90,7 @@ public class Bootstrap implements Runnable {
 
         collaboratorRepository.registerCollaborator("Rita", 917996795, "08-10-2002",
                 "08-08-2021", "Rua das Aves", 89087650, new Job("Botanist"),
-                DocumentTypeRepository.CITIZEN_CARD, CollaboratorStatus.DEACTIVATED, 123103123, "ola@mial.com");
+                DocumentType.CITIZEN_CARD, CollaboratorStatus.DEACTIVATED, 123103123, "ola@mial.com");
 
         ArrayList<Skill> ritaSkills = new ArrayList<>();
         ritaSkills.add(skillRepository.getSkillList().get(5));
@@ -159,11 +159,11 @@ public class Bootstrap implements Runnable {
 
     public void addVehicles() {
         VehicleRepository repo = Repositories.getInstance().getVehicleRepository();
-        repo.registerVehicle("Mercedes", "Class A", "87-UI-28", VehicleTypeRepository.LIGHT_VEHICLE,
+        repo.registerVehicle("Mercedes", "Class A", "87-UI-28", VehicleType.LIGHT_VEHICLE,
                 1415, 1200, 25000, "02-07-2020", "12-09-2018", 20000);
-        repo.registerVehicle("BMW", "i8", "57-OI-98", VehicleTypeRepository.LIGHT_VEHICLE,
+        repo.registerVehicle("BMW", "i8", "57-OI-98", VehicleType.LIGHT_VEHICLE,
                 1215, 990, 90000, "12-12-2019", "10-10-2018", 40000);
-        repo.registerVehicle("Ford", "Carrinha", "80-07-LX", VehicleTypeRepository.HEAVY_VEHICLE,
+        repo.registerVehicle("Ford", "Carrinha", "80-07-LX", VehicleType.HEAVY_VEHICLE,
                 9000, 8000, 200000, "25-12-2021", "25-12-2021", 300000);
     }
 }

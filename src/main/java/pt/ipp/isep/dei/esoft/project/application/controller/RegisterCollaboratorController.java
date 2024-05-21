@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.repository.ENUM.CollaboratorStatus;
 import pt.ipp.isep.dei.esoft.project.domain.Job;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.DocumentTypeRepository;
+import pt.ipp.isep.dei.esoft.project.repository.ENUM.DocumentType;
 import pt.ipp.isep.dei.esoft.project.repository.JobRepository;
 import pt.ipp.isep.dei.esoft.project.repository.CollaboratorRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
@@ -41,7 +41,7 @@ public class RegisterCollaboratorController {
      * @param email            The email of the collaborator.
      * @return {@code true} if the collaborator is successfully registered, {@code false} otherwise.
      */
-    public boolean registerCollaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentTypeRepository idDocumentType, int taxpayerNumber, String email) {
+    public boolean registerCollaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentType idDocumentType, int taxpayerNumber, String email) {
         return collaboratorRepository.registerCollaborator(name, phone, birthdate, admissionDate, address, idDocumentNumber, job, idDocumentType, getCollaboratorStatusList().get(1), taxpayerNumber, email);
     }
 
@@ -75,8 +75,8 @@ public class RegisterCollaboratorController {
      *
      * @return The list of document types.
      */
-    public ArrayList<DocumentTypeRepository> getDocTypesList() {
-        return new ArrayList<>(Arrays.asList(DocumentTypeRepository.values()));
+    public ArrayList<DocumentType> getDocTypesList() {
+        return new ArrayList<>(Arrays.asList(DocumentType.values()));
     }
 
     /**

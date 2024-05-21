@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.esoft.project.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.esoft.project.repository.ENUM.CollaboratorStatus;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.DocumentTypeRepository;
+import pt.ipp.isep.dei.esoft.project.repository.ENUM.DocumentType;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,14 +13,14 @@ public class CollaboratorTest {
     private Skill skill1;
     private Skill skill2;
     private Job job;
-    private DocumentTypeRepository docType;
+    private DocumentType docType;
 
     @BeforeEach
     public void setUp() {
         skill1 = new Skill("Design");
         skill2 = new Skill("Communication");
         job = new Job("Electrician");
-        docType = DocumentTypeRepository.CITIZEN_CARD;
+        docType = DocumentType.CITIZEN_CARD;
 
         collaborator = new Collaborator("John Doe", 123456789, "01-01-1990", "01-01-2020", "123 Main St", 987654321, job, docType, CollaboratorStatus.DEACTIVATED, 451238965, "siii@euro.lol");
     }

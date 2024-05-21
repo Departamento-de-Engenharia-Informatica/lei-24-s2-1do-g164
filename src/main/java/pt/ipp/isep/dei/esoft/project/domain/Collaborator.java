@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
 import pt.ipp.isep.dei.esoft.project.repository.ENUM.CollaboratorStatus;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.DocumentTypeRepository;
+import pt.ipp.isep.dei.esoft.project.repository.ENUM.DocumentType;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ public class Collaborator {
     private String admissionDate;
     private String address;
     private Job job;
-    private DocumentTypeRepository idDocumentType;
+    private DocumentType idDocumentType;
     private int idDocumentNumber;
     private int taxpayerNumber;
     private ArrayList<Skill> skills;
@@ -38,7 +38,7 @@ public class Collaborator {
      * @param taxpayerNumber   The taxpayer number of the collaborator.
      * @param email            The email of the collaborator.
      */
-    public Collaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentTypeRepository idDocumentType, CollaboratorStatus status, int taxpayerNumber, String email) {
+    public Collaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentType idDocumentType, CollaboratorStatus status, int taxpayerNumber, String email) {
         this.name = name;
         this.phone = phone;
         this.birthdate = birthdate;
@@ -174,7 +174,7 @@ public class Collaborator {
      *
      * @return The ID document type of the collaborator.
      */
-    public DocumentTypeRepository getIdDocumentType() {
+    public DocumentType getIdDocumentType() {
         return idDocumentType;
     }
 

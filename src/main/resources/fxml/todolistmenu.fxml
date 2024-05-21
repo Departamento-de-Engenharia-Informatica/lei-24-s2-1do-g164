@@ -29,7 +29,7 @@
         </GridPane>
     </bottom>
    <center>
-        <TextArea fx:id="txtAreaTarefas" editable="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="238.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+        <TextArea fx:id="txtToDoListText" editable="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="238.0" prefWidth="400.0" BorderPane.alignment="CENTER">
             <BorderPane.margin>
                 <Insets left="10.0" right="10.0" top="5.0" />
             </BorderPane.margin>

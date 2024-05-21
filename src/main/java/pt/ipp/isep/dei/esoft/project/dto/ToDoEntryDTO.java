@@ -27,4 +27,12 @@ public class ToDoEntryDTO {
         this.entryStatus = EntryStatus.PENDING;
     }
 
+    public String toString() {
+        return description + " - " +
+                "Expected Duration: " + expectedDuration + " - " +
+                "Status: " + entryStatus + " - " +
+                "Green Space: " + greenSpace.getName() + " - " +
+                "Urgency Degree: " + urgencyDegree;
+    }
+
 }

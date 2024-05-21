@@ -37,11 +37,6 @@ class AgendaEntry {
 }
 
 
-class Task {
-    description
-    recurrency
-    duration
-}
 
 
 
@@ -49,7 +44,6 @@ SystemUser <|- GSM
 GSM"1" - "*" AgendaEntry: manages >
 AgendaEntry"1"-- "1  " Team: assigned to >
 Agenda "1" -- "*" AgendaEntry : has >
-AgendaEntry "1" -- "1  " Task : defines >
-Team "1" - "*" Task:   carries  >
+
 
 @enduml

@@ -39,7 +39,7 @@ class ToDoEntry {
 
 }
 
-GSM "1" - "*" AgendaEntry : postpones >
+GSM "1" - "*" AgendaEntry : manages >
 SystemUser <|- GSM
 AgendaEntry --|> ToDoEntry
 

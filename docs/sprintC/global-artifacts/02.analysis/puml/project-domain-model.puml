@@ -69,11 +69,7 @@ class Job {
     name
 }
 
-class Task {
-    description
-    recurrency
-    duration
-}
+
 
 class VehicleCheckup {
 
@@ -108,7 +104,6 @@ class Agenda {
 
 class AgendaEntry {
 
-    timeInterval
     date
 }
 
@@ -129,8 +124,12 @@ class ToDoList{
 }
 
 
-class ToDoListEntry{
- urgency
+class ToDoEntry{
+    description
+         greenSpace
+         expectedDuration
+         degreeUrgency
+         entryStatus
 }
 
 SystemUser <|-- HRM
@@ -142,10 +141,9 @@ GreenSpace <|-- Garden
 GreenSpace <|-- MediumSizedPark
 GreenSpace <|-- LargeSizedPark
 
-Task "1" -- "1..*" GreenSpace : occurs in >
+ToDoEntry "1" -- "1..*" GreenSpace : occurs in >
 
 Agenda "1" -- "*" AgendaEntry : has >
-AgendaEntry "1" -- "1" Task : defines >
 
 
 VFM " 1" -- "*" Vehicle : registers >
@@ -167,8 +165,8 @@ MS "1" - "*" Equipment : has >
 
 
 
-Team "1" - "*" Task:   carries  >
-ToDoListEntry "1" - "*" Task: defines >
+Team "1" - "*" ToDoEntry:   carries  >
+
 
 HRM "1 " -- "*" Collaborator : registers >
 HRM "1 " -- "*" Job : creates >
@@ -182,13 +180,13 @@ MS "1    " - "*" GreenSpace: manages >
 GSU"1   " - "*" GreenSpace: uses >
 GSM "1 " - "*" GreenSpace: manages >
 Team "1 " -- "*" Skill: has >
-ToDoList "1" -- "*" ToDoListEntry: has >
+ToDoList "1" -- "*" ToDoEntry: has >
 GreenSpace"1" -- "1" ToDoList: has >
 GreenSpace"1" -- "1" Agenda: has >
 AgendaEntry"1"-- "1" Team: assigned to >
 AgendaEntry"1"-- "1" Vehicle: assigned to >
 GSM "1" -- "*" AgendaEntry: manages >
-GSM "1" -- "*" ToDoListEntry: manages >
+GSM "1" -- "*" ToDoEntry: manages >
 Collaborator -|> SystemUser
 
 @enduml

@@ -188,5 +188,6 @@ AgendaEntry"1"-- "1" Vehicle: assigned to >
 GSM "1" -- "*" AgendaEntry: manages >
 GSM "1" -- "*" ToDoEntry: manages >
 Collaborator -|> SystemUser
+AgendaEntry --|> ToDoEntry
 
 @enduml

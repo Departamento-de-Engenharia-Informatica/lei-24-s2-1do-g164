@@ -1,12 +1,11 @@
 package pt.ipp.isep.dei.esoft.project.mappers;
 
 import pt.ipp.isep.dei.esoft.project.domain.AgendaEntry;
-import pt.ipp.isep.dei.esoft.project.domain.ToDoEntry;
 import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 
 public class AgendaEntryMapper {
 
-    public ToDoEntry toEntity(AgendaEntryDTO dto){
+    public AgendaEntry toEntity(AgendaEntryDTO dto){
         return new AgendaEntry(dto.description, dto.expectedDuration, dto.greenSpace, dto.urgencyDegree, dto.entryStatus, dto.date, dto.team, dto.vehicles);
     }
 

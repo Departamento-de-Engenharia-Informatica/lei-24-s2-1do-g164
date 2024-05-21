@@ -1,0 +1,32 @@
+package pt.ipp.isep.dei.esoft.project.repository;
+
+
+import pt.ipp.isep.dei.esoft.project.domain.AgendaEntry;
+
+import java.util.ArrayList;
+
+public class AgendaEntryRepository {
+
+    private ArrayList<AgendaEntry> agendaEntryList= new ArrayList<>();
+
+    public boolean addEntryToAgenda(AgendaEntry ag) {
+        if(agendaEntryIsUnique(ag)){
+            return agendaEntryList.add(ag);
+        }
+        return false;
+    }
+
+    private boolean agendaEntryIsUnique(AgendaEntry ag1) {
+        for (AgendaEntry ag : agendaEntryList) {
+            if (ag.equals(ag1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public ArrayList<AgendaEntry> getToDoEntryList() {
+        return agendaEntryList;
+    }
+
+}

@@ -18,7 +18,7 @@ activate Employee
         System --> Employee : show the list of entries
     deactivate System
 
-        Employee -> System : Choose an entry and marks as completed 
+        Employee -> System : choose an entry and marks as completed
         activate System
 
             System --> Employee :Confirm task completion

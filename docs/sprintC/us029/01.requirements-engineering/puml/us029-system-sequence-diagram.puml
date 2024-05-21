@@ -15,10 +15,10 @@ activate Employee
     Employee -> System : asks to mark a task as completed
     activate System
 
-        System --> Employee : validate task
+        System --> Employee : show the list of entries
     deactivate System
 
-        Employee -> System : Record completion date and time
+        Employee -> System : choose an entry and marks as completed
         activate System
 
             System --> Employee :Confirm task completion

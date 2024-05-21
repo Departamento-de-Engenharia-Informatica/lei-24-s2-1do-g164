@@ -1,0 +1,30 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD)
+
+autonumber
+
+actor "Collaborator" as Employee
+participant ":System" as System
+
+activate Employee
+
+    Employee -> System : asks to consult the tasks assigned to him between two dates.
+
+    activate System
+
+        System --> Employee : asks for the dates he wants to search
+    deactivate System
+        Employee -> System :write the desired dates
+
+        activate System
+
+            System --> Employee :show the list of tasks between these two dates
+        deactivate System
+
+
+
+@enduml

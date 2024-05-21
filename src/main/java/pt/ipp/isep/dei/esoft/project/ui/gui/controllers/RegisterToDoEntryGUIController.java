@@ -8,6 +8,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pt.ipp.isep.dei.esoft.project.domain.GreenSpace;
+import pt.ipp.isep.dei.esoft.project.dto.ToDoEntryDTO;
+import pt.ipp.isep.dei.esoft.project.repository.ENUM.UrgencyDegree;
 
 public class RegisterToDoEntryGUIController {
     @FXML
@@ -20,10 +22,19 @@ public class RegisterToDoEntryGUIController {
     TextField txtExpectedDuration;
     @FXML
     ComboBox<GreenSpace> cmbGreenSpaces;
+    @FXML
+    ComboBox<UrgencyDegree> cmbUrgencyDegree;
+
     private ToDoListGUIController toDoListGUIController;
+
+    @FXML
+    private void initialize(){
+        cmbUrgencyDegree.getItems().setAll(UrgencyDegree.values());
+    }
 
     public void registerToDoEntry(ActionEvent event) {
         System.out.println("yee");
+
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }

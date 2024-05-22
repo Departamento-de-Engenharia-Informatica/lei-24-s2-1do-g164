@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.dto;
 
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.GreenSpaceType;
+import pt.ipp.isep.dei.esoft.project.repository.enums.GreenSpaceType;
 
 public class GreenSpaceDTO {
     public String name;
@@ -17,6 +17,10 @@ public class GreenSpaceDTO {
 
     public String toString(){
         return name;
+    }
+
+    public String toStringLong() {
+        return String.format("Name: %s - Address: %s - Area: %d hectares - Type: %s", name, address, area, type.toString());
     }
 
 }

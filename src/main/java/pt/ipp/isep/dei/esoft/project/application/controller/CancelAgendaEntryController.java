@@ -4,7 +4,7 @@ import pt.ipp.isep.dei.esoft.project.domain.AgendaEntry;
 import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 import pt.ipp.isep.dei.esoft.project.mappers.AgendaEntryMapper;
 import pt.ipp.isep.dei.esoft.project.repository.AgendaEntryRepository;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.EntryStatus;
+import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatus;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 
 import java.util.ArrayList;

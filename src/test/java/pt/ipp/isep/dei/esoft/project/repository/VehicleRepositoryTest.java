@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.esoft.project.repository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.esoft.project.domain.Vehicle;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.VehicleType;
+import pt.ipp.isep.dei.esoft.project.repository.enums.VehicleType;
 
 import static org.junit.jupiter.api.Assertions.*;
 

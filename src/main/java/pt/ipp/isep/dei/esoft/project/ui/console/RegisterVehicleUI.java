@@ -4,7 +4,7 @@ import pt.ipp.isep.dei.esoft.project.application.controller.RegisterVehicleContr
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.VehicleCheckup;
 import pt.ipp.isep.dei.esoft.project.dto.CreateVehicleDTO;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.VehicleType;
+import pt.ipp.isep.dei.esoft.project.repository.enums.VehicleType;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.VfmUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.MenuItem;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;

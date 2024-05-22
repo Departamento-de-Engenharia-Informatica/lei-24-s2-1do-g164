@@ -12,10 +12,8 @@ import pt.ipp.isep.dei.esoft.project.application.controller.RegisterToDoEntryCon
 import pt.ipp.isep.dei.esoft.project.domain.GreenSpace;
 import pt.ipp.isep.dei.esoft.project.dto.GreenSpaceDTO;
 import pt.ipp.isep.dei.esoft.project.dto.ToDoEntryDTO;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.GreenSpaceType;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.UrgencyDegree;
-
-import java.util.ArrayList;
+import pt.ipp.isep.dei.esoft.project.repository.enums.GreenSpaceType;
+import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegree;
 
 public class RegisterToDoEntryGUIController {
     @FXML

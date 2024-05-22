@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.EntryStatus;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.UrgencyDegree;
+import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatus;
+import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegree;
 
 public class ToDoEntry {
     private String description;

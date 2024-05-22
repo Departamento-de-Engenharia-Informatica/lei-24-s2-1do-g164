@@ -4,11 +4,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="175.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.controllers.RegisterToDoEntryGUIController">
+<BorderPane prefHeight="175.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.controllers.RegisterGreenSpaceGUIController">
     <bottom>
         <FlowPane alignment="CENTER" hgap="20.0" prefWidth="400.0" BorderPane.alignment="CENTER">
             <children>
-                <Button fx:id="btnAddEntry" defaultButton="true" mnemonicParsing="false" onAction="#registerToDoEntry" text="Add Green Space" />
+                <Button fx:id="btnAddEntry" defaultButton="true" mnemonicParsing="false" onAction="#registerGreenSpace" text="Add Green Space" />
                 <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#closeWindow" text="Cancel" />
             </children>
             <padding>
@@ -30,13 +30,13 @@
             </rowConstraints>
             <children>
                 <Label text="Name" GridPane.halignment="CENTER" GridPane.rowIndex="0" />
-                <TextField fx:id="txtDescription" GridPane.columnIndex="1" />
+                <TextField fx:id="txtName" GridPane.columnIndex="1" />
                 <Label alignment="CENTER" text="Area (hectares)" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                 <Label text="Address" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                <TextField fx:id="txtExpectedDuration" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="txtAddress" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="60.0" layoutY="82.0" text="Green Space Type" textAlignment="RIGHT" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="2147483647" />
-                <ComboBox fx:id="cmbUrgencyDegree" layoutX="183.0" layoutY="77.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <ComboBox fx:id="cmbGreenSpaceTypes" layoutX="183.0" layoutY="77.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtArea" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             </children>
             <padding>
                 <Insets bottom="10.0" top="10.0" />

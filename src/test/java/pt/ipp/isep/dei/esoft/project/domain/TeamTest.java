@@ -2,9 +2,9 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.CollaboratorStatus;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.DocumentType;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.TeamStatus;
+import pt.ipp.isep.dei.esoft.project.repository.enums.CollaboratorStatus;
+import pt.ipp.isep.dei.esoft.project.repository.enums.DocumentType;
+import pt.ipp.isep.dei.esoft.project.repository.enums.TeamStatus;
 
 import java.util.ArrayList;
 import java.util.Arrays;

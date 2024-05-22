@@ -27,6 +27,6 @@ module pt.ipp.isep.dei.esoft.project.ui.gui {
     opens pt.ipp.isep.dei.esoft.project.ui.gui.controllers to javafx.fxml;
     exports pt.ipp.isep.dei.esoft.project.ui.gui;
     exports pt.ipp.isep.dei.esoft.project.ui.gui.controllers;
-    opens pt.ipp.isep.dei.esoft.project.repository.ENUM to javafx.fxml;
+    opens pt.ipp.isep.dei.esoft.project.repository.enums to javafx.fxml;
 
 }

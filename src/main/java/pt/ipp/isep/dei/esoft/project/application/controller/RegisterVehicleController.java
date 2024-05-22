@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.dto.CreateVehicleDTO;
 import pt.ipp.isep.dei.esoft.project.repository.*;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.VehicleType;
+import pt.ipp.isep.dei.esoft.project.repository.enums.VehicleType;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -3,10 +3,10 @@ package pt.ipp.isep.dei.esoft.project.ui;
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.*;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.CollaboratorStatus;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.DocumentType;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.GreenSpaceType;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.VehicleType;
+import pt.ipp.isep.dei.esoft.project.repository.enums.CollaboratorStatus;
+import pt.ipp.isep.dei.esoft.project.repository.enums.DocumentType;
+import pt.ipp.isep.dei.esoft.project.repository.enums.GreenSpaceType;
+import pt.ipp.isep.dei.esoft.project.repository.enums.VehicleType;
 
 import java.util.ArrayList;
 

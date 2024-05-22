@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.esoft.project.dto;
 
 import pt.ipp.isep.dei.esoft.project.domain.GreenSpace;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.EntryStatus;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.UrgencyDegree;
+import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatus;
+import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegree;
 
 public class ToDoEntryDTO {
     public String description;

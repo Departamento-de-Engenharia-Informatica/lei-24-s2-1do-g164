@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.VehicleType;
+import pt.ipp.isep.dei.esoft.project.repository.enums.VehicleType;
 
 import java.time.LocalDate;
 

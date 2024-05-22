@@ -6,7 +6,7 @@ import pt.ipp.isep.dei.esoft.project.domain.Team;
 import pt.ipp.isep.dei.esoft.project.repository.CollaboratorRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.repository.TeamRepository;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.TeamStatus;
+import pt.ipp.isep.dei.esoft.project.repository.enums.TeamStatus;
 
 import java.util.ArrayList;
 import java.util.Collections;

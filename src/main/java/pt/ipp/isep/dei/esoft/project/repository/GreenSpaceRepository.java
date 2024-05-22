@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.domain.GreenSpace;
-import pt.ipp.isep.dei.esoft.project.repository.ENUM.GreenSpaceType;
 
 import java.io.Serializable;
 import java.util.ArrayList;

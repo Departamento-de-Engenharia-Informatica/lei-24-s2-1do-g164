@@ -1,31 +1,19 @@
 @startuml
 skinparam classAttributeIconSize 0
-'skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 skinparam linetype polyline
-'skinparam linetype orto
-skinparam classAttributeIconSize 0
 
-class Vehicle {
-        brand
-        model
-        vehicleID
-        type
-        tare
-        grossWeight
-        currentKm
-        registerDate
-        acquisitionDate
-        checkupFrequency
+title Class Diagram
 
+class ToDoEntry{
+    greenSpace
+    description
+    urgencyDegree
+    status
+    expectedDuration
 }
 
-class VehicleCheckup {
-    currentKms
-    date
-
-}
 
 
 class SystemUser {
@@ -35,49 +23,60 @@ class SystemUser {
     phone
 }
 
-class VehicleRepository {
-    - ArrayList vehiclesList
-    + getVehiclesRepository()
-    + getVehicles()
-    + getVehiclesNeedingCheckupList()
+
+class ToDoEntryRepository {
+    - toDoEntryList
+    + getToDoEntryList()
+    + registerToDoEntry(toDoEntry)
+    - toDoEntryIsUnique(toDoEntry)
 }
 
 
 class Repositories {
-    - collaboratorRepository
-    - vehicleRepository
-    - skillRepository
-    - jobRepository
+    - greenSpaceRepository
+    - toDoEntryRepository
 
     - Repositories()
     + getInstance()
-    + getCollaboratorRepository()
-    + getVehicleRepository()
-    + getSkillRepository()
-    + getJobRepository()
+    + getGreenSpaceRepository()
+    + getToDoEntryRepository()
+}
 
+class ToDoEntryMapper {
+    + toDTO(toDoEntry)
+    + toEntity(toDoEntryDTO)
+    + toDtoList(toDoEntryList)
 }
 
 
-class ListVehivclesCheckupsController {
--VehicleRepository
-  + getVehiclesNeedingCheckupList()
+class RegisterToDoEntryController {
+    - ToDoEntryRepository toDoEntryRepository
+    - GreenSpaceRepository greenSpaceRepository
+    - ToDoEntryMapper toDoEntryMapper
+    - GreenSpaceMapper greenSpaceMapper
+    + registerToDoEntry(toDoEntryDTO)
+    + getToDoEntryDTOsList()
+    - getToDoEntryList()
+    - getToDoEntryRepository()
+    - getGreenSpaceRepository()
 
 }
 
+class ToDoListGUI {
 
+}
 
-ListVehiclesCheckupsUI .> ListVehivclesCheckupsController
-
-
-Repositories -->"1" VehicleRepository
+ToDoListGUI .> RegisterToDoEntryController
+RegisterToDoEntryController ..> Repositories : repositories
+Repositories --> "1" ToDoEntryRepository
 Repositories -> Repositories : instance
-ListVehivclesCheckupsController ..> Repositories : repositories
-Vehicle "*" <-- "1" VehicleRepository : has
+RegisterToDoEntryController .> ToDoEntryMapper
+RegisterToDoEntryController --> ToDoEntryRepository : uses
 
+SystemUser <|- GSM
 
-FM "1" - "*" Vehicle : registers >
-Vehicle "1   " -- "0..*                        " VehicleCheckup : registers >
-FM "           1 " - "0..*   " VehicleCheckup : requests >
-SystemUser <|- FM
+GSM "1" -- "1" ToDoListGUI
+ToDoEntry "*" <-- "1" ToDoEntryRepository : stores
+ToDoEntry "*" <-- "1" ToDoEntryMapper : creates
+
 @enduml

@@ -42,6 +42,7 @@ activate Employee
                 activate ToDoEntryDTO
                 deactivate ToDoEntryDTO
 
+
             end
 
             ToDoEntryMapper --> CTRL: toDoEntryDTOList
@@ -81,14 +82,15 @@ deactivate CTRL
         activate ToDoEntryDTO
         UI <-- "ToDoEntryDTO" : toDoEntryDTO
 deactivate "ToDoEntryDTO"
+
         UI -> CTRL : registerToDoEntry(toDoEntryDTO)
+        deactivate UI
         activate CTRL
-        deactivate
 
 
             CTRL -> "ToDoEntryMapper" : toEntity(toDoEntryDTO)
             activate "ToDoEntryMapper"
-            deactivate
+
 
                 "ToDoEntryMapper" -> ToDoEntry : ToDoEntry(toDoEntryDTO.description, toDoEntryDTO.expectedDuration, \ntoDoEntryDTO.greenSpace, toDoEntryDTO.urgencyDegree)
                 "ToDoEntryMapper" --> CTRL : toDoEntry
@@ -98,10 +100,12 @@ deactivate "ToDoEntryDTO"
             activate TaskRepo
 
                 TaskRepo --> CTRL : success
+
             deactivate TaskRepo
 
             CTRL --> UI : success
         deactivate CTRL
+        activate UI
 
         UI --> Employee : displays message of (in)success
     deactivate UI

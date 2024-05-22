@@ -8,24 +8,26 @@ autonumber
 'hide footbox
 actor "GSM" as GSM
 participant ":AgendaEntryUI" as UI
-participant ":CacncelAgendaEntryController" as CTRL
+participant ":CancelAgendaEntryController" as CTRL
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT
 participant "agendaEntryRepository:\nAgendaEntryRepository" as Repo
+participant "AgendaEntryMapper"
+participant "AgendaEntryDTO"
+participant "AgendaEntry"
 
 
 activate GSM
 
-        GSM -> UI : asks to list the vehicles that need the check-up.
+                GSM -> UI : asks to cancel an entry on the Agenda
 
-        activate UI
+                activate UI
 
-'            UI --> ADM : requests data (reference, description,  informal \n description, technical description, duration, cost)
-            'create CTRL
-            UI -> CTRL** : create
+                UI -> CTRL** : create
+                activate CTRL
+                CTRL-> "AgendaEntryMapper"** : create
 
-            UI -> CTRL : getVehicles()
-            activate CTRL
+
 
                 CTRL -> RepositorySingleton : getInstance()
                 activate RepositorySingleton
@@ -33,23 +35,75 @@ activate GSM
                     RepositorySingleton --> CTRL: repositories
                 deactivate RepositorySingleton
 
-                CTRL -> PLAT : getVehiclesRepository()
+
+                CTRL -> PLAT : getAgendaEntryRepository()
                 activate PLAT
 
-                    PLAT --> CTRL: VehiclesRepository()
+                    PLAT --> CTRL: AgendaEntryRepository()
                 deactivate PLAT
 
-                CTRL -> TaskCategoryRepository : getVehicles()
-                activate TaskCategoryRepository
+                UI-> CTRL: getAgendaEntryDTOList()
 
-                    TaskCategoryRepository --> CTRL : VehiclesList
-                deactivate TaskCategoryRepository
 
-                CTRL --> UI : VehiclesList
-            deactivate CTRL
+                CTRL -> Repo : getAgendaEntryList()
+                activate Repo
 
-            UI --> GSM : shows Vehicles list
-        deactivate UI
+                Repo --> CTRL: agendaEntryList
+                deactivate Repo
+
+
+
+
+                CTRL -> "AgendaEntryMapper" : toDtoList(agendaEntryList)
+                activate "AgendaEntryMapper"
+
+
+                 loop for each agendaEntry in agendaEntryList
+
+                 "AgendaEntryMapper" -> "AgendaEntryDTO" : agendaEntryDTO = toDTO(agendaEntry)
+
+                  activate "AgendaEntryDTO"
+                  end
+                deactivate "AgendaEntryDTO"
+
+                "AgendaEntryMapper" --> CTRL : agendaEntryDTOList
+                deactivate "AgendaEntryMapper"
+
+                 CTRL --> UI : agendaEntryDTOList
+                 deactivate CTRL
+
+                  UI --> GSM : shows the list of entries in the Agenda\n and asks to select one
+
+
+                 GSM-> UI: selects an entry
+
+                 UI-> CTRL: cancelsEntry(AgendaEntry)
+                activate CTRL
+                CTRL-> "AgendaEntryMapper":toEntity(agendaEntryDTO)
+                activate "AgendaEntryMapper"
+                 "AgendaEntryMapper" -> "AgendaEntry": agendaEntry = toEntity(agendaEntryDTO)
+                 activate "AgendaEntry"
+                 AgendaEntry-->"AgendaEntryMapper": agendaEntry
+
+
+
+
+                "AgendaEntryMapper"-->CTRL: agendaEntry
+                deactivate "AgendaEntry"
+                deactivate "AgendaEntryMapper"
+
+                CTRL-> "AgendaEntry": cancelsEntry(agendaEntry)
+
+
+                CTRL-> Repo: update(agendaEntry)
+                activate Repo
+                deactivate "AgendaEntry"
+              deactivate Repo
+
+                CTRL --> UI : success/insuccess
+                deactivate CTRL
+               UI --> GSM : shows (in)success message
+               deactivate UI
 
 
 deactivate GSM

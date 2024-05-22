@@ -29,7 +29,6 @@ public class RegisterToDoEntryGUIController {
     ComboBox<GreenSpace> cmbGreenSpaces;
     @FXML
     ComboBox<UrgencyDegree> cmbUrgencyDegree;
-
     private ToDoListGUIController toDoListGUIController;
     private RegisterToDoEntryController controller = new RegisterToDoEntryController();
 
@@ -41,7 +40,7 @@ public class RegisterToDoEntryGUIController {
     public void registerToDoEntry(ActionEvent event) {
         try {
             int expectedDuration = Integer.parseInt(txtExpectedDuration.getText());
-            ToDoEntryDTO dto = new ToDoEntryDTO(txtDescription.getText(), expectedDuration, new GreenSpace(GreenSpaceType.GARDEN, "aa", "merda23", 12), cmbUrgencyDegree.getValue());
+            ToDoEntryDTO dto = new ToDoEntryDTO(txtDescription.getText(), expectedDuration, new GreenSpace(GreenSpaceType.GARDEN, "aa", "mer23", 12), cmbUrgencyDegree.getValue());
             if(controller.registerToDoEntry(dto)) {
                 toDoListGUIController.update();
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

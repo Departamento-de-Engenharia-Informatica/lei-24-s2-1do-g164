@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="175.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.controllers.RegisterToDoEntryGUIController">
+<BorderPane prefHeight="175.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.controllers.RegisterToDoEntryGUIController">
     <bottom>
         <FlowPane alignment="CENTER" hgap="20.0" prefWidth="400.0" BorderPane.alignment="CENTER">
             <children>

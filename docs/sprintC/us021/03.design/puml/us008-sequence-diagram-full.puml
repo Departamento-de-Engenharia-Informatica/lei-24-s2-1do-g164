@@ -5,53 +5,107 @@ skinparam shadowing false
 
 autonumber
 
-'hide footbox
-actor "FM" as ADM
-participant ":ListVehivclesCheckupsUI" as UI
-participant ":ListVehivclesCheckupsController" as CTRL
+actor "GSM" as Employee
+participant "ToDoListUI" as UI
+participant ":RegisterToDoEntryController" as CTRL
 participant ":Repositories" as RepositorySingleton
-participant "repositories\n:Repositories" as PLAT
-participant "vehiclesRepository:\nVehiclesRepository" as TaskCategoryRepository
+participant "ToDoEntryRepository\n:toDoEntryRepository" as TaskRepo
+participant "ToDoEntryMapper"
+participant "ToDoEntryDTO"
 
+activate Employee
 
-activate ADM
+    Employee -> UI : asks to add a new entry to the "To Do List"\n to the Agenda
 
-        ADM -> UI : asks to list the vehicles that need the check-up.
+    activate UI
 
-        activate UI
+        UI -> CTRL : getGreenSpaceList()
+        activate CTRL
 
-'            UI --> ADM : requests data (reference, description,  informal \n description, technical description, duration, cost)
-            'create CTRL
-            UI -> CTRL** : create
+            CTRL -> RepositorySingleton : getInstance()
+            activate RepositorySingleton
 
-            UI -> CTRL : getVehicles()
+                RepositorySingleton --> CTRL: repositories
+            deactivate RepositorySingleton
+
+            CTRL -> TaskRepo : getList()
+            activate TaskRepo
+
+                TaskRepo --> CTRL : GreenSpaceList
+            deactivate TaskRepo
+
+            CTRL -> "ToDoEntryMapper" : getGreenSpaceDTOsList(toDoEntryList)
+            activate "ToDoEntryMapper"
+
+            loop for each toDoEntry in availableToDoEntryList
+                ToDoEntryMapper -> ToDoEntryDTO: toDoEntryDTO = toDTO(toDoEntry)
+                activate ToDoEntryDTO
+                deactivate ToDoEntryDTO
+
+            end
+
+            ToDoEntryMapper --> CTRL: toDoEntryDTOList
+            deactivate ToDoEntryMapper
+
+            CTRL --> UI : toDoEntryDTOsList
+        deactivate CTRL
+
+        UI --> Employee : displays the Green Spaces and asks to select one
+    deactivate UI
+
+    Employee -> UI : selects the desired Green Space
+    activate UI
+
+    UI -> CTRL : getUrgencyDegreeList()
             activate CTRL
 
-                CTRL -> RepositorySingleton : getInstance()
-                activate RepositorySingleton
+    CTRL -> UrgencyDegrees : getUrgencyDegreeList()
+    deactivate CTRL
+    activate UrgencyDegrees
+    UrgencyDegrees --> CTRL : UrgencyDegrees.values()
+deactivate UrgencyDegrees
+activate CTRL
+CTRL -> UI : UrgencyDegrees.values()
+deactivate CTRL
+        UI -> Employee : displays urgency degrees and asks to select one
+    deactivate UI
 
-                    RepositorySingleton --> CTRL: repositories
-                deactivate RepositorySingleton
+    Employee -> UI : selects the desired urgency degree
+    activate UI
+    UI -> Employee: asks to type description and expected duration
+    deactivate UI
+    Employee -> UI : types the requested data
+    activate UI
 
-                CTRL -> PLAT : getVehiclesRepository()
-                activate PLAT
-
-                    PLAT --> CTRL: VehiclesRepository()
-                deactivate PLAT
-
-                CTRL -> TaskCategoryRepository : getVehicles()
-                activate TaskCategoryRepository
-
-                    TaskCategoryRepository --> CTRL : VehiclesList
-                deactivate TaskCategoryRepository
-
-                CTRL --> UI : VehiclesList
-            deactivate CTRL
-
-            UI --> ADM : shows Vehicles list
-        deactivate UI
+        UI -> "ToDoEntryDTO" : create(description, expectedDuration,\n greenSpace, UrgencyDegree)
+        activate ToDoEntryDTO
+        UI <-- "ToDoEntryDTO" : toDoEntryDTO
+deactivate "ToDoEntryDTO"
+        UI -> CTRL : registerToDoEntry(toDoEntryDTO)
+        activate CTRL
+        deactivate
 
 
-deactivate ADM
+            CTRL -> "ToDoEntryMapper" : toEntity(toDoEntryDTO)
+            activate "ToDoEntryMapper"
+            deactivate
+
+                "ToDoEntryMapper" -> ToDoEntry : ToDoEntry(toDoEntryDTO.description, toDoEntryDTO.expectedDuration, \ntoDoEntryDTO.greenSpace, toDoEntryDTO.urgencyDegree)
+                "ToDoEntryMapper" --> CTRL : toDoEntry
+            deactivate "ToDoEntryMapper"
+
+            CTRL -> TaskRepo : registerToDoEntry(toDoEntry)
+            activate TaskRepo
+
+                TaskRepo --> CTRL : success
+            deactivate TaskRepo
+
+            CTRL --> UI : success
+        deactivate CTRL
+
+        UI --> Employee : displays message of (in)success
+    deactivate UI
+
+deactivate Employee
 
 @enduml

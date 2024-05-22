@@ -5,6 +5,7 @@ import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.*;
 import pt.ipp.isep.dei.esoft.project.repository.ENUM.CollaboratorStatus;
 import pt.ipp.isep.dei.esoft.project.repository.ENUM.DocumentType;
+import pt.ipp.isep.dei.esoft.project.repository.ENUM.GreenSpaceType;
 import pt.ipp.isep.dei.esoft.project.repository.ENUM.VehicleType;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class Bootstrap implements Runnable {
         addSkills();
         addCollaborators();
         addVehicles();
+        addGreenSpaces();
     }
 
     private void addOrganization() {
@@ -165,5 +167,12 @@ public class Bootstrap implements Runnable {
                 1215, 990, 90000, "12-12-2019", "10-10-2018", 40000);
         repo.registerVehicle("Ford", "Carrinha", "80-07-LX", VehicleType.HEAVY_VEHICLE,
                 9000, 8000, 200000, "25-12-2021", "25-12-2021", 300000);
+    }
+
+    public void addGreenSpaces(){
+        GreenSpaceRepository repo = Repositories.getInstance().getGreenSpaceRepository();
+        repo.registerGreenSpace(new GreenSpace(GreenSpaceType.LARGE_SIZED_PARK, "Cidade", "Av. Menéres", 123));
+        repo.registerGreenSpace(new GreenSpace(GreenSpaceType.MEDIUM_SIZED_PARK, "Covelo", "Av. Feliz 123", 50));
+        repo.registerGreenSpace(new GreenSpace(GreenSpaceType.GARDEN, "São Roque", "Rua Triste 22", 3));
     }
 }

@@ -9,10 +9,9 @@ import java.util.ArrayList;
 public class GreenSpaceRepository implements Serializable {
     private final ArrayList<GreenSpace> greenSpaceList = new ArrayList<>();
 
-    public boolean registerGreenSpace(GreenSpaceType type, String name, String address, int area){
-        GreenSpace greenSpace = new GreenSpace(type, name, address, area);
-        if(greenSpaceIsUnique(greenSpace)){
-            greenSpaceList.add(greenSpace);
+    public boolean registerGreenSpace(GreenSpace gs){
+        if(greenSpaceIsUnique(gs)){
+            greenSpaceList.add(gs);
             return true;
         }
         else{
@@ -27,5 +26,9 @@ public class GreenSpaceRepository implements Serializable {
             }
         }
         return true;
+    }
+
+    public ArrayList<GreenSpace> getGreenSpaceList() {
+        return greenSpaceList;
     }
 }

@@ -9,7 +9,7 @@ import pt.ipp.isep.dei.esoft.project.ui.Bootstrap;
 
 import java.io.File;
 
-public class ToDoListGUI extends Application {
+public class GreenSpacesGUI extends Application {
     public static void main(String[] args) {
         Bootstrap bootstrap = new Bootstrap();
         bootstrap.run();
@@ -17,7 +17,7 @@ public class ToDoListGUI extends Application {
     }
 
     public void start(Stage stage) throws Exception {
-        File file = new File("src\\main\\resources\\fxml\\todolistmenu.fxml");
+        File file = new File("src\\main\\resources\\fxml\\greenspacemenu.fxml");
         FXMLLoader loader = new FXMLLoader(file.toURL());
         Parent root = loader.load();
         stage.setScene(new Scene(root));

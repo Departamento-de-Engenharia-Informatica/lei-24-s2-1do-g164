@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterToDoEntryController;
 import pt.ipp.isep.dei.esoft.project.domain.GreenSpace;
+import pt.ipp.isep.dei.esoft.project.dto.GreenSpaceDTO;
 import pt.ipp.isep.dei.esoft.project.dto.ToDoEntryDTO;
 import pt.ipp.isep.dei.esoft.project.repository.ENUM.GreenSpaceType;
 import pt.ipp.isep.dei.esoft.project.repository.ENUM.UrgencyDegree;
@@ -26,7 +27,7 @@ public class RegisterToDoEntryGUIController {
     @FXML
     TextField txtExpectedDuration;
     @FXML
-    ComboBox<GreenSpace> cmbGreenSpaces;
+    ComboBox<GreenSpaceDTO> cmbGreenSpaces;
     @FXML
     ComboBox<UrgencyDegree> cmbUrgencyDegree;
     private ToDoListGUIController toDoListGUIController;
@@ -35,6 +36,7 @@ public class RegisterToDoEntryGUIController {
     @FXML
     private void initialize(){
         cmbUrgencyDegree.getItems().setAll(UrgencyDegree.values());
+        cmbGreenSpaces.getItems().setAll(controller.getGreenSpaceDTOsList());
     }
 
     public void registerToDoEntry(ActionEvent event) {
@@ -48,15 +50,15 @@ public class RegisterToDoEntryGUIController {
             }
             else{
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Failed!");
+                alert.setTitle("Register Error");
                 alert.setHeaderText("There already exists a task with this name!");
                 alert.show();
             }
         }
         catch (NumberFormatException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Failed!");
-            alert.setHeaderText("Invalid inputs");
+            alert.setTitle("Register Error");
+            alert.setHeaderText("Invalid inputs.");
             alert.show();
         }
     }

@@ -15,8 +15,8 @@ public class GreenSpaceDTO {
         this.type = type;
     }
 
-    public GreenSpaceDTO(String name) {
-        this.name = name;
+    public String toString(){
+        return name;
     }
 
 }

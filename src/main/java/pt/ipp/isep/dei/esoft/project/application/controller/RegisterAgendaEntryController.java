@@ -34,7 +34,7 @@ public class RegisterAgendaEntryController {
     }
 
     public ArrayList<ToDoEntryDTO> getToDoEntryDTOsList() {
-        return toDoEntryMapper.toDtoList(getAvailableToDoEntryList());
+        return toDoEntryMapper.toDTOList(getAvailableToDoEntryList());
     }
 
 

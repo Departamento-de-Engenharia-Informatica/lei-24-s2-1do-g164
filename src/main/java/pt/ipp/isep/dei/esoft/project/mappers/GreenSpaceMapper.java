@@ -1,8 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.mappers;
 
 import pt.ipp.isep.dei.esoft.project.domain.GreenSpace;
+import pt.ipp.isep.dei.esoft.project.domain.ToDoEntry;
 import pt.ipp.isep.dei.esoft.project.dto.GreenSpaceDTO;
 import pt.ipp.isep.dei.esoft.project.dto.ToDoEntryDTO;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GreenSpaceMapper {
 
@@ -11,6 +15,15 @@ public class GreenSpaceMapper {
     }
 
     public GreenSpaceDTO toDTO(GreenSpace greenSpace){
-        return new GreenSpaceDTO(greenSpace.getName());
+        return new GreenSpaceDTO(greenSpace.getName(), greenSpace.getAddress(), greenSpace.getArea(), greenSpace.getType());
     }
+
+    public ArrayList<GreenSpaceDTO> toDTOList(List<GreenSpace> greenSpaceList){
+        ArrayList<GreenSpaceDTO> greenSpaceDTOsList = new ArrayList<>();
+        for(GreenSpace greenSpace : greenSpaceList){
+            greenSpaceDTOsList.add(toDTO(greenSpace));
+        }
+        return greenSpaceDTOsList;
+    }
+
 }

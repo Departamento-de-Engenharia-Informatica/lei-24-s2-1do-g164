@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.esoft.project.ui.gui.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -22,6 +23,8 @@ public class ToDoListGUIController {
     Button btnAddEntry;
     @FXML
     Button btnAddAgendaEntry;
+    @FXML
+    Button btnCancel;
     @FXML
     TextArea txtToDoListText;
     @FXML
@@ -61,5 +64,10 @@ public class ToDoListGUIController {
 
     public void openRegisterAgendaWindow(ActionEvent event) {
         System.out.println("Agenda");
+    }
+
+    public void closeWindow(ActionEvent event){
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
     }
 }

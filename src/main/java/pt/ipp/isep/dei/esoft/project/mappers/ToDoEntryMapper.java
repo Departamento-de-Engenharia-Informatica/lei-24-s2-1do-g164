@@ -12,14 +12,14 @@ public class ToDoEntryMapper {
         return new ToDoEntry(toDoEntryDTO.description, toDoEntryDTO.expectedDuration, toDoEntryDTO.greenSpace, toDoEntryDTO.urgencyDegree);
     }
 
-    public ToDoEntryDTO toDto(ToDoEntry toDoEntry){
+    public ToDoEntryDTO toDTO(ToDoEntry toDoEntry){
         return new ToDoEntryDTO(toDoEntry.getDescription(), toDoEntry.getExpectedDuration(), toDoEntry.getGreenSpace(), toDoEntry.getUrgencyDegree(), toDoEntry.getEntryStatus());
     }
 
-    public ArrayList<ToDoEntryDTO> toDtoList(List<ToDoEntry> toDoEntryList){
+    public ArrayList<ToDoEntryDTO> toDTOList(List<ToDoEntry> toDoEntryList){
         ArrayList<ToDoEntryDTO> toDoEntryDTOList = new ArrayList<>();
         for(ToDoEntry toDoEntry : toDoEntryList){
-            toDoEntryDTOList.add(toDto(toDoEntry));
+            toDoEntryDTOList.add(toDTO(toDoEntry));
         }
         return toDoEntryDTOList;
     }

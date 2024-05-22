@@ -24,11 +24,14 @@ public class CancelAgendaEntryController {
     }
 
     public boolean cancelAgendaEntry(AgendaEntryDTO agendaEntryDTO) {
-        AgendaEntry agendaEntry = agendaEntryMapper.toEntity(agendaEntryDTO);
-        if (agendaEntry.getEntryStatus() == EntryStatus.CANCELLED) {
+
+        if (agendaEntryDTO.entryStatus == EntryStatus.CANCELLED) {
             return false;
         }
-        agendaEntry.cancelEntry();
+
+        agendaEntryDTO.entryStatus = EntryStatus.CANCELLED;
+        var agendaEntry = agendaEntryMapper.toEntity(agendaEntryDTO);
+
         agendaEntryRepository.update(agendaEntry);
         return true;
     }

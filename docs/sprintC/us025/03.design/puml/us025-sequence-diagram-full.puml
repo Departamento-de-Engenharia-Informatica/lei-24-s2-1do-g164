@@ -77,7 +77,7 @@ activate GSM
 
                  GSM-> UI: selects an entry
 
-                 UI-> CTRL: cancelsEntry(agendaEntryDTO)
+                 UI-> CTRL: cancelsEntry(AgendaEntry)
                 activate CTRL
                 CTRL-> "AgendaEntryMapper":toEntity(agendaEntryDTO)
                 activate "AgendaEntryMapper"

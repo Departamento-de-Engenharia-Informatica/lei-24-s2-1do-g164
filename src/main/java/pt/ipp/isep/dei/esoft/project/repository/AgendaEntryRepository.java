@@ -7,10 +7,10 @@ import java.util.ArrayList;
 
 public class AgendaEntryRepository {
 
-    private final ArrayList<AgendaEntry> agendaEntryList= new ArrayList<>();
+    private final ArrayList<AgendaEntry> agendaEntryList = new ArrayList<>();
 
     public boolean addEntryToAgenda(AgendaEntry ag) {
-        if(agendaEntryIsUnique(ag)){
+        if (agendaEntryIsUnique(ag)) {
             return agendaEntryList.add(ag);
         }
         return false;
@@ -32,10 +32,19 @@ public class AgendaEntryRepository {
     public boolean postponeEntryInAgenda(AgendaEntry entity) {
         return true;
     }
-    public void update(AgendaEntry updatedEntry) {
+
+    public void updateStatus(AgendaEntry updatedEntry) {
         for (AgendaEntry entry : agendaEntryList) {
             if (entry.getDescription().equals(updatedEntry.getDescription())) {
                 entry.setEntryStatus(updatedEntry.getEntryStatus());
+            }
+        }
+    }
+
+    public void updateTeam(AgendaEntry updatedEntry) {
+        for (AgendaEntry entry : agendaEntryList) {
+            if (entry.getDescription().equals(updatedEntry.getDescription())) {
+                entry.setAssociatedTeam(updatedEntry.getAssociatedTeam());
             }
         }
     }

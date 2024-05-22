@@ -21,7 +21,7 @@ public class TeamToAgendaEntryController {
     public boolean assignTeamToAgendaEntry(AgendaEntry agendaEntry, Team team) {
         try {
             agendaEntry.setAssociatedTeam(team);
-            agendaEntryRepository.update(agendaEntry);
+            agendaEntryRepository.updateTeam(agendaEntry);
 
             sendNotificationEmails(team);
 

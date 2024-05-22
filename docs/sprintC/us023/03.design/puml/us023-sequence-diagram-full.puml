@@ -1,0 +1,85 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "GSM" as GSM
+participant ":AgendaEntryUI" as ui
+participant ":TeamToAgendaEntryController " as ctrl
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as plat
+participant "agendaEntryRepository:\nAgendaEntryRepository" as agendaRepo
+participant mapper as mapper
+participant AgendaEntryDTO as AgendaEntryDTO
+participant "AgendaEntry" as agendaEntry
+participant "Team" as team
+participant "teamRepository:\nTeamRepository" as teamRepo
+
+
+
+activate GSM
+
+                GSM -> ui : asks to assign a team to an agenda entry
+
+                activate ui
+
+                ui -> ctrl** : create
+
+                activate ctrl
+
+                ctrl-> mapper** : create
+
+                ctrl -> RepositorySingleton : getInstance()
+                activate RepositorySingleton
+
+                    RepositorySingleton --> ctrl: repositories
+                deactivate RepositorySingleton
+
+                ctrl -> plat : getAgendaEntryRepository()
+                activate plat
+
+                    plat --> ctrl: AgendaEntryRepository()
+                deactivate plat
+
+                ui-> ctrl: getAgendaEntryDTOList()
+
+
+                ctrl -> agendaRepo : getAgendaEntryList()
+                activate agendaRepo
+
+                agendaRepo --> ctrl: agendaEntryList
+                deactivate agendaRepo
+
+                ctrl -> mapper : toDtoList(agendaEntryList)
+                activate mapper
+
+
+                 loop for each agendaEntry in agendaEntryList
+
+                 mapper -> AgendaEntryDTO : agendaEntryDTO = toDTO(agendaEntry)
+
+                  activate AgendaEntryDTO
+                  end
+                deactivate AgendaEntryDTO
+
+                mapper --> ctrl : agendaEntryDTOList
+                deactivate mapper
+
+                 ctrl --> ui : agendaEntryDTOList
+                 deactivate ctrl
+
+                 ui --> GSM: shows the list of entries in the Agenda\n and asks to select one
+
+                 GSM -> ui
+
+
+
+
+
+
+deactivate GSM
+
+@enduml

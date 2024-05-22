@@ -28,11 +28,9 @@ public class CancelAgendaEntryController {
         if (agendaEntryDTO.entryStatus == EntryStatus.CANCELLED) {
             return false;
         }
-
         agendaEntryDTO.entryStatus = EntryStatus.CANCELLED;
         var agendaEntry = agendaEntryMapper.toEntity(agendaEntryDTO);
-
-        agendaEntryRepository.update(agendaEntry);
+        agendaEntryRepository.updateStatus(agendaEntry);
         return true;
     }
 }

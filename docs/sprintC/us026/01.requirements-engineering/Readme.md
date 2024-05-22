@@ -1,4 +1,5 @@
-# US008 - List the vehicles needing the check-up
+# US008 - Assign one or more vehicles to an entry in the Agenda
+
 
 
 ## 1. Requirements Engineering
@@ -11,7 +12,7 @@ As a FM, I want to list the vehicles needing the check-up.
 
 **From the specifications document:**
 
-> The list must clearly identify the vehicles through: plate number, brand, model, current kms, checkup frequency, kms at last checkup, and the kms the vehicle must have at the next checkup.
+> ??
 
 **From the client clarifications:**
 
@@ -34,26 +35,28 @@ Yes, any can of vehicles can be assigned.
 
 ### 1.3. Acceptance Criteria
 
-* A vehicle must fulfill the criteria to need a checkup in order to appear on the list.
-
+* **AC1** - All vehicles that are not assigned to the same task in the same period must be available to be assigned to a calendar date 
+* **AC2** - The vehicle must be available within the period
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "US006 - Register a vehicle" as there must be at least one vehicle to list.
+* There is a dependency on US022 - new entry in the Agenda is essential so  that Agenda entries exist.
 
 ### 1.5 Input and Output Data
 
 **Input Data:**
 
-* n\a
+* entry in the Agenda
+* one/multiple vehicles
 
 **Output Data:**
 
-* List of vehicles that need the check-up.
+* List of collaborator's current skills
+* (In)Success of the operation
 
 ### 1.6. System Sequence Diagram (SSD)
 
-![System Sequence Diagram - Alternative One](svg/us008-system-sequence-diagram.svg)
+![System Sequence Diagram - Alternative One](svg/us026-system-sequence-diagram-System%20Sequence%20Diagram%20(SSD).svg)
 
 ### 1.7 Other Relevant Remarks
 
-* If a check-up has never been registered for a vehicle its kms at last check-up are 0. 
+* none

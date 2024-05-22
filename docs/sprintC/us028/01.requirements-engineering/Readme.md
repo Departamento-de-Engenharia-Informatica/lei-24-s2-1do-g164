@@ -5,13 +5,16 @@
 
 ### 1.1. User Story Description
 
-As a FM, I want to list the vehicles needing the check-up. 
+As a Collaborator, I wish to consult the tasks assigned to me
+between two dates.
 
 ### 1.2. Customer Specifications and Clarifications 
 
 **From the specifications document:**
 
-> The list must clearly identify the vehicles through: plate number, brand, model, current kms, checkup frequency, kms at last checkup, and the kms the vehicle must have at the next checkup.
+>??
+
+**From the client clarifications:**
 
 > **Question:**
 "As a Collaborator, I wish to consult the tasks assigned to me". That means that the collaborator can have more than one task assigned to them. To ensure that, the same task should be availvable for more than one team, am I right? The reason for that question is so that if a task is strictly related to only one team, a collaborator will end up being in two teams simultaneously, which cannot happen.

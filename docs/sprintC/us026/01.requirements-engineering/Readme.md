@@ -1,12 +1,11 @@
 # US008 - Assign one or more vehicles to an entry in the Agenda
 
-
-
 ## 1. Requirements Engineering
 
 ### 1.1. User Story Description
 
-As a FM, I want to list the vehicles needing the check-up. 
+- As a GSM, I want to assign one or more vehicles to an entry in
+  the Agenda.
 
 ### 1.2. Customer Specifications and Clarifications 
 
@@ -40,6 +39,7 @@ Yes, any can of vehicles can be assigned.
 ### 1.4. Found out Dependencies
 
 * There is a dependency on US022 - new entry in the Agenda is essential so  that Agenda entries exist.
+* There is a dependency on US006 - creat a new vehicle is essential so that they can be assign.
 
 ### 1.5 Input and Output Data
 

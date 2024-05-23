@@ -12,6 +12,8 @@ import pt.ipp.isep.dei.esoft.project.application.controller.RegisterGreenSpaceCo
 import pt.ipp.isep.dei.esoft.project.dto.GreenSpaceDTO;
 import pt.ipp.isep.dei.esoft.project.repository.enums.GreenSpaceType;
 
+import java.lang.reflect.InvocationTargetException;
+
 public class RegisterGreenSpaceGUIController {
     @FXML
     Button btnAddEntry;
@@ -38,6 +40,7 @@ public class RegisterGreenSpaceGUIController {
             int area = Integer.parseInt(txtArea.getText());
             GreenSpaceDTO dto = new GreenSpaceDTO(txtName.getText(), txtAddress.getText(), area, cmbGreenSpaceTypes.getValue());
             if(controller.registerGreenSpace(dto)) {
+                System.out.println(controller.getGreenSpaceList());
                 greenSpaceMenuGUIController.update();
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.close();
@@ -49,7 +52,7 @@ public class RegisterGreenSpaceGUIController {
                 alert.show();
             }
         }
-        catch (NumberFormatException e) {
+        catch (NumberFormatException | NullPointerException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Register Error");
             alert.setHeaderText("Invalid inputs.");

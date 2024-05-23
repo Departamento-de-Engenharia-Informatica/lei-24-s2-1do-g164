@@ -28,7 +28,7 @@ public class ToDoEntry {
     }
 
     public boolean equals(ToDoEntry td1) {
-        return this.description.equals(td1.getDescription());
+        return this.description.equals(td1.getDescription()) && this.greenSpace.equals(td1.getGreenSpace());
     }
 
 

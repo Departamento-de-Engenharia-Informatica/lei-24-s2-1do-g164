@@ -7,26 +7,24 @@ skinparam linetype polyline
 'skinparam linetype orto
 skinparam classAttributeIconSize 0
 
-class Vehicle {
-        brand
-        model
-        vehicleID
-        type
-        tare
-        grossWeight
-        currentKm
-        registerDate
-        acquisitionDate
-        checkupFrequency
-
-}
-
-class VehicleCheckup {
-    currentKms
+class AgendaEntry {
     date
-
+    associatedTeam
+    associatedVehicles
 }
 
+class AgendaEntryDTO {
+
+    date
+    greenSpace
+    description
+    expectedDuration
+    urgencyDegree
+    entryStatus
+    associatedTeam
+    associatedVehicles
+
+}
 
 class SystemUser {
     name
@@ -35,49 +33,57 @@ class SystemUser {
     phone
 }
 
-class VehicleRepository {
-    - ArrayList vehiclesList
-    + getVehiclesRepository()
-    + getVehicles()
-    + getVehiclesNeedingCheckupList()
+
+class AgendaEntryRepository {
+    - ArrayList<AgendaEntry> agendaEntries
+    + getAgendaEntryList()
+    + update(agendaEntry)
 }
 
-
 class Repositories {
-    - collaboratorRepository
-    - vehicleRepository
-    - skillRepository
-    - jobRepository
+    - agendaEntryRepository
+    -
 
     - Repositories()
     + getInstance()
-    + getCollaboratorRepository()
-    + getVehicleRepository()
-    + getSkillRepository()
-    + getJobRepository()
+    + getAgendaEntryRepository()
 
 }
 
-
-class ListVehivclesCheckupsController {
--VehicleRepository
-  + getVehiclesNeedingCheckupList()
-
+class AgendaEntryMapper {
+    + toDTO(agendaEntry)
+    + toEntity(agendaEntryDTO, newDate)
+    + toEntity(agendaEntryDTO)
 }
 
 
+class TeamToAgendaEntryController {
+    - AgendaEntryRepository agendaEntryRepository
+    - AgendaEntryMapper agendaEntryMapper
+    - Agenda
 
-ListVehiclesCheckupsUI .> ListVehivclesCheckupsController
+    + getAgendaEntryDTOList()
+    +cancelsEntry(AgendaEntry)
+}
 
+class AgendaUI {
 
-Repositories -->"1" VehicleRepository
+}
+
+AgendaUI .> TeamToAgendaEntryController
+TeamToAgendaEntryController ..> Repositories : repositories
+Repositories --> "1" AgendaEntryRepository
 Repositories -> Repositories : instance
-ListVehivclesCheckupsController ..> Repositories : repositories
-Vehicle "*" <-- "1" VehicleRepository : has
+TeamToAgendaEntryController .> AgendaEntryMapper
+TeamToAgendaEntryController --> AgendaEntryRepository : uses
+
+SystemUser <|- GSM
+ToDoEntry <|-- AgendaEntry
+
+GSM "1" -- "1" AgendaUI
+AgendaEntry "*" <-- "1" AgendaEntryRepository : stores
+AgendaEntryDTO "*" <-- "1" AgendaEntryMapper : creates
 
 
-FM "1" - "*" Vehicle : registers >
-Vehicle "1   " -- "0..*                        " VehicleCheckup : registers >
-FM "           1 " - "0..*   " VehicleCheckup : requests >
-SystemUser <|- FM
 @enduml
+

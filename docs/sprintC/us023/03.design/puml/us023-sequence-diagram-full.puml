@@ -12,11 +12,12 @@ participant ":TeamToAgendaEntryController " as ctrl
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as plat
 participant "agendaEntryRepository:\nAgendaEntryRepository" as agendaRepo
-participant Mapper as mapper
+participant "AgendaEntryMapper" as agendaMapper
 participant AgendaEntryDTO as AgendaEntryDTO
 participant "AgendaEntry" as agendaEntry
 participant "Team" as team
 participant "teamRepository:\nTeamRepository" as teamRepo
+participant "TeamMapper"
 participant "TeamDTO" as TeamDTO
 participant "ApllicationSession" as app
 
@@ -31,7 +32,7 @@ activate GSM
 
                 activate ctrl
 
-                ctrl-> mapper** : create
+                ctrl-> agendaMapper** : create
 
                 ctrl -> RepositorySingleton : getInstance()
                 activate RepositorySingleton
@@ -61,20 +62,20 @@ activate GSM
                 agendaRepo --> ctrl: agendaEntryList
                 deactivate agendaRepo
 
-                ctrl -> mapper : toDtoList(agendaEntryList)
-                activate mapper
+                ctrl -> agendaMapper : toDtoList(agendaEntryList)
+                activate agendaMapper
 
 
                  loop for each agendaEntry in agendaEntryList
 
-                 mapper -> AgendaEntryDTO : agendaEntryDTO = toDTO(agendaEntry)
+                 agendaMapper -> AgendaEntryDTO : agendaEntryDTO = toDTO(agendaEntry)
 
                   activate AgendaEntryDTO
                   end
                 deactivate AgendaEntryDTO
 
-                mapper --> ctrl : agendaEntryDTOList
-                deactivate mapper
+                agendaMapper --> ctrl : agendaEntryDTOList
+                deactivate agendaMapper
 
                 ui -> ctrl :  getTeamDTOList()
 
@@ -84,18 +85,19 @@ activate GSM
                 teamRepo --> ctrl: teamList
                 deactivate teamRepo
 
-                ctrl -> mapper:  toDtoList(teamList)
-                activate mapper
-                loop [for each Team in TeamList]
+                ctrl -> "TeamMapper":  toDtoList(teamList)
+                activate "TeamMapper"
 
-                mapper -> TeamDTO: teamDTO = toDTO(team)
+                loop  [for each Team in TeamList]
+
+                "TeamMapper" -> TeamDTO: teamDTO = toDTO(team)
                 activate TeamDTO
 
                 end
                 deactivate TeamDTO
-                mapper --> ctrl: TeamDTOList
+                "TeamMapper" --> ctrl: TeamDTOList
 
-                 deactivate mapper
+                 deactivate "TeamMapper"
                  ctrl --> ui : agendaEntryDTOList
                  ctrl --> ui: teamDTOList
 
@@ -105,52 +107,48 @@ activate GSM
 
                  ui->ctrl: assignTeamToAgendaEntry(agendaEntryDTO)
 
-                 ctrl -> mapper : toEntity(teamDTO)
-                 activate mapper
+                 ctrl -> agendaMapper : toEntity(teamDTO)
+                 activate agendaMapper
 
-                 mapper-> team: team = toEntity(teamDTO)
+                 agendaMapper-> team: team = toEntity(teamDTO)
                  activate team
-                 team--> mapper: team
+                 team--> agendaMapper: team
                  deactivate team
 
-                 mapper --> ctrl: team
+                 agendaMapper --> ctrl: team
 
 
-                 ctrl -> mapper : toEntity(agendaEntryDTO)
+                 ctrl -> agendaMapper : toEntity(agendaEntryDTO)
 
 
-                 mapper-> agendaEntry: agendaEntry = toEntity(agendaEntryDTO)
+                 agendaMapper-> agendaEntry: agendaEntry = toEntity(agendaEntryDTO)
                  activate agendaEntry
-                 agendaEntry--> mapper: agendaEntry
-                  mapper --> ctrl: agendaEntry
+                 agendaEntry--> agendaMapper: agendaEntry
+                  agendaMapper --> ctrl: agendaEntry
 
-                 deactivate mapper
+                 deactivate agendaMapper
 
 
                  deactivate agendaEntry
 
-                ctrl->ctrl: assignTeamToAgendaEntry(agendaEntry)
-
-
-
-                 ctrl -> agendaRepo: updateTeam(agendaEntry)
+                 ctrl -> agendaRepo: updateTeam(agendaEntry,team)
                  activate agendaRepo
 
                  agendaRepo--> ctrl: team
 
 
-                 ctrl-> agendaEntry: setAssociatedTeam(team)
-                 activate agendaEntry
-                agendaRepo -> agendaEntry: setAssociatedTeam(agendaEntry.getAssociatedTeam())
-
+                agendaRepo -> agendaEntry: setAssociatedTeam(team)
+                activate agendaEntry
 
                 ctrl->ctrl: sendNotificationEmails(team)
+                deactivate agendaEntry
                     note left: gets the collaborators for each team and\ngets the email of each collaborator
                 ctrl-> app :  sendEmail(email, body)
 
                 activate app
 
                 ctrl --> ui: success/insuccess
+                deactivate app
                 ui--> GSM: shows (in))success message
 
 

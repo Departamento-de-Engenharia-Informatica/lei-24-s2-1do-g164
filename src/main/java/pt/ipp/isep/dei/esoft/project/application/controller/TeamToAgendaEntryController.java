@@ -32,8 +32,7 @@ public class TeamToAgendaEntryController {
 
     public boolean assignTeamToAgendaEntry(AgendaEntry agendaEntry, Team team) {
         try {
-            agendaEntry.setAssociatedTeam(team);
-            agendaEntryRepository.updateTeam(agendaEntry);
+            agendaEntryRepository.updateTeam(agendaEntry, team);
             sendNotificationEmails(team);
             return true;
         } catch (Exception e) {
@@ -46,7 +45,7 @@ public class TeamToAgendaEntryController {
             var collaborators = team.getCollaborators();
             for (Collaborator collaborator : collaborators) {
                 String email = collaborator.getEmail();
-                String body = "Hello " + collaborator.getName() + ",\n\nYou have been assigned to a new agenda entry!";
+                String body = "Hello " + collaborator.getName() + ",\nYou have been assigned to a new agenda entry!";
                 emailService.sendEmail(email, body);
             }
         }

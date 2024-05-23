@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.esoft.project.repository;
 
 
 import pt.ipp.isep.dei.esoft.project.domain.AgendaEntry;
+import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatus;
 
 import java.util.ArrayList;
 
@@ -30,7 +31,14 @@ public class AgendaEntryRepository {
     }
 
     public boolean postponeEntryInAgenda(AgendaEntry entity) {
-        return true;
+        for(AgendaEntry ag : agendaEntryList){
+            if (ag.equals(entity)){
+                ag.setEntryStatus(EntryStatus.POSTPONED);
+                ag.setDate(entity.getDate());
+                return true;
+            }
+        }
+        return false;
     }
 
     public void updateStatus(AgendaEntry updatedEntry) {

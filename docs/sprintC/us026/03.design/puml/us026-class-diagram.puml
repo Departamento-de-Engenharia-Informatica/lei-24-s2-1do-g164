@@ -14,10 +14,6 @@ class SystemUser {
     phone
 }
 
-class CollaboratorRepository {
-    - ArrayList collaboratorList
-
-}
 
 
 class Repositories {
@@ -45,17 +41,19 @@ class SystemUser {
 class AssignVehicleController{
 -VehicleRepository
 +getEntryRepository()
-+getVehicleRepositoryRepository()
++getVehicleRepository()
 +getEntryList()
 +getVehicleList()
 
 }
 
-class AssignVehiclessUI{
 
+class EntryRepository{
+    - ArrayList EntryList
+    + getEntryRepository()
+    + getEntry()
+    + registerEntry()
 }
-
-
 
 class VehicleRepository {
     - ArrayList VehicleList
@@ -76,7 +74,6 @@ class Vehicle {
       idDocumentNumber
       status
 }
-Repositories -->"1" CollaboratorRepository
 Repositories -->"1" VehicleRepository
 Vehicle "*" <-- "1" VehicleRepository : has
 Entry "*" <-- "1" EntryRepository : has

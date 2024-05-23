@@ -104,6 +104,7 @@ SystemUser <|- GSM
 ToDoEntry <|-- AgendaEntry
 
 GSM "1" -- "1" AgendaUI
+AgendaEntryMapper "1"-> "*" AgendaEntry : creates
 AgendaEntry "*" <-- "1" AgendaEntryRepository : stores
 AgendaEntryDTO "*" <-- "1" AgendaEntryMapper : creates
 ToDoEntryDTO "*" <-- "1" ToDoEntryMapper : creates

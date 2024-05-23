@@ -69,12 +69,11 @@ activate Employee
         UI -> CTRL : updateAgendaEntryDate(agendaEntryDTO)
         activate CTRL
 
-            CTRL -> "AgendaEntryMapper" : updateAgendaEntry(agendaEntryDTO)
+            CTRL -> "AgendaEntryMapper" : toEntity(agendaEntryDTO)
             activate "AgendaEntryMapper"
 
-                "AgendaEntryMapper" -> "AgendaEntryMapper" : agendaEntry = toEntity(agendaEntryDTO)
-                activate "AgendaEntryMapper"
-                deactivate
+                AgendaEntryMapper -> AgendaEntry : AgendaEntry(dto.description, dto.greenspace, dto.urgencyDegree\n, dto.status, dto.expectedDuration, dto.date, dto.associatedTeam\n, dto.associatedVehicles)
+
             "AgendaEntryMapper" --> CTRL : agendaEntry
             deactivate "AgendaEntryMapper"
 

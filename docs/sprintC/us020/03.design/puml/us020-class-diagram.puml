@@ -1,55 +1,19 @@
 @startuml
-'skinparam monochrome true
+skinparam classAttributeIconSize 0
 skinparam packageStyle rectangle
 skinparam shadowing false
 skinparam linetype polyline
-'skinparam linetype orto
 
-skinparam classAttributeIconSize 0
+title Class Diagram
 
-'left to right direction
-
-class GreenSpace {
-    - greenSpaceType
-    - name
-    - address
-    - area
-    + equals()
+class GreenSpace{
+    -name
+    -address
+    -area
+    -type
 }
 
-class Repositories {
 
-
-    - Repositories()
-    + getInstance() : Repositories
-    + getCollaboratorRepository()
-    + getVehicleRepository()
-    + getSkillRepository()
-    + getJobRepository()
-    + getAuthenticationRepository()
-    + getGreenSpaceRepository()
-    + getTeamRepository()
-    + getAgendaEntryRepository()
-    + getToDoListEntryRepository()
-
-}
-
-class GreenSpaceRepository {
-    + getGreenSpaceList()
-    + registerGreenSpace(name, address, area)
-    + size()
-    - isUnique(greenSpace)
-}
-
-class RegisterGreenSpaceController {
-
-    + RegisterGreenSpaceController()
-    + registerGreenSpace(name, area)
-    - getGreenSpaceRepository()
-    - getGreenSpaceTypeList()
-}
-
-class GSM {}
 
 class SystemUser {
     name
@@ -59,15 +23,65 @@ class SystemUser {
 }
 
 
-SystemUser <|-- GSM
-GSM  <-- GreenSpace : registered by
-RegisterGreenSpaceController ..> Repositories : repositories
-RegisterGreenSpaceController ..> GreenSpaceRepository : greenSpaceRepository
-RegisterGreenSpaceController ..> GreenSpace : greenSpace
+class GreenSpaceRepository {
+    - greenSpaceList
+    + getGreenSpaceList()
+    + registerGreenSpace(greenSpace)
+    - greenSpaceIsUnique(greenSpace)
+}
 
-RegisterGreenSpaceUI .> RegisterGreenSpaceController
-Repositories -->"1" GreenSpaceRepository
+
+class Repositories {
+    - greenSpaceRepository
+
+    - Repositories()
+    + getInstance()
+    + getGreenSpaceRepository()
+}
+
+class GreenSpaceMapper {
+    + toDTO(greenSpace)
+    + toEntity(greenSpaceDTO)
+    + toDtoList(greenSpaceList)
+}
+
+
+class RegisterGreenSpaceController {
+    -greenSpaceRepository
+    -greenSpaceMapper
+    + registerGreenSpace(greenSpaceDTO)
+    + getGreenSpaceTypeList()
+    + getGreenSpaceDTOsList()
+    - getGreenSpaceList()
+    - getGreenSpaceRepository()
+
+}
+
+class RegisterGreenSpaceGUI {
+
+}
+
+class GreenSpaceDTO{
+-name
+-address
+-area
+-type
++toString()
++toStringLong()
+}
+
+RegisterGreenSpaceGUI .> RegisterGreenSpaceController
+RegisterGreenSpaceGUI "1" - "*" GreenSpaceDTO : creates
+RegisterGreenSpaceController ..> Repositories : repositories
+Repositories --> "1" GreenSpaceRepository
 Repositories -> Repositories : instance
-GreenSpace "*" <-- GreenSpaceRepository
+RegisterGreenSpaceController .> GreenSpaceMapper
+RegisterGreenSpaceController --> GreenSpaceRepository : uses
+
+SystemUser <|- GSM
+
+GSM "1" -- "1" RegisterGreenSpaceGUI
+GreenSpace "*" <-- "1" GreenSpaceRepository : stores
+GreenSpace "*" <-- "1" GreenSpaceMapper : creates
 
 @enduml

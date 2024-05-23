@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.esoft.project.repository;
 
 
 import pt.ipp.isep.dei.esoft.project.domain.AgendaEntry;
+import pt.ipp.isep.dei.esoft.project.domain.Team;
 
 import java.util.ArrayList;
 
@@ -41,10 +42,10 @@ public class AgendaEntryRepository {
         }
     }
 
-    public void updateTeam(AgendaEntry updatedEntry) {
+    public void updateTeam(AgendaEntry agendaEntry) {
         for (AgendaEntry entry : agendaEntryList) {
-            if (entry.getDescription().equals(updatedEntry.getDescription())) {
-                entry.setAssociatedTeam(updatedEntry.getAssociatedTeam());
+            if (entry.getDescription().equals(agendaEntry.getDescription())) {
+                entry.setAssociatedTeam(agendaEntry.getAssociatedTeam());
             }
         }
     }

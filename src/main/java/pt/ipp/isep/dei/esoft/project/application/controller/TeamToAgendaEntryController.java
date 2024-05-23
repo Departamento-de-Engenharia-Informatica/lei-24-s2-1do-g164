@@ -1,21 +1,33 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
+import pt.ipp.isep.dei.esoft.project.application.session.ApplicationSession;
 import pt.ipp.isep.dei.esoft.project.domain.AgendaEntry;
 import pt.ipp.isep.dei.esoft.project.domain.Collaborator;
 import pt.ipp.isep.dei.esoft.project.domain.Team;
-import pt.ipp.isep.dei.esoft.project.application.session.emailService.ConfigureEmail;
+import pt.ipp.isep.dei.esoft.project.application.session.ApplicationSession;
 import pt.ipp.isep.dei.esoft.project.application.session.emailService.EmailService;
 import pt.ipp.isep.dei.esoft.project.repository.AgendaEntryRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
+import pt.ipp.isep.dei.esoft.project.repository.TeamRepository;
+
+import java.util.ArrayList;
 
 public class TeamToAgendaEntryController {
 
     private AgendaEntryRepository agendaEntryRepository;
     private EmailService emailService;
 
+    private TeamRepository teamRepository;
+
+
 
     public TeamToAgendaEntryController() {
         this.agendaEntryRepository= Repositories.getInstance().getAgendaEntryRepository();
-        this.emailService = ConfigureEmail.createEmailService();
+        this.emailService = ApplicationSession.createEmailService();
+        this.teamRepository= Repositories.getInstance().getTeamRepository();
+    }
+
+    private ArrayList<Team> ShowAvailableTeams() {
+        return teamRepository.getTeams();
     }
 
     public boolean assignTeamToAgendaEntry(AgendaEntry agendaEntry, Team team) {
@@ -38,6 +50,5 @@ public class TeamToAgendaEntryController {
                 emailService.sendEmail(email, body);
             }
         }
-
     }
 

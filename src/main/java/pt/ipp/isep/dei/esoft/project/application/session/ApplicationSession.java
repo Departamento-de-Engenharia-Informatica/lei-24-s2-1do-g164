@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.application.session;
 
+import pt.ipp.isep.dei.esoft.project.application.session.emailService.EmailService;
 import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 
@@ -15,6 +16,7 @@ public class ApplicationSession {
     private final AuthenticationRepository authenticationRepository;
     private static final String CONFIGURATION_FILENAME = "src/main/resources/config.properties";
     private static final String COMPANY_DESIGNATION = "Company.Designation";
+    private EmailService emailService;
 
     /**
      * Initializes a new instance of ApplicationSession.
@@ -43,10 +45,8 @@ public class ApplicationSession {
     private Properties getProperties() {
         Properties props = new Properties();
 
-        // Add default properties and values
         props.setProperty(COMPANY_DESIGNATION, "MusgoSublime");
 
-        // Read configured values
         try {
             InputStream in = new FileInputStream(CONFIGURATION_FILENAME);
             props.load(in);
@@ -72,4 +72,23 @@ public class ApplicationSession {
         }
         return singleton;
     }
+
+    public static EmailService createEmailService() {
+        try {
+            Properties props = new Properties();
+            FileInputStream in=new FileInputStream(CONFIGURATION_FILENAME);
+            props.load(in);
+            in.close();
+
+            String emailServiceClassName = props.getProperty("email.service");
+
+            Class<?> emailServiceClass = Class.forName(emailServiceClassName);
+            return (EmailService) emailServiceClass.getDeclaredConstructor().newInstance();
+        } catch (Exception ex) {
+            throw new RuntimeException("Failed to load email service", ex);
+        }
+    }
+
+
+
 }

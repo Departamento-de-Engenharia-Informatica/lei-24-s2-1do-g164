@@ -12,12 +12,13 @@ participant ":TeamToAgendaEntryController " as ctrl
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as plat
 participant "agendaEntryRepository:\nAgendaEntryRepository" as agendaRepo
-participant mapper as mapper
+participant Mapper as mapper
 participant AgendaEntryDTO as AgendaEntryDTO
 participant "AgendaEntry" as agendaEntry
 participant "Team" as team
 participant "teamRepository:\nTeamRepository" as teamRepo
-
+participant "TeamDTO" as TeamDTO
+participant "ApllicationSession" as app
 
 
 activate GSM
@@ -44,6 +45,13 @@ activate GSM
                     plat --> ctrl: AgendaEntryRepository()
                 deactivate plat
 
+                ctrl-> plat: getTeamrepository
+                activate plat
+
+                plat--> ctrl: teamRepository
+
+                deactivate plat
+
                 ui-> ctrl: getAgendaEntryDTOList()
 
 
@@ -68,14 +76,82 @@ activate GSM
                 mapper --> ctrl : agendaEntryDTOList
                 deactivate mapper
 
+                ui -> ctrl :  getTeamDTOList()
+
+                ctrl -> teamRepo : showAvailableTeams()
+                activate teamRepo
+
+                teamRepo --> ctrl: teamList
+                deactivate teamRepo
+
+                ctrl -> mapper:  toDtoList(teamList)
+                activate mapper
+                loop [for each Team in TeamList]
+
+                mapper -> TeamDTO: teamDTO = toDTO(team)
+                activate TeamDTO
+
+                end
+                deactivate TeamDTO
+                mapper --> ctrl: TeamDTOList
+
+                 deactivate mapper
                  ctrl --> ui : agendaEntryDTOList
-                 deactivate ctrl
+                 ctrl --> ui: teamDTOList
 
-                 ui --> GSM: shows the list of entries in the Agenda\n and asks to select one
+                 ui --> GSM: shows the list of entries in the agenda\n and the list of  teams and asks to select one of each
 
-                 GSM -> ui
+                 GSM -> ui: selects entry and team
+
+                 ui->ctrl: assignTeamToAgendaEntry(agendaEntryDTO)
+
+                 ctrl -> mapper : toEntity(teamDTO)
+                 activate mapper
+
+                 mapper-> team: team = toEntity(teamDTO)
+                 activate team
+                 team--> mapper: team
+                 deactivate team
+
+                 mapper --> ctrl: team
 
 
+                 ctrl -> mapper : toEntity(agendaEntryDTO)
+
+
+                 mapper-> agendaEntry: agendaEntry = toEntity(agendaEntryDTO)
+                 activate agendaEntry
+                 agendaEntry--> mapper: agendaEntry
+                  mapper --> ctrl: agendaEntry
+
+                 deactivate mapper
+
+
+                 deactivate agendaEntry
+
+                ctrl->ctrl: assignTeamToAgendaEntry(agendaEntry)
+
+
+
+                 ctrl -> agendaRepo: updateTeam(agendaEntry)
+                 activate agendaRepo
+
+                 agendaRepo--> ctrl: team
+
+
+                 ctrl-> agendaEntry: setAssociatedTeam(team)
+                 activate agendaEntry
+                agendaRepo -> agendaEntry: setAssociatedTeam(agendaEntry.getAssociatedTeam())
+
+
+                ctrl->ctrl: sendNotificationEmails(team)
+                    note left: gets the collaborators for each team and\ngets the email of each collaborator
+                ctrl-> app :  sendEmail(email, body)
+
+                activate app
+
+                ctrl --> ui: success/insuccess
+                ui--> GSM: shows (in))success message
 
 
 

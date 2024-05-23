@@ -11,6 +11,10 @@ import java.util.ArrayList;
 public class TeamRepository implements Serializable {
     private ArrayList<Team> teams = new ArrayList<>();
 
+    public ArrayList<Team> getTeams() {
+        return teams;
+    }
+
     /**
      * Registers a team in the repository.
      *

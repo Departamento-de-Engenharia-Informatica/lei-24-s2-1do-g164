@@ -4,20 +4,21 @@
 
 ### 3.1. Rationale
 
-| Interaction ID                                             | Question: Which class is responsible for...            | Answer                       | Justification (with patterns)                                                                                                   |
-|:-----------------------------------------------------------|:-------------------------------------------------------|:-----------------------------|:--------------------------------------------------------------------------------------------------------------------------------|
-| Step 1 (Asks to register a new green space)  		            | 	... interacting with the actor?                       | RegisterGreenSpaceUI         | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model.                   |
-| 			  		                                                    | 	... coordinating the US?                              | RegisterGreenSpaceController | Controller                                                                                                                      |
-| Step 2 (Shows green space types and asks to select one) 		 | 	...getting the green space type list?						           | GreenSpaceTypeRepository     | IE: has the data                                                                                                                |
-| 		                                                         | 	...displaying the list and form for input data?						 | RegisterGreenSpaceUI         | Pure Fabrication                                                                                                                |
-| Step 3 (Selects green space type) 		                       | 	...storing the selected data temporarily?             | RegisterGreenSpaceUI         | Pure Fabrication                                                                                                                | |  
-| Step 6 (requests data (name, address, area))		             | 	...displaying the form for input data?						          | RegisterGreenSpaceUI         | Pure Fabrication                                                                                                                |
-| Step 7 (Types data)                                        | 	...validating data locally?                           | RegisterGreenSpaceUI         | IE: knows the inputted data                                                                                                     |
-| 		                                                         | 	...instantiating a new green space?                   | GreenSpaceRepository         | Pure Fabrication: the GreenSpaceRepository is the only class that follows the rules to be a creator class (contains GreenSpace) |
-|                                                            | ...saving inputted data?                               | GreenSpace                   | IE: the created object has its own data.                                                                                        |
-|                                                            | ...validate the data globally?                         | GreenSpaceRepository         | IE: knows all the vehicles                                                                                                      |
-|                                                            | ...registering the collaborator?                       | GreenSpaceRepository         | IE: contains all the registered collaborators                                                                                   |
-| Step 8 (Displays status of operation)		                    | 	...informing operation success?                       | RegisterGreenSpaceUI         | Pure Fabrication                                                                                                                |
+| Interaction ID                                          | Question: Which class is responsible for...   | Answer                       | Justification (with patterns)                                                                                 |
+|:--------------------------------------------------------|:----------------------------------------------|:-----------------------------|:--------------------------------------------------------------------------------------------------------------|
+| Step 1 (asks to register a new Green Space)             | ...interacting with the actor?                | GreenSpaceUI                 | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. |
+|                                                         | ...coordinating the US?                       | RegisterGreenSpaceController | Controller                                                                                                    |
+| Step 2 (shows green space types and asks to select one) | ...retrieving the Green Space types?          | GreenSpaceType (enum)        | IE: has the data                                                                                              |
+|                                                         | ...displaying Green Space types list?         | GreenSpaceUI                 | Pure Fabrication |
+| Step 3 (selects green space type)                       | ...storing the data temporarily?              | GreenSpaceUI                 | Pure Fabrication |
+| Step 4 (requests data(name, address, area, type))       | ...displaying the input form?                 | GreenSpaceUI                 | Pure Fabrication |
+| Step 5 (types the data)                                 | ...validating data locally?                   | GreenSpaceUI                 | IE: has the data                                                                                              |
+|                                                         | ...creating the Green Space DTO?              | GreenSpaceUI                 | IE: has the data                                                                                              |
+|                                                         | ...transforming DTO to entity?                | GreenSpaceMapper             | Pure fabrication: handles transformation logic                                                                |
+|                                                         | ...saving inputted data?                      | GreenSpace                   | IE: The created object has its own data                                                                       |
+|                                                         | ...validating the data globally?              | GreenSpaceRepository         | IE: has all GreenSpaces                                                                                       |
+|                                                         | ...registering the GreenSpace?                | GreenSpaceRepository         | IE: has the data                                                                                              |
+| Step 6 (displays message of (in)success)                | ...displaying the result of the operation?    | GreenSpaceUI                 | Pure Fabrication                                                                                              |
 
 ### Systematization ##
 
@@ -27,11 +28,11 @@ According to the taken rationale, the conceptual classes promoted to software cl
 
 Other software classes (i.e. Pure Fabrication) identified:
 
-* RegisterGreenSpaceUI
+* GreenSpaceUI
 * RegisterGreenSpaceController
 * GreenSpaceRepository
-* GreenSpaceTypeRepository
-
+* GreenSpaceMapper
+* GreenSpaceType (enum)
 
 ## 3.2. Sequence Diagram (SD)
 

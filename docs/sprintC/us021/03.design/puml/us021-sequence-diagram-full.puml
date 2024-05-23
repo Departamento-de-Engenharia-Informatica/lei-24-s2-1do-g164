@@ -78,7 +78,7 @@ deactivate CTRL
     Employee -> UI : types the requested data
     activate UI
 
-        UI -> "ToDoEntryDTO" : create(description, expectedDuration,\n greenSpace, UrgencyDegree)
+        UI -> "ToDoEntryDTO" : ToDoEntryDTO(description, expectedDuration,\n greenSpace, UrgencyDegree)
         activate ToDoEntryDTO
         UI <-- "ToDoEntryDTO" : toDoEntryDTO
 deactivate "ToDoEntryDTO"

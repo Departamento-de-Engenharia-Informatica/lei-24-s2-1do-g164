@@ -11,8 +11,8 @@ participant ":RegisterGreenSpaceUI" as UI
 participant ":RegisterGreenSpaceController" as CTRL
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT
-participant "greenSpacesRepository:\nCollaboratorRepository" as collaboratorRepository
-participant "GreenSpaceTypeRepository" as DocumentTypeRepository
+participant "greenSpacesRepository\n:GreenSpaceRepository" as collaboratorRepository
+participant "GreenSpaceTypes" as DocumentTypeRepository
 participant "GreenSpaceDTO" as GreenSpaceDTO
 activate HRM
 
@@ -32,7 +32,7 @@ activate HRM
     CTRL -> DocumentTypeRepository : getGreenSpaceTypeList()
 
     activate DocumentTypeRepository
-    DocumentTypeRepository --> CTRL : GreenSpaceTypeRepository.values()
+    DocumentTypeRepository --> CTRL : GreenSpaceTypes.values()
     deactivate DocumentTypeRepository
     CTRL -> UI : greenSpaceTypeList
 
@@ -49,17 +49,29 @@ activate HRM
     activate UI
 
 
-    UI -> CTRL : registerGreenSpace(name, address, area)
+UI -> "GreenSpaceDTO" : GreenSpaceDTO(name, address, area, type)
+activate "GreenSpaceDTO"
+"GreenSpaceDTO"--> UI : greenSpaceDTO
+deactivate "GreenSpaceDTO"
+    UI -> CTRL : registerGreenSpace(greenSpaceDTO)
     deactivate UI
     activate CTRL
+    CTRL -> "GreenSpaceMapper" : toEntity(greenSpaceDTO)
+    deactivate CTRL
+    activate "GreenSpaceMapper"
+    "GreenSpaceMapper" -> "GreenSpace" : GreenSpace(greenSpaceDTO.name, greenSpaceDTO.address, \n
+    activate GreenSpace
+    "GreenSpace" --> "GreenSpaceMapper" : greenSpace
+    deactivate GreenSpace
+    "GreenSpaceMapper" --> CTRL : greenSpace
+    deactivate "GreenSpaceMapper"
+    activate CTRL
+
+
     ' Use GreenSpaceDTO to encapsulate data
-    CTRL -> GreenSpaceDTO : create(name, address, area)
-    activate GreenSpaceDTO
-    GreenSpaceDTO --> CTRL : success
-    deactivate GreenSpaceDTO
     CTRL -> RepositorySingleton : getInstance()
     activate RepositorySingleton
-    RepositorySingleton -> CTRL : repositories
+    RepositorySingleton --> CTRL : repositories
     deactivate RepositorySingleton
 
     CTRL -> PLAT : getGreenSpaceRepository()
@@ -68,7 +80,7 @@ activate HRM
     deactivate PLAT
 
     ' Pass GreenSpaceDTO to the repository
-    CTRL -> collaboratorRepository : registerGreenSpace(GreenSpaceDTO)
+    CTRL -> collaboratorRepository : registerGreenSpace(greenSpace)
     activate collaboratorRepository
 
     collaboratorRepository --> CTRL : success

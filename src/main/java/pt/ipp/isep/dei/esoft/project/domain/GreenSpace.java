@@ -20,6 +20,10 @@ public class GreenSpace {
         return this.name.equals(g.getName());
     }
 
+    public String toString() {
+        return String.format("Name: %s - Address: %s - Area: %d hectares - Type: %s", name, address, area, type.toString());
+    }
+
 
 
     public String getName() {

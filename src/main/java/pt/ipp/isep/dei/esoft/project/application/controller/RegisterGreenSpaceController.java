@@ -26,7 +26,7 @@ public class RegisterGreenSpaceController {
         return greenSpaceRepository.registerGreenSpace(greenSpaceMapper.toEntity(greenSpaceDTO));
     }
 
-    private ArrayList<GreenSpace> getGreenSpaceList(){
+    public ArrayList<GreenSpace> getGreenSpaceList(){
         return greenSpaceRepository.getGreenSpaceList();
     }
 

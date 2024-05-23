@@ -12,6 +12,7 @@ import pt.ipp.isep.dei.esoft.project.application.controller.RegisterToDoEntryCon
 import pt.ipp.isep.dei.esoft.project.domain.GreenSpace;
 import pt.ipp.isep.dei.esoft.project.dto.GreenSpaceDTO;
 import pt.ipp.isep.dei.esoft.project.dto.ToDoEntryDTO;
+import pt.ipp.isep.dei.esoft.project.mappers.GreenSpaceMapper;
 import pt.ipp.isep.dei.esoft.project.repository.enums.GreenSpaceType;
 import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegree;
 
@@ -30,6 +31,7 @@ public class RegisterToDoEntryGUIController {
     ComboBox<UrgencyDegree> cmbUrgencyDegree;
     private ToDoListGUIController toDoListGUIController;
     private RegisterToDoEntryController controller = new RegisterToDoEntryController();
+    private GreenSpaceMapper greenSpaceMapper = new GreenSpaceMapper();
 
     @FXML
     private void initialize(){
@@ -40,7 +42,7 @@ public class RegisterToDoEntryGUIController {
     public void registerToDoEntry(ActionEvent event) {
         try {
             int expectedDuration = Integer.parseInt(txtExpectedDuration.getText());
-            ToDoEntryDTO dto = new ToDoEntryDTO(txtDescription.getText(), expectedDuration, new GreenSpace(GreenSpaceType.GARDEN, "aa", "mer23", 12), cmbUrgencyDegree.getValue());
+            ToDoEntryDTO dto = new ToDoEntryDTO(txtDescription.getText(), expectedDuration, greenSpaceMapper.toEntity(cmbGreenSpaces.getValue()), cmbUrgencyDegree.getValue());
             if(controller.registerToDoEntry(dto)) {
                 toDoListGUIController.update();
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

@@ -63,15 +63,19 @@ activate Employee
     activate UI
 
         UI -> AgendaEntryDTO : create(toDoEntryDTO, date)
+        activate AgendaEntryDTO
         UI <-- AgendaEntryDTO : agendaEntryDTO
+        deactivate AgendaEntryDTO
 
         UI -> CTRL : addEntryToAgenda(agendaEntryDTO)
         activate CTRL
 
-            CTRL -> "AgendaEntryMapper" : registerAgendaEntry(agendaEntryDTO)
+            CTRL -> "AgendaEntryMapper" :toEntity(agendaEntryDTO)
             activate "AgendaEntryMapper"
 
-                AgendaEntryMapper -> AgendaEntry : toEntity(agendaEntryDTO)
+                AgendaEntryMapper -> AgendaEntry : AgendaEntry(dto.description, dto.greenspace, dto.urgencyDegree\n, dto.status, dto.expectedDuration, dto.date, dto.associatedTeam\n, dto.associatedVehicles)
+                activate AgendaEntry
+                deactivate AgendaEntry
                 AgendaEntryMapper --> CTRL : agendaEntry
             deactivate "AgendaEntryMapper"
 

@@ -39,6 +39,7 @@ public class ApplicationSession {
      *
      * @return The properties from the configuration file.
      */
+
     private Properties getProperties() {
         Properties props = new Properties();
 

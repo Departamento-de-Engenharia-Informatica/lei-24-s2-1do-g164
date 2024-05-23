@@ -1,6 +1,6 @@
-package pt.ipp.isep.dei.esoft.project.domain.emailService.adapters;
+package pt.ipp.isep.dei.esoft.project.application.session.emailService.adapters;
 
-import pt.ipp.isep.dei.esoft.project.domain.emailService.EmailService;
+import pt.ipp.isep.dei.esoft.project.application.session.emailService.EmailService;
 
 import java.io.FileWriter;
 import java.io.IOException;

@@ -22,9 +22,7 @@ public class TeamToAgendaEntryController {
         try {
             agendaEntry.setAssociatedTeam(team);
             agendaEntryRepository.updateTeam(agendaEntry);
-
             sendNotificationEmails(team);
-
             return true;
         } catch (Exception e) {
             e.printStackTrace();

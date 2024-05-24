@@ -36,13 +36,14 @@ class SystemUser {
 
 class AgendaEntryRepository {
     - ArrayList<AgendaEntry> agendaEntries
+
     + getAgendaEntryList()
-    + update(agendaEntry)
+    +getAgendaEntryByDescriptionAndGreenspace(dto.description, dto.greenSpace)
+    +update(entry, EntryStatus.CANCELLED)
 }
 
 class Repositories {
     - agendaEntryRepository
-    - toDoEntryRepository
 
     - Repositories()
     + getInstance()
@@ -51,9 +52,8 @@ class Repositories {
 }
 
 class AgendaEntryMapper {
-    + toDTO(agendaEntry)
-    + toEntity(agendaEntryDTO, newDate)
-    + toEntity(agendaEntryDTO)
+    + toDtoList(List<AgendaEntry> toDoEntryList)
+
 }
 
 
@@ -62,7 +62,7 @@ class CancelAgendaEntryController {
     - AgendaEntryMapper agendaEntryMapper
 
     + getAgendaEntryDTOList()
-    +cancelsEntry(AgendaEntry)
+    +cancelAgendaEntry(AgendaEntryDTO dto)
 }
 
 class AgendaUI {

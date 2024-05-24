@@ -25,7 +25,13 @@ activate GSM
 
                 UI -> CTRL** : create
                 activate CTRL
+
+                 UI-> CTRL: getAgendaEntryDTOList()
+
                 CTRL-> "AgendaEntryMapper"** : create
+
+
+
 
 
 
@@ -41,8 +47,6 @@ activate GSM
 
                     PLAT --> CTRL: AgendaEntryRepository()
                 deactivate PLAT
-
-                UI-> CTRL: getAgendaEntryDTOList()
 
 
                 CTRL -> Repo : getAgendaEntryList()
@@ -77,25 +81,23 @@ activate GSM
 
                  GSM-> UI: selects an entry
 
-                 UI-> CTRL: cancelsEntry(AgendaEntryDTO)
+                UI-> CTRL: cancelAgendaEntry(AgendaEntryDTO dto)
                 activate CTRL
-                CTRL-> "AgendaEntryMapper":toEntity(agendaEntryDTO)
-                activate "AgendaEntryMapper"
-                 "AgendaEntryMapper" -> "AgendaEntry": agendaEntry = toEntity(agendaEntryDTO)
-                 activate "AgendaEntry"
-                 AgendaEntry-->"AgendaEntryMapper": agendaEntry
 
-
-
-
-                "AgendaEntryMapper"-->CTRL: agendaEntry
-                deactivate "AgendaEntry"
-                deactivate "AgendaEntryMapper"
-
-                CTRL-> Repo: update(agendaEntry, status)
-
+                CTRL-> Repo: getAgendaEntryByDescriptionAndGreenspace(dto.description, dto.greenSpace)
                 activate Repo
-                deactivate "AgendaEntry"
+                Repo-->CTRL: agendaEntry
+                deactivate Repo
+                CTRL-> "AgendaEntry"**: create
+
+
+                CTRL-> Repo: update(entry, EntryStatus.CANCELLED)
+                activate Repo
+                Repo-->CTRL: success/insuccess
+
+
+
+               deactivate "AgendaEntry"
               deactivate Repo
 
                 CTRL --> UI : success/insuccess

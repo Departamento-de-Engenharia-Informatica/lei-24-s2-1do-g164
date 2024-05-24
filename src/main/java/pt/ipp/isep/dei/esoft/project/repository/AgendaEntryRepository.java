@@ -43,10 +43,10 @@ public class AgendaEntryRepository {
         return false;
     }
 
-    public void updateStatus(AgendaEntry updatedEntry) {
+    public void updateStatus(AgendaEntry updatedEntry, EntryStatus status) {
         for (AgendaEntry entry : agendaEntryList) {
             if (entry.equals(updatedEntry)) {
-                entry.setEntryStatus(updatedEntry.getEntryStatus());
+                entry.setEntryStatus(status);
             }
         }
     }

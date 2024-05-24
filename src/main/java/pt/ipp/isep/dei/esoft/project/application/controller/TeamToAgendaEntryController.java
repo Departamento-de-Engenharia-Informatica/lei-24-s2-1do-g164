@@ -26,7 +26,7 @@ public class TeamToAgendaEntryController {
         this.teamRepository= Repositories.getInstance().getTeamRepository();
     }
 
-    private ArrayList<Team> ShowAvailableTeams() {
+    private ArrayList<Team> showAvailableTeams() {
         return teamRepository.getTeams();
     }
 

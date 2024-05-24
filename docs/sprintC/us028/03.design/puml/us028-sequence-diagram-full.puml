@@ -6,14 +6,12 @@ skinparam shadowing false
 autonumber
 
 actor "Collaborator" as ADM
-participant ":AgendaEntryUI" as UI
-participant ":CancelAgendaEntryController" as CTRL
+participant ":TasksBetweenDatesUI" as UI
+participant ":TasksBetweenDatesController" as CTRL
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT
 participant "agendaEntryRepository:\nAgendaEntryRepository" as Repo
 participant "AgendaEntryMapper"
-participant "AgendaEntryDTO"
-participant "AgendaEntry"
 participant "EntriesBetweenDatesDTO"
 
 activate ADM
@@ -23,7 +21,7 @@ activate UI
 
 UI -> CTRL : create
 activate CTRL
-CTRL -> "AgendaEntryMapper" : create
+ CTRL-> "AgendaEntryMapper"** : create
 deactivate "AgendaEntryMapper"
 
 UI --> ADM : asks for the dates he wants to search
@@ -49,16 +47,18 @@ activate Repo
 Repo --> CTRL :EntriesBetweenDatesList
 deactivate Repo
 
+CTRL -> "AgendaEntryMapper": toDTO(EntriesBetweenDatesList)
+activate "AgendaEntryMapper"
+
 loop for each agendaEntry in EntriesBetweenDatesList
-    "AgendaEntryMapper" -> "AgendaEntryDTO" : agendaEntryDTO = toDTO(agendaEntry)
-    activate "AgendaEntryDTO"
-    deactivate "AgendaEntryDTO"
+    "AgendaEntryMapper" -> "EntriesBetweenDatesDTO" : agendaEntryDTO = toDTO(agendaEntry)
+    activate "EntriesBetweenDatesDTO"
+    deactivate "EntriesBetweenDatesDTO"
 end
 
-"AgendaEntryMapper" --> CTRL : agendaEntryDTOList
+"AgendaEntryMapper" --> CTRL : EntriesBetweenDatesListListDTO
 deactivate "AgendaEntryMapper"
-
-"AgendaEntryDTO" --> UI : EntriesBetweenDatesDTO
+ --> UI : EntriesBetweenDatesListListDTO
 deactivate "AgendaEntryDTO"
 
 UI --> ADM : show the list of tasks between these two dates

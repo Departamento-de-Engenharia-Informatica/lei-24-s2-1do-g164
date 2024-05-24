@@ -33,10 +33,10 @@ activate ADM
                     RepositorySingleton --> CTRL: repositories
                 deactivate RepositorySingleton
 
-                CTRL -> PLAT : getVehiclesRepository()
+                CTRL -> PLAT : getEntryRepository()
                 activate PLAT
 
-                    PLAT --> CTRL: VehiclesRepository()
+                    PLAT --> CTRL: EntryRepository()
                 deactivate PLAT
 
                 CTRL -> TaskCategoryRepository : getVehicles()

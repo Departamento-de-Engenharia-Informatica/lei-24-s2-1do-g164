@@ -1,12 +1,11 @@
-# US008 - List the vehicles needing the check-up
+# US028 - Consult the tasks assigned between two dates
 
 
 ## 1. Requirements Engineering
 
 ### 1.1. User Story Description
 
-As a Collaborator, I wish to consult the tasks assigned to me
-between two dates.
+As a Collaborator, I wish to consult the tasks assigned to me between two dates.
 
 ### 1.2. Customer Specifications and Clarifications 
 

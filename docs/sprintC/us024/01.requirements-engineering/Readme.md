@@ -11,7 +11,7 @@ As a GSM, I want to postpone an entry on the agenda.
 
 **From the specifications document:**
 
->The new date accepted  needs to be after the current date (postpone).
+>The new date accepted needs to be after the current date (postpone).
 
 **From the client clarifications:**
 

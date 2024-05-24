@@ -44,40 +44,31 @@ class VehicleRepository {
 
 
 class Repositories {
-    - collaboratorRepository
-    - vehicleRepository
-    - skillRepository
-    - jobRepository
+    - agendaEntryRepository
+    - tasksRepository
 
     - Repositories()
     + getInstance()
-    + getCollaboratorRepository()
-    + getVehicleRepository()
-    + getSkillRepository()
-    + getJobRepository()
-
-}
-
-
-class ListVehivclesCheckupsController {
--VehicleRepository
-  + getVehiclesNeedingCheckupList()
-
+    + getAgendaEntryRepository()
+    + getTaskRepositoryc
+    + #placeholderMethod#()
 }
 
 
 
-ListVehiclesCheckupsUI .> ListVehivclesCheckupsController
+
+ListTasksBetweenDatesUI .> ListTasksBetweenDatesController
 
 
 Repositories -->"1" VehicleRepository
 Repositories -> Repositories : instance
-ListVehivclesCheckupsController ..> Repositories : repositories
+ListTasksBetweenDatesUI ..> Repositories : repositories
 Vehicle "*" <-- "1" VehicleRepository : has
 
 
-FM "1" - "*" Vehicle : registers >
+Collaborator "1" - "*" Vehicle : registers >
 Vehicle "1   " -- "0..*                        " VehicleCheckup : registers >
-FM "           1 " - "0..*   " VehicleCheckup : requests >
-SystemUser <|- FM
+SystemUser <|- Collaborator
+Collaborator "1" -- "1" ListTasksBetweenDatesUI
+ListTasksBetweenDatesController ..> Repositories : repositories
 @enduml

@@ -19,19 +19,33 @@ class SystemUser {
 
 }
 class Collaborator {
-
+    name
+    phone
+    birthdate
+    admissionDate
+    address
+    idDocumentType
+    idDocumentNumber
+    status
 }
-
 
 
 class AgendaEntry {
 
     date
 }
-
+class ToDoEntry {
+        status
+        description
+        associatedGS
+        expectedDuration
+        degreeOfUrgency
+        adress
+}
 
 
 
 Collaborator "1" - "*" AgendaEntry:   carries  >
 SystemUser <|- Collaborator
+AgendaEntry --|> ToDoEntry
 @enduml

@@ -4,6 +4,7 @@ import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatus;
 import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegree;
 
 public class ToDoEntry {
+
     private String description;
     private int expectedDuration;
     private EntryStatus entryStatus;
@@ -16,6 +17,7 @@ public class ToDoEntry {
         this.entryStatus = EntryStatus.PENDING;
         this.urgencyDegree = urgencyDegree;
         this.greenSpace = greenSpace;
+
     }
 
     @Override
@@ -30,7 +32,6 @@ public class ToDoEntry {
     public boolean equals(ToDoEntry td1) {
         return this.description.equals(td1.getDescription()) && this.greenSpace.equals(td1.getGreenSpace());
     }
-
 
     public String getDescription() {
         return description;

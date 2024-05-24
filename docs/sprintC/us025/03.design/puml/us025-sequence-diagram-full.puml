@@ -60,7 +60,7 @@ activate GSM
 
                  loop for each agendaEntry in agendaEntryList
 
-                 "AgendaEntryMapper" -> "AgendaEntryDTO" : agendaEntryDTO = toDTO(agendaEntry)
+                 "AgendaEntryMapper" -> "AgendaEntryDTO"** : agendaEntryDTO = toDTO(agendaEntry)
 
                   activate "AgendaEntryDTO"
                   end
@@ -92,10 +92,8 @@ activate GSM
                 deactivate "AgendaEntry"
                 deactivate "AgendaEntryMapper"
 
-                CTRL-> "AgendaEntry": cancelsEntry(agendaEntry)
+                CTRL-> Repo: update(agendaEntry, status)
 
-
-                CTRL-> Repo: update(agendaEntry)
                 activate Repo
                 deactivate "AgendaEntry"
               deactivate Repo
@@ -106,6 +104,6 @@ activate GSM
                deactivate UI
 
 
-deactivate GSM
+               deactivate GSM
 
 @enduml

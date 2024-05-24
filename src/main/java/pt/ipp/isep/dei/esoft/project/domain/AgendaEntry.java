@@ -6,6 +6,7 @@ import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegree;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+
 public class AgendaEntry extends ToDoEntry {
     private LocalDate date;
     private Team associatedTeam;

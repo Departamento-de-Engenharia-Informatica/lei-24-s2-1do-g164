@@ -5,6 +5,7 @@ import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatus;
 import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegree;
 
 public class ToDoEntryDTO {
+
     public String description;
     public int expectedDuration;
     public GreenSpace greenSpace;
@@ -12,6 +13,7 @@ public class ToDoEntryDTO {
     public EntryStatus entryStatus;
 
     public ToDoEntryDTO(String description, int expectedDuration, GreenSpace greenSpace, UrgencyDegree urgencyDegree, EntryStatus entryStatus) {
+
         this.description = description;
         this.expectedDuration = expectedDuration;
         this.greenSpace = greenSpace;
@@ -20,6 +22,7 @@ public class ToDoEntryDTO {
     }
 
     public ToDoEntryDTO(String description, int expectedDuration, GreenSpace greenSpace,UrgencyDegree urgencyDegree) {
+
         this.description = description;
         this.expectedDuration = expectedDuration;
         this.greenSpace = greenSpace;

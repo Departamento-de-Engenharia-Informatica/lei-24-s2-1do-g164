@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.esoft.project.repository;
 
 
 import pt.ipp.isep.dei.esoft.project.domain.AgendaEntry;
+import pt.ipp.isep.dei.esoft.project.domain.GreenSpace;
 import pt.ipp.isep.dei.esoft.project.domain.Team;
 import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatus;
 
@@ -43,12 +44,22 @@ public class AgendaEntryRepository {
         return false;
     }
 
-    public void updateStatus(AgendaEntry updatedEntry, EntryStatus status) {
+    public AgendaEntry getAgendaEntryByDescriptionAndGreenspace(String description, GreenSpace greenSpace) {
+        for(AgendaEntry ag : agendaEntryList) {
+            if (ag.getDescription().equals(description) && ag.getGreenSpace().equals(greenSpace))
+                return ag;
+        }
+        return null;
+    }
+
+    public boolean updateStatus(AgendaEntry updatedEntry, EntryStatus status) {
         for (AgendaEntry entry : agendaEntryList) {
             if (entry.equals(updatedEntry)) {
                 entry.setEntryStatus(status);
+                return true;
             }
         }
+        return false;
     }
 
     public void updateTeam(AgendaEntry agendaEntry, Team team) {

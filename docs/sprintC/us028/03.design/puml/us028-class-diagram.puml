@@ -1,0 +1,74 @@
+@startuml
+skinparam classAttributeIconSize 0
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+skinparam classAttributeIconSize 0
+
+class Vehicle {
+        brand
+        model
+        vehicleID
+        type
+        tare
+        grossWeight
+        currentKm
+        registerDate
+        acquisitionDate
+        checkupFrequency
+
+}
+
+class VehicleCheckup {
+    currentKms
+    date
+
+}
+
+
+class SystemUser {
+    name
+    email
+    password
+    phone
+}
+
+class VehicleRepository {
+    - ArrayList vehiclesList
+    + getVehiclesRepository()
+    + getVehicles()
+    + getVehiclesNeedingCheckupList()
+}
+
+
+class Repositories {
+    - agendaEntryRepository
+    - tasksRepository
+
+    - Repositories()
+    + getInstance()
+    + getAgendaEntryRepository()
+    + getTaskRepositoryc
+    + #placeholderMethod#()
+}
+
+
+
+
+ListTasksBetweenDatesUI .> ListTasksBetweenDatesController
+
+
+Repositories -->"1" VehicleRepository
+Repositories -> Repositories : instance
+ListTasksBetweenDatesUI ..> Repositories : repositories
+Vehicle "*" <-- "1" VehicleRepository : has
+
+
+Collaborator "1" - "*" Vehicle : registers >
+Vehicle "1   " -- "0..*                        " VehicleCheckup : registers >
+SystemUser <|- Collaborator
+Collaborator "1" -- "1" ListTasksBetweenDatesUI
+ListTasksBetweenDatesController ..> Repositories : repositories
+@enduml

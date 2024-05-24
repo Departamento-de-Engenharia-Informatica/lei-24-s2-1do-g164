@@ -1,19 +1,17 @@
-# US008 - List the vehicles needing the check-up
+# US029 - asks to mark a task as completed
 
 
 ## 1. Requirements Engineering
 
 ### 1.1. User Story Description
 
-As a FM, I want to list the vehicles needing the check-up. 
+As a Collaborator, I want to record the completion of a task
 
 ### 1.2. Customer Specifications and Clarifications 
 
 **From the specifications document:**
 
-> The list must clearly identify the vehicles through: plate number, brand, model, current kms, checkup frequency, kms at last checkup, and the kms the vehicle must have at the next checkup.
-
-**From the client clarifications:**
+> Tasks are carried out on an occasional or regular basis, in one or more green spaces, for example: tree pruning, installation of an irrigation system, and installation of a lighting system
 
 **From the client clarifications:**
 
@@ -38,26 +36,26 @@ I suppose when a task goes to the Agenda, it leaves the To-Do list but maybe a d
 
 ### 1.3. Acceptance Criteria
 
-* A vehicle must fulfill the criteria to need a checkup in order to appear on the list.
+* n/a
 
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "US006 - Register a vehicle" as there must be at least one vehicle to list.
+* n/a
 
 ### 1.5 Input and Output Data
 
 **Input Data:**
 
-* n\a
+* Asks to mark a task as completed
 
 **Output Data:**
 
-* List of vehicles that need the check-up.
+* Confirm task completion
 
 ### 1.6. System Sequence Diagram (SSD)
 
-![System Sequence Diagram - Alternative One](svg/us008-system-sequence-diagram.svg)
+![System Sequence Diagram - Alternative One](svg/us029-system-sequence-diagram-System_Sequence_Diagram__SSD_.svg)
 
 ### 1.7 Other Relevant Remarks
 
-* If a check-up has never been registered for a vehicle its kms at last check-up are 0. 
+* n/a

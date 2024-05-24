@@ -5,52 +5,64 @@ skinparam shadowing false
 
 autonumber
 
-'hide footbox
 actor "Collaborator" as ADM
-participant ":ListTasksBetweenDatesUI" as UI
-participant ":ListTasksBetweenDatesController" as CTRL
+participant ":AgendaEntryUI" as UI
+participant ":CancelAgendaEntryController" as CTRL
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT
-participant "vehiclesRepository:\nVehiclesRepository" as TaskCategoryRepository
-
+participant "agendaEntryRepository:\nAgendaEntryRepository" as Repo
+participant "AgendaEntryMapper"
+participant "AgendaEntryDTO"
+participant "AgendaEntry"
+participant "EntriesBetweenDatesDTO"
 
 activate ADM
 
-        ADM -> UI : asks to consult the tasks assigned to him between two dates.
+ADM -> UI : asks to consult the tasks assigned to him between two dates.
+activate UI
 
-        activate UI
+UI -> CTRL : create
+activate CTRL
+CTRL -> "AgendaEntryMapper" : create
+deactivate "AgendaEntryMapper"
 
-'            UI --> ADM : requests data (reference, description,  informal \n description, technical description, duration, cost)
-            'create CTRL
-            UI -> CTRL** : create
+UI --> ADM : asks for the dates he wants to search
+ADM -> UI : write the desired dates
 
-            UI -> CTRL : getVehicles()
-            activate CTRL
+CTRL -> RepositorySingleton : getInstance()
+activate RepositorySingleton
 
-                CTRL -> RepositorySingleton : getInstance()
-                activate RepositorySingleton
+RepositorySingleton --> CTRL: repositories
+deactivate RepositorySingleton
 
-                    RepositorySingleton --> CTRL: repositories
-                deactivate RepositorySingleton
+CTRL -> PLAT : getAgendaEntryRepository()
+activate PLAT
 
-                CTRL -> PLAT : getEntryRepository()
-                activate PLAT
+PLAT --> CTRL: AgendaEntryRepository
+deactivate PLAT
 
-                    PLAT --> CTRL: EntryRepository()
-                deactivate PLAT
+UI -> CTRL : getEntriesBetweenDates(date1,date2)
 
-                CTRL -> TaskCategoryRepository : getVehicles()
-                activate TaskCategoryRepository
+CTRL -> Repo : getEntriesBetweenDates()
+activate Repo
 
-                    TaskCategoryRepository --> CTRL : VehiclesList
-                deactivate TaskCategoryRepository
+Repo --> CTRL :EntriesBetweenDatesList
+deactivate Repo
 
-                CTRL --> UI : VehiclesList
-            deactivate CTRL
+loop for each agendaEntry in EntriesBetweenDatesList
+    "AgendaEntryMapper" -> "AgendaEntryDTO" : agendaEntryDTO = toDTO(agendaEntry)
+    activate "AgendaEntryDTO"
+    deactivate "AgendaEntryDTO"
+end
 
-            UI --> ADM : shows Vehicles list
-        deactivate UI
+"AgendaEntryMapper" --> CTRL : agendaEntryDTOList
+deactivate "AgendaEntryMapper"
 
+"AgendaEntryDTO" --> UI : EntriesBetweenDatesDTO
+deactivate "AgendaEntryDTO"
+
+UI --> ADM : show the list of tasks between these two dates
+deactivate UI
 
 deactivate ADM
 

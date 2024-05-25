@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="borderPane" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="your.package.LoginController">
+<BorderPane fx:id="borderPane" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.controllers.LoginMenuGUIController">
     <top>
         <VBox alignment="CENTER" prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: #2E7D32;">
             <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Login" textFill="WHITE" />
@@ -26,8 +26,8 @@
                 <TextField fx:id="usernameField" prefHeight="25.0" prefWidth="139.0" GridPane.columnIndex="1" />
                 <Label style="-fx-font-size: 14px; -fx-text-fill: #2E7D32;" text="Password:" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
                 <PasswordField fx:id="passwordField" prefHeight="25.0" prefWidth="212.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <Button fx:id="loginButton" mnemonicParsing="false" onAction="#handleLoginButtonAction" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Login" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#handleCancelButtonAction" style="-fx-background-color: #D32F2F; -fx-text-fill: white; -fx-font-size: 14px;" text="Cancel" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                <Button fx:id="loginButton" mnemonicParsing="false" onAction="#accessMenu" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Login" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                <Button fx:id="exitButton" mnemonicParsing="false" onAction="#closeWindow" style="-fx-background-color: #D32F2F; -fx-text-fill: white; -fx-font-size: 14px;" text="Exit" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
             </children>
             <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

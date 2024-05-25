@@ -37,14 +37,17 @@ public class Bootstrap implements Runnable {
         //TODO: add Authentication users here: should be created for each user in the organization
         AuthenticationRepository authenticationRepository = Repositories.getInstance().getAuthenticationRepository();
         authenticationRepository.addUserRole(AuthenticationController.ROLE_HRM, AuthenticationController.ROLE_HRM);
-        authenticationRepository.addUserRole(AuthenticationController.ROLE_VFM,
-                AuthenticationController.ROLE_VFM);
+        authenticationRepository.addUserRole(AuthenticationController.ROLE_VFM, AuthenticationController.ROLE_VFM);
+        authenticationRepository.addUserRole(AuthenticationController.ROLE_GSM, AuthenticationController.ROLE_GSM);
 
         authenticationRepository.addUserWithRole("João", "hrm@hrm.app", "joao1234",
                 AuthenticationController.ROLE_HRM);
 
         authenticationRepository.addUserWithRole("Mário", "vfm@vfm.app", "mario2236",
                 AuthenticationController.ROLE_VFM);
+
+        authenticationRepository.addUserWithRole("Leonor", "gsm@gsm.app", "a",
+                AuthenticationController.ROLE_GSM);
     }
 
     private void addCollaborators() {

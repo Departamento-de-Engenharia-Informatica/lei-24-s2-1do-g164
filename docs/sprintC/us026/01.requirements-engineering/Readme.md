@@ -1,4 +1,4 @@
-# US008 - Assign one or more vehicles to an entry in the Agenda
+# US026 - Assign one or more vehicles to an entry in the Agenda
 
 ## 1. Requirements Engineering
 

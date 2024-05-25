@@ -1,4 +1,4 @@
-# US029 - asks to mark a task as completed
+# US029 - Mark a task as completed
 
 
 ## 1. Requirements Engineering

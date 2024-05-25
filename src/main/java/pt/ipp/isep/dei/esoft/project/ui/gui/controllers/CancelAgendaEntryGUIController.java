@@ -19,23 +19,10 @@ public class CancelAgendaEntryGUIController {
          Button btnCancel;
 
     @FXML
-    Button btnAddTeam;
-
-    @FXML
-    Button btnAddVehicles;
-    @FXML
-    Button btnPostpone;
-
-    @FXML
-    Button btnAddAgwndaEntry;
-
-
-
-    @FXML
     ComboBox<AgendaEntryDTO> cmbAgendaEntries;
-
-
      CancelAgendaEntryController controller;
+
+     AgendaMenuGUIController agendaGUIController;
 
     @FXML
     private void initialize() {
@@ -60,7 +47,8 @@ public class CancelAgendaEntryGUIController {
             }
 
             if (controller.cancelAgendaEntry(selectedEntry)) {
-                System.out.println("Agenda Entry cancelled!");
+                showAlert(Alert.AlertType.INFORMATION, "Cancel Entry", "Agenda Entry cancelled successfully.");
+                cmbAgendaEntries.getItems().remove(selectedEntry);
             } else {
                 showAlert(Alert.AlertType.ERROR, "Cancel Entry Error", "Failed to cancel entry.");
             }
@@ -74,6 +62,11 @@ public class CancelAgendaEntryGUIController {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
+
+    public void setAgendaGUIController(AgendaMenuGUIController agendaGUIController) {
+        this.agendaGUIController = agendaGUIController;
+    }
+
 
     private void showAlert(Alert.AlertType alertType, String title, String message) {
 

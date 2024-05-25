@@ -7,14 +7,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import pt.ipp.isep.dei.esoft.project.application.controller.CancelAgendaEntryController;
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterAgendaEntryController;
-import pt.ipp.isep.dei.esoft.project.application.controller.RegisterToDoEntryController;
 import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
-import pt.ipp.isep.dei.esoft.project.dto.ToDoEntryDTO;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,12 +42,11 @@ public class AgendaMenuGUIController {
     BorderPane borderPane;
 
     @FXML
-    Button btnCancelAgendaEntry;
-
-    @FXML
     TextArea txtText;
 
     private RegisterAgendaEntryController controller = new RegisterAgendaEntryController();
+
+    private CancelAgendaEntryController cancelController = new CancelAgendaEntryController();
 
     @FXML
     private void initialize(){
@@ -60,41 +59,48 @@ public class AgendaMenuGUIController {
             txtText.appendText(agendaEntryDTOS.toString() + "\n");
         }
 
-//    public void openAssignTeamAgendaWindow(ActionEvent event) {
-//        try {
-//            File file = new File("src\\main\\resources\\fxml\\assignTeamToAgendaEntry.fxml");
-//            FXMLLoader loader = new FXMLLoader(file.toURL());
-//            Parent root = loader.load();
-//            TeamtoAgendaMenuGUIController teamtoAgendaMenuGUIController = loader.getController();
-//            teamtoAgendaMenuGUIController.setTeamtoAgendaMenuGUIController(this);
-//            Stage newStage = new Stage();
-//            newStage.setTitle("Assign Team To Agenda Entry");
-//            newStage.setScene(new Scene(root));
-//            newStage.show();
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-
-    @FXML
-    private void openCancelAgendaEntryWindow(ActionEvent event) {
+    public void openAssignTeamAgendaWindow(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("cancelAgendaEntry.fxml"));
+            File file = new File("src\\main\\resources\\fxml\\assignTeamToAgendaEntry.fxml");
+            FXMLLoader loader = new FXMLLoader(file.toURL());
             Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
+            TeamtoAgendaMenuGUIController teamtoAgendaMenuGUIController = loader.getController();
+            teamtoAgendaMenuGUIController.setTeamtoAgendaMenuGUIController(this);
+            Stage newStage = new Stage();
+            newStage.setTitle("Assign Team To Agenda Entry");
+            newStage.setScene(new Scene(root));
+            newStage.show();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    public void openCancelAgendaEntryWindow(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/cancelAgendaEntry.fxml"));
+            Parent root = loader.load();
+            CancelAgendaEntryGUIController cancelGUIController = loader.getController();
+            cancelGUIController.setAgendaGUIController(this);
+            Stage newStage = new Stage();
+            newStage.setTitle("Cancel Agenda Entry");
+            newStage.setScene(new Scene(root));
+            newStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Error", "Unable to open Cancel Agenda Entry window.");
+        }
+        }
     public void closeWindow(ActionEvent event){
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
 
-
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 }

@@ -23,26 +23,31 @@ import java.util.ArrayList;
 public class AgendaMenuGUIController {
 
     @FXML
-    Button btnAddAgendaEntry;
+    Button btnCancelEntry;
     @FXML
     Button btnCancel;
+
     @FXML
-    Button btnAddAgendaEntry1;
+    Button btnAddTeam;
+
     @FXML
-    Button btnAddAgendaEntry11;
+    Button btnAddVehicles;
     @FXML
-    Button btnAddAgendaEntry2;
+    Button btnPostpone;
+
     @FXML
-    Button btnAddAgendaEntry21;
-    @FXML
-    TextArea txtAgendaListText;
+    Button btnAddAgendaEntry;
+
     @FXML
     BorderPane borderPane;
 
     @FXML
+    Button btnCancelAgendaEntry;
+
+    @FXML
     TextArea txtText;
 
-    private RegisterToDoEntryController controller = new RegisterToDoEntryController();
+    private RegisterAgendaEntryController controller = new RegisterAgendaEntryController();
 
     @FXML
     private void initialize(){
@@ -51,24 +56,36 @@ public class AgendaMenuGUIController {
 
     public void update(){
         txtText.clear();
-        ArrayList<ToDoEntryDTO> toDoEntryDTOsList = controller.getToDoEntryDTOsList();
-        for(ToDoEntryDTO toDoEntryDTO : toDoEntryDTOsList){
-            txtText.appendText(toDoEntryDTO.toString() + "\n");
+        ArrayList<AgendaEntryDTO> agendaEntryDTOS = controller.getAgendaEntryListDTO();
+            txtText.appendText(agendaEntryDTOS.toString() + "\n");
         }
-    }
 
-    public void openAssignTeamAgendaWindow(ActionEvent event) {
+//    public void openAssignTeamAgendaWindow(ActionEvent event) {
+//        try {
+//            File file = new File("src\\main\\resources\\fxml\\assignTeamToAgendaEntry.fxml");
+//            FXMLLoader loader = new FXMLLoader(file.toURL());
+//            Parent root = loader.load();
+//            TeamtoAgendaMenuGUIController teamtoAgendaMenuGUIController = loader.getController();
+//            teamtoAgendaMenuGUIController.setTeamtoAgendaMenuGUIController(this);
+//            Stage newStage = new Stage();
+//            newStage.setTitle("Assign Team To Agenda Entry");
+//            newStage.setScene(new Scene(root));
+//            newStage.show();
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+
+    @FXML
+    private void openCancelAgendaEntryWindow(ActionEvent event) {
         try {
-            File file = new File("src\\main\\resources\\fxml\\assignTeamToAgendaEntry.fxml");
-            FXMLLoader loader = new FXMLLoader(file.toURL());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("cancelAgendaEntry.fxml"));
             Parent root = loader.load();
-            TeamtoAgendaMenuGUIController teamtoAgendaMenuGUIController = loader.getController();
-            teamtoAgendaMenuGUIController.setTeamtoAgendaMenuGUIController(this);
-            Stage newStage = new Stage();
-            newStage.setTitle("Assign Team To Agenda Entry");
-            newStage.setScene(new Scene(root));
-            newStage.show();
-
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -78,4 +95,6 @@ public class AgendaMenuGUIController {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
+
+
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane prefHeight="600.0" prefWidth="763.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.controllers.CancelAgendaEntryGUIController">
+    <top>
+        <VBox alignment="CENTER" prefHeight="50.0" prefWidth="763.0" style="-fx-background-color: #2E7D32;">
+            <Label text="Cancel Agenda Entry" textFill="WHITE" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+        </VBox>
+    </top>
+    <bottom>
+        <FlowPane alignment="CENTER" hgap="20.0" prefWidth="400.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="btnCancelEntry" defaultButton="true" mnemonicParsing="false" onAction="#cancelAgendaEntry" style="-fx-background-color: #D32F2F; -fx-text-fill: white; -fx-font-size: 14px;" text="Cancel Entry" />
+                <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#closeWindow" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Cancel" />
+            </children>
+            <padding>
+                <Insets bottom="5.0" top="15.0" />
+            </padding>
+        </FlowPane>
+    </bottom>
+    <center>
+    </center>
+</BorderPane>

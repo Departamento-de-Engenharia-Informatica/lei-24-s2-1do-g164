@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
+import pt.ipp.isep.dei.esoft.project.domain.AgendaEntry;
 import pt.ipp.isep.dei.esoft.project.domain.ToDoEntry;
 import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 import pt.ipp.isep.dei.esoft.project.dto.ToDoEntryDTO;
@@ -18,6 +19,7 @@ public class RegisterAgendaEntryController {
     private final AgendaEntryMapper agendaEntryMapper;
     private final ToDoEntryMapper toDoEntryMapper;
 
+
     public RegisterAgendaEntryController(){
         getAgendaEntryRepository();
         getToDoEntryRepository();
@@ -27,6 +29,11 @@ public class RegisterAgendaEntryController {
 
     public boolean registerAgendaEntry(AgendaEntryDTO agendaEntryDTO){
         return agendaEntryRepository.addEntryToAgenda(agendaEntryMapper.toEntity(agendaEntryDTO));
+    }
+
+    public ArrayList<AgendaEntryDTO> getAgendaEntryListDTO() {
+        var entries= agendaEntryRepository.getAgendaEntryList();
+        return agendaEntryMapper.toDtoList(entries);
     }
 
     private ArrayList<ToDoEntry> getAvailableToDoEntryList(){

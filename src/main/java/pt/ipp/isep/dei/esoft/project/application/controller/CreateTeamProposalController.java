@@ -3,7 +3,7 @@ import pt.ipp.isep.dei.esoft.project.domain.Skill;
 import pt.ipp.isep.dei.esoft.project.domain.Team;
 import pt.ipp.isep.dei.esoft.project.domain.service.CreateTeamProposalService;
 import pt.ipp.isep.dei.esoft.project.repository.*;
-import pt.ipp.isep.dei.esoft.project.repository.enums.TeamStatus;
+import pt.ipp.isep.dei.esoft.project.repository.enums.TeamStatusENUM;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -77,7 +77,7 @@ public class CreateTeamProposalController {
      */
     public Team createTeamProposal(int max, int min, ArrayList<Skill> skills) {
         var collaborators = teamProposalService.arrangeCollaboratorsBySkill(skills);
-        Team team = new Team(teamProposalService.arrangeTeam(max, min, skills, collaborators), skills, TeamStatus.PENDING);
+        Team team = new Team(teamProposalService.arrangeTeam(max, min, skills, collaborators), skills, TeamStatusENUM.PENDING);
             return team;
     }
 }

@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.repository.enums;
 
-public enum UrgencyDegree {
+public enum UrgencyDegreeENUM {
     LOW{
         public String toString() {
             return "Low";

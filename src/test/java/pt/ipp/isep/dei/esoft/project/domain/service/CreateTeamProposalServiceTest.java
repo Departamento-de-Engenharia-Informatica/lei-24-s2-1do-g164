@@ -6,8 +6,8 @@ import pt.ipp.isep.dei.esoft.project.domain.Collaborator;
 import pt.ipp.isep.dei.esoft.project.domain.Job;
 import pt.ipp.isep.dei.esoft.project.domain.Skill;
 import pt.ipp.isep.dei.esoft.project.repository.*;
-import pt.ipp.isep.dei.esoft.project.repository.enums.CollaboratorStatus;
-import pt.ipp.isep.dei.esoft.project.repository.enums.DocumentType;
+import pt.ipp.isep.dei.esoft.project.repository.enums.CollaboratorStatusENUM;
+import pt.ipp.isep.dei.esoft.project.repository.enums.DocumentTypeENUM;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,13 +37,13 @@ class CreateTeamProposalServiceTest {
         var skills = skillRepo.getSkillList();
 
         Job job = new Job("Designer");
-        DocumentType docType = DocumentType.CITIZEN_CARD;
+        DocumentTypeENUM docType = DocumentTypeENUM.CITIZEN_CARD;
 
-        repo.registerCollaborator("John Doe", 123456789, "01-01-1990", "01-01-2020", "123 Main St", 987699321, job, docType, CollaboratorStatus.DEACTIVATED, 451238965, "siii@euro.lol");
-        repo.registerCollaborator("Alice Vieira", 928456689, "15-07-2006", "01-01-2020", "123 Main St", 983554321, job, docType, CollaboratorStatus.DEACTIVATED, 451238966, "siii@euro.lol");
-        repo.registerCollaborator("Ambrosio Leite", 928945689, "19-09-1999", "01-01-2020", "123 Main St", 987554321, job, docType, CollaboratorStatus.DEACTIVATED, 451238967, "siii@euro.lol");
-        repo.registerCollaborator("Elsa Freites", 988955779, "10-06-2005", "01-01-2020", "123 Main St", 987640321, job, docType, CollaboratorStatus.DEACTIVATED, 451238968, "siii@euro.lol");
-        repo.registerCollaborator("Jacinto Miguel", 789789789, "10-06-2005", "01-01-2020", "123 Main St", 987622321, job, docType, CollaboratorStatus.DEACTIVATED, 451233968, "siii@euro.lol");
+        repo.registerCollaborator("John Doe", 123456789, "01-01-1990", "01-01-2020", "123 Main St", 987699321, job, docType, CollaboratorStatusENUM.DEACTIVATED, 451238965, "siii@euro.lol");
+        repo.registerCollaborator("Alice Vieira", 928456689, "15-07-2006", "01-01-2020", "123 Main St", 983554321, job, docType, CollaboratorStatusENUM.DEACTIVATED, 451238966, "siii@euro.lol");
+        repo.registerCollaborator("Ambrosio Leite", 928945689, "19-09-1999", "01-01-2020", "123 Main St", 987554321, job, docType, CollaboratorStatusENUM.DEACTIVATED, 451238967, "siii@euro.lol");
+        repo.registerCollaborator("Elsa Freites", 988955779, "10-06-2005", "01-01-2020", "123 Main St", 987640321, job, docType, CollaboratorStatusENUM.DEACTIVATED, 451238968, "siii@euro.lol");
+        repo.registerCollaborator("Jacinto Miguel", 789789789, "10-06-2005", "01-01-2020", "123 Main St", 987622321, job, docType, CollaboratorStatusENUM.DEACTIVATED, 451233968, "siii@euro.lol");
 
         repo.assignSkills(repo.getCollaboratorList().get(0), new ArrayList<>(Arrays.asList(skills.get(0), skills.get(1))));
         repo.assignSkills(repo.getCollaboratorList().get(1), new ArrayList<>(Arrays.asList(skills.get(1), skills.get(2))));

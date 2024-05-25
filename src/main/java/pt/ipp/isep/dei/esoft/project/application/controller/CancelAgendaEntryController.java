@@ -4,7 +4,7 @@ import pt.ipp.isep.dei.esoft.project.domain.AgendaEntry;
 import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 import pt.ipp.isep.dei.esoft.project.mappers.AgendaEntryMapper;
 import pt.ipp.isep.dei.esoft.project.repository.AgendaEntryRepository;
-import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatus;
+import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 
 import java.util.ArrayList;
@@ -29,14 +29,14 @@ public class CancelAgendaEntryController {
 
 
     public boolean cancelAgendaEntry(AgendaEntryDTO dto) {
-        if (dto.entryStatus == EntryStatus.CANCELLED) {
+        if (dto.entryStatus == EntryStatusENUM.CANCELLED) {
             return false;
         }
         var entry = agendaEntryRepository.getAgendaEntryByDescriptionAndGreenspace(dto.description, dto.greenSpace);
         if (entry == null){
             throw new InputMismatchException("Agenda Entry not found!");
     }
-        return agendaEntryRepository.updateStatus(entry, EntryStatus.CANCELLED);
+        return agendaEntryRepository.updateStatus(entry, EntryStatusENUM.CANCELLED);
     }
 //    public void ui(AgendaEntryDTO agendaDTO) {
 

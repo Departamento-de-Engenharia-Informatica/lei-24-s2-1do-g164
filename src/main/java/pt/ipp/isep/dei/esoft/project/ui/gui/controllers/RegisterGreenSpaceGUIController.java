@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterGreenSpaceController;
 import pt.ipp.isep.dei.esoft.project.dto.GreenSpaceDTO;
-import pt.ipp.isep.dei.esoft.project.repository.enums.GreenSpaceType;
+import pt.ipp.isep.dei.esoft.project.repository.enums.GreenSpaceTypeENUM;
 
 public class RegisterGreenSpaceGUIController {
     @FXML
@@ -24,14 +24,14 @@ public class RegisterGreenSpaceGUIController {
     @FXML
     private TextField txtAddress;
     @FXML
-    private ComboBox<GreenSpaceType> cmbGreenSpaceTypes;
+    private ComboBox<GreenSpaceTypeENUM> cmbGreenSpaceTypes;
 
     private GreenSpaceMenuGUIController greenSpaceMenuGUIController;
     private RegisterGreenSpaceController controller = new RegisterGreenSpaceController();
 
     @FXML
     private void initialize() {
-        cmbGreenSpaceTypes.getItems().setAll(GreenSpaceType.values());
+        cmbGreenSpaceTypes.getItems().setAll(GreenSpaceTypeENUM.values());
     }
 
     public void registerGreenSpace(ActionEvent event) {
@@ -54,7 +54,7 @@ public class RegisterGreenSpaceGUIController {
                 return;
             }
 
-            GreenSpaceType type = cmbGreenSpaceTypes.getSelectionModel().getSelectedItem();
+            GreenSpaceTypeENUM type = cmbGreenSpaceTypes.getSelectionModel().getSelectedItem();
             if (type == null) {
                 showAlert(Alert.AlertType.ERROR, "Register Error", "You must select a Green Space type.");
                 return;

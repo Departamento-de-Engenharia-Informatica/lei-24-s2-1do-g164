@@ -1,20 +1,20 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
-import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatus;
-import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegree;
+import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
+import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegreeENUM;
 
 public class ToDoEntry {
 
     private String description;
     private int expectedDuration;
-    private EntryStatus entryStatus;
+    private EntryStatusENUM entryStatus;
     private GreenSpace greenSpace;
-    private UrgencyDegree urgencyDegree;
+    private UrgencyDegreeENUM urgencyDegree;
 
-    public ToDoEntry(String description, int expectedDuration, GreenSpace greenSpace, UrgencyDegree urgencyDegree){
+    public ToDoEntry(String description, int expectedDuration, GreenSpace greenSpace, UrgencyDegreeENUM urgencyDegree){
         this.description = description;
         this.expectedDuration = expectedDuration;
-        this.entryStatus = EntryStatus.PENDING;
+        this.entryStatus = EntryStatusENUM.PENDING;
         this.urgencyDegree = urgencyDegree;
         this.greenSpace = greenSpace;
 
@@ -49,11 +49,11 @@ public class ToDoEntry {
         this.expectedDuration = expectedDuration;
     }
 
-    public EntryStatus getEntryStatus() {
+    public EntryStatusENUM getEntryStatus() {
         return entryStatus;
     }
 
-    public void setEntryStatus(EntryStatus entryStatus) {
+    public void setEntryStatus(EntryStatusENUM entryStatus) {
         this.entryStatus = entryStatus;
     }
 
@@ -65,11 +65,11 @@ public class ToDoEntry {
         this.greenSpace = greenSpace;
     }
 
-    public UrgencyDegree getUrgencyDegree() {
+    public UrgencyDegreeENUM getUrgencyDegree() {
         return urgencyDegree;
     }
 
-    public void setUrgencyDegree(UrgencyDegree urgencyDegree) {
+    public void setUrgencyDegree(UrgencyDegreeENUM urgencyDegree) {
         this.urgencyDegree = urgencyDegree;
     }
 }

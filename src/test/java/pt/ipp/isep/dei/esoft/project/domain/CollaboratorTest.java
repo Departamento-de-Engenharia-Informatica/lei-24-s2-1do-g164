@@ -2,8 +2,8 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.esoft.project.repository.enums.CollaboratorStatus;
-import pt.ipp.isep.dei.esoft.project.repository.enums.DocumentType;
+import pt.ipp.isep.dei.esoft.project.repository.enums.CollaboratorStatusENUM;
+import pt.ipp.isep.dei.esoft.project.repository.enums.DocumentTypeENUM;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,16 +13,16 @@ public class CollaboratorTest {
     private Skill skill1;
     private Skill skill2;
     private Job job;
-    private DocumentType docType;
+    private DocumentTypeENUM docType;
 
     @BeforeEach
     public void setUp() {
         skill1 = new Skill("Design");
         skill2 = new Skill("Communication");
         job = new Job("Electrician");
-        docType = DocumentType.CITIZEN_CARD;
+        docType = DocumentTypeENUM.CITIZEN_CARD;
 
-        collaborator = new Collaborator("John Doe", 123456789, "01-01-1990", "01-01-2020", "123 Main St", 987654321, job, docType, CollaboratorStatus.DEACTIVATED, 451238965, "siii@euro.lol");
+        collaborator = new Collaborator("John Doe", 123456789, "01-01-1990", "01-01-2020", "123 Main St", 987654321, job, docType, CollaboratorStatusENUM.DEACTIVATED, 451238965, "siii@euro.lol");
     }
 
     @Test
@@ -38,7 +38,7 @@ public class CollaboratorTest {
 
     @Test
     public void testEquals_SameTaxpayerNumber() {
-        Collaborator anotherCollaborator = new Collaborator("Jane Doe", 123456789, "02-02-1995", "01-01-2022", "456 Oak St", 123456789, job, docType, CollaboratorStatus.DEACTIVATED, 451238965, "justinbuieber@popo.com");
+        Collaborator anotherCollaborator = new Collaborator("Jane Doe", 123456789, "02-02-1995", "01-01-2022", "456 Oak St", 123456789, job, docType, CollaboratorStatusENUM.DEACTIVATED, 451238965, "justinbuieber@popo.com");
         assertTrue(collaborator.equals(anotherCollaborator));
     }
 
@@ -51,9 +51,9 @@ public class CollaboratorTest {
 
     @Test
     public void testActivateCollaborator() {
-        assertEquals(CollaboratorStatus.DEACTIVATED, collaborator.getStatus());
+        assertEquals(CollaboratorStatusENUM.DEACTIVATED, collaborator.getStatus());
         collaborator.activateCollaborator();
-        assertEquals(CollaboratorStatus.ACTIVATED, collaborator.getStatus());
+        assertEquals(CollaboratorStatusENUM.ACTIVATED, collaborator.getStatus());
     }
 
     @Test

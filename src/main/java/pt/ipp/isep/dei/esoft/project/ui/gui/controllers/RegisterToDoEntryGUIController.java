@@ -12,7 +12,7 @@ import pt.ipp.isep.dei.esoft.project.application.controller.RegisterToDoEntryCon
 import pt.ipp.isep.dei.esoft.project.dto.GreenSpaceDTO;
 import pt.ipp.isep.dei.esoft.project.dto.ToDoEntryDTO;
 import pt.ipp.isep.dei.esoft.project.mappers.GreenSpaceMapper;
-import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegree;
+import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegreeENUM;
 
 public class RegisterToDoEntryGUIController {
     @FXML
@@ -26,7 +26,7 @@ public class RegisterToDoEntryGUIController {
     @FXML
     private ComboBox<GreenSpaceDTO> cmbGreenSpaces;
     @FXML
-    private ComboBox<UrgencyDegree> cmbUrgencyDegree;
+    private ComboBox<UrgencyDegreeENUM> cmbUrgencyDegree;
 
     private ToDoListGUIController toDoListGUIController;
     private RegisterToDoEntryController controller = new RegisterToDoEntryController();
@@ -34,7 +34,7 @@ public class RegisterToDoEntryGUIController {
 
     @FXML
     private void initialize() {
-        cmbUrgencyDegree.getItems().setAll(UrgencyDegree.values());
+        cmbUrgencyDegree.getItems().setAll(UrgencyDegreeENUM.values());
         cmbGreenSpaces.getItems().setAll(controller.getGreenSpaceDTOsList());
     }
 
@@ -58,7 +58,7 @@ public class RegisterToDoEntryGUIController {
                 return;
             }
 
-            UrgencyDegree urgencyDegree = cmbUrgencyDegree.getValue();
+            UrgencyDegreeENUM urgencyDegree = cmbUrgencyDegree.getValue();
             if (urgencyDegree == null) {
                 showAlert(Alert.AlertType.ERROR, "Register Error", "You must select an Urgency Degree.");
                 return;

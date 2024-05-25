@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
-import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatus;
-import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegree;
+import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
+import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegreeENUM;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -36,15 +36,15 @@ public class AgendaEntry extends ToDoEntry {
         this.associatedVehicles = associatedVehicles;
     }
 
-    public AgendaEntry(String description, int expectedDuration, GreenSpace greenSpace, UrgencyDegree urgencyDegree, EntryStatus entryStatus, LocalDate date, Team team, ArrayList<Vehicle> vehicles) {
+    public AgendaEntry(String description, int expectedDuration, GreenSpace greenSpace, UrgencyDegreeENUM urgencyDegree, EntryStatusENUM entryStatus, LocalDate date, Team team, ArrayList<Vehicle> vehicles) {
         super(description, expectedDuration, greenSpace, urgencyDegree);
         this.associatedTeam = team;
         this.associatedVehicles = vehicles;
-        this.setEntryStatus(EntryStatus.PLANNED);
+        this.setEntryStatus(EntryStatusENUM.PLANNED);
         this.date = date;
     }
 
     public void cancelEntry() {
-        this.setEntryStatus(EntryStatus.CANCELLED);
+        this.setEntryStatus(EntryStatusENUM.CANCELLED);
     }
 }

@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.dto.CreateVehicleDTO;
 import pt.ipp.isep.dei.esoft.project.repository.*;
-import pt.ipp.isep.dei.esoft.project.repository.enums.VehicleType;
+import pt.ipp.isep.dei.esoft.project.repository.enums.VehicleTypeENUM;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,7 +28,7 @@ public class RegisterVehicleController {
      * @param type the type
      * @return the boolean
      */
-    public boolean registerVehicle(CreateVehicleDTO dto, VehicleType type){
+    public boolean registerVehicle(CreateVehicleDTO dto, VehicleTypeENUM type){
         return vehicleRepository.registerVehicle(dto.brand, dto.model, dto.vehicleID, type, dto.grossWeight, dto.tare,
                 dto.currentKm, dto.registerDate, dto.acquisitionDate, dto.checkupFrequency);
     }
@@ -38,8 +38,8 @@ public class RegisterVehicleController {
      *
      * @return An ArrayList containing the available vehicle types.
      */
-    public ArrayList<VehicleType> getVehicleTypesList(){
-        return new ArrayList<>(Arrays.asList(VehicleType.values()));
+    public ArrayList<VehicleTypeENUM> getVehicleTypesList(){
+        return new ArrayList<>(Arrays.asList(VehicleTypeENUM.values()));
     }
 
     /**

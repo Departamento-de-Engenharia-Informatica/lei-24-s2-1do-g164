@@ -12,51 +12,63 @@ import pt.ipp.isep.dei.esoft.project.application.controller.RegisterGreenSpaceCo
 import pt.ipp.isep.dei.esoft.project.dto.GreenSpaceDTO;
 import pt.ipp.isep.dei.esoft.project.repository.enums.GreenSpaceType;
 
-import java.lang.reflect.InvocationTargetException;
-
 public class RegisterGreenSpaceGUIController {
     @FXML
-    Button btnAddEntry;
+    private Button btnAddEntry;
     @FXML
-    Button btnCancel;
+    private Button btnCancel;
     @FXML
-    TextField txtName;
+    private TextField txtName;
     @FXML
-    TextField txtArea;
+    private TextField txtArea;
     @FXML
-    TextField txtAddress;
+    private TextField txtAddress;
     @FXML
-    ComboBox<GreenSpaceType> cmbGreenSpaceTypes;
+    private ComboBox<GreenSpaceType> cmbGreenSpaceTypes;
+
     private GreenSpaceMenuGUIController greenSpaceMenuGUIController;
     private RegisterGreenSpaceController controller = new RegisterGreenSpaceController();
 
     @FXML
-    private void initialize(){
+    private void initialize() {
         cmbGreenSpaceTypes.getItems().setAll(GreenSpaceType.values());
     }
 
     public void registerGreenSpace(ActionEvent event) {
         try {
+            String name = txtName.getText();
+            if (name == null || name.trim().isEmpty()) {
+                showAlert(Alert.AlertType.ERROR, "Register Error", "Name cannot be empty.");
+                return;
+            }
+
+            String address = txtAddress.getText();
+            if (address == null || address.trim().isEmpty()) {
+                showAlert(Alert.AlertType.ERROR, "Register Error", "Address cannot be empty.");
+                return;
+            }
+
             int area = Integer.parseInt(txtArea.getText());
-            GreenSpaceDTO dto = new GreenSpaceDTO(txtName.getText(), txtAddress.getText(), area, cmbGreenSpaceTypes.getValue());
-            if(controller.registerGreenSpace(dto)) {
+            if (area <= 0) {
+                showAlert(Alert.AlertType.ERROR, "Register Error", "The area must be a positive number.");
+                return;
+            }
+
+            GreenSpaceType type = cmbGreenSpaceTypes.getSelectionModel().getSelectedItem();
+            if (type == null) {
+                showAlert(Alert.AlertType.ERROR, "Register Error", "You must select a Green Space type.");
+                return;
+            }
+            GreenSpaceDTO dto = new GreenSpaceDTO(name, address, area, type);
+            if (controller.registerGreenSpace(dto)) {
                 System.out.println(controller.getGreenSpaceList());
                 greenSpaceMenuGUIController.update();
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.close();
+                closeWindow(event);
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Register Error", "There already exists a Green Space with this name!");
             }
-            else{
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Register Error");
-                alert.setHeaderText("There already exists a Green Space with this name!");
-                alert.show();
-            }
-        }
-        catch (NumberFormatException | NullPointerException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Register Error");
-            alert.setHeaderText("Invalid inputs.");
-            alert.show();
+        } catch (NumberFormatException e) {
+            showAlert(Alert.AlertType.ERROR, "Register Error", "Invalid area. Please enter a valid number.");
         }
     }
 
@@ -68,5 +80,11 @@ public class RegisterGreenSpaceGUIController {
     public void setGreenSpaceGUIController(GreenSpaceMenuGUIController greenSpaceMenuGUIController) {
         this.greenSpaceMenuGUIController = greenSpaceMenuGUIController;
     }
-}
 
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(message);
+        alert.showAndWait();
+    }
+}

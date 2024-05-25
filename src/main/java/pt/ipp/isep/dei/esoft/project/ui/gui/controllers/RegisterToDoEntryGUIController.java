@@ -9,57 +9,70 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterToDoEntryController;
-import pt.ipp.isep.dei.esoft.project.domain.GreenSpace;
 import pt.ipp.isep.dei.esoft.project.dto.GreenSpaceDTO;
 import pt.ipp.isep.dei.esoft.project.dto.ToDoEntryDTO;
 import pt.ipp.isep.dei.esoft.project.mappers.GreenSpaceMapper;
-import pt.ipp.isep.dei.esoft.project.repository.enums.GreenSpaceType;
 import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegree;
 
 public class RegisterToDoEntryGUIController {
     @FXML
-    Button btnAddEntry;
+    private Button btnAddEntry;
     @FXML
-    Button btnCancel;
+    private Button btnCancel;
     @FXML
-    TextField txtDescription;
+    private TextField txtDescription;
     @FXML
-    TextField txtExpectedDuration;
+    private TextField txtExpectedDuration;
     @FXML
-    ComboBox<GreenSpaceDTO> cmbGreenSpaces;
+    private ComboBox<GreenSpaceDTO> cmbGreenSpaces;
     @FXML
-    ComboBox<UrgencyDegree> cmbUrgencyDegree;
+    private ComboBox<UrgencyDegree> cmbUrgencyDegree;
+
     private ToDoListGUIController toDoListGUIController;
     private RegisterToDoEntryController controller = new RegisterToDoEntryController();
     private GreenSpaceMapper greenSpaceMapper = new GreenSpaceMapper();
 
     @FXML
-    private void initialize(){
+    private void initialize() {
         cmbUrgencyDegree.getItems().setAll(UrgencyDegree.values());
         cmbGreenSpaces.getItems().setAll(controller.getGreenSpaceDTOsList());
     }
 
     public void registerToDoEntry(ActionEvent event) {
         try {
+            String description = txtDescription.getText();
+            if (description == null || description.trim().isEmpty()) {
+                showAlert(Alert.AlertType.ERROR, "Register Error", "Description cannot be empty.");
+                return;
+            }
+
             int expectedDuration = Integer.parseInt(txtExpectedDuration.getText());
-            ToDoEntryDTO dto = new ToDoEntryDTO(txtDescription.getText(), expectedDuration, greenSpaceMapper.toEntity(cmbGreenSpaces.getValue()), cmbUrgencyDegree.getValue());
-            if(controller.registerToDoEntry(dto)) {
+            if (expectedDuration <= 0) {
+                showAlert(Alert.AlertType.ERROR, "Register Error", "The expected duration must be a positive number.");
+                return;
+            }
+
+            GreenSpaceDTO greenSpace = cmbGreenSpaces.getValue();
+            if (greenSpace == null) {
+                showAlert(Alert.AlertType.ERROR, "Register Error", "You must select a Green Space.");
+                return;
+            }
+
+            UrgencyDegree urgencyDegree = cmbUrgencyDegree.getValue();
+            if (urgencyDegree == null) {
+                showAlert(Alert.AlertType.ERROR, "Register Error", "You must select an Urgency Degree.");
+                return;
+            }
+
+            ToDoEntryDTO dto = new ToDoEntryDTO(description, expectedDuration, greenSpaceMapper.toEntity(greenSpace), urgencyDegree);
+            if (controller.registerToDoEntry(dto)) {
                 toDoListGUIController.update();
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.close();
+                closeWindow(event);
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Register Error", "This task has already been registered.");
             }
-            else{
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Register Error");
-                alert.setHeaderText("There already exists a task with this name!");
-                alert.show();
-            }
-        }
-        catch (NumberFormatException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Register Error");
-            alert.setHeaderText("Invalid inputs.");
-            alert.show();
+        } catch (NumberFormatException e) {
+            showAlert(Alert.AlertType.ERROR, "Register Error", "Invalid expected duration. Please enter a valid number.");
         }
     }
 
@@ -71,5 +84,11 @@ public class RegisterToDoEntryGUIController {
     public void setToDoListGUIController(ToDoListGUIController toDoListGUIController) {
         this.toDoListGUIController = toDoListGUIController;
     }
-}
 
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(message);
+        alert.showAndWait();
+    }
+}

@@ -6,7 +6,7 @@ skinparam shadowing false
 autonumber
 
 actor "GSM" as Employee
-participant "ToDoListUI" as UI
+participant ":RegisterToDoEntryUI" as UI
 participant ":RegisterToDoEntryController" as CTRL
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT

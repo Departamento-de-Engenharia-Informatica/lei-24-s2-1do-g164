@@ -62,11 +62,11 @@ class RegisterToDoEntryController {
 
 }
 
-class ToDoListGUI {
+class RegisterToDoEntryGUI {
 
 }
 
-ToDoListGUI .> RegisterToDoEntryController
+RegisterToDoEntryGUI .> RegisterToDoEntryController
 RegisterToDoEntryController ..> Repositories : repositories
 Repositories --> "1" ToDoEntryRepository
 Repositories -> Repositories : instance
@@ -75,7 +75,7 @@ RegisterToDoEntryController --> ToDoEntryRepository : uses
 
 SystemUser <|- GSM
 
-GSM "1" -- "1" ToDoListGUI
+GSM "1" -- "1" RegisterToDoEntryGUI
 ToDoEntry "*" <-- "1" ToDoEntryRepository : stores
 ToDoEntry "*" <-- "1" ToDoEntryMapper : creates
 

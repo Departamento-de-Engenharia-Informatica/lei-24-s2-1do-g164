@@ -34,8 +34,8 @@ public class AgendaEntryRepository {
     }
 
     public boolean postponeEntryInAgenda(AgendaEntry entity) {
-        for(AgendaEntry ag : agendaEntryList){
-            if (ag.equals(entity)){
+        for (AgendaEntry ag : agendaEntryList) {
+            if (ag.equals(entity)) {
                 ag.setEntryStatus(EntryStatus.POSTPONED);
                 ag.setDate(entity.getDate());
                 return true;
@@ -45,7 +45,7 @@ public class AgendaEntryRepository {
     }
 
     public AgendaEntry getAgendaEntryByDescriptionAndGreenspace(String description, GreenSpace greenSpace) {
-        for(AgendaEntry ag : agendaEntryList) {
+        for (AgendaEntry ag : agendaEntryList) {
             if (ag.getDescription().equals(description) && ag.getGreenSpace().equals(greenSpace))
                 return ag;
         }
@@ -62,11 +62,22 @@ public class AgendaEntryRepository {
         return false;
     }
 
-    public void updateTeam(AgendaEntry agendaEntry, Team team) {
-        for (AgendaEntry entry : agendaEntryList) {
-            if (entry.getDescription().equals(agendaEntry.getDescription())) {
-                entry.setAssociatedTeam(team);
-            }
+    public boolean updateTeam(AgendaEntry agendaEntry, Team team) {
+
+        if (agendaEntry.getAssociatedTeam().equals(team)|| agendaEntry.getAssociatedTeam() != null){
+            return false;
         }
+            agendaEntry.setAssociatedTeam(team);
+            return true;
+            }
+
+
+
+    public AgendaEntry getAgendaEntry(String description, GreenSpace greenSpace) {
+        for (AgendaEntry ag : agendaEntryList) {
+            if (ag.getDescription().equals(description) && ag.getGreenSpace().equals(greenSpace))
+                return ag;
+        }
+        return null;
     }
 }

@@ -11,6 +11,7 @@ class AgendaEntry {
     date
     associatedTeam
     associatedVehicles
+    +setAssociatedTeam(team)
 }
 
 class AgendaEntryDTO {
@@ -37,44 +38,71 @@ class SystemUser {
 class AgendaEntryRepository {
     - ArrayList<AgendaEntry> agendaEntries
     + getAgendaEntryList()
-    + update(agendaEntry)
+    + getAgendaEntry(description, greenSpace)
+    +updateTeam(agendaEntry, team)
 }
 
 class Repositories {
     - agendaEntryRepository
-    -
+    -teamRepository
 
     - Repositories()
     + getInstance()
     + getAgendaEntryRepository()
+    + getTeamRepository()
 
 }
 
 class AgendaEntryMapper {
-    + toDTO(agendaEntry)
-    + toEntity(agendaEntryDTO, newDate)
-    + toEntity(agendaEntryDTO)
+    + toDtoList(agendaEntryList)
+
 }
 
 
 class TeamToAgendaEntryController {
     - AgendaEntryRepository agendaEntryRepository
     - AgendaEntryMapper agendaEntryMapper
-    - Agenda
+    - EmailService emailService
 
     + getAgendaEntryDTOList()
-    +cancelsEntry(AgendaEntry)
+    +getTeamDTOList()
+    +assignTeamToAgendaEntry(AgendaEntryDTO dto)
+    +sendNotificationEmails(team)
 }
 
 class AgendaUI {
 
 }
 
+class Team{
+maximumSize
+minimumSize
+
+}
+
+class TeamRepository{
+    ArrayList<Team> teams
+    +showAvailableTeams()
+
+}
+
+class TeamMapper {
++toDtoList(ArrayList<Team> teams)
++toDtoList(teamList)
+
+}
+
+class TeamDTO {
+ArrayList<Team> teams
+}
+
+
 AgendaUI .> TeamToAgendaEntryController
 TeamToAgendaEntryController ..> Repositories : repositories
 Repositories --> "1" AgendaEntryRepository
 Repositories -> Repositories : instance
 TeamToAgendaEntryController .> AgendaEntryMapper
+TeamToAgendaEntryController .> TeamMapper
 TeamToAgendaEntryController --> AgendaEntryRepository : uses
 
 SystemUser <|- GSM
@@ -83,7 +111,9 @@ ToDoEntry <|-- AgendaEntry
 GSM "1" -- "1" AgendaUI
 AgendaEntry "*" <-- "1" AgendaEntryRepository : stores
 AgendaEntryDTO "*" <-- "1" AgendaEntryMapper : creates
-
-
+AgendaEntry"1" --> "1" Team: assigned to
+Team "*" <-- "1" TeamRepository : stores
+AgendaEntryDTO "*" <-- "1" AgendaEntryMapper : creates
+TeamDTO "*" <-- "1" TeamMapper : creates
 @enduml
 

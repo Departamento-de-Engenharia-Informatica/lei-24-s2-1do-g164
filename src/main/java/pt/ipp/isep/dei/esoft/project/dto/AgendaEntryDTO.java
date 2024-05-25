@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.dto;
 
+import pt.ipp.isep.dei.esoft.project.domain.AgendaEntry;
 import pt.ipp.isep.dei.esoft.project.domain.GreenSpace;
 import pt.ipp.isep.dei.esoft.project.domain.Team;
 import pt.ipp.isep.dei.esoft.project.domain.Vehicle;
@@ -8,6 +9,7 @@ import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegree;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AgendaEntryDTO {
 
@@ -48,6 +50,11 @@ public class AgendaEntryDTO {
         this.description = description;
         this.greenSpace = greenSpace;
         this.entryStatus = entryStatus;
+    }
+    public AgendaEntryDTO(String description, GreenSpace greenSpace, Team team){
+        this.description=description;
+        this.greenSpace= greenSpace;
+        this.team=team;
     }
 
 

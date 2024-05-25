@@ -81,10 +81,14 @@ activate GSM
 
                  GSM-> UI: selects an entry
 
+                 UI-> "AgendaEntryDTO": create(description, greenSpace, entryStatus)
+                 activate "AgendaEntryDTO"
+
                 UI-> CTRL: cancelAgendaEntry(AgendaEntryDTO dto)
+                deactivate "AgendaEntryDTO"
                 activate CTRL
 
-                CTRL-> Repo: getAgendaEntryByDescriptionAndGreenspace(dto.description, dto.greenSpace)
+                CTRL-> Repo: getAgendaEntryByDescriptionAndGreenSpace(description, greenSpace)
                 activate Repo
                 Repo-->CTRL: agendaEntry
                 deactivate Repo
@@ -92,6 +96,7 @@ activate GSM
 
 
                 CTRL-> Repo: update(entry, EntryStatus.CANCELLED)
+
                 activate Repo
                 Repo-->CTRL: success/insuccess
 

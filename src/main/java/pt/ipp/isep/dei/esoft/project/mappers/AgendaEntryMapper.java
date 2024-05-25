@@ -23,4 +23,5 @@ public class AgendaEntryMapper {
         }
         return agendaEntryDTOList;
     }
+
 }

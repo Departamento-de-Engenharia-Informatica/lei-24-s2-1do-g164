@@ -57,7 +57,7 @@ class RegisterGreenSpaceController {
 
 }
 
-class RegisterGreenSpaceGUI {
+class RegisterGreenSpaceUI {
 
 }
 
@@ -70,8 +70,8 @@ class GreenSpaceDTO{
 +toStringLong()
 }
 
-RegisterGreenSpaceGUI .> RegisterGreenSpaceController
-RegisterGreenSpaceGUI "1" - "*" GreenSpaceDTO : creates
+RegisterGreenSpaceUI .> RegisterGreenSpaceController
+RegisterGreenSpaceUI "1" - "*" GreenSpaceDTO : creates
 RegisterGreenSpaceController ..> Repositories : repositories
 Repositories --> "1" GreenSpaceRepository
 Repositories -> Repositories : instance
@@ -80,7 +80,7 @@ RegisterGreenSpaceController --> GreenSpaceRepository : uses
 
 SystemUser <|- GSM
 
-GSM "1" -- "1" RegisterGreenSpaceGUI
+GSM "1" -- "1" RegisterGreenSpaceUI
 GreenSpace "*" <-- "1" GreenSpaceRepository : stores
 GreenSpace "*" <-- "1" GreenSpaceMapper : creates
 

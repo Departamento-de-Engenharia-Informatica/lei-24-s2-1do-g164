@@ -96,6 +96,34 @@ class TeamDTO {
 ArrayList<Team> teams
 }
 
+interface EmailService {
+    + sendEmail(to, body)
+}
+
+class DeiService implements EmailService {
+    + sendEmail(to, body)
+}
+
+class GmailService implements EmailService {
+    + sendEmail(to, body)
+}
+
+class OutlookService implements EmailService {
+    + sendEmail(to, body)
+}
+
+class ApplicationSession{
+    -authenticationRepository: AuthenticationRepository
+        -emailService: EmailService
+        -CONFIGURATION_FILENAME
+        -COMPANY_DESIGNATION
+
+        -getProperties(): Properties
+        +createEmailService(): EmailService
+}
+
+
+
 
 AgendaUI .> TeamToAgendaEntryController
 TeamToAgendaEntryController ..> Repositories : repositories
@@ -115,5 +143,9 @@ AgendaEntry"1" --> "1" Team: assigned to
 Team "*" <-- "1" TeamRepository : stores
 AgendaEntryDTO "*" <-- "1" AgendaEntryMapper : creates
 TeamDTO "*" <-- "1" TeamMapper : creates
+
+
+ApplicationSession ..> EmailService
+
 @enduml
 

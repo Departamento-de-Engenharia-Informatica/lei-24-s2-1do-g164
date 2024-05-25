@@ -6,18 +6,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
-import pt.ipp.isep.dei.esoft.project.ui.console.menu.MenuItem;
-import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
+import pt.ipp.isep.dei.esoft.project.ui.console.menu.HrmUI;
+import pt.ipp.isep.dei.esoft.project.ui.console.menu.VfmUI;
 import pt.isep.lei.esoft.auth.mappers.dto.UserRoleDTO;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Objects;
+import java.util.regex.Pattern;
 
 public class LoginMenuGUIController {
 
@@ -31,29 +32,47 @@ public class LoginMenuGUIController {
     private Stage stage;
 
     @FXML
-    TextField usernameField;
+    private TextField emailField;
     @FXML
-    PasswordField passwordField;
+    private PasswordField passwordField;
     @FXML
-    Button loginButton;
+    private Button loginButton;
     @FXML
-    Button exitButton;
+    private Button exitButton;
 
-    AuthenticationController controller = new AuthenticationController();
+    private final AuthenticationController controller = new AuthenticationController();
+
+    private static final Pattern EMAIL_PATTERN = Pattern.compile("^[a-zA-Z0-9._%+-]{3,}@[a-zA-Z0-9.-]{3,}\\.[a-zA-Z]{3,}$");
+    private static final Pattern PASSWORD_PATTERN = Pattern.compile("^(?=.*[A-Z].*[A-Z].*[A-Z])(?=.*\\d.*\\d)[A-Za-z\\d!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>/?]{7,}$");
 
     private boolean doLogin() {
+        String id = emailField.getText();
+        String pwd = passwordField.getText();
+
+        if (!isValidEmail(id)) {
+            showAlert(Alert.AlertType.ERROR, "Login Error", "Invalid email format.");
+            return false;
+        }
+
+        if (!isValidPassword(pwd)) {
+            showAlert(Alert.AlertType.ERROR, "Login Error", "The password must have at least seven alphanumeric characters, including three capital letters and two digits.");
+            return false;
+        }
+
         int maxAttempts = 3;
         boolean success = false;
-        do {
+        while (!success && maxAttempts > 0) {
             maxAttempts--;
-            String id = usernameField.getText();
-            String pwd = passwordField.getText();
             success = controller.doLogin(id, pwd);
-            if (!success) {
-                System.out.println("Invalid UserId and/or Password. \n You have  " + maxAttempts + " more attempt(s).");
+            if (!success && maxAttempts > 0) {
+                showAlert(Alert.AlertType.ERROR, "Login Error", "Invalid UserId and/or Password. You have " + maxAttempts + " more attempt(s).");
             }
+        }
 
-        } while (!success && maxAttempts > 0);
+        if (!success) {
+            showAlert(Alert.AlertType.ERROR, "Login Error", "Invalid UserId and/or Password. No more attempts left.");
+        }
+
         return success;
     }
 
@@ -62,32 +81,40 @@ public class LoginMenuGUIController {
         boolean success = doLogin();
 
         if (success) {
-            List<UserRoleDTO> roles = this.controller.getUserRoles();
-            if ((roles == null) || (roles.isEmpty())) {
-                System.out.println("No role assigned to user.");
+            List<UserRoleDTO> roles = controller.getUserRoles();
+            if (roles == null || roles.isEmpty()) {
+                showAlert(Alert.AlertType.ERROR, "Access Denied", "No role assigned to user.");
             } else {
                 UserRoleDTO role = roles.get(0);
-                if (!Objects.isNull(role)) {
-                    this.redirectToRoleGUI(role, event);
+                if (role != null) {
+                    redirectToRoleMenu(role, event);
                 } else {
-                    System.out.println("No role selected.");
+                    showAlert(Alert.AlertType.ERROR, "Access Denied", "No role selected.");
                 }
             }
         }
-        this.logout();
+        logout();
     }
 
-    public void logout(){
+    public void logout() {
         controller.doLogout();
     }
 
-    public void redirectToRoleGUI(UserRoleDTO role, ActionEvent event) throws IOException {
-        if(role.getDescription().equalsIgnoreCase(controller.ROLE_GSM)){
-            switchMenus(event, "todolistmenu");
+    public void redirectToRoleMenu(UserRoleDTO role, ActionEvent event) throws IOException {
+        if (role.getDescription().equalsIgnoreCase(controller.ROLE_GSM)) {
+            switchMenusGUI(event, "todolistmenu");
+        } else if (role.getDescription().equalsIgnoreCase(controller.ROLE_VFM)) {
+            VfmUI ui = new VfmUI();
+            ui.run();
+        } else if (role.getDescription().equalsIgnoreCase(controller.ROLE_HRM)) {
+            HrmUI ui = new HrmUI();
+            ui.run();
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Access Denied", "No UI for users with role '" + role.getDescription() + "'");
         }
     }
 
-    public void switchMenus(ActionEvent event, String fileName) throws IOException{
+    public void switchMenusGUI(ActionEvent event, String fileName) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/fxml/" + fileName + ".fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -100,5 +127,18 @@ public class LoginMenuGUIController {
         stage.close();
     }
 
+    private boolean isValidEmail(String email) {
+        return EMAIL_PATTERN.matcher(email).matches();
+    }
 
+    private boolean isValidPassword(String password) {
+        return PASSWORD_PATTERN.matcher(password).matches();
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(message);
+        alert.showAndWait();
+    }
 }

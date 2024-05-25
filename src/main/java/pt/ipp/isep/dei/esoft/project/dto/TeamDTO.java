@@ -16,5 +16,14 @@ public class TeamDTO {
         this.collaboratorNames = collaborators;
 
     }
+        public List<String> getCollaborators() {
+            return collaboratorNames;
+        }
 
-}
+        public void setCollaborators(List<String> collaborators) {
+            this.collaboratorNames = collaborators;
+        }
+    }
+
+
+

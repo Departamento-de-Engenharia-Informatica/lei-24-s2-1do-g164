@@ -36,7 +36,7 @@ public class TeamToAgendaEntryController {
         this.teamRepository= Repositories.getInstance().getTeamRepository();
     }
 
-    public List<TeamDTO> showAvailableTeams() {
+    public List<TeamDTO> showAvailableTeamsDTO() {
         var teams = teamRepository.getTeams();
         return teamMapper.toDtoList(teams);
     }

@@ -65,7 +65,19 @@ public class ToDoListGUIController {
     }
 
     public void closeWindow(ActionEvent event){
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
+        try {
+            File file = new File("src/main/resources/fxml/loginmenu.fxml");
+            FXMLLoader loader = new FXMLLoader(file.toURI().toURL());
+            Parent root = loader.load();
+
+            // Get the current stage
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root, 350, 400));
+            // Set the new scene or update the current scene with the new root
+            stage.getScene().setRoot(root);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

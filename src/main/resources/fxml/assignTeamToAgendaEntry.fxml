@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="175.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.controllers.TeamtoAgendaMenuGUIController">
+    <bottom>
+        <FlowPane alignment="CENTER" hgap="20.0" prefWidth="400.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="AssignTeam" defaultButton="true" mnemonicParsing="false" onAction="#handleAssignTeam" text="Assign Team" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" />
+                <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#closeWindow" text="Cancel" style="-fx-background-color: #D32F2F; -fx-text-fill: white; -fx-font-size: 14px;" />
+            </children>
+            <padding>
+                <Insets bottom="5.0" top="15.0" />
+            </padding>
+        </FlowPane>
+    </bottom>
+    <center>
+        <GridPane hgap="10.0" vgap="10.0" alignment="CENTER" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" />
+                <ColumnConstraints hgrow="SOMETIMES" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label text="Name" GridPane.halignment="RIGHT" GridPane.rowIndex="0" />
+                <TextField fx:id="txtArea" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <ComboBox fx:id="cmbAgendaEntries" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <ComboBox fx:id="cmbTeams" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+            </children>
+            <padding>
+                <Insets bottom="10.0" top="10.0" left="10.0" right="10.0" />
+            </padding>
+        </GridPane>
+    </center>
+    <padding>
+        <Insets left="10.0" right="10.0" bottom="10.0" />
+    </padding>
+</BorderPane>

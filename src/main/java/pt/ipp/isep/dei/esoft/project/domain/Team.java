@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
-import pt.ipp.isep.dei.esoft.project.repository.enums.TeamStatus;
+import pt.ipp.isep.dei.esoft.project.repository.enums.TeamStatusENUM;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -18,7 +18,7 @@ public class Team {
      */
     private ArrayList<Collaborator> collaborators;
 
-    private TeamStatus status;
+    private TeamStatusENUM status;
 
     /**
      * Constructs a team with given collaborators and skills.
@@ -26,10 +26,10 @@ public class Team {
      * @param collaborators The list of collaborators in the team.
      * @param skills        The list of skills possessed by the team.
      */
-    public Team(ArrayList<Collaborator> collaborators, ArrayList<Skill> skills, TeamStatus team_status){
+    public Team(ArrayList<Collaborator> collaborators, ArrayList<Skill> skills, TeamStatusENUM team_status){
         this.collaborators = collaborators;
         this.skills = skills;
-        this.status = TeamStatus.PENDING;
+        this.status = TeamStatusENUM.PENDING;
     }
 
     /**
@@ -68,11 +68,11 @@ public class Team {
         this.collaborators = collaborators;
     }
 
-    public TeamStatus getStatus() {
+    public TeamStatusENUM getStatus() {
         return status;
     }
 
-    public void setStatus(TeamStatus status) {
+    public void setStatus(TeamStatusENUM status) {
         this.status = status;
     }
 

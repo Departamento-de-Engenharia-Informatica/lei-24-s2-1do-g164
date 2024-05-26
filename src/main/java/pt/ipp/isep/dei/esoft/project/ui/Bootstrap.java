@@ -3,10 +3,10 @@ package pt.ipp.isep.dei.esoft.project.ui;
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.*;
-import pt.ipp.isep.dei.esoft.project.repository.enums.CollaboratorStatus;
-import pt.ipp.isep.dei.esoft.project.repository.enums.DocumentType;
-import pt.ipp.isep.dei.esoft.project.repository.enums.GreenSpaceType;
-import pt.ipp.isep.dei.esoft.project.repository.enums.VehicleType;
+import pt.ipp.isep.dei.esoft.project.repository.enums.CollaboratorStatusENUM;
+import pt.ipp.isep.dei.esoft.project.repository.enums.DocumentTypeENUM;
+import pt.ipp.isep.dei.esoft.project.repository.enums.GreenSpaceTypeENUM;
+import pt.ipp.isep.dei.esoft.project.repository.enums.VehicleTypeENUM;
 
 import java.util.ArrayList;
 
@@ -37,14 +37,17 @@ public class Bootstrap implements Runnable {
         //TODO: add Authentication users here: should be created for each user in the organization
         AuthenticationRepository authenticationRepository = Repositories.getInstance().getAuthenticationRepository();
         authenticationRepository.addUserRole(AuthenticationController.ROLE_HRM, AuthenticationController.ROLE_HRM);
-        authenticationRepository.addUserRole(AuthenticationController.ROLE_VFM,
-                AuthenticationController.ROLE_VFM);
+        authenticationRepository.addUserRole(AuthenticationController.ROLE_VFM, AuthenticationController.ROLE_VFM);
+        authenticationRepository.addUserRole(AuthenticationController.ROLE_GSM, AuthenticationController.ROLE_GSM);
 
-        authenticationRepository.addUserWithRole("João", "hrm@hrm.app", "joao1234",
+        authenticationRepository.addUserWithRole("João", "hrm@hrm.app", "JOAo1234_",
                 AuthenticationController.ROLE_HRM);
 
-        authenticationRepository.addUserWithRole("Mário", "vfm@vfm.app", "mario2236",
+        authenticationRepository.addUserWithRole("Mário", "vfm@vfm.app", "MARio2236",
                 AuthenticationController.ROLE_VFM);
+
+        authenticationRepository.addUserWithRole("Leonor", "gsm@gsm.app", "LEONOr1852",
+                AuthenticationController.ROLE_GSM);
     }
 
     private void addCollaborators() {
@@ -57,7 +60,7 @@ public class Bootstrap implements Runnable {
 
         collaboratorRepository.registerCollaborator("Marco", 913456123, "04-07-2001",
                 "05-08-2020", "Rua das Aves", 12845678, new Job("Trail Steward"),
-                DocumentType.CITIZEN_CARD, CollaboratorStatus.DEACTIVATED, 123456789, "adeus@hotmail.pt");
+                DocumentTypeENUM.CITIZEN_CARD, CollaboratorStatusENUM.DEACTIVATED, 123456789, "adeus@hotmail.pt");
 
 
         ArrayList<Skill> marcoSkills = new ArrayList<>();
@@ -71,7 +74,7 @@ public class Bootstrap implements Runnable {
 
         collaboratorRepository.registerCollaborator("Ana", 987456765, "08-10-2002",
                 "08-08-2021", "Rua das Aves", 78986789, new Job("Arborist"),
-                DocumentType.CITIZEN_CARD, CollaboratorStatus.DEACTIVATED,123993123, "ola23@mial.com");
+                DocumentTypeENUM.CITIZEN_CARD, CollaboratorStatusENUM.DEACTIVATED,123993123, "ola23@mial.com");
 
 
         ArrayList<Skill> anaSkills = new ArrayList<>();
@@ -81,7 +84,7 @@ public class Bootstrap implements Runnable {
 
         collaboratorRepository.registerCollaborator("Ambrosio", 937996795, "08-10-2002",
                 "08-08-2021", "Rua das Aves", 54946780, new Job("Park Ranger"),
-                DocumentType.CITIZEN_CARD, CollaboratorStatus.DEACTIVATED, 123883123, "ola@mial.com");
+                DocumentTypeENUM.CITIZEN_CARD, CollaboratorStatusENUM.DEACTIVATED, 123883123, "ola@mial.com");
 
 
         ArrayList<Skill> ambrosioSkills = new ArrayList<>();
@@ -92,7 +95,7 @@ public class Bootstrap implements Runnable {
 
         collaboratorRepository.registerCollaborator("Rita", 917996795, "08-10-2002",
                 "08-08-2021", "Rua das Aves", 89087650, new Job("Botanist"),
-                DocumentType.CITIZEN_CARD, CollaboratorStatus.DEACTIVATED, 123103123, "ola@mial.com");
+                DocumentTypeENUM.CITIZEN_CARD, CollaboratorStatusENUM.DEACTIVATED, 123103123, "ola@mial.com");
 
         ArrayList<Skill> ritaSkills = new ArrayList<>();
         ritaSkills.add(skillRepository.getSkillList().get(5));
@@ -161,18 +164,18 @@ public class Bootstrap implements Runnable {
 
     public void addVehicles() {
         VehicleRepository repo = Repositories.getInstance().getVehicleRepository();
-        repo.registerVehicle("Mercedes", "Class A", "87-UI-28", VehicleType.LIGHT_VEHICLE,
+        repo.registerVehicle("Mercedes", "Class A", "87-UI-28", VehicleTypeENUM.LIGHT_VEHICLE,
                 1415, 1200, 25000, "02-07-2020", "12-09-2018", 20000);
-        repo.registerVehicle("BMW", "i8", "57-OI-98", VehicleType.LIGHT_VEHICLE,
+        repo.registerVehicle("BMW", "i8", "57-OI-98", VehicleTypeENUM.LIGHT_VEHICLE,
                 1215, 990, 90000, "12-12-2019", "10-10-2018", 40000);
-        repo.registerVehicle("Ford", "Carrinha", "80-07-LX", VehicleType.HEAVY_VEHICLE,
+        repo.registerVehicle("Ford", "Carrinha", "80-07-LX", VehicleTypeENUM.HEAVY_VEHICLE,
                 9000, 8000, 200000, "25-12-2021", "25-12-2021", 300000);
     }
 
     public void addGreenSpaces(){
         GreenSpaceRepository repo = Repositories.getInstance().getGreenSpaceRepository();
-        repo.registerGreenSpace(new GreenSpace(GreenSpaceType.LARGE_SIZED_PARK, "Cidade", "Av. Menéres", 123));
-        repo.registerGreenSpace(new GreenSpace(GreenSpaceType.MEDIUM_SIZED_PARK, "Covelo", "Av. Feliz 123", 50));
-        repo.registerGreenSpace(new GreenSpace(GreenSpaceType.GARDEN, "São Roque", "Rua Triste 22", 3));
+        repo.registerGreenSpace(new GreenSpace(GreenSpaceTypeENUM.LARGE_SIZED_PARK, "Cidade", "Av. Menéres", 123));
+        repo.registerGreenSpace(new GreenSpace(GreenSpaceTypeENUM.MEDIUM_SIZED_PARK, "Covelo", "Av. Feliz 123", 50));
+        repo.registerGreenSpace(new GreenSpace(GreenSpaceTypeENUM.GARDEN, "São Roque", "Rua Triste 22", 3));
     }
 }

@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.repository.enums;
 
-public enum GreenSpaceType {
+public enum GreenSpaceTypeENUM {
     GARDEN{
         @Override
         public String toString() {

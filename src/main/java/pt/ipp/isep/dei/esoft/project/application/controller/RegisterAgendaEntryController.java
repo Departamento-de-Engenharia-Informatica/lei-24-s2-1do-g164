@@ -1,10 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
-import javafx.event.ActionEvent;
-import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.stage.Stage;
-import pt.ipp.isep.dei.esoft.project.domain.GreenSpace;
+import pt.ipp.isep.dei.esoft.project.domain.AgendaEntry;
 import pt.ipp.isep.dei.esoft.project.domain.ToDoEntry;
 import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 import pt.ipp.isep.dei.esoft.project.dto.ToDoEntryDTO;
@@ -13,7 +9,6 @@ import pt.ipp.isep.dei.esoft.project.mappers.ToDoEntryMapper;
 import pt.ipp.isep.dei.esoft.project.repository.AgendaEntryRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.repository.ToDoEntryRepository;
-import pt.ipp.isep.dei.esoft.project.repository.enums.GreenSpaceType;
 
 import java.util.ArrayList;
 
@@ -24,6 +19,7 @@ public class RegisterAgendaEntryController {
     private final AgendaEntryMapper agendaEntryMapper;
     private final ToDoEntryMapper toDoEntryMapper;
 
+
     public RegisterAgendaEntryController(){
         getAgendaEntryRepository();
         getToDoEntryRepository();
@@ -33,6 +29,11 @@ public class RegisterAgendaEntryController {
 
     public boolean registerAgendaEntry(AgendaEntryDTO agendaEntryDTO){
         return agendaEntryRepository.addEntryToAgenda(agendaEntryMapper.toEntity(agendaEntryDTO));
+    }
+
+    public ArrayList<AgendaEntryDTO> getAgendaEntryListDTO() {
+        var entries= agendaEntryRepository.getAgendaEntryList();
+        return agendaEntryMapper.toDtoList(entries);
     }
 
     private ArrayList<ToDoEntry> getAvailableToDoEntryList(){
@@ -57,7 +58,6 @@ public class RegisterAgendaEntryController {
             agendaEntryRepository = repositories.getAgendaEntryRepository();
         }
     }
-
 
 
 }

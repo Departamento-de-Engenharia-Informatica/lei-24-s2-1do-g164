@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
-import pt.ipp.isep.dei.esoft.project.repository.enums.CollaboratorStatus;
-import pt.ipp.isep.dei.esoft.project.repository.enums.DocumentType;
+import pt.ipp.isep.dei.esoft.project.repository.enums.CollaboratorStatusENUM;
+import pt.ipp.isep.dei.esoft.project.repository.enums.DocumentTypeENUM;
 
 import java.util.ArrayList;
 
@@ -17,11 +17,11 @@ public class Collaborator {
     private String admissionDate;
     private String address;
     private Job job;
-    private DocumentType idDocumentType;
+    private DocumentTypeENUM idDocumentType;
     private int idDocumentNumber;
     private int taxpayerNumber;
     private ArrayList<Skill> skills;
-    private CollaboratorStatus status;
+    private CollaboratorStatusENUM status;
 
     /**
      * Constructs a new Collaborator with specified details.
@@ -38,7 +38,7 @@ public class Collaborator {
      * @param taxpayerNumber   The taxpayer number of the collaborator.
      * @param email            The email of the collaborator.
      */
-    public Collaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentType idDocumentType, CollaboratorStatus status, int taxpayerNumber, String email) {
+    public Collaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentTypeENUM idDocumentType, CollaboratorStatusENUM status, int taxpayerNumber, String email) {
         this.name = name;
         this.phone = phone;
         this.birthdate = birthdate;
@@ -157,7 +157,7 @@ public class Collaborator {
      * Activates the collaborator.
      */
     public void activateCollaborator() {
-        this.status = CollaboratorStatus.ACTIVATED;
+        this.status = CollaboratorStatusENUM.ACTIVATED;
     }
 
     /**
@@ -174,7 +174,7 @@ public class Collaborator {
      *
      * @return The ID document type of the collaborator.
      */
-    public DocumentType getIdDocumentType() {
+    public DocumentTypeENUM getIdDocumentType() {
         return idDocumentType;
     }
 
@@ -192,7 +192,7 @@ public class Collaborator {
      *
      * @return The status of the collaborator.
      */
-    public CollaboratorStatus getStatus() {
+    public CollaboratorStatusENUM getStatus() {
         return status;
     }
 

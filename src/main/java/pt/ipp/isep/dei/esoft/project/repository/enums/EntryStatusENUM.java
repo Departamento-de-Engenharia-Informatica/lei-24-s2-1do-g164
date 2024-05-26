@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.repository.enums;
 
-public enum EntryStatus {
+public enum EntryStatusENUM {
     PENDING,
     DONE,
     PLANNED,

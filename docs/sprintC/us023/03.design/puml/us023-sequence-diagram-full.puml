@@ -55,6 +55,7 @@ activate GSM
                 deactivate plat
 
                 ui-> ctrl: getAgendaEntryDTOList()
+                ui -> ctrl :   showAvailableTeams()
 
 
                 ctrl -> agendaRepo : getAgendaEntryList()
@@ -80,15 +81,15 @@ activate GSM
                 deactivate agendaMapper
                 activate ctrl
 
-                ui -> ctrl :  getTeamDTOList()
 
-                ctrl -> teamRepo : showAvailableTeams()
+
+                ctrl -> teamRepo :getTeams()
                 activate teamRepo
 
-                teamRepo --> ctrl: teamList
+                teamRepo --> ctrl: teams
                 deactivate teamRepo
 
-                ctrl -> "TeamMapper":  toDtoList(teamList)
+                ctrl -> "TeamMapper":  toDtoList(teams)
                 activate "TeamMapper"
                 deactivate ctrl
                 loop  [for each Team in TeamList]
@@ -98,7 +99,7 @@ activate GSM
 
                 end
                 deactivate TeamDTO
-                "TeamMapper" --> ctrl: TeamDTOList
+                "TeamMapper" --> ctrl: teamDTOList
                    activate ctrl
                  deactivate "TeamMapper"
                  ctrl --> ui : agendaEntryDTOList
@@ -116,6 +117,9 @@ activate GSM
 
                  deactivate AgendaEntryDTO
                  ctrl -> agendaRepo: getAgendaEntry(description, greenSpace)
+
+                 note right: iterates through the agenda entry list and gets the\n agenda entry by description and greenSpace of the DTO
+
 
                  activate agendaRepo
 

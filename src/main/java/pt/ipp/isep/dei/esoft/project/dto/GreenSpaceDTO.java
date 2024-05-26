@@ -1,14 +1,14 @@
 package pt.ipp.isep.dei.esoft.project.dto;
 
-import pt.ipp.isep.dei.esoft.project.repository.enums.GreenSpaceType;
+import pt.ipp.isep.dei.esoft.project.repository.enums.GreenSpaceTypeENUM;
 
 public class GreenSpaceDTO {
     public String name;
     public String address;
     public int area;
-    public GreenSpaceType type;
+    public GreenSpaceTypeENUM type;
 
-    public GreenSpaceDTO(String name, String address, int area, GreenSpaceType type) {
+    public GreenSpaceDTO(String name, String address, int area, GreenSpaceTypeENUM type) {
         this.name = name;
         this.address = address;
         this.area = area;

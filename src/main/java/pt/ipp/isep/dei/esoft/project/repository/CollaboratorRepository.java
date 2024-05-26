@@ -3,8 +3,8 @@ package pt.ipp.isep.dei.esoft.project.repository;
 import pt.ipp.isep.dei.esoft.project.domain.Collaborator;
 import pt.ipp.isep.dei.esoft.project.domain.Job;
 import pt.ipp.isep.dei.esoft.project.domain.Skill;
-import pt.ipp.isep.dei.esoft.project.repository.enums.CollaboratorStatus;
-import pt.ipp.isep.dei.esoft.project.repository.enums.DocumentType;
+import pt.ipp.isep.dei.esoft.project.repository.enums.CollaboratorStatusENUM;
+import pt.ipp.isep.dei.esoft.project.repository.enums.DocumentTypeENUM;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -41,7 +41,7 @@ public class CollaboratorRepository implements Serializable {
      * @param email            The email address of the collaborator.
      * @return {@code true} if the collaborator is successfully registered, {@code false} otherwise.
      */
-    public boolean registerCollaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentType idDocumentType, CollaboratorStatus status, int taxpayerNumber, String email) {
+    public boolean registerCollaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentTypeENUM idDocumentType, CollaboratorStatusENUM status, int taxpayerNumber, String email) {
         Collaborator collaborator = new Collaborator(name, phone, birthdate, admissionDate, address, idDocumentNumber, job, idDocumentType, status, taxpayerNumber, email);
         if (collaboratorIsUnique(collaborator)) {
             collaboratorList.add(collaborator);
@@ -103,7 +103,7 @@ public class CollaboratorRepository implements Serializable {
         ArrayList<Collaborator> selectedCollaborators = new ArrayList<>();
         for(Collaborator c : this.collaboratorList) {
             for(Skill s : skills) {
-                if (c.getSkills().contains(s) && c.getStatus().equals(CollaboratorStatus.DEACTIVATED)) {
+                if (c.getSkills().contains(s) && c.getStatus().equals(CollaboratorStatusENUM.DEACTIVATED)) {
                     if (!selectedCollaborators.contains(c)) {
                         selectedCollaborators.add(c);
                     }

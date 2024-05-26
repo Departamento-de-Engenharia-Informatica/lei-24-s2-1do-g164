@@ -6,16 +6,18 @@ skinparam shadowing false
 autonumber
 
 actor "GSM" as Employee
-participant "ToDoListUI" as UI
+participant ":RegisterToDoEntryUI" as UI
 participant ":RegisterToDoEntryController" as CTRL
 participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "GreenSpaceRepository\n:greenSpaceRepository" as GreenRepo
 participant "ToDoEntryRepository\n:toDoEntryRepository" as TaskRepo
 participant "ToDoEntryMapper"
 participant "ToDoEntryDTO"
 
 activate Employee
 
-    Employee -> UI : asks to add a new entry to the "To Do List"\n to the Agenda
+    Employee -> UI : asks to add a new entry to the "To-Do List"
 
     activate UI
 
@@ -26,29 +28,37 @@ activate Employee
             activate RepositorySingleton
 
                 RepositorySingleton --> CTRL: repositories
-            deactivate RepositorySingleton
+                deactivate RepositorySingleton
+                CTRL -> PLAT : getGreenSpaceRepository()
+                activate PLAT
+                PLAT --> CTRL : greenSpaceRepository
+                deactivate PLAT
 
-            CTRL -> TaskRepo : getList()
-            activate TaskRepo
 
-                TaskRepo --> CTRL : GreenSpaceList
-            deactivate TaskRepo
 
-            CTRL -> "ToDoEntryMapper" : getGreenSpaceDTOsList(toDoEntryList)
+
+            CTRL -> GreenRepo : getGreenSpaceList()
+            activate GreenRepo
+
+                GreenRepo --> CTRL : greenSpaceList
+            deactivate GreenRepo
+
+            CTRL -> "ToDoEntryMapper" : getGreenSpaceDTOsList(greenSpaceList)
             activate "ToDoEntryMapper"
 
-            loop for each toDoEntry in availableToDoEntryList
-                ToDoEntryMapper -> ToDoEntryDTO: toDoEntryDTO = toDTO(toDoEntry)
+            loop for each greenSpace in greenSpaceList
+                ToDoEntryMapper -> ToDoEntryDTO: toDTO(greenSpace)
                 activate ToDoEntryDTO
+              ToDoEntryDTO --> ToDoEntryMapper : greenSpaceDTO
                 deactivate ToDoEntryDTO
 
 
             end
 
-            ToDoEntryMapper --> CTRL: toDoEntryDTOList
+            ToDoEntryMapper --> CTRL: greenSpaceDTOsList
             deactivate ToDoEntryMapper
 
-            CTRL --> UI : toDoEntryDTOsList
+            CTRL --> UI : greenSpaceDTOsList
         deactivate CTRL
 
         UI --> Employee : displays the Green Spaces and asks to select one
@@ -60,13 +70,13 @@ activate Employee
     UI -> CTRL : getUrgencyDegreeList()
             activate CTRL
 
-    CTRL -> UrgencyDegrees : getUrgencyDegreeList()
+    CTRL -> UrgencyDegreesENUM : getUrgencyDegreeList()
     deactivate CTRL
-    activate UrgencyDegrees
-    UrgencyDegrees --> CTRL : UrgencyDegrees.values()
-deactivate UrgencyDegrees
+    activate UrgencyDegreesENUM
+    UrgencyDegreesENUM --> CTRL : UrgencyDegreesENUM.values()
+deactivate UrgencyDegreesENUM
 activate CTRL
-CTRL -> UI : UrgencyDegrees.values()
+CTRL -> UI : urgencyDegreeList
 deactivate CTRL
         UI -> Employee : displays urgency degrees and asks to select one
     deactivate UI
@@ -88,17 +98,33 @@ deactivate "ToDoEntryDTO"
         activate CTRL
 
 
-            CTRL -> "ToDoEntryMapper" : toEntity(toDoEntryDTO)
-            activate "ToDoEntryMapper"
 
 
-                "ToDoEntryMapper" -> ToDoEntry : ToDoEntry(toDoEntryDTO.description, toDoEntryDTO.expectedDuration, \ntoDoEntryDTO.greenSpace, toDoEntryDTO.urgencyDegree)
-                "ToDoEntryMapper" --> CTRL : toDoEntry
-            deactivate "ToDoEntryMapper"
+CTRL -> RepositorySingleton : getInstance()
+            activate RepositorySingleton
 
-            CTRL -> TaskRepo : registerToDoEntry(toDoEntry)
+                RepositorySingleton --> CTRL: repositories
+                deactivate RepositorySingleton
+                CTRL -> PLAT : getToDoEntryRepository()
+                activate PLAT
+                PLAT --> CTRL : toDoEntryRepository
+                deactivate PLAT
+                CTRL -> "ToDoEntryMapper" : toEntity(toDoEntryDTO)
+                            activate "ToDoEntryMapper"
+
+
+                                "ToDoEntryMapper" -> ToDoEntry : ToDoEntry(toDoEntryDTO.description, toDoEntryDTO.expectedDuration, \ntoDoEntryDTO.greenSpace, toDoEntryDTO.urgencyDegree)
+                                activate ToDoEntry
+                                ToDoEntry --> "ToDoEntryMapper" : toDoEntry
+                             deactivate ToDoEntry
+                                "ToDoEntryMapper" --> CTRL : toDoEntry
+                            deactivate "ToDoEntryMapper"
+                CTRL -> TaskRepo : registerToDoEntry(toDoEntry)
+
             activate TaskRepo
 
+
+TaskRepo --> TaskRepo : isToDoEntryUnique(toDoEntry)
                 TaskRepo --> CTRL : success
 
             deactivate TaskRepo

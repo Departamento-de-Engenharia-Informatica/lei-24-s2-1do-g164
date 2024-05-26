@@ -6,7 +6,7 @@ import pt.ipp.isep.dei.esoft.project.domain.Team;
 import pt.ipp.isep.dei.esoft.project.repository.CollaboratorRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.repository.TeamRepository;
-import pt.ipp.isep.dei.esoft.project.repository.enums.TeamStatus;
+import pt.ipp.isep.dei.esoft.project.repository.enums.TeamStatusENUM;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,7 +38,7 @@ public class CreateTeamProposalService {
      */
 
     public void acceptTeamProposal(Team team) {
-        team.setStatus(TeamStatus.ACCEPTED);
+        team.setStatus(TeamStatusENUM.ACCEPTED);
     }
 
     /**
@@ -47,7 +47,7 @@ public class CreateTeamProposalService {
      * @param team The team to refuse.
      */
     public void refuseTeamProposal(Team team) {
-        team.setStatus(TeamStatus.REFUSED);
+        team.setStatus(TeamStatusENUM.REFUSED);
     }
 
     /**

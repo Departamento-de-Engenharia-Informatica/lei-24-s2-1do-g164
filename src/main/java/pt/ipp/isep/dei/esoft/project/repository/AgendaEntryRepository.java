@@ -4,7 +4,7 @@ package pt.ipp.isep.dei.esoft.project.repository;
 import pt.ipp.isep.dei.esoft.project.domain.AgendaEntry;
 import pt.ipp.isep.dei.esoft.project.domain.GreenSpace;
 import pt.ipp.isep.dei.esoft.project.domain.Team;
-import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatus;
+import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 
 import java.util.ArrayList;
 
@@ -36,7 +36,7 @@ public class AgendaEntryRepository {
     public boolean postponeEntryInAgenda(AgendaEntry entity) {
         for (AgendaEntry ag : agendaEntryList) {
             if (ag.equals(entity)) {
-                ag.setEntryStatus(EntryStatus.POSTPONED);
+                ag.setEntryStatus(EntryStatusENUM.POSTPONED);
                 ag.setDate(entity.getDate());
                 return true;
             }
@@ -52,7 +52,7 @@ public class AgendaEntryRepository {
         return null;
     }
 
-    public boolean updateStatus(AgendaEntry updatedEntry, EntryStatus status) {
+    public boolean updateStatus(AgendaEntry updatedEntry, EntryStatusENUM status) {
         for (AgendaEntry entry : agendaEntryList) {
             if (entry.equals(updatedEntry)) {
                 entry.setEntryStatus(status);

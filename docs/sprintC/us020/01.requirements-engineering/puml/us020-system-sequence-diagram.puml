@@ -15,17 +15,27 @@ activate Employee
     Employee -> System : asks to register a green space
     activate System
 
+                System --> Employee : asks to type the data (name, address, area)
+            deactivate System
+
+            Employee -> System : types the data
+                activate System
+
         System --> Employee : shows green space types and asks to select one
     deactivate System
 
     Employee -> System : selects green space type
         activate System
 
-            System --> Employee : asks to type the data (name, address, area)
-        deactivate System
+        System --> Employee : requests confirmation
+            deactivate System
 
-        Employee -> System : types the data
-            activate System
+            Employee -> System : confirms
+                activate System
+
+
+
+
 
             System --> Employee : displays operation success
         deactivate System

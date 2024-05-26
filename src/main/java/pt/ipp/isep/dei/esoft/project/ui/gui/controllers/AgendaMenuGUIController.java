@@ -1,99 +1,73 @@
 package pt.ipp.isep.dei.esoft.project.ui.gui.controllers;
 
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import pt.ipp.isep.dei.esoft.project.application.controller.CancelAgendaEntryController;
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterAgendaEntryController;
-import pt.ipp.isep.dei.esoft.project.dto.ToDoEntryDTO;
+import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
-/**
- * The type Agenda menu gui controller.
- */
 public class AgendaMenuGUIController {
-    /**
-     * The Btn add agenda entry.
-     */
-    @FXML
-    Button btnAddAgendaEntry;
 
-    /**
-     * The Btn add team.
-     */
+    @FXML
+    Button btnCancelEntry;
+    @FXML
+    Button btnCancel;
+
     @FXML
     Button btnAddTeam;
 
-    /**
-     * The Btn add vehicles.
-     */
     @FXML
     Button btnAddVehicles;
-
-    /**
-     * The Btn postpone entry.
-     */
     @FXML
-    Button btnPostponeEntry;
+    Button btnPostpone;
 
-    /**
-     * The Btn cancel entry.
-     */
     @FXML
-    Button btnCancelEntry;
+    Button btnAddAgendaEntry;
 
-    /**
-     * The Btn go back.
-     */
     @FXML
-    Button btnGoBack;
+    BorderPane borderPane;
 
-    /**
-     * The Txt agenda list text.
-     */
     @FXML
-    TextArea txtAgendaListText;
-
+    TextArea txtText;
 
     private RegisterAgendaEntryController controller = new RegisterAgendaEntryController();
+
+    private CancelAgendaEntryController cancelController = new CancelAgendaEntryController();
 
     @FXML
     private void initialize(){
         update();
     }
 
-
-    /**
-     * Update.
-     */
     public void update(){
-        txtAgendaListText.clear();
-        ArrayList<ToDoEntryDTO> toDoEntryDTOsList = controller.getToDoEntryDTOsList();
-        for(ToDoEntryDTO toDoEntryDTO : toDoEntryDTOsList){
-            txtAgendaListText.appendText(toDoEntryDTO.toString() + "\n");
+        txtText.clear();
+        ArrayList<AgendaEntryDTO> agendaEntryDTOS = controller.getAgendaEntryListDTO();
+            txtText.appendText(agendaEntryDTOS.toString() + "\n");
         }
-    }
 
-
-    public void openRegisterAgendaWindow(ActionEvent event) {
+    public void openAssignTeamAgendaWindow(ActionEvent event) {
         try {
-            File file = new File("src\\main\\resources\\fxml\\registerAgendaEntry.fxml");
+            File file = new File("src\\main\\resources\\fxml\\assignTeamToAgendaEntry.fxml");
             FXMLLoader loader = new FXMLLoader(file.toURL());
             Parent root = loader.load();
-            RegisterAgendaEntryGUIController controller1 = loader.getController();
-            controller1.setAgendaMenuGUIController(this);
+            TeamtoAgendaMenuGUIController teamtoAgendaMenuGUIController = loader.getController();
+            teamtoAgendaMenuGUIController.setAgendaGUIController(this);
             Stage newStage = new Stage();
-            newStage.setTitle("Add Entry to To-Do List");
+            newStage.setTitle("Assign Team To Agenda Entry");
             newStage.setScene(new Scene(root));
             newStage.show();
 
@@ -102,4 +76,31 @@ public class AgendaMenuGUIController {
         }
     }
 
+    public void openCancelAgendaEntryWindow(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/cancelAgendaEntry.fxml"));
+            Parent root = loader.load();
+            CancelAgendaEntryGUIController cancelGUIController = loader.getController();
+            cancelGUIController.setAgendaGUIController(this);
+            Stage newStage = new Stage();
+            newStage.setTitle("Cancel Agenda Entry");
+            newStage.setScene(new Scene(root));
+            newStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Error", "Unable to open Cancel Agenda Entry window.");
+        }
+        }
+    public void closeWindow(ActionEvent event){
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 }

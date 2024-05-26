@@ -23,7 +23,8 @@ public class AgendaGUI extends Application {
         FXMLLoader loader = new FXMLLoader(file.toURL());
         Parent root = loader.load();
         stage.setScene(new Scene(root));
-        stage.setTitle("To-Do List");
+        stage.setTitle("Agenda-Entry-List");
         stage.show();
+
     }
 }

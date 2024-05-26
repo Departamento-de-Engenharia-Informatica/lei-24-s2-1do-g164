@@ -53,7 +53,7 @@ public class GreenSpaceMenuGUIController {
             RegisterGreenSpaceGUIController controller1 = loader.getController();
             controller1.setGreenSpaceGUIController(this);
             Stage newStage = new Stage();
-            newStage.setTitle("Add Entry to To-Do List");
+            newStage.setTitle("Register Green Space");
             newStage.setScene(new Scene(root));
             newStage.show();
 

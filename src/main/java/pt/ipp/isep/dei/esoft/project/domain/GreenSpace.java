@@ -1,15 +1,15 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
-import pt.ipp.isep.dei.esoft.project.repository.enums.GreenSpaceType;
+import pt.ipp.isep.dei.esoft.project.repository.enums.GreenSpaceTypeENUM;
 
 public class GreenSpace {
 
-    private GreenSpaceType type;
+    private GreenSpaceTypeENUM type;
     private String name;
     private String address;
     private int area;
 
-    public GreenSpace(GreenSpaceType type,String name, String address, int area){
+    public GreenSpace(GreenSpaceTypeENUM type, String name, String address, int area){
         this.type = type;
         this.name = name;
         this.address = address;
@@ -50,11 +50,11 @@ public class GreenSpace {
         this.area = area;
     }
 
-    public GreenSpaceType getType() {
+    public GreenSpaceTypeENUM getType() {
         return type;
     }
 
-    public void setType(GreenSpaceType type) {
+    public void setType(GreenSpaceTypeENUM type) {
         this.type = type;
     }
 }

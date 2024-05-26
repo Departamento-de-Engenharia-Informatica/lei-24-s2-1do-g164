@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.application.controller.authorization;
 
+import pt.ipp.isep.dei.esoft.project.application.session.ApplicationSession;
 import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.isep.lei.esoft.auth.mappers.dto.UserRoleDTO;
@@ -13,6 +14,7 @@ public class AuthenticationController {
 
     public static final String ROLE_HRM = "HRM";
     public static final String ROLE_VFM = "VFM";
+    public static final String ROLE_GSM = "GSM";
 
     //private final ApplicationSession applicationSession;
     private final AuthenticationRepository authenticationRepository;

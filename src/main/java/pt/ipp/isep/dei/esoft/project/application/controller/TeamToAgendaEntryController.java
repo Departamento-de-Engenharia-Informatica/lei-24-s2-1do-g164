@@ -6,13 +6,16 @@ import pt.ipp.isep.dei.esoft.project.domain.Collaborator;
 import pt.ipp.isep.dei.esoft.project.domain.Team;
 import pt.ipp.isep.dei.esoft.project.application.session.emailService.EmailService;
 import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
+import pt.ipp.isep.dei.esoft.project.dto.TeamDTO;
 import pt.ipp.isep.dei.esoft.project.mappers.AgendaEntryMapper;
+import pt.ipp.isep.dei.esoft.project.mappers.TeamMapper;
 import pt.ipp.isep.dei.esoft.project.repository.AgendaEntryRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.repository.TeamRepository;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 
 public class TeamToAgendaEntryController {
 
@@ -23,6 +26,8 @@ public class TeamToAgendaEntryController {
 
     private AgendaEntryMapper agendaEntryMapper;
 
+    private TeamMapper teamMapper;
+
 
 
     public TeamToAgendaEntryController() {
@@ -31,8 +36,9 @@ public class TeamToAgendaEntryController {
         this.teamRepository= Repositories.getInstance().getTeamRepository();
     }
 
-    private ArrayList<Team> showAvailableTeams() {
-        return teamRepository.getTeams();
+    public List<TeamDTO> showAvailableTeamsDTO() {
+        var teams = teamRepository.getTeams();
+        return teamMapper.toDtoList(teams);
     }
 
      public ArrayList<AgendaEntryDTO> getAgendaEntryDTOList() {

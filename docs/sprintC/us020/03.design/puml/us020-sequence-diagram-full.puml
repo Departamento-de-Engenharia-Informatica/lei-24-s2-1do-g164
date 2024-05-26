@@ -12,7 +12,7 @@ participant ":RegisterGreenSpaceController" as CTRL
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT
 participant "greenSpacesRepository\n:GreenSpaceRepository" as collaboratorRepository
-participant "GreenSpaceTypes" as DocumentTypeRepository
+participant "GreenSpaceTypeENUM" as DocumentTypeRepository
 participant "GreenSpaceDTO" as GreenSpaceDTO
 activate HRM
 
@@ -32,7 +32,7 @@ activate HRM
     CTRL -> DocumentTypeRepository : getGreenSpaceTypeList()
 
     activate DocumentTypeRepository
-    DocumentTypeRepository --> CTRL : GreenSpaceTypes.values()
+    DocumentTypeRepository --> CTRL : GreenSpaceTypeENUM.values()
     deactivate DocumentTypeRepository
     CTRL -> UI : greenSpaceTypeList
 

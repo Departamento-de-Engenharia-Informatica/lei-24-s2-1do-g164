@@ -3,6 +3,9 @@ package pt.ipp.isep.dei.esoft.project.domain;
 import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegreeENUM;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ToDoEntry {
 
     private String description;
@@ -10,14 +13,15 @@ public class ToDoEntry {
     private EntryStatusENUM entryStatus;
     private GreenSpace greenSpace;
     private UrgencyDegreeENUM urgencyDegree;
+    private List<Vehicle> assignedVehicles;
 
-    public ToDoEntry(String description, int expectedDuration, GreenSpace greenSpace, UrgencyDegreeENUM urgencyDegree){
+    public ToDoEntry(String description, int expectedDuration, GreenSpace greenSpace, UrgencyDegreeENUM urgencyDegree) {
         this.description = description;
         this.expectedDuration = expectedDuration;
         this.entryStatus = EntryStatusENUM.PENDING;
         this.urgencyDegree = urgencyDegree;
         this.greenSpace = greenSpace;
-
+        this.assignedVehicles = new ArrayList<>();
     }
 
     @Override
@@ -29,8 +33,21 @@ public class ToDoEntry {
                 "Urgency Degree: " + urgencyDegree;
     }
 
-    public boolean equals(ToDoEntry td1) {
-        return this.description.equals(td1.getDescription()) && this.greenSpace.equals(td1.getGreenSpace());
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        ToDoEntry toDoEntry = (ToDoEntry) obj;
+        return description.equals(toDoEntry.getDescription()) && greenSpace.equals(toDoEntry.getGreenSpace());
+    }
+
+    @Override
+    public int hashCode() {
+        return description.hashCode() + greenSpace.hashCode();
     }
 
     public String getDescription() {
@@ -71,5 +88,16 @@ public class ToDoEntry {
 
     public void setUrgencyDegree(UrgencyDegreeENUM urgencyDegree) {
         this.urgencyDegree = urgencyDegree;
+    }
+
+    public boolean addVehicles(List<Vehicle> vehicles) {
+        if (vehicles == null) {
+            return false;
+        }
+        return assignedVehicles.addAll(vehicles);
+    }
+
+    public List<Vehicle> getAssignedVehicles() {
+        return assignedVehicles;
     }
 }

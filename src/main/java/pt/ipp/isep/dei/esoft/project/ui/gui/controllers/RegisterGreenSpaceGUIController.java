@@ -9,6 +9,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterGreenSpaceController;
+import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.dto.GreenSpaceDTO;
 import pt.ipp.isep.dei.esoft.project.repository.enums.GreenSpaceTypeENUM;
 
@@ -28,6 +29,7 @@ public class RegisterGreenSpaceGUIController {
 
     private GreenSpaceMenuGUIController greenSpaceMenuGUIController;
     private RegisterGreenSpaceController controller = new RegisterGreenSpaceController();
+    private AuthenticationController authenticationController = new AuthenticationController();
 
     @FXML
     private void initialize() {
@@ -59,7 +61,7 @@ public class RegisterGreenSpaceGUIController {
                 showAlert(Alert.AlertType.ERROR, "Register Error", "You must select a Green Space type.");
                 return;
             }
-            GreenSpaceDTO dto = new GreenSpaceDTO(name, address, area, type);
+            GreenSpaceDTO dto = new GreenSpaceDTO(name, address, area, type, authenticationController.getCurrentUserEmail());
             if (controller.registerGreenSpace(dto)) {
                 System.out.println(controller.getGreenSpaceList());
                 greenSpaceMenuGUIController.update();

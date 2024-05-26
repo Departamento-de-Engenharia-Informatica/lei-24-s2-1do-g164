@@ -174,8 +174,8 @@ public class Bootstrap implements Runnable {
 
     public void addGreenSpaces(){
         GreenSpaceRepository repo = Repositories.getInstance().getGreenSpaceRepository();
-        repo.registerGreenSpace(new GreenSpace(GreenSpaceTypeENUM.LARGE_SIZED_PARK, "Cidade", "Av. Menéres", 123));
-        repo.registerGreenSpace(new GreenSpace(GreenSpaceTypeENUM.MEDIUM_SIZED_PARK, "Covelo", "Av. Feliz 123", 50));
-        repo.registerGreenSpace(new GreenSpace(GreenSpaceTypeENUM.GARDEN, "São Roque", "Rua Triste 22", 3));
+        repo.registerGreenSpace(new GreenSpace(GreenSpaceTypeENUM.LARGE_SIZED_PARK, "Cidade", "Av. Menéres", 123, "gsm@gsm.app"));
+        repo.registerGreenSpace(new GreenSpace(GreenSpaceTypeENUM.MEDIUM_SIZED_PARK, "Covelo", "Av. Feliz 123", 50, "gsm@gsm.app"));
+        repo.registerGreenSpace(new GreenSpace(GreenSpaceTypeENUM.GARDEN, "São Roque", "Rua Triste 22", 3, "ola@gdd.pt"));
     }
 }

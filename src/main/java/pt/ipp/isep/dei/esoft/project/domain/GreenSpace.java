@@ -8,12 +8,14 @@ public class GreenSpace {
     private String name;
     private String address;
     private int area;
+    private String emailGSM;
 
-    public GreenSpace(GreenSpaceTypeENUM type, String name, String address, int area){
+    public GreenSpace(GreenSpaceTypeENUM type, String name, String address, int area, String emailGSM){
         this.type = type;
         this.name = name;
         this.address = address;
         this.area = area;
+        this.emailGSM = emailGSM;
     }
 
     public boolean equals(GreenSpace g){
@@ -56,5 +58,13 @@ public class GreenSpace {
 
     public void setType(GreenSpaceTypeENUM type) {
         this.type = type;
+    }
+
+    public String getEmailGSM() {
+        return emailGSM;
+    }
+
+    public void setEmailGSM(String emailGSM) {
+        this.emailGSM = emailGSM;
     }
 }

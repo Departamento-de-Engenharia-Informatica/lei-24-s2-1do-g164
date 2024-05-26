@@ -7,12 +7,14 @@ public class GreenSpaceDTO {
     public String address;
     public int area;
     public GreenSpaceTypeENUM type;
+    public String emailGSM;
 
-    public GreenSpaceDTO(String name, String address, int area, GreenSpaceTypeENUM type) {
+    public GreenSpaceDTO(String name, String address, int area, GreenSpaceTypeENUM type, String emailGSM) {
         this.name = name;
         this.address = address;
         this.area = area;
         this.type = type;
+        this.emailGSM = emailGSM;
     }
 
     public String toString(){

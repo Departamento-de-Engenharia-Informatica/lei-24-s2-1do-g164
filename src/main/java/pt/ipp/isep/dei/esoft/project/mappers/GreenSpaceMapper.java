@@ -11,11 +11,11 @@ import java.util.List;
 public class GreenSpaceMapper {
 
     public GreenSpace toEntity(GreenSpaceDTO greenSpaceDTO){
-        return new GreenSpace(greenSpaceDTO.type, greenSpaceDTO.name, greenSpaceDTO.address, greenSpaceDTO.area);
+        return new GreenSpace(greenSpaceDTO.type, greenSpaceDTO.name, greenSpaceDTO.address, greenSpaceDTO.area, greenSpaceDTO.emailGSM);
     }
 
     public GreenSpaceDTO toDTO(GreenSpace greenSpace){
-        return new GreenSpaceDTO(greenSpace.getName(), greenSpace.getAddress(), greenSpace.getArea(), greenSpace.getType());
+        return new GreenSpaceDTO(greenSpace.getName(), greenSpace.getAddress(), greenSpace.getArea(), greenSpace.getType(), greenSpace.getEmailGSM());
     }
 
     public ArrayList<GreenSpaceDTO> toDTOList(List<GreenSpace> greenSpaceList){

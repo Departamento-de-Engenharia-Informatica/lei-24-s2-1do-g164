@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
+import com.kitfox.svg.A;
+import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.GreenSpace;
 import pt.ipp.isep.dei.esoft.project.domain.ToDoEntry;
 import pt.ipp.isep.dei.esoft.project.dto.GreenSpaceDTO;
@@ -15,6 +17,7 @@ import java.util.ArrayList;
 public class RegisterGreenSpaceController {
     private GreenSpaceRepository greenSpaceRepository;
     private GreenSpaceMapper greenSpaceMapper;
+    private final AuthenticationController authenticationController= new AuthenticationController();
 
 
     public RegisterGreenSpaceController() {
@@ -27,7 +30,7 @@ public class RegisterGreenSpaceController {
     }
 
     public ArrayList<GreenSpace> getGreenSpaceList(){
-        return greenSpaceRepository.getGreenSpaceList();
+        return greenSpaceRepository.getGreenSpaceList(authenticationController.getCurrentUserEmail());
     }
 
     public ArrayList<GreenSpaceDTO> getGreenSpaceDTOsList(){

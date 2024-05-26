@@ -27,7 +27,13 @@ public class GreenSpaceRepository implements Serializable {
         return true;
     }
 
-    public ArrayList<GreenSpace> getGreenSpaceList() {
-        return greenSpaceList;
+    public ArrayList<GreenSpace> getGreenSpaceList(String email) {
+        ArrayList<GreenSpace> greenSpaceListGSM = new ArrayList<>();
+        for (GreenSpace gs : this.greenSpaceList) {
+            if(gs.getEmailGSM().equals(email)){
+                greenSpaceListGSM.add(gs);
+            }
+        }
+        return greenSpaceListGSM;
     }
 }

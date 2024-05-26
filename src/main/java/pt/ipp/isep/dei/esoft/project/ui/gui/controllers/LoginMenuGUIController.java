@@ -93,7 +93,9 @@ public class LoginMenuGUIController {
                 }
             }
         }
-        logout();
+        System.out.println(controller.getCurrentUserEmail());
+        //logout();
+        System.out.println(controller.getCurrentUserEmail());
     }
 
     public void logout() {
@@ -102,7 +104,7 @@ public class LoginMenuGUIController {
 
     public void redirectToRoleMenu(UserRoleDTO role, ActionEvent event) throws IOException {
         if (role.getDescription().equalsIgnoreCase(controller.ROLE_GSM)) {
-            switchMenusGUI(event, "gsmMenu");
+            switchMenusGUI(event, "gsmMenu", controller.ROLE_GSM.toString());
         } else if (role.getDescription().equalsIgnoreCase(controller.ROLE_VFM)) {
             VfmUI ui = new VfmUI();
             ui.run();
@@ -114,12 +116,14 @@ public class LoginMenuGUIController {
         }
     }
 
-    public void switchMenusGUI(ActionEvent event, String fileName) throws IOException {
+    public void switchMenusGUI(ActionEvent event, String fileName, String menuName) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/fxml/" + fileName + ".fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        // Get the current stage
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root, 400, 400));
+        stage.setTitle(menuName + " Menu");
+        // Set the new scene or update the current scene with the new root
+        stage.getScene().setRoot(root);
     }
 
     public void closeWindow(ActionEvent event) {

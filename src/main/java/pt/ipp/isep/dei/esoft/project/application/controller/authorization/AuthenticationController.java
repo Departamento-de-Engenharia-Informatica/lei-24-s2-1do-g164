@@ -38,6 +38,15 @@ public class AuthenticationController {
         return null;
     }
 
+    public String getCurrentUserEmail(){
+        if (authenticationRepository.getCurrentUserSession().isLoggedIn()) {
+            return authenticationRepository.getCurrentUserEmail();
+        }
+        else{
+            return "aa";
+        }
+    }
+
     public void doLogout() {
         authenticationRepository.doLogout();
     }

@@ -44,6 +44,10 @@ public class AuthenticationRepository {
         return authenticationFacade.getCurrentUserSession();
     }
 
+    public String getCurrentUserEmail() {
+        return getCurrentUserSession().getUserId().getEmail();
+    }
+
     /**
      * Adds a new user role.
      *

@@ -66,18 +66,20 @@ public class ToDoListGUIController {
 
     public void closeWindow(ActionEvent event){
         try {
-            File file = new File("src/main/resources/fxml/loginmenu.fxml");
+            File file = new File("src/main/resources/fxml/gsmMenu.fxml");
             FXMLLoader loader = new FXMLLoader(file.toURI().toURL());
             Parent root = loader.load();
 
             // Get the current stage
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root, 350, 400));
-            // Set the new scene or update the current scene with the new root
-            stage.getScene().setRoot(root);
+            // Set the new scene
+            stage.setScene(new Scene(root));
+            // Optionally, set the title or other properties of the stage if needed
+            stage.setTitle("GSM Menu");
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 }

@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pt.ipp.isep.dei.esoft.project.application.controller.TeamToAgendaEntryController;
 import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
@@ -15,13 +16,16 @@ import javafx.event.ActionEvent;
 public class TeamtoAgendaMenuGUIController {
 
     @FXML
-    private ComboBox<AgendaEntryDTO> cmbAgendaEntries;
+    ComboBox<AgendaEntryDTO> cmbAgendaEntries;
 
     @FXML
-    private ComboBox<TeamDTO> cmbTeams;
+    ComboBox<TeamDTO> cmbTeams;
 
     @FXML
-    private Button btnCancel;
+     Button btnCancel;
+    @FXML
+    TextField txtArea;
+
 
     private AgendaMenuGUIController agendaMenuGUIController;
     private TeamToAgendaEntryController controller;
@@ -29,7 +33,7 @@ public class TeamtoAgendaMenuGUIController {
 
     @FXML
     public void initialize() {
-
+        txtArea.clear();
         cmbAgendaEntries.getItems().setAll(controller.getAgendaEntryDTOList());
         cmbTeams.getItems().setAll(controller.showAvailableTeamsDTO());
     }
@@ -53,7 +57,7 @@ public class TeamtoAgendaMenuGUIController {
         stage.close();
     }
 
-    public void setTeamtoAgendaMenuGUIController(AgendaMenuGUIController agendaMenuGUIController) {
+    public void setAgendaGUIController(AgendaMenuGUIController agendaMenuGUIController) {
         this.agendaMenuGUIController = agendaMenuGUIController;
     }
 

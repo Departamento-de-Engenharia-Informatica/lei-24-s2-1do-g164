@@ -65,11 +65,11 @@ class CancelAgendaEntryController {
     +cancelAgendaEntry(AgendaEntryDTO dto)
 }
 
-class AgendaUI {
+class CancelAgendaEntryUI {
 
 }
 
-AgendaUI .> CancelAgendaEntryController
+CancelAgendaEntryUI .> CancelAgendaEntryController
 CancelAgendaEntryController ..> Repositories : repositories
 Repositories --> "1" AgendaEntryRepository
 Repositories -> Repositories : instance
@@ -79,7 +79,7 @@ CancelAgendaEntryController --> AgendaEntryRepository : uses
 SystemUser <|- GSM
 ToDoEntry <|-- AgendaEntry
 
-GSM "1" -- "1" AgendaUI
+GSM "1" -- "1" CancelAgendaEntryUI
 AgendaEntry "*" <-- "1" AgendaEntryRepository : stores
 AgendaEntryDTO "*" <-- "1" AgendaEntryMapper : creates
 

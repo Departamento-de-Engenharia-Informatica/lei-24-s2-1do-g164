@@ -10,8 +10,8 @@ _**Note that SSD - Alternative One is adopted.**_
 |:-------------------------------------------------------|:--------------------------------------------|:----------------------------|:--------------------------------------------------------------------------------------------------------------|
 | Step 1 (asks to register a new To-Do List Entry)       | ...interacting with the actor?              | RegisterToDoEntryUI         | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. |
 |                                                        | ...coordinating the US?                     | RegisterToDoEntryController | Controller                                                                                                    |
-| Step 2 (requests data(description, expected duration)) | ...displaying the input form?               | RegisterToDoEntryUI                | Pure Fabrication                                                                                              |
-| Step 3 (types the data)                                | ...storing the data temporarily?            | RegisterToDoEntryUI                | IE: has the data                                                                                              |
+| Step 2 (requests data(description, expected duration)) | ...displaying the input form?               | RegisterToDoEntryUI         | Pure Fabrication                                                                                              |
+| Step 3 (types the data)                                | ...storing the data temporarily?            | RegisterToDoEntryUI         | IE: has the data                                                                                              |
 | Step 4 (shows urgency degrees and asks to select one)  | ...retrieving the Green Space types?        | UrgencyDegreeENUM           | IE: has the data                                                                                              |
 |                                                        | ...displaying Urgency Degree list?          | RegisterToDoEntryUI         | Pure Fabrication                                                                                              |
 | Step 5 (selects the urgency degree)                    | ...storing the data temporarily?            | RegisterToDoEntryUI         | IE: has the data                                                                                              |
@@ -26,6 +26,7 @@ _**Note that SSD - Alternative One is adopted.**_
 |                                                        | ...validating the data globally?            | ToDoEntryRepository         | IE: has all To-Do List Entries                                                                                |
 |                                                        | ...registering the To-Do List Entry??       | ToDoEntryRepository         | IE: has the data                                                                                              |
 | Step 7 (displays message of (in)success)               | ...displaying the result of the operation?  | RegisterToDoEntryUI         | Pure Fabrication                                                                                              |
+| Step 5 (select the entry)	                             | ...storing the data temporarily?            | 	RegisterToDoEntryUI	       | IE: has the data                                                                                              |
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 

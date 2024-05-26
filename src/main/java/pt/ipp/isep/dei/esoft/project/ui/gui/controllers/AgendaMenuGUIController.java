@@ -65,7 +65,7 @@ public class AgendaMenuGUIController {
             FXMLLoader loader = new FXMLLoader(file.toURL());
             Parent root = loader.load();
             TeamtoAgendaMenuGUIController teamtoAgendaMenuGUIController = loader.getController();
-            teamtoAgendaMenuGUIController.setTeamtoAgendaMenuGUIController(this);
+            teamtoAgendaMenuGUIController.setAgendaGUIController(this);
             Stage newStage = new Stage();
             newStage.setTitle("Assign Team To Agenda Entry");
             newStage.setScene(new Scene(root));

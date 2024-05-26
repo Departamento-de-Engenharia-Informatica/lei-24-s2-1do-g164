@@ -12,8 +12,8 @@ import pt.ipp.isep.dei.esoft.project.application.controller.RegisterAgendaEntryC
 import pt.ipp.isep.dei.esoft.project.domain.GreenSpace;
 import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 import pt.ipp.isep.dei.esoft.project.dto.ToDoEntryDTO;
-import pt.ipp.isep.dei.esoft.project.repository.enums.GreenSpaceType;
-import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegree;
+import pt.ipp.isep.dei.esoft.project.repository.enums.GreenSpaceTypeENUM;
+import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegreeENUM;
 
 import java.time.LocalDate;
 

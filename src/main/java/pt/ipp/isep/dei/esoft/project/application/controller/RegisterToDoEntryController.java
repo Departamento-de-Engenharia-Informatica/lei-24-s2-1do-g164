@@ -33,7 +33,6 @@ public class RegisterToDoEntryController {
     }
 
     private ArrayList<GreenSpace> getGreenSpaceList(){
-        System.out.println(authenticationController.getCurrentUserEmail());
         return greenSpaceRepository.getGreenSpaceList(authenticationController.getCurrentUserEmail());
     }
 
@@ -42,7 +41,7 @@ public class RegisterToDoEntryController {
     }
 
     private ArrayList<ToDoEntry> getToDoEntryList(){
-        return toDoEntryRepository.getToDoEntryList();
+        return toDoEntryRepository.getToDoEntryList(authenticationController.getCurrentUserEmail());
     }
 
     public ArrayList<ToDoEntryDTO> getToDoEntryDTOsList() {

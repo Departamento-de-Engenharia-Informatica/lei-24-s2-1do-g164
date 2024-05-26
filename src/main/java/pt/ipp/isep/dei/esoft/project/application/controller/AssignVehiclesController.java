@@ -1,4 +1,5 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
+import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.Vehicle;
 import pt.ipp.isep.dei.esoft.project.domain.ToDoEntry;
 import pt.ipp.isep.dei.esoft.project.repository.*;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 public class AssignVehiclesController {
     private VehicleRepository vehicleRepository;
     private ToDoEntryRepository toDoEntryRepository;
+    AuthenticationController authenticationController = new AuthenticationController();
 
     /**
      * Constructor for AssignVehiclesController.
@@ -52,7 +54,7 @@ public class AssignVehiclesController {
      * @return The list of entries.
      */
     public ArrayList<ToDoEntry> getToDoEntryList() {
-        return toDoEntryRepository.getToDoEntryList();
+        return toDoEntryRepository.getToDoEntryList(authenticationController.getCurrentUserEmail());
     }
 
     /**

@@ -25,8 +25,14 @@ public class ToDoEntryRepository {
         return true;
     }
 
-    public ArrayList<ToDoEntry> getToDoEntryList() {
-        return toDoEntryList;
+    public ArrayList<ToDoEntry> getToDoEntryList(String email) {
+        ArrayList<ToDoEntry> toDoEntryListGSM = new ArrayList<>();
+        for (ToDoEntry td : this.toDoEntryList) {
+            if (td.getGreenSpace().getEmailGSM().equals(email)) {
+                toDoEntryListGSM.add(td);
+            }
+        }
+        return toDoEntryListGSM;
     }
 
     public boolean assignVehicles(ToDoEntry toDoEntry, ArrayList<Vehicle> vehiclesList) {

@@ -48,6 +48,9 @@ public class Bootstrap implements Runnable {
 
         authenticationRepository.addUserWithRole("Leonor", "gsm@gsm.app", "LEONOr1852",
                 AuthenticationController.ROLE_GSM);
+
+        authenticationRepository.addUserWithRole("Vasco", "gsm2@gsm2.app", "VASco3344",
+                AuthenticationController.ROLE_GSM);
     }
 
     private void addCollaborators() {
@@ -176,6 +179,6 @@ public class Bootstrap implements Runnable {
         GreenSpaceRepository repo = Repositories.getInstance().getGreenSpaceRepository();
         repo.registerGreenSpace(new GreenSpace(GreenSpaceTypeENUM.LARGE_SIZED_PARK, "Cidade", "Av. Menéres", 123, "gsm@gsm.app"));
         repo.registerGreenSpace(new GreenSpace(GreenSpaceTypeENUM.MEDIUM_SIZED_PARK, "Covelo", "Av. Feliz 123", 50, "gsm@gsm.app"));
-        repo.registerGreenSpace(new GreenSpace(GreenSpaceTypeENUM.GARDEN, "São Roque", "Rua Triste 22", 3, "ola@gdd.pt"));
+        repo.registerGreenSpace(new GreenSpace(GreenSpaceTypeENUM.GARDEN, "São Roque", "Rua Triste 22", 3, "gsm2@gsm2.app"));
     }
 }

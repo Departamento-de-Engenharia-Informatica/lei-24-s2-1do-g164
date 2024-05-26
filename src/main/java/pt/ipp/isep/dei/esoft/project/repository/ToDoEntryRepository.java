@@ -1,11 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.domain.ToDoEntry;
+import pt.ipp.isep.dei.esoft.project.domain.Vehicle;
 
 import java.util.ArrayList;
 
 public class ToDoEntryRepository {
-    private ArrayList<ToDoEntry> toDoEntryList= new ArrayList<>();
+    private ArrayList<ToDoEntry> toDoEntryList = new ArrayList<>();
 
     public boolean registerToDoEntry(ToDoEntry td) {
         if(toDoEntryIsUnique(td)){
@@ -26,5 +27,13 @@ public class ToDoEntryRepository {
 
     public ArrayList<ToDoEntry> getToDoEntryList() {
         return toDoEntryList;
+    }
+
+    public boolean assignVehicles(ToDoEntry toDoEntry, ArrayList<Vehicle> vehiclesList) {
+        if (toDoEntry == null || vehiclesList == null) {
+            return false;
+        }
+
+        return toDoEntry.addVehicles(vehiclesList);
     }
 }

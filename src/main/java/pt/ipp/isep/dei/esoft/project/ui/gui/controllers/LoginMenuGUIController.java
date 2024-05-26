@@ -102,7 +102,7 @@ public class LoginMenuGUIController {
 
     public void redirectToRoleMenu(UserRoleDTO role, ActionEvent event) throws IOException {
         if (role.getDescription().equalsIgnoreCase(controller.ROLE_GSM)) {
-            switchMenusGUI(event, "todolistmenu");
+            switchMenusGUI(event, "gsmMenu");
         } else if (role.getDescription().equalsIgnoreCase(controller.ROLE_VFM)) {
             VfmUI ui = new VfmUI();
             ui.run();

@@ -9,11 +9,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterAgendaEntryController;
-import pt.ipp.isep.dei.esoft.project.domain.GreenSpace;
 import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 import pt.ipp.isep.dei.esoft.project.dto.ToDoEntryDTO;
-import pt.ipp.isep.dei.esoft.project.repository.enums.GreenSpaceType;
-import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegree;
 
 import java.time.LocalDate;
 

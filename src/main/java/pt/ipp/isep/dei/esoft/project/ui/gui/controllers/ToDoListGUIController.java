@@ -27,8 +27,6 @@ public class ToDoListGUIController {
     Button btnCancel;
     @FXML
     TextArea txtToDoListText;
-    @FXML
-    BorderPane borderPane;
 
     private RegisterToDoEntryController controller = new RegisterToDoEntryController();
 

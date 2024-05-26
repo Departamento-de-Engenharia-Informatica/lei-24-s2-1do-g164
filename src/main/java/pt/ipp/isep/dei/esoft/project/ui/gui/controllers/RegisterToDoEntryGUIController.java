@@ -30,8 +30,10 @@ public class RegisterToDoEntryGUIController {
     @FXML
     ComboBox<UrgencyDegree> cmbUrgencyDegree;
     private ToDoListGUIController toDoListGUIController;
-    private RegisterToDoEntryController controller = new RegisterToDoEntryController();
-    private GreenSpaceMapper greenSpaceMapper = new GreenSpaceMapper();
+
+    private final RegisterToDoEntryController controller = new RegisterToDoEntryController();
+    private final GreenSpaceMapper greenSpaceMapper = new GreenSpaceMapper();
+
 
     @FXML
     private void initialize(){

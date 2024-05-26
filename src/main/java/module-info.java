@@ -9,6 +9,7 @@ module pt.ipp.isep.dei.esoft.project.ui.gui {
     requires reload4j;
     requires guru.nidi.graphviz;
     requires svgSalamander;
+    requires jdk.jfr;
 
 //    requires commons.math3;
 

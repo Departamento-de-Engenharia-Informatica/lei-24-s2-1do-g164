@@ -58,8 +58,8 @@ end
 
 "AgendaEntryMapper" --> CTRL : EntriesBetweenDatesListListDTO
 deactivate "AgendaEntryMapper"
- --> UI : EntriesBetweenDatesListListDTO
-deactivate "AgendaEntryDTO"
+  CTRL --> UI : EntriesBetweenDatesListDTO
+            deactivate CTRL
 
 UI --> ADM : show the list of tasks between these two dates
 deactivate UI

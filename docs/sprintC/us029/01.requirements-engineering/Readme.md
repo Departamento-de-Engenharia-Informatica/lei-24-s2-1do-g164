@@ -33,7 +33,10 @@ So, my question is the following: does the task associated with the Agenda entry
 Yes.
 I suppose when a task goes to the Agenda, it leaves the To-Do list but maybe a different flow could be considered.
 
-
+>**Question**
+"As a Collaborator, I want to record the completion of a task." is "record" refers to the act of only changing the status of the task, or do we want to save a list of the completed tasks within each Collaborator?
+>
+>**Answer** It means to record that a task was completed (changing the status) with the finish time.
 ### 1.3. Acceptance Criteria
 
 * n/a

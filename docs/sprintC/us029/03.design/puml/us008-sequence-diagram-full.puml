@@ -5,53 +5,69 @@ skinparam shadowing false
 
 autonumber
 
-'hide footbox
 actor "FM" as ADM
-participant ":ListVehivclesCheckupsUI" as UI
-participant ":ListVehivclesCheckupsController" as CTRL
+participant ":MarkTaskCompletedUI" as UI
+participant ":MarkTaskCompletedController" as CTRL
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT
-participant "vehiclesRepository:\nVehiclesRepository" as TaskCategoryRepository
-
+participant "toDoEntryRepository:\nToDoEntryRepository" as TaskCategoryRepository
+participant "ToDoEntryMapper"
 
 activate ADM
 
-        ADM -> UI : asks to list the vehicles that need the check-up.
+ADM -> UI : asks to mark a task as completed
+activate UI
 
-        activate UI
+UI -> CTRL : create
+activate CTRL
 
-'            UI --> ADM : requests data (reference, description,  informal \n description, technical description, duration, cost)
-            'create CTRL
-            UI -> CTRL** : create
+activate CTRL
+ CTRL-> "AgendaEntryMapper"** : create
+deactivate "AgendaEntryMapper"
 
-            UI -> CTRL : getVehicles()
-            activate CTRL
+UI -> CTRL : getToDoEntries()
 
-                CTRL -> RepositorySingleton : getInstance()
-                activate RepositorySingleton
+CTRL -> RepositorySingleton : getInstance()
+activate RepositorySingleton
 
-                    RepositorySingleton --> CTRL: repositories
-                deactivate RepositorySingleton
+RepositorySingleton --> CTRL : repositories
+deactivate RepositorySingleton
 
-                CTRL -> PLAT : getVehiclesRepository()
-                activate PLAT
+CTRL -> PLAT : getToDoEntryRepository()
+activate PLAT
 
-                    PLAT --> CTRL: VehiclesRepository()
-                deactivate PLAT
+PLAT --> CTRL : ToDoEntryRepository()
+deactivate PLAT
 
-                CTRL -> TaskCategoryRepository : getVehicles()
-                activate TaskCategoryRepository
+CTRL -> TaskCategoryRepository : getToDoEntryList()
+activate TaskCategoryRepository
 
-                    TaskCategoryRepository --> CTRL : VehiclesList
-                deactivate TaskCategoryRepository
+TaskCategoryRepository --> CTRL : ToDoEntryList
+deactivate TaskCategoryRepository
 
-                CTRL --> UI : VehiclesList
-            deactivate CTRL
+CTRL -> "AgendaEntryMapper" : toDTO(ToDoEntryList)
+activate "AgendaEntryMapper"
 
-            UI --> ADM : shows Vehicles list
-        deactivate UI
+loop for each agendaEntry in ToDoEntryList
+    "AgendaEntryMapper" -> "EntriesBetweenDatesDTO" : ToDoEntryDTO = toDTO(toDoEntry)
+    activate "EntriesBetweenDatesDTO"
+    deactivate "EntriesBetweenDatesDTO"
+end
+"AgendaEntryMapper" --> CTRL : EntriesBetweenDatesListDTO
+deactivate "AgendaEntryMapper"
 
+CTRL --> UI : EntriesBetweenDatesListDTO
+
+UI --> ADM : show the list of entries
+
+ADM -> UI : asks to mark a task as completed
+UI -> CTRL : taskAsCompleted(entry)
+CTRL -> TaskCategoryRepository : taskAsCompleted(entry)
+activate TaskCategoryRepository
+TaskCategoryRepository -> CTRL : Success
+deactivate TaskCategoryRepository
+CTRL --> UI : Success
+UI --> ADM : Confirm task completion
 
 deactivate ADM
-
 @enduml

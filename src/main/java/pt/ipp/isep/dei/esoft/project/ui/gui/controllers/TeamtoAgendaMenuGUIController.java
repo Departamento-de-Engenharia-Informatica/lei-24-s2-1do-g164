@@ -27,8 +27,9 @@ public class TeamtoAgendaMenuGUIController {
     TextField txtArea;
 
 
+
     private AgendaMenuGUIController agendaMenuGUIController;
-    private TeamToAgendaEntryController controller;
+    private TeamToAgendaEntryController controller = new TeamToAgendaEntryController();
 
 
     @FXML

@@ -7,7 +7,6 @@
 <BorderPane fx:id="borderPane" prefHeight="600.0" prefWidth="663.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.controllers.AgendaMenuGUIController">
     <top>
         <VBox alignment="CENTER" prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #2E7D32;">
-
             <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Agenda" textFill="WHITE" />
         </VBox>
     </top>
@@ -23,12 +22,24 @@
                 <RowConstraints vgrow="ALWAYS" minHeight="50.0" />
             </rowConstraints>
             <children>
-                <Button fx:id="btnAddAgendaEntry" mnemonicParsing="false" onAction="#openCancelAgendaEntryWindow" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Add an Entry to the Agenda" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                <Button fx:id="btnAddTeam" mnemonicParsing="false" onAction="#openAssignTeamAgendaWindow" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Add a Team to an Entry" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                <Button fx:id="btnAddVehicles" mnemonicParsing="false" onAction="#openCancelAgendaEntryWindow" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Add vehicles to Entry" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-                <Button fx:id="btnPostpone" mnemonicParsing="false" onAction="#openCancelAgendaEntryWindow" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Postpone an Entry" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                <Button fx:id="btnCancelEntry" mnemonicParsing="false" onAction="#openCancelAgendaEntryWindow" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Cancel an Entry" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#closeWindow" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #D32F2F; -fx-text-fill: white; -fx-font-size: 14px;" text="Exit" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <VBox alignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <Button fx:id="btnAddAgendaEntry" mnemonicParsing="false" onAction="#openCancelAgendaEntryWindow" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Add an Entry to the Agenda" maxWidth="Infinity" />
+                </VBox>
+                <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <Button fx:id="btnAddTeam" mnemonicParsing="false" onAction="#openAssignTeamAgendaWindow" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Add a Team to an Entry" maxWidth="Infinity" />
+                </VBox>
+                <VBox alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                    <Button fx:id="btnAddVehicles" mnemonicParsing="false" onAction="#openCancelAgendaEntryWindow" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Add vehicles to Entry" maxWidth="Infinity" />
+                </VBox>
+                <VBox alignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <Button fx:id="btnPostpone" mnemonicParsing="false" onAction="#openCancelAgendaEntryWindow" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Postpone an Entry" maxWidth="Infinity" />
+                </VBox>
+                <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <Button fx:id="btnCancelEntry" mnemonicParsing="false" onAction="#openCancelAgendaEntryWindow" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Cancel an Entry" maxWidth="Infinity" />
+                </VBox>
+                <VBox alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                    <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#closeWindow" style="-fx-background-color: #D32F2F; -fx-text-fill: white; -fx-font-size: 14px;" text="Exit" maxWidth="Infinity" />
+                </VBox>
             </children>
             <padding>
                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

@@ -12,7 +12,7 @@
     </top>
     <center>
         <VBox alignment="CENTER" prefHeight="350.0" prefWidth="400.0" spacing="30.0" style="-fx-background-color: #F1F8E9;">
-            <Button fx:id="greenSpacesButton" mnemonicParsing="false" onAction="#openGreenSpaces" prefWidth="102.0" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Green Spaces" />
+            <Button fx:id="greenSpacesButton" mnemonicParsing="false" onAction="#openGreenSpaces" prefWidth="120.0" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Green Spaces" />
             <Button fx:id="toDoListButton" mnemonicParsing="false" onAction="#openToDoList" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="To-Do List" />
             <Button fx:id="agendaButton" mnemonicParsing="false" onAction="#openAgenda" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Agenda" />
             <Button fx:id="exitButton" mnemonicParsing="false" onAction="#closeWindow" style="-fx-background-color: #D32F2F; -fx-text-fill: white; -fx-font-size: 14px;" text="Logout" />

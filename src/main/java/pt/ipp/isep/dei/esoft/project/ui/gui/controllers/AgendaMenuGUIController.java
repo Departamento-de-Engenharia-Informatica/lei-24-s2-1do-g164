@@ -58,7 +58,7 @@ public class AgendaMenuGUIController {
 
     public void openAssignTeamAgendaWindow(ActionEvent event) {
         try {
-            File file = new File("src/main/resources/fxml/assignTeamToAgendaEntry.fxml");
+            File file = new File("src\\main\\resources\\fxml\\assignTeamToAgendaEntry.fxml");
             FXMLLoader loader = new FXMLLoader(file.toURI().toURL());
             Parent root = loader.load();
 

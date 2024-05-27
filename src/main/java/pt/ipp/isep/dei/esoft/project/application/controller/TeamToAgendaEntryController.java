@@ -22,12 +22,9 @@ public class TeamToAgendaEntryController {
 
     private AgendaEntryRepository agendaEntryRepository;
     private EmailService emailService;
-
     private TeamRepository teamRepository;
-
-    private AgendaEntryMapper agendaEntryMapper;
-
-    private TeamMapper teamMapper;
+    private AgendaEntryMapper agendaEntryMapper = new AgendaEntryMapper();
+    private TeamMapper teamMapper = new TeamMapper();
     AuthenticationController authenticationController = new AuthenticationController();
 
 

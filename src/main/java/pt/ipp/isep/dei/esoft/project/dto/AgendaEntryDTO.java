@@ -16,7 +16,6 @@ public class AgendaEntryDTO {
     public GreenSpace greenSpace;
     public UrgencyDegreeENUM urgencyDegree;
     public EntryStatusENUM entryStatus;
-
     public LocalDate date;
 
     public Team team;

@@ -4,6 +4,7 @@ package pt.ipp.isep.dei.esoft.project.repository;
 import pt.ipp.isep.dei.esoft.project.domain.AgendaEntry;
 import pt.ipp.isep.dei.esoft.project.domain.GreenSpace;
 import pt.ipp.isep.dei.esoft.project.domain.Team;
+import pt.ipp.isep.dei.esoft.project.domain.ToDoEntry;
 import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 
 import java.util.ArrayList;
@@ -29,8 +30,14 @@ public class AgendaEntryRepository {
         return true;
     }
 
-    public ArrayList<AgendaEntry> getAgendaEntryList() {
-        return agendaEntryList;
+    public ArrayList<AgendaEntry> getAgendaEntryList(String email) {
+        ArrayList<AgendaEntry> agendaEntryListGSM = new ArrayList<>();
+        for (AgendaEntry agendaEntry : this.agendaEntryList) {
+            if (agendaEntry.getGreenSpace().getEmailGSM().equals(email)) {
+                agendaEntryListGSM.add(agendaEntry);
+            }
+        }
+        return agendaEntryListGSM;
     }
 
     public boolean postponeEntryInAgenda(AgendaEntry entity) {

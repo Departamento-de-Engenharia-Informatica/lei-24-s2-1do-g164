@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 import com.kitfox.svg.A;
+import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.application.session.ApplicationSession;
 import pt.ipp.isep.dei.esoft.project.domain.AgendaEntry;
 import pt.ipp.isep.dei.esoft.project.domain.Collaborator;
@@ -27,6 +28,7 @@ public class TeamToAgendaEntryController {
     private AgendaEntryMapper agendaEntryMapper;
 
     private TeamMapper teamMapper;
+    AuthenticationController authenticationController = new AuthenticationController();
 
 
 
@@ -42,7 +44,7 @@ public class TeamToAgendaEntryController {
     }
 
      public ArrayList<AgendaEntryDTO> getAgendaEntryDTOList() {
-        ArrayList<AgendaEntry> agendaEntryList = agendaEntryRepository.getAgendaEntryList();
+        ArrayList<AgendaEntry> agendaEntryList = agendaEntryRepository.getAgendaEntryList(authenticationController.getCurrentUserEmail());
         return agendaEntryMapper.toDtoList(agendaEntryList);
     }
 

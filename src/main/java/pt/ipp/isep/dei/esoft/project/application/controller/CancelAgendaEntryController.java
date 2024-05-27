@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
+import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.AgendaEntry;
 import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 import pt.ipp.isep.dei.esoft.project.mappers.AgendaEntryMapper;
@@ -14,6 +15,7 @@ public class CancelAgendaEntryController {
 
     private AgendaEntryRepository agendaEntryRepository;
     private AgendaEntryMapper agendaEntryMapper;
+    AuthenticationController authenticationController = new AuthenticationController();
 
 
 
@@ -23,7 +25,7 @@ public class CancelAgendaEntryController {
 
     }
     public ArrayList<AgendaEntryDTO> getAgendaEntryDTOList() {
-        ArrayList<AgendaEntry> agendaEntryList = agendaEntryRepository.getAgendaEntryList();
+        ArrayList<AgendaEntry> agendaEntryList = agendaEntryRepository.getAgendaEntryList(authenticationController.getCurrentUserEmail());
         return agendaEntryMapper.toDtoList(agendaEntryList);
     }
 

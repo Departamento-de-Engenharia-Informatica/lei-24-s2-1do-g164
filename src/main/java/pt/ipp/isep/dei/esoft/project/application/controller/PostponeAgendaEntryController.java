@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
+import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.AgendaEntry;
 import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 import pt.ipp.isep.dei.esoft.project.dto.ToDoEntryDTO;
@@ -13,6 +14,7 @@ public class PostponeAgendaEntryController {
 
     private AgendaEntryRepository agendaEntryRepository;
     private AgendaEntryMapper agendaEntryMapper;
+    AuthenticationController authenticationController = new AuthenticationController();
 
     public PostponeAgendaEntryController(){
         getAgendaEntryRepository();
@@ -24,7 +26,7 @@ public class PostponeAgendaEntryController {
     }
 
     private ArrayList<AgendaEntry> getAvailableAgendaEntryList(){
-        return agendaEntryRepository.getAgendaEntryList();
+        return agendaEntryRepository.getAgendaEntryList(authenticationController.getCurrentUserEmail());
     }
 
     public ArrayList<AgendaEntryDTO> getToDoEntryDTOsList() {

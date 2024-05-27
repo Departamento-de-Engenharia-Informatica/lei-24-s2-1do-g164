@@ -1,7 +1,8 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
-import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegreeENUM;
+import pt.ipp.isep.dei.esoft.project.domain.service.EntryStatusENUM;
+
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.List;
 
 public class ToDoEntry implements Serializable {
 
+    private String id;
     private String description;
     private int expectedDuration;
     private EntryStatusENUM entryStatus;
@@ -16,7 +18,8 @@ public class ToDoEntry implements Serializable {
     private UrgencyDegreeENUM urgencyDegree;
     private List<Vehicle> assignedVehicles;
 
-    public ToDoEntry(String description, int expectedDuration, GreenSpace greenSpace, UrgencyDegreeENUM urgencyDegree) {
+    public ToDoEntry(String id, String description, int expectedDuration, GreenSpace greenSpace, UrgencyDegreeENUM urgencyDegree) {
+        this.id = id;
         this.description = description;
         this.expectedDuration = expectedDuration;
         this.entryStatus = EntryStatusENUM.PENDING;
@@ -43,12 +46,16 @@ public class ToDoEntry implements Serializable {
             return false;
         }
         ToDoEntry toDoEntry = (ToDoEntry) obj;
-        return description.equals(toDoEntry.getDescription()) && greenSpace.equals(toDoEntry.getGreenSpace());
+        return id.equals(toDoEntry.getId());
     }
 
     @Override
     public int hashCode() {
-        return description.hashCode() + greenSpace.hashCode();
+        return id.hashCode();
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getDescription() {
@@ -100,5 +107,9 @@ public class ToDoEntry implements Serializable {
 
     public List<Vehicle> getAssignedVehicles() {
         return assignedVehicles;
+    }
+
+    public void completeTask() {
+        this.entryStatus = EntryStatusENUM.COMPLETED;
     }
 }

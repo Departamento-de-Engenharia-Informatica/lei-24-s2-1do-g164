@@ -1,11 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Represents a system user.
  */
-public class SystemUser {
+public class SystemUser implements Serializable {
     private final String email;
     private String name;
     private String phone;

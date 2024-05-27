@@ -1,11 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Job - Represents a job in the system.
  */
-public class Job {
+public class Job implements Serializable {
 
     private final String jobName;
 

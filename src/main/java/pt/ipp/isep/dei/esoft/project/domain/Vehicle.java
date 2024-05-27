@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 import pt.ipp.isep.dei.esoft.project.repository.enums.VehicleTypeENUM;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Represents a vehicle used within a project.
  */
-public class Vehicle {
+public class Vehicle implements Serializable {
 
     private String brand;
     private String model;

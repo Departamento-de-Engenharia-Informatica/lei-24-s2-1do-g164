@@ -3,10 +3,11 @@ package pt.ipp.isep.dei.esoft.project.domain;
 import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegreeENUM;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ToDoEntry {
+public class ToDoEntry implements Serializable {
 
     private String description;
     private int expectedDuration;

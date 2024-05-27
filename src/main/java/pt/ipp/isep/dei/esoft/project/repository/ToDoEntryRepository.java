@@ -3,9 +3,10 @@ package pt.ipp.isep.dei.esoft.project.repository;
 import pt.ipp.isep.dei.esoft.project.domain.ToDoEntry;
 import pt.ipp.isep.dei.esoft.project.domain.Vehicle;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ToDoEntryRepository {
+public class ToDoEntryRepository implements Serializable {
     private ArrayList<ToDoEntry> toDoEntryList = new ArrayList<>();
 
     public boolean registerToDoEntry(ToDoEntry td) {

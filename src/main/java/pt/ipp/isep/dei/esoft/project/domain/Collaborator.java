@@ -3,12 +3,13 @@ package pt.ipp.isep.dei.esoft.project.domain;
 import pt.ipp.isep.dei.esoft.project.repository.enums.CollaboratorStatusENUM;
 import pt.ipp.isep.dei.esoft.project.repository.enums.DocumentTypeENUM;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Represents a collaborator in the system.
  */
-public class Collaborator {
+public class Collaborator implements Serializable {
 
     private String name;
     private int phone;

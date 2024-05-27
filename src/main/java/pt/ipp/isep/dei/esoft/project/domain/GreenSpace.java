@@ -2,7 +2,9 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 import pt.ipp.isep.dei.esoft.project.repository.enums.GreenSpaceTypeENUM;
 
-public class GreenSpace {
+import java.io.Serializable;
+
+public class GreenSpace implements Serializable {
 
     private GreenSpaceTypeENUM type;
     private String name;

@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.ui.Bootstrap;
 
 import java.io.File;
@@ -14,7 +15,9 @@ public class MainApp extends Application {
     public static void main(String[] args) {
         Bootstrap bootstrap = new Bootstrap();
         bootstrap.run();
+        Repositories.getInstance().deserializeRepository();
         launch();
+        Repositories.getInstance().serializeRepository();
     }
 
     @Override

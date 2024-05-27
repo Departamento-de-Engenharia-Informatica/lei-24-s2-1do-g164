@@ -7,9 +7,10 @@ import pt.ipp.isep.dei.esoft.project.domain.Team;
 import pt.ipp.isep.dei.esoft.project.domain.ToDoEntry;
 import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class AgendaEntryRepository {
+public class AgendaEntryRepository implements Serializable {
 
     private final ArrayList<AgendaEntry> agendaEntryList = new ArrayList<>();
     private Team team;

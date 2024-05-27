@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.InputMismatchException;
 
@@ -7,7 +8,7 @@ import java.util.InputMismatchException;
  * The VehicleCheckup class represents a checkup performed on a vehicle.
  * It stores the date of the checkup and the current kilometers of the vehicle at that time.
  */
-public class VehicleCheckup {
+public class VehicleCheckup implements Serializable {
     private LocalDate date;
     private int currentKms;
 

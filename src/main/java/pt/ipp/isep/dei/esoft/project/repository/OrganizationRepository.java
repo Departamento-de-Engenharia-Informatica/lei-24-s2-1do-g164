@@ -3,11 +3,12 @@ package pt.ipp.isep.dei.esoft.project.repository;
 import pt.ipp.isep.dei.esoft.project.domain.SystemUser;
 import pt.ipp.isep.dei.esoft.project.domain.Organization;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class OrganizationRepository {
+public class OrganizationRepository implements Serializable {
 
     private final List<Organization> organizations;
 

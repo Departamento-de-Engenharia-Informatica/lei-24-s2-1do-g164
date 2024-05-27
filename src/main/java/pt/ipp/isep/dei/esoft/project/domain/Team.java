@@ -2,13 +2,14 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 import pt.ipp.isep.dei.esoft.project.repository.enums.TeamStatusENUM;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
 /**
  * Represents a team of collaborators with specific skills.
  */
-public class Team {
+public class Team implements Serializable {
     /** List of skills possessed by the team
      *
      */

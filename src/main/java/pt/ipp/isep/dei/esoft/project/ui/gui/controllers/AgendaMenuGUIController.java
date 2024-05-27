@@ -12,7 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import pt.ipp.isep.dei.esoft.project.application.controller.CancelAgendaEntryController;
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterAgendaEntryController;
 import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 
@@ -52,23 +51,25 @@ public class AgendaMenuGUIController {
     }
 
     public void update(){
+        txtText.clear();
         ArrayList<AgendaEntryDTO> agendaEntryDTOS = controller.getAgendaEntryListDTO();
-            txtText.appendText(agendaEntryDTOS.toString() + "\n");
+        for (AgendaEntryDTO agendaEntryDTO: agendaEntryDTOS)
+            txtText.appendText(agendaEntryDTO.toString() + "\n");
         }
 
     public void openAssignTeamAgendaWindow(ActionEvent event) {
         try {
-            File file = new File("src/main/resources/fxml/assignTeamToAgendaEntry.fxml");
-            FXMLLoader loader = new FXMLLoader(file.toURI().toURL());
+            File file = new File("src\\main\\resources\\fxml\\assignTeamToAgendaEntry.fxml");
+            FXMLLoader loader = new FXMLLoader(file.toURL());
             Parent root = loader.load();
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root, 700, 700));
-            stage.setTitle("Assign Team to Agenda Entry");
-            stage.show();
+            Stage newStage = new Stage();
+            newStage.setTitle("Assign Team to Agenda Entry");
+            newStage.setScene(new Scene(root));
+            newStage.show();
+
         } catch (IOException e) {
             e.printStackTrace();
-
         }
     }
 
@@ -77,8 +78,7 @@ public class AgendaMenuGUIController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/cancelAgendaEntry.fxml"));
             Parent root = loader.load();
-            CancelAgendaEntryGUIController cancelGUIController = loader.getController();
-            cancelGUIController.setAgendaGUIController(this);
+
             Stage newStage = new Stage();
             newStage.setTitle("Cancel Agenda Entry");
             newStage.setScene(new Scene(root));

@@ -27,6 +27,7 @@ public class ToDoEntryRepository implements Serializable {
     }
 
     public ArrayList<ToDoEntry> getToDoEntryList(String email) {
+        System.out.println(toDoEntryList);
         ArrayList<ToDoEntry> toDoEntryListGSM = new ArrayList<>();
         for (ToDoEntry td : this.toDoEntryList) {
             if (td.getGreenSpace().getEmailGSM().equals(email)) {

@@ -15,8 +15,8 @@ import java.util.ArrayList;
 
 public class RegisterAgendaEntryController {
 
-    private AgendaEntryRepository agendaEntryRepository = new AgendaEntryRepository();
-    private ToDoEntryRepository toDoEntryRepository = new ToDoEntryRepository();
+    private AgendaEntryRepository agendaEntryRepository;
+    private ToDoEntryRepository toDoEntryRepository;
     private final AgendaEntryMapper agendaEntryMapper;
     private final ToDoEntryMapper toDoEntryMapper;
     AuthenticationController authenticationController = new AuthenticationController();

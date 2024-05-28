@@ -91,7 +91,9 @@ public class AgendaEntryDTO {
         return vehicles;
     }
 
-    public String toString() {
-        return description.toString()+greenSpace.toString()+team.toString();
+    public  String toString (){
+        return description;
     }
+
+
 }

@@ -31,9 +31,13 @@ public class AgendaEntryRepository implements Serializable {
     }
 
     public ArrayList<AgendaEntry> getAgendaEntryList(String email) {
+        System.out.println(agendaEntryList + "vkj");
         ArrayList<AgendaEntry> agendaEntryListGSM = new ArrayList<>();
         for (AgendaEntry agendaEntry : this.agendaEntryList) {
+            System.out.println(agendaEntry.getGreenSpace().getEmailGSM() + "vkj");
             if (agendaEntry.getGreenSpace().getEmailGSM().equals(email)) {
+                System.out.println(agendaEntry.getGreenSpace().getEmailGSM());
+                System.out.println("olaaawdfkhsk");
                 agendaEntryListGSM.add(agendaEntry);
             }
         }

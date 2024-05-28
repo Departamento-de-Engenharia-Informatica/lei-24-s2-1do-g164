@@ -242,14 +242,15 @@ public class Bootstrap implements Runnable {
         AgendaEntryRepository repo2= Repositories.getInstance().getAgendaEntryRepository();
         AgendaEntryRepository repo= Repositories.getInstance().getAgendaEntryRepository();
         VehicleRepository repo3 = Repositories.getInstance().getVehicleRepository();
+        ToDoEntryRepository repo4 = Repositories.getInstance().getToDoEntryRepository();
         Vehicle v1= repo3.getVehicleList().get(0);
         ArrayList<Vehicle> vehicles = new ArrayList<>();
         vehicles.add(v1);
 
         GreenSpace greenSpace= new GreenSpace(GreenSpaceTypeENUM.GARDEN, "Parque da Cidade", "Rua Feliz 22", 3, "gsm@gsm.app");
-        repo1.registerGreenSpace(greenSpace);
-
-        AgendaEntry agendaEntry1= new AgendaEntry("Regar", 12, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDate.of(1970, 1, 1) ,  vehicles);
+ToDoEntry toDoEntry = new ToDoEntry("regar", 23, greenSpace, UrgencyDegreeENUM.LOW);
+repo4.registerToDoEntry(toDoEntry);
+        AgendaEntry agendaEntry1= new AgendaEntry("Regar fdsf", 12, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDate.of(1970, 1, 1) ,  vehicles);
         repo2.addEntryToAgenda(agendaEntry1);
 
 

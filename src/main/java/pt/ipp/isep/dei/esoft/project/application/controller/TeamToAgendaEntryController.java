@@ -11,6 +11,7 @@ import pt.ipp.isep.dei.esoft.project.dto.TeamDTO;
 import pt.ipp.isep.dei.esoft.project.mappers.AgendaEntryMapper;
 import pt.ipp.isep.dei.esoft.project.mappers.TeamMapper;
 import pt.ipp.isep.dei.esoft.project.repository.AgendaEntryRepository;
+import pt.ipp.isep.dei.esoft.project.repository.GreenSpaceRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.repository.TeamRepository;
 
@@ -30,7 +31,7 @@ public class TeamToAgendaEntryController {
 
 
     public TeamToAgendaEntryController() {
-        this.agendaEntryRepository= Repositories.getInstance().getAgendaEntryRepository();
+        getAgendaEntryRepository();
         this.emailService = ApplicationSession.createEmailService();
         this.teamRepository= Repositories.getInstance().getTeamRepository();
     }
@@ -41,7 +42,9 @@ public class TeamToAgendaEntryController {
     }
 
      public ArrayList<AgendaEntryDTO> getAgendaEntryDTOList() {
+         System.out.println(authenticationController.getCurrentUserEmail());
         ArrayList<AgendaEntry> agendaEntryList = agendaEntryRepository.getAgendaEntryList(authenticationController.getCurrentUserEmail());
+         System.out.println(agendaEntryList);
         return agendaEntryMapper.toDtoList(agendaEntryList);
     }
 
@@ -70,5 +73,13 @@ public class TeamToAgendaEntryController {
                 emailService.sendEmail(email, body);
             }
         }
+
+    private AgendaEntryRepository getAgendaEntryRepository() {
+        if (agendaEntryRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+            agendaEntryRepository = repositories.getAgendaEntryRepository();
+        }
+        return agendaEntryRepository;
     }
+}
 

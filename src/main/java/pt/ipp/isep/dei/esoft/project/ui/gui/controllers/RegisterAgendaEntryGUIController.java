@@ -29,6 +29,7 @@ public class RegisterAgendaEntryGUIController {
     DatePicker dpStartingDate;
 
     private AgendaMenuGUIController agendaMenuGUIController;
+
     private final RegisterAgendaEntryController controller = new RegisterAgendaEntryController();
 
     @FXML
@@ -44,8 +45,20 @@ public class RegisterAgendaEntryGUIController {
 
     public void registerAgendaEntry(ActionEvent event) {
         try {
-            ToDoEntryDTO toDoDTO = cmbToDoEntries.getValue();
             LocalDate date = dpStartingDate.getValue();
+
+            if (date == null){
+                showAlert(Alert.AlertType.ERROR, "Register Error", "There is no date selected.");
+                return;
+            }
+
+            ToDoEntryDTO toDoDTO = cmbToDoEntries.getValue();
+
+            if (toDoDTO == null){
+                showAlert(Alert.AlertType.ERROR, "Register Error", "There is no To-Do entry selected.");
+                return;
+            }
+
             AgendaEntryDTO agendaDTO = new AgendaEntryDTO(toDoDTO, date);
             if(controller.registerAgendaEntry(agendaDTO)) {
                 agendaMenuGUIController.update();
@@ -55,7 +68,7 @@ public class RegisterAgendaEntryGUIController {
             else{
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Register Error");
-                alert.setHeaderText("There already exists a task with this name!");
+                alert.setHeaderText("The entry already exists!");
                 alert.show();
             }
         }
@@ -68,7 +81,13 @@ public class RegisterAgendaEntryGUIController {
     }
 
     public void setAgendaMenuGUIController(AgendaMenuGUIController toDoListGUIController) {
-        this.agendaMenuGUIController = agendaMenuGUIController;
+        this.agendaMenuGUIController = toDoListGUIController;
     }
 
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(message);
+        alert.showAndWait();
+    }
 }

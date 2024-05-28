@@ -1,10 +1,13 @@
 package pt.ipp.isep.dei.esoft.project.ui;
 
+import com.kitfox.svg.A;
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.*;
+import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 import pt.ipp.isep.dei.esoft.project.repository.*;
 import pt.ipp.isep.dei.esoft.project.repository.enums.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Bootstrap implements Runnable {
@@ -18,6 +21,7 @@ public class Bootstrap implements Runnable {
         addVehicles();
         addGreenSpaces();
         addTeams();
+        addEntries();
     }
 
     private void addOrganization() {
@@ -210,6 +214,7 @@ public class Bootstrap implements Runnable {
     }
 
 
+
     public void addTeams() {
 
         TeamRepository teamRepository = Repositories.getInstance().getTeamRepository();
@@ -229,6 +234,28 @@ public class Bootstrap implements Runnable {
         teamRepository.registerTeam(team1);
         Team team2= new Team(collaborators2, c2.getSkills(), TeamStatusENUM.PENDING);
         teamRepository.registerTeam(team2);
+
+    }
+    public void addEntries() {
+
+        GreenSpaceRepository repo1= Repositories.getInstance().getGreenSpaceRepository();
+        AgendaEntryRepository repo2= Repositories.getInstance().getAgendaEntryRepository();
+        AgendaEntryRepository repo= Repositories.getInstance().getAgendaEntryRepository();
+        VehicleRepository repo3 = Repositories.getInstance().getVehicleRepository();
+        ToDoEntryRepository repo4 = Repositories.getInstance().getToDoEntryRepository();
+        Vehicle v1= repo3.getVehicleList().get(0);
+        ArrayList<Vehicle> vehicles = new ArrayList<>();
+        vehicles.add(v1);
+
+        GreenSpace greenSpace= new GreenSpace(GreenSpaceTypeENUM.GARDEN, "Parque da Cidade", "Rua Feliz 22", 3, "gsm@gsm.app");
+ToDoEntry toDoEntry = new ToDoEntry("regar", 23, greenSpace, UrgencyDegreeENUM.LOW);
+repo4.registerToDoEntry(toDoEntry);
+        AgendaEntry agendaEntry1= new AgendaEntry("Regar fdsf", 12, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDate.of(1970, 1, 1) ,  vehicles);
+        repo2.addEntryToAgenda(agendaEntry1);
+
+
+
+
 
     }
 

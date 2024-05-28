@@ -3,10 +3,7 @@ package pt.ipp.isep.dei.esoft.project.ui;
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.*;
-import pt.ipp.isep.dei.esoft.project.repository.enums.CollaboratorStatusENUM;
-import pt.ipp.isep.dei.esoft.project.repository.enums.DocumentTypeENUM;
-import pt.ipp.isep.dei.esoft.project.repository.enums.GreenSpaceTypeENUM;
-import pt.ipp.isep.dei.esoft.project.repository.enums.VehicleTypeENUM;
+import pt.ipp.isep.dei.esoft.project.repository.enums.*;
 
 import java.util.ArrayList;
 
@@ -181,4 +178,7 @@ public class Bootstrap implements Runnable {
         repo.registerGreenSpace(new GreenSpace(GreenSpaceTypeENUM.MEDIUM_SIZED_PARK, "Covelo", "Av. Feliz 123", 50, "gsm@gsm.app"));
         repo.registerGreenSpace(new GreenSpace(GreenSpaceTypeENUM.GARDEN, "São Roque", "Rua Triste 22", 3, "gsm2@gsm2.app"));
     }
+
+
+
 }

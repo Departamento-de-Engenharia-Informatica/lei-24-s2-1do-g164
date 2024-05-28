@@ -20,7 +20,7 @@ public class CancelAgendaEntryGUIController {
 
     @FXML
     ComboBox<AgendaEntryDTO> cmbAgendaEntries;
-     CancelAgendaEntryController controller;
+     CancelAgendaEntryController controller = new CancelAgendaEntryController();
 
      AgendaMenuGUIController agendaGUIController;
 

@@ -75,6 +75,21 @@ public class AgendaMenuGUIController {
         }
     }
 
+    public void openRegisterAgendaEntryWindow(ActionEvent event) {
+        try {
+            File file = new File("src\\main\\resources\\fxml\\registeragendaentry.fxml");
+            FXMLLoader loader = new FXMLLoader(file.toURL());
+            Parent root = loader.load();
+            Stage newStage = new Stage();
+            newStage.setTitle("Add Entry to To-Do List");
+            newStage.setScene(new Scene(root));
+            newStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void openCancelAgendaEntryWindow(ActionEvent event) {
         try {

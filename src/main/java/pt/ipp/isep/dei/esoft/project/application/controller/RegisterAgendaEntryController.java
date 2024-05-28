@@ -38,12 +38,15 @@ public class RegisterAgendaEntryController {
         return agendaEntryMapper.toDtoList(entries);
     }
 
-    private ArrayList<ToDoEntry> getAvailableToDoEntryList(){
+    private ArrayList<ToDoEntry> getToDoEntryList(){
+        System.out.println(toDoEntryRepository.getToDoEntryList(authenticationController.getCurrentUserEmail()));
+        System.out.println(authenticationController.getCurrentUserEmail());
         return toDoEntryRepository.getToDoEntryList(authenticationController.getCurrentUserEmail());
+
     }
 
     public ArrayList<ToDoEntryDTO> getToDoEntryDTOsList() {
-        return toDoEntryMapper.toDTOList(getAvailableToDoEntryList());
+        return toDoEntryMapper.toDTOList(getToDoEntryList());
     }
 
 

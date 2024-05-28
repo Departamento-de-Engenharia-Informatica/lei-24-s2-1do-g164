@@ -15,8 +15,8 @@ import java.util.ArrayList;
 
 public class RegisterAgendaEntryController {
 
-    private AgendaEntryRepository agendaEntryRepository = new AgendaEntryRepository();
-    private ToDoEntryRepository toDoEntryRepository = new ToDoEntryRepository();
+    private AgendaEntryRepository agendaEntryRepository;
+    private ToDoEntryRepository toDoEntryRepository;
     private final AgendaEntryMapper agendaEntryMapper;
     private final ToDoEntryMapper toDoEntryMapper;
     AuthenticationController authenticationController = new AuthenticationController();
@@ -38,12 +38,15 @@ public class RegisterAgendaEntryController {
         return agendaEntryMapper.toDtoList(entries);
     }
 
-    private ArrayList<ToDoEntry> getAvailableToDoEntryList(){
+    private ArrayList<ToDoEntry> getToDoEntryList(){
+        System.out.println(toDoEntryRepository.getToDoEntryList(authenticationController.getCurrentUserEmail()));
+        System.out.println(authenticationController.getCurrentUserEmail());
         return toDoEntryRepository.getToDoEntryList(authenticationController.getCurrentUserEmail());
+
     }
 
     public ArrayList<ToDoEntryDTO> getToDoEntryDTOsList() {
-        return toDoEntryMapper.toDTOList(getAvailableToDoEntryList());
+        return toDoEntryMapper.toDTOList(getToDoEntryList());
     }
 
 

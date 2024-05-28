@@ -41,6 +41,7 @@ activate Employee
             loop for each toDoEntry in availableToDoEntryList
                 ToDoEntryMapper -> ToDoEntryDTO: toDoEntryDTO = toDTO(toDoEntry)
                 activate ToDoEntryDTO
+                ToDoEntryDTO --> ToDoEntryMapper: entryDto
                 deactivate ToDoEntryDTO
             end
 

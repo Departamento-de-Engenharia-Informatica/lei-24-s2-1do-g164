@@ -44,6 +44,13 @@ public class AgendaEntry extends ToDoEntry {
         this.date = date;
     }
 
+    public AgendaEntry(String description, int expectedDuration, GreenSpace greenSpace, UrgencyDegreeENUM urgencyDegree, EntryStatusENUM entryStatus, LocalDate date,  ArrayList<Vehicle> vehicles) {
+        super(description, expectedDuration, greenSpace, urgencyDegree);
+        this.associatedVehicles = vehicles;
+        this.setEntryStatus(EntryStatusENUM.PENDING);
+        this.date = date;
+    }
+
 
     public void cancelEntry() {
         this.setEntryStatus(EntryStatusENUM.CANCELLED);

@@ -18,12 +18,12 @@ public class CancelAgendaEntryController {
     AuthenticationController authenticationController = new AuthenticationController();
 
 
-
-    public CancelAgendaEntryController(){
+    public CancelAgendaEntryController() {
         this.agendaEntryRepository = Repositories.getInstance().getAgendaEntryRepository();
-        this.agendaEntryMapper= new AgendaEntryMapper();
+        this.agendaEntryMapper = new AgendaEntryMapper();
 
     }
+
     public ArrayList<AgendaEntryDTO> getAgendaEntryDTOList() {
         ArrayList<AgendaEntry> agendaEntryList = agendaEntryRepository.getAgendaEntryList(authenticationController.getCurrentUserEmail());
         return agendaEntryMapper.toDtoList(agendaEntryList);
@@ -35,16 +35,10 @@ public class CancelAgendaEntryController {
             return false;
         }
         var entry = agendaEntryRepository.getAgendaEntryByDescriptionAndGreenspace(dto.description, dto.greenSpace);
-        if (entry == null){
+        if (entry == null) {
             throw new InputMismatchException("Agenda Entry not found!");
-    }
+        }
         return agendaEntryRepository.updateStatus(entry, EntryStatusENUM.CANCELLED);
     }
-//    public void ui(AgendaEntryDTO agendaDTO) {
-
-//        AgendaDescriptionAndGreenspaceMapper mapper = new AgendaDescriptionAndGreenspaceMapper();
-//        var agendaDescriptionAndGreendspaceDTO = mapper.toDTO(agendaDTO.description, agendaDTO.greenSpace, agendaDTO.entryStatus);
-//        cancelAgendaEntry(agendaDescriptionAndGreendspaceDTO);
-//    }
 }
 

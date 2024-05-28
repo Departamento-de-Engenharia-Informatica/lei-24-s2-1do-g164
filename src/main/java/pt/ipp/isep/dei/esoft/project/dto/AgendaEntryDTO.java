@@ -51,7 +51,7 @@ public class AgendaEntryDTO {
     public AgendaEntryDTO(String description, GreenSpace greenSpace, Team team){
         this.description=description;
         this.greenSpace= greenSpace;
-        this.team=team;
+        this.team= team;
     }
 
     public String getDescription() {

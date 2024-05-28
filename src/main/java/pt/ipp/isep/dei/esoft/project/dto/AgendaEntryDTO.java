@@ -92,6 +92,10 @@ public class AgendaEntryDTO {
     }
 
     public String toString() {
+        if (team.getCollaborators().isEmpty()){
+            return description+greenSpace.toString()+entryStatus.toString()+urgencyDegree.toString();
+        }
+
         return description.toString()+greenSpace.toString()+team.toString();
     }
 }

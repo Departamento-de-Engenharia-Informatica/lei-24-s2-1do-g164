@@ -1,9 +1,8 @@
 package pt.ipp.isep.dei.esoft.project.dto;
 
-import pt.ipp.isep.dei.esoft.project.domain.GreenSpace;
-import pt.ipp.isep.dei.esoft.project.domain.Team;
-import pt.ipp.isep.dei.esoft.project.domain.Vehicle;
+import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
+import pt.ipp.isep.dei.esoft.project.repository.enums.TeamStatusENUM;
 import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegreeENUM;
 
 import java.time.LocalDate;
@@ -22,6 +21,10 @@ public class AgendaEntryDTO {
 
     public ArrayList<Vehicle> vehicles;
 
+    public final ArrayList<Collaborator> teamVazia = new ArrayList<>();
+    public final ArrayList<Skill> skillsVazias = new ArrayList<>();
+    public final Team teamOmissao = new Team(teamVazia, skillsVazias, TeamStatusENUM.ACCEPTED );
+    public final ArrayList<Vehicle> vehiclesOmissao = new ArrayList<>();
 
     public AgendaEntryDTO(ToDoEntryDTO toDoEntryDTO, LocalDate date){
         this.description = toDoEntryDTO.description;
@@ -29,6 +32,8 @@ public class AgendaEntryDTO {
         this.greenSpace = toDoEntryDTO.greenSpace;
         this.urgencyDegree = toDoEntryDTO.urgencyDegree;
         this.date = date;
+        this.team = teamOmissao;
+        this.vehicles = vehiclesOmissao;
         this.entryStatus = EntryStatusENUM.PLANNED;
     }
 

@@ -83,7 +83,7 @@ public class Team implements Serializable {
      */
     @Override
     public String toString() {
-        return "Team: " + collaborators;
+        return " Team: " + collaborators;
     }
     public int hashCode() {
         return Objects.hash(collaborators,skills);

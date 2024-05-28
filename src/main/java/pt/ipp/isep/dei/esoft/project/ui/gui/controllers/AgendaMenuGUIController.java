@@ -65,6 +65,7 @@ public class AgendaMenuGUIController {
             Parent root = loader.load();
             TeamtoAgendaMenuGUIController teamtoAgendaMenuGUIControllerGUIController = loader.getController();
             teamtoAgendaMenuGUIControllerGUIController.setAgendaGUIController(this);
+
             Stage newStage = new Stage();
             newStage.setTitle("Assign Team");
             newStage.setScene(new Scene(root));
@@ -79,6 +80,8 @@ public class AgendaMenuGUIController {
             File file = new File("src\\main\\resources\\fxml\\registeragendaentry.fxml");
             FXMLLoader loader = new FXMLLoader(file.toURL());
             Parent root = loader.load();
+            RegisterAgendaEntryGUIController controller1 = loader.getController();
+            controller1.setAgendaMenuGUIController(this);
             Stage newStage = new Stage();
             newStage.setTitle("Add Entry to To-Do List");
             newStage.setScene(new Scene(root));

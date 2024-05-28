@@ -61,17 +61,16 @@ public class AgendaMenuGUIController {
 
     public void openAssignTeamAgendaWindow(ActionEvent event) {
         try {
-            File file = new File("src\\main\\resources\\fxml\\assignTeamToAgendaEntry.fxml");
-            FXMLLoader loader = new FXMLLoader(file.toURI().toURL());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/assignTeamToAgendaEntry.fxml"));
             Parent root = loader.load();
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root, 700, 700));
-            stage.setTitle("Assign Team to Agenda Entry");
-            stage.show();
+            TeamtoAgendaMenuGUIController teamtoAgendaMenuGUIControllerGUIController = loader.getController();
+            teamtoAgendaMenuGUIControllerGUIController.setAgendaGUIController(this);
+            Stage newStage = new Stage();
+            newStage.setTitle("Assign Team");
+            newStage.setScene(new Scene(root));
+            newStage.show();
         } catch (IOException e) {
             e.printStackTrace();
-
         }
     }
 

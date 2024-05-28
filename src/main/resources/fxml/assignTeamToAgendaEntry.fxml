@@ -4,43 +4,36 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="175.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.controllers.TeamtoAgendaMenuGUIController">
-    <bottom>
-        <FlowPane alignment="CENTER" hgap="20.0" prefWidth="400.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
-            <children>
-                <Button fx:id="AssignTeam" defaultButton="true" mnemonicParsing="false" onAction="#handleAssignTeam" text="Assign Team" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" />
-                <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#closeWindow" text="Cancel" style="-fx-background-color: #D32F2F; -fx-text-fill: white; -fx-font-size: 14px;" />
-            </children>
-            <padding>
-                <Insets bottom="5.0" top="15.0" />
-            </padding>
-        </FlowPane>
-    </bottom>
+<BorderPane fx:id="borderPane" prefHeight="237.0" prefWidth="352.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.controllers.TeamtoAgendaMenuGUIController">
+    <top>
+        <VBox alignment="CENTER" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #2E7D32;">
+            <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Assign Team to Agenda Entry" textFill="WHITE" />
+        </VBox>
+    </top>
     <center>
-        <GridPane hgap="10.0" vgap="10.0" alignment="CENTER" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+        <GridPane alignment="CENTER" hgap="10.0" style="-fx-background-color: #F1F8E9;" vgap="10.0" GridPane.hgrow="ALWAYS">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" />
-                <ColumnConstraints hgrow="SOMETIMES" />
+                <ColumnConstraints hgrow="ALWAYS" minWidth="100.0" />
+                <ColumnConstraints hgrow="ALWAYS" minWidth="100.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="50.0" vgrow="ALWAYS" />
+                <RowConstraints minHeight="50.0" vgrow="ALWAYS" />
+                <RowConstraints minHeight="50.0" vgrow="ALWAYS" />
             </rowConstraints>
             <children>
-                <Label text="Name" GridPane.halignment="RIGHT" GridPane.rowIndex="0" />
-                <TextField fx:id="txtArea" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <ComboBox fx:id="cmbAgendaEntries" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                <ComboBox fx:id="cmbTeams" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <Label text="Select Agenda Entry:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <ComboBox fx:id="cmbAgendaEntries" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
+                <Label text="Select Team:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <ComboBox fx:id="cmbTeams" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                <Button onAction="#handleAssignTeam" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #388E3C; -fx-text-fill: white;" text="Assign Team" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <Button onAction="#closeWindow" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #D32F2F; -fx-text-fill: white;" text="Cancel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             </children>
             <padding>
-                <Insets bottom="10.0" top="10.0" left="10.0" right="10.0" />
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </padding>
         </GridPane>
     </center>
-    <padding>
-        <Insets left="10.0" right="10.0" bottom="10.0" />
-    </padding>
 </BorderPane>

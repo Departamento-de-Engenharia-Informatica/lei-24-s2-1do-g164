@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class Bootstrap implements Runnable {
 
-    //Add some task categories to the repository as bootstrap
     public void run() {
         addOrganization();
         addUsers();
@@ -18,6 +17,7 @@ public class Bootstrap implements Runnable {
         addCollaborators();
         addVehicles();
         addGreenSpaces();
+        addTeams();
     }
 
     private void addOrganization() {
@@ -74,7 +74,7 @@ public class Bootstrap implements Runnable {
 
         collaboratorRepository.registerCollaborator("Ana", 987456765, "08-10-2002",
                 "08-08-2021", "Rua das Aves", 78986789, new Job("Arborist"),
-                DocumentTypeENUM.CITIZEN_CARD, CollaboratorStatusENUM.DEACTIVATED,123993123, "ola23@mial.com");
+                DocumentTypeENUM.CITIZEN_CARD, CollaboratorStatusENUM.DEACTIVATED, 123993123, "ola23@mial.com");
 
 
         ArrayList<Skill> anaSkills = new ArrayList<>();
@@ -105,9 +105,39 @@ public class Bootstrap implements Runnable {
 
         collaboratorRepository.assignSkills(collaboratorRepository.getCollaboratorList().get(3), ritaSkills);
 
+        collaboratorRepository.registerCollaborator("Afonso", 993056123, "04-07-2009",
+                "05-08-2020", "Rua das Aves", 19735678, new Job("Trail Steward"),
+                DocumentTypeENUM.CITIZEN_CARD, CollaboratorStatusENUM.DEACTIVATED, 199256789, "adeus@hotmail.pt");
+
+        ArrayList<Skill> afonsoSkills = new ArrayList<>();
+        afonsoSkills.add(skillRepository.getSkillList().get(8));
+        afonsoSkills.add(skillRepository.getSkillList().get(9));
+        afonsoSkills.add(skillRepository.getSkillList().get(10));
+        collaboratorRepository.assignSkills(collaboratorRepository.getCollaboratorList().get(4), afonsoSkills);
+
+
+        collaboratorRepository.registerCollaborator("Diogo", 903059123, "04-07-2003",
+                "05-08-2020", "Rua das Aves", 19738878, new Job("Trail Steward"),
+                DocumentTypeENUM.CITIZEN_CARD, CollaboratorStatusENUM.DEACTIVATED, 199256889, "adeus@hotmail.pt");
+
+        ArrayList<Skill> diogoSkills = new ArrayList<>();
+        afonsoSkills.add(skillRepository.getSkillList().get(11));
+        afonsoSkills.add(skillRepository.getSkillList().get(8));
+        collaboratorRepository.assignSkills(collaboratorRepository.getCollaboratorList().get(5), diogoSkills);
+
+
+        collaboratorRepository.registerCollaborator("Gabi", 903059123, "04-07-1990",
+                "05-08-2020", "Rua das Aves", 19032878, new Job("Trail Steward"),
+                DocumentTypeENUM.CITIZEN_CARD, CollaboratorStatusENUM.DEACTIVATED, 190956889, "adeus@hotmail.pt");
+
+        ArrayList<Skill> gabiSkills = new ArrayList<>();
+        afonsoSkills.add(skillRepository.getSkillList().get(12));
+        collaboratorRepository.assignSkills(collaboratorRepository.getCollaboratorList().get(6), gabiSkills);
+
+
     }
 
-    public void addJobs(){
+    public void addJobs() {
         JobRepository jobRepository = Repositories.getInstance().getJobRepository();
         jobRepository.registerJob("Park Ranger");
         jobRepository.registerJob("Landscape Architect");
@@ -131,7 +161,7 @@ public class Bootstrap implements Runnable {
         jobRepository.registerJob("Conservation Technician");
     }
 
-    public void addSkills(){
+    public void addSkills() {
         SkillRepository skillRepository = Repositories.getInstance().getSkillRepository();
         skillRepository.registerSkill("Plant Identification");
         skillRepository.registerSkill("Soil Management");
@@ -172,7 +202,7 @@ public class Bootstrap implements Runnable {
                 9000, 8000, 200000, "25-12-2021", "25-12-2021", 300000);
     }
 
-    public void addGreenSpaces(){
+    public void addGreenSpaces() {
         GreenSpaceRepository repo = Repositories.getInstance().getGreenSpaceRepository();
         repo.registerGreenSpace(new GreenSpace(GreenSpaceTypeENUM.LARGE_SIZED_PARK, "Cidade", "Av. Menéres", 123, "gsm@gsm.app"));
         repo.registerGreenSpace(new GreenSpace(GreenSpaceTypeENUM.MEDIUM_SIZED_PARK, "Covelo", "Av. Feliz 123", 50, "gsm@gsm.app"));
@@ -180,5 +210,26 @@ public class Bootstrap implements Runnable {
     }
 
 
+    public void addTeams() {
+
+        TeamRepository teamRepository = Repositories.getInstance().getTeamRepository();
+        CollaboratorRepository collaboratorRepository = Repositories.getInstance().getCollaboratorRepository();
+        Collaborator c1= collaboratorRepository.getCollaboratorList().get(3);
+        Collaborator c2 = collaboratorRepository.getCollaboratorList().get(4);
+        ArrayList<Collaborator> collaborators1= new ArrayList<>();
+        collaborators1.add(c1);
+        collaborators1.add(c2);
+        Collaborator c3= collaboratorRepository.getCollaboratorList().get(5);
+        Collaborator c4= collaboratorRepository.getCollaboratorList().get(6);
+
+        ArrayList<Collaborator> collaborators2= new ArrayList<>();
+        collaborators2.add(c3);
+        collaborators2.add(c4);
+        Team team1 = new Team(collaborators1, c1.getSkills(),TeamStatusENUM.PENDING);
+        teamRepository.registerTeam(team1);
+        Team team2= new Team(collaborators2, c2.getSkills(), TeamStatusENUM.PENDING);
+        teamRepository.registerTeam(team2);
+
+    }
 
 }

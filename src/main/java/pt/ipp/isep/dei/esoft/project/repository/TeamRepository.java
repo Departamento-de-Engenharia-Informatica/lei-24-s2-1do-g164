@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
+import pt.ipp.isep.dei.esoft.project.domain.Collaborator;
 import pt.ipp.isep.dei.esoft.project.domain.Team;
 
 import java.io.Serializable;
@@ -11,9 +12,7 @@ import java.util.ArrayList;
 public class TeamRepository implements Serializable {
     private ArrayList<Team> teams = new ArrayList<>();
 
-    public ArrayList<Team> getTeams() {
-        return teams;
-    }
+
 
     /**
      * Registers a team in the repository.
@@ -29,6 +28,12 @@ public class TeamRepository implements Serializable {
             return false;
         }
     }
+
+    public ArrayList<Team> getTeams() {
+        return teams;
+    }
+
+
 
     /**
      * Checks if a team already exists in the repository.

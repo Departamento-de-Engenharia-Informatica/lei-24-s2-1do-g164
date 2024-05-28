@@ -34,7 +34,6 @@ public class TeamtoAgendaMenuGUIController {
 
     @FXML
     public void initialize() {
-        txtArea.clear();
         cmbAgendaEntries.getItems().setAll(controller.getAgendaEntryDTOList());
         cmbTeams.getItems().setAll(controller.showAvailableTeamsDTO());
     }
@@ -43,14 +42,13 @@ public class TeamtoAgendaMenuGUIController {
     public void handleAssignTeam(ActionEvent actionEvent) {
         AgendaEntryDTO agendaEntryDTO = new AgendaEntryDTO(cmbAgendaEntries.getValue().description, cmbAgendaEntries.getValue().greenSpace, cmbAgendaEntries.getValue().team);
 
-        if (agendaEntryDTO != null) {
             if (controller.assignTeamToAgendaEntry(agendaEntryDTO)) {
                 System.out.println("Team assigned successfully!");
                 handleClose();
             } else {
                 System.out.println("Failed to assign team.");
             }
-        }
+
     }
 
     public void closeWindow(ActionEvent event) {
@@ -60,12 +58,6 @@ public class TeamtoAgendaMenuGUIController {
 
     public void setAgendaGUIController(AgendaMenuGUIController agendaMenuGUIController) {
         this.agendaMenuGUIController = agendaMenuGUIController;
-    }
-
-
-    @FXML
-    public void handleCancel() {
-        handleClose();
     }
 
     private void handleClose() {

@@ -54,5 +54,39 @@ public class AgendaEntryDTO {
         this.team=team;
     }
 
+    public String getDescription() {
+        return description;
+    }
 
+    public int getExpectedDuration() {
+        return expectedDuration;
+    }
+
+    public GreenSpace getGreenSpace() {
+        return greenSpace;
+    }
+
+    public UrgencyDegreeENUM getUrgencyDegree() {
+        return urgencyDegree;
+    }
+
+    public EntryStatusENUM getEntryStatus() {
+        return entryStatus;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public ArrayList<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
+    public String toString() {
+        return description.toString()+greenSpace.toString()+team.toString();
+    }
 }

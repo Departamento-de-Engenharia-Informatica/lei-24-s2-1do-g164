@@ -40,7 +40,6 @@ public class CancelAgendaEntryGUIController {
                 return;
             }
 
-
             if (selectedEntry.entryStatus == EntryStatusENUM.CANCELLED) {
                 showAlert(Alert.AlertType.ERROR, "Cancel Entry Error", "Selected entry is already cancelled.");
                 return;

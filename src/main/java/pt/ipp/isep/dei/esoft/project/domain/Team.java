@@ -85,10 +85,10 @@ public class Team implements Serializable {
     public String toString() {
         String collaboratorsString = "";
         for (Collaborator collaborator : collaborators) {
-            collaboratorsString += collaborator.toString() + " ";
+            collaboratorsString += collaborator.getName();
         }
 
-        return " Team: " + collaboratorsString;
+        return collaboratorsString;
     }
     public int hashCode() {
         return Objects.hash(collaborators,skills);

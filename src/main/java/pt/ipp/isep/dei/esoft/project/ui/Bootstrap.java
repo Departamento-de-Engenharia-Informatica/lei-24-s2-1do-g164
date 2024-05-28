@@ -247,10 +247,20 @@ public class Bootstrap implements Runnable {
         ArrayList<Vehicle> vehicles = new ArrayList<>();
         vehicles.add(v1);
 
+        ArrayList<Collaborator> collaborators1= new ArrayList<>();
+        CollaboratorRepository collaboratorRepository = Repositories.getInstance().getCollaboratorRepository();
+        Collaborator c1= collaboratorRepository.getCollaboratorList().get(3);
+        Collaborator c2 = collaboratorRepository.getCollaboratorList().get(4);
+        collaborators1.add(c1);
+        collaborators1.add(c2);
+
         GreenSpace greenSpace= new GreenSpace(GreenSpaceTypeENUM.GARDEN, "Parque da Cidade", "Rua Feliz 22", 3, "gsm@gsm.app");
 ToDoEntry toDoEntry = new ToDoEntry("regar", 23, greenSpace, UrgencyDegreeENUM.LOW);
 repo4.registerToDoEntry(toDoEntry);
-        AgendaEntry agendaEntry1= new AgendaEntry("Regar fdsf", 12, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDate.of(1970, 1, 1) ,  vehicles);
+        AgendaEntry agendaEntry1= new AgendaEntry("Regar fdsf", 12, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDate.of(1970, 1, 1) , new Team(new ArrayList<Collaborator>(), new ArrayList<Skill>(), TeamStatusENUM.ACCEPTED) ,vehicles);
+        Team team1 = new Team(collaborators1, c1.getSkills(),TeamStatusENUM.PENDING);
+        AgendaEntry agendaEntry2= new AgendaEntry("Regar ola a tdosoa", 12, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDate.of(1970, 1, 1), team1, vehicles);
+repo2.addEntryToAgenda(agendaEntry2);
         repo2.addEntryToAgenda(agendaEntry1);
 
 

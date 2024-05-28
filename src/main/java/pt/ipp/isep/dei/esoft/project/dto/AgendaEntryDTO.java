@@ -92,10 +92,30 @@ public class AgendaEntryDTO {
     }
 
     public String toString() {
-        if (team.getCollaborators().isEmpty()){
-            return description+greenSpace.toString()+entryStatus.toString()+urgencyDegree.toString();
+        if (team.getCollaborators().isEmpty() && vehicles.isEmpty()){
+            return  description + " - " +
+                    "Expected Duration: " + expectedDuration + " - " +
+                    "Status: " + entryStatus + " - " +
+                    "Green Space: " + greenSpace.getName() + " - " +
+                    "Urgency Degree: " + urgencyDegree + " - " +
+                    "Date: " + date.toString() + " - " +
+                    "Team: No Team" + " - " +
+                    "Vehicles: No Vehicles";
         }
 
-        return description.toString()+greenSpace.toString()+team.toString();
+        String vehiclesString = "";
+        for (Vehicle vehicle : vehicles){
+            vehiclesString = vehiclesString + vehicle.getBrand() + " " + vehicle.getModel() + " ";
+        }
+        System.out.println(vehiclesString);
+         return  description + " - " +
+                "Expected Duration: " + expectedDuration + " - " +
+                "Status: " + entryStatus + " - " +
+                "Green Space: " + greenSpace.getName() + " - " +
+                "Urgency Degree: " + urgencyDegree + " - " +
+                "Date: " + date.toString() + " - " +
+                "Team: " + team.toString() + " - " +
+                "Vehicles: " + vehiclesString;
+
     }
 }

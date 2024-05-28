@@ -6,7 +6,6 @@ import pt.ipp.isep.dei.esoft.project.domain.GreenSpace;
 import pt.ipp.isep.dei.esoft.project.domain.Team;
 import pt.ipp.isep.dei.esoft.project.domain.ToDoEntry;
 import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 

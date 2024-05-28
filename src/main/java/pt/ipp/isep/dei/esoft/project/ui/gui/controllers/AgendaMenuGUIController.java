@@ -53,8 +53,11 @@ public class AgendaMenuGUIController {
 
     public void update(){
         ArrayList<AgendaEntryDTO> agendaEntryDTOS = controller.getAgendaEntryListDTO();
-            txtText.appendText(agendaEntryDTOS.toString() + "\n");
+        txtText.clear();
+        for(AgendaEntryDTO agendaEntryDTO : agendaEntryDTOS){
+            txtText.appendText(agendaEntryDTO.toString() + "\n");
         }
+    }
 
     public void openAssignTeamAgendaWindow(ActionEvent event) {
         try {

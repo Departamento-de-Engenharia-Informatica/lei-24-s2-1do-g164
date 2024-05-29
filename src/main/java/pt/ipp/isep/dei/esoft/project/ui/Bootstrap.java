@@ -260,8 +260,8 @@ repo4.registerToDoEntry(toDoEntry);
         AgendaEntry agendaEntry1= new AgendaEntry("Regar fdsf", 12, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDate.of(1970, 1, 1) , new Team(new ArrayList<Collaborator>(), new ArrayList<Skill>(), TeamStatusENUM.ACCEPTED) ,vehicles);
         Team team1 = new Team(collaborators1, c1.getSkills(),TeamStatusENUM.PENDING);
         AgendaEntry agendaEntry2= new AgendaEntry("Regar ola a tdosoa", 12, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDate.of(1970, 1, 1), team1, vehicles);
-repo2.addEntryToAgenda(agendaEntry2);
-        repo2.addEntryToAgenda(agendaEntry1);
+//repo2.addEntryToAgenda(agendaEntry2);
+  //      repo2.addEntryToAgenda(agendaEntry1);
 
 
 

@@ -9,6 +9,7 @@ import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 import pt.ipp.isep.dei.esoft.project.application.controller.CancelAgendaEntryController;
 import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
+import pt.ipp.isep.dei.esoft.project.dto.TeamDTO;
 import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 
 public class CancelAgendaEntryGUIController {
@@ -26,14 +27,12 @@ public class CancelAgendaEntryGUIController {
 
     @FXML
     private void initialize() {
-        cmbAgendaEntries.getItems().setAll(controller.getAgendaEntryDTOList());
+        cmbAgendaEntries.getItems().setAll(controller.getAgendaEntryWithoutCancelledDTOList());
     }
 
     public void cancelAgendaEntry(ActionEvent event) {
-
-        AgendaEntryDTO selectedEntry = new AgendaEntryDTO(cmbAgendaEntries.getValue().description, cmbAgendaEntries.getValue().greenSpace, cmbAgendaEntries.getValue().entryStatus);
-
         try {
+            AgendaEntryDTO selectedEntry = cmbAgendaEntries.getValue();
 
             if (selectedEntry == null) {
                 showAlert(Alert.AlertType.ERROR, "Cancel Entry Error", "No entry selected.");
@@ -47,7 +46,8 @@ public class CancelAgendaEntryGUIController {
 
             if (controller.cancelAgendaEntry(selectedEntry)) {
                 showAlert(Alert.AlertType.INFORMATION, "Cancel Entry", "Agenda Entry cancelled successfully.");
-                cmbAgendaEntries.getItems().remove(selectedEntry);
+                cmbAgendaEntries.getItems().setAll(controller.getAgendaEntryWithoutCancelledDTOList());
+                agendaGUIController.update();
             } else {
                 showAlert(Alert.AlertType.ERROR, "Cancel Entry Error", "Failed to cancel entry.");
             }
@@ -56,7 +56,6 @@ public class CancelAgendaEntryGUIController {
             showAlert(Alert.AlertType.ERROR, "Cancel Entry Error", "An error occurred while canceling entry.");
         }
     }
-
     public void closeWindow(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();

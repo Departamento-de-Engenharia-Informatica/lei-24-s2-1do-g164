@@ -45,7 +45,7 @@ public class AgendaEntryDTO {
         this.date = date;
         this.team = team;
         this.vehicles = vehicles;
-        this.entryStatus = EntryStatusENUM.PLANNED;
+        this.entryStatus = entryStatus;
     }
 
     public AgendaEntryDTO(String description, GreenSpace greenSpace, EntryStatusENUM entryStatus){

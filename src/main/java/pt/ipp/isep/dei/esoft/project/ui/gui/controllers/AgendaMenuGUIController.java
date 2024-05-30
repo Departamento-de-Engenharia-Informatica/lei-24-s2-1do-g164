@@ -107,7 +107,7 @@ public class AgendaMenuGUIController {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Error", "Unable to open Cancel Agenda Entry window.");
         }
-        }
+    }
     public void closeWindow(ActionEvent event){
         try {
             File file = new File("src/main/resources/fxml/gsmMenu.fxml");

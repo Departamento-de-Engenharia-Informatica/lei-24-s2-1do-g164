@@ -41,6 +41,11 @@ public class CancelAgendaEntryController {
         return agendaEntryMapper.toDtoList(getAgendaEntryListByStatus(status));
     }
 
+    public ArrayList<AgendaEntryDTO> getAgendaEntryWithoutCancelledDTOList() {
+        ArrayList<AgendaEntry> agendaEntryList = agendaEntryRepository.getAgendaEntryListWithoutCancelled(authenticationController.getCurrentUserEmail());
+        System.out.println("lista sem cancelados: " + agendaEntryList);
+        return agendaEntryMapper.toDtoList(agendaEntryList);
+    }
 
     public boolean cancelAgendaEntry(AgendaEntryDTO dto) {
         if (dto.entryStatus == EntryStatusENUM.CANCELLED) {
@@ -50,6 +55,7 @@ public class CancelAgendaEntryController {
         if (entry == null) {
             throw new InputMismatchException("Agenda Entry not found!");
         }
+
         return agendaEntryRepository.updateStatus(entry, EntryStatusENUM.CANCELLED);
     }
 }

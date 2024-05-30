@@ -1,10 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
 
-import pt.ipp.isep.dei.esoft.project.domain.AgendaEntry;
-import pt.ipp.isep.dei.esoft.project.domain.GreenSpace;
-import pt.ipp.isep.dei.esoft.project.domain.Team;
-import pt.ipp.isep.dei.esoft.project.domain.ToDoEntry;
+import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,10 +9,10 @@ import java.util.ArrayList;
 public class AgendaEntryRepository implements Serializable {
 
     private final ArrayList<AgendaEntry> agendaEntryList = new ArrayList<>();
-    private Team team;
 
     public boolean addEntryToAgenda(AgendaEntry ag) {
         if (agendaEntryIsUnique(ag)) {
+            ag.setEntryStatus(EntryStatusENUM.PLANNED);
             return agendaEntryList.add(ag);
         }
         return false;
@@ -40,19 +37,31 @@ public class AgendaEntryRepository implements Serializable {
         return agendaEntryListGSM;
     }
 
-    public ArrayList<AgendaEntry> getAgendaEntryListByStatus(String email, EntryStatusENUM status) {
+    public ArrayList<AgendaEntry> getAgendaEntryListWithoutTeam(String email) {
         ArrayList<AgendaEntry> agendaEntryListGSM = new ArrayList<>();
         for (AgendaEntry agendaEntry : this.agendaEntryList) {
-            if (agendaEntry.getGreenSpace().getEmailGSM().equals(email)) {
-                if (!agendaEntry.getEntryStatus().equals(status)) {
-                    agendaEntryListGSM.add(agendaEntry);
-                }
+            if (agendaEntry.getGreenSpace().getEmailGSM().equals(email) &&
+                    agendaEntry.getAssociatedTeam().getCollaborators().isEmpty() &&
+                    (agendaEntry.getEntryStatus().equals(EntryStatusENUM.PLANNED) ||
+                            agendaEntry.getEntryStatus().equals(EntryStatusENUM.POSTPONED)))
+            {
+                agendaEntryListGSM.add(agendaEntry);
             }
-
         }
         return agendaEntryListGSM;
     }
 
+    public ArrayList<AgendaEntry> getAgendaEntryListWithoutCancelled(String email) {
+        ArrayList<AgendaEntry> agendaEntryListGSM = new ArrayList<>();
+        for (AgendaEntry agendaEntry : this.agendaEntryList) {
+            if (agendaEntry.getGreenSpace().getEmailGSM().equals(email) &&
+                    !agendaEntry.getEntryStatus().equals(EntryStatusENUM.CANCELLED) &&
+                    !agendaEntry.getEntryStatus().equals(EntryStatusENUM.PENDING)) {
+                agendaEntryListGSM.add(agendaEntry);
+            }
+        }
+        return agendaEntryListGSM;
+    }
 
     public boolean postponeEntryInAgenda(AgendaEntry entity) {
         for (AgendaEntry ag : agendaEntryList) {
@@ -77,21 +86,20 @@ public class AgendaEntryRepository implements Serializable {
         for (AgendaEntry entry : agendaEntryList) {
             if (entry.equals(updatedEntry)) {
                 entry.setEntryStatus(status);
-                System.out.println(entry.getEntryStatus());
                 return true;
             }
         }
         return false;
     }
 
-    public boolean updateTeam(AgendaEntry agendaEntry, Team team) {
-
-        if (agendaEntry.getAssociatedTeam().equals(team)|| agendaEntry.getAssociatedTeam() != null){
+    public boolean assignTeam(AgendaEntry agendaEntry, Team team) {
+        if (!agendaEntry.getAssociatedTeam().getCollaboratorsNames().isEmpty()){
             return false;
         }
-            agendaEntry.setAssociatedTeam(team);
-            return true;
-            }
+
+        agendaEntry.setAssociatedTeam(team);
+        return true;
+    }
 
 
 

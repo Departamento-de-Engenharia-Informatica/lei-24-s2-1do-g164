@@ -99,7 +99,7 @@ public class Bootstrap implements Runnable {
 
         collaboratorRepository.registerCollaborator("Rita", 917996795, "08-10-2002",
                 "08-08-2021", "Rua das Aves", 89087650, new Job("Botanist"),
-                DocumentTypeENUM.CITIZEN_CARD, CollaboratorStatusENUM.DEACTIVATED, 123103123, "ola@mial.com");
+                DocumentTypeENUM.CITIZEN_CARD, CollaboratorStatusENUM.DEACTIVATED, 123103123, "rita@hotmail.com");
 
         ArrayList<Skill> ritaSkills = new ArrayList<>();
         ritaSkills.add(skillRepository.getSkillList().get(5));
@@ -237,10 +237,8 @@ public class Bootstrap implements Runnable {
 
     }
     public void addEntries() {
-
         GreenSpaceRepository repo1= Repositories.getInstance().getGreenSpaceRepository();
         AgendaEntryRepository repo2= Repositories.getInstance().getAgendaEntryRepository();
-        AgendaEntryRepository repo= Repositories.getInstance().getAgendaEntryRepository();
         VehicleRepository repo3 = Repositories.getInstance().getVehicleRepository();
         ToDoEntryRepository repo4 = Repositories.getInstance().getToDoEntryRepository();
         Vehicle v1= repo3.getVehicleList().get(0);
@@ -255,18 +253,15 @@ public class Bootstrap implements Runnable {
         collaborators1.add(c2);
 
         GreenSpace greenSpace= new GreenSpace(GreenSpaceTypeENUM.GARDEN, "Parque da Cidade", "Rua Feliz 22", 3, "gsm@gsm.app");
-ToDoEntry toDoEntry = new ToDoEntry("regar", 23, greenSpace, UrgencyDegreeENUM.LOW);
-repo4.registerToDoEntry(toDoEntry);
-        AgendaEntry agendaEntry1= new AgendaEntry("Regar fdsf", 12, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDate.of(1970, 1, 1) , new Team(new ArrayList<Collaborator>(), new ArrayList<Skill>(), TeamStatusENUM.ACCEPTED) ,vehicles);
+        ToDoEntry toDoEntry = new ToDoEntry("Regar", 23, greenSpace, UrgencyDegreeENUM.LOW);
+        repo4.registerToDoEntry(toDoEntry);
+        AgendaEntry agendaEntry1= new AgendaEntry("Wildlife Gardening", 12, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDate.of(1970, 1, 1) , new Team(new ArrayList<Collaborator>(), new ArrayList<Skill>(), TeamStatusENUM.ACCEPTED) ,vehicles);
         Team team1 = new Team(collaborators1, c1.getSkills(),TeamStatusENUM.PENDING);
-        AgendaEntry agendaEntry2= new AgendaEntry("Regar ola a tdosoa", 12, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDate.of(1970, 1, 1), team1, vehicles);
-//repo2.addEntryToAgenda(agendaEntry2);
-  //      repo2.addEntryToAgenda(agendaEntry1);
-
-
-
-
-
+        AgendaEntry agendaEntry2= new AgendaEntry("Plant Care", 12, greenSpace, UrgencyDegreeENUM.MEDIUM, EntryStatusENUM.PLANNED, LocalDate.of(1970, 1, 1), team1, vehicles);
+        AgendaEntry agendaEntry3= new AgendaEntry("Plantar feijão", 12, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.CANCELLED, LocalDate.of(1989, 5, 1), team1, vehicles);
+        repo2.addEntryToAgenda(agendaEntry2);
+        repo2.addEntryToAgenda(agendaEntry1);
+        repo2.addEntryToAgenda(agendaEntry3);
     }
 
 }

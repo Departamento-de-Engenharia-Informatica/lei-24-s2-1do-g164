@@ -26,7 +26,7 @@ public class CancelAgendaEntryGUIController {
 
     @FXML
     private void initialize() {
-        cmbAgendaEntries.getItems().setAll(controller.getAgendaEntryDTOList());
+        cmbAgendaEntries.getItems().setAll(controller.getAgendaEntryDTOListByStatus(EntryStatusENUM.CANCELLED));
     }
 
     public void cancelAgendaEntry(ActionEvent event) {
@@ -46,6 +46,7 @@ public class CancelAgendaEntryGUIController {
             }
 
             if (controller.cancelAgendaEntry(selectedEntry)) {
+                agendaGUIController.update();
                 showAlert(Alert.AlertType.INFORMATION, "Cancel Entry", "Agenda Entry cancelled successfully.");
                 cmbAgendaEntries.getItems().remove(selectedEntry);
             } else {

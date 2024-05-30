@@ -31,18 +31,28 @@ public class AgendaEntryRepository implements Serializable {
     }
 
     public ArrayList<AgendaEntry> getAgendaEntryList(String email) {
-        System.out.println(agendaEntryList + "vkj");
         ArrayList<AgendaEntry> agendaEntryListGSM = new ArrayList<>();
         for (AgendaEntry agendaEntry : this.agendaEntryList) {
-            System.out.println(agendaEntry.getGreenSpace().getEmailGSM() + "vkj");
             if (agendaEntry.getGreenSpace().getEmailGSM().equals(email)) {
-                System.out.println(agendaEntry.getGreenSpace().getEmailGSM());
-                System.out.println("olaaawdfkhsk");
                 agendaEntryListGSM.add(agendaEntry);
             }
         }
         return agendaEntryListGSM;
     }
+
+    public ArrayList<AgendaEntry> getAgendaEntryListByStatus(String email, EntryStatusENUM status) {
+        ArrayList<AgendaEntry> agendaEntryListGSM = new ArrayList<>();
+        for (AgendaEntry agendaEntry : this.agendaEntryList) {
+            if (agendaEntry.getGreenSpace().getEmailGSM().equals(email)) {
+                if (!agendaEntry.getEntryStatus().equals(status)) {
+                    agendaEntryListGSM.add(agendaEntry);
+                }
+            }
+
+        }
+        return agendaEntryListGSM;
+    }
+
 
     public boolean postponeEntryInAgenda(AgendaEntry entity) {
         for (AgendaEntry ag : agendaEntryList) {
@@ -67,6 +77,7 @@ public class AgendaEntryRepository implements Serializable {
         for (AgendaEntry entry : agendaEntryList) {
             if (entry.equals(updatedEntry)) {
                 entry.setEntryStatus(status);
+                System.out.println(entry.getEntryStatus());
                 return true;
             }
         }

@@ -10,6 +10,7 @@ import pt.ipp.isep.dei.esoft.project.mappers.ToDoEntryMapper;
 import pt.ipp.isep.dei.esoft.project.repository.AgendaEntryRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.repository.ToDoEntryRepository;
+import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 
 import java.util.ArrayList;
 
@@ -33,6 +34,10 @@ public class RegisterAgendaEntryController {
         return agendaEntryRepository.addEntryToAgenda(agendaEntryMapper.toEntity(agendaEntryDTO));
     }
 
+    public boolean updateToDoEntry(ToDoEntryDTO toDoEntryDTO){
+        return toDoEntryRepository.updateStatus(toDoEntryMapper.toEntity(toDoEntryDTO), EntryStatusENUM.PLANNED);
+    }
+
     public ArrayList<AgendaEntryDTO> getAgendaEntryListDTO() {
         var entries= agendaEntryRepository.getAgendaEntryList(authenticationController.getCurrentUserEmail());
         return agendaEntryMapper.toDtoList(entries);
@@ -41,8 +46,7 @@ public class RegisterAgendaEntryController {
     private ArrayList<ToDoEntry> getToDoEntryList(){
         System.out.println(toDoEntryRepository.getToDoEntryList(authenticationController.getCurrentUserEmail()));
         System.out.println(authenticationController.getCurrentUserEmail());
-        return toDoEntryRepository.getToDoEntryList(authenticationController.getCurrentUserEmail());
-
+        return toDoEntryRepository.getToDoEntryListByStatus(authenticationController.getCurrentUserEmail(), EntryStatusENUM.PLANNED);
     }
 
     public ArrayList<ToDoEntryDTO> getToDoEntryDTOsList() {

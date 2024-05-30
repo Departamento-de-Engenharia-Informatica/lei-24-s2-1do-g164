@@ -50,7 +50,7 @@ public class LoginMenuGUIController {
         String pwd = passwordField.getText();
 
         if (!isValidEmail(id)) {
-            showAlert(Alert.AlertType.ERROR, "Login Error", "Invalid email format.");
+            showAlert(Alert.AlertType.ERROR, "Login Error", "Invalid Email format.");
             return false;
         }
 
@@ -58,21 +58,10 @@ public class LoginMenuGUIController {
             showAlert(Alert.AlertType.ERROR, "Login Error", "The password must have at least seven alphanumeric characters, including three capital letters and two digits.");
             return false;
         }
-
-        int maxAttempts = 3;
-        boolean success = false;
-        while (!success && maxAttempts > 0) {
-            maxAttempts--;
-            success = controller.doLogin(id, pwd);
-            if (!success && maxAttempts > 0) {
-                showAlert(Alert.AlertType.ERROR, "Login Error", "Invalid UserId and/or Password. You have " + maxAttempts + " more attempt(s).");
-            }
-        }
-
+        boolean success = controller.doLogin(id, pwd);
         if (!success) {
-            showAlert(Alert.AlertType.ERROR, "Login Error", "Invalid UserId and/or Password. No more attempts left.");
+            showAlert(Alert.AlertType.ERROR, "Login Error", "Invalid credentials.");
         }
-
         return success;
     }
 

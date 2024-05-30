@@ -12,6 +12,7 @@ public class ToDoEntryRepository implements Serializable {
     private ArrayList<ToDoEntry> toDoEntryList = new ArrayList<>();
 
     public boolean registerToDoEntry(ToDoEntry td) {
+        System.out.println(td);
         if(toDoEntryIsUnique(td)){
             System.out.println(toDoEntryList);
             return toDoEntryList.add(td);

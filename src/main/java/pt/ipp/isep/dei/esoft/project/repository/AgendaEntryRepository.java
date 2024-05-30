@@ -4,6 +4,7 @@ package pt.ipp.isep.dei.esoft.project.repository;
 import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class AgendaEntryRepository implements Serializable {
@@ -63,11 +64,10 @@ public class AgendaEntryRepository implements Serializable {
         return agendaEntryListGSM;
     }
 
-    public boolean postponeEntryInAgenda(AgendaEntry entity) {
-        for (AgendaEntry ag : agendaEntryList) {
-            if (ag.equals(entity)) {
-                ag.setEntryStatus(EntryStatusENUM.POSTPONED);
-                ag.setDate(entity.getDate());
+    public boolean updateDate(AgendaEntry updatedEntry, LocalDate date) {
+        for (AgendaEntry entry : agendaEntryList) {
+            if (entry.equals(updatedEntry)) {
+                entry.setDate(date);
                 return true;
             }
         }

@@ -83,7 +83,7 @@ public class GSMMenuGUIController {
 
             // Get the current stage
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root, 700, 700));
+            stage.setScene(new Scene(root, 1300, 700));
             stage.setTitle("Agenda");
             // Set the new scene or update the current scene with the new root
             stage.getScene().setRoot(root);

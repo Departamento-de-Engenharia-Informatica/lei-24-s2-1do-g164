@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.esoft.project.ui.gui.controllers;
 
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -11,6 +11,7 @@ import pt.ipp.isep.dei.esoft.project.application.controller.TeamToAgendaEntryCon
 import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 import pt.ipp.isep.dei.esoft.project.dto.TeamDTO;
 import javafx.event.ActionEvent;
+
 
 
 public class TeamtoAgendaMenuGUIController {
@@ -32,20 +33,36 @@ public class TeamtoAgendaMenuGUIController {
 
     @FXML
     public void initialize() {
-        cmbAgendaEntries.getItems().setAll(controller.getAgendaEntryDTOList());
+        cmbAgendaEntries.getItems().setAll(controller.getAgendaEntriesWithoutTeam());
         cmbTeams.getItems().setAll(controller.showAvailableTeamsDTO());
     }
 
     @FXML
-    public void handleAssignTeam(ActionEvent actionEvent) {
-        AgendaEntryDTO agendaEntryDTO = new AgendaEntryDTO(cmbAgendaEntries.getValue().description, cmbAgendaEntries.getValue().greenSpace, cmbAgendaEntries.getValue().team);
+    public void handleAssignTeam(ActionEvent event) {
+        try {
+            AgendaEntryDTO selectedEntry = cmbAgendaEntries.getValue();
+            TeamDTO teamEntry = cmbTeams.getValue();
 
-            if (controller.assignTeamToAgendaEntry(agendaEntryDTO)) {
+            if (selectedEntry == null) {
+                showAlert(Alert.AlertType.ERROR, "Cancel Entry Error", "No entry selected.");
+                return;
+            }
+
+            if (teamEntry == null) {
+                showAlert(Alert.AlertType.ERROR, "Cancel Entry Error",  "No team selected");
+            }
+
+            if (controller.assignTeamToAgendaEntry(selectedEntry, teamEntry)) {
                 System.out.println("Team assigned successfully!");
+                agendaMenuGUIController.update();
                 handleClose();
             } else {
                 System.out.println("Failed to assign team.");
             }
+        } catch (Exception e) {
+        e.printStackTrace();
+        showAlert(Alert.AlertType.ERROR, "Error", "An error occurred while assigning team.");
+    }
 
     }
 
@@ -62,7 +79,12 @@ public class TeamtoAgendaMenuGUIController {
         Stage stage = (Stage) cmbAgendaEntries.getScene().getWindow();
         stage.close();
     }
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
 
-
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(message);
+        alert.showAndWait();
+    }
 }
 

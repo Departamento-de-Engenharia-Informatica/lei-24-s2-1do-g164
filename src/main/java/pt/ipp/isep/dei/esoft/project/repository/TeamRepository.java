@@ -33,7 +33,13 @@ public class TeamRepository implements Serializable {
         return teams;
     }
 
-
+    public Team getTeam(ArrayList<String> collaborators) {
+        for (Team team: teams){
+            if (team.getCollaboratorsNames().equals(collaborators))
+                return team;
+        }
+        return null;
+    }
 
     /**
      * Checks if a team already exists in the repository.

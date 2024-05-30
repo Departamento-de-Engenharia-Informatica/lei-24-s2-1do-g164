@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import com.kitfox.svg.A;
 import pt.ipp.isep.dei.esoft.project.repository.enums.TeamStatusENUM;
 
 import java.io.Serializable;
@@ -57,7 +58,15 @@ public class Team implements Serializable {
      * @return The list of collaborators.
      */
     public ArrayList<Collaborator> getCollaborators(){
-        return collaborators;
+        return this.collaborators;
+    }
+
+    public ArrayList<String> getCollaboratorsNames(){
+        var collaboratorsNames = new ArrayList<String>();
+        for (Collaborator c : this.collaborators){
+            collaboratorsNames.add(c.getName());
+        }
+        return collaboratorsNames;
     }
 
     /**

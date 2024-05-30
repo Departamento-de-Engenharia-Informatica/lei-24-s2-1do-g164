@@ -29,17 +29,17 @@ public class CancelAgendaEntryController {
         return agendaEntryRepository.getAgendaEntryList(authenticationController.getCurrentUserEmail());
     }
 
-    private AbstractList<AgendaEntry> getAgendaEntryListByStatus(EntryStatusENUM status){
-        return agendaEntryRepository.getAgendaEntryListByStatus(authenticationController.getCurrentUserEmail(), status);
-    }
+//    private AbstractList<AgendaEntry> getAgendaEntryListByStatus(EntryStatusENUM status){
+//        return agendaEntryRepository.getAgendaEntryListByStatus(authenticationController.getCurrentUserEmail(), status);
+//    }
 
     public ArrayList<AgendaEntryDTO> getAgendaEntryDTOList() {
         return agendaEntryMapper.toDtoList(getAgendaEntryList());
     }
 
-    public ArrayList<AgendaEntryDTO> getAgendaEntryDTOListByStatus(EntryStatusENUM status){
-        return agendaEntryMapper.toDtoList(getAgendaEntryListByStatus(status));
-    }
+//    public ArrayList<AgendaEntryDTO> getAgendaEntryDTOListByStatus(EntryStatusENUM status){
+//        return agendaEntryMapper.toDtoList(getAgendaEntryListByStatus(status));
+//    }
 
     public ArrayList<AgendaEntryDTO> getAgendaEntryWithoutCancelledDTOList() {
         ArrayList<AgendaEntry> agendaEntryList = agendaEntryRepository.getAgendaEntryListWithoutCancelled(authenticationController.getCurrentUserEmail());

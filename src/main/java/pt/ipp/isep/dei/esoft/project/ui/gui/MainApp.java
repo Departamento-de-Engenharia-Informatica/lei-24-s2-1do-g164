@@ -14,11 +14,8 @@ public class MainApp extends Application {
 
     public static void main(String[] args) {
         Bootstrap bootstrap = new Bootstrap();
-        // System.out.println(Repositories.getInstance().getToDoEntryRepository().getToDoEntryList("gsm@gsm.app") + "hcj");
-        // System.out.println(Repositories.getInstance().getAgendaEntryRepository().getAgendaEntryList("gsm@gsm.app") + "olacsnc");
         Repositories.getInstance().deserializeRepository();
         bootstrap.run();
-        // System.out.println(Repositories.getInstance().getToDoEntryRepository().getToDoEntryList("gsm@gsm.app") + "hcj");
         launch();
         Repositories.getInstance().serializeRepository();
     }

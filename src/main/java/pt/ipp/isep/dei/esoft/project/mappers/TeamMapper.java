@@ -17,6 +17,8 @@ public class TeamMapper {
         return new TeamDTO(collaboratorNames);
     }
 
+
+
     public static List<TeamDTO> toDtoList(ArrayList<Team> teams) {
         ArrayList<TeamDTO> teamDTOList = new ArrayList<>();
         for (var team : teams) {

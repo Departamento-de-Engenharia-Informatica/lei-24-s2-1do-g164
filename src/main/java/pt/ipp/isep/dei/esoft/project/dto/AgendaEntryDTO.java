@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.dto;
 
 import pt.ipp.isep.dei.esoft.project.domain.*;
+import pt.ipp.isep.dei.esoft.project.mappers.TeamMapper;
 import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 import pt.ipp.isep.dei.esoft.project.repository.enums.TeamStatusENUM;
 import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegreeENUM;
@@ -25,6 +26,7 @@ public class AgendaEntryDTO {
     public final ArrayList<Skill> skillsVazias = new ArrayList<>();
     public final Team teamOmissao = new Team(teamVazia, skillsVazias, TeamStatusENUM.ACCEPTED );
     public final ArrayList<Vehicle> vehiclesOmissao = new ArrayList<>();
+    private TeamMapper teamMapper = new TeamMapper();
 
     public AgendaEntryDTO(ToDoEntryDTO toDoEntryDTO, LocalDate date){
         this.description = toDoEntryDTO.description;
@@ -114,7 +116,7 @@ public class AgendaEntryDTO {
                 "Green Space: " + greenSpace.getName() + " - " +
                 "Urgency Degree: " + urgencyDegree + " - " +
                 "Date: " + date.toString() + " - " +
-                "Team: " + team.toString() + " - " +
+                "Team: " + teamMapper.toDto(team).toString() + " - " +
                 "Vehicles: " + vehiclesString;
 
     }

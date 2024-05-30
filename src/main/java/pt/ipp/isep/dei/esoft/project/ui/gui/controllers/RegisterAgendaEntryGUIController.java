@@ -60,9 +60,10 @@ public class RegisterAgendaEntryGUIController {
                 return;
             }
 
+            controller.updateToDoEntry(toDoDTO);
+            toDoDTO.entryStatus = EntryStatusENUM.PLANNED;
             AgendaEntryDTO agendaDTO = new AgendaEntryDTO(toDoDTO, date);
             if(controller.registerAgendaEntry(agendaDTO)) {
-                controller.updateToDoEntry(toDoDTO);
                 agendaMenuGUIController.update();
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.close();

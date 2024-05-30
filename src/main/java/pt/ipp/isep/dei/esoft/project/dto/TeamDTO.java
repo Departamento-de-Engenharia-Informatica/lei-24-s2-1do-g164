@@ -10,7 +10,6 @@ import java.util.List;
 public class TeamDTO {
 
   private List<String> collaboratorNames;
-  private Team team;
 
     public TeamDTO(List<String> collaborators) {
         this.collaboratorNames = collaborators;

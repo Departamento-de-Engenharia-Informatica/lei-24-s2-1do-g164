@@ -40,14 +40,14 @@ public class AgendaEntry extends ToDoEntry {
         super(description, expectedDuration, greenSpace, urgencyDegree);
         this.associatedTeam = team;
         this.associatedVehicles = vehicles;
-        this.setEntryStatus(EntryStatusENUM.PENDING);
+        this.setEntryStatus(entryStatus);
         this.date = date;
     }
 
     public AgendaEntry(String description, int expectedDuration, GreenSpace greenSpace, UrgencyDegreeENUM urgencyDegree, EntryStatusENUM entryStatus, LocalDate date,  ArrayList<Vehicle> vehicles) {
         super(description, expectedDuration, greenSpace, urgencyDegree);
         this.associatedVehicles = vehicles;
-        this.setEntryStatus(EntryStatusENUM.PENDING);
+        this.setEntryStatus(entryStatus);
         this.date = date;
     }
 

@@ -12,6 +12,7 @@ import pt.ipp.isep.dei.esoft.project.application.controller.RegisterAgendaEntryC
 import pt.ipp.isep.dei.esoft.project.domain.GreenSpace;
 import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 import pt.ipp.isep.dei.esoft.project.dto.ToDoEntryDTO;
+import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 import pt.ipp.isep.dei.esoft.project.repository.enums.GreenSpaceTypeENUM;
 import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegreeENUM;
 
@@ -59,6 +60,8 @@ public class RegisterAgendaEntryGUIController {
                 return;
             }
 
+            controller.updateToDoEntry(toDoDTO);
+            toDoDTO.entryStatus = EntryStatusENUM.PLANNED;
             AgendaEntryDTO agendaDTO = new AgendaEntryDTO(toDoDTO, date);
             if(controller.registerAgendaEntry(agendaDTO)) {
                 agendaMenuGUIController.update();

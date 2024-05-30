@@ -8,6 +8,7 @@ import pt.ipp.isep.dei.esoft.project.repository.AgendaEntryRepository;
 import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
@@ -24,9 +25,20 @@ public class CancelAgendaEntryController {
 
     }
 
+    private AbstractList<AgendaEntry> getAgendaEntryList(){
+        return agendaEntryRepository.getAgendaEntryList(authenticationController.getCurrentUserEmail());
+    }
+
+    private AbstractList<AgendaEntry> getAgendaEntryListByStatus(EntryStatusENUM status){
+        return agendaEntryRepository.getAgendaEntryListByStatus(authenticationController.getCurrentUserEmail(), status);
+    }
+
     public ArrayList<AgendaEntryDTO> getAgendaEntryDTOList() {
-        ArrayList<AgendaEntry> agendaEntryList = agendaEntryRepository.getAgendaEntryList(authenticationController.getCurrentUserEmail());
-        return agendaEntryMapper.toDtoList(agendaEntryList);
+        return agendaEntryMapper.toDtoList(getAgendaEntryList());
+    }
+
+    public ArrayList<AgendaEntryDTO> getAgendaEntryDTOListByStatus(EntryStatusENUM status){
+        return agendaEntryMapper.toDtoList(getAgendaEntryListByStatus(status));
     }
 
     public ArrayList<AgendaEntryDTO> getAgendaEntryWithoutCancelledDTOList() {

@@ -34,11 +34,7 @@ public class VehicleCheckup {
      * @throws InputMismatchException If the provided date is before today's date or if the current kilometers are negative.
      */
     public VehicleCheckup(LocalDate date, int currentKms) {
-        if (date.isBefore(LocalDate.now())) {
-            throw new InputMismatchException("Date provided for check-up should be after today's date");
-        }
-
-        if (currentKms < 0) {
+              if (currentKms < 0) {
             throw new InputMismatchException("Current Kms should be a positive value");
         }
 

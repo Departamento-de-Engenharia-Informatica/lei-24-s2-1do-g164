@@ -33,7 +33,7 @@ public class TeamtoAgendaMenuGUIController {
 
     @FXML
     public void initialize() {
-        cmbAgendaEntries.getItems().setAll(controller.getAgendaEntriesWithoutTeam());
+        cmbAgendaEntries.getItems().setAll(controller.getAgendaEntriesDTOWithoutTeam());
         cmbTeams.getItems().setAll(controller.showAvailableTeamsDTO());
     }
 

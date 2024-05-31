@@ -25,26 +25,10 @@ public class CancelAgendaEntryController {
 
     }
 
-    private AbstractList<AgendaEntry> getAgendaEntryList(){
-        return agendaEntryRepository.getAgendaEntryList(authenticationController.getCurrentUserEmail());
-    }
-
-//    private AbstractList<AgendaEntry> getAgendaEntryListByStatus(EntryStatusENUM status){
-//        return agendaEntryRepository.getAgendaEntryListByStatus(authenticationController.getCurrentUserEmail(), status);
-//    }
-
-    public ArrayList<AgendaEntryDTO> getAgendaEntryDTOList() {
-        return agendaEntryMapper.toDtoList(getAgendaEntryList());
-    }
-
-//    public ArrayList<AgendaEntryDTO> getAgendaEntryDTOListByStatus(EntryStatusENUM status){
-//        return agendaEntryMapper.toDtoList(getAgendaEntryListByStatus(status));
-//    }
-
     public ArrayList<AgendaEntryDTO> getAgendaEntryWithoutCancelledDTOList() {
-        ArrayList<AgendaEntry> agendaEntryList = agendaEntryRepository.getAgendaEntryListWithoutCancelled(authenticationController.getCurrentUserEmail());
-        System.out.println("lista sem cancelados: " + agendaEntryList);
-        return agendaEntryMapper.toDtoList(agendaEntryList);
+        ArrayList<AgendaEntry> agendaEntryListGSM = agendaEntryRepository.getAgendaEntryListWithoutCancelled(authenticationController.getCurrentUserEmail());
+        System.out.println("lista sem cancelados: " + agendaEntryListGSM);
+        return agendaEntryMapper.toDtoList(agendaEntryListGSM);
     }
 
     public boolean cancelAgendaEntry(AgendaEntryDTO dto) {

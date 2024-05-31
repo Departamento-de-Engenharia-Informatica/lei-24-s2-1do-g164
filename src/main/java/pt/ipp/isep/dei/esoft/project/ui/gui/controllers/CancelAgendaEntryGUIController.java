@@ -15,11 +15,6 @@ import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 public class CancelAgendaEntryGUIController {
 
     @FXML
-         Button btnCancelEntry;
-    @FXML
-         Button btnCancel;
-
-    @FXML
     ComboBox<AgendaEntryDTO> cmbAgendaEntries;
      CancelAgendaEntryController controller = new CancelAgendaEntryController();
 

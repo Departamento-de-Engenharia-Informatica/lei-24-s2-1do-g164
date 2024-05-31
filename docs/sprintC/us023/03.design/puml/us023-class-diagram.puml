@@ -37,9 +37,9 @@ class SystemUser {
 
 class AgendaEntryRepository {
     - ArrayList<AgendaEntry> agendaEntries
-    + getAgendaEntryList()
+    + getAgendaEntryListWithoutTeam(authenticationController.getCurrentUserEmail())
     + getAgendaEntry(description, greenSpace)
-    +updateTeam(agendaEntry, team)
+    + getTeamByCollaborators(teamDTO.getCollaborators()
 }
 
 class Repositories {
@@ -64,10 +64,10 @@ class TeamToAgendaEntryController {
     - AgendaEntryMapper agendaEntryMapper
     - EmailService emailService
 
-    + getAgendaEntryDTOList()
-    +getTeamDTOList()
-    +assignTeamToAgendaEntry(AgendaEntryDTO dto)
-    +sendNotificationEmails(team)
+    +getAgendaEntriesDTOWithoutTeam()
+    +showAvailableTeamsDTO()
+    +assignTeamToAgendaEntry(selectedEntry, teamEntry)
+    +sendNotificationEmails(entry.getAssociatedTeam()
 }
 
 class AgendaUI {
@@ -82,7 +82,8 @@ minimumSize
 
 class TeamRepository{
     ArrayList<Team> teams
-    +showAvailableTeams()
+    +getTeams()
+    +getTeamByCollaborators(teamDTO.getCollaborators()
 
 }
 

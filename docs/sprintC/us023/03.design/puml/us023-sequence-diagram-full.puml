@@ -54,11 +54,11 @@ activate GSM
 
                 deactivate plat
 
-                ui-> ctrl: getAgendaEntryDTOList()
-                ui -> ctrl :   showAvailableTeams()
+                ui-> ctrl: getAgendaEntriesDTOWithoutTeam()
+                ui -> ctrl :   showAvailableTeamsDTO()
 
 
-                ctrl -> agendaRepo : getAgendaEntryList()
+                ctrl -> agendaRepo : getAgendaEntryListWithoutTeam(authenticationController.getCurrentUserEmail())
                 activate agendaRepo
 
                 agendaRepo --> ctrl: agendaEntryList
@@ -109,10 +109,9 @@ activate GSM
 
                  GSM -> ui: selects entry and team
 
-                 ui->AgendaEntryDTO: create(description, greenSpace, team)
 
 
-                 ui->ctrl: assignTeamToAgendaEntry(AgendaEntryDTO dto)
+                 ui->ctrl: assignTeamToAgendaEntry(selectedEntry, teamEntry)
                  activate ctrl
 
                  deactivate AgendaEntryDTO
@@ -127,8 +126,20 @@ activate GSM
 
                  agendaRepo--> ctrl: agendaEntry
 
-                 ctrl -> agendaEntry**: create
-                 ctrl -> agendaRepo: updateTeam(agendaEntry, team)
+                                  deactivate agendaRepo
+
+
+                 ctrl -> teamRepo: getTeamByCollaborators(teamDTO.getCollaborators()
+                   note right: iterates through the teams list and gets the\n team by collaborator names DTO
+                 activate teamRepo
+
+                 teamRepo --> ctrl: team
+                 deactivate teamRepo
+
+                 ctrl -> agendaRepo: assignTeam(entry, team)
+                 activate agendaRepo
+
+
 
 
                 agendaRepo -> agendaEntry: setAssociatedTeam(team)
@@ -136,7 +147,7 @@ activate GSM
                  agendaRepo--> ctrl: success/insucess
                     deactivate
 
-                ctrl->ctrl: sendNotificationEmails(team)
+                ctrl->ctrl: sendNotificationEmails(entry.getAssociatedTeam()
                 deactivate agendaEntry
                     note left: gets the collaborators for each team and\ngets the email of each collaborator
                 ctrl-> app :  sendEmail(email, body)

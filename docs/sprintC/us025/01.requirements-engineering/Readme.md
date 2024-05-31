@@ -61,3 +61,4 @@ state.
 ![System Sequence Diagram - Alternative One](svg/us025-system-sequence-diagram.svg)
 
 ### 1.7 Other Relevant Remarks
+none

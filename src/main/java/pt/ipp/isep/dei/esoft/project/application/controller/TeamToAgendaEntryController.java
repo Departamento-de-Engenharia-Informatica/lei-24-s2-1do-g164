@@ -36,7 +36,7 @@ public class TeamToAgendaEntryController {
         return teamMapper.toDtoList(teams);
     }
 
-     public ArrayList<AgendaEntryDTO> getAgendaEntriesWithoutTeam() {
+     public ArrayList<AgendaEntryDTO> getAgendaEntriesDTOWithoutTeam() {
         System.out.println(authenticationController.getCurrentUserEmail());
         ArrayList<AgendaEntry> agendaEntryList = agendaEntryRepository.getAgendaEntryListWithoutTeam(authenticationController.getCurrentUserEmail());
         System.out.println(agendaEntryList);
@@ -50,7 +50,7 @@ public class TeamToAgendaEntryController {
             throw new InputMismatchException("Agenda Entry not found!");
         }
 
-        var team = teamRepository.getTeam(teamDTO.getCollaborators());
+        var team = teamRepository.getTeamByCollaborators(teamDTO.getCollaborators());
         if (team == null) {
             throw new InputMismatchException("Team not found!");
         }

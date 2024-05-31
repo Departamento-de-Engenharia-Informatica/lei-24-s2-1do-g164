@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -14,6 +15,7 @@ import pt.ipp.isep.dei.esoft.project.application.controller.RegisterGreenSpaceCo
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterToDoEntryController;
 import pt.ipp.isep.dei.esoft.project.dto.GreenSpaceDTO;
 import pt.ipp.isep.dei.esoft.project.dto.ToDoEntryDTO;
+import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegreeENUM;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,11 +31,16 @@ public class GreenSpaceMenuGUIController {
     TextArea txtGreenSpaceListText;
     @FXML
     BorderPane borderPane;
+    //alterar a ComboBox para dar display das opções de ordenação usadas no algoritmo
+    @FXML
+    ComboBox<UrgencyDegreeENUM> cmbSortSize;
 
     private RegisterGreenSpaceController controller = new RegisterGreenSpaceController();
 
     @FXML
     private void initialize(){
+        //""
+        cmbSortSize.getItems().setAll(UrgencyDegreeENUM.values());
         update();
     }
 

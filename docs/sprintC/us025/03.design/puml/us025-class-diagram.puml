@@ -37,7 +37,7 @@ class SystemUser {
 class AgendaEntryRepository {
     - ArrayList<AgendaEntry> agendaEntries
 
-    + getAgendaEntryList()
+    + getAgendaEntryListWithoutCancelled(authenticationController.getCurrentUserEmail())
     +getAgendaEntryByDescriptionAndGreenspace(dto.description, dto.greenSpace)
     +update(entry, EntryStatus.CANCELLED)
 }
@@ -61,7 +61,7 @@ class CancelAgendaEntryController {
     - AgendaEntryRepository agendaEntryRepository
     - AgendaEntryMapper agendaEntryMapper
 
-    + getAgendaEntryDTOList()
+    + getAgendaEntryWithoutCancelledDTOList()
     +cancelAgendaEntry(AgendaEntryDTO dto)
 }
 

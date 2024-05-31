@@ -148,29 +148,37 @@ public class EmergencyRoutePlanner {
                 }
             }
         } while (!success);
+
         ArrayList<Integer> mustpass = new ArrayList<>();
         String name = "";
         do {
-            System.out.print("Insert the signs you want to pass through(type done to finish): ");
+            System.out.print("Insert the signs you want to pass through (type done to finish): ");
             name = sc.nextLine();
-            for (int i = 0; i < names.length; i++) {
-                if (names[i].equals(name)) {
-                    mustpass.add(i);
+            if (!name.equals("done")) {
+                boolean added = false;
+                for (int i = 0; i < names.length; i++) {
+                    if (names[i].equals(name)) {
+                        mustpass.add(i);
+                        added = true;
+                    }
+                }
+                if (!added) {
+                    System.out.println("Invalid sign name. Please try again.");
                 }
             }
         } while (!name.equals("done"));
-        System.out.println(mustpass);
+
+        System.out.println("Must pass through: " + mustpass);
         System.out.println("Vertex\t        Distance from Source\tPath");
-        int last = target;
+
+        // Execute Dijkstra's algorithm for each segment
+        int currentSrc = src;
         for (int sign : mustpass) {
-            target = sign;
-            if (sign == mustpass.get(mustpass.size() - 1) && mustpass.size() != 1) {
-                target = last;
-            }
-            dijkstra(graph, src, target, names);
-            src = target;
+            dijkstra(graph, currentSrc, sign, names);
+            currentSrc = sign;
         }
-            dijkstra(graph, src, last, names);
+
+        // Finally, find the path from the last must-pass node to the target
+        dijkstra(graph, currentSrc, target, names);
     }
 }
-

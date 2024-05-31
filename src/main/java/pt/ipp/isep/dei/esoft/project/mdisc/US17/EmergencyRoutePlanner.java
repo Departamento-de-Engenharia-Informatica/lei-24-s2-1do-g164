@@ -1,13 +1,26 @@
 package pt.ipp.isep.dei.esoft.project.mdisc.US17;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import org.apache.log4j.BasicConfigurator;
+import pt.ipp.isep.dei.esoft.project.mdisc.util.MST_PLOTTER;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class EmergencyRoutePlanner {
+
+    static class Edge {
+        int from;
+        int to;
+        int weight;
+
+        Edge(int from, int to, int weight) {
+            this.from = from;
+            this.to = to;
+            this.weight = weight;
+        }
+    }
 
     // Function to find the vertex with minimum distance value
     private static int minDistance(int[] dist, boolean[] sptSet, int V) {
@@ -25,7 +38,7 @@ public class EmergencyRoutePlanner {
 
     // Function to implement Dijkstra's single source shortest path algorithm
     // for a graph represented using adjacency matrix representation
-    public static void dijkstra(int[][] graph, int src, int target, String[] names) {
+    public static Edge[] dijkstra(int[][] graph, int src, int target, String[] names, ArrayList<Integer> finalPath) {
         int V = graph.length;
         int[] dist = new int[V]; // The output array. dist[i] will hold the shortest distance from src to i
         boolean[] sptSet = new boolean[V]; // sptSet[i] will be true if vertex i is included in shortest path tree
@@ -65,28 +78,42 @@ public class EmergencyRoutePlanner {
             }
         }
 
-        // Print the shortest distance and path from source to target
-        printSolution(dist, pred, src, target, names);
-    }
-
-    // Function to print the shortest distance and path from source to target
-    private static void printSolution(int[] dist, int[] pred, int src, int target, String[] names) {
-        System.out.print(names[src] + "\t\t" + dist[target] + "                 \t\t" + names[src]);
-        printPath(pred, target, names);
-        System.out.println();
-    }
-
-    // Recursive function to print the path from source to the given vertex
-    private static void printPath(int[] pred, int vertex, String[] names) {
-        if (pred[vertex] == -1) {
-            return;
+        // Construct the path as an array of edges
+        ArrayList<Edge> edges = new ArrayList<>();
+        int current = target;
+        while (pred[current] != -1) {
+            edges.add(new Edge(pred[current], current, graph[pred[current]][current]));
+            current = pred[current];
         }
-        printPath(pred, pred[vertex], names);
-        System.out.print(" -> " + names[vertex]);
+
+        // Reverse the edges to get them in the correct order
+        Edge[] reversedEdges = new Edge[edges.size()];
+        for (int i = 0; i < edges.size(); i++) {
+            reversedEdges[i] = edges.get(edges.size() - 1 - i);
+        }
+
+        // Print the shortest distance and path from source to target
+        addPathToFinal(pred, target, finalPath);
+
+        // Return the array of edges representing the shortest path
+        return reversedEdges;
+    }
+
+    // Add the path to the final path array
+    private static void addPathToFinal(int[] pred, int target, ArrayList<Integer> finalPath) {
+        ArrayList<Integer> tempPath = new ArrayList<>();
+        while (target != -1) {
+            tempPath.add(0, target);
+            target = pred[target];
+        }
+        if (!finalPath.isEmpty()) {
+            tempPath.remove(0); // Remove the first element to avoid duplication
+        }
+        finalPath.addAll(tempPath);
     }
 
     public static int[][] readGraphFromCSV(String filePath) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(filePath));
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "UTF-8"));
         String line;
         int[][] graph = null;
         int row = 0;
@@ -111,9 +138,11 @@ public class EmergencyRoutePlanner {
     }
 
     public static String[] readCSVIntoArray(String csvFile) {
+
         String line;
         String[] dataArray = null;
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+        try (        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(csvFile), "UTF-8"));
+        ) {
             if ((line = br.readLine()) != null) {
                 dataArray = line.split(";");
             }
@@ -121,6 +150,32 @@ public class EmergencyRoutePlanner {
             e.printStackTrace();
         }
         return dataArray;
+    }
+
+    // Write the final path to a CSV file
+    public static void writeFinalPathToCSV(ArrayList<Edge> edges, String filePath, String[] names) {
+        try (PrintWriter writer = new PrintWriter(new File(filePath))) {
+            for (Edge edge : edges) {
+                writer.println(names[edge.from] + ";" + names[edge.to] + ";" + edge.weight);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    // Write the initial graph to a CSV file
+    public static void writeGraphToCSV(int[][] graph, String filePath, String[] names) {
+        try (PrintWriter writer = new PrintWriter(new File(filePath))) {
+            for (int i = 0; i < graph.length; i++) {
+                for (int j = 0; j < graph[i].length; j++) {
+                    if (graph[i][j] != 0) {
+                        writer.println(names[i] + ";" + names[j] + ";" + graph[i][j]);
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     // Driver code
@@ -168,17 +223,49 @@ public class EmergencyRoutePlanner {
             }
         } while (!name.equals("done"));
 
-        System.out.println("Must pass through: " + mustpass);
-        System.out.println("Vertex\t        Distance from Source\tPath");
-
         // Execute Dijkstra's algorithm for each segment
         int currentSrc = src;
+        int totalCost = 0;
+        ArrayList<Edge> finalEdges = new ArrayList<>();
+        ArrayList<Integer> finalPath = new ArrayList<>();
+        Edge[] edges = null;
         for (int sign : mustpass) {
-            dijkstra(graph, currentSrc, sign, names);
+            edges = dijkstra(graph, currentSrc, sign, names, finalPath);
+            for (Edge edge : edges) {
+                totalCost += edge.weight;
+                finalEdges.add(edge);
+            }
             currentSrc = sign;
         }
 
         // Finally, find the path from the last must-pass node to the target
-        dijkstra(graph, currentSrc, target, names);
+        edges = dijkstra(graph, currentSrc, target, names, finalPath);
+        for (Edge edge : edges) {
+            totalCost += edge.weight;
+            finalEdges.add(edge);
+        }
+
+        // Print the total cost
+        System.out.println("Total cost: " + totalCost);
+
+        // Print the final path
+        System.out.print("Final Path: ");
+        for (int i = 0; i < finalPath.size(); i++) {
+            System.out.print(names[finalPath.get(i)]);
+            if (i < finalPath.size() - 1) {
+                System.out.print(" -> ");
+            }
+        }
+        System.out.println();
+
+        writeGraphToCSV(graph, "src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US17_initial_graph.csv", names);
+        writeFinalPathToCSV(finalEdges, "src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US17_final_path.csv", names);
+        BasicConfigurator.configure();
+        System.out.println("-------------------------------------------------------------------------PLOTTING GRAPHS-----------------------------------------------------");
+        MST_PLOTTER.plotMST("src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US17_final_path.csv", "US17_SHORTESTPATH_OUTPUT");
+        MST_PLOTTER.plotMST("src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US17_initial_graph.csv", "US17_INPUT");
+        System.out.println("-------------------------------------------------------------------------GRAPHS PLOTTED SUCCESSFULLY-----------------------------------------------------");
+
     }
+
 }

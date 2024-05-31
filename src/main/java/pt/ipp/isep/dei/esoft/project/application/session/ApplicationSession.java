@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.application.session;
 
 import pt.ipp.isep.dei.esoft.project.application.session.emailService.EmailService;
+import pt.ipp.isep.dei.esoft.project.application.session.sorting.SortingAlgorithm;
 import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 
@@ -88,7 +89,22 @@ public class ApplicationSession {
             throw new RuntimeException("Failed to load email service", ex);
         }
     }
+    public static SortingAlgorithm getSortingAlgorithm() {
+        try {
+            String name = "pt.ipp.isep.dei.esoft.project.application.session.sorting.algorithms.";
+            Properties props = new Properties();
+            FileInputStream in=new FileInputStream(CONFIGURATION_FILENAME);
+            props.load(in);
+            in.close();
 
+            String sortingAlgorithmClassName = name + props.getProperty("sorting.algorithm");
+
+            Class<?> sortingAlgorithm = Class.forName(sortingAlgorithmClassName);
+            return (SortingAlgorithm) sortingAlgorithm.getDeclaredConstructor().newInstance();
+        } catch (Exception ex) {
+            throw new RuntimeException("Failed to load sorting algorithm", ex);
+        }
+    }
 
 
 }

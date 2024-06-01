@@ -43,6 +43,7 @@ public class Bootstrap implements Runnable {
         authenticationRepository.addUserRole(AuthenticationController.ROLE_HRM, AuthenticationController.ROLE_HRM);
         authenticationRepository.addUserRole(AuthenticationController.ROLE_VFM, AuthenticationController.ROLE_VFM);
         authenticationRepository.addUserRole(AuthenticationController.ROLE_GSM, AuthenticationController.ROLE_GSM);
+        authenticationRepository.addUserRole(AuthenticationController.ROLE_COL, AuthenticationController.ROLE_COL);
 
         authenticationRepository.addUserWithRole("João", "hrm@hrm.app", "JOAo1234_",
                 AuthenticationController.ROLE_HRM);
@@ -55,6 +56,10 @@ public class Bootstrap implements Runnable {
 
         authenticationRepository.addUserWithRole("Vasco", "gsm2@gsm2.app", "VASco3344",
                 AuthenticationController.ROLE_GSM);
+
+        authenticationRepository.addUserWithRole("Diogo", "col@col.app", "DIOGo1122",
+                AuthenticationController.ROLE_COL);
+
     }
 
     private void addCollaborators() {
@@ -273,7 +278,7 @@ public class Bootstrap implements Runnable {
         collaborators1.add(c1);
         collaborators1.add(c2);
 
-        GreenSpace greenSpace= new GreenSpace(GreenSpaceTypeENUM.GARDEN, "Parque da Cidade", "Rua Feliz 22", 3, "gsm@gsm.app");
+        GreenSpace greenSpace= new GreenSpace(GreenSpaceTypeENUM.GARDEN, "Parque da Cidade", "Rua Feliz 22", 3, "col@col.app");
         ToDoEntry toDoEntry = new ToDoEntry("Regar", 23, greenSpace, UrgencyDegreeENUM.LOW);
         repo4.registerToDoEntry(toDoEntry);
         AgendaEntry agendaEntry1= new AgendaEntry("Wildlife Gardening", 12, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDate.of(1970, 1, 1) , new Team(new ArrayList<Collaborator>(), new ArrayList<Skill>(), TeamStatusENUM.ACCEPTED) ,vehicles);

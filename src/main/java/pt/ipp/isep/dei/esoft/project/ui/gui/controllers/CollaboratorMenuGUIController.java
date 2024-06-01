@@ -18,20 +18,21 @@ public class CollaboratorMenuGUIController {
 
     @FXML
     private void openMyAgenda(ActionEvent event) {
-//        try {
-//            File file = new File("src/main/resources/fxml/myAgenda.fxml");
-//            FXMLLoader loader = new FXMLLoader(file.toURI().toURL());
-//            Parent root = loader.load();
-//
-//            // Get the current stage
-//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//
-//            // Set the new scene or update the current scene with the new root
-//            stage.getScene().setRoot(root);
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            File file = new File("src/main/resources/fxml/myAgenda.fxml");
+            FXMLLoader loader = new FXMLLoader(file.toURI().toURL());
+            Parent root = loader.load();
+
+            // Get the current stage
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            //Set the new scene or update the current scene with the new root
+            stage.setScene(new Scene(root, 600, 600));
+            stage.getScene().setRoot(root);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         System.out.println("My Agenda button clicked");
     }

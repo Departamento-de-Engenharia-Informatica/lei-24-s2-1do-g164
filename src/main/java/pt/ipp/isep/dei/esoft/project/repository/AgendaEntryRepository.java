@@ -148,12 +148,16 @@ public class AgendaEntryRepository implements Serializable {
      * @return the boolean
      */
     public boolean assignTeam(AgendaEntry agendaEntry, Team team) {
-        if (!agendaEntry.getAssociatedTeam().getCollaboratorsNames().isEmpty()){
-            return false;
+        for (AgendaEntry entry : agendaEntryList) {
+            if (entry.equals(agendaEntry)) {
+                if (entry.getAssociatedTeam() == null || entry.getAssociatedTeam().getCollaborators().isEmpty()) {
+                    entry.setAssociatedTeam(team);
+                    return true;
+                }
+                return false;
+            }
         }
-
-        agendaEntry.setAssociatedTeam(team);
-        return true;
+        return false;
     }
 
 

@@ -2,9 +2,9 @@ package pt.ipp.isep.dei.esoft.project.mdisc.util;
 
 public class Edge {
 
-    private String from;
-    private String to;
-    private int weight;
+    public String from;
+    public String to;
+    public int weight;
 
     public Edge(String from, String to, int weight) {
         this.from = from;

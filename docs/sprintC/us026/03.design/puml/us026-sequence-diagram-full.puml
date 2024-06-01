@@ -6,7 +6,7 @@ skinparam packageStyle rectangle
     autonumber
 
     'hide footbox
-    actor "Green Space Manager" as HRM
+    actor "GSM" as HRM
     participant ":AssignVehiclesUI" as UI
     participant ":AssignVehiclesController" as CTRL
     participant ":Repositories" as RepositorySingleton

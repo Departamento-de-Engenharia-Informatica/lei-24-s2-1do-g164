@@ -22,8 +22,6 @@ public class ToDoListGUIController {
     @FXML
     Button btnAddEntry;
     @FXML
-    Button btnAddAgendaEntry;
-    @FXML
     Button btnCancel;
     @FXML
     TextArea txtToDoListText;
@@ -58,10 +56,6 @@ public class ToDoListGUIController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public void openRegisterAgendaWindow(ActionEvent event) {
-        System.out.println("Agenda");
     }
 
     public void closeWindow(ActionEvent event){

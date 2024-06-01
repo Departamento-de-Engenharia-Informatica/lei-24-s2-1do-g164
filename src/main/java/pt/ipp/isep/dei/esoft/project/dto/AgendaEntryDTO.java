@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.dto;
 
 import pt.ipp.isep.dei.esoft.project.domain.*;
+import pt.ipp.isep.dei.esoft.project.mappers.TeamMapper;
 import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 import pt.ipp.isep.dei.esoft.project.repository.enums.TeamStatusENUM;
 import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegreeENUM;
@@ -25,6 +26,7 @@ public class AgendaEntryDTO {
     public final ArrayList<Skill> skillsVazias = new ArrayList<>();
     public final Team teamOmissao = new Team(teamVazia, skillsVazias, TeamStatusENUM.ACCEPTED );
     public final ArrayList<Vehicle> vehiclesOmissao = new ArrayList<>();
+    private TeamMapper teamMapper = new TeamMapper();
 
     public AgendaEntryDTO(ToDoEntryDTO toDoEntryDTO, LocalDate date){
         this.description = toDoEntryDTO.description;
@@ -34,7 +36,7 @@ public class AgendaEntryDTO {
         this.date = date;
         this.team = teamOmissao;
         this.vehicles = vehiclesOmissao;
-        this.entryStatus = EntryStatusENUM.PLANNED;
+        this.entryStatus = toDoEntryDTO.entryStatus;
     }
 
     public AgendaEntryDTO(String description, int expectedDuration, GreenSpace greenSpace, UrgencyDegreeENUM urgencyDegree, EntryStatusENUM entryStatus, LocalDate date, Team team, ArrayList<Vehicle> vehicles) {
@@ -45,7 +47,7 @@ public class AgendaEntryDTO {
         this.date = date;
         this.team = team;
         this.vehicles = vehicles;
-        this.entryStatus = EntryStatusENUM.PLANNED;
+        this.entryStatus = entryStatus;
     }
 
     public AgendaEntryDTO(String description, GreenSpace greenSpace, EntryStatusENUM entryStatus){
@@ -92,10 +94,30 @@ public class AgendaEntryDTO {
     }
 
     public String toString() {
-        if (team.getCollaborators().isEmpty()){
-            return description+greenSpace.toString()+entryStatus.toString()+urgencyDegree.toString();
+        if (team.getCollaborators().isEmpty() && vehicles.isEmpty()){
+            return  description + " - " +
+                    "Expected Duration: " + expectedDuration + " - " +
+                    "Status: " + entryStatus + " - " +
+                    "Green Space: " + greenSpace.getName() + " - " +
+                    "Urgency Degree: " + urgencyDegree + " - " +
+                    "Date: " + date.toString() + " - " +
+                    "Team: No Team" + " - " +
+                    "Vehicles: No Vehicles";
         }
 
-        return description.toString()+greenSpace.toString()+team.toString();
+        String vehiclesString = "";
+        for (Vehicle vehicle : vehicles){
+            vehiclesString = vehiclesString + vehicle.getBrand() + " " + vehicle.getModel() + " ";
+        }
+        System.out.println(vehiclesString);
+         return  description + " - " +
+                "Expected Duration: " + expectedDuration + " - " +
+                "Status: " + entryStatus + " - " +
+                "Green Space: " + greenSpace.getName() + " - " +
+                "Urgency Degree: " + urgencyDegree + " - " +
+                "Date: " + date.toString() + " - " +
+                "Team: " + teamMapper.toDto(team).toString() + " - " +
+                "Vehicles: " + vehiclesString;
+
     }
 }

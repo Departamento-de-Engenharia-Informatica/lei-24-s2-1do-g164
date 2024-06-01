@@ -7,13 +7,16 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterGreenSpaceController;
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterToDoEntryController;
+import pt.ipp.isep.dei.esoft.project.application.session.ApplicationSession;
+import pt.ipp.isep.dei.esoft.project.application.session.sorting.SortingAlgorithm;
 import pt.ipp.isep.dei.esoft.project.dto.GreenSpaceDTO;
-import pt.ipp.isep.dei.esoft.project.dto.ToDoEntryDTO;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -40,9 +43,19 @@ public class GreenSpaceMenuGUIController {
     public void update(){
         txtGreenSpaceListText.clear();
         ArrayList<GreenSpaceDTO> greenSpaceDTOsList = controller.getGreenSpaceDTOsList();
-        for(GreenSpaceDTO greenSpaceDTO : greenSpaceDTOsList){
-            txtGreenSpaceListText.appendText(greenSpaceDTO.toStringLong() + "\n");
+
+        showGreenSpaces(greenSpaceDTOsList);
+
+    }
+    private void showGreenSpaces(ArrayList<GreenSpaceDTO> greenSpaceDTOsList) {
+        StringBuilder sb = new StringBuilder();
+        String format = "%-20s %-20s %-10s %-15s\n";
+        sb.append(String.format(format, "Name", "Address", "Area", "Type"));
+        sb.append("----------------------------------------------------------------------------\n");
+        for (GreenSpaceDTO greenSpaceDTO : greenSpaceDTOsList) {
+            sb.append(String.format(format, greenSpaceDTO.name, greenSpaceDTO.address, greenSpaceDTO.area, greenSpaceDTO.type));
         }
+        txtGreenSpaceListText.setText(sb.toString());
     }
 
     public void openRegisterGreenSpaceWindow(ActionEvent event) {
@@ -77,5 +90,14 @@ public class GreenSpaceMenuGUIController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public void sort(ActionEvent actionEvent) {
+        txtGreenSpaceListText.clear();
+        ArrayList<GreenSpaceDTO> greenSpaceDTOsList = controller.getGreenSpaceDTOsList();
+
+        SortingAlgorithm sortingAlgorithm = ApplicationSession.getSortingAlgorithm();
+        sortingAlgorithm.sort(greenSpaceDTOsList);
+
+        showGreenSpaces(greenSpaceDTOsList);
     }
 }

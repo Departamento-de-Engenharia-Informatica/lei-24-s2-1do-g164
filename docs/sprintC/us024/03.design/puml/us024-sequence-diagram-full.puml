@@ -8,7 +8,7 @@ title System Sequence Diagram (SSD)
 autonumber
 
 actor "GSM" as Employee
-participant ":PostponeAgendaEntryUI" as UI
+participant ":PostponeAgendaEntryGUI" as UI
 participant ":PostponeAgendaEntryController" as CTRL
 participant ":Repositories" as RepositorySingleton
 participant "AgendaEntryRepository\n:agendaEntryRepository" as AgendaRepo
@@ -40,7 +40,7 @@ activate Employee
             loop for each agendaEntry in agendaEntryList
                 "AgendaEntryMapper" -> "AgendaEntryDTO" : agendaEntryDTO = toDTO(agendaEntry)
                 activate "AgendaEntryDTO"
-
+                "AgendaEntryDTO" --> AgendaEntryMapper  : agendaEntryDTO
                 deactivate "AgendaEntryDTO"
             end
 
@@ -73,6 +73,9 @@ activate Employee
             activate "AgendaEntryMapper"
 
                 AgendaEntryMapper -> AgendaEntry : AgendaEntry(dto.description, dto.greenspace, dto.urgencyDegree\n, dto.status, dto.expectedDuration, dto.date, dto.associatedTeam\n, dto.associatedVehicles)
+                activate AgendaEntry
+                AgendaEntry --> AgendaEntryMapper : agendaEntry
+                deactivate AgendaEntry
 
             "AgendaEntryMapper" --> CTRL : agendaEntry
             deactivate "AgendaEntryMapper"

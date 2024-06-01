@@ -25,21 +25,20 @@ class GSM {
 class AgendaEntry {
     date
     team
-    vehicles
+    vehicleList
 }
 
 class ToDoEntry {
-        status
         description
         associatedGS
         expectedDuration
         urgencyDegree
-        adress
-
+        entryStatus
+        address
 
 }
 
-GSM "1" - "*" AgendaEntry : manages >
+GSM "1" - "*" AgendaEntry : postpones >
 SystemUser <|- GSM
 AgendaEntry --|> ToDoEntry
 

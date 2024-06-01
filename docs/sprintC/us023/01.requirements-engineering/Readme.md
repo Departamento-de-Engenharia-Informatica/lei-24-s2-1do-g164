@@ -23,6 +23,10 @@ the team that will carry out the tasks.
 >
 > **Answer:** The list must clearly identify the vehicles through: plate number, brand, model and the reason that justified the checkup need.
 
+> **Question:** Should the team be generated like in the us05 or should each element be selected manually
+> **Answer:** There is only one US that allows to create teams, as you mentioned, the US05.
+
+
 ### 1.3. Acceptance Criteria
 
 * **AC1:** A message must be sent to all team members informing
@@ -46,7 +50,7 @@ the team that will carry out the tasks.
 
 **Output Data:**
 
-* (In)success message of team assignment and notification sent
+* (In)success message of team assignment
 ### 1.6. System Sequence Diagram (SSD)
 
 ![System Sequence Diagram - Alternative One](svg/us023-system-sequence-diagram.svg)

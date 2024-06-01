@@ -19,6 +19,15 @@ As a GSM, I want to postpone an entry on the agenda.
 >
 > **Answer:** No. Sometimes, for various reasons (e.g. insufficient staff, faulty equipment or adverse weather conditions) a task has to be postponed to a new date; task duration is not directly related to this.
 
+> **Question:** What are the input to postpone an entry? From my perspective the Green Spaces Manager only needs to select the entry and introduce the new date.
+>
+> **Answer:** Yes, you are correct!
+
+> **Question:** The selected task(s) will be postponed by one interval defined by the user or for the next day??
+>
+> **Answer:** When postponing a task, the new predicated date for execution should be inserted.
+
+
 ### 1.3. Acceptance Criteria
 
 * The date has to be a valid day of a month

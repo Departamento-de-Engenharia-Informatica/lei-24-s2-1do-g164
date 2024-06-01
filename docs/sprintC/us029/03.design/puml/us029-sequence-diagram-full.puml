@@ -5,7 +5,7 @@ skinparam shadowing false
 
 autonumber
 
-actor "FM" as ADM
+actor "Collaborator" as ADM
 participant ":MarkTaskCompletedUI" as UI
 participant ":MarkTaskCompletedController" as CTRL
 participant ":Repositories" as RepositorySingleton

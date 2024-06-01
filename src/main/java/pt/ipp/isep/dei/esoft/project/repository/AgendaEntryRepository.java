@@ -1,21 +1,19 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
 
-import pt.ipp.isep.dei.esoft.project.domain.AgendaEntry;
-import pt.ipp.isep.dei.esoft.project.domain.GreenSpace;
-import pt.ipp.isep.dei.esoft.project.domain.Team;
-import pt.ipp.isep.dei.esoft.project.domain.ToDoEntry;
+import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class AgendaEntryRepository implements Serializable {
 
     private final ArrayList<AgendaEntry> agendaEntryList = new ArrayList<>();
-    private Team team;
 
     public boolean addEntryToAgenda(AgendaEntry ag) {
         if (agendaEntryIsUnique(ag)) {
+            ag.setEntryStatus(EntryStatusENUM.PLANNED);
             return agendaEntryList.add(ag);
         }
         return false;
@@ -31,24 +29,45 @@ public class AgendaEntryRepository implements Serializable {
     }
 
     public ArrayList<AgendaEntry> getAgendaEntryList(String email) {
-        System.out.println(agendaEntryList + "vkj");
         ArrayList<AgendaEntry> agendaEntryListGSM = new ArrayList<>();
         for (AgendaEntry agendaEntry : this.agendaEntryList) {
-            System.out.println(agendaEntry.getGreenSpace().getEmailGSM() + "vkj");
             if (agendaEntry.getGreenSpace().getEmailGSM().equals(email)) {
-                System.out.println(agendaEntry.getGreenSpace().getEmailGSM());
-                System.out.println("olaaawdfkhsk");
                 agendaEntryListGSM.add(agendaEntry);
             }
         }
         return agendaEntryListGSM;
     }
 
-    public boolean postponeEntryInAgenda(AgendaEntry entity) {
-        for (AgendaEntry ag : agendaEntryList) {
-            if (ag.equals(entity)) {
-                ag.setEntryStatus(EntryStatusENUM.POSTPONED);
-                ag.setDate(entity.getDate());
+    public ArrayList<AgendaEntry> getAgendaEntryListWithoutTeam(String email) {
+        ArrayList<AgendaEntry> agendaEntryListGSM = new ArrayList<>();
+        for (AgendaEntry agendaEntry : this.agendaEntryList) {
+            if (agendaEntry.getGreenSpace().getEmailGSM().equals(email) &&
+                    agendaEntry.getAssociatedTeam().getCollaborators().isEmpty() &&
+                    (agendaEntry.getEntryStatus().equals(EntryStatusENUM.PLANNED) ||
+                            agendaEntry.getEntryStatus().equals(EntryStatusENUM.POSTPONED)))
+            {
+                agendaEntryListGSM.add(agendaEntry);
+            }
+        }
+        return agendaEntryListGSM;
+    }
+
+    public ArrayList<AgendaEntry> getAgendaEntryListWithoutCancelled(String email) {
+        ArrayList<AgendaEntry> agendaEntryListGSM = new ArrayList<>();
+        for (AgendaEntry agendaEntry : this.agendaEntryList) {
+            if (agendaEntry.getGreenSpace().getEmailGSM().equals(email) &&
+                    !agendaEntry.getEntryStatus().equals(EntryStatusENUM.CANCELLED) &&
+                    !agendaEntry.getEntryStatus().equals(EntryStatusENUM.PENDING)) {
+                agendaEntryListGSM.add(agendaEntry);
+            }
+        }
+        return agendaEntryListGSM;
+    }
+
+    public boolean updateDate(AgendaEntry updatedEntry, LocalDate date) {
+        for (AgendaEntry entry : agendaEntryList) {
+            if (entry.equals(updatedEntry)) {
+                entry.setDate(date);
                 return true;
             }
         }
@@ -73,14 +92,14 @@ public class AgendaEntryRepository implements Serializable {
         return false;
     }
 
-    public boolean updateTeam(AgendaEntry agendaEntry, Team team) {
-
-        if (agendaEntry.getAssociatedTeam().equals(team)|| agendaEntry.getAssociatedTeam() != null){
+    public boolean assignTeam(AgendaEntry agendaEntry, Team team) {
+        if (!agendaEntry.getAssociatedTeam().getCollaboratorsNames().isEmpty()){
             return false;
         }
-            agendaEntry.setAssociatedTeam(team);
-            return true;
-            }
+
+        agendaEntry.setAssociatedTeam(team);
+        return true;
+    }
 
 
 

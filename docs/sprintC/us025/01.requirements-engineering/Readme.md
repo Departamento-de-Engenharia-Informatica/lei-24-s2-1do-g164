@@ -21,13 +21,18 @@ Done).
 > **Answer:** Yes. I suppose when a task goes to the Agenda, it leaves the To-Do list but maybe a different flow could be considered.
 
 
-> **Question:**When a task is cancelled, is it possible to put it back on the agenda again later?
+> **Question:** When a task is cancelled, is it possible to put it back on the agenda again later?
 >
 > **Answer:** yes
 
 > **Question:** When we cancel a task, do we move it again to the To-Do List?
 >
 > **Answer:** no
+
+> **Question:** When the GSM wants to cancel a task, this task can only be canceled if its status is PLANNED or POSTPONED, correct?
+> 
+> **Answer:** No, just planned because if there is a Postponed entry then there is also an Planned Entry with the new date.
+
 
 
 
@@ -56,3 +61,4 @@ state.
 ![System Sequence Diagram - Alternative One](svg/us025-system-sequence-diagram.svg)
 
 ### 1.7 Other Relevant Remarks
+none

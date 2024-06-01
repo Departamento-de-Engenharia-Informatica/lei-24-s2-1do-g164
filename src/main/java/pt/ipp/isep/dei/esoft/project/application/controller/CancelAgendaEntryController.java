@@ -8,6 +8,7 @@ import pt.ipp.isep.dei.esoft.project.repository.AgendaEntryRepository;
 import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
@@ -24,11 +25,11 @@ public class CancelAgendaEntryController {
 
     }
 
-    public ArrayList<AgendaEntryDTO> getAgendaEntryDTOList() {
-        ArrayList<AgendaEntry> agendaEntryList = agendaEntryRepository.getAgendaEntryList(authenticationController.getCurrentUserEmail());
-        return agendaEntryMapper.toDtoList(agendaEntryList);
+    public ArrayList<AgendaEntryDTO> getAgendaEntryWithoutCancelledDTOList() {
+        ArrayList<AgendaEntry> agendaEntryListGSM = agendaEntryRepository.getAgendaEntryListWithoutCancelled(authenticationController.getCurrentUserEmail());
+        System.out.println("lista sem cancelados: " + agendaEntryListGSM);
+        return agendaEntryMapper.toDtoList(agendaEntryListGSM);
     }
-
 
     public boolean cancelAgendaEntry(AgendaEntryDTO dto) {
         if (dto.entryStatus == EntryStatusENUM.CANCELLED) {
@@ -38,6 +39,7 @@ public class CancelAgendaEntryController {
         if (entry == null) {
             throw new InputMismatchException("Agenda Entry not found!");
         }
+
         return agendaEntryRepository.updateStatus(entry, EntryStatusENUM.CANCELLED);
     }
 }

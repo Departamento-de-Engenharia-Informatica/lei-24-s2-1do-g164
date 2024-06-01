@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
-import pt.ipp.isep.dei.esoft.project.domain.Collaborator;
 import pt.ipp.isep.dei.esoft.project.domain.Team;
 
 import java.io.Serializable;
@@ -33,7 +32,13 @@ public class TeamRepository implements Serializable {
         return teams;
     }
 
-
+    public Team getTeamByCollaborators(ArrayList<String> collaborators) {
+        for (Team team: teams){
+            if (team.getCollaboratorsNames().equals(collaborators))
+                return team;
+        }
+        return null;
+    }
 
     /**
      * Checks if a team already exists in the repository.

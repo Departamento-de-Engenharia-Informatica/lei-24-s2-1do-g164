@@ -44,7 +44,7 @@ class ToDoEntryDTO {
 
 class ToDoEntryRepository {
     - ArrayList<ToDoEntry> toDoEntries
-    + getToDoEntriesNotInAgenda()
+    + getToDoEntryListByStatus(email, status)
 }
 
 class AgendaEntryRepository {
@@ -65,45 +65,46 @@ class Repositories {
 
 class AgendaEntryMapper {
     + toDTO(agendaEntry)
-    + toEntity(agendaEntryDTO, newDate)
     + toEntity(agendaEntryDTO)
+    + toDTOList(List<AgendaEntry>)
 }
 
 class ToDoEntryMapper {
     + toDTO(toDoEntry)
+    + toEntity(toDoDTO)
+    + toDTOList(List<ToDoEntry>)
 }
 
-class AgendaController {
+class RegisterAgendaEntryGUIController {
     - AgendaEntryRepository agendaEntryRepository
     - ToDoEntryRepository toDoEntryRepository
     - AgendaEntryMapper agendaEntryMapper
     - ToDoEntryMapper toDoEntryMapper
-    + getAvailableToDoEntries()
-    + addEntryToAgenda(agendaEntryDTO)
+    + getAvailableToDoEntries(event)
+    + registerAgendaEntry(event)
+    + closeWindow(event)
+    + setAgendaMenuGUIController(AgendaMenuGUIController\n agendaListGUIController)
 }
 
-class AgendaUI {
-    - AgendaController agendaController
-    + displayAvailableToDoEntries(List<toDoEntryDTO>)
-    + selectEntry()
-    + selectDate()
-    + displayMessage(success)
+class AgendaGUI {
+    - RegisterAgendaEntryGUIController agendaController
+    + openRegisterAgendaEntryWindow(event)
 }
 
-AgendaUI .> AgendaController
-AgendaController ..> Repositories : repositories
+AgendaGUI .> RegisterAgendaEntryGUIController
+RegisterAgendaEntryGUIController ..> Repositories : repositories
 Repositories --> "1" AgendaEntryRepository
 Repositories --> "1" ToDoEntryRepository
 Repositories -> Repositories : instance
-AgendaController .> AgendaEntryMapper
-AgendaController .> ToDoEntryMapper
-AgendaController --> AgendaEntryRepository : uses
-AgendaController --> ToDoEntryRepository : uses
+RegisterAgendaEntryGUIController .> AgendaEntryMapper
+RegisterAgendaEntryGUIController .> ToDoEntryMapper
+RegisterAgendaEntryGUIController --> AgendaEntryRepository : uses
+RegisterAgendaEntryGUIController --> ToDoEntryRepository : uses
 
 SystemUser <|- GSM
 ToDoEntry <|-- AgendaEntry
 
-GSM "1" -- "1" AgendaUI
+GSM  -- AgendaGUI
 AgendaEntryMapper "1"-> "*" AgendaEntry : creates
 AgendaEntry "*" <-- "1" AgendaEntryRepository : stores
 AgendaEntryDTO "*" <-- "1" AgendaEntryMapper : creates

@@ -9,11 +9,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterAgendaEntryController;
-import pt.ipp.isep.dei.esoft.project.domain.GreenSpace;
 import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 import pt.ipp.isep.dei.esoft.project.dto.ToDoEntryDTO;
-import pt.ipp.isep.dei.esoft.project.repository.enums.GreenSpaceTypeENUM;
-import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegreeENUM;
+import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 
 import java.time.LocalDate;
 
@@ -59,6 +57,8 @@ public class RegisterAgendaEntryGUIController {
                 return;
             }
 
+            controller.updateToDoEntry(toDoDTO);
+            toDoDTO.entryStatus = EntryStatusENUM.PLANNED;
             AgendaEntryDTO agendaDTO = new AgendaEntryDTO(toDoDTO, date);
             if(controller.registerAgendaEntry(agendaDTO)) {
                 agendaMenuGUIController.update();
@@ -80,8 +80,8 @@ public class RegisterAgendaEntryGUIController {
         }
     }
 
-    public void setAgendaMenuGUIController(AgendaMenuGUIController toDoListGUIController) {
-        this.agendaMenuGUIController = toDoListGUIController;
+    public void setAgendaMenuGUIController(AgendaMenuGUIController agendaListGUIController) {
+        this.agendaMenuGUIController = agendaListGUIController;
     }
 
     private void showAlert(Alert.AlertType alertType, String title, String message) {

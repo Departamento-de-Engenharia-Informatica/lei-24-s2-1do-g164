@@ -11,6 +11,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import pt.ipp.isep.dei.esoft.project.application.controller.ListGreenSpacesController;
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterGreenSpaceController;
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterToDoEntryController;
 import pt.ipp.isep.dei.esoft.project.application.session.ApplicationSession;
@@ -48,7 +49,9 @@ public class GreenSpaceMenuGUIController {
     @FXML
     BorderPane borderPane;
 
-    private RegisterGreenSpaceController controller = new RegisterGreenSpaceController();
+    private ListGreenSpacesController controller = new ListGreenSpacesController();
+
+
 
     @FXML
     private void initialize(){

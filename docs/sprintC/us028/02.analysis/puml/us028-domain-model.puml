@@ -31,16 +31,18 @@ class Collaborator {
 
 
 class AgendaEntry {
-
     date
+    associatedTeam
+    associatedVehicleList
 }
-class ToDoEntry {
-        status
-        description
-        associatedGS
-        expectedDuration
-        degreeOfUrgency
-        adress
+
+
+class ToDoEntry{
+    description
+         greenSpace
+         expectedDuration
+         degreeUrgency
+         entryStatus
 }
 
 

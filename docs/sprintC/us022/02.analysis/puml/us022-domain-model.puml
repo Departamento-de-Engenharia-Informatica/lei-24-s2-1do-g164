@@ -24,18 +24,19 @@ class GSM {
 
 class AgendaEntry {
     date
-    team
-    vehicleList
+    associatedTeam
+    associatedVehicleList
 }
 
-class ToDoEntry {
-        description
-        associatedGS
-        expectedDuration
-        urgencyDegree
-        entryStatus
-        address
+
+class ToDoEntry{
+    description
+         greenSpace
+         expectedDuration
+         degreeUrgency
+         entryStatus
 }
+
 
 GSM "1" - "*" AgendaEntry : creates >
 SystemUser <|- GSM

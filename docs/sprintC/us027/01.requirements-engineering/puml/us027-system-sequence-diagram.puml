@@ -12,10 +12,10 @@ participant ":System" as System
 
 activate GSM
 
-    GSM -> System : asks to list all green spaces managed by him
+    GSM -> System : asks to list all green spaces
     activate System
 
-        System --> GSM : shows list of green spaces
+        System --> GSM : shows list of green spaces in sorted order
     deactivate System
 
 

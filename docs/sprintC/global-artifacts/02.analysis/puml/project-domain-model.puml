@@ -23,6 +23,7 @@ class GreenSpace {
     greenSpaceType
     name
     area
+    emailGSM
 }
 
 class Garden
@@ -103,8 +104,9 @@ class Agenda {
 }
 
 class AgendaEntry {
-
     date
+    associatedTeam
+    associatedVehicleList
 }
 
 class GreenSpacesUserPortal{

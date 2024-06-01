@@ -19,10 +19,11 @@ class SystemUser {
 }
 
 
-class Entry {
-
+class AgendaEntry {
+    date
+    associatedTeam
+    associatedVehicleList
 }
-
 class Vehicle{
       name
       phone
@@ -37,6 +38,17 @@ class Vehicle{
 
 
 
-Vehicle "1..*" - "1" Entry: is atributed to >
-SystemUser <|-- Entry
+class ToDoEntry{
+    description
+         greenSpace
+         expectedDuration
+         degreeUrgency
+         entryStatus
+}
+
+
+
+Vehicle "1..*" - "1" AgendaEntry: is atributed to >
+SystemUser <|-- AgendaEntry
+AgendaEntry --|> ToDoEntry
 @enduml

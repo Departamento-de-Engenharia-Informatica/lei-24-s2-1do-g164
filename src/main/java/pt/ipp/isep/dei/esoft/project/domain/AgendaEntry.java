@@ -108,10 +108,5 @@ public class AgendaEntry extends ToDoEntry {
     }
 
 
-    /**
-     * Cancel entry.
-     */
-    public void cancelEntry() {
-        this.setEntryStatus(EntryStatusENUM.CANCELLED);
-    }
+
 }

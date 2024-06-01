@@ -39,7 +39,7 @@ the green spaces in charge of the organization.
 
 **Output Data:**
 
-* List of green spaces
+* List of green spaces in sorted order
 ### 1.6. System Sequence Diagram (SSD)
 
 ![System Sequence Diagram - Alternative One](svg/us027-system-sequence-diagram.svg)

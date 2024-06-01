@@ -34,6 +34,19 @@ class Agenda {
 
 class AgendaEntry {
     date
+    associatedTeam
+    associatedVehicleList
+}
+
+
+
+
+class ToDoEntry{
+    description
+         greenSpace
+         expectedDuration
+         degreeUrgency
+         entryStatus
 }
 
 
@@ -44,6 +57,8 @@ SystemUser <|- GSM
 GSM"1" - "*" AgendaEntry: manages >
 AgendaEntry"1"-- "1  " Team: assigned to >
 Agenda "1" -- "*" AgendaEntry : has >
+AgendaEntry --|> ToDoEntry
+
 
 
 @enduml

@@ -28,17 +28,20 @@ class Agenda {
 
 class AgendaEntry {
     date
-
+    associatedTeam
+    associatedVehicleList
 }
 
-class ToDoEntry {
-        status
-        description
-        associatedGS
-        expectedDuration
-        degreeOfUrgency
-        adress
+
+
+class ToDoEntry{
+    description
+         greenSpace
+         expectedDuration
+         degreeUrgency
+         entryStatus
 }
+
 Agenda "1" -- "*" AgendaEntry : has >
 SystemUser <|- GSM
 GSM "1" -- "*" AgendaEntry: manages >

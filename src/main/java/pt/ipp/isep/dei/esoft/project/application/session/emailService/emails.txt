@@ -1,0 +1,8 @@
+To: rita@hotmail.com
+Body: Hello Rita,
+You have been assigned to a new agenda entry!
+
+To: adeus@hotmail.pt
+Body: Hello Afonso,
+You have been assigned to a new agenda entry!
+

@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
+import pt.ipp.isep.dei.esoft.project.application.session.ApplicationSession;
+import pt.ipp.isep.dei.esoft.project.application.session.sorting.SortingAlgorithm;
 import pt.ipp.isep.dei.esoft.project.domain.GreenSpace;
 import pt.ipp.isep.dei.esoft.project.dto.GreenSpaceDTO;
 import pt.ipp.isep.dei.esoft.project.mappers.GreenSpaceMapper;
@@ -51,8 +53,6 @@ public class RegisterGreenSpaceController {
         return greenSpaceMapper.toDTOList(getGreenSpaceList());
     }
 
-
-
     private GreenSpaceRepository getGreenSpaceRepository() {
         if (greenSpaceRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -61,4 +61,9 @@ public class RegisterGreenSpaceController {
         return greenSpaceRepository;
     }
 
+    public void sortGreenSpaces(ArrayList<GreenSpaceDTO> greenSpaceDTOsList) {
+
+        SortingAlgorithm sortingAlgorithm = ApplicationSession.getSortingAlgorithm();
+        sortingAlgorithm.sort(greenSpaceDTOsList);
+    }
 }

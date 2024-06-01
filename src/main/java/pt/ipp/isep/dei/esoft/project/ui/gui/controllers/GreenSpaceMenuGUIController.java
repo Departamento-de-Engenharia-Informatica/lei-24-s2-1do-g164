@@ -129,8 +129,7 @@ public class GreenSpaceMenuGUIController {
         txtGreenSpaceListText.clear();
         ArrayList<GreenSpaceDTO> greenSpaceDTOsList = controller.getGreenSpaceDTOsList();
 
-        SortingAlgorithm sortingAlgorithm = ApplicationSession.getSortingAlgorithm();
-        sortingAlgorithm.sort(greenSpaceDTOsList);
+        controller.sortGreenSpaces(greenSpaceDTOsList);
 
         showGreenSpaces(greenSpaceDTOsList);
     }

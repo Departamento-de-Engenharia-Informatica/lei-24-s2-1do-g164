@@ -5,6 +5,7 @@ public enum EntryStatusENUM {
     DONE,
     PLANNED,
     POSTPONED,
+
     CANCELLED
 
 }

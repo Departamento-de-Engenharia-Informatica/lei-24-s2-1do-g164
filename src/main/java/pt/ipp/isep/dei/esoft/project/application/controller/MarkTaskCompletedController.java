@@ -38,9 +38,9 @@ public class MarkTaskCompletedController {
      *
      * @return ArrayList of AgendaEntryDTO representing agenda entries.
      */
-    public ArrayList<AgendaEntryDTO> getAgendaEntryDTOList() {
+    public ArrayList<AgendaEntryDTO> getAgendaEntryWithoutDoneDTOList() {
         String currentUserEmail = authenticationController.getCurrentUserEmail();
-        ArrayList<AgendaEntry> agendaEntryList = agendaEntryRepository.getAgendaEntryList(currentUserEmail);
+        ArrayList<AgendaEntry> agendaEntryList = agendaEntryRepository.getAgendaEntryWithoutDoneList(currentUserEmail);
         return agendaEntryMapper.toDtoList(agendaEntryList);
     }
 

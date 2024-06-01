@@ -37,7 +37,7 @@ public class MarkTaskCompletedGUIController {
 
     @FXML
     private void initialize() {
-        cmbAgendaEntries.getItems().setAll(controller.getAgendaEntryDTOList());
+        cmbAgendaEntries.getItems().setAll(controller.getAgendaEntryWithoutDoneDTOList());
     }
 
     /**
@@ -61,7 +61,8 @@ public class MarkTaskCompletedGUIController {
 
             if (controller.completedAgendaEntry(selectedEntry)) {
                 showAlert(Alert.AlertType.INFORMATION, "Completed Entry", "Agenda Entry was successfully completed.");
-                cmbAgendaEntries.getItems().remove(selectedEntry);
+                initialize();
+                agendaGUIController.update();
             } else {
                 showAlert(Alert.AlertType.ERROR, "Complete Entry Error", "Failed to complete entry.");
             }

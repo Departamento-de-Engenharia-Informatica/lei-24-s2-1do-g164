@@ -43,10 +43,10 @@ public class AgendaEntryRepository implements Serializable {
      * @param email the email
      * @return the agenda entry list
      */
-    public ArrayList<AgendaEntry> getAgendaEntryList(String email) {
+    public ArrayList<AgendaEntry> getAgendaEntryWithoutDoneList(String email) {
         ArrayList<AgendaEntry> agendaEntryListGSM = new ArrayList<>();
         for (AgendaEntry agendaEntry : this.agendaEntryList) {
-            if (agendaEntry.getGreenSpace().getEmailGSM().equals(email)) {
+            if (agendaEntry.getGreenSpace().getEmailGSM().equals(email) && !agendaEntry.getEntryStatus().equals(EntryStatusENUM.DONE)) {
                 agendaEntryListGSM.add(agendaEntry);
             }
         }
@@ -84,7 +84,7 @@ public class AgendaEntryRepository implements Serializable {
         for (AgendaEntry agendaEntry : this.agendaEntryList) {
             if (agendaEntry.getGreenSpace().getEmailGSM().equals(email) &&
                     !agendaEntry.getEntryStatus().equals(EntryStatusENUM.CANCELLED) &&
-                    !agendaEntry.getEntryStatus().equals(EntryStatusENUM.PENDING)) {
+                    !agendaEntry.getEntryStatus().equals(EntryStatusENUM.PENDING)&& !agendaEntry.getEntryStatus().equals(EntryStatusENUM.DONE)) {
                 agendaEntryListGSM.add(agendaEntry);
             }
         }

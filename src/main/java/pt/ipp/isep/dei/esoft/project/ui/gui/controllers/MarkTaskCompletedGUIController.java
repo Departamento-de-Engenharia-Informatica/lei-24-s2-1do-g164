@@ -32,8 +32,8 @@ public class MarkTaskCompletedGUIController {
     @FXML
     ComboBox<AgendaEntryDTO> cmbAgendaEntries;
 
-    private MarkTaskCompletedController controller = new MarkTaskCompletedController();
-    private AgendaMenuGUIController agendaGUIController;
+    MarkTaskCompletedController controller = new MarkTaskCompletedController();
+    AgendaMenuGUIController agendaGUIController;
 
     @FXML
     private void initialize() {
@@ -46,7 +46,7 @@ public class MarkTaskCompletedGUIController {
      * @param event the event
      */
     public void completedAgendaEntry(ActionEvent event) {
-        AgendaEntryDTO selectedEntry = cmbAgendaEntries.getValue();
+        AgendaEntryDTO selectedEntry = new AgendaEntryDTO(cmbAgendaEntries.getValue().description, cmbAgendaEntries.getValue().greenSpace, cmbAgendaEntries.getValue().entryStatus);
 
         try {
             if (selectedEntry == null) {
@@ -60,7 +60,6 @@ public class MarkTaskCompletedGUIController {
             }
 
             if (controller.completedAgendaEntry(selectedEntry)) {
-
                 showAlert(Alert.AlertType.INFORMATION, "Completed Entry", "Agenda Entry was successfully completed.");
                 cmbAgendaEntries.getItems().remove(selectedEntry);
             } else {

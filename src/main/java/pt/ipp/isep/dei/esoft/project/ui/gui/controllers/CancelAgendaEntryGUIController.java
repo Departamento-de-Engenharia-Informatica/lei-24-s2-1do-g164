@@ -12,36 +12,18 @@ import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 import pt.ipp.isep.dei.esoft.project.dto.TeamDTO;
 import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 
-/**
- * The type Cancel agenda entry gui controller.
- */
 public class CancelAgendaEntryGUIController {
 
-    /**
-     * The Cmb agenda entries.
-     */
     @FXML
     ComboBox<AgendaEntryDTO> cmbAgendaEntries;
-    /**
-     * The Controller.
-     */
-    CancelAgendaEntryController controller = new CancelAgendaEntryController();
-
-    /**
-     * The Agenda gui controller.
-     */
-    AgendaMenuGUIController agendaGUIController;
+     CancelAgendaEntryController controller = new CancelAgendaEntryController();
+     AgendaMenuGUIController agendaGUIController;
 
     @FXML
     private void initialize() {
         cmbAgendaEntries.getItems().setAll(controller.getAgendaEntryWithoutCancelledDTOList());
     }
 
-    /**
-     * Cancel agenda entry.
-     *
-     * @param event the event
-     */
     public void cancelAgendaEntry(ActionEvent event) {
         try {
             AgendaEntryDTO selectedEntry = cmbAgendaEntries.getValue();
@@ -68,22 +50,11 @@ public class CancelAgendaEntryGUIController {
             showAlert(Alert.AlertType.ERROR, "Cancel Entry Error", "An error occurred while canceling entry.");
         }
     }
-
-    /**
-     * Close window.
-     *
-     * @param event the event
-     */
     public void closeWindow(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
 
-    /**
-     * Sets agenda gui controller.
-     *
-     * @param agendaGUIController the agenda gui controller
-     */
     public void setAgendaGUIController(AgendaMenuGUIController agendaGUIController) {
         this.agendaGUIController = agendaGUIController;
     }

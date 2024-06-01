@@ -29,15 +29,15 @@ class AgendaEntry {
 }
 
 class ToDoEntry {
-        status
         description
-        greenSpace
+        associatedGS
         expectedDuration
         urgencyDegree
         entryStatus
+        address
 }
 
-GSM "1" - "*" AgendaEntry : manages >
+GSM "1" - "*" AgendaEntry : creates >
 SystemUser <|- GSM
 AgendaEntry --|> ToDoEntry
 

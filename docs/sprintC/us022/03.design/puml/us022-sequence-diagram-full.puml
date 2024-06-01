@@ -6,7 +6,7 @@ skinparam shadowing false
 autonumber
 
 actor "GSM" as Employee
-participant ":AgendaUI" as UI
+participant ":AgendaGUI" as UI
 participant ":AgendaController" as CTRL
 participant ":Repositories" as RepositorySingleton
 participant "ToDoEntryRepository\n:toDoEntryRepository" as TaskRepo
@@ -29,7 +29,7 @@ activate Employee
                 RepositorySingleton --> CTRL: repositories
             deactivate RepositorySingleton
 
-            CTRL -> TaskRepo : getToDoEntriesNotInAgenda()
+            CTRL -> TaskRepo : getToDoEntryList()
             activate TaskRepo
 
                 TaskRepo --> CTRL : availableToDoEntryList
@@ -41,7 +41,7 @@ activate Employee
             loop for each toDoEntry in availableToDoEntryList
                 ToDoEntryMapper -> ToDoEntryDTO: toDoEntryDTO = toDTO(toDoEntry)
                 activate ToDoEntryDTO
-                ToDoEntryDTO --> ToDoEntryMapper: entryDto
+                ToDoEntryDTO --> ToDoEntryMapper: toDoentryDTO
                 deactivate ToDoEntryDTO
             end
 
@@ -76,6 +76,7 @@ activate Employee
 
                 AgendaEntryMapper -> AgendaEntry : AgendaEntry(dto.description, dto.greenspace, dto.urgencyDegree\n, dto.status, dto.expectedDuration, dto.date, dto.associatedTeam\n, dto.associatedVehicles)
                 activate AgendaEntry
+                AgendaEntry --> AgendaEntryMapper : agendaEntry
                 deactivate AgendaEntry
                 AgendaEntryMapper --> CTRL : agendaEntry
             deactivate "AgendaEntryMapper"

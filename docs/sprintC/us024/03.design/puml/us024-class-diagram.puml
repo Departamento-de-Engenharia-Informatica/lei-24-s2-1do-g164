@@ -46,45 +46,45 @@ class AgendaEntryRepository {
 
 class Repositories {
     - agendaEntryRepository
-
     - Repositories()
     + getInstance()
     + getAgendaEntryRepository()
-    + #placeholderMethod#()
 }
 
 class AgendaEntryMapper {
     + toDTO(agendaEntry)
-    + toEntity(agendaEntryDTO, newDate)
     + toEntity(agendaEntryDTO)
+    + toDTOList(List<AgendaEntry>)
 }
 
-class AgendaController {
+class PostponeAgendaEntryGUIController {
     - AgendaEntryRepository agendaEntryRepository
     - AgendaEntryMapper agendaEntryMapper
-    + getAgendaEntries()
-    + updateAgendaEntryDate(agendaEntryDTO, newDate)
+    + getAvailableAgendaEntryList()
+    + getAgendaEntryDTOsList()
+    getAgendaEntryRepository()
+    + PostponeAgendaEntry(agendaEntryDTO, LocalDate)
 }
 
-class AgendaUI {
-    - AgendaController agendaController
+class AgendaGUI {
+    - PostponeAgendaEntryGUIController agendaController
     + displayAgendaEntries(List<agendaEntryDTO>)
     + selectEntry()
     + selectNewDate()
     + displayMessage(success)
 }
 
-AgendaUI .> AgendaController
-AgendaController ..> Repositories : repositories
+AgendaGUI .> PostponeAgendaEntryGUIController
+PostponeAgendaEntryGUIController ..> Repositories : repositories
 Repositories --> "1" AgendaEntryRepository
 Repositories -> Repositories : instance
-AgendaController .> AgendaEntryMapper
-AgendaController --> AgendaEntryRepository : uses
+PostponeAgendaEntryGUIController .> AgendaEntryMapper
+PostponeAgendaEntryGUIController --> AgendaEntryRepository : uses
 
 SystemUser <|- GSM
 ToDoEntry <|-- AgendaEntry
 
-GSM "1" -- "1" AgendaUI
+GSM "1" -- "1" AgendaGUI
 AgendaEntryMapper "1"->"*" AgendaEntry : creates
 AgendaEntry "*" <-- "1" AgendaEntryRepository : manages
 AgendaEntryDTO "*" <-- "1" AgendaEntryMapper : creates

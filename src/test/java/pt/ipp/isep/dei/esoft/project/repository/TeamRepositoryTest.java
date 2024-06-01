@@ -6,6 +6,7 @@ import pt.ipp.isep.dei.esoft.project.domain.Collaborator;
 import pt.ipp.isep.dei.esoft.project.domain.Job;
 import pt.ipp.isep.dei.esoft.project.domain.Skill;
 import pt.ipp.isep.dei.esoft.project.domain.Team;
+import pt.ipp.isep.dei.esoft.project.repository.*;
 import pt.ipp.isep.dei.esoft.project.repository.enums.CollaboratorStatusENUM;
 import pt.ipp.isep.dei.esoft.project.repository.enums.DocumentTypeENUM;
 import pt.ipp.isep.dei.esoft.project.repository.enums.TeamStatusENUM;
@@ -69,8 +70,8 @@ class TeamRepositoryTest {
         collaborators2.add(c3);
         collaborators2.add(c4);
 
-        t1 = new Team(collaborators1, skills1,  TeamStatusENUM.PENDING);
-        t2 = new Team(collaborators2, skills2,  TeamStatusENUM.PENDING);
+        t1 = new Team(collaborators1, skills1, TeamStatusENUM.PENDING);
+        t2 = new Team(collaborators2, skills2, TeamStatusENUM.PENDING);
         t3 = new Team(collaborators1, skills1,  TeamStatusENUM.PENDING);
     }
 

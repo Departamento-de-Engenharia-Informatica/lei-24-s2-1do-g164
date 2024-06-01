@@ -153,11 +153,16 @@ class AgendaEntryRepositoryTest {
         assertTrue(result);
         assertEquals(t1.getCollaboratorsNames(), agendaEntry.getAssociatedTeam().getCollaboratorsNames());
     }
+    @Test
+    void testAssignTeamEntryNotFound() {
+        AgendaEntry nonExistentEntry = new AgendaEntry("Nonexistent Description", 2, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDate.now(), t1, vehicles);
+        boolean result = repository.assignTeam(nonExistentEntry, t1);
+        assertFalse(result);
+    }
 
     @Test
     void testAssignTeamAlreadyAssigned() {
         repository.addEntryToAgenda(agendaEntry);
-        agendaEntry.setAssociatedTeam(t1);
         boolean result = repository.assignTeam(agendaEntry, t1);
         assertFalse(result);
     }
@@ -168,5 +173,19 @@ class AgendaEntryRepositoryTest {
         AgendaEntry result = repository.getAgendaEntryByDescriptionAndGreenspace(agendaEntry.getDescription(), agendaEntry.getGreenSpace());
         assertNotNull(result);
         assertEquals(agendaEntry, result);
+    }
+
+    @Test
+    void testGetAgendaEntry() {
+        repository.addEntryToAgenda(agendaEntry);
+        AgendaEntry result = repository.getAgendaEntry("regar", greenSpace);
+        assertNotNull(result);
+        assertEquals(agendaEntry, result);
+    }
+
+    @Test
+    void testGetAgendaEntryNotFound() {
+        AgendaEntry result = repository.getAgendaEntry("Nonexistent Description", greenSpace);
+        assertNull(result);
     }
 }

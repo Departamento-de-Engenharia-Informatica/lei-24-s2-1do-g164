@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="borderPane" prefHeight="150.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.controllers.MarkTaskCompletedGUIController">
+    <top>
+        <VBox alignment="CENTER" prefHeight="46.0" prefWidth="377.0" style="-fx-background-color: #2E7D32;">
+            <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Mark Task As Completed" textFill="WHITE" />
+        </VBox>
+    </top>
+    <center>
+        <GridPane alignment="CENTER" hgap="10.0" style="-fx-background-color: #F1F8E9;" vgap="10.0" GridPane.hgrow="ALWAYS">
+            <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS" minWidth="100.0" />
+                <ColumnConstraints hgrow="ALWAYS" minWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="50.0" vgrow="ALWAYS" />
+                <RowConstraints minHeight="50.0" vgrow="ALWAYS" />
+                <RowConstraints minHeight="50.0" vgrow="ALWAYS" />
+                <RowConstraints minHeight="50.0" vgrow="ALWAYS" />
+            </rowConstraints>
+            <children>
+                <Label text="Select Agenda Entry:" GridPane.rowIndex="1" />
+                <ComboBox fx:id="cmbAgendaEntries" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                <Button onAction="#completedAgendaEntry" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #388E3C; -fx-text-fill: white;" text="Cancel Entry" GridPane.rowIndex="3" />
+                <Button onAction="#closeWindow" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #D32F2F; -fx-text-fill: white;" text="Cancel" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+        </GridPane>
+    </center>
+</BorderPane>

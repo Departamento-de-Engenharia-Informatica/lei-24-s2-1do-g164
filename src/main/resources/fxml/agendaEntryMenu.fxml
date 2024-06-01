@@ -40,6 +40,9 @@
                 <VBox alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                     <Button fx:id="btnCancel" maxWidth="Infinity" mnemonicParsing="false" onAction="#closeWindow" style="-fx-background-color: #D32F2F; -fx-text-fill: white; -fx-font-size: 14px;" text="Exit" />
                 </VBox>
+                <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <Button fx:id="btnCompletEntry" maxWidth="Infinity" mnemonicParsing="false" onAction="#openCompletAgendaEntryWindow" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Cancel an Entry" />
+                </VBox>
             </children>
             <padding>
                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

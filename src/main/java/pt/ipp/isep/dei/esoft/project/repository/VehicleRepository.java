@@ -97,7 +97,6 @@ public class VehicleRepository implements Serializable {
      * @param currentKm The current kilometers of the vehicle at the time of the checkup.
      * @return true if the checkup is successfully created, false otherwise.
      */
-
     public boolean createVehicleCheckup(Vehicle vehicle, LocalDate date, int currentKm) {
         var vehicleCheckup = new VehicleCheckup(date, currentKm);
         if (vehicle != null) {

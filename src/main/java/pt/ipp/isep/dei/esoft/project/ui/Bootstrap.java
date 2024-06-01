@@ -10,6 +10,9 @@ import pt.ipp.isep.dei.esoft.project.repository.enums.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * The type Bootstrap.
+ */
 public class Bootstrap implements Runnable {
 
     public void run() {
@@ -141,6 +144,9 @@ public class Bootstrap implements Runnable {
 
     }
 
+    /**
+     * Add jobs.
+     */
     public void addJobs() {
         JobRepository jobRepository = Repositories.getInstance().getJobRepository();
         jobRepository.registerJob("Park Ranger");
@@ -165,6 +171,9 @@ public class Bootstrap implements Runnable {
         jobRepository.registerJob("Conservation Technician");
     }
 
+    /**
+     * Add skills.
+     */
     public void addSkills() {
         SkillRepository skillRepository = Repositories.getInstance().getSkillRepository();
         skillRepository.registerSkill("Plant Identification");
@@ -196,6 +205,9 @@ public class Bootstrap implements Runnable {
         skillRepository.registerSkill("Indoor Plant Care");
     }
 
+    /**
+     * Add vehicles.
+     */
     public void addVehicles() {
         VehicleRepository repo = Repositories.getInstance().getVehicleRepository();
         repo.registerVehicle("Mercedes", "Class A", "87-UI-28", VehicleTypeENUM.LIGHT_VEHICLE,
@@ -206,6 +218,9 @@ public class Bootstrap implements Runnable {
                 9000, 8000, 200000, "25-12-2021", "25-12-2021", 300000);
     }
 
+    /**
+     * Add green spaces.
+     */
     public void addGreenSpaces() {
         GreenSpaceRepository repo = Repositories.getInstance().getGreenSpaceRepository();
         repo.registerGreenSpace(new GreenSpace(GreenSpaceTypeENUM.LARGE_SIZED_PARK, "Cidade", "Av. Menéres", 123, "gsm@gsm.app"));
@@ -214,7 +229,9 @@ public class Bootstrap implements Runnable {
     }
 
 
-
+    /**
+     * Add teams.
+     */
     public void addTeams() {
 
         TeamRepository teamRepository = Repositories.getInstance().getTeamRepository();
@@ -236,6 +253,10 @@ public class Bootstrap implements Runnable {
         teamRepository.registerTeam(team2);
 
     }
+
+    /**
+     * Add entries.
+     */
     public void addEntries() {
         GreenSpaceRepository repo1= Repositories.getInstance().getGreenSpaceRepository();
         AgendaEntryRepository repo2= Repositories.getInstance().getAgendaEntryRepository();

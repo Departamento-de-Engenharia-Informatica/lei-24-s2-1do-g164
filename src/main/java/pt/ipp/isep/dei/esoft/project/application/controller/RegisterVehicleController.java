@@ -1,7 +1,8 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.dto.CreateVehicleDTO;
-import pt.ipp.isep.dei.esoft.project.repository.*;
+import pt.ipp.isep.dei.esoft.project.repository.Repositories;
+import pt.ipp.isep.dei.esoft.project.repository.VehicleRepository;
 import pt.ipp.isep.dei.esoft.project.repository.enums.VehicleTypeENUM;
 
 import java.util.ArrayList;
@@ -16,19 +17,19 @@ public class RegisterVehicleController {
     /**
      * Constructs a new RegisterVehicleController.
      */
-    public RegisterVehicleController(){
-        getVehicleRepository();
+    public RegisterVehicleController() {
+        this.vehicleRepository = Repositories.getInstance().getVehicleRepository();
     }
 
 
     /**
-     * Register vehicle boolean.
+     * Register vehicle.
      *
-     * @param dto  the dto
-     * @param type the type
-     * @return the boolean
+     * @param dto  the dto containing vehicle details
+     * @param type the type of the vehicle
+     * @return true if the vehicle is successfully registered, false otherwise
      */
-    public boolean registerVehicle(CreateVehicleDTO dto, VehicleTypeENUM type){
+    public boolean registerVehicle(CreateVehicleDTO dto, VehicleTypeENUM type) {
         return vehicleRepository.registerVehicle(dto.brand, dto.model, dto.vehicleID, type, dto.grossWeight, dto.tare,
                 dto.currentKm, dto.registerDate, dto.acquisitionDate, dto.checkupFrequency);
     }
@@ -38,24 +39,7 @@ public class RegisterVehicleController {
      *
      * @return An ArrayList containing the available vehicle types.
      */
-    public ArrayList<VehicleTypeENUM> getVehicleTypesList(){
+    public ArrayList<VehicleTypeENUM> getVehicleTypesList() {
         return new ArrayList<>(Arrays.asList(VehicleTypeENUM.values()));
-    }
-
-    /**
-     * Retrieves the vehicle repository instance.
-     *
-     * If the vehicle repository instance is not initialized, it initializes
-     * it by obtaining it from the Repositories singleton class. Subsequent calls
-     * return the already initialized repository instance.
-     *
-     * @return the vehicle repository instance
-     */
-    private VehicleRepository getVehicleRepository() {
-        if (vehicleRepository == null) {
-            Repositories repositories = Repositories.getInstance();
-            vehicleRepository = repositories.getVehicleRepository();
-        }
-        return vehicleRepository;
     }
 }

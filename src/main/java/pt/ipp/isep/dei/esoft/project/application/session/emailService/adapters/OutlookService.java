@@ -6,6 +6,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * The type Outlook service.
+ */
 public class OutlookService implements EmailService {
     @Override
     public void sendEmail(String name, String body) {

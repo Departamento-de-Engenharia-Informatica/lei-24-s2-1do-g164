@@ -12,7 +12,6 @@ public class TeamRepository implements Serializable {
     private ArrayList<Team> teams = new ArrayList<>();
 
 
-
     /**
      * Registers a team in the repository.
      *
@@ -28,10 +27,21 @@ public class TeamRepository implements Serializable {
         }
     }
 
+    /**
+     * Gets teams.
+     *
+     * @return the teams
+     */
     public ArrayList<Team> getTeams() {
         return teams;
     }
 
+    /**
+     * Gets team by collaborators.
+     *
+     * @param collaborators the collaborators
+     * @return the team by collaborators
+     */
     public Team getTeamByCollaborators(ArrayList<String> collaborators) {
         for (Team team: teams){
             if (team.getCollaboratorsNames().equals(collaborators))

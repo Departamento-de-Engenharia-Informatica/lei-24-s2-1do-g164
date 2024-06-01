@@ -14,7 +14,6 @@ import static java.lang.System.in;
 /**
  * This class represents the user interface for updating a vehicle's current kilometers.
  */
-
 public class UpdateVehicleCurrentKmUI implements Runnable{
     private final UpdateVehicleCurrentKmController controller;
     private Vehicle vehicle;
@@ -23,7 +22,6 @@ public class UpdateVehicleCurrentKmUI implements Runnable{
     /**
      * Constructs an instance of UpdateVehicleCurrentKmUI.
      */
-
     public UpdateVehicleCurrentKmUI(){
         this.controller = new UpdateVehicleCurrentKmController();
     }

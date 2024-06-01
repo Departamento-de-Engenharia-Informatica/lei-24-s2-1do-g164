@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 public class SkillRepository implements Serializable {
 
     private final ArrayList<Skill> skillList = new ArrayList<>();
+
     /**
      * Retrieves the list of skills.
      *
@@ -21,6 +22,7 @@ public class SkillRepository implements Serializable {
     public ArrayList<Skill> getSkillList() {
         return skillList;
     }
+
     /**
      * Registers a new skill.
      *

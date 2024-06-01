@@ -7,7 +7,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-
+/**
+ * The type Bubble sort.
+ */
 public class BubbleSort implements SortingAlgorithm, Comparator<GreenSpaceDTO> {
 
     @Override
@@ -35,6 +37,7 @@ public class BubbleSort implements SortingAlgorithm, Comparator<GreenSpaceDTO> {
             }
         }
     }
+
     @Override
     public int compare(GreenSpaceDTO o1, GreenSpaceDTO o2) {
         return o2.area - o1.area;

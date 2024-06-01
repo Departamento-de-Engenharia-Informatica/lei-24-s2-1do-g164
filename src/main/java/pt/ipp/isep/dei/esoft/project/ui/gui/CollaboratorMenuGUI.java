@@ -9,6 +9,9 @@ import pt.ipp.isep.dei.esoft.project.ui.gui.controllers.GSMMenuGUIController;
 
 import java.io.IOException;
 
+/**
+ * The type Collaborator menu gui.
+ */
 public class CollaboratorMenuGUI extends Application {
     @Override
     public void start(Stage primaryStage) {
@@ -25,6 +28,11 @@ public class CollaboratorMenuGUI extends Application {
         }
     }
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         launch(args);
     }

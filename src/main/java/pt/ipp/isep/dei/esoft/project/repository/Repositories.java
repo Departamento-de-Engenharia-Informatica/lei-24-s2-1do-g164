@@ -55,6 +55,9 @@ public class Repositories implements Serializable {
         return instance;
     }
 
+    /**
+     * Serialize repository.
+     */
     public void serializeRepository() {
         File file = new File(REPOSITORIES_SERIALIZATION_FILE_PATH);
         try {
@@ -68,6 +71,11 @@ public class Repositories implements Serializable {
         }
     }
 
+    /**
+     * Deserialize repository boolean.
+     *
+     * @return the boolean
+     */
     public boolean deserializeRepository() {
         try {
             FileInputStream fileIn = new FileInputStream(REPOSITORIES_SERIALIZATION_FILE_PATH);
@@ -94,14 +102,29 @@ public class Repositories implements Serializable {
         }
     }
 
+    /**
+     * Gets agenda entry repository.
+     *
+     * @return the agenda entry repository
+     */
     public AgendaEntryRepository getAgendaEntryRepository() {
         return agendaEntryRepository;
     }
 
+    /**
+     * Gets green space repository.
+     *
+     * @return the green space repository
+     */
     public GreenSpaceRepository getGreenSpaceRepository() {
         return greenSpaceRepository;
     }
 
+    /**
+     * Gets to do entry repository.
+     *
+     * @return the to do entry repository
+     */
     public ToDoEntryRepository getToDoEntryRepository() {
         return toDoEntryRepository;
     }

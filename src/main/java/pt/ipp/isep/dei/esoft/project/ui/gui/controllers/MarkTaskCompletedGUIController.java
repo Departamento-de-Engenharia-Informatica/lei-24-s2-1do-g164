@@ -11,12 +11,24 @@ import pt.ipp.isep.dei.esoft.project.application.controller.MarkTaskCompletedCon
 import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 
+/**
+ * The type Mark task completed gui controller.
+ */
 public class MarkTaskCompletedGUIController {
 
+    /**
+     * The Btn mark task as completed.
+     */
     @FXML
     Button btnMarkTaskAsCompleted;
+    /**
+     * The Btn cancel.
+     */
     @FXML
     Button btnCancel;
+    /**
+     * The Cmb agenda entries.
+     */
     @FXML
     ComboBox<AgendaEntryDTO> cmbAgendaEntries;
 
@@ -28,6 +40,11 @@ public class MarkTaskCompletedGUIController {
         cmbAgendaEntries.getItems().setAll(controller.getAgendaEntryDTOList());
     }
 
+    /**
+     * Completed agenda entry.
+     *
+     * @param event the event
+     */
     public void completedAgendaEntry(ActionEvent event) {
         AgendaEntryDTO selectedEntry = cmbAgendaEntries.getValue();
 
@@ -55,11 +72,21 @@ public class MarkTaskCompletedGUIController {
         }
     }
 
+    /**
+     * Close window.
+     *
+     * @param event the event
+     */
     public void closeWindow(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Sets agenda gui controller.
+     *
+     * @param agendaGUIController the agenda gui controller
+     */
     public void setAgendaGUIController(AgendaMenuGUIController agendaGUIController) {
         this.agendaGUIController = agendaGUIController;
     }

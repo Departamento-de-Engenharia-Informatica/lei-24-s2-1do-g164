@@ -13,6 +13,9 @@ import pt.ipp.isep.dei.esoft.project.application.controller.authorization.Authen
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * The type Gsm menu gui controller.
+ */
 public class GSMMenuGUIController {
 
     @FXML

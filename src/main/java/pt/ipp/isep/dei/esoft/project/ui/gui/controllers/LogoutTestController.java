@@ -8,13 +8,25 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+/**
+ * The type Logout test controller.
+ */
 public class LogoutTestController {
 
     @FXML
     private Button logoutButton;
     @FXML
     private AnchorPane scenePane;
+    /**
+     * The Stage.
+     */
     Stage stage;
+
+    /**
+     * Logout.
+     *
+     * @param event the event
+     */
     public void logout(ActionEvent event){
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

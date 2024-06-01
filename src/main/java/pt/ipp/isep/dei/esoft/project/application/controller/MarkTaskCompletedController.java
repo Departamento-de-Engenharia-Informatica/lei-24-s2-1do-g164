@@ -1,4 +1,5 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
+
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.AgendaEntry;
 import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
@@ -10,12 +11,15 @@ import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
+/**
+ * Controller class responsible for marking tasks as completed.
+ */
 public class MarkTaskCompletedController {
     private AgendaEntryRepository agendaEntryRepository;
     private AuthenticationController authenticationController;
     private AgendaEntryMapper agendaEntryMapper;
 
-    public MarkTaskCompletedController(){
+    public MarkTaskCompletedController() {
         this.agendaEntryRepository = getAgendaEntryRepository();
         this.authenticationController = new AuthenticationController();
         this.agendaEntryMapper = new AgendaEntryMapper();
@@ -29,11 +33,23 @@ public class MarkTaskCompletedController {
         return agendaEntryRepository;
     }
 
+    /**
+     * Retrieves a list of agenda entries in DTO format.
+     *
+     * @return ArrayList of AgendaEntryDTO representing agenda entries.
+     */
     public ArrayList<AgendaEntryDTO> getAgendaEntryDTOList() {
         String currentUserEmail = authenticationController.getCurrentUserEmail();
         ArrayList<AgendaEntry> agendaEntryList = agendaEntryRepository.getAgendaEntryList(currentUserEmail);
         return agendaEntryMapper.toDtoList(agendaEntryList);
     }
+
+    /**
+     * Marks an agenda entry as completed.
+     *
+     * @param dto The agenda entry to mark as completed.
+     * @return True if the agenda entry was marked as completed successfully, false otherwise.
+     */
     public boolean completedAgendaEntry(AgendaEntryDTO dto) {
         if (dto.entryStatus == EntryStatusENUM.DONE) {
             return false;

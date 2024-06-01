@@ -8,10 +8,12 @@ import pt.ipp.isep.dei.esoft.project.repository.AgendaEntryRepository;
 import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
+/**
+ * Controller class responsible for managing the cancellation of agenda entries.
+ */
 public class CancelAgendaEntryController {
 
     private AgendaEntryRepository agendaEntryRepository;
@@ -25,12 +27,23 @@ public class CancelAgendaEntryController {
 
     }
 
+    /**
+     * Retrieves the list of agenda entries without cancelled entries.
+     *
+     * @return The list of agenda entries without cancelled entries.
+     */
     public ArrayList<AgendaEntryDTO> getAgendaEntryWithoutCancelledDTOList() {
         ArrayList<AgendaEntry> agendaEntryListGSM = agendaEntryRepository.getAgendaEntryListWithoutCancelled(authenticationController.getCurrentUserEmail());
         System.out.println("lista sem cancelados: " + agendaEntryListGSM);
         return agendaEntryMapper.toDtoList(agendaEntryListGSM);
     }
 
+    /**
+     * Cancels an agenda entry.
+     *
+     * @param dto The agenda entry to cancel.
+     * @return True if the agenda entry was successfully cancelled, false otherwise.
+     */
     public boolean cancelAgendaEntry(AgendaEntryDTO dto) {
         if (dto.entryStatus == EntryStatusENUM.CANCELLED) {
             return false;
@@ -43,4 +56,3 @@ public class CancelAgendaEntryController {
         return agendaEntryRepository.updateStatus(entry, EntryStatusENUM.CANCELLED);
     }
 }
-

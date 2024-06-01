@@ -7,6 +7,9 @@ import pt.ipp.isep.dei.esoft.project.repository.VehicleRepository;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * Controller class responsible for handling vehicle checkup registration operations.
+ */
 public class RegisterVehicleCheckupController {
     private VehicleRepository vehicleRepository;
 
@@ -14,8 +17,8 @@ public class RegisterVehicleCheckupController {
      * Constructs a RegisterVehicleCheckupController instance.
      * Initializes the vehicleRepository using the singleton Repositories class.
      */
-    public RegisterVehicleCheckupController(){
-        this.vehicleRepository= Repositories.getInstance().getVehicleRepository();
+    public RegisterVehicleCheckupController() {
+        this.vehicleRepository = Repositories.getInstance().getVehicleRepository();
     }
 
     /**
@@ -23,7 +26,7 @@ public class RegisterVehicleCheckupController {
      *
      * @return An ArrayList of vehicles without booked checkups.
      */
-    public ArrayList<Vehicle> getVehicles(){
+    public ArrayList<Vehicle> getVehicles() {
         return vehicleRepository.getVehicleList();
     }
 
@@ -36,7 +39,7 @@ public class RegisterVehicleCheckupController {
      * @param currentKm  The current kilometers reading of the vehicle.
      * @return True if the checkup was successfully created, false otherwise.
      */
-    public boolean createVehicleCheckup(Vehicle vehicle, LocalDate date, int currentKm){
+    public boolean createVehicleCheckup(Vehicle vehicle, LocalDate date, int currentKm) {
         return vehicleRepository.createVehicleCheckup(vehicle, date, currentKm);
     }
 }

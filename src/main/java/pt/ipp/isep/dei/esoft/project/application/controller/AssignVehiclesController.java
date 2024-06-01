@@ -1,4 +1,5 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
+
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.Vehicle;
 import pt.ipp.isep.dei.esoft.project.domain.ToDoEntry;
@@ -7,7 +8,7 @@ import pt.ipp.isep.dei.esoft.project.repository.*;
 import java.util.ArrayList;
 
 /**
- * Controller class responsible for assigning vehicles to the entries in the agenda.
+ * Controller class responsible for managing the assignment of vehicles to entries in the agenda.
  */
 public class AssignVehiclesController {
     private VehicleRepository vehicleRepository;
@@ -69,7 +70,7 @@ public class AssignVehiclesController {
     /**
      * Assigns vehicles to an entry.
      *
-     * @param toDoEntry The entry to which vehicles will be assigned.
+     * @param toDoEntry    The entry to which vehicles will be assigned.
      * @param vehiclesList The list of vehicles to be assigned.
      * @return True if the vehicles were assigned successfully, false otherwise.
      */

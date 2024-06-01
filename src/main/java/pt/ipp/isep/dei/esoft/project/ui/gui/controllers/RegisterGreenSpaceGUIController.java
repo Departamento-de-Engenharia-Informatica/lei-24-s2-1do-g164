@@ -13,6 +13,9 @@ import pt.ipp.isep.dei.esoft.project.application.controller.authorization.Authen
 import pt.ipp.isep.dei.esoft.project.dto.GreenSpaceDTO;
 import pt.ipp.isep.dei.esoft.project.repository.enums.GreenSpaceTypeENUM;
 
+/**
+ * The type Register green space gui controller.
+ */
 public class RegisterGreenSpaceGUIController {
     @FXML
     private Button btnAddEntry;
@@ -36,6 +39,11 @@ public class RegisterGreenSpaceGUIController {
         cmbGreenSpaceTypes.getItems().setAll(GreenSpaceTypeENUM.values());
     }
 
+    /**
+     * Register green space.
+     *
+     * @param event the event
+     */
     public void registerGreenSpace(ActionEvent event) {
         try {
             String name = txtName.getText();
@@ -74,11 +82,21 @@ public class RegisterGreenSpaceGUIController {
         }
     }
 
+    /**
+     * Close window.
+     *
+     * @param event the event
+     */
     public void closeWindow(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Sets green space gui controller.
+     *
+     * @param greenSpaceMenuGUIController the green space menu gui controller
+     */
     public void setGreenSpaceGUIController(GreenSpaceMenuGUIController greenSpaceMenuGUIController) {
         this.greenSpaceMenuGUIController = greenSpaceMenuGUIController;
     }

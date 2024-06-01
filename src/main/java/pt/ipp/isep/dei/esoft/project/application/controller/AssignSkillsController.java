@@ -7,7 +7,7 @@ import pt.ipp.isep.dei.esoft.project.repository.*;
 import java.util.ArrayList;
 
 /**
- * Controller class responsible for assigning skills to collaborators.
+ * Controller class responsible for managing the assignment of skills to collaborators.
  */
 public class AssignSkillsController {
     private SkillRepository skillRepository;

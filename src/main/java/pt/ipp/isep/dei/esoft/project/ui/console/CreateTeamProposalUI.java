@@ -13,6 +13,9 @@ import java.util.List;
 import java.util.Scanner;
 
 
+/**
+ * The type Create team proposal ui.
+ */
 public class CreateTeamProposalUI implements Runnable {
     private final CreateTeamProposalController controller;
     private int min, max;

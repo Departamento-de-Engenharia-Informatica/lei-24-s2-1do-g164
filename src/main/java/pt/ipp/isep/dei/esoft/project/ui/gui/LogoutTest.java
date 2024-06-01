@@ -14,7 +14,15 @@ import java.io.IOException;
 
 import static javafx.application.Application.launch;
 
+/**
+ * The type Logout test.
+ */
 public class LogoutTest extends Application {
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         launch(args);
     }
@@ -32,6 +40,12 @@ public class LogoutTest extends Application {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Logout.
+     *
+     * @param stage the stage
+     */
     public void logout(Stage stage){
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

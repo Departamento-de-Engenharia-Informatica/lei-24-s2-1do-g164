@@ -28,8 +28,8 @@ public class RegisterSkillController {
     /**
      * Registers a single skill with the specified name.
      *
-     * @param skillName the name of the skill to register
-     * @return true if the skill is successfully registered, false otherwise
+     * @param skillName The name of the skill to register.
+     * @return {@code true} if the skill is successfully registered, {@code false} otherwise.
      */
     public boolean registerSkill(String skillName) {
         return skillRepository.registerSkill(skillName);
@@ -38,8 +38,8 @@ public class RegisterSkillController {
     /**
      * Reads skills from a file and registers them.
      *
-     * @param filePath the path to the file containing skill names
-     * @return true if all skills are successfully registered, false otherwise
+     * @param filePath The path to the file containing skill names.
+     * @return {@code true} if all skills are successfully registered, {@code false} otherwise.
      */
     public boolean registerSkillsFromFile(String filePath) {
         ArrayList<String> skillsToAdd = readSkillsFromFile(filePath);
@@ -66,8 +66,8 @@ public class RegisterSkillController {
     /**
      * Reads skill names from a file and returns them as a list.
      *
-     * @param filePath the path to the file containing skill names
-     * @return the list of skill names read from the file
+     * @param filePath The path to the file containing skill names.
+     * @return The list of skill names read from the file.
      */
     private static ArrayList<String> readSkillsFromFile(String filePath) {
         boolean validPath = false;
@@ -90,8 +90,8 @@ public class RegisterSkillController {
                 System.out.print("\nFile path (write 0 to cancel):");
                 filePath = sc.next();
                 if (filePath.equals("0")){
-                        redirectToHrmUI();
-                        break;
+                    redirectToHrmUI();
+                    break;
                 }
             }
         } while (!validPath);
@@ -99,6 +99,9 @@ public class RegisterSkillController {
         return skillsToAdd;
     }
 
+    /**
+     * Redirects to the HRM user interface.
+     */
     private static void redirectToHrmUI() {
         MenuItem item = new MenuItem(AuthenticationController.ROLE_HRM, new HrmUI());
         item.run();

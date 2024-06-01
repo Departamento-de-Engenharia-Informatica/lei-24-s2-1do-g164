@@ -46,6 +46,11 @@ public class AuthenticationRepository implements Serializable {
         return authenticationFacade.getCurrentUserSession();
     }
 
+    /**
+     * Gets current user email.
+     *
+     * @return the current user email
+     */
     public String getCurrentUserEmail() {
         return getCurrentUserSession().getUserId().getEmail();
     }

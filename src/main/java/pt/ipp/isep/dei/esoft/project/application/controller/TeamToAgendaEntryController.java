@@ -1,4 +1,5 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
+
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.application.session.ApplicationSession;
 import pt.ipp.isep.dei.esoft.project.domain.AgendaEntry;
@@ -17,26 +18,42 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 
+/**
+ * The type Team to agenda entry controller.
+ */
 public class TeamToAgendaEntryController {
     private AgendaEntryRepository agendaEntryRepository;
     private EmailService emailService;
     private TeamRepository teamRepository;
-    private AgendaEntryMapper agendaEntryMapper = new AgendaEntryMapper();
-    private TeamMapper teamMapper = new TeamMapper();
-    AuthenticationController authenticationController = new AuthenticationController();
+    private final AgendaEntryMapper agendaEntryMapper = new AgendaEntryMapper();
+    private final TeamMapper teamMapper = new TeamMapper();
+    private final AuthenticationController authenticationController = new AuthenticationController();
 
+    /**
+     * Instantiates a new Team to agenda entry controller.
+     */
     public TeamToAgendaEntryController() {
         getAgendaEntryRepository();
         this.emailService = ApplicationSession.createEmailService();
         this.teamRepository= Repositories.getInstance().getTeamRepository();
     }
 
+    /**
+     * Show available teams dto list.
+     *
+     * @return the list
+     */
     public List<TeamDTO> showAvailableTeamsDTO() {
         var teams = teamRepository.getTeams();
         return teamMapper.toDtoList(teams);
     }
 
-     public ArrayList<AgendaEntryDTO> getAgendaEntriesDTOWithoutTeam() {
+    /**
+     * Gets agenda entries dto without team.
+     *
+     * @return the agenda entries dto without team
+     */
+    public ArrayList<AgendaEntryDTO> getAgendaEntriesDTOWithoutTeam() {
         System.out.println(authenticationController.getCurrentUserEmail());
         ArrayList<AgendaEntry> agendaEntryList = agendaEntryRepository.getAgendaEntryListWithoutTeam(authenticationController.getCurrentUserEmail());
         System.out.println(agendaEntryList);
@@ -44,6 +61,13 @@ public class TeamToAgendaEntryController {
     }
 
 
+    /**
+     * Assign team to agenda entry boolean.
+     *
+     * @param dto     the dto
+     * @param teamDTO the team dto
+     * @return the boolean
+     */
     public boolean assignTeamToAgendaEntry(AgendaEntryDTO dto, TeamDTO teamDTO) {
         var entry= agendaEntryRepository.getAgendaEntry(dto.description, dto.greenSpace);
         if (entry == null) {
@@ -56,21 +80,21 @@ public class TeamToAgendaEntryController {
         }
 
         if (agendaEntryRepository.assignTeam(entry, team)) {
-              sendNotificationEmails(entry.getAssociatedTeam());
-              return true;
+            sendNotificationEmails(entry.getAssociatedTeam());
+            return true;
         }
 
         return false;
     }
 
     private void sendNotificationEmails(Team team) {
-            var collaborators = team.getCollaborators();
-            for (Collaborator collaborator : collaborators) {
-                String email = collaborator.getEmail();
-                String body = "Hello " + collaborator.getName() + ",\nYou have been assigned to a new agenda entry!";
-                emailService.sendEmail(email, body);
-            }
+        var collaborators = team.getCollaborators();
+        for (Collaborator collaborator : collaborators) {
+            String email = collaborator.getEmail();
+            String body = "Hello " + collaborator.getName() + ",\nYou have been assigned to a new agenda entry!";
+            emailService.sendEmail(email, body);
         }
+    }
 
     private AgendaEntryRepository getAgendaEntryRepository() {
         if (agendaEntryRepository == null) {
@@ -80,4 +104,3 @@ public class TeamToAgendaEntryController {
         return agendaEntryRepository;
     }
 }
-

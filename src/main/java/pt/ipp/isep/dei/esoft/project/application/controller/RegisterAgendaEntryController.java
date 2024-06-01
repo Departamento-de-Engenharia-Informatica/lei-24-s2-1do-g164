@@ -14,6 +14,9 @@ import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 
 import java.util.ArrayList;
 
+/**
+ * Controller class responsible for registering agenda entries and managing to-do entries.
+ */
 public class RegisterAgendaEntryController {
 
     private AgendaEntryRepository agendaEntryRepository;
@@ -23,36 +26,55 @@ public class RegisterAgendaEntryController {
     AuthenticationController authenticationController = new AuthenticationController();
 
 
-    public RegisterAgendaEntryController(){
+    public RegisterAgendaEntryController() {
         getAgendaEntryRepository();
         getToDoEntryRepository();
         toDoEntryMapper = new ToDoEntryMapper();
         agendaEntryMapper = new AgendaEntryMapper();
     }
 
-    public boolean registerAgendaEntry(AgendaEntryDTO agendaEntryDTO){
+    /**
+     * Registers an agenda entry.
+     *
+     * @param agendaEntryDTO The agenda entry to register.
+     * @return True if the agenda entry was registered successfully, false otherwise.
+     */
+    public boolean registerAgendaEntry(AgendaEntryDTO agendaEntryDTO) {
         return agendaEntryRepository.addEntryToAgenda(agendaEntryMapper.toEntity(agendaEntryDTO));
     }
 
-    public boolean updateToDoEntry(ToDoEntryDTO toDoEntryDTO){
+    /**
+     * Updates a to-do entry to 'PLANNED' status.
+     *
+     * @param toDoEntryDTO The to-do entry to update.
+     * @return True if the to-do entry was updated successfully, false otherwise.
+     */
+    public boolean updateToDoEntry(ToDoEntryDTO toDoEntryDTO) {
         return toDoEntryRepository.updateStatus(toDoEntryMapper.toEntity(toDoEntryDTO), EntryStatusENUM.PLANNED);
     }
 
+    /**
+     * Retrieves a list of agenda entries in DTO format.
+     *
+     * @return ArrayList of AgendaEntryDTO representing agenda entries.
+     */
     public ArrayList<AgendaEntryDTO> getAgendaEntryListDTO() {
-        var entries= agendaEntryRepository.getAgendaEntryList(authenticationController.getCurrentUserEmail());
+        var entries = agendaEntryRepository.getAgendaEntryList(authenticationController.getCurrentUserEmail());
         return agendaEntryMapper.toDtoList(entries);
     }
 
-    private ArrayList<ToDoEntry> getToDoEntryList(){
-        System.out.println(toDoEntryRepository.getToDoEntryList(authenticationController.getCurrentUserEmail()));
-        System.out.println(authenticationController.getCurrentUserEmail());
-        return toDoEntryRepository.getToDoEntryListByStatus(authenticationController.getCurrentUserEmail(), EntryStatusENUM.PLANNED);
-    }
-
+    /**
+     * Retrieves a list of to-do entries in DTO format.
+     *
+     * @return ArrayList of ToDoEntryDTO representing to-do entries.
+     */
     public ArrayList<ToDoEntryDTO> getToDoEntryDTOsList() {
         return toDoEntryMapper.toDTOList(getToDoEntryList());
     }
 
+    private ArrayList<ToDoEntry> getToDoEntryList() {
+        return toDoEntryRepository.getToDoEntryListByStatus(authenticationController.getCurrentUserEmail(), EntryStatusENUM.PLANNED);
+    }
 
     private void getToDoEntryRepository() {
         if (toDoEntryRepository == null) {
@@ -67,6 +89,4 @@ public class RegisterAgendaEntryController {
             agendaEntryRepository = repositories.getAgendaEntryRepository();
         }
     }
-
-
 }

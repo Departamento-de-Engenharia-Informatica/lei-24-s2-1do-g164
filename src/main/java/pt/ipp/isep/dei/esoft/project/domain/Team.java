@@ -27,6 +27,7 @@ public class Team implements Serializable {
      *
      * @param collaborators The list of collaborators in the team.
      * @param skills        The list of skills possessed by the team.
+     * @param team_status   the team status
      */
     public Team(ArrayList<Collaborator> collaborators, ArrayList<Skill> skills, TeamStatusENUM team_status){
         this.collaborators = collaborators;
@@ -61,6 +62,11 @@ public class Team implements Serializable {
         return this.collaborators;
     }
 
+    /**
+     * Get collaborators names array list.
+     *
+     * @return the array list
+     */
     public ArrayList<String> getCollaboratorsNames(){
         var collaboratorsNames = new ArrayList<String>();
         for (Collaborator c : this.collaborators){
@@ -78,10 +84,20 @@ public class Team implements Serializable {
         this.collaborators = collaborators;
     }
 
+    /**
+     * Gets status.
+     *
+     * @return the status
+     */
     public TeamStatusENUM getStatus() {
         return status;
     }
 
+    /**
+     * Sets status.
+     *
+     * @param status the status
+     */
     public void setStatus(TeamStatusENUM status) {
         this.status = status;
     }

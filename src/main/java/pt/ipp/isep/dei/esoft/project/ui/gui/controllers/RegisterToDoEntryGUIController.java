@@ -14,6 +14,9 @@ import pt.ipp.isep.dei.esoft.project.dto.ToDoEntryDTO;
 import pt.ipp.isep.dei.esoft.project.mappers.GreenSpaceMapper;
 import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegreeENUM;
 
+/**
+ * The type Register to do entry gui controller.
+ */
 public class RegisterToDoEntryGUIController {
     @FXML
     private Button btnAddEntry;
@@ -40,6 +43,11 @@ public class RegisterToDoEntryGUIController {
         cmbGreenSpaces.getItems().setAll(controller.getGreenSpaceDTOsList());
     }
 
+    /**
+     * Register to do entry.
+     *
+     * @param event the event
+     */
     public void registerToDoEntry(ActionEvent event) {
         try {
             String description = txtDescription.getText();
@@ -78,11 +86,21 @@ public class RegisterToDoEntryGUIController {
         }
     }
 
+    /**
+     * Close window.
+     *
+     * @param event the event
+     */
     public void closeWindow(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Sets to do list gui controller.
+     *
+     * @param toDoListGUIController the to do list gui controller
+     */
     public void setToDoListGUIController(ToDoListGUIController toDoListGUIController) {
         this.toDoListGUIController = toDoListGUIController;
     }

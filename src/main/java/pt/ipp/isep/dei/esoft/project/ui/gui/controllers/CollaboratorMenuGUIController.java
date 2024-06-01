@@ -11,6 +11,9 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * The type Collaborator menu gui controller.
+ */
 public class CollaboratorMenuGUIController {
 
     @FXML

@@ -12,17 +12,27 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
+/**
+ * Controller class responsible for postponing agenda entries.
+ */
 public class PostponeAgendaEntryController {
 
     private AgendaEntryRepository agendaEntryRepository;
     private AgendaEntryMapper agendaEntryMapper;
     AuthenticationController authenticationController = new AuthenticationController();
 
-    public PostponeAgendaEntryController(){
+    public PostponeAgendaEntryController() {
         getAgendaEntryRepository();
         agendaEntryMapper = new AgendaEntryMapper();
     }
 
+    /**
+     * Postpones an agenda entry to the specified date.
+     *
+     * @param dto  The agenda entry to postpone.
+     * @param date The date to which the agenda entry will be postponed.
+     * @return True if the agenda entry was postponed successfully, false otherwise.
+     */
     public boolean postponeAgendaEntry(AgendaEntryDTO dto, LocalDate date) {
         if (dto.entryStatus == EntryStatusENUM.CANCELLED) {
             return false;
@@ -36,10 +46,15 @@ public class PostponeAgendaEntryController {
         return agendaEntryRepository.updateStatus(entry, EntryStatusENUM.POSTPONED);
     }
 
-    private ArrayList<AgendaEntry> getAvailableAgendaEntryList(){
+    private ArrayList<AgendaEntry> getAvailableAgendaEntryList() {
         return agendaEntryRepository.getAgendaEntryList(authenticationController.getCurrentUserEmail());
     }
 
+    /**
+     * Retrieves a list of agenda entries in DTO format.
+     *
+     * @return ArrayList of AgendaEntryDTO representing agenda entries.
+     */
     public ArrayList<AgendaEntryDTO> getAgendaEntryDTOsList() {
         return agendaEntryMapper.toDtoList(getAvailableAgendaEntryList());
     }
@@ -50,6 +65,4 @@ public class PostponeAgendaEntryController {
             agendaEntryRepository = repositories.getAgendaEntryRepository();
         }
     }
-
-
 }

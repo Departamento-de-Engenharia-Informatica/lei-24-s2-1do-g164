@@ -20,27 +20,54 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * The type Agenda menu gui controller.
+ */
 public class AgendaMenuGUIController {
 
+    /**
+     * The Btn cancel entry.
+     */
     @FXML
     Button btnCancelEntry;
+    /**
+     * The Btn cancel.
+     */
     @FXML
     Button btnCancel;
 
+    /**
+     * The Btn add team.
+     */
     @FXML
     Button btnAddTeam;
 
+    /**
+     * The Btn add vehicles.
+     */
     @FXML
     Button btnAddVehicles;
+    /**
+     * The Btn postpone.
+     */
     @FXML
     Button btnPostpone;
 
+    /**
+     * The Btn add agenda entry.
+     */
     @FXML
     Button btnAddAgendaEntry;
 
+    /**
+     * The Border pane.
+     */
     @FXML
     BorderPane borderPane;
 
+    /**
+     * The Txt text.
+     */
     @FXML
     TextArea txtText;
 
@@ -51,6 +78,9 @@ public class AgendaMenuGUIController {
         update();
     }
 
+    /**
+     * Update.
+     */
     public void update(){
         ArrayList<AgendaEntryDTO> agendaEntryDTOS = controller.getAgendaEntryListDTO();
         txtText.clear();
@@ -59,6 +89,11 @@ public class AgendaMenuGUIController {
         }
     }
 
+    /**
+     * Open assign team agenda window.
+     *
+     * @param event the event
+     */
     public void openAssignTeamAgendaWindow(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/assignTeamToAgendaEntry.fxml"));
@@ -75,6 +110,11 @@ public class AgendaMenuGUIController {
         }
     }
 
+    /**
+     * Open register agenda entry window.
+     *
+     * @param event the event
+     */
     public void openRegisterAgendaEntryWindow(ActionEvent event) {
         try {
             File file = new File("src\\main\\resources\\fxml\\registeragendaentry.fxml");
@@ -92,6 +132,11 @@ public class AgendaMenuGUIController {
         }
     }
 
+    /**
+     * Open postpone agenda entry window.
+     *
+     * @param event the event
+     */
     public void openPostponeAgendaEntryWindow(ActionEvent event) {
         try {
             File file = new File("src\\main\\resources\\fxml\\postponeagendaentry.fxml");
@@ -110,6 +155,11 @@ public class AgendaMenuGUIController {
     }
 
 
+    /**
+     * Open cancel agenda entry window.
+     *
+     * @param event the event
+     */
     public void openCancelAgendaEntryWindow(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/cancelAgendaEntry.fxml"));
@@ -125,6 +175,12 @@ public class AgendaMenuGUIController {
             showAlert(Alert.AlertType.ERROR, "Error", "Unable to open Cancel Agenda Entry window.");
         }
     }
+
+    /**
+     * Close window.
+     *
+     * @param event the event
+     */
     public void closeWindow(ActionEvent event){
         try {
             File file = new File("src/main/resources/fxml/gsmMenu.fxml");

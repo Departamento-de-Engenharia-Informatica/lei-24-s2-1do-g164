@@ -4,7 +4,11 @@ import pt.ipp.isep.dei.esoft.project.application.session.sorting.SortingAlgorith
 import pt.ipp.isep.dei.esoft.project.dto.GreenSpaceDTO;
 
 import java.util.List;
-public class SelectionSort implements SortingAlgorithm  {
+
+/**
+ * The type Selection sort.
+ */
+public class SelectionSort implements SortingAlgorithm {
     @Override
     public void sort(List<GreenSpaceDTO> list) {
         int n = list.size();
@@ -26,7 +30,6 @@ public class SelectionSort implements SortingAlgorithm  {
         }
 
     }
-
 
     @Override
     public int compare(GreenSpaceDTO o1, GreenSpaceDTO o2) {

@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 public class JobRepository implements Serializable {
 
     private final ArrayList<Job> jobList = new ArrayList<>();
+
     /**
      * Retrieves the list of jobs.
      *
@@ -21,6 +22,7 @@ public class JobRepository implements Serializable {
     public ArrayList<Job> getJobList() {
         return jobList;
     }
+
     /**
      * Registers a new job.
      *

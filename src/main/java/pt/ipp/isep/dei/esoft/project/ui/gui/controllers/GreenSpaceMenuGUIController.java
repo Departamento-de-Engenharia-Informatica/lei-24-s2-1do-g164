@@ -22,14 +22,29 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * The type Green space menu gui controller.
+ */
 public class GreenSpaceMenuGUIController {
 
+    /**
+     * The Btn add entry.
+     */
     @FXML
     Button btnAddEntry;
+    /**
+     * The Btn cancel.
+     */
     @FXML
     Button btnCancel;
+    /**
+     * The Txt green space list text.
+     */
     @FXML
     TextArea txtGreenSpaceListText;
+    /**
+     * The Border pane.
+     */
     @FXML
     BorderPane borderPane;
 
@@ -40,6 +55,9 @@ public class GreenSpaceMenuGUIController {
         update();
     }
 
+    /**
+     * Update.
+     */
     public void update(){
         txtGreenSpaceListText.clear();
         ArrayList<GreenSpaceDTO> greenSpaceDTOsList = controller.getGreenSpaceDTOsList();
@@ -58,6 +76,11 @@ public class GreenSpaceMenuGUIController {
         txtGreenSpaceListText.setText(sb.toString());
     }
 
+    /**
+     * Open register green space window.
+     *
+     * @param event the event
+     */
     public void openRegisterGreenSpaceWindow(ActionEvent event) {
         try {
             File file = new File("src\\main\\resources\\fxml\\registergreenspace.fxml");
@@ -75,6 +98,11 @@ public class GreenSpaceMenuGUIController {
         }
     }
 
+    /**
+     * Close window.
+     *
+     * @param event the event
+     */
     public void closeWindow(ActionEvent event){
         try {
             File file = new File("src/main/resources/fxml/gsmMenu.fxml");
@@ -91,6 +119,12 @@ public class GreenSpaceMenuGUIController {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Sort.
+     *
+     * @param actionEvent the action event
+     */
     public void sort(ActionEvent actionEvent) {
         txtGreenSpaceListText.clear();
         ArrayList<GreenSpaceDTO> greenSpaceDTOsList = controller.getGreenSpaceDTOsList();

@@ -15,14 +15,29 @@ import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 
 import java.time.LocalDate;
 
+/**
+ * The type Register agenda entry gui controller.
+ */
 public class RegisterAgendaEntryGUIController {
 
+    /**
+     * The Btn add entry.
+     */
     @FXML
     Button btnAddEntry;
+    /**
+     * The Btn cancel.
+     */
     @FXML
     Button btnCancel;
+    /**
+     * The Cmb to do entries.
+     */
     @FXML
     ComboBox<ToDoEntryDTO> cmbToDoEntries;
+    /**
+     * The Dp starting date.
+     */
     @FXML
     DatePicker dpStartingDate;
 
@@ -36,11 +51,21 @@ public class RegisterAgendaEntryGUIController {
 
     }
 
+    /**
+     * Close window.
+     *
+     * @param event the event
+     */
     public void closeWindow(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Register agenda entry.
+     *
+     * @param event the event
+     */
     public void registerAgendaEntry(ActionEvent event) {
         try {
             LocalDate date = dpStartingDate.getValue();
@@ -80,6 +105,11 @@ public class RegisterAgendaEntryGUIController {
         }
     }
 
+    /**
+     * Sets agenda menu gui controller.
+     *
+     * @param agendaListGUIController the agenda list gui controller
+     */
     public void setAgendaMenuGUIController(AgendaMenuGUIController agendaListGUIController) {
         this.agendaMenuGUIController = agendaListGUIController;
     }

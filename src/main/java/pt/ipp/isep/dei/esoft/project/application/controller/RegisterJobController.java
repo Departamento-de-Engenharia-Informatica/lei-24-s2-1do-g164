@@ -20,8 +20,8 @@ public class RegisterJobController {
     /**
      * Registers a job with the specified name.
      *
-     * @param jobName the name of the job to register
-     * @return true if the job is successfully registered, false otherwise
+     * @param jobName The name of the job to register.
+     * @return {@code true} if the job is successfully registered, {@code false} otherwise.
      */
     public boolean registerJob(String jobName) {
         return jobRepository.registerJob(jobName);

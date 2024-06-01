@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
-
 import pt.ipp.isep.dei.esoft.project.domain.SystemUser;
 import pt.ipp.isep.dei.esoft.project.domain.Organization;
 import pt.ipp.isep.dei.esoft.project.domain.Task;
@@ -14,6 +13,9 @@ import pt.isep.lei.esoft.auth.domain.model.Email;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Controller class responsible for managing the creation of tasks.
+ */
 public class CreateTaskController {
 
     private OrganizationRepository organizationRepository;
@@ -64,6 +66,18 @@ public class CreateTaskController {
         return authenticationRepository;
     }
 
+    /**
+     * Creates a new task.
+     *
+     * @param reference            The reference of the task.
+     * @param description          The description of the task.
+     * @param informalDescription  The informal description of the task.
+     * @param technicalDescription The technical description of the task.
+     * @param duration             The duration of the task.
+     * @param cost                 The cost of the task.
+     * @param taskCategoryDescription The description of the task category.
+     * @return An optional containing the newly created task, or empty if the creation failed.
+     */
     public Optional<Task> createTask(String reference, String description, String informalDescription, String technicalDescription, int duration, double cost, String taskCategoryDescription) {
 
         TaskCategory taskCategory = getTaskCategoryByDescription(taskCategoryDescription);
@@ -93,7 +107,11 @@ public class CreateTaskController {
 
     }
 
-    //return the list of task categories
+    /**
+     * Retrieves the list of task categories.
+     *
+     * @return The list of task categories.
+     */
     public List<TaskCategory> getTaskCategories() {
         TaskCategoryRepository taskCategoryRepository = getTaskCategoryRepository();
         return taskCategoryRepository.getTaskCategories();

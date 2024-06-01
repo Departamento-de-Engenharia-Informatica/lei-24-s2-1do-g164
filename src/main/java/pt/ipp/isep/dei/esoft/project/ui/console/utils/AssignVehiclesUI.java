@@ -17,6 +17,9 @@ public class AssignVehiclesUI implements Runnable{
 
     private final AssignVehiclesController controller;
 
+    /**
+     * Instantiates a new Assign vehicles ui.
+     */
     public AssignVehiclesUI() {
         this.controller = new AssignVehiclesController();
     }

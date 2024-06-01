@@ -14,6 +14,7 @@ public class VehicleCheckup implements Serializable {
 
     /**
      * Sets the date of the checkup.
+     *
      * @param date The date of the checkup to be set.
      */
     public void setDate(LocalDate date) {
@@ -22,6 +23,7 @@ public class VehicleCheckup implements Serializable {
 
     /**
      * Sets the current kilometers of the vehicle at the time of the checkup.
+     *
      * @param currentKms The current kilometers to be set.
      */
     public void setCurrentKms(int currentKms) {
@@ -30,7 +32,8 @@ public class VehicleCheckup implements Serializable {
 
     /**
      * Constructs a VehicleCheckup object with the specified date and current kilometers.
-     * @param date The date of the checkup.
+     *
+     * @param date       The date of the checkup.
      * @param currentKms The current kilometers of the vehicle at the time of the checkup.
      * @throws InputMismatchException If the provided date is before today's date or if the current kilometers are negative.
      */
@@ -45,6 +48,7 @@ public class VehicleCheckup implements Serializable {
 
     /**
      * Retrieves the date of the checkup.
+     *
      * @return The date of the checkup.
      */
     public LocalDate getDate() {
@@ -53,6 +57,7 @@ public class VehicleCheckup implements Serializable {
 
     /**
      * Retrieves the current kilometers of the vehicle at the time of the checkup.
+     *
      * @return The current kilometers of the vehicle.
      */
     public int getCurrentKms() {

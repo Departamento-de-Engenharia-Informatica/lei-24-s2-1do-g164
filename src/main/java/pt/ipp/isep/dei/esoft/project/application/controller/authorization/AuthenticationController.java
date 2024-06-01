@@ -8,7 +8,7 @@ import pt.isep.lei.esoft.auth.mappers.dto.UserRoleDTO;
 import java.util.List;
 
 /**
- * @author Paulo Maio pam@isep.ipp.pt
+ * Controller class responsible for managing user authentication.
  */
 public class AuthenticationController {
 
@@ -19,10 +19,20 @@ public class AuthenticationController {
     //private final ApplicationSession applicationSession;
     private final AuthenticationRepository authenticationRepository;
 
+    /**
+     * Constructs an AuthenticationController.
+     */
     public AuthenticationController() {
         this.authenticationRepository = Repositories.getInstance().getAuthenticationRepository();
     }
 
+    /**
+     * Attempts to log in with the given credentials.
+     *
+     * @param email The user's email.
+     * @param pwd   The user's password.
+     * @return True if the login was successful, false otherwise.
+     */
     public boolean doLogin(String email, String pwd) {
         try {
             return authenticationRepository.doLogin(email, pwd);
@@ -31,6 +41,11 @@ public class AuthenticationController {
         }
     }
 
+    /**
+     * Retrieves the roles of the current user.
+     *
+     * @return The roles of the current user.
+     */
     public List<UserRoleDTO> getUserRoles() {
         if (authenticationRepository.getCurrentUserSession().isLoggedIn()) {
             return authenticationRepository.getCurrentUserSession().getUserRoles();
@@ -38,15 +53,22 @@ public class AuthenticationController {
         return null;
     }
 
-    public String getCurrentUserEmail(){
+    /**
+     * Retrieves the email of the currently logged-in user.
+     *
+     * @return The email of the currently logged-in user.
+     */
+    public String getCurrentUserEmail() {
         if (authenticationRepository.getCurrentUserSession().isLoggedIn()) {
             return authenticationRepository.getCurrentUserEmail();
-        }
-        else{
+        } else {
             return "aa";
         }
     }
 
+    /**
+     * Logs out the current user.
+     */
     public void doLogout() {
         authenticationRepository.doLogout();
     }

@@ -13,6 +13,9 @@ import pt.ipp.isep.dei.esoft.project.repository.ToDoEntryRepository;
 
 import java.util.ArrayList;
 
+/**
+ * Controller class responsible for handling to-do entry registration operations.
+ */
 public class RegisterToDoEntryController {
     private ToDoEntryRepository toDoEntryRepository;
     private GreenSpaceRepository greenSpaceRepository;
@@ -28,24 +31,40 @@ public class RegisterToDoEntryController {
         greenSpaceMapper = new GreenSpaceMapper();
     }
 
+    /**
+     * Registers a to-do entry.
+     *
+     * @param toDoEntryDTO The to-do entry DTO.
+     * @return {@code true} if the to-do entry is successfully registered, {@code false} otherwise.
+     */
     public boolean registerToDoEntry(ToDoEntryDTO toDoEntryDTO) {
         return toDoEntryRepository.registerToDoEntry(toDoEntryMapper.toEntity(toDoEntryDTO));
     }
 
-    private ArrayList<GreenSpace> getGreenSpaceList(){
-        return greenSpaceRepository.getGreenSpaceList(authenticationController.getCurrentUserEmail());
-    }
-
-    public ArrayList<GreenSpaceDTO> getGreenSpaceDTOsList(){
+    /**
+     * Retrieves the list of green spaces.
+     *
+     * @return The list of green space DTOs.
+     */
+    public ArrayList<GreenSpaceDTO> getGreenSpaceDTOsList() {
         return greenSpaceMapper.toDTOList(getGreenSpaceList());
     }
 
-    private ArrayList<ToDoEntry> getToDoEntryList(){
-        return toDoEntryRepository.getToDoEntryList(authenticationController.getCurrentUserEmail());
+    private ArrayList<GreenSpace> getGreenSpaceList() {
+        return greenSpaceRepository.getGreenSpaceList(authenticationController.getCurrentUserEmail());
     }
 
+    /**
+     * Retrieves the list of to-do entry DTOs.
+     *
+     * @return The list of to-do entry DTOs.
+     */
     public ArrayList<ToDoEntryDTO> getToDoEntryDTOsList() {
         return toDoEntryMapper.toDTOList(getToDoEntryList());
+    }
+
+    private ArrayList<ToDoEntry> getToDoEntryList() {
+        return toDoEntryRepository.getToDoEntryList(authenticationController.getCurrentUserEmail());
     }
 
     private ToDoEntryRepository getToDoEntryRepository() {
@@ -63,5 +82,4 @@ public class RegisterToDoEntryController {
         }
         return greenSpaceRepository;
     }
-    
 }

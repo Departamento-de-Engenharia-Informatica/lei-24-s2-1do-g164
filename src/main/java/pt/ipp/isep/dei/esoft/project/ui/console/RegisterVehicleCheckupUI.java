@@ -11,6 +11,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
 
+/**
+ * The type Register vehicle checkup ui.
+ */
 public class RegisterVehicleCheckupUI implements Runnable {
     private final RegisterVehicleCheckupController controller;
     private Vehicle vehicle;

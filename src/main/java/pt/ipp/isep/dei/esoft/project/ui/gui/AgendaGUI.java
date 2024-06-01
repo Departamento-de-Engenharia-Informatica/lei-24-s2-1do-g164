@@ -9,8 +9,16 @@ import pt.ipp.isep.dei.esoft.project.ui.Bootstrap;
 
 import java.io.File;
 
+/**
+ * The type Agenda gui.
+ */
 public class AgendaGUI extends Application {
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         Bootstrap bootstrap = new Bootstrap();
         bootstrap.run();

@@ -1,10 +1,14 @@
 package pt.ipp.isep.dei.esoft.project.application.session.emailService.adapters;
+
 import pt.ipp.isep.dei.esoft.project.application.session.emailService.EmailService;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * The type DEI service.
+ */
 public class DEIService implements EmailService {
 
     @Override

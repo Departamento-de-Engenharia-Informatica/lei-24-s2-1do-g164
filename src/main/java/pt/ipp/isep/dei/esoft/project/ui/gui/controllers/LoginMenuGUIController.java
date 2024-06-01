@@ -20,11 +20,20 @@ import java.io.IOException;
 import java.util.List;
 import java.util.regex.Pattern;
 
+/**
+ * The type Login menu gui controller.
+ */
 public class LoginMenuGUIController {
 
+    /**
+     * The Scene.
+     */
     @FXML
     public Scene scene;
 
+    /**
+     * The Root.
+     */
     @FXML
     public Parent root;
 
@@ -87,10 +96,20 @@ public class LoginMenuGUIController {
         System.out.println(controller.getCurrentUserEmail());
     }
 
+    /**
+     * Logout.
+     */
     public void logout() {
         controller.doLogout();
     }
 
+    /**
+     * Redirect to role menu.
+     *
+     * @param role  the role
+     * @param event the event
+     * @throws IOException the io exception
+     */
     public void redirectToRoleMenu(UserRoleDTO role, ActionEvent event) throws IOException {
         if (role.getDescription().equalsIgnoreCase(controller.ROLE_GSM)) {
             switchMenusGUI(event, "gsmMenu", controller.ROLE_GSM.toString());
@@ -105,6 +124,14 @@ public class LoginMenuGUIController {
         }
     }
 
+    /**
+     * Switch menus gui.
+     *
+     * @param event    the event
+     * @param fileName the file name
+     * @param menuName the menu name
+     * @throws IOException the io exception
+     */
     public void switchMenusGUI(ActionEvent event, String fileName, String menuName) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/fxml/" + fileName + ".fxml"));
         // Get the current stage
@@ -115,6 +142,11 @@ public class LoginMenuGUIController {
         stage.getScene().setRoot(root);
     }
 
+    /**
+     * Close window.
+     *
+     * @param event the event
+     */
     public void closeWindow(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();

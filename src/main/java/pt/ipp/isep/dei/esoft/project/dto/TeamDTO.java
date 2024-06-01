@@ -6,19 +6,38 @@ import java.util.ArrayList;
 
 import java.util.List;
 
+/**
+ * The type Team dto.
+ */
 public class TeamDTO {
 
   private List<String> collaboratorNames;
 
+    /**
+     * Instantiates a new Team dto.
+     *
+     * @param collaborators the collaborators
+     */
     public TeamDTO(List<String> collaborators) {
         this.collaboratorNames = collaborators;
 
     }
-        public ArrayList<String> getCollaborators() {
+
+    /**
+     * Gets collaborators.
+     *
+     * @return the collaborators
+     */
+    public ArrayList<String> getCollaborators() {
             return (ArrayList<String>) collaboratorNames;
         }
 
-        public void setCollaborators(List<String> collaborators) {
+    /**
+     * Sets collaborators.
+     *
+     * @param collaborators the collaborators
+     */
+    public void setCollaborators(List<String> collaborators) {
             this.collaboratorNames = collaborators;
         }
 

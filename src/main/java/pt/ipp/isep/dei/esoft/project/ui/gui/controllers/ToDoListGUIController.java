@@ -17,12 +17,24 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * The type To do list gui controller.
+ */
 public class ToDoListGUIController {
 
+    /**
+     * The Btn add entry.
+     */
     @FXML
     Button btnAddEntry;
+    /**
+     * The Btn cancel.
+     */
     @FXML
     Button btnCancel;
+    /**
+     * The Txt to do list text.
+     */
     @FXML
     TextArea txtToDoListText;
 
@@ -33,6 +45,9 @@ public class ToDoListGUIController {
         update();
     }
 
+    /**
+     * Update.
+     */
     public void update(){
         txtToDoListText.clear();
         ArrayList<ToDoEntryDTO> toDoEntryDTOsList = controller.getToDoEntryDTOsList();
@@ -41,6 +56,11 @@ public class ToDoListGUIController {
         }
     }
 
+    /**
+     * Open register to do window.
+     *
+     * @param event the event
+     */
     public void openRegisterToDoWindow(ActionEvent event) {
         try {
             File file = new File("src\\main\\resources\\fxml\\registertodoentry.fxml");
@@ -58,6 +78,11 @@ public class ToDoListGUIController {
         }
     }
 
+    /**
+     * Close window.
+     *
+     * @param event the event
+     */
     public void closeWindow(ActionEvent event){
         try {
             File file = new File("src/main/resources/fxml/gsmMenu.fxml");

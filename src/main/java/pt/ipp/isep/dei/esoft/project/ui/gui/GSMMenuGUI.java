@@ -9,6 +9,9 @@ import pt.ipp.isep.dei.esoft.project.ui.gui.controllers.GSMMenuGUIController;
 
 import java.io.IOException;
 
+/**
+ * The type Gsm menu gui.
+ */
 public class GSMMenuGUI extends Application {
 
     @Override
@@ -28,6 +31,11 @@ public class GSMMenuGUI extends Application {
         }
     }
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         launch(args);
     }

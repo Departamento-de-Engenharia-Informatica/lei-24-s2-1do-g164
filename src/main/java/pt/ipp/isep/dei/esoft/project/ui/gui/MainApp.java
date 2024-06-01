@@ -10,8 +10,16 @@ import pt.ipp.isep.dei.esoft.project.ui.Bootstrap;
 
 import java.io.File;
 
+/**
+ * The type Main app.
+ */
 public class MainApp extends Application {
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         Bootstrap bootstrap = new Bootstrap();
         Repositories.getInstance().deserializeRepository();

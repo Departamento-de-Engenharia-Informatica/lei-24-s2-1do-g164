@@ -13,6 +13,9 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * The type Main app controller.
+ */
 public class MainAppController {
     @FXML
     private Stage stage;
@@ -21,9 +24,18 @@ public class MainAppController {
     @FXML
     private Parent root;
 
+    /**
+     * The Switch button.
+     */
     @FXML
     Button switchButton;
 
+    /**
+     * Switch scene.
+     *
+     * @param event the event
+     * @throws IOException the io exception
+     */
     public void switchScene(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(new File("src\\main\\resources\\fxml\\logouttest.fxml").toURL());
         Parent root = loader.load();

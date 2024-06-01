@@ -13,17 +13,31 @@ import pt.ipp.isep.dei.esoft.project.dto.TeamDTO;
 import javafx.event.ActionEvent;
 
 
-
+/**
+ * The type Teamto agenda menu gui controller.
+ */
 public class TeamtoAgendaMenuGUIController {
 
+    /**
+     * The Cmb agenda entries.
+     */
     @FXML
     ComboBox<AgendaEntryDTO> cmbAgendaEntries;
 
+    /**
+     * The Cmb teams.
+     */
     @FXML
     ComboBox<TeamDTO> cmbTeams;
 
+    /**
+     * The Btn cancel.
+     */
     @FXML
      Button btnCancel;
+    /**
+     * The Txt area.
+     */
     @FXML
     TextField txtArea;
 
@@ -31,12 +45,20 @@ public class TeamtoAgendaMenuGUIController {
     private TeamToAgendaEntryController controller = new TeamToAgendaEntryController();
 
 
+    /**
+     * Initialize.
+     */
     @FXML
     public void initialize() {
         cmbAgendaEntries.getItems().setAll(controller.getAgendaEntriesDTOWithoutTeam());
         cmbTeams.getItems().setAll(controller.showAvailableTeamsDTO());
     }
 
+    /**
+     * Handle assign team.
+     *
+     * @param event the event
+     */
     @FXML
     public void handleAssignTeam(ActionEvent event) {
         try {
@@ -66,11 +88,21 @@ public class TeamtoAgendaMenuGUIController {
 
     }
 
+    /**
+     * Close window.
+     *
+     * @param event the event
+     */
     public void closeWindow(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Sets agenda gui controller.
+     *
+     * @param agendaMenuGUIController the agenda menu gui controller
+     */
     public void setAgendaGUIController(AgendaMenuGUIController agendaMenuGUIController) {
         this.agendaMenuGUIController = agendaMenuGUIController;
     }

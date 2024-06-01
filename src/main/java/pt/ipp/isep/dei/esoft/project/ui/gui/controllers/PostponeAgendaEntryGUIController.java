@@ -11,20 +11,41 @@ import pt.ipp.isep.dei.esoft.project.application.controller.PostponeAgendaEntryC
 import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 
+/**
+ * The type Postpone agenda entry gui controller.
+ */
 public class PostponeAgendaEntryGUIController {
 
+    /**
+     * The Btn cancel entry.
+     */
     @FXML
     Button btnCancelEntry;
+    /**
+     * The Btn cancel.
+     */
     @FXML
     Button btnCancel;
 
+    /**
+     * The Cmb agenda entries.
+     */
     @FXML
     ComboBox<AgendaEntryDTO> cmbAgendaEntries;
 
+    /**
+     * The Date.
+     */
     @FXML
     DatePicker date;
+    /**
+     * The Controller.
+     */
     PostponeAgendaEntryController controller = new PostponeAgendaEntryController();
 
+    /**
+     * The Agenda gui controller.
+     */
     AgendaMenuGUIController agendaGUIController;
 
     @FXML
@@ -32,6 +53,11 @@ public class PostponeAgendaEntryGUIController {
         cmbAgendaEntries.getItems().setAll(controller.getAgendaEntryDTOsList());
     }
 
+    /**
+     * Postpone agenda entry.
+     *
+     * @param event the event
+     */
     public void postponeAgendaEntry(ActionEvent event) {
         try {
             AgendaEntryDTO selectedEntry = cmbAgendaEntries.getValue();
@@ -59,11 +85,22 @@ public class PostponeAgendaEntryGUIController {
             showAlert(Alert.AlertType.ERROR, "Postpone Entry Error", "An error occurred while postponing entry.");
         }
     }
+
+    /**
+     * Close window.
+     *
+     * @param event the event
+     */
     public void closeWindow(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Sets postpone agenda gui controller.
+     *
+     * @param agendaGUIController the agenda gui controller
+     */
     public void setPostponeAgendaGUIController(AgendaMenuGUIController agendaGUIController) {
         this.agendaGUIController = agendaGUIController;
     }

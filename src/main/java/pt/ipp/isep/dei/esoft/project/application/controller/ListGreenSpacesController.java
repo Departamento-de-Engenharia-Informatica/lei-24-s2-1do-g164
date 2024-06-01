@@ -34,7 +34,11 @@ public class ListGreenSpacesController {
         var greenSpaceListGSM =  greenSpaceRepository.getGreenSpaceList(authenticationController.getCurrentUserEmail());
         return greenSpaceMapper.toDTOList(greenSpaceListGSM);
     }
-
+    /**
+     * Sorts the list of GreenSpaceDTO objects using the selected sorting algorithm.
+     *
+     * @param greenSpaceDTOsList The list of GreenSpaceDTO objects to be sorted.
+     */
     public void sortGreenSpaces(ArrayList<GreenSpaceDTO> greenSpaceDTOsList) {
 
         SortingAlgorithm sortingAlgorithm = ApplicationSession.getSortingAlgorithm();

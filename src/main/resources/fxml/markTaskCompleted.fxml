@@ -26,7 +26,7 @@
                 <Label text="Select Agenda Entry:" GridPane.rowIndex="1" />
                 <ComboBox fx:id="cmbAgendaEntries" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                <Button onAction="#completedAgendaEntry" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #388E3C; -fx-text-fill: white;" text="Cancel Entry" GridPane.rowIndex="3" />
+                <Button onAction="#completedAgendaEntry" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #388E3C; -fx-text-fill: white;" text="Complete task" GridPane.rowIndex="3" />
                 <Button onAction="#closeWindow" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #D32F2F; -fx-text-fill: white;" text="Cancel" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             </children>
             <padding>

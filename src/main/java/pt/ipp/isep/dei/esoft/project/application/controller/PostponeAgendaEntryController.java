@@ -47,7 +47,7 @@ public class PostponeAgendaEntryController {
     }
 
     private ArrayList<AgendaEntry> getAvailableAgendaEntryList() {
-        return agendaEntryRepository.getAgendaEntryList(authenticationController.getCurrentUserEmail());
+        return agendaEntryRepository.getAgendaEntryWithoutDoneList(authenticationController.getCurrentUserEmail());
     }
 
     /**

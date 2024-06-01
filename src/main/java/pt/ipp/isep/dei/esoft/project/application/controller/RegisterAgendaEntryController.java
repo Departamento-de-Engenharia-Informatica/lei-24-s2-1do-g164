@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
-import pt.ipp.isep.dei.esoft.project.domain.AgendaEntry;
 import pt.ipp.isep.dei.esoft.project.domain.ToDoEntry;
 import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 import pt.ipp.isep.dei.esoft.project.dto.ToDoEntryDTO;
@@ -59,7 +58,7 @@ public class RegisterAgendaEntryController {
      * @return ArrayList of AgendaEntryDTO representing agenda entries.
      */
     public ArrayList<AgendaEntryDTO> getAgendaEntryListDTO() {
-        var entries = agendaEntryRepository.getAgendaEntryList(authenticationController.getCurrentUserEmail());
+        var entries = agendaEntryRepository.getAgendaEntryWithoutDoneList(authenticationController.getCurrentUserEmail());
         return agendaEntryMapper.toDtoList(entries);
     }
 

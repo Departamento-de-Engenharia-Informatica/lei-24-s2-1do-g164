@@ -33,7 +33,7 @@ activate GSM
                 activate ctrl
 
                 ctrl-> agendaMapper** : create
-                ctrl -> app** : create
+
 
                 ctrl -> RepositorySingleton : getInstance()
                 activate RepositorySingleton
@@ -144,13 +144,15 @@ activate GSM
 
                 agendaRepo -> agendaEntry: setAssociatedTeam(team)
 
+
                  agendaRepo--> ctrl: success/insucess
                     deactivate
 
                 ctrl->ctrl: sendNotificationEmails(entry.getAssociatedTeam()
                 deactivate agendaEntry
                     note left: gets the collaborators for each team and\ngets the email of each collaborator
-                ctrl-> app :  sendEmail(email, body)
+                ctrl-> app :  getEmailService()
+                note right: goes to the config file and gets the property of the used email\n service and then sends an email through EmailService interface
 
 
                 ctrl --> ui: success/insuccess

@@ -34,7 +34,6 @@ public class TeamToAgendaEntryController {
      */
     public TeamToAgendaEntryController() {
         getAgendaEntryRepository();
-        this.emailService = ApplicationSession.createEmailService();
         this.teamRepository= Repositories.getInstance().getTeamRepository();
     }
 
@@ -92,6 +91,7 @@ public class TeamToAgendaEntryController {
         for (Collaborator collaborator : collaborators) {
             String email = collaborator.getEmail();
             String body = "Hello " + collaborator.getName() + ",\nYou have been assigned to a new agenda entry!";
+            EmailService emailService= ApplicationSession.getEmailService();
             emailService.sendEmail(email, body);
         }
     }

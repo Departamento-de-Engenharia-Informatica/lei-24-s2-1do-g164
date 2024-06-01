@@ -74,7 +74,7 @@ public class ApplicationSession {
         return singleton;
     }
 
-    public static EmailService createEmailService() {
+    public static EmailService getEmailService() {
         try {
             Properties props = new Properties();
             FileInputStream in=new FileInputStream(CONFIGURATION_FILENAME);

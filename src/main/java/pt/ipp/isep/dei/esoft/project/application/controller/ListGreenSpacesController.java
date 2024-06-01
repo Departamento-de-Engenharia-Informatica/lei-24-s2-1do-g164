@@ -23,14 +23,7 @@ public class ListGreenSpacesController {
         greenSpaceRepository= Repositories.getInstance().getGreenSpaceRepository();
         greenSpaceMapper = new GreenSpaceMapper();
     }
-    /**
-     * Retrieves a list of green spaces associated with the current user.
-     *
-     * @return An ArrayList of GreenSpace objects representing the green spaces associated with the current user.
-     */
-    public ArrayList<GreenSpace> getGreenSpaceList(){
-        return greenSpaceRepository.getGreenSpaceList(authenticationController.getCurrentUserEmail());
-    }
+
 
     /**
      * Retrieves a list of green space DTOs associated with the current user.
@@ -38,7 +31,8 @@ public class ListGreenSpacesController {
      * @return An ArrayList of GreenSpaceDTO objects representing the green spaces associated with the current user.
      */
     public ArrayList<GreenSpaceDTO> getGreenSpaceDTOsList(){
-        return greenSpaceMapper.toDTOList(getGreenSpaceList());
+        var greenSpaceListGSM =  greenSpaceRepository.getGreenSpaceList(authenticationController.getCurrentUserEmail());
+        return greenSpaceMapper.toDTOList(greenSpaceListGSM);
     }
 
     public void sortGreenSpaces(ArrayList<GreenSpaceDTO> greenSpaceDTOsList) {

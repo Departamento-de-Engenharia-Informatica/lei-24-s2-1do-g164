@@ -8,24 +8,24 @@ autonumber
 'hide footbox
 actor "GSM" as ADM
 participant ":GreenSpaceUI" as UI
-participant "RegisterGreenSpaceController" as CTRL
+participant "ListGreenSpacesController" as CTRL
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT
-participant "vehiclesRepository:\nVehiclesRepository" as TaskCategoryRepository
-
+participant "greenSpaceRepository:\n GreenSpaceRepository" as Repo
+participant "GreenSpaceMapper"
+participant "GreenSpaceDTO" as GreenSpaceDTO
 
 activate ADM
 
-        ADM -> UI : asks to list the green
+        ADM -> UI : asks to list the green spaces
 
         activate UI
-
-'            UI --> ADM : requests data (reference, description,  informal \n description, technical description, duration, cost)
-            'create CTRL
             UI -> CTRL** : create
 
-            UI -> CTRL : getVehicles()
+            UI -> CTRL : getGreenSpaceDTOsList()
             activate CTRL
+
+            CTRL->  "GreenSpaceMapper"**: create
 
                 CTRL -> RepositorySingleton : getInstance()
                 activate RepositorySingleton
@@ -33,22 +33,45 @@ activate ADM
                     RepositorySingleton --> CTRL: repositories
                 deactivate RepositorySingleton
 
-                CTRL -> PLAT : getVehiclesRepository()
+                CTRL -> PLAT : getGreenSpaceRepository()
                 activate PLAT
 
-                    PLAT --> CTRL: VehiclesRepository()
+                    PLAT --> CTRL: greenSpaceRepository()
                 deactivate PLAT
 
-                CTRL -> TaskCategoryRepository : getVehicles()
-                activate TaskCategoryRepository
+                CTRL -> Repo : getGreenSpaceList(authenticationController.getCurrentUserEmail())
+                activate Repo
 
-                    TaskCategoryRepository --> CTRL : VehiclesList
-                deactivate TaskCategoryRepository
 
-                CTRL --> UI : VehiclesList
+                    Repo --> CTRL : greenSpaceListGSM
+                deactivate Repo
+
+                CTRL --> "GreenSpaceMapper" : toDTOList(greenSpaceListGSM)
+                activate "GreenSpaceMapper"
+
+                 loop for each greenSpace in greenSpaceList
+
+                                 "GreenSpaceMapper" -> "GreenSpaceDTO"** : GreenSpaceDTO = toDTO(greenSpace)
+
+
+                                  end
             deactivate CTRL
 
-            UI --> ADM : shows Vehicles list
+            "GreenSpaceMapper"--> CTRL: greenSpaceDTOsList
+            deactivate "GreenSpaceMapper"
+            activate CTRL
+
+            CTRL-->     UI: greenSpaceDTOsList
+            deactivate CTRL
+
+            UI-> CTRL: sortGreenSpaces(greenSpaceDTOsList)
+            activate CTRL
+
+            CTRL-> AplicationSession: getSortingAlgorithm()
+                        note right: goes to the config file and gets the property of the to be\n used algorithm and then sorts the list through interface
+
+
+            UI--> ADM: sorted green spaces list
         deactivate UI
 
 

@@ -12,7 +12,7 @@ public interface SortingAlgorithm extends Comparator<GreenSpaceDTO> {
     /**
      * Sort.
      *
-     * @param list the list
+     * @param greenSpaceDTOList the greenSpaceDTOList
      */
-    void sort(List<GreenSpaceDTO> list);
+    void sort(List<GreenSpaceDTO> greenSpaceDTOList);
 }

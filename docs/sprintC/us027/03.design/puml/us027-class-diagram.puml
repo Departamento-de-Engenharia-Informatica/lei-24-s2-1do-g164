@@ -7,26 +7,26 @@ skinparam linetype polyline
 'skinparam linetype orto
 skinparam classAttributeIconSize 0
 
-class Vehicle {
-        brand
-        model
-        vehicleID
-        type
-        tare
-        grossWeight
-        currentKm
-        registerDate
-        acquisitionDate
-        checkupFrequency
+class GreenSpace {
+    greenSpaceType
+    name
+    area
+    emailGSM
 
 }
 
-class VehicleCheckup {
-    currentKms
+class GreenSpaceDTO {
+
     date
+    greenSpace
+    description
+    expectedDuration
+    urgencyDegree
+    entryStatus
+    associatedTeam
+    associatedVehicles
 
 }
-
 
 class SystemUser {
     name
@@ -35,49 +35,88 @@ class SystemUser {
     phone
 }
 
-class VehicleRepository {
-    - ArrayList vehiclesList
-    + getVehiclesRepository()
-    + getVehicles()
-    + getVehiclesNeedingCheckupList()
+
+class GreenSpaceRepository {
+    - ArrayList<GreenSpace> greenSpaceList
+    +getGreenSpaceList(authenticationController.getCurrentUserEmail())
+
 }
 
-
 class Repositories {
-    - collaboratorRepository
-    - vehicleRepository
-    - skillRepository
-    - jobRepository
+    - greenSpaceRepository
 
     - Repositories()
     + getInstance()
-    + getCollaboratorRepository()
-    + getVehicleRepository()
-    + getSkillRepository()
-    + getJobRepository()
+    + getGreenSpaceRepository()
+
+}
+
+class GreenSpaceMapper {
+
+       + toDTOList(greenSpaceListGSM)
 
 }
 
 
-class ListVehivclesCheckupsController {
--VehicleRepository
-  + getVehiclesNeedingCheckupList()
+class ListGreenSpacesController {
+    - GreenSpaceRepository GreenSpaceRepository
+    - GreenSpaceMapper GreenSpaceMapper
+
+
+    +getGreenSpaceDTOsList()
+    +sortGreenSpaces(greenSpaceDTOsList)
+
+}
+
+class GreenSpaceUI {
 
 }
 
 
+interface SortingAlgorithm {
+    + sort(GreenSpaceDTOlist)
+}
 
-ListVehiclesCheckupsUI .> ListVehivclesCheckupsController
+class BubbleSort implements SortingAlgorithm {
+    + sort(GreenSpaceDTOlist)
+}
+
+class SelectionSort implements SortingAlgorithm {
+    + sort(GreenSpaceDTOlist)
+}
 
 
-Repositories -->"1" VehicleRepository
+class ApplicationSession{
+    -authenticationRepository: AuthenticationRepository
+        -emailService: SortingAlgorithm
+        -CONFIGURATION_FILENAME
+        -COMPANY_DESIGNATION
+
+        -getProperties(): Properties
+        +getSortingAlgorithm()
+}
+
+
+
+
+GreenSpaceUI .> ListGreenSpacesController
+ListGreenSpacesController ..> Repositories : repositories
+Repositories --> "1" GreenSpaceRepository
 Repositories -> Repositories : instance
-ListVehivclesCheckupsController ..> Repositories : repositories
-Vehicle "*" <-- "1" VehicleRepository : has
+ListGreenSpacesController .> GreenSpaceMapper
+ListGreenSpacesController .> GreenSpace
+ListGreenSpacesController --> GreenSpaceRepository : uses
+
+SystemUser <|- GSM
 
 
-FM "1" - "*" Vehicle : registers >
-Vehicle "1   " -- "0..*                        " VehicleCheckup : registers >
-FM "           1 " - "0..*   " VehicleCheckup : requests >
-SystemUser <|- FM
+GSM "1" -- "1" GreenSpaceUI
+GreenSpace "*" <-- "1" GreenSpaceRepository : stores
+GSM"1" -- "*" GreenSpace: manages >
+GreenSpaceDTO "*" <-- "1" GreenSpaceMapper : creates
+
+
+ApplicationSession ..> SortingAlgorithm
+
 @enduml
+

@@ -13,9 +13,9 @@ import java.util.List;
 public class BubbleSort implements SortingAlgorithm, Comparator<GreenSpaceDTO> {
 
     @Override
-    public void sort(List<GreenSpaceDTO> list) {
+    public void sort(List<GreenSpaceDTO> greenSpaceDTOList) {
         // Get the size of the list
-        int n = list.size();
+        int n = greenSpaceDTOList.size();
         // Create a boolean variable to check if the list is sorted
         boolean swapped;
         // Iterate through the list
@@ -24,9 +24,9 @@ public class BubbleSort implements SortingAlgorithm, Comparator<GreenSpaceDTO> {
             // Iterate through the list
             for (int j = 0; j < n - i - 1; j++) {
                 // Compare two elements
-                if (compare(list.get(j), list.get(j + 1)) > 0) {
+                if (compare(greenSpaceDTOList.get(j), greenSpaceDTOList.get(j + 1)) > 0) {
                     // Swap elements
-                    Collections.swap(list, j, j + 1);
+                    Collections.swap(greenSpaceDTOList, j, j + 1);
                     swapped = true;
                 }
             }

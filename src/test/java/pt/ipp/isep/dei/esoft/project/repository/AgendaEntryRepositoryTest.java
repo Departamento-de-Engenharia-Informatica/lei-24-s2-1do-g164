@@ -94,7 +94,7 @@ class AgendaEntryRepositoryTest {
     }
 
     @Test
-    void testAddEntryToAgenda_Duplicate() {
+    void testAddEntryToAgendaDuplicate() {
         repository.addEntryToAgenda(agendaEntry);
         boolean result = repository.addEntryToAgenda(agendaEntry);
         assertFalse(result);
@@ -138,6 +138,21 @@ class AgendaEntryRepositoryTest {
     }
 
     @Test
+    void testUpdateDateEntryNotFound() {
+        AgendaEntry nonExistentEntry = new AgendaEntry("Nonexistent Description", 2, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDate.now(), t1, vehicles);
+        LocalDate newDate = LocalDate.now().plusDays(1);
+        boolean result = repository.updateDate(nonExistentEntry, newDate);
+        assertFalse(result);
+    }
+
+    @Test
+    void testUpdateStatusEntryNotFound() {
+        AgendaEntry nonExistentEntry = new AgendaEntry("Nonexistent Description", 2, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDate.now(), t1, vehicles);
+        boolean result = repository.updateStatus(nonExistentEntry, EntryStatusENUM.DONE);
+        assertFalse(result);
+    }
+
+    @Test
     void testUpdateStatus() {
         repository.addEntryToAgenda(agendaEntry);
         boolean result = repository.updateStatus(agendaEntry, EntryStatusENUM.DONE);
@@ -176,6 +191,12 @@ class AgendaEntryRepositoryTest {
     }
 
     @Test
+    void testGetAgendaEntryByDescriptionAndGreenspaceNotFound() {
+        AgendaEntry result = repository.getAgendaEntryByDescriptionAndGreenspace("Nonexistent Description", greenSpace);
+        assertNull(result);
+    }
+
+    @Test
     void testGetAgendaEntry() {
         repository.addEntryToAgenda(agendaEntry);
         AgendaEntry result = repository.getAgendaEntry("regar", greenSpace);
@@ -188,4 +209,30 @@ class AgendaEntryRepositoryTest {
         AgendaEntry result = repository.getAgendaEntry("Nonexistent Description", greenSpace);
         assertNull(result);
     }
+
+    @Test
+    void testGetAgendaEntryListWithoutTeamPlanned() {
+        var collaborators2= new ArrayList<Collaborator>();
+        var skills = new ArrayList<Skill>();
+        Team team3= new Team(collaborators2, skills, TeamStatusENUM.PENDING);
+        var plannedEntry = new AgendaEntry("Planned Description", 2, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDate.now(), team3, vehicles);
+        repository.addEntryToAgenda(plannedEntry);
+        ArrayList<AgendaEntry> result = repository.getAgendaEntryListWithoutTeam(greenSpace.getEmailGSM());
+        assertTrue(result.contains(plannedEntry));
+    }
+
+    @Test
+    void testGetAgendaEntryListWithoutTeamPostponed() {
+        var collaborators2= new ArrayList<Collaborator>();
+        var skills = new ArrayList<Skill>();
+        Team team3= new Team(collaborators2, skills, TeamStatusENUM.PENDING);
+        var doneEntry = new AgendaEntry("Postponed Description", 2, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.DONE, LocalDate.now(), team3, vehicles);
+        var postponedEntry = new AgendaEntry("Postponed Description", 2, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.POSTPONED, LocalDate.now(), team3, vehicles);
+        repository.addEntryToAgenda(postponedEntry);
+        repository.addEntryToAgenda(doneEntry);
+        ArrayList<AgendaEntry> result = repository.getAgendaEntryListWithoutTeam(greenSpace.getEmailGSM());
+        assertFalse(result.contains(doneEntry));
+        assertTrue(result.contains(postponedEntry));
+    }
+
 }

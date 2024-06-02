@@ -1,0 +1,51 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "GSM" as GSM
+participant ":AgendaEntryUI" as ui
+participant ":TeamToAgendaEntryController " as ctrl
+participant "agendaEntryRepository:\nAgendaEntryRepository" as agendaRepo
+participant "teamRepository:\nTeamRepository" as teamRepo
+participant "AgendaEntryDTO" as AgendaEntryDTO
+participant "AgendaEntry" as agendaEntry
+participant "Team" as team
+participant "ApllicationSession" as app
+
+GSM -> ui: selects entry and team
+ui->ctrl: assignTeamToAgendaEntry(selectedEntry, teamEntry)
+activate ctrl
+
+ctrl -> agendaRepo: getAgendaEntry(description, greenSpace)
+note right: iterates through the agenda entry list and gets the\n agenda entry by description and greenSpace of the DTO
+activate agendaRepo
+agendaRepo--> ctrl: agendaEntry
+deactivate agendaRepo
+
+ctrl -> teamRepo: getTeamByCollaborators(teamDTO.getCollaborators())
+note right: iterates through the teams list and gets the\n team by collaborator names DTO
+activate teamRepo
+teamRepo --> ctrl: team
+deactivate teamRepo
+
+ctrl -> agendaRepo: assignTeam(entry, team)
+activate agendaRepo
+agendaRepo -> agendaEntry: setAssociatedTeam(team)
+agendaRepo--> ctrl: success/insucess
+deactivate agendaRepo
+
+ctrl -> ctrl: sendNotificationEmails(entry.getAssociatedTeam())
+note left: gets the collaborators for each team and\ngets the email of each collaborator
+ctrl -> app : getEmailService()
+note right: goes to the config file and gets the property of the used email\n service and then sends an email through EmailService interface
+
+ctrl --> ui: success/insuccess
+deactivate app
+ui --> GSM: shows (in)success message
+
+deactivate GSM
+
+@enduml

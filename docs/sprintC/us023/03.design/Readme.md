@@ -46,8 +46,22 @@ According to the taken rationale, the conceptual classes promoted to software cl
 ### Full Diagram
 
 This diagram shows the full sequence of interactions between the classes involved in the realization of this user story.
-
 ![Sequence Diagram - Full](svg/us023-sequence-diagram-full.svg)
+
+### Partial Diagrams
+
+1. Requests to assign team 
+
+![us023-sequence-diagram-requestsToAssignTeam.svg](svg%2Fus023-sequence-diagram-requestsToAssignTeam.svg)
+
+2. Show entries and teams
+
+![us023-sequence-diagram-showEntriesAndTeams.svg](svg%2Fus023-sequence-diagram-showEntriesAndTeams.svg)
+
+3. Assign team
+![us023-sequence-diagram-assignTeam.svg](svg%2Fus023-sequence-diagram-assignTeam.svg)
+
+
 
 ## 3.3. Class Diagram (CD)
 

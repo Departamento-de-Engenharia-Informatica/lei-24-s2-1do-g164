@@ -1,0 +1,63 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+participant ":AgendaEntryUI" as ui
+participant ":TeamToAgendaEntryController " as ctrl
+participant "agendaEntryRepository:\nAgendaEntryRepository" as agendaRepo
+participant "AgendaEntryMapper" as agendaMapper
+participant "Team" as team
+participant "teamRepository:\nTeamRepository" as teamRepo
+participant "TeamMapper" as TeamMapper
+participant "AgendaEntryDTO" as AgendaEntryDTO
+participant "TeamDTO" as TeamDTO
+
+ui-> ctrl: getAgendaEntriesDTOWithoutTeam()
+ui -> ctrl : showAvailableTeamsDTO()
+
+ctrl -> agendaRepo : getAgendaEntryListWithoutTeam(authenticationController.getCurrentUserEmail())
+activate agendaRepo
+agendaRepo --> ctrl: agendaEntryList
+deactivate agendaRepo
+
+ctrl -> agendaMapper : toDtoList(agendaEntryList)
+activate agendaMapper
+deactivate ctrl
+
+loop for each agendaEntry in agendaEntryList
+agendaMapper -> AgendaEntryDTO : agendaEntryDTO = toDTO(agendaEntry)
+activate AgendaEntryDTO
+end
+deactivate AgendaEntryDTO
+
+agendaMapper --> ctrl : agendaEntryDTOList
+deactivate agendaMapper
+activate ctrl
+
+ctrl -> teamRepo : getTeams()
+activate teamRepo
+teamRepo --> ctrl: teams
+deactivate teamRepo
+
+ctrl -> TeamMapper : toDtoList(teams)
+activate TeamMapper
+deactivate ctrl
+
+loop for each Team in TeamList
+TeamMapper -> TeamDTO : teamDTO = toDTO(team)
+activate TeamDTO
+end
+deactivate TeamDTO
+TeamMapper --> ctrl: teamDTOList
+
+activate ctrl
+ctrl --> ui : agendaEntryDTOList
+ctrl --> ui: teamDTOList
+deactivate ctrl
+
+ui --> GSM: shows the list of entries in the agenda\n and the list of teams and asks to select one of each
+
+@enduml

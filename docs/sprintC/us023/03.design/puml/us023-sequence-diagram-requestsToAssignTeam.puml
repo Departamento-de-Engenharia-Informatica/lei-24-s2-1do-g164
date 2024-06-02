@@ -1,0 +1,43 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "GSM" as GSM
+participant ":AgendaEntryUI" as ui
+participant ":TeamToAgendaEntryController " as ctrl
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as plat
+participant "agendaEntryRepository:\nAgendaEntryRepository" as agendaRepo
+participant "AgendaEntryMapper" as agendaMapper
+
+activate GSM
+
+GSM -> ui : asks to assign a team to an agenda entry
+activate ui
+
+ui -> ctrl : create
+activate ctrl
+
+ctrl -> agendaMapper : create
+
+ctrl -> RepositorySingleton : getInstance()
+activate RepositorySingleton
+RepositorySingleton --> ctrl: repositories
+deactivate RepositorySingleton
+
+ctrl -> plat : getAgendaEntryRepository()
+activate plat
+plat --> ctrl: AgendaEntryRepository()
+deactivate plat
+
+ctrl -> plat: getTeamrepository
+activate plat
+plat--> ctrl: teamRepository
+deactivate plat
+
+deactivate GSM
+
+@enduml

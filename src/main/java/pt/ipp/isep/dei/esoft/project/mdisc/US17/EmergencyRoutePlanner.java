@@ -10,12 +10,12 @@ import java.util.Scanner;
 
 public class EmergencyRoutePlanner {
 
-    static class Edge {
+    public static class Edge {
         int from;
         int to;
         int weight;
 
-        Edge(int from, int to, int weight) {
+        public Edge(int from, int to, int weight) {
             this.from = from;
             this.to = to;
             this.weight = weight;
@@ -180,8 +180,8 @@ public class EmergencyRoutePlanner {
 
     // Driver code
     public static void main(String[] args) throws IOException {
-        int[][] graph = readGraphFromCSV("src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/us17_matrix.csv");
-        String[] names = readCSVIntoArray("src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/us17_points_names.csv");
+        int[][] graph = readGraphFromCSV("src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US17/us17_matrix.csv");
+        String[] names = readCSVIntoArray("src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US17/us17_points_names.csv");
         System.out.println(names[0]);
         int target = 0;
         for (int i = 0; i < names.length; i++) {

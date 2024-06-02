@@ -108,21 +108,6 @@ public class AgendaMenuGUIController {
             showAlert(Alert.AlertType.ERROR, "Error", "Unable to open Cancel Agenda Entry window.");
         }
     }
-    public void openCompleteAgendaEntryWindow(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/markTaskCompleted.fxml"));
-            Parent root = loader.load();
-            MarkTaskCompletedGUIController completedGUIController = loader.getController();
-            completedGUIController.setAgendaGUIController(this);
-            Stage newStage = new Stage();
-            newStage.setTitle("Completed Agenda Entry");
-            newStage.setScene(new Scene(root));
-            newStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Error", "Unable to open Complet Agenda Entry window.");
-        }
-    }
     public void closeWindow(ActionEvent event){
         try {
             File file = new File("src/main/resources/fxml/gsmMenu.fxml");

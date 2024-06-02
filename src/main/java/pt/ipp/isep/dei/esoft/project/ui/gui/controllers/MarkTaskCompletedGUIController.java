@@ -33,7 +33,7 @@ public class MarkTaskCompletedGUIController {
     ComboBox<AgendaEntryDTO> cmbAgendaEntries;
 
     MarkTaskCompletedController controller = new MarkTaskCompletedController();
-    AgendaMenuGUIController agendaGUIController;
+    CollaboratorMenuGUIController collaboratorMenuGUIController;
 
     @FXML
     private void initialize() {
@@ -62,7 +62,6 @@ public class MarkTaskCompletedGUIController {
             if (controller.completedAgendaEntry(selectedEntry)) {
                 showAlert(Alert.AlertType.INFORMATION, "Completed Entry", "Agenda Entry was successfully completed.");
                 initialize();
-                agendaGUIController.update();
             } else {
                 showAlert(Alert.AlertType.ERROR, "Complete Entry Error", "Failed to complete entry.");
             }
@@ -85,10 +84,10 @@ public class MarkTaskCompletedGUIController {
     /**
      * Sets agenda gui controller.
      *
-     * @param agendaGUIController the agenda gui controller
+     * @param collaboratorMenuGUIController the agenda gui controller
      */
-    public void setAgendaGUIController(AgendaMenuGUIController agendaGUIController) {
-        this.agendaGUIController = agendaGUIController;
+        public void setAgendaGUIController(CollaboratorMenuGUIController collaboratorMenuGUIController) {
+        this.collaboratorMenuGUIController = collaboratorMenuGUIController;
     }
 
     private void showAlert(Alert.AlertType alertType, String title, String message) {

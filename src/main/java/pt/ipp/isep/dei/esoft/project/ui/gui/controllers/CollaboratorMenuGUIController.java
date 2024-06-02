@@ -6,15 +6,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * The type Collaborator menu gui controller.
  */
 public class CollaboratorMenuGUIController {
+
 
     @FXML
     private void openMyAgenda(ActionEvent event) {
@@ -37,6 +41,22 @@ public class CollaboratorMenuGUIController {
         System.out.println("My Agenda button clicked");
     }
 
+    public void openCompleteAgendaEntryWindow(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/markTaskCompleted.fxml"));
+            Parent root = loader.load();
+            MarkTaskCompletedGUIController completedGUIController = loader.getController();
+            completedGUIController.setAgendaGUIController(this);
+            Stage newStage = new Stage();
+            newStage.setTitle("Completed Agenda Entry");
+            newStage.setScene(new Scene(root));
+            newStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Error", "Unable to open Complet Agenda Entry window.");
+        }
+    }
+
     @FXML
     private void closeWindow(ActionEvent event) {
         try {
@@ -53,5 +73,11 @@ public class CollaboratorMenuGUIController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(message);
+        alert.showAndWait();
     }
 }

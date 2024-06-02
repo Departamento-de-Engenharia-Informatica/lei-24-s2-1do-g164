@@ -12,8 +12,10 @@
     </top>
     <center>
         <VBox alignment="CENTER" prefHeight="350.0" prefWidth="400.0" spacing="30.0" style="-fx-background-color: #F1F8E9;">
+            <Button fx:id="MarkTask" mnemonicParsing="false" onAction="#openCompleteAgendaEntryWindow" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Mark Entry as Completed" />
             <Button fx:id="myAgendaButton" mnemonicParsing="false" onAction="#openMyAgenda" prefWidth="102.0" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="My Agenda" />
             <Button fx:id="exitButton" mnemonicParsing="false" onAction="#closeWindow" style="-fx-background-color: #D32F2F; -fx-text-fill: white; -fx-font-size: 14px;" text="Logout" />
+
             <opaqueInsets>
                 <Insets />
             </opaqueInsets>

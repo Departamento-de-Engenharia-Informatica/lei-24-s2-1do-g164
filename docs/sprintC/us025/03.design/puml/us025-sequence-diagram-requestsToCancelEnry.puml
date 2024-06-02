@@ -1,0 +1,26 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "GSM" as GSM
+participant ":CancelAgendaEntryUI" as UI
+participant ":CancelAgendaEntryController" as CTRL
+
+activate GSM
+
+GSM -> UI : asks to cancel an entry on the Agenda
+activate UI
+
+UI -> CTRL : create
+activate CTRL
+
+UI -> CTRL: getAgendaEntryWithoutCancelledDTOList()
+
+CTRL -> "AgendaEntryMapper": create
+
+deactivate GSM
+
+@enduml

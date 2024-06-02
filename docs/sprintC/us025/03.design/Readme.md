@@ -38,6 +38,23 @@ This diagram shows the full sequence of interactions between the classes involve
 
 ![Sequence Diagram - Full](svg/us025-sequence-diagram-full.svg)
 
+### Partial Diagrams
+
+1. Requests to cancel an agenda entry
+
+![us025-sequence-diagram-requestsToCancelEnry.svg](svg%2Fus025-sequence-diagram-requestsToCancelEnry.svg)
+
+
+2. Retrieve agenda entries
+
+![us025-sequence-diagram-retireveAgendaEntries.svg](svg%2Fus025-sequence-diagram-retireveAgendaEntries.svg)
+
+
+3. Cancels an entry
+
+![us025-sequence-diagram-cancelAgendaEntry.svg](svg%2Fus025-sequence-diagram-cancelAgendaEntry.svg)
+
+
 ## 3.3. Class Diagram (CD)
 
 ![Class Diagram](svg/us025-class-diagram.svg)

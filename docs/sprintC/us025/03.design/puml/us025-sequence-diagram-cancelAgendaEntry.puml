@@ -1,0 +1,37 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "GSM" as GSM
+participant ":CancelAgendaEntryUI" as UI
+participant ":CancelAgendaEntryController" as CTRL
+participant "agendaEntryRepository:\nAgendaEntryRepository" as Repo
+participant "AgendaEntryDTO" as AgendaEntryDTO
+
+UI --> GSM : shows the list of entries in the Agenda\n and asks to select one
+GSM -> UI: selects an entry
+UI -> CTRL: cancelAgendaEntry(AgendaEntryDTO dto)
+deactivate AgendaEntryDTO
+activate CTRL
+
+CTRL -> Repo: getAgendaEntryByDescriptionAndGreenSpace(description, greenSpace)
+activate Repo
+Repo --> CTRL: agendaEntry
+deactivate Repo
+
+CTRL -> Repo: update(entry, EntryStatus.CANCELLED)
+activate Repo
+Repo --> CTRL: success/insuccess
+deactivate Repo
+
+CTRL --> UI : success/insuccess
+deactivate CTRL
+UI --> GSM : shows (in)success message
+deactivate UI
+
+deactivate GSM
+
+@enduml

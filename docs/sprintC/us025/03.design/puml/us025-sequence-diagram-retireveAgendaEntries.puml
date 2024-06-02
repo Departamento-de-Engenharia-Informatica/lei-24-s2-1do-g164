@@ -1,0 +1,47 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+participant ":CancelAgendaEntryController" as CTRL
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "agendaEntryRepository:\nAgendaEntryRepository" as Repo
+participant "AgendaEntryMapper" as AgendaEntryMapper
+participant "AgendaEntryDTO" as AgendaEntryDTO
+
+CTRL -> RepositorySingleton : getInstance()
+activate RepositorySingleton
+activate CTRL
+RepositorySingleton --> CTRL: repositories
+deactivate RepositorySingleton
+
+CTRL -> PLAT : getAgendaEntryRepository()
+activate PLAT
+PLAT --> CTRL: AgendaEntryRepository()
+deactivate PLAT
+
+CTRL -> Repo : getAgendaEntryListWithoutCancelled(authenticationController.getCurrentUserEmail())
+activate Repo
+note right: checks what gsm is based on the associated \nemail, checks if the status is not pending or cancelled\nand adds that entry to the agendaList of the gsm
+Repo --> CTRL: agendaEntryListGSM
+deactivate Repo
+
+CTRL -> AgendaEntryMapper : toDtoList(agendaEntryListGSM)
+activate AgendaEntryMapper
+
+loop for each agendaEntry in agendaEntryList
+AgendaEntryMapper -> AgendaEntryDTO : agendaEntryDTO = toDTO(agendaEntry)
+activate AgendaEntryDTO
+end
+deactivate AgendaEntryDTO
+
+AgendaEntryMapper --> CTRL : agendaEntryDTOList
+deactivate AgendaEntryMapper
+
+CTRL --> UI : agendaEntryDTOList
+deactivate CTRL
+
+@enduml

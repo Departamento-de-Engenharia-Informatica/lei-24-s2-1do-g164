@@ -1,0 +1,46 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+participant "ListGreenSpacesController" as CTRL
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "greenSpaceRepository:\n GreenSpaceRepository" as Repo
+participant "GreenSpaceMapper" as GreenSpaceMapper
+participant "GreenSpaceDTO" as GreenSpaceDTO
+
+UI -> CTRL : getGreenSpaceDTOsList()
+activate CTRL
+
+CTRL -> GreenSpaceMapper : create
+
+CTRL -> RepositorySingleton : getInstance()
+
+activate RepositorySingleton
+RepositorySingleton --> CTRL: repositories
+deactivate RepositorySingleton
+
+CTRL -> PLAT : getGreenSpaceRepository()
+activate PLAT
+PLAT --> CTRL: greenSpaceRepository()
+deactivate PLAT
+
+CTRL -> Repo : getGreenSpaceList(authenticationController.getCurrentUserEmail())
+activate Repo
+Repo --> CTRL : greenSpaceListGSM
+deactivate Repo
+
+CTRL --> GreenSpaceMapper : toDTOList(greenSpaceListGSM)
+activate GreenSpaceMapper
+
+loop for each greenSpace in greenSpaceList
+GreenSpaceMapper -> GreenSpaceDTO : GreenSpaceDTO = toDTO(greenSpace)
+end
+
+GreenSpaceMapper --> CTRL : greenSpaceDTOsList
+deactivate GreenSpaceMapper
+
+@enduml

@@ -33,6 +33,20 @@ This diagram shows the full sequence of interactions between the classes involve
 
 ![Sequence Diagram - Full](svg/us027-sequence-diagram-full.svg)
 
+### Full Diagram
+
+1. Request list of agenda Entries 
+
+![us027-sequence-diagram-requestsList.svg](svg%2Fus027-sequence-diagram-requestsList.svg)
+
+2. Retrieves list of agenda entries 
+
+![us027-sequence-diagram-retrievesEntries.svg](svg%2Fus027-sequence-diagram-retrievesEntries.svg)
+
+3. Sort the list of agenda entries
+
+![us027-sequence-diagram-sortListOfEntries.svg](svg%2Fus027-sequence-diagram-sortListOfEntries.svg)
+
 ## 3.3. Class Diagram (CD)
 
 ![Class Diagram](svg/us027-class-diagram.svg)

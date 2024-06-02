@@ -5,6 +5,7 @@ skinparam shadowing false
 
 autonumber
 
+participant ":CancelAgendaEntryUI" as UI
 participant ":CancelAgendaEntryController" as CTRL
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT
@@ -13,6 +14,7 @@ participant "AgendaEntryMapper" as AgendaEntryMapper
 participant "AgendaEntryDTO" as AgendaEntryDTO
 
 CTRL -> RepositorySingleton : getInstance()
+activate UI
 activate RepositorySingleton
 activate CTRL
 RepositorySingleton --> CTRL: repositories

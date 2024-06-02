@@ -1,0 +1,32 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "GSM" as ADM
+participant ":GreenSpaceUI" as UI
+participant "ListGreenSpacesController" as CTRL
+participant "GreenSpaceDTO" as GreenSpaceDTO
+participant "AplicationSession" as ApplicationSession
+
+CTRL --> UI : greenSpaceDTOsList
+activate ADM
+activate UI
+
+UI -> CTRL : sortGreenSpaces(greenSpaceDTOsList)
+activate CTRL
+
+CTRL -> ApplicationSession : getSortingAlgorithm()
+note right: goes to the config file and gets the property of the to be\n used algorithm and then sorts the list through interface
+
+CTRL --> UI : sorted green spaces list
+deactivate CTRL
+
+UI --> ADM : sorted green spaces list
+deactivate UI
+
+deactivate ADM
+
+@enduml

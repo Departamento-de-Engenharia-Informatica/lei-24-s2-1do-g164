@@ -4,7 +4,7 @@ skinparam packageStyle rectangle
 skinparam shadowing false
 
 autonumber
-
+participant GSM as GSM
 participant ":AgendaEntryUI" as ui
 participant ":TeamToAgendaEntryController " as ctrl
 participant "agendaEntryRepository:\nAgendaEntryRepository" as agendaRepo
@@ -16,9 +16,13 @@ participant "AgendaEntryDTO" as AgendaEntryDTO
 participant "TeamDTO" as TeamDTO
 
 ui-> ctrl: getAgendaEntriesDTOWithoutTeam()
+activate GSM
+activate ui
+activate ctrl
 ui -> ctrl : showAvailableTeamsDTO()
 
 ctrl -> agendaRepo : getAgendaEntryListWithoutTeam(authenticationController.getCurrentUserEmail())
+
 activate agendaRepo
 agendaRepo --> ctrl: agendaEntryList
 deactivate agendaRepo

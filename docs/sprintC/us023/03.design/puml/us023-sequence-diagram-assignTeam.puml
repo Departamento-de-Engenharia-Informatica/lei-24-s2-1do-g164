@@ -16,6 +16,8 @@ participant "Team" as team
 participant "ApllicationSession" as app
 
 GSM -> ui: selects entry and team
+activate GSM
+activate ui
 ui->ctrl: assignTeamToAgendaEntry(selectedEntry, teamEntry)
 activate ctrl
 

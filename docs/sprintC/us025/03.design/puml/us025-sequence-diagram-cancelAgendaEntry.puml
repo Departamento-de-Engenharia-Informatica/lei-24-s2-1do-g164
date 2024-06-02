@@ -12,6 +12,8 @@ participant "agendaEntryRepository:\nAgendaEntryRepository" as Repo
 participant "AgendaEntryDTO" as AgendaEntryDTO
 
 UI --> GSM : shows the list of entries in the Agenda\n and asks to select one
+activate GSM
+activate UI
 GSM -> UI: selects an entry
 UI -> CTRL: cancelAgendaEntry(AgendaEntryDTO dto)
 deactivate AgendaEntryDTO

@@ -34,6 +34,7 @@ public class TeamRepository implements Serializable {
      */
     public ArrayList<Team> getTeams() {
         return teams;
+
     }
 
     /**

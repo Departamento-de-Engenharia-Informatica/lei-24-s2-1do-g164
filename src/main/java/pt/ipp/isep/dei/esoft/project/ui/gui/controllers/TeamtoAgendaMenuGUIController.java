@@ -12,6 +12,8 @@ import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 import pt.ipp.isep.dei.esoft.project.dto.TeamDTO;
 import javafx.event.ActionEvent;
 
+import java.security.PublicKey;
+
 
 /**
  * The type Teamto agenda menu gui controller.
@@ -50,10 +52,13 @@ public class TeamtoAgendaMenuGUIController {
      */
     @FXML
     public void initialize() {
+        refreshComboBox();
+    }
+
+    public void  refreshComboBox() {
         cmbAgendaEntries.getItems().setAll(controller.getAgendaEntriesDTOWithoutTeam());
         cmbTeams.getItems().setAll(controller.showAvailableTeamsDTO());
     }
-
     /**
      * Handle assign team.
      *

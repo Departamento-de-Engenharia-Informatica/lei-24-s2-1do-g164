@@ -28,7 +28,6 @@ According to the taken rationale, the conceptual classes promoted to software cl
 *  CancelAgendaEntryController
 *  AgendaRepository
 * AgendaEntryMapper
-* AgendaEntryDTO
 
 
 ## 3.2. Sequence Diagram (SD)

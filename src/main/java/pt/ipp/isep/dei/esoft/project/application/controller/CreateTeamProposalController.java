@@ -36,7 +36,6 @@ public class CreateTeamProposalController {
         return skillRepository.getSkillList();
     }
 
-
     /**
      * Accepts a team proposal by setting its status to 'ACCEPTED'.
      *

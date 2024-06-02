@@ -108,13 +108,9 @@ public class Team implements Serializable {
      */
     @Override
     public String toString() {
-        String collaboratorsString = "";
-        for (Collaborator collaborator : collaborators) {
-            collaboratorsString += collaborator.getName();
+            return "Team: " + collaborators;
         }
 
-        return collaboratorsString;
-    }
     public int hashCode() {
         return Objects.hash(collaborators,skills);
     }

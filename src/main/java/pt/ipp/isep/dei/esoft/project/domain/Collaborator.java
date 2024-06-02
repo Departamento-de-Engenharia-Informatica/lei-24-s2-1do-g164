@@ -204,6 +204,6 @@ public class Collaborator implements Serializable {
      */
     @Override
     public String toString() {
-        return name + " " + skills;
+        return name + " - skills: " + skills;
     }
 }

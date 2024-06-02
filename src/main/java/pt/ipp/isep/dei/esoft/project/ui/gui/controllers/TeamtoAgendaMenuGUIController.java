@@ -75,7 +75,7 @@ public class TeamtoAgendaMenuGUIController {
             }
 
             if (controller.assignTeamToAgendaEntry(selectedEntry, teamEntry)) {
-                System.out.println("Team assigned successfully!");
+                showAlert(Alert.AlertType.INFORMATION, "Assign Team", "Team assigned successfully to agenda entry.");
                 agendaMenuGUIController.update();
                 handleClose();
             } else {

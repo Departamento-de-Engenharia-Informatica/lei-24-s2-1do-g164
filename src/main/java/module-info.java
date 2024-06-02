@@ -31,5 +31,6 @@ module pt.ipp.isep.dei.esoft.project.ui.gui {
     opens pt.ipp.isep.dei.esoft.project.repository.enums to javafx.fxml;
     opens pt.ipp.isep.dei.esoft.project.application.session.emailService to javafx.fxml;
     opens pt.ipp.isep.dei.esoft.project.application.session.emailService.adapters to javafx.fxml;
+    opens pt.ipp.isep.dei.esoft.project.ui to javafx.fxml;
 
 }

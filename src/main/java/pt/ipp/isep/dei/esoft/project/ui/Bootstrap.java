@@ -72,7 +72,7 @@ public class Bootstrap implements Runnable {
 
         collaboratorRepository.registerCollaborator("Marco", 913456123, "04-07-2001",
                 "05-08-2020", "Rua das Aves", 12845678, new Job("Trail Steward"),
-                DocumentTypeENUM.CITIZEN_CARD, CollaboratorStatusENUM.DEACTIVATED, 123456789, "adeus@hotmail.pt");
+                DocumentTypeENUM.CITIZEN_CARD, CollaboratorStatusENUM.DEACTIVATED, 123456789, "marco2001@hotmail.pt");
 
 
         ArrayList<Skill> marcoSkills = new ArrayList<>();
@@ -86,7 +86,7 @@ public class Bootstrap implements Runnable {
 
         collaboratorRepository.registerCollaborator("Ana", 987456765, "08-10-2002",
                 "08-08-2021", "Rua das Aves", 78986789, new Job("Arborist"),
-                DocumentTypeENUM.CITIZEN_CARD, CollaboratorStatusENUM.DEACTIVATED, 123993123, "ola23@mial.com");
+                DocumentTypeENUM.CITIZEN_CARD, CollaboratorStatusENUM.DEACTIVATED, 123993123, "ana23@gmail.com");
 
 
         ArrayList<Skill> anaSkills = new ArrayList<>();
@@ -95,8 +95,8 @@ public class Bootstrap implements Runnable {
         collaboratorRepository.assignSkills(collaboratorRepository.getCollaboratorList().get(1), anaSkills);
 
         collaboratorRepository.registerCollaborator("Ambrosio", 937996795, "08-10-2002",
-                "08-08-2021", "Rua das Aves", 54946780, new Job("Park Ranger"),
-                DocumentTypeENUM.CITIZEN_CARD, CollaboratorStatusENUM.DEACTIVATED, 123883123, "ola@mial.com");
+                "08-08-2021", "Avenida da republica", 54946780, new Job("Park Ranger"),
+                DocumentTypeENUM.CITIZEN_CARD, CollaboratorStatusENUM.DEACTIVATED, 123883123, "abrosio@gmail.com");
 
 
         ArrayList<Skill> ambrosioSkills = new ArrayList<>();
@@ -118,8 +118,8 @@ public class Bootstrap implements Runnable {
         collaboratorRepository.assignSkills(collaboratorRepository.getCollaboratorList().get(3), ritaSkills);
 
         collaboratorRepository.registerCollaborator("Afonso", 993056123, "04-07-2009",
-                "05-08-2020", "Rua das Aves", 19735678, new Job("Trail Steward"),
-                DocumentTypeENUM.CITIZEN_CARD, CollaboratorStatusENUM.DEACTIVATED, 199256789, "adeus@hotmail.pt");
+                "05-08-2020", "Avenida 31", 19735678, new Job("Trail Steward"),
+                DocumentTypeENUM.CITIZEN_CARD, CollaboratorStatusENUM.DEACTIVATED, 199256789, "afonso@hotmail.pt");
 
         ArrayList<Skill> afonsoSkills = new ArrayList<>();
         afonsoSkills.add(skillRepository.getSkillList().get(8));
@@ -129,22 +129,62 @@ public class Bootstrap implements Runnable {
 
 
         collaboratorRepository.registerCollaborator("Diogo", 903059123, "04-07-2003",
-                "05-08-2020", "Rua das Aves", 19738878, new Job("Trail Steward"),
-                DocumentTypeENUM.CITIZEN_CARD, CollaboratorStatusENUM.DEACTIVATED, 199256889, "adeus@hotmail.pt");
+                "05-08-2020", "Rua jose", 19738878, new Job("Trail Steward"),
+                DocumentTypeENUM.CITIZEN_CARD, CollaboratorStatusENUM.DEACTIVATED, 199256889, "diogo@gmail.com");
 
         ArrayList<Skill> diogoSkills = new ArrayList<>();
-        afonsoSkills.add(skillRepository.getSkillList().get(11));
-        afonsoSkills.add(skillRepository.getSkillList().get(8));
+        diogoSkills.add(skillRepository.getSkillList().get(11));
+        diogoSkills.add(skillRepository.getSkillList().get(8));
         collaboratorRepository.assignSkills(collaboratorRepository.getCollaboratorList().get(5), diogoSkills);
 
 
         collaboratorRepository.registerCollaborator("Gabi", 903059123, "04-07-1990",
-                "05-08-2020", "Rua das Aves", 19032878, new Job("Trail Steward"),
-                DocumentTypeENUM.CITIZEN_CARD, CollaboratorStatusENUM.DEACTIVATED, 190956889, "adeus@hotmail.pt");
+                "05-08-2020", "Rua crazy", 19032878, new Job("Trail Steward"),
+                DocumentTypeENUM.CITIZEN_CARD, CollaboratorStatusENUM.DEACTIVATED, 190956889, "gabixux@gmail.com");
 
         ArrayList<Skill> gabiSkills = new ArrayList<>();
-        afonsoSkills.add(skillRepository.getSkillList().get(12));
+        gabiSkills.add(skillRepository.getSkillList().get(12));
         collaboratorRepository.assignSkills(collaboratorRepository.getCollaboratorList().get(6), gabiSkills);
+
+        collaboratorRepository.registerCollaborator("Leonor", 993456183, "04-07-2001",
+                "05-09-2020", "Rua feliz", 87645678, new Job("Trail Steward"),
+                DocumentTypeENUM.CITIZEN_CARD, CollaboratorStatusENUM.DEACTIVATED, 199056789, "leonor@gmail.com");
+
+
+        ArrayList<Skill> leonorskills = new ArrayList<>();
+        leonorskills.add(skillRepository.getSkillList().get(7));
+        leonorskills.add(skillRepository.getSkillList().get(10));
+
+
+        collaboratorRepository.assignSkills(collaboratorRepository.getCollaboratorList().get(7), leonorskills);
+
+        collaboratorRepository.registerCollaborator("Dinis", 987459183, "04-07-2001",
+                "05-09-2020", "Rua feliz", 89045678, new Job("Trail Steward"),
+                DocumentTypeENUM.CITIZEN_CARD, CollaboratorStatusENUM.DEACTIVATED, 139354799, "dinis@gmail.com");
+
+
+        ArrayList<Skill> dinis = new ArrayList<>();
+
+        dinis.add(skillRepository.getSkillList().get(13));
+
+
+        collaboratorRepository.assignSkills(collaboratorRepository.getCollaboratorList().get(8), dinis);
+
+
+        collaboratorRepository.registerCollaborator("Sandra", 937339133, "04-07-2001",
+                "05-09-2020", "Rua feliz", 87855678, new Job("Trail Steward"),
+                DocumentTypeENUM.CITIZEN_CARD, CollaboratorStatusENUM.DEACTIVATED, 1342654799, "sandra@gmail.com");
+
+
+        ArrayList<Skill> sandra = new ArrayList<>();
+
+        sandra.add(skillRepository.getSkillList().get(12));
+        sandra.add(skillRepository.getSkillList().get(13));
+
+
+        collaboratorRepository.assignSkills(collaboratorRepository.getCollaboratorList().get(9), sandra);
+
+
 
 
     }
@@ -248,14 +288,26 @@ public class Bootstrap implements Runnable {
         collaborators1.add(c2);
         Collaborator c3= collaboratorRepository.getCollaboratorList().get(5);
         Collaborator c4= collaboratorRepository.getCollaboratorList().get(6);
+        Collaborator c5= collaboratorRepository.getCollaboratorList().get(7);
+        Collaborator c6= collaboratorRepository.getCollaboratorList().get(8);
+        Collaborator c7= collaboratorRepository.getCollaboratorList().get(9);
+
+
 
         ArrayList<Collaborator> collaborators2= new ArrayList<>();
         collaborators2.add(c3);
         collaborators2.add(c4);
+        ArrayList<Collaborator> collaborators3= new ArrayList<>();
+        collaborators3.add(c5);
+        collaborators3.add(c6);
+        collaborators3.add(c7);
+
         Team team1 = new Team(collaborators1, c1.getSkills(),TeamStatusENUM.PENDING);
         teamRepository.registerTeam(team1);
         Team team2= new Team(collaborators2, c2.getSkills(), TeamStatusENUM.PENDING);
         teamRepository.registerTeam(team2);
+        Team team3= new Team(collaborators3, c5.getSkills(), TeamStatusENUM.PENDING);
+        teamRepository.registerTeam(team3);
 
     }
 

@@ -1,80 +1,27 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
-import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.Vehicle;
-import pt.ipp.isep.dei.esoft.project.domain.ToDoEntry;
-import pt.ipp.isep.dei.esoft.project.repository.*;
+import pt.ipp.isep.dei.esoft.project.dto.VehicleDTO;
+import pt.ipp.isep.dei.esoft.project.mappers.VehicleMapper;
+import pt.ipp.isep.dei.esoft.project.repository.VehicleRepository;
 
-import java.util.ArrayList;
+import java.util.List;
 
-/**
- * Controller class responsible for managing the assignment of vehicles to entries in the agenda.
- */
 public class AssignVehiclesController {
-    private VehicleRepository vehicleRepository;
-    private ToDoEntryRepository toDoEntryRepository;
-    AuthenticationController authenticationController = new AuthenticationController();
+    private final VehicleRepository vehicleRepository;
 
-    /**
-     * Constructor for AssignVehiclesController.
-     */
-    public AssignVehiclesController() {
-        getToDoEntryRepository();
-        getVehicleRepository();
+    public AssignVehiclesController(VehicleRepository vehicleRepository) {
+        this.vehicleRepository = vehicleRepository;
     }
 
-    /**
-     * Retrieves the toDoEntry repository.
-     *
-     * @return The toDoEntry repository.
-     */
-    private ToDoEntryRepository getToDoEntryRepository() {
-        if (toDoEntryRepository == null) {
-            Repositories repositories = Repositories.getInstance();
-            toDoEntryRepository = repositories.getToDoEntryRepository();
-        }
-        return toDoEntryRepository;
+    public List<VehicleDTO> getVehicles() {
+        List<Vehicle> vehicles = vehicleRepository.getVehicleList();
+        return VehicleMapper.toDtoList(vehicles);
     }
 
-    /**
-     * Retrieves the vehicle repository.
-     *
-     * @return The vehicle repository.
-     */
-    private VehicleRepository getVehicleRepository() {
-        if (vehicleRepository == null) {
-            Repositories repositories = Repositories.getInstance();
-            vehicleRepository = repositories.getVehicleRepository();
-        }
-        return vehicleRepository;
-    }
-
-    /**
-     * Gets the list of entries.
-     *
-     * @return The list of entries.
-     */
-    public ArrayList<ToDoEntry> getToDoEntryList() {
-        return toDoEntryRepository.getToDoEntryList(authenticationController.getCurrentUserEmail());
-    }
-
-    /**
-     * Gets the list of vehicles.
-     *
-     * @return The list of vehicles.
-     */
-    public ArrayList<Vehicle> getVehicleList() {
-        return vehicleRepository.getVehicleList();
-    }
-
-    /**
-     * Assigns vehicles to an entry.
-     *
-     * @param toDoEntry    The entry to which vehicles will be assigned.
-     * @param vehiclesList The list of vehicles to be assigned.
-     * @return True if the vehicles were assigned successfully, false otherwise.
-     */
-    public boolean assignVehicles(ToDoEntry toDoEntry, ArrayList<Vehicle> vehiclesList) {
-        return toDoEntryRepository.assignVehicles(toDoEntry, vehiclesList);
+    public void assignVehiclesToEntity(List<String> vehicleIds, String entityId) {
+        List<Vehicle> vehicles = vehicleRepository.getVehiclesByIds(vehicleIds);
+        // Lógica para associar veículos à entidade (por exemplo, motorista, rota, etc.)
+        // Isso dependerá da estrutura e lógica do seu projeto.
     }
 }

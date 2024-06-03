@@ -98,16 +98,12 @@ public class EmergencyRoutePlanner2 {
     private static void writeGraphToCSV(int[][] graph, String filename, String[] names) {
         try (PrintWriter writer = new PrintWriter(new File(filename))) {
             StringBuilder sb = new StringBuilder();
-            for (String name : names) {
-                sb.append(name).append(";");
-            }
-            sb.deleteCharAt(sb.length() - 1).append("\n");
-
             for (int i = 0; i < graph.length; i++) {
                 for (int j = 0; j < graph[i].length; j++) {
-                    sb.append(graph[i][j]).append(";");
+                    if (graph[i][j] != 0) {
+                        sb.append(names[i]).append(";").append(names[j]).append(";").append(graph[i][j]).append("\n");
+                    }
                 }
-                sb.deleteCharAt(sb.length() - 1).append("\n");
             }
             writer.write(sb.toString());
         } catch (FileNotFoundException e) {
@@ -115,7 +111,6 @@ public class EmergencyRoutePlanner2 {
         }
     }
 
-    // Implemented method as per your request
     public static void writeFinalPathToCSV(ArrayList<Edge> edges, String filePath, String[] names) {
         try (PrintWriter writer = new PrintWriter(new File(filePath))) {
             for (Edge edge : edges) {
@@ -126,7 +121,7 @@ public class EmergencyRoutePlanner2 {
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         BasicConfigurator.configure();
 
         try {

@@ -258,12 +258,12 @@ public class EmergencyRoutePlanner {
         }
         System.out.println();
 
-        writeGraphToCSV(graph, "src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US17_initial_graph.csv", names);
-        writeFinalPathToCSV(finalEdges, "src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US17_final_path.csv", names);
+        writeGraphToCSV(graph, "src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US17/US17_initial_graph.csv", names);
+        writeFinalPathToCSV(finalEdges, "src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US17/US17_final_path.csv", names);
         BasicConfigurator.configure();
         System.out.println("-------------------------------------------------------------------------PLOTTING GRAPHS-----------------------------------------------------");
-        MST_PLOTTER.plotMST("src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US17_final_path.csv", "US17_SHORTESTPATH_OUTPUT");
-        MST_PLOTTER.plotMST("src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US17_initial_graph.csv", "US17_INPUT");
+        MST_PLOTTER.plotMST("src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US17/US17_final_path.csv", "US17/US17_SHORTESTPATH_OUTPUT");
+        MST_PLOTTER.plotMST("src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US17/US17_initial_graph.csv", "US17/US17_INPUT");
         System.out.println("-------------------------------------------------------------------------GRAPHS PLOTTED SUCCESSFULLY-----------------------------------------------------");
 
     }

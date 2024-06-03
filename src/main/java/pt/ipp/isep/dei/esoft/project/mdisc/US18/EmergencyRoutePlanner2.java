@@ -115,13 +115,13 @@ public class EmergencyRoutePlanner2 {
         }
     }
 
-    private static void writeFinalPathToCSV(Edge[] edges, String filename, String[] names) {
+    private static void writeFinalPathToCSV(Edge[] edges, String filename, String[] names, int totalCost) {
         try (PrintWriter writer = new PrintWriter(new File(filename))) {
             StringBuilder sb = new StringBuilder();
             for (Edge edge : edges) {
-                sb.append(names[edge.from]).append(" -> ").append(names[edge.to]).append(";");
+                sb.append(names[edge.from]).append(", ");
             }
-            sb.append("\n");
+            sb.append(names[edges[edges.length - 1].to]).append("; ").append(totalCost).append("\n");
             writer.write(sb.toString());
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
@@ -132,13 +132,15 @@ public class EmergencyRoutePlanner2 {
         BasicConfigurator.configure();
 
         try {
-            Scanner scanner = new Scanner(new File("src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/data.csv"));
-            String[] names = scanner.nextLine().split(";");
+            Scanner scannerMatriz = new Scanner(new File("src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US18/us18_matrix.csv"));
+            Scanner scannerPointsNames = new Scanner(new File("src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US18/us18_points_names.csv"));
+
+            String[] names = scannerPointsNames.nextLine().split(";");
             int V = names.length;
             int[][] graph = new int[V][V];
 
             for (int i = 0; i < V; i++) {
-                String[] line = scanner.nextLine().split(";");
+                String[] line = scannerMatriz.nextLine().split(";");
                 for (int j = 0; j < V; j++) {
                     graph[i][j] = Integer.parseInt(line[j].trim());
                 }
@@ -151,28 +153,33 @@ public class EmergencyRoutePlanner2 {
                 }
             }
 
-            for (int i = 0; i < V; i++) {
-                if (!assemblyPoints.contains(i)) {
-                    ArrayList<Integer> finalPath = new ArrayList<>();
-                    Edge[] shortestPath = dijkstra(graph, i, assemblyPoints.get(0), names, finalPath);
-                    int minDist = Integer.MAX_VALUE;
-                    int closestAP = assemblyPoints.get(0);
-                    for (int ap : assemblyPoints) {
-                        ArrayList<Integer> tempPath = new ArrayList<>();
-                        Edge[] tempEdges = dijkstra(graph, i, ap, names, tempPath);
-                        int dist = 0;
-                        for (Edge edge : tempEdges) {
-                            dist += edge.weight;
-                        }
-                        if (dist < minDist) {
-                            minDist = dist;
-                            closestAP = ap;
-                            shortestPath = tempEdges;
-                            finalPath = tempPath;
-                        }
-                    }
+            Scanner inputScanner = new Scanner(System.in);
+            System.out.println("Enter the number of the starting point:");
+            int origin = inputScanner.nextInt();
 
-                    System.out.println("Shortest path from " + names[i] + " to " + names[closestAP] + ": " + finalPath);
+            if (origin >= 0 && origin < V && !assemblyPoints.contains(origin)) {
+                ArrayList<Integer> finalPath = new ArrayList<>();
+                Edge[] shortestPath = null;
+                int minDist = Integer.MAX_VALUE;
+                int closestAP = -1;
+
+                for (int ap : assemblyPoints) {
+                    ArrayList<Integer> tempPath = new ArrayList<>();
+                    Edge[] tempEdges = dijkstra(graph, origin, ap, names, tempPath);
+                    int dist = 0;
+                    for (Edge edge : tempEdges) {
+                        dist += edge.weight;
+                    }
+                    if (dist < minDist) {
+                        minDist = dist;
+                        closestAP = ap;
+                        shortestPath = tempEdges;
+                        finalPath = tempPath;
+                    }
+                }
+
+                if (shortestPath != null) {
+                    System.out.println("Shortest path from " + names[origin] + " to " + names[closestAP] + ": " + finalPath);
                     System.out.println("Distance: " + minDist);
 
                     Graph<String, DefaultEdge> g = new SimpleWeightedGraph<>(DefaultEdge.class);
@@ -184,13 +191,18 @@ public class EmergencyRoutePlanner2 {
                     }
 
                     writeGraphToCSV(graph, "src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US18_initial_graph.csv", names);
-                    writeFinalPathToCSV(shortestPath, "src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US18_final_path.csv", names);
+                    writeFinalPathToCSV(shortestPath, "src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US18_final_path.csv", names, minDist);
 
                     MST_PLOTTER.plotMST("src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US18_final_path.csv", "US18_SHORTESTPATH_OUTPUT");
                     MST_PLOTTER.plotMST("src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US18_initial_graph.csv", "US18_INPUT");
+                } else {
+                    System.out.println("No valid path found.");
                 }
+            } else {
+                System.out.println("Invalid starting point.");
             }
-        } catch (FileNotFoundException e) {
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

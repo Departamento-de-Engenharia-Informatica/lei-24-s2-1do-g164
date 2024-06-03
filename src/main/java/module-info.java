@@ -10,6 +10,7 @@ module pt.ipp.isep.dei.esoft.project.ui.gui {
     requires guru.nidi.graphviz;
     requires svgSalamander;
     requires jdk.jfr;
+    requires org.jgrapht.core;
 
 //    requires commons.math3;
 

@@ -2,12 +2,12 @@ package pt.ipp.isep.dei.esoft.project.mappers;
 
 import pt.ipp.isep.dei.esoft.project.domain.Vehicle;
 import pt.ipp.isep.dei.esoft.project.dto.VehicleDTO;
+import pt.ipp.isep.dei.esoft.project.repository.enums.VehicleTypeENUM;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class VehicleMapper {
-
     public static List<VehicleDTO> toDtoList(List<Vehicle> vehicles) {
         List<VehicleDTO> vehicleDTOList = new ArrayList<>();
         for (Vehicle vehicle : vehicles) {

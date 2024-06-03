@@ -1,106 +1,27 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
-import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
-import pt.ipp.isep.dei.esoft.project.application.session.ApplicationSession;
-import pt.ipp.isep.dei.esoft.project.domain.AgendaEntry;
-import pt.ipp.isep.dei.esoft.project.domain.Collaborator;
-import pt.ipp.isep.dei.esoft.project.domain.Team;
-import pt.ipp.isep.dei.esoft.project.application.session.emailService.EmailService;
 import pt.ipp.isep.dei.esoft.project.domain.Vehicle;
-import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
-import pt.ipp.isep.dei.esoft.project.dto.TeamDTO;
-import pt.ipp.isep.dei.esoft.project.mappers.AgendaEntryMapper;
-import pt.ipp.isep.dei.esoft.project.mappers.TeamMapper;
-import pt.ipp.isep.dei.esoft.project.repository.AgendaEntryRepository;
-import pt.ipp.isep.dei.esoft.project.repository.Repositories;
-import pt.ipp.isep.dei.esoft.project.repository.TeamRepository;
+import pt.ipp.isep.dei.esoft.project.dto.VehicleDTO;
+import pt.ipp.isep.dei.esoft.project.mappers.VehicleMapper;
+import pt.ipp.isep.dei.esoft.project.repository.VehicleRepository;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 
-/**
- * The type Vehicles to agenda entry controller.
- */
 public class AssignVehiclesController {
-    private AgendaEntryRepository agendaEntryRepository;
-    private VehicleRepository vehicleRepository;
-    private final AgendaEntryMapper agendaEntryMapper = new AgendaEntryMapper();
-    private final TeamMapper teamMapper = new TeamMapper();
-    private final AuthenticationController authenticationController = new AuthenticationController();
+    private final VehicleRepository vehicleRepository;
 
-    /**
-     * Instantiates a new Team to agenda entry controller.
-     */
-    public TeamToAgendaEntryController() {
-        getAgendaEntryRepository();
-        this.teamRepository= Repositories.getInstance().getTeamRepository();
+    public AssignVehiclesController(VehicleRepository vehicleRepository) {
+        this.vehicleRepository = vehicleRepository;
     }
 
-    /**
-     * Show available teams dto list.
-     *
-     * @return the list
-     */
-    public List<TeamDTO> showAvailableTeamsDTO() {
-        var teams = teamRepository.getTeams();
-        return teamMapper.toDtoList(teams);
+    public List<VehicleDTO> getVehicles() {
+        List<Vehicle> vehicles = vehicleRepository.getVehicleList();
+        return VehicleMapper.toDtoList(vehicles);
     }
 
-    /**
-     * Gets agenda entries dto without team.
-     *
-     * @return the agenda entries dto without team
-     */
-    public ArrayList<AgendaEntryDTO> getAgendaEntriesDTOWithoutTeam() {
-        System.out.println(authenticationController.getCurrentUserEmail());
-        ArrayList<AgendaEntry> agendaEntryList = agendaEntryRepository.getAgendaEntryListWithoutTeam(authenticationController.getCurrentUserEmail());
-        System.out.println(agendaEntryList);
-        return agendaEntryMapper.toDtoList(agendaEntryList);
-    }
-
-
-    /**
-     * Assign team to agenda entry boolean.
-     *
-     * @param dto     the dto
-     * @param teamDTO the team dto
-     * @return the boolean
-     */
-    public boolean assignTeamToAgendaEntry(AgendaEntryDTO dto, TeamDTO teamDTO) {
-        var entry= agendaEntryRepository.getAgendaEntry(dto.description, dto.greenSpace);
-        if (entry == null) {
-            throw new InputMismatchException("Agenda Entry not found!");
-        }
-
-        var team = teamRepository.getTeamByCollaborators(teamDTO.getCollaborators());
-        if (team == null) {
-            throw new InputMismatchException("Team not found!");
-        }
-
-        if (agendaEntryRepository.assignTeam(entry, team)) {
-            sendNotificationEmails(entry.getAssociatedTeam());
-            return true;
-        }
-
-        return false;
-    }
-
-    private void sendNotificationEmails(Team team) {
-        var collaborators = team.getCollaborators();
-        for (Collaborator collaborator : collaborators) {
-            String email = collaborator.getEmail();
-            String body = "Hello " + collaborator.getName() + ",\nYou have been assigned to a new agenda entry!";
-            EmailService emailService= ApplicationSession.getEmailService();
-            emailService.sendEmail(email, body);
-        }
-    }
-
-    private AgendaEntryRepository getAgendaEntryRepository() {
-        if (agendaEntryRepository == null) {
-            Repositories repositories = Repositories.getInstance();
-            agendaEntryRepository = repositories.getAgendaEntryRepository();
-        }
-        return agendaEntryRepository;
+    public void assignVehiclesToEntity(List<String> vehicleIds, String entityId) {
+        List<Vehicle> vehicles = vehicleRepository.getVehiclesByIds(vehicleIds);
+        // Lógica para associar veículos à entidade (por exemplo, motorista, rota, etc.)
+        // Isso dependerá da estrutura e lógica do seu projeto.
     }
 }

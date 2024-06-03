@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.dto;
+
 import pt.ipp.isep.dei.esoft.project.repository.enums.VehicleTypeENUM;
+
 public class VehicleDTO {
 
     private String brand;
@@ -13,7 +15,25 @@ public class VehicleDTO {
     private String acquisitionDate;
     private int checkupFrequency;
 
-    // Getters and setters
+    // Construtor padrão
+    public VehicleDTO() {
+    }
+
+    // Construtor completo
+    public VehicleDTO(String brand, String model, String vehicleID, VehicleTypeENUM type, double grossWeight, double tare, int currentKm, String registerDate, String acquisitionDate, int checkupFrequency) {
+        this.brand = brand;
+        this.model = model;
+        this.vehicleID = vehicleID;
+        this.type = type;
+        this.grossWeight = grossWeight;
+        this.tare = tare;
+        this.currentKm = currentKm;
+        this.registerDate = registerDate;
+        this.acquisitionDate = acquisitionDate;
+        this.checkupFrequency = checkupFrequency;
+    }
+
+    // Getters e setters
     public String getBrand() {
         return brand;
     }
@@ -92,5 +112,10 @@ public class VehicleDTO {
 
     public void setCheckupFrequency(int checkupFrequency) {
         this.checkupFrequency = checkupFrequency;
+    }
+
+    @Override
+    public String toString() {
+        return brand + " " + model + " (" + vehicleID + ")";
     }
 }

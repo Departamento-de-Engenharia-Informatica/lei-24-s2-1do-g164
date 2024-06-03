@@ -32,7 +32,7 @@
                     <Button fx:id="btnAddVehicles" maxWidth="Infinity" mnemonicParsing="false" onAction="#openCancelAgendaEntryWindow" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Add vehicles to Entry" />
                 </VBox>
                 <VBox alignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                    <Button fx:id="btnPostpone" maxWidth="Infinity" mnemonicParsing="false" onAction="#openCancelAgendaEntryWindow" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Postpone an Entry" />
+                    <Button fx:id="btnPostpone" maxWidth="Infinity" mnemonicParsing="false" onAction="#openPostponeAgendaEntryWindow" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Postpone an Entry" />
                 </VBox>
                 <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <Button fx:id="btnCancelEntry" maxWidth="Infinity" mnemonicParsing="false" onAction="#openCancelAgendaEntryWindow" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Cancel an Entry" />

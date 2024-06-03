@@ -92,6 +92,24 @@ public class AgendaMenuGUIController {
         }
     }
 
+    public void openPostponeAgendaEntryWindow(ActionEvent event) {
+        try {
+            File file = new File("src\\main\\resources\\fxml\\postponeagendaentry.fxml");
+            FXMLLoader loader = new FXMLLoader(file.toURL());
+            Parent root = loader.load();
+            PostponeAgendaEntryGUIController controller1 = loader.getController();
+            controller1.setPostponeAgendaGUIController(this);
+            Stage newStage = new Stage();
+            newStage.setTitle("Postpone Agenda Entry");
+            newStage.setScene(new Scene(root));
+            newStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     public void openCancelAgendaEntryWindow(ActionEvent event) {
         try {

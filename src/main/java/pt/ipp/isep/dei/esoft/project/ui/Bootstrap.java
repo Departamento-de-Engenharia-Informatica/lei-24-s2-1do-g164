@@ -1,11 +1,9 @@
 package pt.ipp.isep.dei.esoft.project.ui;
 
-import com.kitfox.svg.A;
-import jdk.swing.interop.SwingInterOpUtils;
+
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterCollaboratorController;
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.*;
-import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 import pt.ipp.isep.dei.esoft.project.repository.*;
 import pt.ipp.isep.dei.esoft.project.repository.enums.*;
 

@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
+import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
+import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
 import pt.ipp.isep.dei.esoft.project.repository.enums.CollaboratorStatusENUM;
 import pt.ipp.isep.dei.esoft.project.domain.Job;
 import pt.ipp.isep.dei.esoft.project.repository.enums.DocumentTypeENUM;
@@ -9,6 +11,7 @@ import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Locale;
 
 /**
  * Controller class responsible for handling collaborator registration operations.
@@ -17,6 +20,7 @@ public class RegisterCollaboratorController {
 
     private CollaboratorRepository collaboratorRepository;
     private JobRepository jobRepository;
+    private AuthenticationRepository authenticationRepository;
 
     /**
      * Initializes a new instance of RegisterCollaboratorController.
@@ -24,6 +28,7 @@ public class RegisterCollaboratorController {
     public RegisterCollaboratorController() {
         getCollaboratorRepository();
         getJobRepository();
+        getAuthenticationRepository();
     }
 
     /**
@@ -42,7 +47,14 @@ public class RegisterCollaboratorController {
      * @return {@code true} if the collaborator is successfully registered, {@code false} otherwise.
      */
     public boolean registerCollaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentTypeENUM idDocumentType, int taxpayerNumber, String email) {
-        return collaboratorRepository.registerCollaborator(name, phone, birthdate, admissionDate, address, idDocumentNumber, job, idDocumentType, getCollaboratorStatusList().get(1), taxpayerNumber, email);
+        if(collaboratorRepository.registerCollaborator(name, phone, birthdate, admissionDate, address, idDocumentNumber, job, idDocumentType, getCollaboratorStatusList().get(1), taxpayerNumber, email)){
+            authenticationRepository.addUserWithRole(name, email, name.toUpperCase()+"1234", AuthenticationController.ROLE_COL);
+            System.out.println(name.toUpperCase()+"1234");
+            return true;
+        } else {
+            System.out.println("falsoo");
+            return false;
+        }
     }
 
     private CollaboratorRepository getCollaboratorRepository() {
@@ -59,6 +71,14 @@ public class RegisterCollaboratorController {
             jobRepository = repositories.getJobRepository();
         }
         return jobRepository;
+    }
+
+    private AuthenticationRepository getAuthenticationRepository() {
+        if (authenticationRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+            authenticationRepository = repositories.getAuthenticationRepository();
+        }
+        return authenticationRepository;
     }
 
     /**

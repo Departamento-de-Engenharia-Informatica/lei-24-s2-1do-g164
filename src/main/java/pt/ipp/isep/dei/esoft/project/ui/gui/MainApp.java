@@ -22,8 +22,8 @@ public class MainApp extends Application {
      */
     public static void main(String[] args) {
         Bootstrap bootstrap = new Bootstrap();
-        Repositories.getInstance().deserializeRepository();
         bootstrap.run();
+        Repositories.getInstance().deserializeRepository();
         launch();
         Repositories.getInstance().serializeRepository();
     }

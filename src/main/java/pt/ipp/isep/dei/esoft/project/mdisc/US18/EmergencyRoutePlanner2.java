@@ -115,14 +115,12 @@ public class EmergencyRoutePlanner2 {
         }
     }
 
-    private static void writeFinalPathToCSV(Edge[] edges, String filename, String[] names, int totalCost) {
-        try (PrintWriter writer = new PrintWriter(new File(filename))) {
-            StringBuilder sb = new StringBuilder();
+    // Implemented method as per your request
+    public static void writeFinalPathToCSV(ArrayList<Edge> edges, String filePath, String[] names) {
+        try (PrintWriter writer = new PrintWriter(new File(filePath))) {
             for (Edge edge : edges) {
-                sb.append(names[edge.from]).append(", ");
+                writer.println(names[edge.from] + ";" + names[edge.to] + ";" + edge.weight);
             }
-            sb.append(names[edges[edges.length - 1].to]).append("; ").append(totalCost).append("\n");
-            writer.write(sb.toString());
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
@@ -191,7 +189,7 @@ public class EmergencyRoutePlanner2 {
                     }
 
                     writeGraphToCSV(graph, "src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US18_initial_graph.csv", names);
-                    writeFinalPathToCSV(shortestPath, "src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US18_final_path.csv", names, minDist);
+                    writeFinalPathToCSV(new ArrayList<>(Arrays.asList(shortestPath)), "src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US18_final_path.csv", names);
 
                     MST_PLOTTER.plotMST("src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US18_final_path.csv", "US18_SHORTESTPATH_OUTPUT");
                     MST_PLOTTER.plotMST("src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US18_initial_graph.csv", "US18_INPUT");

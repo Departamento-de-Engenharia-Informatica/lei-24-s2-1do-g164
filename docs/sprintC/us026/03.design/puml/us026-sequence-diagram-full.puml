@@ -1,107 +1,123 @@
 @startuml
 skinparam monochrome true
 skinparam packageStyle rectangle
-    skinparam shadowing false
+skinparam shadowing false
 
-    autonumber
+autonumber
 
-    'hide footbox
-    actor "GSM" as HRM
-    participant ":AssignVehiclesUI" as UI
-    participant ":AssignVehiclesController" as CTRL
-    participant ":Repositories" as RepositorySingleton
-    participant "repositories\n:Repositories" as PLAT
-    participant "vehicleRepository:\nVehicleRepository" as SkillRepository
-    participant "entryRepository:\nEntryRepository" as entryRepository
-    activate HRM
+actor "GSM" as GSM
+participant ":AgendaEntryUI" as ui
+participant "AssignVehicles" as ctrl
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as plat
+participant "agendaEntryRepository:\nAgendaEntryRepository" as agendaRepo
+participant "AgendaEntryMapper" as agendaMapper
+participant AgendaEntryDTO as AgendaEntryDTO
+participant "AgendaEntry" as agendaEntry
+participant "Vehicle" as vehicle
+participant "vehicleRepository:\nVehicleRepository" as vehicleRepo
+participant "VehicleMapper" as VehicleMapper
+participant "VehicleDTO" as VehicleDTO
+participant "ApplicationSession" as app
 
-            HRM -> UI : asks to add vehicles to an entry in the agenda
+activate GSM
 
-            activate UI
+GSM -> ui : asks to assign vehicles to an agenda entry
+activate ui
 
-    '            UI --> ADM : requests data (reference, description,  informal \n description, technical description, duration, cost)
-                'create CTRL
-                UI -> CTRL** : create
+ui -> ctrl : create
+activate ctrl
 
-                UI -> CTRL : getEntries()
-                activate CTRL
+ctrl -> agendaMapper : create
 
-                    CTRL -> RepositorySingleton : getInstance()
-                    activate RepositorySingleton
+ctrl -> RepositorySingleton : getInstance()
+activate RepositorySingleton
+RepositorySingleton --> ctrl: repositories
+deactivate RepositorySingleton
 
-                        RepositorySingleton --> CTRL: repositories
-                    deactivate RepositorySingleton
+ctrl -> plat : getAgendaEntryRepository()
+activate plat
+plat --> ctrl: AgendaEntryRepository()
+deactivate plat
 
-                    CTRL -> PLAT : getEntryRepository()
-                    activate PLAT
+ctrl -> plat : getVehicleRepository()
+activate plat
+plat --> ctrl: vehicleRepository
+deactivate plat
 
-                        PLAT --> CTRL: entryRepository
-                    deactivate PLAT
+ui -> ctrl : getAgendaEntriesDTOWithoutVehicles()
+ui -> ctrl : showVehiclesDTO()
 
-                    CTRL -> entryRepository : getEntry()
-                    activate entryRepository
-
-                        entryRepository--> CTRL : entriesList
-                    deactivate entryRepository
-
-                    CTRL --> UI : entriesList
-
-
-
-
-
-
-           UI -> CTRL : getVehicles()
-
-                 CTRL -> RepositorySingleton : getInstance()
-                 activate RepositorySingleton
-                   RepositorySingleton -> CTRL : repositories
-                 deactivate RepositorySingleton
-
-                 CTRL -> PLAT : getVehicleRepository()
-                 activate PLAT
-                   PLAT --> CTRL : vehicleRepository
-                 deactivate PLAT
-
-                 CTRL -> SkillRepository : getVehicles()
-                 activate SkillRepository
-                   SkillRepository --> CTRL : vehiclesList
-                 deactivate SkillRepository
-                 CTRL --> UI :vehiclesList
-               deactivate CTRL
-
-              UI --> HRM : shows list of entries and the list of vehicles \nand asks to select a entry
-                          deactivate UI
-
-             HRM -> UI : chooses an entry
-
-             activate UI
-              HRM -> UI : chooses vehicles from list to add
-               UI -> CTRL :assignVehicles(entries,vehicles)
-                        activate CTRL
-               CTRL -> RepositorySingleton : getInstance()
-                                         activate RepositorySingleton
-                                           RepositorySingleton -> CTRL : repositories
-                                         deactivate RepositorySingleton
-
-                                         CTRL -> PLAT : getEntryRepository(entry,vehicles)
-                                         activate PLAT
-                                           PLAT --> CTRL : entryRepository
-                                         deactivate PLAT
-
-                                         CTRL -> entryRepository : assignVehicles()
-                                       activate entryRepository
-                                           entryRepository --> CTRL : List of entry's current vehicles
-                                   deactivate entryRepository
-                                         CTRL --> UI : List of entry's current vehicles
-                                       deactivate CTRL
-                                       UI --> HRM :Show list of entry's current vehicles
-                                                    deactivate UI
+ctrl -> agendaRepo : getAgendaEntryListWithoutVehicles()
+activate agendaRepo
+agendaRepo --> ctrl: agendaEntryList
+deactivate agendaRepo
 
 
+ctrl -> agendaMapper : toDtoList(agendaEntryList)
+activate agendaMapper
 
 
+loop for each agendaEntry in agendaEntryList
+  agendaMapper -> AgendaEntryDTO : agendaEntryDTO = toDTO(agendaEntry)
+  activate AgendaEntryDTO
+end
 
-    deactivate HRM
+agendaMapper --> ctrl : agendaEntryDTOList
+deactivate agendaMapper
+deactivate AgendaEntryDTO
 
-@endumlenduml
+ctrl -> vehicleRepo : getVehicles()
+activate vehicleRepo
+vehicleRepo --> ctrl: vehicles
+deactivate vehicleRepo
+
+ctrl -> VehicleMapper : toDtoList(vehicles)
+activate VehicleMapper
+loop for each vehicle in vehicles
+  VehicleMapper -> VehicleDTO : vehicleDTO = toDTO(vehicle)
+  activate VehicleDTO
+end
+deactivate VehicleDTO
+VehicleMapper --> ctrl : vehicleDTOList
+deactivate VehicleMapper
+
+ctrl --> ui : agendaEntryDTOList
+ctrl --> ui : vehicleDTOList
+deactivate ctrl
+
+ui --> GSM : shows the list of entries in the agenda\n and the list of vehicles and asks to select one of each
+
+GSM -> ui : selects entry and vehicles
+
+ui -> ctrl : assignVehiclesToAgendaEntry(selectedEntry, selectedVehicles)
+activate ctrl
+
+ctrl -> agendaRepo : getAgendaEntry(selectedEntry.description, selectedEntry.greenSpace)
+activate agendaRepo
+agendaRepo --> ctrl : agendaEntry
+deactivate agendaRepo
+
+ctrl -> vehicleRepo : getVehicles(selectedVehicles)
+activate vehicleRepo
+vehicleRepo --> ctrl : vehicles
+deactivate vehicleRepo
+
+ctrl -> agendaEntry : setAssociatedVehicles(vehicles)
+activate agendaEntry
+deactivate agendaEntry
+
+ctrl -> agendaRepo : save(agendaEntry)
+activate agendaRepo
+agendaRepo --> ctrl : success/insuccess
+deactivate agendaRepo
+
+ctrl --> ui : success/insuccess
+deactivate ctrl
+
+ui --> GSM : shows (in)success message
+deactivate ui
+
+deactivate GSM
+
+@enduml

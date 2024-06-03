@@ -1,80 +1,106 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
+import pt.ipp.isep.dei.esoft.project.application.session.ApplicationSession;
+import pt.ipp.isep.dei.esoft.project.domain.AgendaEntry;
+import pt.ipp.isep.dei.esoft.project.domain.Collaborator;
+import pt.ipp.isep.dei.esoft.project.domain.Team;
+import pt.ipp.isep.dei.esoft.project.application.session.emailService.EmailService;
 import pt.ipp.isep.dei.esoft.project.domain.Vehicle;
-import pt.ipp.isep.dei.esoft.project.domain.ToDoEntry;
-import pt.ipp.isep.dei.esoft.project.repository.*;
+import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
+import pt.ipp.isep.dei.esoft.project.dto.TeamDTO;
+import pt.ipp.isep.dei.esoft.project.mappers.AgendaEntryMapper;
+import pt.ipp.isep.dei.esoft.project.mappers.TeamMapper;
+import pt.ipp.isep.dei.esoft.project.repository.AgendaEntryRepository;
+import pt.ipp.isep.dei.esoft.project.repository.Repositories;
+import pt.ipp.isep.dei.esoft.project.repository.TeamRepository;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.List;
 
 /**
- * Controller class responsible for managing the assignment of vehicles to entries in the agenda.
+ * The type Vehicles to agenda entry controller.
  */
 public class AssignVehiclesController {
+    private AgendaEntryRepository agendaEntryRepository;
     private VehicleRepository vehicleRepository;
-    private ToDoEntryRepository toDoEntryRepository;
-    AuthenticationController authenticationController = new AuthenticationController();
+    private final AgendaEntryMapper agendaEntryMapper = new AgendaEntryMapper();
+    private final TeamMapper teamMapper = new TeamMapper();
+    private final AuthenticationController authenticationController = new AuthenticationController();
 
     /**
-     * Constructor for AssignVehiclesController.
+     * Instantiates a new Team to agenda entry controller.
      */
-    public AssignVehiclesController() {
-        getToDoEntryRepository();
-        getVehicleRepository();
+    public TeamToAgendaEntryController() {
+        getAgendaEntryRepository();
+        this.teamRepository= Repositories.getInstance().getTeamRepository();
     }
 
     /**
-     * Retrieves the toDoEntry repository.
+     * Show available teams dto list.
      *
-     * @return The toDoEntry repository.
+     * @return the list
      */
-    private ToDoEntryRepository getToDoEntryRepository() {
-        if (toDoEntryRepository == null) {
-            Repositories repositories = Repositories.getInstance();
-            toDoEntryRepository = repositories.getToDoEntryRepository();
+    public List<TeamDTO> showAvailableTeamsDTO() {
+        var teams = teamRepository.getTeams();
+        return teamMapper.toDtoList(teams);
+    }
+
+    /**
+     * Gets agenda entries dto without team.
+     *
+     * @return the agenda entries dto without team
+     */
+    public ArrayList<AgendaEntryDTO> getAgendaEntriesDTOWithoutTeam() {
+        System.out.println(authenticationController.getCurrentUserEmail());
+        ArrayList<AgendaEntry> agendaEntryList = agendaEntryRepository.getAgendaEntryListWithoutTeam(authenticationController.getCurrentUserEmail());
+        System.out.println(agendaEntryList);
+        return agendaEntryMapper.toDtoList(agendaEntryList);
+    }
+
+
+    /**
+     * Assign team to agenda entry boolean.
+     *
+     * @param dto     the dto
+     * @param teamDTO the team dto
+     * @return the boolean
+     */
+    public boolean assignTeamToAgendaEntry(AgendaEntryDTO dto, TeamDTO teamDTO) {
+        var entry= agendaEntryRepository.getAgendaEntry(dto.description, dto.greenSpace);
+        if (entry == null) {
+            throw new InputMismatchException("Agenda Entry not found!");
         }
-        return toDoEntryRepository;
-    }
 
-    /**
-     * Retrieves the vehicle repository.
-     *
-     * @return The vehicle repository.
-     */
-    private VehicleRepository getVehicleRepository() {
-        if (vehicleRepository == null) {
-            Repositories repositories = Repositories.getInstance();
-            vehicleRepository = repositories.getVehicleRepository();
+        var team = teamRepository.getTeamByCollaborators(teamDTO.getCollaborators());
+        if (team == null) {
+            throw new InputMismatchException("Team not found!");
         }
-        return vehicleRepository;
+
+        if (agendaEntryRepository.assignTeam(entry, team)) {
+            sendNotificationEmails(entry.getAssociatedTeam());
+            return true;
+        }
+
+        return false;
     }
 
-    /**
-     * Gets the list of entries.
-     *
-     * @return The list of entries.
-     */
-    public ArrayList<ToDoEntry> getToDoEntryList() {
-        return toDoEntryRepository.getToDoEntryList(authenticationController.getCurrentUserEmail());
+    private void sendNotificationEmails(Team team) {
+        var collaborators = team.getCollaborators();
+        for (Collaborator collaborator : collaborators) {
+            String email = collaborator.getEmail();
+            String body = "Hello " + collaborator.getName() + ",\nYou have been assigned to a new agenda entry!";
+            EmailService emailService= ApplicationSession.getEmailService();
+            emailService.sendEmail(email, body);
+        }
     }
 
-    /**
-     * Gets the list of vehicles.
-     *
-     * @return The list of vehicles.
-     */
-    public ArrayList<Vehicle> getVehicleList() {
-        return vehicleRepository.getVehicleList();
-    }
-
-    /**
-     * Assigns vehicles to an entry.
-     *
-     * @param toDoEntry    The entry to which vehicles will be assigned.
-     * @param vehiclesList The list of vehicles to be assigned.
-     * @return True if the vehicles were assigned successfully, false otherwise.
-     */
-    public boolean assignVehicles(ToDoEntry toDoEntry, ArrayList<Vehicle> vehiclesList) {
-        return toDoEntryRepository.assignVehicles(toDoEntry, vehiclesList);
+    private AgendaEntryRepository getAgendaEntryRepository() {
+        if (agendaEntryRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+            agendaEntryRepository = repositories.getAgendaEntryRepository();
+        }
+        return agendaEntryRepository;
     }
 }

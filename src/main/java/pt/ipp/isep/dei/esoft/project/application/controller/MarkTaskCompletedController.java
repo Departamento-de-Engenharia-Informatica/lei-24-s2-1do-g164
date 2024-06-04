@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
+import pt.ipp.isep.dei.esoft.project.application.session.ApplicationSession;
 import pt.ipp.isep.dei.esoft.project.domain.AgendaEntry;
 import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
@@ -18,6 +19,7 @@ public class MarkTaskCompletedController {
     private AgendaEntryRepository agendaEntryRepository;
     private AuthenticationController authenticationController;
     private AgendaEntryMapper agendaEntryMapper;
+
 
     public MarkTaskCompletedController() {
         this.agendaEntryRepository = getAgendaEntryRepository();
@@ -40,7 +42,7 @@ public class MarkTaskCompletedController {
      */
     public ArrayList<AgendaEntryDTO> getAgendaEntryWithoutDoneDTOList() {
         String currentUserEmail = authenticationController.getCurrentUserEmail();
-        ArrayList<AgendaEntry> agendaEntryList = agendaEntryRepository.getAgendaEntryWithoutDoneList(currentUserEmail);
+        ArrayList<AgendaEntry> agendaEntryList = agendaEntryRepository.getEntrysByCollaborator(currentUserEmail);
         return agendaEntryMapper.toDtoList(agendaEntryList);
     }
 
@@ -60,4 +62,11 @@ public class MarkTaskCompletedController {
         }
         return agendaEntryRepository.updateStatus(entry, EntryStatusENUM.DONE);
     }
+
+    public ArrayList<AgendaEntryDTO> getAgendaEntryWithoutCancelledDTOList() {
+        ArrayList<AgendaEntry> agendaEntryListGSM = agendaEntryRepository.getAgendaEntryListWithoutCancelled(authenticationController.getCurrentUserEmail());
+        System.out.println("lista sem cancelados: " + agendaEntryListGSM);
+        return agendaEntryMapper.toDtoList(agendaEntryListGSM);
+    }
+
 }

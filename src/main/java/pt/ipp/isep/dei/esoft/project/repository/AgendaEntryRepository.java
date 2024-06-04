@@ -91,6 +91,7 @@ public class AgendaEntryRepository implements Serializable {
         return agendaEntryListGSM;
     }
 
+
     public boolean updateDate(AgendaEntry updatedEntry, LocalDate date) {
         for (AgendaEntry entry : agendaEntryList) {
             if (entry.equals(updatedEntry)) {
@@ -138,5 +139,21 @@ public class AgendaEntryRepository implements Serializable {
                 return ag;
         }
         return null;
+    }
+
+    public ArrayList<AgendaEntry> getEntrysByCollaborator(String currentUserEmail) {
+        ArrayList<AgendaEntry> agendaEntryListCollaborator = new ArrayList<>();
+        for (AgendaEntry agendaEntry : this.agendaEntryList) {
+            Team team = agendaEntry.getAssociatedTeam();
+            for (Collaborator c : team.getCollaborators()){
+                if (c.getEmail().equals(currentUserEmail) &&
+                        !agendaEntry.getEntryStatus().equals(EntryStatusENUM.CANCELLED) &&
+                        !agendaEntry.getEntryStatus().equals(EntryStatusENUM.DONE)) {
+                    agendaEntryListCollaborator.add(agendaEntry);
+                }
+            }
+
+        }
+        return agendaEntryListCollaborator;
     }
 }

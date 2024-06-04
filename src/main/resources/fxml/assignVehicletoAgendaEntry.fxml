@@ -4,32 +4,32 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="237.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.controllers.AssignVehiclesGUIController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="355.0" prefWidth="490.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.controllers.AssignVehiclesGUIController">
     <top>
-        <VBox alignment="CENTER" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #2E7D32;">
+        <VBox alignment="CENTER" prefHeight="58.0" prefWidth="408.0" style="-fx-background-color: #2E7D32;">
             <children>
                 <Label prefHeight="35.0" prefWidth="360.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Assign Vehicle to Agenda Entry" textFill="WHITE" />
             </children>
         </VBox>
     </top>
     <center>
-        <GridPane alignment="CENTER" hgap="10.0" prefHeight="220.0" prefWidth="435.0" style="-fx-background-color: #F1F8E9;" vgap="10.0">
+        <GridPane alignment="CENTER" hgap="10.0" prefHeight="298.0" prefWidth="490.0" style="-fx-background-color: #F1F8E9;" vgap="10.0">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="420.1636252259817" minWidth="10.0" prefWidth="345.5636238943057" />
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
                 <Label text="Select Agenda Entry:" />
-                <Label prefHeight="17.0" prefWidth="82.0" text="Select Vehicle:" GridPane.rowIndex="1" />
-                <ListView fx:id="vehicleListSelection" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <Button fx:id="btnConfirm" mnemonicParsing="false" onAction="#handleAssignVehicles" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #388E3C; -fx-text-fill: white;" text="Assign Vehicle" GridPane.rowIndex="2" />
-                <Button fx:id="btnCancel" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #D32F2F; -fx-text-fill: white;" text="Cancel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <ComboBox fx:id="cmbAgendaEntries" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
+                <Label prefHeight="17.0" prefWidth="98.0" text="Select Vehicles:" GridPane.rowIndex="1" />
+                <ListView fx:id="vehicleListSelection" prefWidth="200.0" GridPane.rowIndex="2" />
+                <Button fx:id="btnConfirm" mnemonicParsing="false" onAction="#handleAssignVehicles" prefHeight="40.0" prefWidth="163.0" style="-fx-background-color: #388E3C; -fx-text-fill: white;" text="Assign Vehicle" GridPane.rowIndex="3" />
+                <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#closeWindow" prefHeight="40.0" prefWidth="172.0" style="-fx-background-color: #D32F2F; -fx-text-fill: white;" text="Cancel" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+            <ComboBox fx:id="cmbAgendaEntries" prefHeight="26.0" prefWidth="298.0" GridPane.halignment="RIGHT" />
             </children>
             <padding>
                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

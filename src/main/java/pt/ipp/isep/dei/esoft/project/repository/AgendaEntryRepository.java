@@ -23,13 +23,6 @@ public class AgendaEntryRepository implements Serializable {
         return false;
     }
 
-    public boolean assignVehicles(AgendaEntry agendaEntry, ArrayList<Vehicle> vehicles) {
-        if (agendaEntryList.contains(agendaEntry)) {
-            agendaEntry.setAssociatedVehicles(vehicles);
-            return true;
-        }
-        return false;
-    }
     private boolean agendaEntryIsUnique(AgendaEntry ag1) {
         for (AgendaEntry ag : agendaEntryList) {
             if (ag.equals(ag1)) {
@@ -138,5 +131,15 @@ public class AgendaEntryRepository implements Serializable {
                 return ag;
         }
         return null;
+    }
+
+    public boolean assignVehicles(AgendaEntry agendaEntry, ArrayList<Vehicle> vehicleList) {
+        for (AgendaEntry entry : agendaEntryList) {
+            if (entry.equals(agendaEntry)) {
+                entry.setAssociatedVehicles(vehicleList);
+                return true;
+            }
+        }
+        return false;
     }
 }

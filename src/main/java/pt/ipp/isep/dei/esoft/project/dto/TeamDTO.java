@@ -43,6 +43,9 @@ public class TeamDTO {
 
     @Override
     public String toString() {
+        if(collaboratorNames == null){
+            return "No Team";
+        }
         return collaboratorNames.toString().replace("[", "").replace("]", "");
     }
 }

@@ -15,6 +15,10 @@ public class VehicleMapper {
         return new VehicleDTO(vehicle.getVehicleID(), vehicle.getModel(), vehicle.getBrand(), vehicle.getType(), vehicle.getGrossWeight(), vehicle.getTare(), vehicle.getCurrentKm(), vehicle.getRegisterDate(), vehicle.getAcquisitionDate(), vehicle.getCheckupFrequency());
     }
 
+    public Vehicle toEntity(VehicleDTO vehicleDTO){
+        return new Vehicle(vehicleDTO.brand, vehicleDTO.model, vehicleDTO.vehicleID, vehicleDTO.type, vehicleDTO.grossWeight, vehicleDTO.tare, vehicleDTO.currentKm, vehicleDTO.registerDate, vehicleDTO.acquisitionDate, vehicleDTO.checkupFrequency);
+    }
+
 
     public ArrayList<VehicleDTO> toDtoList(List<Vehicle> vehicleList){
         ArrayList<VehicleDTO> vehicleDTOList = new ArrayList<>();
@@ -22,6 +26,14 @@ public class VehicleMapper {
             vehicleDTOList.add(toDTO(v));
         }
         return vehicleDTOList;
+    }
+
+    public ArrayList<Vehicle> toEntityList(List<VehicleDTO> vehicleDTOList){
+        ArrayList<Vehicle> vehicleList = new ArrayList<>();
+        for(VehicleDTO v : vehicleDTOList){
+            vehicleList.add(toEntity(v));
+        }
+        return vehicleList;
     }
 
 }

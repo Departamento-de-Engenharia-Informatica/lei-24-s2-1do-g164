@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
+import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 import pt.ipp.isep.dei.esoft.project.dto.VehicleDTO;
 import pt.ipp.isep.dei.esoft.project.mappers.AgendaEntryMapper;
@@ -18,6 +19,8 @@ public class AssignVehiclesController {
 
     private AgendaEntryMapper mapperAgenda;
     private VehicleMapper mapperVehicle;
+    private final AuthenticationController authenticationController = new AuthenticationController();
+
 
     /**
      * Constructor for AssignVehiclesController.
@@ -36,7 +39,7 @@ public class AssignVehiclesController {
      * @return The list of AgendaEntries.
      */
     public List<AgendaEntryDTO> getAgendaEntryListDTO() {
-        var entries = agendaEntryRepository.getAgendaEntryList();
+        var entries = agendaEntryRepository.getAgendaEntryWithoutDoneList(authenticationController.getCurrentUserEmail());
         return mapperAgenda.toDtoList(entries);
     }
 
@@ -58,17 +61,7 @@ public class AssignVehiclesController {
      * @return True if the vehicles were assigned successfully, false otherwise.
      */
 
-    public boolean assignVehciles(AgendaEntryDTO agendaEntry, ArrayList<VehicleDTO> vehiclesList) {
-        var entry= agendaEntryRepository.getAgendaEntry(agendaEntry.description, agendaEntry.greenSpace);
-        if (entry == null) {
-            throw new InputMismatchException("Agenda Entry not found!");
-        }
-        ArrayList<String> vehiclesID = new ArrayList<>();
-        for (VehicleDTO vehicleDTO: vehiclesList) {
-            vehiclesID.add(vehicleDTO.getVehicleID());
-
-        }
-        var vehicles = vehicleRepository.getVehiclesByIds(vehiclesID);
-        return this.agendaEntryRepository.assignVehicles(entry, vehicles);
+    public boolean assignVehciles(AgendaEntryDTO agendaEntry, List<VehicleDTO> vehiclesList) {
+        return agendaEntryRepository.assignVehicles(mapperAgenda.toEntity(agendaEntry), mapperVehicle.toEntityList(vehiclesList));
     }
 }

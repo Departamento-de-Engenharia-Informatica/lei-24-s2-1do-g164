@@ -108,6 +108,9 @@ public class Team implements Serializable {
      */
     @Override
     public String toString() {
+        if(this.collaborators.size() == 0){
+            return "No team";
+        }
             return "Team: " + collaborators;
         }
 

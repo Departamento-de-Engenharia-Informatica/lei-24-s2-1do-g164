@@ -92,6 +92,11 @@ public class AgendaEntryDTO {
     }
 
     public String toString() {
+        String vehiclesString = "";
+        for (Vehicle vehicle : vehicles){
+            vehiclesString = vehiclesString + vehicle.getVehicleID() + " " + vehicle.getModel() + " (" + vehicle.getBrand() + "), ";
+            vehiclesString = removeLastCharacter(vehiclesString);
+        }
         if (team.getCollaborators().isEmpty() && vehicles.isEmpty()){
             return  description + " - " +
                     "Expected Duration: " + expectedDuration + " - " +
@@ -102,12 +107,27 @@ public class AgendaEntryDTO {
                     "Team: No Team" + " - " +
                     "Vehicles: No Vehicles";
         }
-
-        String vehiclesString = "";
-        for (Vehicle vehicle : vehicles){
-            vehiclesString = vehiclesString + vehicle.getBrand() + " " + vehicle.getModel() + " ";
+        if(team.getCollaborators().isEmpty()){
+            return  description + " - " +
+                    "Expected Duration: " + expectedDuration + " - " +
+                    "Status: " + entryStatus + " - " +
+                    "Green Space: " + greenSpace.getName() + " - " +
+                    "Urgency Degree: " + urgencyDegree + " - " +
+                    "Date: " + date.toString() + " - " +
+                    "Team: No Team" + " - " +
+                    "Vehicles: " + vehiclesString;
         }
         System.out.println(vehiclesString);
+        if(vehicles.isEmpty()){
+            return  description + " - " +
+                    "Expected Duration: " + expectedDuration + " - " +
+                    "Status: " + entryStatus + " - " +
+                    "Green Space: " + greenSpace.getName() + " - " +
+                    "Urgency Degree: " + urgencyDegree + " - " +
+                    "Date: " + date.toString() + " - " +
+                    "Team: " + teamMapper.toDto(team).toString() + " - " +
+                    "Vehicles: No Vehicles";
+        }
         return  description + " - " +
                 "Expected Duration: " + expectedDuration + " - " +
                 "Status: " + entryStatus + " - " +
@@ -117,5 +137,12 @@ public class AgendaEntryDTO {
                 "Team: " + teamMapper.toDto(team).toString() + " - " +
                 "Vehicles: " + vehiclesString;
 
+    }
+
+    private String removeLastCharacter(String str) {
+        if (str != null && str.length() > 0 && str.charAt(str.length() - 1) == 'x') {
+            str = str.substring(0, str.length() - 1);
+        }
+        return str;
     }
 }

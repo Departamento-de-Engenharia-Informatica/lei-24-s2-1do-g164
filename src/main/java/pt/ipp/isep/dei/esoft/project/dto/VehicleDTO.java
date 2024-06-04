@@ -4,16 +4,16 @@ import pt.ipp.isep.dei.esoft.project.repository.enums.VehicleTypeENUM;
 
 public class VehicleDTO {
 
-    private String brand;
-    private String model;
-    private String vehicleID;
-    private VehicleTypeENUM type;
-    private double grossWeight;
-    private double tare;
-    private int currentKm;
-    private String registerDate;
-    private String acquisitionDate;
-    private int checkupFrequency;
+    public String brand;
+    public String model;
+    public String vehicleID;
+    public VehicleTypeENUM type;
+    public double grossWeight;
+    public double tare;
+    public int currentKm;
+    public String registerDate;
+    public String acquisitionDate;
+    public int checkupFrequency;
 
         public VehicleDTO() {
         }

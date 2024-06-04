@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.ui.gui.controllers;
 
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -10,6 +12,7 @@ import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 import pt.ipp.isep.dei.esoft.project.dto.VehicleDTO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The type Vehicles to agenda menu gui controller.
@@ -49,11 +52,18 @@ public class AssignVehiclesGUIController {
         @FXML
         public void initialize() {
             refreshComboBox();
+            vehicleListSelection.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
         }
 
         public void  refreshComboBox() {
             cmbAgendaEntries.getItems().setAll(controller.getAgendaEntryListDTO());
             vehicleListSelection.getItems().setAll(controller.getVehiclesListDTO());
+        }
+
+        private void selectionChanged(ObservableValue<? extends VehicleDTO> observable, VehicleDTO oldValue, VehicleDTO newValue) {
+            ObservableList<VehicleDTO> selectedItems = vehicleListSelection.getSelectionModel().getSelectedItems();
+            String getSelectedItems = selectedItems.toString();
         }
         /**
          * Handle assign vehicles.
@@ -64,8 +74,8 @@ public class AssignVehiclesGUIController {
         public void handleAssignVehicles(ActionEvent event) {
             try {
                 AgendaEntryDTO selectedEntry = cmbAgendaEntries.getValue();
-                vehicleListSelection.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-                ArrayList<VehicleDTO> vehicleList = (ArrayList<VehicleDTO>) vehicleListSelection.getSelectionModel().getSelectedItems();
+                List<VehicleDTO> vehicleList = vehicleListSelection.getSelectionModel().getSelectedItems().stream().toList();
+                System.out.println(vehicleList);
 
                 if (selectedEntry == null) {
                     showAlert(Alert.AlertType.ERROR, "Cancel Entry Error", "No entry selected.");
@@ -124,7 +134,7 @@ public class AssignVehiclesGUIController {
             alert.setHeaderText(message);
             alert.showAndWait();
         }
-    }
+}
 
 
 

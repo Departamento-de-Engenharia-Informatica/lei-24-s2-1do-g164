@@ -26,7 +26,7 @@ left to right direction
     "VFM" --> UC6
     usecase "UC 007 - Register vehicle for check-up" as UC7
     "VFM" --> UC7
-    usecase "UC 008 - List the vehicles needing a check-up" as UC
+    usecase "UC 008 - List the vehicles needing a check-up" as UC8
     "VFM" --> UC8
     usecase "UC 001 - Create a skill to be apointed to a collaborator" as UC1
     "HRM" --> UC1

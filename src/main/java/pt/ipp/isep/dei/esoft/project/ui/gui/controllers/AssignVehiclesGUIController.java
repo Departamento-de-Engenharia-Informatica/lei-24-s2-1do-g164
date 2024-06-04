@@ -3,14 +3,13 @@ package pt.ipp.isep.dei.esoft.project.ui.gui.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import pt.ipp.isep.dei.esoft.project.application.controller.AssignVehiclesController;
 import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 import pt.ipp.isep.dei.esoft.project.dto.VehicleDTO;
+
+import java.util.ArrayList;
 
 /**
  * The type Vehicles to agenda menu gui controller.
@@ -22,13 +21,13 @@ public class AssignVehiclesGUIController {
          * The Cmb agenda entries.
          */
         @FXML
-        ComboBox<AgendaEntryDTO> cmbAgendaEntries;
+        ListView<VehicleDTO> vehicleListSelection;
 
         /**
          * The Cmb vehicles.
          */
         @FXML
-        ComboBox<VehicleDTO> cmbVehicles;
+        ComboBox<AgendaEntryDTO> cmbAgendaEntries;
 
         /**
          * The Btn cancel.
@@ -39,7 +38,7 @@ public class AssignVehiclesGUIController {
          * The Txt area.
          */
         @FXML
-        TextField txtArea;
+        Button btnConfirm;
 
         private AgendaMenuGUIController agendaMenuGUIController;
         private AssignVehiclesController controller = new AssignVehiclesController();
@@ -54,7 +53,7 @@ public class AssignVehiclesGUIController {
 
         public void  refreshComboBox() {
             cmbAgendaEntries.getItems().setAll(controller.getAgendaEntryListDTO());
-            cmbVehicles.getItems().setAll(controller.getVehiclesListDTO());
+            vehicleListSelection.getItems().setAll(controller.getVehiclesListDTO());
         }
         /**
          * Handle assign vehicles.
@@ -65,18 +64,19 @@ public class AssignVehiclesGUIController {
         public void handleAssignVehicles(ActionEvent event) {
             try {
                 AgendaEntryDTO selectedEntry = cmbAgendaEntries.getValue();
-                VehicleDTO vehicleEntry = cmbVehicles.getValue();
+                vehicleListSelection.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+                ArrayList<VehicleDTO> vehicleList = (ArrayList<VehicleDTO>) vehicleListSelection.getSelectionModel().getSelectedItems();
 
                 if (selectedEntry == null) {
                     showAlert(Alert.AlertType.ERROR, "Cancel Entry Error", "No entry selected.");
                     return;
                 }
 
-                if (vehicleEntry == null) {
+                if (vehicleList == null) {
                     showAlert(Alert.AlertType.ERROR, "Cancel Entry Error",  "No team selected");
                 }
 
-                if (controller.assignVehciles(selectedEntry,vechilesDTOlist)) {
+                if (controller.assignVehciles(selectedEntry, vehicleList)) {
                     showAlert(Alert.AlertType.INFORMATION, "Assign Vehicle", "Vehicle assigned successfully to agenda entry.");
                     agendaMenuGUIController.update();
                     handleClose();
@@ -90,7 +90,11 @@ public class AssignVehiclesGUIController {
 
         }
 
-        /**
+    public void setAgendaMenuGUIController(AgendaMenuGUIController agendaMenuGUIController) {
+        this.agendaMenuGUIController = agendaMenuGUIController;
+    }
+
+    /**
          * Close window.
          *
          * @param event the event

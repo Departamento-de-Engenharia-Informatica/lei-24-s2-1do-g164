@@ -19,9 +19,9 @@ As a GSM, I want to add a new entry to the To-Do List.
 >
 > **Answer:** Hours and/or days.
 
-> **Question:** What states does a To-Do List entry have?
+> **Question:** What's the default state of a To-Do List Entry?
 >
-> **Answer:** "Pending" as default for to-do list entries and "Planned" as default for Agenda entries, sounds good.
+> **Answer:** "Pending" as default for to-do list entries and "Planned" as default for Agenda entries sounds good.
 
 ### 1.3. Acceptance Criteria
 

@@ -109,6 +109,23 @@ public class AgendaMenuGUIController {
         }
     }
 
+    public void openAssignVehiclesWindow(ActionEvent event) {
+        try {
+            File file = new File("src\\main\\resources\\fxml\\assignVehicletoAgendaEntry.fxml");
+            FXMLLoader loader = new FXMLLoader(file.toURL());
+            Parent root = loader.load();
+            AssignVehiclesGUIController controller1 = loader.getController();
+            controller1.setAgendaMenuGUIController(this);
+            Stage newStage = new Stage();
+            newStage.setTitle("Postpone Agenda Entry");
+            newStage.setScene(new Scene(root));
+            newStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     public void openCancelAgendaEntryWindow(ActionEvent event) {

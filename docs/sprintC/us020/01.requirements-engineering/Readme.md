@@ -18,12 +18,12 @@ As a GSM, I want to register a Green Space.
 > **Question:** In which unit should the area be measured in?
 >
 > **Answer:** Areas are measured in hectares.
-> 
-> > **Question:** Can two Green Spaces have the same name?
+
+> **Question:** Can two Green Spaces have the same name?
 >
 > **Answer:** No.
->
-> > **Question:** Can two Green Spaces have the same address?
+
+> **Question:** Can two Green Spaces have the same address?
 >
 > **Answer:** No.
 ### 1.3. Acceptance Criteria
@@ -40,8 +40,12 @@ As a GSM, I want to register a Green Space.
 
 **Input Data:**
 
-* name
-* area
+* Typed Data:
+    * Name
+    * Area
+    * Address
+* Selected Data:
+    * Green Space Type
 
 **Output Data:**
 
@@ -53,4 +57,4 @@ As a GSM, I want to register a Green Space.
 
 ### 1.7 Other Relevant Remarks
 
-* 
+* Each GSM has his own Green Spaces and can't access other GSMs' green spaces.

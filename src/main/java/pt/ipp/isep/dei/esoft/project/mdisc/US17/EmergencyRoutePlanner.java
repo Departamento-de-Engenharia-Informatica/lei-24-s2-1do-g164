@@ -256,6 +256,47 @@ public class EmergencyRoutePlanner {
                 System.out.print(" -> ");
             }
         }
+
+        PrintWriter writer = new PrintWriter(new File("src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US17/all_output.csv"));
+
+//        // Iterate over all vertices
+//        for (int p = 0; p < names.length; p++) {
+//            // Skip the "AP" itself
+//            if (p == target) continue;
+//
+//            // Calculate the shortest path to the "AP"
+//            ArrayList<Integer> finalPathP = new ArrayList<>();
+//            Edge[] edgesP = dijkstra(graph, p, target, names, finalPathP);
+//
+//            // Write the path to the CSV file
+//            for (Edge edge : edgesP) {
+//                writer.println(names[edge.from] + ";" + names[edge.to] + ";" + edge.weight);
+//            }
+//        }
+
+        for (int p = 0; p < names.length; p++) {
+            // Skip the "AP" itself
+            if (p == target) continue;
+
+            // Calculate the shortest path to the "AP"
+            ArrayList<Integer> finalPathP = new ArrayList<>();
+            Edge[] edgesP = dijkstra(graph, p, target, names, finalPathP);
+
+            // Calculate the total weight of the path
+            int totalWeight = 0;
+            for (Edge edge : edgesP) {
+                totalWeight += edge.weight;
+            }
+
+            // Write the entire path as a single line in the CSV file
+            for (int i = 0; i < finalPathP.size() - 1; i++) {
+                writer.print(names[finalPathP.get(i)] + ";");
+            }
+            writer.println(names[target] + ";" + totalWeight);
+        }
+
+        // Close the CSV file
+        writer.close();
         System.out.println();
 
         writeGraphToCSV(graph, "src/main/java/pt/ipp/isep/dei/esoft/project/mdisc/files/US17/US17_initial_graph.csv", names);

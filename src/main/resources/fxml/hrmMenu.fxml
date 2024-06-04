@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="borderPane" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.controllers1_8.HRMMenuGUIController">
+    <top>
+        <VBox alignment="CENTER" prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: #2E7D32;">
+            <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Green Spaces Manager Menu" textFill="WHITE" />
+        </VBox>
+    </top>
+    <center>
+        <VBox alignment="CENTER" prefHeight="350.0" prefWidth="400.0" spacing="30.0" style="-fx-background-color: #F1F8E9;">
+            <Button fx:id="btnSkills" mnemonicParsing="false" onAction="#openSkillsMenuWindow" prefHeight="30.0" prefWidth="114.0" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Skills" />
+            <Button fx:id="btnJobs" mnemonicParsing="false" onAction="#openJobsMenuWindow" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Jobs" />
+            <Button fx:id="btnCollaborators" mnemonicParsing="false" onAction="#openCollaboratorsMenuWindow" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Collaborators" />
+         <Button fx:id="btnTeams" layoutX="155.0" layoutY="200.0" mnemonicParsing="false" onAction="#openTeamsMenuWindow" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Teams" />
+            <Button fx:id="exitButton" mnemonicParsing="false" onAction="#closeWindow" style="-fx-background-color: #D32F2F; -fx-text-fill: white; -fx-font-size: 14px;" text="Logout" />
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </VBox>
+    </center>
+</BorderPane>

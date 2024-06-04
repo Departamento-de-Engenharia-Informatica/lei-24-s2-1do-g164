@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import pt.ipp.isep.dei.esoft.project.ui.gui.controllers.GSMMenuGUIController;
+import pt.ipp.isep.dei.esoft.project.ui.gui.controllers20_29.GSMMenuGUIController;
 
 import java.io.IOException;
 

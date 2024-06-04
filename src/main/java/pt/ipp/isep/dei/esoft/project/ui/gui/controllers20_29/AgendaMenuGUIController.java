@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.esoft.project.ui.gui.controllers;
+package pt.ipp.isep.dei.esoft.project.ui.gui.controllers20_29;
 
 
 import javafx.event.ActionEvent;
@@ -12,7 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import pt.ipp.isep.dei.esoft.project.application.controller.CancelAgendaEntryController;
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterAgendaEntryController;
 import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 

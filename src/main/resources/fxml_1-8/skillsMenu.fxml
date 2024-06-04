@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="borderPane" prefHeight="494.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.controllers1_8.SkillsMenuGUIController">
+    <top>
+        <VBox alignment="CENTER" prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #2E7D32;">
+            <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Skills Menu" textFill="WHITE" />
+        </VBox>
+    </top>
+    <bottom>
+        <GridPane alignment="CENTER" hgap="10.0" prefHeight="49.0" prefWidth="640.0" style="-fx-background-color: #F1F8E9;" vgap="10.0" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS" minWidth="100.0" />
+                <ColumnConstraints hgrow="ALWAYS" minWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="50.0" vgrow="ALWAYS" />
+            </rowConstraints>
+            <children>
+                <VBox alignment="CENTER" GridPane.columnIndex="0">
+                    <Button fx:id="btnRegisterSkill" maxWidth="Infinity" mnemonicParsing="false" onAction="#openRegisterSkillWindow" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Register Skills" />
+                </VBox>
+                <VBox alignment="CENTER" GridPane.columnIndex="1">
+                    <Button fx:id="btnCancel" maxWidth="Infinity" mnemonicParsing="false" onAction="#closeWindow" style="-fx-background-color: #D32F2F; -fx-text-fill: white; -fx-font-size: 14px;" text="Exit" />
+                </VBox>
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+        </GridPane>
+    </bottom>
+    <center>
+        <TextArea fx:id="txtText" editable="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="450.0" prefWidth="743.0" style="-fx-control-inner-background: #C8E6C9; -fx-font-family: 'Fira Code'; -fx-font-size: 14px; -fx-text-fill: #2E7D32; -fx-border-color: #81C784; -fx-border-width: 2;" wrapText="true" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+            </BorderPane.margin>
+         <font>
+            <Font size="15.0" />
+         </font>
+        </TextArea>
+    </center>
+</BorderPane>

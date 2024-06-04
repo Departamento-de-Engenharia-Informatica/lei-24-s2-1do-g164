@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="borderPane" prefHeight="600.0" prefWidth="763.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.controllers.MyAgendaGUIController">
+<BorderPane fx:id="borderPane" prefHeight="600.0" prefWidth="763.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.controllers20_29.MyAgendaGUIController">
     <top>
         <VBox alignment="CENTER" prefHeight="50.0" prefWidth="763.0" style="-fx-background-color: #2E7D32;">
             <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="My Agenda" textFill="WHITE" />

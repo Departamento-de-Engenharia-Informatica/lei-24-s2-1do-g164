@@ -26,9 +26,11 @@ module pt.ipp.isep.dei.esoft.project.ui.gui {
     opens pt.ipp.isep.dei.esoft.project.ui.console.authorization to javafx.fxml;
     opens pt.ipp.isep.dei.esoft.project.ui.console.menu to javafx.fxml;
     opens pt.ipp.isep.dei.esoft.project.ui.console.utils to javafx.fxml;
-    opens pt.ipp.isep.dei.esoft.project.ui.gui.controllers to javafx.fxml;
+    opens pt.ipp.isep.dei.esoft.project.ui.gui.controllers20_29 to javafx.fxml;
     exports pt.ipp.isep.dei.esoft.project.ui.gui;
-    exports pt.ipp.isep.dei.esoft.project.ui.gui.controllers;
+    exports pt.ipp.isep.dei.esoft.project.ui.gui.controllers20_29;
+    exports pt.ipp.isep.dei.esoft.project.ui.gui.controllers1_8 to javafx.fxml;
+    opens pt.ipp.isep.dei.esoft.project.ui.gui.controllers1_8 to javafx.fxml;
     opens pt.ipp.isep.dei.esoft.project.repository.enums to javafx.fxml;
     opens pt.ipp.isep.dei.esoft.project.application.session.emailService to javafx.fxml;
     opens pt.ipp.isep.dei.esoft.project.application.session.emailService.adapters to javafx.fxml;

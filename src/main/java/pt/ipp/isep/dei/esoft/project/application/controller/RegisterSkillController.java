@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
+import pt.ipp.isep.dei.esoft.project.domain.Skill;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.repository.SkillRepository;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.HrmUI;
@@ -97,6 +98,9 @@ public class RegisterSkillController {
         } while (!validPath);
 
         return skillsToAdd;
+    }
+    public ArrayList<Skill> getSkillsList() {
+        return skillRepository.getSkillList();
     }
 
     /**

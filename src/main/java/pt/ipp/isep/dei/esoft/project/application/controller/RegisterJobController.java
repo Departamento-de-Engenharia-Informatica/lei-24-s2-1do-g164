@@ -1,7 +1,10 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
+import pt.ipp.isep.dei.esoft.project.domain.Job;
 import pt.ipp.isep.dei.esoft.project.repository.JobRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
+
+import java.util.ArrayList;
 
 /**
  * Controller class responsible for handling job registration operations.
@@ -25,5 +28,9 @@ public class RegisterJobController {
      */
     public boolean registerJob(String jobName) {
         return jobRepository.registerJob(jobName);
+    }
+
+    public ArrayList<Job> getJobList() {
+        return jobRepository.getJobList();
     }
 }

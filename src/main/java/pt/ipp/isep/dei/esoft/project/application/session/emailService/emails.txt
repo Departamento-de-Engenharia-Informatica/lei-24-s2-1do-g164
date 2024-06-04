@@ -58,3 +58,15 @@ To: gabixux@gmail.com
 Body: Hello Gabi,
 You have been assigned to a new agenda entry!
 
+To: leonor@gmail.com
+Body: Hello Leonor,
+You have been assigned to a new agenda entry!
+
+To: dinis@gmail.com
+Body: Hello Dinis,
+You have been assigned to a new agenda entry!
+
+To: sandra@gmail.com
+Body: Hello Sandra,
+You have been assigned to a new agenda entry!
+

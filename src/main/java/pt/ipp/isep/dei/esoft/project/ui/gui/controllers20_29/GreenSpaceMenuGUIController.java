@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.esoft.project.ui.gui.controllers;
+package pt.ipp.isep.dei.esoft.project.ui.gui.controllers20_29;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,15 +7,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import pt.ipp.isep.dei.esoft.project.application.controller.ListGreenSpacesController;
-import pt.ipp.isep.dei.esoft.project.application.controller.RegisterGreenSpaceController;
-import pt.ipp.isep.dei.esoft.project.application.controller.RegisterToDoEntryController;
-import pt.ipp.isep.dei.esoft.project.application.session.ApplicationSession;
-import pt.ipp.isep.dei.esoft.project.application.session.sorting.SortingAlgorithm;
 import pt.ipp.isep.dei.esoft.project.dto.GreenSpaceDTO;
 
 

@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.esoft.project.ui.gui.controllers;
+package pt.ipp.isep.dei.esoft.project.ui.gui.controllers20_29;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -119,9 +119,10 @@ public class LoginMenuGUIController {
             VfmUI ui = new VfmUI();
             ui.run();
         } else if (role.getDescription().equalsIgnoreCase(controller.ROLE_HRM)) {
-            HrmUI ui = new HrmUI();
-            ui.run();
-        } else {
+            //HrmUI ui = new HrmUI();
+            //ui.run();
+            switchMenusGUI(event, "hrmMenu", controller.ROLE_HRM.toString());
+        }else {
             showAlert(Alert.AlertType.ERROR, "Access Denied", "No UI for users with role '" + role.getDescription() + "'");
         }
     }

@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="borderPane" prefHeight="700.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.controllers.AgendaMenuGUIController">
+<BorderPane fx:id="borderPane" prefHeight="700.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.controllers20_29.AgendaMenuGUIController">
     <top>
         <VBox alignment="CENTER" prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #2E7D32;">
             <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Agenda" textFill="WHITE" />

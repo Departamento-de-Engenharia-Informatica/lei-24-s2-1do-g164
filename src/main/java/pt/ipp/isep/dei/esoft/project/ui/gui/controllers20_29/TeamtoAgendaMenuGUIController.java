@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.esoft.project.ui.gui.controllers;
+package pt.ipp.isep.dei.esoft.project.ui.gui.controllers20_29;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -11,8 +11,6 @@ import pt.ipp.isep.dei.esoft.project.application.controller.TeamToAgendaEntryCon
 import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 import pt.ipp.isep.dei.esoft.project.dto.TeamDTO;
 import javafx.event.ActionEvent;
-
-import java.security.PublicKey;
 
 
 /**

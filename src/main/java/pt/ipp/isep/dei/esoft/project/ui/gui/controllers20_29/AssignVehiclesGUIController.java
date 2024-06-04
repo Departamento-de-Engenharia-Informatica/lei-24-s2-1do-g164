@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.esoft.project.ui.gui.controllers;
+package pt.ipp.isep.dei.esoft.project.ui.gui.controllers20_29;
 
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -11,7 +11,6 @@ import pt.ipp.isep.dei.esoft.project.application.controller.AssignVehiclesContro
 import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 import pt.ipp.isep.dei.esoft.project.dto.VehicleDTO;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

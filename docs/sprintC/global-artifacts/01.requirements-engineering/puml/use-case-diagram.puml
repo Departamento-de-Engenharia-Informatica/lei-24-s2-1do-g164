@@ -11,16 +11,9 @@ skinparam rectangle{
 left to right direction
 
     actor Collaborator
-
     actor GSU
     actor GSM
 
-
-
-    note right of Collaborator
-        Actor identified but still
-        no concrete use cases
-    end note
 
     note right of GSU
             Actor identified but still
@@ -33,7 +26,7 @@ left to right direction
     "VFM" --> UC6
     usecase "UC 007 - Register vehicle for check-up" as UC7
     "VFM" --> UC7
-    usecase "UC 008 - List the vehicles needing a check-up" as UC8
+    usecase "UC 008 - List the vehicles needing a check-up" as UC
     "VFM" --> UC8
     usecase "UC 001 - Create a skill to be apointed to a collaborator" as UC1
     "HRM" --> UC1
@@ -62,8 +55,10 @@ left to right direction
     GSM --> UC26
     usecase "UC 027 - List all green spaces managed by a GSM" as UC27
     GSM --> UC27
+
+
     usecase "UC 028 - Consult the tasks assigned between two dates" as UC28
-    GSM --> UC28
+    Collaborator --> UC28
     usecase "UC 029 - Mark a task as completed" as UC29
-    GSM --> UC29
+    Collaborator --> UC29
 @enduml

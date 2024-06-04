@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="556.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.controllers1_8.RegisterCollaboratorGUIController">
+    <bottom>
+        <FlowPane alignment="CENTER" hgap="20.0" prefWidth="400.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="btnRegister" defaultButton="true" mnemonicParsing="false" onAction="#registerCollaborator" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Register Collaborator" />
+                <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#closeWindow" style="-fx-background-color: #D32F2F; -fx-text-fill: white; -fx-font-size: 14px;" text="Cancel" />
+            </children>
+            <padding>
+                <Insets bottom="5.0" top="15.0" />
+            </padding>
+        </FlowPane>
+    </bottom>
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" />
+    </padding>
+   <left>
+        <GridPane alignment="CENTER" hgap="10.0" prefHeight="360.0" prefWidth="340.0" style="-fx-background-color: #ffffff;" vgap="10.0" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" />
+                <ColumnConstraints hgrow="SOMETIMES" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label text="Name" GridPane.halignment="RIGHT" GridPane.rowIndex="0" />
+                <TextField fx:id="txtName" GridPane.columnIndex="1" />
+                <Label text="Phone" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                <TextField fx:id="txtPhone" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label text="Address" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                <TextField fx:id="txtAddress" prefHeight="25.0" prefWidth="106.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <Label text="ID Document Type" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+                <ComboBox fx:id="cmbIDDocumentTypes" prefHeight="25.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <DatePicker fx:id="dtBirthdate" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Label layoutX="106.0" layoutY="31.0" text="Birthdate" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
+            <Label layoutX="103.0" layoutY="80.0" text="ID Document Number" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+            <Label layoutX="20.0" layoutY="276.0" text="Taxpayer Number" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+            <Label layoutX="20.0" layoutY="325.0" prefHeight="17.0" prefWidth="84.0" text="Admission Date" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
+            <Label text="Email" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+            <TextField fx:id="txtEmail" layoutX="147.0" layoutY="70.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <DatePicker fx:id="dtAddmissionDate" layoutX="156.0" layoutY="291.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <TextField fx:id="txtDocumentNumber" layoutX="156.0" layoutY="159.0" prefHeight="25.0" prefWidth="106.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="txtTaxpayerNumber" layoutX="156.0" layoutY="247.0" prefHeight="25.0" prefWidth="106.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Label layoutX="62.0" layoutY="383.0" prefHeight="17.0" prefWidth="20.0" text="Job" GridPane.halignment="RIGHT" GridPane.rowIndex="9" />
+            <ComboBox fx:id="cmbJobs" layoutX="156.0" layoutY="203.0" prefHeight="25.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+        </GridPane>
+   </left>
+</BorderPane>

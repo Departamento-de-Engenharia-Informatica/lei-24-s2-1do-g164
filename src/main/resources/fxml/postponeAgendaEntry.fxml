@@ -7,7 +7,7 @@
 <BorderPane fx:id="borderPane" prefHeight="150.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.controllers20_29.PostponeAgendaEntryGUIController">
     <top>
         <VBox alignment="CENTER" prefHeight="46.0" prefWidth="377.0" style="-fx-background-color: #2E7D32;">
-            <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Cancel Agenda Entry" textFill="WHITE" />
+            <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Postpone Agenda Entry" textFill="WHITE" />
         </VBox>
     </top>
     <center>

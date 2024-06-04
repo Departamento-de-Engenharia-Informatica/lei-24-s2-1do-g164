@@ -73,9 +73,22 @@ public class HRMMenuGUIController {
     }
 
     @FXML
-    private void openCollaboratorsMenuWindow() {
-        // Logic to open the CollaboratorsMenuWindow
-        // This will depend on your application's logic
+    private void openCollaboratorsMenuWindow(ActionEvent event) {
+        try {
+            File file = new File("src/main/resources/fxml_1-8/collaboratorsMenu.fxml");
+            FXMLLoader loader = new FXMLLoader(file.toURI().toURL());
+            Parent root = loader.load();
+
+            // Get the current stage
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root, 700, 700));
+            stage.setTitle("Jobs Menu");
+            // Set the new scene or update the current scene with the new root
+            stage.getScene().setRoot(root);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

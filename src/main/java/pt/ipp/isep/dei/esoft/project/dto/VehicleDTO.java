@@ -15,11 +15,9 @@ public class VehicleDTO {
     private String acquisitionDate;
     private int checkupFrequency;
 
-    // Construtor padrão
-    public VehicleDTO() {
-    }
+        public VehicleDTO() {
+        }
 
-    // Construtor completo
     public VehicleDTO(String brand, String model, String vehicleID, VehicleTypeENUM type, double grossWeight, double tare, int currentKm, String registerDate, String acquisitionDate, int checkupFrequency) {
         this.brand = brand;
         this.model = model;

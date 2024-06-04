@@ -65,8 +65,8 @@ public class VehicleRepository implements Serializable {
         return false;
     }
 
-    public List<Vehicle> getVehiclesByIds(List<String> vehicleIds) {
-        List<Vehicle> vehicles = new ArrayList<>();
+    public ArrayList<Vehicle> getVehiclesByIds(List<String> vehicleIds) {
+        ArrayList<Vehicle> vehicles = new ArrayList<>();
         for (String id : vehicleIds) {
             for (Vehicle vehicle : vehicleList) {
                 if (vehicle.getVehicleID().equals(id)) {

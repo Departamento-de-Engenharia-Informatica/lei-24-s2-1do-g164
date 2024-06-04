@@ -15,6 +15,7 @@ public class AgendaEntry extends ToDoEntry {
     private Team associatedTeam;
     private ArrayList<Vehicle> associatedVehicles;
 
+
     /**
      * Gets date.
      *

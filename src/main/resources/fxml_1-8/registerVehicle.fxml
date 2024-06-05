@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="556.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.controllers1_8.RegisterVehicleGUIController">
+    <bottom>
+        <FlowPane alignment="CENTER" hgap="20.0" prefWidth="400.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="btnRegister" defaultButton="true" mnemonicParsing="false" onAction="#registerVehicle" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Register Vehicle" />
+                <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#closeWindow" style="-fx-background-color: #D32F2F; -fx-text-fill: white; -fx-font-size: 14px;" text="Cancel" />
+            </children>
+            <padding>
+                <Insets bottom="5.0" top="15.0" />
+            </padding>
+        </FlowPane>
+    </bottom>
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" />
+    </padding>
+   <left>
+        <GridPane alignment="CENTER" hgap="10.0" prefHeight="360.0" prefWidth="340.0" style="-fx-background-color: #ffffff;" vgap="10.0" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" />
+                <ColumnConstraints hgrow="SOMETIMES" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label text="Brand:" GridPane.halignment="RIGHT" GridPane.rowIndex="0" />
+                <TextField fx:id="txtBrand" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                <Label text="Model:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                <TextField fx:id="txtModel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                <Label text="Date of Registration:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                <DatePicker fx:id="dpRegistrationDate" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                <Label text="Date of Acquisition:" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                <DatePicker fx:id="dpAcquisitionDate" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                <Label text="Current Km:" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+                <TextField fx:id="txtCurrentKm" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                <Label text="Checkup Frequency (Km):" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+                <TextField fx:id="txtCheckupFrequency" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+                <Label text="Gross Weight:" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+                <TextField fx:id="txtGrossWeight" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
+                <Label text="Tare:" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
+                <TextField fx:id="txtTare" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+
+                <Label text="Type of Vehicle:" GridPane.halignment="RIGHT" GridPane.rowIndex="9" />
+                <ComboBox fx:id="cmbVehicleType" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+
+                <Label text="Vehicle ID (License Plate):" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
+                <TextField fx:id="txtVehicleID" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+        </GridPane>
+   </left>
+</BorderPane>

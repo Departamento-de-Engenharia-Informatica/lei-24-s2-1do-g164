@@ -5,6 +5,7 @@ import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.repository.VehicleRepository;
 import pt.ipp.isep.dei.esoft.project.repository.enums.VehicleTypeENUM;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -30,8 +31,11 @@ public class RegisterVehicleController {
      * @return true if the vehicle is successfully registered, false otherwise
      */
     public boolean registerVehicle(CreateVehicleDTO dto, VehicleTypeENUM type) {
-        return vehicleRepository.registerVehicle(dto.brand, dto.model, dto.vehicleID, type, dto.grossWeight, dto.tare,
-                dto.currentKm, dto.registerDate, dto.acquisitionDate, dto.checkupFrequency);
+        return vehicleRepository.registerVehicle(dto.brand, dto.model, dto.vehicleID, type, dto.grossWeight, dto.tare, dto.currentKm, dto.registerDate, dto.acquisitionDate, dto.checkupFrequency);
+    }
+
+    public boolean registerVehicle(String brand, String model, String vehicleID, VehicleTypeENUM type, int grossWeight, int tare, int currentKm, String registerDate, String acquisitionDate, int checkupFrequency) {
+        return vehicleRepository.registerVehicle(brand, model, vehicleID, type, grossWeight, tare, currentKm, registerDate, acquisitionDate, checkupFrequency);
     }
 
     /**

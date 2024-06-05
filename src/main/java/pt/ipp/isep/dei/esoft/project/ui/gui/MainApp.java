@@ -23,6 +23,8 @@ public class MainApp extends Application {
     public static void main(String[] args) {
         Bootstrap bootstrap = new Bootstrap();
         bootstrap.run();
+        bootstrap.run();
+        bootstrap.run();
         Repositories.getInstance().deserializeRepository();
         launch();
         Repositories.getInstance().serializeRepository();

@@ -10,22 +10,38 @@
             <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Vehicles Menu" textFill="WHITE" />
         </VBox>
     </top>
-    <right>
-        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <children>
-                <Button fx:id="btnRegisterCheckUp" layoutX="-2.0" layoutY="275.0" mnemonicParsing="false" onAction="#openRegisterCheckUpWIndow" prefHeight="40.0" prefWidth="192.0" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Register Check Up" />
-                <Button fx:id="btnCancel" layoutX="-1.0" layoutY="486.0" mnemonicParsing="false" onAction="#closeWindow" prefHeight="40.0" prefWidth="191.0" style="-fx-background-color: #D32F2F; -fx-text-fill: white; -fx-font-size: 14px;" text="Exit" />
-                <Button fx:id="btnRegisterVehicle" layoutX="-1.0" layoutY="83.0" mnemonicParsing="false" onAction="#openRegisterVehicleWIndow" prefHeight="40.0" prefWidth="192.0" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Register Vehicle" />
-                <Button fx:id="btnUpdateKilometers" layoutX="-2.0" layoutY="169.0" mnemonicParsing="false" onAction="#openUpdateKilometersWindow" prefHeight="40.0" prefWidth="192.0" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Update Kilometers" />
-                <Button fx:id="btnShowNeedingCheckup" layoutX="-1.0" layoutY="381.0" mnemonicParsing="false" onAction="#toggleShowNeedingCheckup" prefHeight="40.0" prefWidth="191.0" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px;" text="Show Needing Checkup" />
-            </children>
-        </AnchorPane>
-    </right>
     <center>
-        <ListView fx:id="list" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <TextArea fx:id="txtVehicles" editable="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="450.0" prefWidth="743.0" style="-fx-control-inner-background: #C8E6C9; -fx-font-family: 'Fira Code'; -fx-font-size: 14px; -fx-text-fill: #2E7D32; -fx-border-color: #81C784; -fx-border-width: 2;" wrapText="true" BorderPane.alignment="CENTER">
             <BorderPane.margin>
-                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
             </BorderPane.margin>
-        </ListView>
+        </TextArea>
     </center>
+   <right>
+       <GridPane prefHeight="550.0" prefWidth="154.0" BorderPane.alignment="CENTER">
+           <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+           </columnConstraints>
+           <rowConstraints>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+           </rowConstraints>
+           <Button fx:id="btnRegisterVehicle" onAction="#openRegisterVehicleWindow" prefHeight="40.0" prefWidth="140.0"
+                   style="-fx-background-color: #388E3C; -fx-text-fill: white;" text="Register Vehicle"/>
+           <Button fx:id="btnRegisterCheckUp" onAction="#openRegisterCheckUpWindow" prefHeight="40.0" prefWidth="140.0"
+                   style="-fx-background-color: #388E3C; -fx-text-fill: white;" text="Register Check-Up"
+                   GridPane.rowIndex="1"/>
+           <Button fx:id="btnUpdateKm" onAction="#openUpdateKmWindow" prefHeight="40.0" prefWidth="140.0"
+                   style="-fx-background-color: #388E3C; -fx-text-fill: white;" text="Update Kilometers"
+                   GridPane.rowIndex="2"/>
+           <Button fx:id="btnNeedingCheckUp" onAction="#handleNeedingCheckUp" prefHeight="40.0" prefWidth="140.0"
+                   style="-fx-background-color: #388E3C; -fx-text-fill: white;" text="Needing Check-Up"
+                   GridPane.rowIndex="3"/>
+           <Button onAction="#closeWindow" prefHeight="40.0" prefWidth="140.0"
+                   style="-fx-background-color: #D32F2F; -fx-text-fill: white;" text="Cancel" GridPane.rowIndex="4"/>
+       </GridPane>
+   </right>
 </BorderPane>

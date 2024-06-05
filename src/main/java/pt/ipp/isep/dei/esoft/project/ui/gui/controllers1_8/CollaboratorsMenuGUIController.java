@@ -13,6 +13,7 @@ import pt.ipp.isep.dei.esoft.project.application.controller.RegisterCollaborator
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterJobController;
 import pt.ipp.isep.dei.esoft.project.domain.Collaborator;
 import pt.ipp.isep.dei.esoft.project.domain.Job;
+import pt.ipp.isep.dei.esoft.project.domain.Skill;
 
 import java.io.File;
 import java.io.IOException;
@@ -51,7 +52,12 @@ public class CollaboratorsMenuGUIController {
         sb.append("-----------------------------COLLABORATORS-----------------------------\n");
         sb.append("-----------------------------------------------------------------------\n");
         for (Collaborator collaborator : collaboratorList) {
-            sb.append(collaborator.getName()).append(" - ").append(collaborator.getSkills()).append("\n");
+            sb.append(collaborator.getName()).append(" - Skills: ");
+            for(Skill skill : collaborator.getSkills()) {
+                sb.append(skill + ", ");
+            }
+            sb.deleteCharAt(sb.length()-2);
+            sb.append("\n");
         }
         txtText.setText(sb.toString());
     }

@@ -104,7 +104,7 @@ public class RegisterCollaboratorGUIController {
                 return;
             }
             if (!isValidEmail(email) ){
-                showAlert(Alert.AlertType.ERROR, "Register Error", "Emailis not in the correct format.");
+                showAlert(Alert.AlertType.ERROR, "Register Error", "Email is not in the correct format.");
                 return;
             }
 
@@ -114,7 +114,7 @@ public class RegisterCollaboratorGUIController {
                 return;
             }
             if (!isValidTaxpayerNumber(taxpayerNumber) ){
-                showAlert(Alert.AlertType.ERROR, "Register Error", "Taxpayer number needs to have 9 numbers.");
+                showAlert(Alert.AlertType.ERROR, "Register Error", "Taxpayer number must have 9 digits.");
                 return;
             }
 
@@ -122,7 +122,7 @@ public class RegisterCollaboratorGUIController {
 
             DocumentTypeENUM type = (DocumentTypeENUM) cmbIDDocumentTypes.getSelectionModel().getSelectedItem();
             if (type == null) {
-                showAlert(Alert.AlertType.ERROR, "Register Error", "You must select a Green Space type.");
+                showAlert(Alert.AlertType.ERROR, "Register Error", "You must select an ID Document type.");
                 return;
             }
 

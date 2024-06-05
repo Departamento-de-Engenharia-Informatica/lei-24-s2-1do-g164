@@ -141,7 +141,7 @@ public class LoginMenuGUIController {
         // Get the current stage
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         if (fileName.equals("VFMMenu")){
-            stage.setScene(new Scene(root, 763, 600));
+            stage.setScene(new Scene(root, 900, 600));
         }else{
             stage.setScene(new Scene(root, 400, 400));
         }

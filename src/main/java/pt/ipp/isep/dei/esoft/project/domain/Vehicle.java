@@ -86,6 +86,13 @@ public class Vehicle implements Serializable {
         checkups.add(checkup);
     }
 
+    public VehicleCheckup getLastCheckup() {
+        if (checkups.isEmpty()) {
+            return null;
+        }
+        return checkups.get(checkups.size() - 1);
+    }
+
     public boolean needsCheckup() {
         if (checkups.isEmpty()) {
             return true;
@@ -94,6 +101,8 @@ public class Vehicle implements Serializable {
         int kmSinceLastCheckup = currentKm - latestCheckup.getCurrentKms();
         return kmSinceLastCheckup >= checkupFrequency;
     }
+
+
 
     @Override
     public String toString() {

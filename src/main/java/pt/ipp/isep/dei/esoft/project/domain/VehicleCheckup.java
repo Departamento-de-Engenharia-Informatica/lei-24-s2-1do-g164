@@ -38,7 +38,7 @@ public class VehicleCheckup implements Serializable {
      * @throws InputMismatchException If the provided date is before today's date or if the current kilometers are negative.
      */
     public VehicleCheckup(LocalDate date, int currentKms) {
-              if (currentKms < 0) {
+        if (currentKms < 0) {
             throw new InputMismatchException("Current Kms should be a positive value");
         }
 
@@ -62,6 +62,11 @@ public class VehicleCheckup implements Serializable {
      */
     public int getCurrentKms() {
         return currentKms;
+    }
+
+
+    public String toString() {
+        return String.valueOf(date);
     }
 }
 

@@ -114,7 +114,7 @@ public class LoginMenuGUIController {
         if (role.getDescription().equalsIgnoreCase(controller.ROLE_GSM)) {
             switchMenusGUI(event, "gsmMenu", controller.ROLE_GSM.toString());
         } else if (role.getDescription().equalsIgnoreCase(controller.ROLE_COL)) {
-            switchMenusGUI(event, "collaboratorMenu", controller.ROLE_COL.toString());
+            switchMenusGUI(event, "MyAgenda", controller.ROLE_COL.toString());
         } else if (role.getDescription().equalsIgnoreCase(controller.ROLE_VFM)) {
             //VfmUI ui = new VfmUI();
             //ui.run();
@@ -140,8 +140,8 @@ public class LoginMenuGUIController {
         root = FXMLLoader.load(getClass().getResource("/fxml/" + fileName + ".fxml"));
         // Get the current stage
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        if (fileName.equals("VFMMenu")){
-            stage.setScene(new Scene(root, 763, 600));
+        if (fileName.equals("VFMMenu") || fileName.equals("MyAgenda")){
+            stage.setScene(new Scene(root, 900, 600));
         }else{
             stage.setScene(new Scene(root, 400, 400));
         }

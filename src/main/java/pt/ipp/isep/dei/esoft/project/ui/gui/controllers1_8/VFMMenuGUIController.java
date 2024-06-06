@@ -15,6 +15,7 @@ import pt.ipp.isep.dei.esoft.project.application.controller.RegisterVehicleCheck
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterVehicleController;
 import pt.ipp.isep.dei.esoft.project.domain.Vehicle;
 import pt.ipp.isep.dei.esoft.project.dto.GreenSpaceDTO;
+import pt.ipp.isep.dei.esoft.project.ui.gui.controllers20_29.RegisterVehicleCheckUpGUIController;
 
 import java.io.File;
 import java.io.IOException;
@@ -61,12 +62,17 @@ public class VFMMenuGUIController {
 
     }
 
-    private void showVehicles(ArrayList<Vehicle> vehiclList) {
+    private void showVehicles(ArrayList<Vehicle> vehicleList) {
         StringBuilder sb = new StringBuilder();
         sb.append("----------------------------------VEHICLES----------------------------------\n");
         sb.append("----------------------------------------------------------------------------\n");
-        for (Vehicle vehicle : vehiclList) {
-            sb.append(vehicle.getBrand() + " " + vehicle.getModel() + " (" + vehicle.getVehicleID() + ") - Type:" + vehicle.getType() + " Current Kilometers: " + vehicle.getCurrentKm()).append("\n\n");
+        for (Vehicle vehicle : vehicleList) {
+            if (vehicle.getLastCheckup() == null) {
+                sb.append(vehicle.getBrand() + " " + vehicle.getModel() + " (" + vehicle.getVehicleID() + ") - Type: " + vehicle.getType() + " - Current Kilometers: " + vehicle.getCurrentKm() + " - Last Check-Up: None").append("\n\n");
+            }else{
+                sb.append(vehicle.getBrand() + " " + vehicle.getModel() + " (" + vehicle.getVehicleID() + ") - Type: " + vehicle.getType() + " - Current Kilometers: " + vehicle.getCurrentKm() + " - Last Check-Up: " + vehicle.getLastCheckup().toString()).append("\n\n");
+
+            }
         }
         txtVehicles.setText(sb.toString());
     }
@@ -92,9 +98,20 @@ public class VFMMenuGUIController {
 
     @FXML
     private void openRegisterCheckUpWindow(ActionEvent event) {
-        System.out.println("Register CheckUp");
-        // Your logic here
+        try {
+            File file = new File("src\\main\\resources\\fxml_1-8\\registerCheckUp.fxml");
+            FXMLLoader loader = new FXMLLoader(file.toURL());
+            Parent root = loader.load();
+            RegisterVehicleCheckUpGUIController controller1 = loader.getController();
+            controller1.setVFMMenuGUIController(this);
+            Stage newStage = new Stage();
+            newStage.setTitle("Register Vehicle");
+            newStage.setScene(new Scene(root));
+            newStage.show();
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

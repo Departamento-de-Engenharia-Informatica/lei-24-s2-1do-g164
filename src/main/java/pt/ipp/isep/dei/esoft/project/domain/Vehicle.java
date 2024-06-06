@@ -86,6 +86,13 @@ public class Vehicle implements Serializable {
         checkups.add(checkup);
     }
 
+    public VehicleCheckup getLastCheckup() {
+        if (checkups.isEmpty()) {
+            return null;
+        }
+        return checkups.get(checkups.size() - 1);
+    }
+
     public boolean needsCheckup() {
         if (checkups.isEmpty()) {
             return true;
@@ -95,19 +102,14 @@ public class Vehicle implements Serializable {
         return kmSinceLastCheckup >= checkupFrequency;
     }
 
+
+
     @Override
     public String toString() {
-        return "Vehicle{" +
-                "brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", vehicleID='" + vehicleID + '\'' +
-                ", type=" + type +
-                ", grossWeight=" + grossWeight +
-                ", tare=" + tare +
-                ", currentKm=" + currentKm +
-                ", registerDate='" + registerDate + '\'' +
-                ", acquisitionDate='" + acquisitionDate + '\'' +
-                ", checkupFrequency=" + checkupFrequency +
-                '}';
+        return
+                brand + " " +
+                model + " (" + vehicleID +")" +
+                " - Current Km: " + currentKm +
+                " - Checkup Frequency: " + checkupFrequency;
     }
 }

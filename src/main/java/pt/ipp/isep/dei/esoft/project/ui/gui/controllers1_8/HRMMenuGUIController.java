@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,6 +29,8 @@ public class HRMMenuGUIController {
 
     @FXML
     private Button exitButton;
+
+    private final AuthenticationController authenticationController = new AuthenticationController();
 
     @FXML
     public void initialize() {
@@ -98,8 +101,22 @@ public class HRMMenuGUIController {
     }
 
     @FXML
-    private void closeWindow() {
-        Stage stage = (Stage) exitButton.getScene().getWindow();
-        stage.close();
+    private void closeWindow(ActionEvent event) {
+        // Logic to close the window
+        System.out.println("Exit button clicked");
+        try {
+            File file = new File("src/main/resources/fxml/loginmenu.fxml");
+            FXMLLoader loader = new FXMLLoader(file.toURI().toURL());
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root, 350, 400));
+            stage.getScene().setRoot(root);
+            System.out.println(authenticationController.getCurrentUserEmail());
+            authenticationController.doLogout();
+            System.out.println(authenticationController.getCurrentUserEmail());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

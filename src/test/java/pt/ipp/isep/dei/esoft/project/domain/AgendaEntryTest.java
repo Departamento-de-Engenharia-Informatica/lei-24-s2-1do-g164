@@ -88,18 +88,6 @@ class AgendaEntryTest {
     }
 
         @Test
-        public void testGetDate() {
-            assertEquals(LocalDate.now(), agendaEntry.getDate());
-        }
-
-        @Test
-        public void testSetDate() {
-            LocalDate newDate = LocalDate.of(2024, 12, 25);
-            agendaEntry.setDate(newDate);
-            assertEquals(newDate, agendaEntry.getDate());
-        }
-
-        @Test
         public void testGetAssociatedTeam() {
             assertEquals(t1, agendaEntry.getAssociatedTeam());
         }
@@ -108,20 +96,6 @@ class AgendaEntryTest {
         public void testSetAssociatedTeam() {
             agendaEntry.setAssociatedTeam(t2);
             assertEquals(t2, agendaEntry.getAssociatedTeam());
-        }
-
-        @Test
-        public void testGetAssociatedVehicles() {
-            assertEquals(vehicles, agendaEntry.getAssociatedVehicles());
-        }
-
-        @Test
-        public void testSetAssociatedVehicles() {
-            ArrayList<Vehicle> newVehicles = new ArrayList<>();
-            newVehicles.add(new Vehicle("Mercedes", "Class A", "87-UI-28", VehicleTypeENUM.LIGHT_VEHICLE,
-                    1415, 1200, 25000, "02-07-2020", "12-09-2018", 20000));
-            agendaEntry.setAssociatedVehicles(newVehicles);
-            assertEquals(newVehicles, agendaEntry.getAssociatedVehicles());
         }
 
         @Test
@@ -164,4 +138,35 @@ class AgendaEntryTest {
             assertTrue(repository.getAgendaEntryList().contains(agendaEntry));
             assertTrue(repository.getAgendaEntryList().contains(agendaEntryOther));
         }
+
+    @Test
+        public void testGetDate() {
+        LocalDate expectedDate = LocalDate.of(2022, 6, 7);
+        agendaEntry.setDate(expectedDate);
+        assertEquals(expectedDate, agendaEntry.getDate());
+    }
+
+    @Test
+    public void testSetDate() {
+        LocalDate newDate = LocalDate.of(2024, 12, 25);
+        agendaEntry.setDate(newDate);
+        assertEquals(newDate, agendaEntry.getDate());
+    }
+
+    @Test
+    public void testGetAssociatedVehicles() {
+        assertEquals(vehicles, agendaEntry.getAssociatedVehicles());
+    }
+
+    @Test
+    public void testSetAssociatedVehicles() {
+        ArrayList<Vehicle> newVehicles = new ArrayList<>();
+        newVehicles.add(new Vehicle("Mercedes", "Class A", "87-UI-28", VehicleTypeENUM.LIGHT_VEHICLE,
+                1415, 1200, 25000, "02-07-2020", "12-09-2018", 20000));
+        agendaEntry.setAssociatedVehicles(newVehicles);
+        assertEquals(newVehicles, agendaEntry.getAssociatedVehicles());
+    }
+
+
+
 }

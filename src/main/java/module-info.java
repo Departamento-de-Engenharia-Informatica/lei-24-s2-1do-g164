@@ -11,6 +11,7 @@ module pt.ipp.isep.dei.esoft.project.ui.gui {
     requires svgSalamander;
     requires jdk.jfr;
     requires org.jgrapht.core;
+    requires controlsfx;
 
 //    requires commons.math3;
 

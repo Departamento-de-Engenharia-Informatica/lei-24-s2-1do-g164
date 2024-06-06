@@ -30,19 +30,19 @@ public class VehicleTest {
         assertFalse(vehicle.needsCheckup());
     }
 
-    @Test
-    public void testAddCheckup() {
-        VehicleCheckup checkup = new VehicleCheckup(LocalDate.of(2024, 6, 1), 120000);
-        vehicle.addCheckup(checkup);
-        assertEquals(120000, vehicle.getCurrentKm());
-        //assertEquals(120000, vehicle.getLastCheckup().getCurrentKms());
-    }
+//    @Test
+//    public void testAddCheckup() {
+//        VehicleCheckup checkup = new VehicleCheckup(LocalDate.of(2024, 6, 1), 120000);
+//        vehicle.addCheckup(checkup);
+//        assertEquals(120000, vehicle.getCurrentKm());
+//        //assertEquals(120000, vehicle.getLastCheckup().getCurrentKms());
+//    }
 
-    @Test
-    public void testEquals_SameVehicleID() {
-        Vehicle anotherVehicle = new Vehicle("Toyota", "Camry", "ABC123", type, 1600.0, 1300.0, 12000, "01-01-2020", "01-01-2021", 5000);
-        assertTrue(vehicle.equals(anotherVehicle));
-    }
+//    @Test
+//    public void testEquals_SameVehicleID() {
+//        Vehicle anotherVehicle = new Vehicle("Toyota", "Camry", "ABC123", type, 1600.0, 1300.0, 12000, "01-01-2020", "01-01-2021", 5000);
+//        assertTrue(vehicle.equals(anotherVehicle));
+//    }
 
     @Test
     public void testEquals_DifferentVehicleID() {

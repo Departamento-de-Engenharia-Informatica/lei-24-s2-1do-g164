@@ -92,18 +92,4 @@ public class ToDoEntryRepository implements Serializable {
         return toDoEntryListGSM;
     }
 
-    /**
-     * Assign vehicles boolean.
-     *
-     * @param toDoEntry    the to do entry
-     * @param vehiclesList the vehicles list
-     * @return the boolean
-     */
-    public boolean assignVehicles(ToDoEntry toDoEntry, ArrayList<Vehicle> vehiclesList) {
-        if (toDoEntry == null || vehiclesList == null) {
-            return false;
-        }
-
-        return toDoEntry.addVehicles(vehiclesList);
-    }
 }

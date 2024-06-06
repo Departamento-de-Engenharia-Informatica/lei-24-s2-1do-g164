@@ -235,4 +235,72 @@ class AgendaEntryRepositoryTest {
         assertTrue(result.contains(postponedEntry));
     }
 
+    @Test
+    void testGetAgendaEntryListWithoutVehicles() {
+        repository.addEntryToAgenda(agendaEntry);
+        String email = greenSpace.getEmailGSM();
+        ArrayList<AgendaEntry> entries = repository.getAgendaEntryListWithoutVehicles(email);
+        assertTrue(entries.contains(agendaEntry));
+    }
+    @Test
+    void testAssignVehicles() {
+        repository.addEntryToAgenda(agendaEntry);
+        ArrayList<Vehicle> newVehicles = new ArrayList<>();
+        newVehicles.add(new Vehicle("Mercedes", "Class A", "87-UI-28", VehicleTypeENUM.LIGHT_VEHICLE,
+                1415, 1200, 25000, "02-07-2020", "12-09-2018", 20000));
+        boolean result = repository.assignVehicles(agendaEntry, newVehicles);
+        assertTrue(result);
+        assertEquals(newVehicles, agendaEntry.getAssociatedVehicles());
+    }
+
+    @Test
+    void testAssignVehiclesEntryNotFound() {
+        AgendaEntry nonExistentEntry = new AgendaEntry("Nonexistent Description", 2, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDate.now(), t1, vehicles);
+        ArrayList<Vehicle> newVehicles = new ArrayList<>();
+        newVehicles.add(new Vehicle("Mercedes", "Class A", "87-UI-28", VehicleTypeENUM.LIGHT_VEHICLE,
+                1415, 1200, 25000, "02-07-2020", "12-09-2018", 20000));
+        boolean result = repository.assignVehicles(nonExistentEntry, newVehicles);
+        assertFalse(result);
+    }
+
+    @Test
+    void testGetEntriesByCollaborator() {
+        repository.addEntryToAgenda(agendaEntry);
+        agendaEntry.setEntryStatus(EntryStatusENUM.PLANNED);
+        agendaEntry.setAssociatedTeam(t1);
+        String currentUserEmail = c1.getEmail();
+        ArrayList<AgendaEntry> entries = repository.getEntriesByCollaborator(currentUserEmail);
+        assertTrue(entries.contains(agendaEntry));
+    }
+    @Test
+    void testGetEntriesByCollaboratorEntryStatusCancelled() {
+        repository.addEntryToAgenda(agendaEntry);
+        agendaEntry.setEntryStatus(EntryStatusENUM.CANCELLED);
+        agendaEntry.setAssociatedTeam(t1);
+        String currentUserEmail = c1.getEmail();
+        ArrayList<AgendaEntry> entries = repository.getEntriesByCollaborator(currentUserEmail);
+        assertFalse(entries.contains(agendaEntry));
+    }
+
+
+    @Test
+    void testGetEntriesByCollaboratorEntryStatusDone() {
+        repository.addEntryToAgenda(agendaEntry);
+
+        agendaEntry.setEntryStatus(EntryStatusENUM.DONE);
+        agendaEntry.setAssociatedTeam(t1);
+        String currentUserEmail = c1.getEmail();
+        ArrayList<AgendaEntry> entries = repository.getEntriesByCollaborator(currentUserEmail);
+        assertFalse(entries.contains(agendaEntry));
+    }
+
+    @Test
+    void testGetAgendaEntryList() {
+        repository.addEntryToAgenda(agendaEntry);
+        ArrayList<AgendaEntry> agendaEntryList = repository.getAgendaEntryList();
+        assertNotNull(agendaEntryList);
+        assertTrue(agendaEntryList.contains(agendaEntry));
+    }
+
+
 }

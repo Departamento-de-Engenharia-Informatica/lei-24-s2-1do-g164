@@ -1,12 +1,13 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
-import pt.ipp.isep.dei.esoft.project.application.session.ApplicationSession;
 import pt.ipp.isep.dei.esoft.project.domain.AgendaEntry;
+import pt.ipp.isep.dei.esoft.project.domain.ToDoEntry;
 import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.repository.AgendaEntryRepository;
 import pt.ipp.isep.dei.esoft.project.mappers.AgendaEntryMapper;
+import pt.ipp.isep.dei.esoft.project.repository.ToDoEntryRepository;
 import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 
 import java.util.ArrayList;
@@ -19,12 +20,14 @@ public class MarkTaskCompletedController {
     private AgendaEntryRepository agendaEntryRepository;
     private AuthenticationController authenticationController;
     private AgendaEntryMapper agendaEntryMapper;
+    private ToDoEntryRepository toDoEntryRepository;
 
 
     public MarkTaskCompletedController() {
         this.agendaEntryRepository = getAgendaEntryRepository();
         this.authenticationController = new AuthenticationController();
         this.agendaEntryMapper = new AgendaEntryMapper();
+        this.toDoEntryRepository = getToDoEntryRepository();
     }
 
     private AgendaEntryRepository getAgendaEntryRepository() {
@@ -35,6 +38,14 @@ public class MarkTaskCompletedController {
         return agendaEntryRepository;
     }
 
+    private ToDoEntryRepository getToDoEntryRepository() {
+        if (toDoEntryRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+            toDoEntryRepository = repositories.getToDoEntryRepository();
+        }
+        return toDoEntryRepository;
+    }
+
     /**
      * Retrieves a list of agenda entries in DTO format.
      *
@@ -42,7 +53,7 @@ public class MarkTaskCompletedController {
      */
     public ArrayList<AgendaEntryDTO> getAgendaEntryWithoutDoneDTOList() {
         String currentUserEmail = authenticationController.getCurrentUserEmail();
-        ArrayList<AgendaEntry> agendaEntryList = agendaEntryRepository.getEntrysByCollaborator(currentUserEmail);
+        ArrayList<AgendaEntry> agendaEntryList = agendaEntryRepository.getEntriesByCollaborator(currentUserEmail);
         return agendaEntryMapper.toDtoList(agendaEntryList);
     }
 
@@ -60,7 +71,11 @@ public class MarkTaskCompletedController {
         if (entry == null) {
             throw new InputMismatchException("Agenda Entry not found!");
         }
-        return agendaEntryRepository.updateStatus(entry, EntryStatusENUM.DONE);
+        boolean success = agendaEntryRepository.updateStatus(entry, EntryStatusENUM.DONE);
+        if(success){
+            toDoEntryRepository.updateStatus((ToDoEntry) entry, EntryStatusENUM.PENDING);
+        }
+        return success;
     }
 
     public ArrayList<AgendaEntryDTO> getAgendaEntryWithoutCancelledDTOList() {

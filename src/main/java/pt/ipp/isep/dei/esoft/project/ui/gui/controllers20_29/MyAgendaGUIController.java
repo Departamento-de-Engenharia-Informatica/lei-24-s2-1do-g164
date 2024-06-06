@@ -32,6 +32,8 @@ public class MyAgendaGUIController {
     private DatePicker datePicker2;
     @FXML
     private ComboBox<EntryStatusENUM> combo;
+    @FXML
+    private Button btnCompleted;
 
     private RegisterAgendaEntryController controller = new RegisterAgendaEntryController();
 
@@ -52,13 +54,13 @@ public class MyAgendaGUIController {
 
     public void closeWindow(ActionEvent event) {
         try {
-            File file = new File("src/main/resources/fxml/collaboratorMenu.fxml");
+            File file = new File("src/main/resources/fxml/loginmenu.fxml");
             FXMLLoader loader = new FXMLLoader(file.toURI().toURL());
             Parent root = loader.load();
 
             // Get the current stage
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root, 400, 400));
+            stage.setScene(new Scene(root, 350, 400));
             // Set the new scene or update the current scene with the new root
             stage.getScene().setRoot(root);
 
@@ -66,7 +68,6 @@ public class MyAgendaGUIController {
             e.printStackTrace();
         }
     }
-
     public void show(ActionEvent actionEvent) {
         ArrayList<AgendaEntryDTO> agendaEntryDTOS = controller.getAgendaEntryListDTO();
         list.getItems().clear();
@@ -121,5 +122,21 @@ public class MyAgendaGUIController {
         alert.setTitle(title);
         alert.setHeaderText(message);
         alert.showAndWait();
+    }
+
+    public void openCompleteAgendaEntryWindow(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/markTaskCompleted.fxml"));
+            Parent root = loader.load();
+            MarkTaskCompletedGUIController completedGUIController = loader.getController();
+            completedGUIController.setAgendaGUIController(this);
+            Stage newStage = new Stage();
+            newStage.setTitle("Completed Agenda Entry");
+            newStage.setScene(new Scene(root));
+            newStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Error", "Unable to open Complete Agenda Entry window.");
+        }
     }
 }

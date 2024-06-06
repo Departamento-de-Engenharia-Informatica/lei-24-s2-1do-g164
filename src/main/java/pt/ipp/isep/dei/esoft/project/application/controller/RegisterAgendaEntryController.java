@@ -59,6 +59,11 @@ public class RegisterAgendaEntryController {
      * @return ArrayList of AgendaEntryDTO representing agenda entries.
      */
     public ArrayList<AgendaEntryDTO> getAgendaEntryListDTO() {
+        var entries = agendaEntryRepository.getAgendaEntryWithoutDoneList(authenticationController.getCurrentUserEmail());
+        return agendaEntryMapper.toDtoList(entries);
+    }
+
+    public ArrayList<AgendaEntryDTO> getAgendaEntryListByCollaboratorDTO() {
         var entries = agendaEntryRepository.getEntriesByCollaborator(authenticationController.getCurrentUserEmail());
         return agendaEntryMapper.toDtoList(entries);
     }

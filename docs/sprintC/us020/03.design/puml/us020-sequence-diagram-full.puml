@@ -9,6 +9,7 @@ autonumber
 actor "Green Spaces Manager" as HRM
 participant ":RegisterGreenSpaceUI" as UI
 participant ":RegisterGreenSpaceController" as CTRL
+participant "AuthenticationController" as AuthenticationController
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT
 participant "greenSpacesRepository\n:GreenSpaceRepository" as collaboratorRepository
@@ -47,9 +48,30 @@ activate HRM
     deactivate UI
     HRM -> UI : enters requested data
     activate UI
+    UI -> AuthenticationController : getCurrentUserEmail()
+    deactivate UI
+    activate AuthenticationController
+        AuthenticationController -> RepositorySingleton : getInstance()
+        activate RepositorySingleton
+        RepositorySingleton --> AuthenticationController : repositories
+        deactivate RepositorySingleton
+
+        AuthenticationController -> PLAT : getAuthenticationRepository()
+        activate PLAT
+        PLAT --> AuthenticationController : authenticationRepository
+        deactivate PLAT
+
+        ' Pass GreenSpaceDTO to the repository
+        AuthenticationController -> "authenticationRepository\n:AuthenticationRepository" : getCurrentUserEmail()
+        activate "authenticationRepository\n:AuthenticationRepository"
+        "authenticationRepository\n:AuthenticationRepository" --> AuthenticationController : email
+        deactivate "authenticationRepository\n:AuthenticationRepository"
+        AuthenticationController --> UI : email
+        deactivate AuthenticationController
+        activate UI
 
 
-UI -> "GreenSpaceDTO" : GreenSpaceDTO(name, address, area, type)
+UI -> "GreenSpaceDTO" : GreenSpaceDTO(name, address, area, type, email)
 activate "GreenSpaceDTO"
 "GreenSpaceDTO"--> UI : greenSpaceDTO
 deactivate "GreenSpaceDTO"
@@ -59,7 +81,7 @@ deactivate "GreenSpaceDTO"
     CTRL -> "GreenSpaceMapper" : toEntity(greenSpaceDTO)
     deactivate CTRL
     activate "GreenSpaceMapper"
-    "GreenSpaceMapper" -> "GreenSpace" : GreenSpace(greenSpaceDTO.name, greenSpaceDTO.address, \n
+    "GreenSpaceMapper" -> "GreenSpace" : GreenSpace(greenSpaceDTO.name, greenSpaceDTO.address, \n greenSpaceDTO.area, greenSpaceDTO.type, greenSpaceDTO.email)
     activate GreenSpace
     "GreenSpace" --> "GreenSpaceMapper" : greenSpace
     deactivate GreenSpace
@@ -82,7 +104,7 @@ deactivate "GreenSpaceDTO"
     ' Pass GreenSpaceDTO to the repository
     CTRL -> collaboratorRepository : registerGreenSpace(greenSpace)
     activate collaboratorRepository
-
+collaboratorRepository --> collaboratorRepository : isGreenSpaceUnique(greenSpace)
     collaboratorRepository --> CTRL : success
 
     deactivate collaboratorRepository

@@ -69,7 +69,7 @@ public class MyAgendaGUIController {
         }
     }
     public void show(ActionEvent actionEvent) {
-        ArrayList<AgendaEntryDTO> agendaEntryDTOS = controller.getAgendaEntryListDTO();
+        ArrayList<AgendaEntryDTO> agendaEntryDTOS = controller.getAgendaEntryListByCollaboratorDTO();
         list.getItems().clear();
         sort(agendaEntryDTOS);
 

@@ -94,6 +94,7 @@ public class HRMMenuGUIController {
         }
     }
 
+    @FXML
 
         private void openTeamsMenuWindow(ActionEvent event) {
             try {

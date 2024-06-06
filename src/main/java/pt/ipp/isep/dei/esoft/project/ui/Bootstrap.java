@@ -59,7 +59,6 @@ public class Bootstrap implements Runnable {
 
         authenticationRepository.addUserWithRole("Diogo", "col@col.app", "DIOGo1122",
                 AuthenticationController.ROLE_COL);
-
     }
 
     private void addCollaborators() {
@@ -309,6 +308,17 @@ public class Bootstrap implements Runnable {
         teamRepository.registerTeam(team2);
         Team team3= new Team(collaborators3, c5.getSkills(), TeamStatusENUM.PENDING);
         teamRepository.registerTeam(team3);
+
+
+
+        c1.setStatus(CollaboratorStatusENUM.ACTIVATED);
+        c2.setStatus(CollaboratorStatusENUM.ACTIVATED);
+        c3.setStatus(CollaboratorStatusENUM.ACTIVATED);
+        c4.setStatus(CollaboratorStatusENUM.ACTIVATED);
+        c5.setStatus(CollaboratorStatusENUM.ACTIVATED);
+        c6.setStatus(CollaboratorStatusENUM.ACTIVATED);
+        c7.setStatus(CollaboratorStatusENUM.ACTIVATED);
+
 
     }
 

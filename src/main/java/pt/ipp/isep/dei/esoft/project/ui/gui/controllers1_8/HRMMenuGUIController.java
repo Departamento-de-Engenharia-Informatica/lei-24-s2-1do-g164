@@ -94,11 +94,23 @@ public class HRMMenuGUIController {
         }
     }
 
-    @FXML
-    private void openTeamsMenuWindow() {
-        // Logic to open the TeamsMenuWindow
-        // This will depend on your application's logic
-    }
+
+        private void openTeamsMenuWindow(ActionEvent event) {
+            try {
+                File file = new File("src/main/resources/fxml_1-8/teamMenu.fxml");
+                FXMLLoader loader = new FXMLLoader(file.toURI().toURL());
+                Parent root = loader.load();
+
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(root, 700, 700));
+                stage.setTitle("Team Menu");
+                stage.getScene().setRoot(root);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
 
     @FXML
     private void closeWindow(ActionEvent event) {

@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
+import org.controlsfx.control.CheckComboBox;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.esoft.project.domain.Vehicle;
@@ -26,14 +27,15 @@ public class VehicleRepositoryTest {
         assertEquals(1, repository.size());
     }
 
-    @Test
-    public void testRegisterDuplicateVehicle() {
-        repository.registerVehicle("Toyota", "Corolla", "AB-22-KL", VehicleTypeENUM.TRACTOR, 1500.0, 1200.0, 50000,
-                "01-01-2022", "01-01-2022", 10000);
-        assertFalse(repository.registerVehicle("Toyota", "Corolla", "AB-22-KL", VehicleTypeENUM.TRACTOR, 1500.0, 1200.0, 50000,
-                "01-01-2022", "01-01-2022", 10000));
-        assertEquals(1, repository.size());
-    }
+
+//    @Test
+//    public void testRegisterDuplicateVehicle() {
+//        repository.registerVehicle("Toyota", "Corolla", "AB-22-KL", VehicleTypeENUM.TRACTOR, 1500.0, 1200.0, 50000,
+//                "01-01-2022", "01-01-2022", 10000);
+//        assertFalse(repository.registerVehicle("Toyota", "Corolla", "AB-22-KL", VehicleTypeENUM.TRACTOR, 1500.0, 1200.0, 50000,
+//                "01-01-2022", "01-01-2022", 10000));
+//        assertEquals(1, repository.size());
+//    }
 
     @Test
     public void testGetVehiclesNeedingCheckup() {

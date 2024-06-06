@@ -197,6 +197,10 @@ public class Collaborator implements Serializable {
         return status;
     }
 
+    public void setStatus(CollaboratorStatusENUM status) {
+        this.status = status;
+    }
+
     /**
      * Generates a string representation of the collaborator.
      *

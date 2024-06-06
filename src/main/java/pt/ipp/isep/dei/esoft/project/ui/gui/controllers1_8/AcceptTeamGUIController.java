@@ -41,7 +41,7 @@ public class AcceptTeamGUIController {
             if (createTeamPropoalGUIController != null) {
                 createTeamPropoalGUIController.getTeamGUIController().addTeam(team);
             }
-
+            createTeamPropoalGUIController.update();
             closeWindow();
         } else {
                 showAlert(Alert.AlertType.ERROR, "Accept Team", "Could not accept team");

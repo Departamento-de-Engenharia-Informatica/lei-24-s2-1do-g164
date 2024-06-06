@@ -127,4 +127,7 @@ public class CreateTeamPropoalGUIController {
         return teamGUIController;
     }
 
+    public void update() {
+        teamGUIController.update();
+    }
 }

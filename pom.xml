@@ -137,6 +137,12 @@
             <version>1.5.2</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.controlsfx</groupId>
+            <artifactId>controlsfx</artifactId>
+            <version>8.0.6</version>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>
@@ -293,5 +299,7 @@
             <url>https://repo.repsy.io/mvn/pmaio/lei-soft</url>
         </repository>
     </repositories>
+
+
 
 </project>

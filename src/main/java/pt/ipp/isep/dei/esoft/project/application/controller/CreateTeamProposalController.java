@@ -32,6 +32,12 @@ public class CreateTeamProposalController {
      *
      * @return An ArrayList of skills available in the system.
      */
+
+    public ArrayList<Team> getTeams(){
+        return teamRepository.getTeams();
+    }
+
+
     public ArrayList<Skill> getSkillsList() {
         return skillRepository.getSkillList();
     }

@@ -11,7 +11,7 @@ As a GSM, I want to register a Green Space.
 
 **From the specifications document:**
 
-> In order to register a green space the user needs to introduce a name, area and green space type (garden, medium-sized park or large-sized park).
+> In order to register a green space the user needs to introduce a name, address, area and green space type (garden, medium-sized park or large-sized park).
 
 **From the client clarifications:**
 

@@ -106,17 +106,10 @@ public class Vehicle implements Serializable {
 
     @Override
     public String toString() {
-        return "Vehicle{" +
-                "brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", vehicleID='" + vehicleID + '\'' +
-                ", type=" + type +
-                ", grossWeight=" + grossWeight +
-                ", tare=" + tare +
-                ", currentKm=" + currentKm +
-                ", registerDate='" + registerDate + '\'' +
-                ", acquisitionDate='" + acquisitionDate + '\'' +
-                ", checkupFrequency=" + checkupFrequency +
-                '}';
+        return
+                brand + " " +
+                model + " (" + vehicleID +")" +
+                " - Current Km: " + currentKm +
+                " - Checkup Frequency: " + checkupFrequency;
     }
 }

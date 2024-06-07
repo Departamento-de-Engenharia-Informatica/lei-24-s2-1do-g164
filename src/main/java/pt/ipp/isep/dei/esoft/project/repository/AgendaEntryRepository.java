@@ -6,12 +6,6 @@ import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
-
-import pt.ipp.isep.dei.esoft.project.application.controller.AssignVehiclesController;
-
-import pt.ipp.isep.dei.esoft.project.dto.VehicleDTO;
-import pt.ipp.isep.dei.esoft.project.dto.AgendaEntryDTO;
 
 public class AgendaEntryRepository implements Serializable {
 
@@ -127,7 +121,7 @@ public class AgendaEntryRepository implements Serializable {
         }
         return false;
     }
-        public ArrayList<AgendaEntry> getEntrysByCollaborator (String currentUserEmail){
+        public ArrayList<AgendaEntry> getEntriesByCollaborator(String currentUserEmail){
             ArrayList<AgendaEntry> agendaEntryListCollaborator = new ArrayList<>();
             for (AgendaEntry agendaEntry : this.agendaEntryList) {
                 Team team = agendaEntry.getAssociatedTeam();

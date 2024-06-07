@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
+import pt.ipp.isep.dei.esoft.project.application.controller.ListofVehiclesNeedingCheckUpController;
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterSkillController;
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterVehicleCheckupController;
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterVehicleController;
@@ -44,9 +45,12 @@ public class VFMMenuGUIController {
     @FXML
     private Button btnCancel;
 
+    private Boolean needingCheckUp = false;
 
 
-    private RegisterVehicleCheckupController controller = new RegisterVehicleCheckupController();
+
+    private RegisterVehicleCheckupController controller1 = new RegisterVehicleCheckupController();
+    private ListofVehiclesNeedingCheckUpController controller2 = new ListofVehiclesNeedingCheckUpController();
 
     @FXML
     public void initialize() {
@@ -56,21 +60,25 @@ public class VFMMenuGUIController {
 
     public void update(){
         txtVehicles.clear();
-        ArrayList<Vehicle> vehicles = controller.getVehicles();
-
+        if (needingCheckUp){
+            ArrayList<Vehicle> vehicles = controller2.getVehiclesNeedingCheckup();
+            showVehicles(vehicles);
+            return;
+        }
+        ArrayList<Vehicle> vehicles = controller1.getVehicles();
         showVehicles(vehicles);
 
     }
 
-    private void showVehicles(ArrayList<Vehicle> vehiclList) {
+    private void showVehicles(ArrayList<Vehicle> vehicleList) {
         StringBuilder sb = new StringBuilder();
         sb.append("----------------------------------VEHICLES----------------------------------\n");
         sb.append("----------------------------------------------------------------------------\n");
-        for (Vehicle vehicle : vehiclList) {
+        for (Vehicle vehicle : vehicleList) {
             if (vehicle.getLastCheckup() == null) {
-                sb.append(vehicle.getBrand() + " " + vehicle.getModel() + " (" + vehicle.getVehicleID() + ") - Type: " + vehicle.getType() + " Current Kilometers: " + vehicle.getCurrentKm() + " Last Check-Up: None").append("\n\n");
+                sb.append(vehicle.getBrand() + " " + vehicle.getModel() + " (" + vehicle.getVehicleID() + ") - Type: " + vehicle.getType() + " - Current Kilometers: " + vehicle.getCurrentKm() + " - Last Check-Up: None").append("\n\n");
             }else{
-                sb.append(vehicle.getBrand() + " " + vehicle.getModel() + " (" + vehicle.getVehicleID() + ") - Type: " + vehicle.getType() + " Current Kilometers: " + vehicle.getCurrentKm() + " Last Check-Up: " + vehicle.getLastCheckup().toString()).append("\n\n");
+                sb.append(vehicle.getBrand() + " " + vehicle.getModel() + " (" + vehicle.getVehicleID() + ") - Type: " + vehicle.getType() + " - Current Kilometers: " + vehicle.getCurrentKm() + " - Last Check-Up: " + vehicle.getLastCheckup().toString()).append("\n\n");
 
             }
         }
@@ -116,14 +124,33 @@ public class VFMMenuGUIController {
 
     @FXML
     private void openUpdateKmWindow(ActionEvent event) {
-        System.out.println("Update Km");
-        // Your logic here
+        try {
+            File file = new File("src\\main\\resources\\fxml_1-8\\updateKilometers.fxml");
+            FXMLLoader loader = new FXMLLoader(file.toURL());
+            Parent root = loader.load();
+            UpdateKmGUIController controller1 = loader.getController();
+            controller1.setVFMMenuGUIController(this);
+            Stage newStage = new Stage();
+            newStage.setTitle("Update Current Km");
+            newStage.setScene(new Scene(root));
+            newStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void handleNeedingCheckUp(ActionEvent event) {
         System.out.println("Needing CheckUp");
-        // Your logic here
+        needingCheckUp = !needingCheckUp;
+
+        if (needingCheckUp) {
+            btnNeedingCheckUp.setText("Show all");
+        } else {
+            btnNeedingCheckUp.setText("Needing CheckUp");
+        }
+        update();
     }
 
     @FXML

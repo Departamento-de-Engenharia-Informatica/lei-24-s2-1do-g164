@@ -11,6 +11,7 @@ class GreenSpace{
     -address
     -area
     -type
+    -emailGSM
 }
 
 
@@ -61,27 +62,45 @@ class RegisterGreenSpaceUI {
 
 }
 
+class AuthenticationController{
+- AuthenticationRepository authenticationRepository
++ getCurrentUserEmail()
++ doLogin()
++ doLogout()
+}
+
+class AuthenticationRepository{
+- AuthFacade authFacade
++ getCurrentUserEmail()
++ doLogin()
++ doLogout()
+}
+
 class GreenSpaceDTO{
 -name
 -address
 -area
 -type
+-emailGSM
 +toString()
 +toStringLong()
 }
 
 RegisterGreenSpaceUI .> RegisterGreenSpaceController
+RegisterGreenSpaceUI .> AuthenticationController
 RegisterGreenSpaceUI "1" - "*" GreenSpaceDTO : creates
 RegisterGreenSpaceController ..> Repositories : repositories
 Repositories --> "1" GreenSpaceRepository
 Repositories -> Repositories : instance
 RegisterGreenSpaceController .> GreenSpaceMapper
 RegisterGreenSpaceController --> GreenSpaceRepository : uses
+AuthenticationController --> AuthenticationRepository : uses
 
 SystemUser <|- GSM
 
 GSM "1" -- "1" RegisterGreenSpaceUI
 GreenSpace "*" <-- "1" GreenSpaceRepository : stores
+GSM "*" <-- "1" AuthenticationRepository : stores
 GreenSpace "*" <-- "1" GreenSpaceMapper : creates
 
 @enduml

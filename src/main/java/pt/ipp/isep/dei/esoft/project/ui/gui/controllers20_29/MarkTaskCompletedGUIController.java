@@ -33,7 +33,7 @@ public class MarkTaskCompletedGUIController {
     ComboBox<AgendaEntryDTO> cmbAgendaEntries;
 
     MarkTaskCompletedController controller = new MarkTaskCompletedController();
-    CollaboratorMenuGUIController collaboratorMenuGUIController;
+    MyAgendaGUIController myAgendaGUIController;
 
     @FXML
     private void initialize() {
@@ -86,8 +86,8 @@ public class MarkTaskCompletedGUIController {
      *
      * @param collaboratorMenuGUIController the agenda gui controller
      */
-        public void setAgendaGUIController(CollaboratorMenuGUIController collaboratorMenuGUIController) {
-        this.collaboratorMenuGUIController = collaboratorMenuGUIController;
+        public void setAgendaGUIController(MyAgendaGUIController myAgendaGUIController) {
+        this.myAgendaGUIController = myAgendaGUIController;
     }
 
     private void showAlert(Alert.AlertType alertType, String title, String message) {

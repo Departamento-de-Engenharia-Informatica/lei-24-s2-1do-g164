@@ -1,0 +1,61 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "GSM" as Employee
+participant ":RegisterToDoEntryUI" as UI
+participant ":RegisterToDoEntryController" as CTRL
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "GreenSpaceRepository\n:greenSpaceRepository" as GreenRepo
+participant "ToDoEntryMapper"
+
+activate Employee
+
+Employee -> UI : asks to add a new entry to the "To-Do List"
+
+activate UI
+
+UI -> CTRL : getGreenSpaceList()
+activate CTRL
+
+CTRL -> RepositorySingleton : getInstance()
+activate RepositorySingleton
+
+RepositorySingleton --> CTRL: repositories
+deactivate RepositorySingleton
+
+CTRL -> PLAT : getGreenSpaceRepository()
+activate PLAT
+PLAT --> CTRL : greenSpaceRepository
+deactivate PLAT
+
+CTRL -> GreenRepo : getGreenSpaceList()
+activate GreenRepo
+
+GreenRepo --> CTRL : greenSpaceList
+deactivate GreenRepo
+
+CTRL -> "ToDoEntryMapper" : getGreenSpaceDTOsList(greenSpaceList)
+activate "ToDoEntryMapper"
+
+loop for each greenSpace in greenSpaceList
+ToDoEntryMapper -> ToDoEntryDTO: toDTO(greenSpace)
+activate ToDoEntryDTO
+ToDoEntryDTO --> ToDoEntryMapper : greenSpaceDTO
+deactivate ToDoEntryDTO
+end
+
+ToDoEntryMapper --> CTRL: greenSpaceDTOsList
+deactivate ToDoEntryMapper
+
+CTRL --> UI : greenSpaceDTOsList
+deactivate CTRL
+
+UI --> Employee : displays the Green Spaces and asks to select one
+deactivate UI
+
+@enduml

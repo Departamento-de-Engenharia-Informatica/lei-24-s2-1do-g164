@@ -1,0 +1,62 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "HRM" as HRM
+participant ":RegisterGreenSpaceUI" as UI
+participant ":RegisterGreenSpaceController" as CTRL
+participant "GreenSpaceDTO" as GreenSpaceDTO
+participant "GreenSpaceMapper" as GreenSpaceMapper
+participant "GreenSpace" as GreenSpace
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "greenSpacesRepository\n:GreenSpaceRepository" as collaboratorRepository
+
+activate UI
+activate HRM
+UI -> "GreenSpaceDTO" : GreenSpaceDTO(name, address, area, type, email)
+activate "GreenSpaceDTO"
+"GreenSpaceDTO"--> UI : greenSpaceDTO
+deactivate "GreenSpaceDTO"
+UI -> CTRL : registerGreenSpace(greenSpaceDTO)
+deactivate UI
+activate CTRL
+CTRL -> "GreenSpaceMapper" : toEntity(greenSpaceDTO)
+deactivate CTRL
+activate "GreenSpaceMapper"
+"GreenSpaceMapper" -> "GreenSpace" : GreenSpace(greenSpaceDTO.name, greenSpaceDTO.address, \n greenSpaceDTO.area, greenSpaceDTO.type, greenSpaceDTO.email)
+activate GreenSpace
+"GreenSpace" --> "GreenSpaceMapper" : greenSpace
+deactivate GreenSpace
+"GreenSpaceMapper" --> CTRL : greenSpace
+deactivate "GreenSpaceMapper"
+activate CTRL
+
+CTRL -> RepositorySingleton : getInstance()
+activate RepositorySingleton
+RepositorySingleton --> CTRL : repositories
+deactivate RepositorySingleton
+
+CTRL -> PLAT : getGreenSpaceRepository()
+activate PLAT
+PLAT --> CTRL : greenSpaceRepository
+deactivate PLAT
+
+CTRL -> collaboratorRepository : registerGreenSpace(greenSpace)
+activate collaboratorRepository
+collaboratorRepository --> collaboratorRepository : isGreenSpaceUnique(greenSpace)
+collaboratorRepository --> CTRL : success
+
+deactivate collaboratorRepository
+CTRL --> UI : success
+deactivate CTRL
+activate UI
+
+UI --> HRM : shows success message
+deactivate UI
+deactivate HRM
+
+@enduml

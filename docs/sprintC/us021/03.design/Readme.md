@@ -45,6 +45,17 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 
 ## 3.2. Sequence Diagram (SD)
+
+### Initial Request and Green Space List Retrieval
+![Sequence Diagram - Full](svg/us021-sequence-diagram-partial-GreenSpaceList.svg)
+
+### Urgency Degree List Retrieval and Data Entry
+![Sequence Diagram - Full](svg/us021-sequence-diagram-partial-UrgencyDegree.svg)
+
+### To-Do Entry Registration
+![Sequence Diagram - Full](svg/us021-sequence-diagram-partial-ToDOEntryRegister.svg)
+
+
 ### Full Diagram
 
 This diagram shows the full sequence of interactions between the classes involved in the realization of this user story.

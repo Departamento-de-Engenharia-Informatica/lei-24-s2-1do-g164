@@ -8,42 +8,15 @@ autonumber
 actor "GSM" as GSM
 participant ":AssignVehiclesUI" as ui
 participant "AssignVehiclesController" as ctrl
-participant ":Repositories" as RepositorySingleton
-participant "repositories\n:Repositories" as plat
 participant "agendaEntryRepository:\nAgendaEntryRepository" as agendaRepo
 participant "AgendaEntryMapper" as agendaMapper
 participant AgendaEntryDTO as AgendaEntryDTO
-participant "AgendaEntry" as agendaEntry
 participant "Vehicle" as vehicle
 participant "vehicleRepository:\nVehicleRepository" as vehicleRepo
 participant "VehicleMapper" as VehicleMapper
 participant "VehicleDTO" as VehicleDTO
-participant "ApplicationSession" as app
 
 activate GSM
-
-GSM -> ui : asks to assign vehicles to an agenda entry
-activate ui
-
-ui -> ctrl : create
-activate ctrl
-
-ctrl -> agendaMapper : create
-
-ctrl -> RepositorySingleton : getInstance()
-activate RepositorySingleton
-RepositorySingleton --> ctrl: repositories
-deactivate RepositorySingleton
-
-ctrl -> plat : getAgendaEntryRepository()
-activate plat
-plat --> ctrl: AgendaEntryRepository()
-deactivate plat
-
-ctrl -> plat : getVehicleRepository()
-activate plat
-plat --> ctrl: vehicleRepository
-deactivate plat
 
 ui -> ctrl : getAgendaEntriesDTOWithoutVehicles()
 ui -> ctrl : showVehiclesDTO()
@@ -53,10 +26,8 @@ activate agendaRepo
 agendaRepo --> ctrl: agendaEntryList
 deactivate agendaRepo
 
-
 ctrl -> agendaMapper : toDtoList(agendaEntryList)
 activate agendaMapper
-
 
 loop for each agendaEntry in agendaEntryList
   agendaMapper -> AgendaEntryDTO : agendaEntryDTO = toDTO(agendaEntry)
@@ -88,32 +59,7 @@ deactivate ctrl
 
 ui --> GSM : shows the list of entries in the agenda\n and the list of vehicles and asks to select one of each
 
-GSM -> ui : selects entry and vehicles
-
-ui -> ctrl : assignVehicles(AgendaEntry agendaEntry, ArrayList<Vehicle> vehicleList)
-activate ctrl
-
-ctrl -> agendaRepo : getAgendaEntry(selectedEntry.description, selectedEntry.greenSpace)
-activate agendaRepo
-agendaRepo --> ctrl : agendaEntry
-deactivate agendaRepo
-
-ctrl -> vehicleRepo : getVehicles(selectedVehicles)
-activate vehicleRepo
-vehicleRepo --> ctrl : vehicles
-deactivate vehicleRepo
-
-ctrl -> agendaEntry : assignVehicles(AgendaEntry agendaEntry, ArrayList<Vehicle> vehicleList)
-activate agendaEntry
-agendaEntry -> ctrl: success/insuccess
-deactivate agendaEntry
-
-ctrl --> ui : success/insuccess
-deactivate ctrl
-
-ui --> GSM : shows (in)success message
 deactivate ui
-
 deactivate GSM
 
 @enduml

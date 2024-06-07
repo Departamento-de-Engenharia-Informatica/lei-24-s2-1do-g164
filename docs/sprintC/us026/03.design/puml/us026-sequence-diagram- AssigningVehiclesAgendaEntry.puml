@@ -1,0 +1,46 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "GSM" as GSM
+participant ":AssignVehiclesUI" as ui
+participant "AssignVehiclesController" as ctrl
+participant "agendaEntryRepository:\nAgendaEntryRepository" as agendaRepo
+participant "Vehicle" as vehicle
+participant "vehicleRepository:\nVehicleRepository" as vehicleRepo
+participant "AgendaEntry" as agendaEntry
+
+activate GSM
+
+GSM -> ui : selects entry and vehicles
+
+ui -> ctrl : assignVehicles(AgendaEntry agendaEntry, ArrayList<Vehicle> vehicleList)
+activate ctrl
+
+ctrl -> agendaRepo : getAgendaEntry(selectedEntry.description, selectedEntry.greenSpace)
+activate agendaRepo
+agendaRepo --> ctrl : agendaEntry
+deactivate agendaRepo
+
+ctrl -> vehicleRepo : getVehicles(selectedVehicles)
+activate vehicleRepo
+vehicleRepo --> ctrl : vehicles
+deactivate vehicleRepo
+
+ctrl -> agendaEntry : assignVehicles(AgendaEntry agendaEntry, ArrayList<Vehicle> vehicleList)
+activate agendaEntry
+agendaEntry -> ctrl: success/insuccess
+deactivate agendaEntry
+
+ctrl --> ui : success/insuccess
+deactivate ctrl
+
+ui --> GSM : shows (in)success message
+deactivate ui
+
+deactivate GSM
+
+@enduml

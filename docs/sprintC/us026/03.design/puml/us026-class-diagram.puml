@@ -1,85 +1,138 @@
 @startuml
 skinparam classAttributeIconSize 0
-skinparam monochrome false
+'skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 skinparam linetype polyline
-skinparam linetype orto
-
-
-class SystemUser {
-    name
-    email
-    password
-    phone
-}
+'skinparam linetype orto
+skinparam classAttributeIconSize 0
 
 
 
-class Repositories {
-    - collaboratorRepository
-    - vehicleRepository
-    - skillRepository
-    - jobRepository
-    - EntryRepository
-    - Repositories()
-    + getInstance()
-    + getCollaboratorRepository()
-    + getVehicleRepository()
-    + getSkillRepository()
-    + getJobRepository()
-    + getEntryRepository()
+class AgendaEntryDTO {
 
-}
-class SystemUser {
-    name
-    email
-    password
-    phone
+    date
+    greenSpace
+    description
+    expectedDuration
+    urgencyDegree
+    entryStatus
+    associatedTeam
+    associatedVehicles
 
-}
-class AssignVehicleController{
--VehicleRepository
-+getEntryRepository()
-+getVehicleRepository()
-+getEntryList()
-+getVehicleList()
-
-}
-
-
-class EntryRepository{
-    - ArrayList EntryList
-    + getEntryRepository()
-    + getEntry()
-    + registerEntry()
-}
-
-class VehicleRepository {
-    - ArrayList VehicleList
-    + getVehicleRepository()
-    + getVehicle()
-    + assignVehicle()
-    - vehicleIsValid()
-    - isValidVehicleName()
 }
 
 class Vehicle {
-      name
-      phone
-      birthdate
-      admissionDate
-      address
-      idDocumentType
-      idDocumentNumber
-      status
+        brand
+        model
+        vehicleID
+        type
+        tare
+        grossWeight
+        currentKm
+        registerDate
+        acquisitionDate
+        checkupFrequency
+        checkUpList
 }
-Repositories -->"1" VehicleRepository
-Vehicle "*" <-- "1" VehicleRepository : has
-Entry "*" <-- "1" EntryRepository : has
-Vehicle "1..*" - "1" Entry: is atributed to >
-SystemUser <|-- Entry
-AssignVehicleUI .> AssignVehicleController
-AssignVehicleController ..> Repositories : repositories
+class SystemUser {
+    name
+    email
+    password
+    phone
+}
+
+
+class AgendaEntryRepository {
+    - ArrayList<AgendaEntry> agendaEntries
+    + getAgendaEntry(description, greenSpace)
+
+}
+
+class Repositories {
+    - agendaEntryRepository
+    -teamRepository
+
+    - Repositories()
+    + getInstance()
+    + getAgendaEntryRepository()
+    + getVehicleRepository()
+
+}
+
+class AgendaEntryMapper {
+    + toDtoList(agendaEntryList)
+
+}
+
+
+class AssignVehiclesController {
+    - AgendaEntryRepository agendaEntryRepository
+    - AgendaEntryMapper agendaEntryMapper
+
+    +getAgendaEntryListDTO()
+    +getVehiclesListDTO()
+    +assignTeamToAgendaEntry(selectedEntry, teamEntry)
+    +assignVehciles(AgendaEntryDTO agendaEntry, List<VehicleDTO> vehiclesList)
+}
+
+class AssignVehiclesUI {
+
+}
+
+class AgendaEntry {
+    date
+    associatedVehicle
+    associatedVehicles
+    +setAssociatedVehicle(vehicle)
+}
+
+class VehicleRepository{
+    ArrayList<Vehicle> vehicles
+    +getVehicles()
+
+}
+
+class VehicleMapper {
++toDtoList(ArrayList<Vehicle> vehicles)
++toDtoList(vehicleList)
+
+}
+
+class VehicleDTO {
+ArrayList<Vehicle> vehicles
+}
+class ToDoEntry{
+         greenSpace
+         expectedDuration
+         degreeUrgency
+         entryStatus
+}
+
+
+
+
+
+AssignVehiclesUI .>AssignVehiclesController
+AssignVehiclesController ..> Repositories : repositories
+Repositories --> "1" AgendaEntryRepository
+Repositories -> Repositories : instance
+AssignVehiclesController .> AgendaEntryMapper
+AssignVehiclesController .> VehicleMapper
+AssignVehiclesController --> AgendaEntryRepository : uses
+
+SystemUser <|- GSM
+ToDoEntry <|-- AgendaEntry
+
+GSM "1" -- "1" AssignVehiclesUI
+AgendaEntry "*" <-- "1" AgendaEntryRepository : stores
+AgendaEntry"1" --> "1" Vehicle: assigned to
+Vehicle "*" <-- "1" VehicleRepository : stores
+AgendaEntryDTO "*" <-- "1" AgendaEntryMapper : creates
+VehicleDTO "*" <-- "1" VehicleMapper : creates
+Agenda "1" -- "*" AgendaEntry : has >
+
+
+
 
 @enduml

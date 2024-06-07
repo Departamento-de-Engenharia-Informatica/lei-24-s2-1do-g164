@@ -1,0 +1,41 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "GSM" as GSM
+participant ":AssignVehiclesUI" as ui
+participant "AssignVehiclesController" as ctrl
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as plat
+
+activate GSM
+
+GSM -> ui : asks to assign vehicles to an agenda entry
+activate ui
+
+ui -> ctrl : create
+activate ctrl
+
+ctrl -> RepositorySingleton : getInstance()
+activate RepositorySingleton
+RepositorySingleton --> ctrl: repositories
+deactivate RepositorySingleton
+
+ctrl -> plat : getAgendaEntryRepository()
+activate plat
+plat --> ctrl: AgendaEntryRepository()
+deactivate plat
+
+ctrl -> plat : getVehicleRepository()
+activate plat
+plat --> ctrl: vehicleRepository
+deactivate plat
+
+deactivate ctrl
+deactivate ui
+deactivate GSM
+
+@enduml

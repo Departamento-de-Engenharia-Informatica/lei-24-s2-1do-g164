@@ -31,6 +31,26 @@ what are the maximum number of vehicles that can be added to a entry?
 > **Answer:** The vehicle needs to be available in the period.
 Yes, any can of vehicles can be assigned.
 
+> **Question:**
+Dear client;
+How will the Green Spaces Manager choose the vehicle to assign? By its plate?
+Is the number of vehicles to be assigned provided by the Green Spaces Manager?
+Best regards,
+> 
+> **Answer:**
+Assuming you mean assingning to a Task/Agenda Entry, the data related with vehicle should be provided in order to ease the selection.
+There is no specification concerning the number of vehicles, is upt to GSM decide what vehicles the task needs.
+Best regards.
+
+> **Question:**
+Dear client,
+should each GSM only be able to assign vehicles to its own entries or every GSM can assign vehicles to every entry, even if the green space associated with the task is not registered with their email?
+Thanks.
+> **Answer:**
+Hi,
+For the sake of simplicity, you can assume that GSM will only manage its Agenda Entries.
+Best regards.
+
 
 ### 1.3. Acceptance Criteria
 

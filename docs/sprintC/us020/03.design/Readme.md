@@ -37,6 +37,19 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 ## 3.2. Sequence Diagram (SD)
 
+### Selection of Green Space Type
+
+![Sequence Diagram - Full](svg/us020-sequence-diagram-partial-greenSpaceType.svg)
+
+### Green Space Data Entry and User Authentication
+
+![Sequence Diagram - Full](svg/us020-sequence-diagram-partial-Authentication.svg)
+
+### Green Space DTO Creation and Registration
+
+![Sequence Diagram - Full](svg/us020-sequence-diagram-partial-RegisterGreenSpace.svg)
+
+
 ### Full Diagram
 
 This diagram shows the full sequence of interactions between the classes involved in the realization of this user story.

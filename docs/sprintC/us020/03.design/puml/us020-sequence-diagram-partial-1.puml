@@ -1,0 +1,41 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "Green Spaces Manager" as HRM
+participant ":RegisterGreenSpaceUI" as UI
+participant ":RegisterGreenSpaceController" as CTRL
+participant "GreenSpaceTypeENUM" as DocumentTypeRepository
+
+activate HRM
+
+HRM -> UI : asks to register a green space
+activate UI
+
+UI -> CTRL : create
+
+UI --> HRM : shows green space type list and requests to select \none job for the new collaborator
+deactivate UI
+
+HRM -> UI : selects a green space type
+activate UI
+UI -> CTRL : getGreenSpaceTypeList()
+deactivate UI
+activate CTRL
+CTRL -> DocumentTypeRepository : getGreenSpaceTypeList()
+
+activate DocumentTypeRepository
+DocumentTypeRepository --> CTRL : GreenSpaceTypeENUM.values()
+deactivate DocumentTypeRepository
+CTRL -> UI : greenSpaceTypeList
+
+deactivate CTRL
+activate UI
+
+UI -> HRM : shows green space type list and asks to select one
+deactivate UI
+
+@enduml

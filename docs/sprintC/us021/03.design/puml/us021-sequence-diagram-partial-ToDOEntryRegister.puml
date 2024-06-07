@@ -1,0 +1,55 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+participant ":RegisterToDoEntryController" as CTRL
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "ToDoEntryMapper"
+participant "ToDoEntry"
+participant "ToDoEntryRepository\n:toDoEntryRepository" as TaskRepo
+
+activate CTRL
+
+CTRL -> RepositorySingleton : getInstance()
+activate RepositorySingleton
+
+RepositorySingleton --> CTRL: repositories
+deactivate RepositorySingleton
+
+CTRL -> PLAT : getToDoEntryRepository()
+activate PLAT
+PLAT --> CTRL : toDoEntryRepository
+deactivate PLAT
+
+CTRL -> "ToDoEntryMapper" : toEntity(toDoEntryDTO)
+activate "ToDoEntryMapper"
+
+"ToDoEntryMapper" -> ToDoEntry : ToDoEntry(toDoEntryDTO.description, toDoEntryDTO.expectedDuration, \ntoDoEntryDTO.greenSpace, toDoEntryDTO.urgencyDegree)
+activate ToDoEntry
+ToDoEntry --> "ToDoEntryMapper" : toDoEntry
+deactivate ToDoEntry
+
+"ToDoEntryMapper" --> CTRL : toDoEntry
+deactivate "ToDoEntryMapper"
+
+CTRL -> TaskRepo : registerToDoEntry(toDoEntry)
+activate TaskRepo
+
+TaskRepo --> TaskRepo : isToDoEntryUnique(toDoEntry)
+TaskRepo --> CTRL : success
+deactivate TaskRepo
+
+CTRL --> UI : success
+deactivate CTRL
+
+activate UI
+UI --> Employee : displays message of (in)success
+deactivate UI
+
+deactivate Employee
+
+@enduml

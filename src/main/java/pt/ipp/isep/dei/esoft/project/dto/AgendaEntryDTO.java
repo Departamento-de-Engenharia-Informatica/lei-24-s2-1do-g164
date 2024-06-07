@@ -117,7 +117,6 @@ public class AgendaEntryDTO {
                     "Team: No Team" + " - " +
                     "Vehicles: " + vehiclesString;
         }
-        System.out.println(vehiclesString);
         if(vehicles.isEmpty()){
             return  description + " - " +
                     "Expected Duration: " + expectedDuration + " - " +

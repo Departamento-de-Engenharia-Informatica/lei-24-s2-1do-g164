@@ -1,0 +1,43 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "Green Spaces Manager" as HRM
+participant ":RegisterGreenSpaceUI" as UI
+participant ":RegisterGreenSpaceController" as CTRL
+participant "AuthenticationController" as AuthenticationController
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+
+activate HRM
+HRM -> UI : selects green space type
+activate UI
+UI -> HRM : requests data for the new green space (name, address, area)
+deactivate UI
+HRM -> UI : enters requested data
+activate UI
+UI -> AuthenticationController : getCurrentUserEmail()
+deactivate UI
+activate AuthenticationController
+
+AuthenticationController -> RepositorySingleton : getInstance()
+activate RepositorySingleton
+RepositorySingleton --> AuthenticationController : repositories
+deactivate RepositorySingleton
+
+AuthenticationController -> PLAT : getAuthenticationRepository()
+activate PLAT
+PLAT --> AuthenticationController : authenticationRepository
+deactivate PLAT
+
+AuthenticationController -> "authenticationRepository\n:AuthenticationRepository" : getCurrentUserEmail()
+activate "authenticationRepository\n:AuthenticationRepository"
+"authenticationRepository\n:AuthenticationRepository" --> AuthenticationController : email
+deactivate "authenticationRepository\n:AuthenticationRepository"
+AuthenticationController --> UI : email
+deactivate AuthenticationController
+
+@enduml

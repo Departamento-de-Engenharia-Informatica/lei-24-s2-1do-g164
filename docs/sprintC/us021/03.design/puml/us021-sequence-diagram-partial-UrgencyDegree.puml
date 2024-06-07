@@ -1,0 +1,49 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "GSM" as Employee
+participant ":RegisterToDoEntryUI" as UI
+participant ":RegisterToDoEntryController" as CTRL
+participant "UrgencyDegreesENUM"
+participant "ToDoEntryDTO"
+
+activate Employee
+Employee -> UI : selects the desired Green Space
+activate UI
+
+UI -> CTRL : getUrgencyDegreeList()
+activate CTRL
+
+CTRL -> UrgencyDegreesENUM : getUrgencyDegreeList()
+deactivate CTRL
+activate UrgencyDegreesENUM
+UrgencyDegreesENUM --> CTRL : UrgencyDegreesENUM.values()
+deactivate UrgencyDegreesENUM
+activate CTRL
+CTRL -> UI : urgencyDegreeList
+deactivate CTRL
+
+UI -> Employee : displays urgency degrees and asks to select one
+deactivate UI
+
+Employee -> UI : selects the desired urgency degree
+activate UI
+UI -> Employee: asks to type description and expected duration
+deactivate UI
+
+Employee -> UI : types the requested data
+activate UI
+
+UI -> "ToDoEntryDTO" : ToDoEntryDTO(description, expectedDuration,\n greenSpace, UrgencyDegree)
+activate "ToDoEntryDTO"
+UI <-- "ToDoEntryDTO" : toDoEntryDTO
+deactivate "ToDoEntryDTO"
+
+UI -> CTRL : registerToDoEntry(toDoEntryDTO)
+deactivate UI
+
+@enduml

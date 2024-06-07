@@ -72,6 +72,7 @@ public class MarkTaskCompletedController {
             throw new InputMismatchException("Agenda Entry not found!");
         }
         boolean success = agendaEntryRepository.updateStatus(entry, EntryStatusENUM.DONE);
+        System.out.println(success + "verdadeiroooaa");
         if(success){
             toDoEntryRepository.updateStatus((ToDoEntry) entry, EntryStatusENUM.PENDING);
         }

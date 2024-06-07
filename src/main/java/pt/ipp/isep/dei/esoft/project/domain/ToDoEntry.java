@@ -53,7 +53,7 @@ public class ToDoEntry implements Serializable {
      * @return the boolean
      */
     public boolean equals(ToDoEntry obj) {
-        return description.equals(obj.getDescription()) && greenSpace.equals(obj.getGreenSpace());
+        return description.equals(obj.getDescription()) && greenSpace.equals(obj.getGreenSpace()) && (entryStatus.equals(obj.getEntryStatus()) || obj.getEntryStatus().equals(EntryStatusENUM.DONE));
     }
 
     @Override

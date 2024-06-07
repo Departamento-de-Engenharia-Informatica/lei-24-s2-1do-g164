@@ -5,6 +5,7 @@ import pt.ipp.isep.dei.esoft.project.domain.ToDoEntry;
 import pt.ipp.isep.dei.esoft.project.domain.Vehicle;
 import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -46,9 +47,11 @@ public class ToDoEntryRepository implements Serializable {
      * @return the boolean
      */
     public boolean updateStatus(ToDoEntry toDoEntry, EntryStatusENUM status) {
+        System.out.println("merda dfff");
         for (ToDoEntry entry : toDoEntryList) {
             if (entry.equals(toDoEntry)) {
                 entry.setEntryStatus(status);
+                System.out.println(toDoEntry.getDescription() + " " + toDoEntry.getEntryStatus());
                 return true;
             }
         }

@@ -65,11 +65,9 @@ public class GreenSpaceMenuGUIController {
     }
     private void showGreenSpaces(ArrayList<GreenSpaceDTO> greenSpaceDTOsList) {
         StringBuilder sb = new StringBuilder();
-        String format = "%-20s %-20s %-10s %-15s\n";
-        sb.append(String.format(format, "Name", "Address", "Area", "Type"));
-        sb.append("----------------------------------------------------------------------------\n");
+        sb.append("---------------------------------GREEN SPACES---------------------------------\n");
         for (GreenSpaceDTO greenSpaceDTO : greenSpaceDTOsList) {
-            sb.append(String.format(format, greenSpaceDTO.name, greenSpaceDTO.address, greenSpaceDTO.area, greenSpaceDTO.type));
+            sb.append("Name: " + greenSpaceDTO.name + " Address: " + greenSpaceDTO.address + " Area: " + greenSpaceDTO.area + " Type: " + greenSpaceDTO.type + "\n\n");
         }
         txtGreenSpaceListText.setText(sb.toString());
     }

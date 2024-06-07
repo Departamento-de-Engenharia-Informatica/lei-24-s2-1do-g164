@@ -36,7 +36,7 @@ public class RegisterJobGUIController {
 
         if (isValidName(txtName.getText())) {
             if (!controller.registerJob(txtName.getText())) {
-                showAlert(Alert.AlertType.ERROR, "Skill Error", "Skill Already Exists.");
+                showAlert(Alert.AlertType.ERROR, "Job Error", "Job Already Exists.");
             }else{
                 showAlert(Alert.AlertType.INFORMATION, "Success", "Job registered successfully.");
                 jobsMenuGUIController.update();

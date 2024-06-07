@@ -70,6 +70,7 @@ public class CreateTeamPropoalGUIController {
             }
             var team = controller.createTeamProposal(max, min, skillList);
             openShowTeamWindow(team);
+            teamGUIController.update();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -103,6 +104,7 @@ public class CreateTeamPropoalGUIController {
             Parent root = loader.load();
             AcceptTeamGUIController controller = loader.getController();
             controller.setTeam(team);
+            controller.setCreateTeamPropoalGUIController(this); // Add this line
             Stage newStage = new Stage();
             newStage.setTitle("Team Proposal Details");
             newStage.setScene(new Scene(root));

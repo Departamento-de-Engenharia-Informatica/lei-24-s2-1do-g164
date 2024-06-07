@@ -77,8 +77,8 @@ public class RegisterVehicleGUIController {
         }
         VehicleTypeENUM type = cmbVehicleType.getValue(); // Assuming the ComboBox is populated with VehicleTypeENUM values
 
-        if (!brand.matches("[a-zA-Z]+") || !model.matches("[a-zA-Z]+")) {
-            showAlert(Alert.AlertType.ERROR, "Input Error", "Brand and Model should only contain alphabetic characters!");
+        if (!brand.matches("[a-zA-Z ]+") || !model.matches("[a-zA-Z ]+")) {
+            showAlert(Alert.AlertType.ERROR, "Input Error", "Brand and Model should only contain alphabetic characters and spaces!");
             return;
         }
 

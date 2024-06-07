@@ -35,17 +35,16 @@ public class AcceptTeamGUIController {
     }
     @FXML
     private void acceptTeamProposal() {
-
         if (controller.acceptTeamProposal(team)) {
             showAlert(Alert.AlertType.INFORMATION, "Accept Team", "Team successfully accepted.");
             if (createTeamPropoalGUIController != null) {
                 createTeamPropoalGUIController.getTeamGUIController().addTeam(team);
+                createTeamPropoalGUIController.getTeamGUIController().update(); // Add this line
             }
             createTeamPropoalGUIController.update();
             closeWindow();
         } else {
-                showAlert(Alert.AlertType.ERROR, "Accept Team", "Could not accept team");
-
+            showAlert(Alert.AlertType.ERROR, "Accept Team", "Could not accept team");
         }
     }
 

@@ -19,7 +19,14 @@ class SystemUser {
 
 }
 class Collaborator {
-
+    name
+    phone
+    birthdate
+    admissionDate
+    address
+    idDocumentType
+    idDocumentNumber
+    status
 }
 
 

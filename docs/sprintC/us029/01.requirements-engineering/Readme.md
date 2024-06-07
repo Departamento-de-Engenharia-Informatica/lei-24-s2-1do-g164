@@ -21,6 +21,15 @@ Can an employee record more than one completed task at a time?
 > **Answer:** It's a matter of UX/UI, each dev team can decide about it.
 
 > **Question:**
+I noticed that some details were added to US028. Now the collaborator intends to consult the tasks assigned to him between two dates specified by him.
+However, I have a doubt: in US022, when GSM wants to add a new entry to the Agenda, one of the necessary inputs is the starting date of the task itself, as I saw in one of the questions already asked to the client.
+Therefore, are the tasks that should be shown to the Collaborator in this US028 those where the starting date is between the two mentioned by the Collaborator? Or, for example, when a task is recorded as complete in US029, the Collaborator would also have to input the task's completion date and then the tasks that begin and end within the date range introduced by the Collaborator in this US028 would be shown?
+Best regards
+> 
+> **Answer:**
+> I would suggest to consider any tasks which intersept the supplied period (defined by the two dates).
+
+> **Question:**
 When a collaborator records a task, it should be asked for any observations regarding the completed task?
 >
 > **Answer:** Maybe if optional, not mandatory.

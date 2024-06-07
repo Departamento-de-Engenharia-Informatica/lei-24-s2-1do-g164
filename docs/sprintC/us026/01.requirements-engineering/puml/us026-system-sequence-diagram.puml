@@ -21,16 +21,7 @@ activate Employee
      Employee -> System : chooses an entry
         activate System
 
-
-
          Employee -> System : chooses vehicles from list to add
-
-
-                System --> Employee : shows all vehicles to be appointed and requests confirmation
-            deactivate System
-
-             Employee -> System : confirms vehicles
-                activate System
 
             System --> Employee : displays operation success
                 deactivate System

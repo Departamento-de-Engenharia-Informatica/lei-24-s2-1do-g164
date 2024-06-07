@@ -59,16 +59,6 @@ public class AgendaEntryRepository implements Serializable {
     }
 
 
-    public ArrayList<AgendaEntry> getAgendaEntryListWithoutVehicles(String email) {
-        ArrayList<AgendaEntry> agendaEntryListGSM = new ArrayList<>();
-        for (AgendaEntry agendaEntry : this.agendaEntryList) {
-            if (agendaEntry.getGreenSpace().getEmailGSM().equals(email)) {
-                agendaEntryListGSM.add(agendaEntry);
-            }
-        }
-        return agendaEntryListGSM;
-    }
-
 
     public ArrayList<AgendaEntry> getAgendaEntryListWithoutCancelled(String email) {
         ArrayList<AgendaEntry> agendaEntryListGSM = new ArrayList<>();

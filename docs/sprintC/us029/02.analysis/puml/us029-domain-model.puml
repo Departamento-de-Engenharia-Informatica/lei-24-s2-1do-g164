@@ -19,14 +19,11 @@ class SystemUser {
 
 }
 class Collaborator {
-    name
-    phone
-    birthdate
-    admissionDate
-    address
-    idDocumentType
-    idDocumentNumber
-    status
+
+}
+
+
+class Agenda {
 }
 
 class AgendaEntry {
@@ -34,6 +31,7 @@ class AgendaEntry {
     associatedTeam
     associatedVehicleList
 }
+
 
 
 class ToDoEntry{
@@ -44,8 +42,8 @@ class ToDoEntry{
          entryStatus
 }
 
-
-Collaborator "1" - "*" AgendaEntry:   carries  >
+Agenda "1" -- "*" AgendaEntry : has >
+SystemUser <|-  Collaborator
+Collaborator "1" -- "*" AgendaEntry: manages >
 AgendaEntry --|> ToDoEntry
-SystemUser <|- Collaborator
 @enduml

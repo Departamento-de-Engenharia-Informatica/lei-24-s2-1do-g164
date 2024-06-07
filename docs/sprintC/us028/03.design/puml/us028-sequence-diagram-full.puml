@@ -44,7 +44,7 @@ UI -> CTRL : getEntriesBetweenDates(date1,date2)
 CTRL -> Repo : getEntriesBetweenDates()
 activate Repo
 
-Repo --> CTRL :EntriesBetweenDatesList
+Repo --> CTRL :entriesBetweenDatesList
 deactivate Repo
 
 CTRL -> "AgendaEntryMapper": toDTO(EntriesBetweenDatesList)
@@ -56,7 +56,7 @@ loop for each agendaEntry in EntriesBetweenDatesList
     deactivate "EntriesBetweenDatesDTO"
 end
 
-"AgendaEntryMapper" --> CTRL : EntriesBetweenDatesListListDTO
+"AgendaEntryMapper" --> CTRL : entriesBetweenDatesListListDTO
 deactivate "AgendaEntryMapper"
   CTRL --> UI : EntriesBetweenDatesListDTO
             deactivate CTRL

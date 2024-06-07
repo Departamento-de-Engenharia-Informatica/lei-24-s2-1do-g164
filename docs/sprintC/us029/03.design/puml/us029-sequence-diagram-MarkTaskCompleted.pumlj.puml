@@ -1,0 +1,26 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "GSM" as GSM
+participant "MarkTaskCompletedUI" as UI
+participant ":MarkTaskCompletedController" as CTRL
+
+activate GSM
+
+GSM -> UI : asks to mark a task as completed
+activate UI
+
+UI -> CTRL : create
+activate CTRL
+
+UI -> CTRL: getEntrysByCollaborator()
+
+CTRL -> "AgendaEntryMapper": create
+
+deactivate GSM
+
+@enduml

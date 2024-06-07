@@ -39,7 +39,7 @@ I suppose when a task goes to the Agenda, it leaves the To-Do list but maybe a d
 >**Answer** It means to record that a task was completed (changing the status) with the finish time.
 ### 1.3. Acceptance Criteria
 
-* n/a
+* AC1: A canceled task should not be deleted but rather change its state.
 
 ### 1.4. Found out Dependencies
 

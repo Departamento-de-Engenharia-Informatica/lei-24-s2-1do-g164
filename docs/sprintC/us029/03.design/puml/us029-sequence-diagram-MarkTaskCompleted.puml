@@ -1,0 +1,39 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "Collaborator" as Collaborator
+participant ":MarkTaskCompletedUI" as UI
+participant "::MarkTaskCompletedController" as CTRL
+participant "agendaEntryRepository:\nAgendaEntryRepository" as Repo
+participant "AgendaEntryDTO" as AgendaEntryDTO
+
+UI --> Collaborator : shows the list of entries in the Agenda\n and asks to select one
+activate Collaborator
+activate UI
+Collaborator -> UI: selects an entry
+UI -> CTRL: completedAgendaEntry\(AgendaEntryDTO dto\)
+deactivate AgendaEntryDTO
+activate CTRL
+
+CTRL -> Repo: getAgendaEntryByDescriptionAndGreenSpace(description, greenSpace)
+activate Repo
+Repo --> CTRL: agendaEntry
+deactivate Repo
+
+CTRL -> Repo: update(entry, EntryStatus.DONE)
+activate Repo
+Repo --> CTRL: success/insuccess
+deactivate Repo
+
+CTRL --> UI : success/insuccess
+deactivate CTRL
+UI --> Collaborator : shows (in)success message
+deactivate UI
+
+deactivate Collaborator
+
+@enduml

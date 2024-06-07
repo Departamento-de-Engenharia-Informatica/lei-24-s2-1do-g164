@@ -5,69 +5,112 @@ skinparam shadowing false
 
 autonumber
 
-actor "Collaborator" as ADM
+'hide footbox
+actor "GSM" as GSM
 participant ":MarkTaskCompletedUI" as UI
 participant ":MarkTaskCompletedController" as CTRL
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT
-participant "toDoEntryRepository:\nToDoEntryRepository" as TaskCategoryRepository
-participant "ToDoEntryMapper"
+participant "agendaEntryRepository:\nAgendaEntryRepository" as Repo
+participant "AgendaEntryMapper"
+participant "AgendaEntryDTO"
 
-activate ADM
 
-ADM -> UI : asks to mark a task as completed
-activate UI
 
-UI -> CTRL : create
-activate CTRL
+activate GSM
 
-activate CTRL
- CTRL-> "AgendaEntryMapper"** : create
-deactivate "AgendaEntryMapper"
+                GSM -> UI : asks to mark a task as completed
 
-UI -> CTRL : getToDoEntries()
+                activate UI
 
-CTRL -> RepositorySingleton : getInstance()
-activate RepositorySingleton
+                UI -> CTRL** : create
+                activate CTRL
 
-RepositorySingleton --> CTRL : repositories
-deactivate RepositorySingleton
+                 UI-> CTRL: getEntrysByCollaborato()
 
-CTRL -> PLAT : getToDoEntryRepository()
-activate PLAT
+                CTRL -> "AgendaEntryMapper"**:  create
 
-PLAT --> CTRL : ToDoEntryRepository()
-deactivate PLAT
 
-CTRL -> TaskCategoryRepository : getToDoEntryList()
-activate TaskCategoryRepository
 
-TaskCategoryRepository --> CTRL : ToDoEntryList
-deactivate TaskCategoryRepository
 
-CTRL -> "AgendaEntryMapper" : toDTO(ToDoEntryList)
-activate "AgendaEntryMapper"
 
-loop for each agendaEntry in ToDoEntryList
-    "AgendaEntryMapper" -> "EntriesBetweenDatesDTO" : ToDoEntryDTO = toDTO(toDoEntry)
-    activate "EntriesBetweenDatesDTO"
-    deactivate "EntriesBetweenDatesDTO"
-end
-"AgendaEntryMapper" --> CTRL : EntriesBetweenDatesListDTO
-deactivate "AgendaEntryMapper"
 
-CTRL --> UI : EntriesBetweenDatesListDTO
 
-UI --> ADM : show the list of entries
+                CTRL -> RepositorySingleton : getInstance()
+                activate RepositorySingleton
 
-ADM -> UI : asks to mark a task as completed
-UI -> CTRL : taskAsCompleted(entry)
-CTRL -> TaskCategoryRepository : taskAsCompleted(entry)
-activate TaskCategoryRepository
-TaskCategoryRepository -> CTRL : Success
-deactivate TaskCategoryRepository
-CTRL --> UI : Success
-UI --> ADM : Confirm task completion
+                    RepositorySingleton --> CTRL: repositories
+                deactivate RepositorySingleton
 
-deactivate ADM
+
+                CTRL -> PLAT : getAgendaEntryRepository()
+                activate PLAT
+
+                    PLAT --> CTRL: AgendaEntryRepository()
+                deactivate PLAT
+
+
+                CTRL -> Repo :getEntrysByCollaborator(String currentUserEmail)
+                activate Repo
+
+                note right: check the email associated with the employee \nand see the team they are included in
+
+                Repo --> CTRL: agendaEntryListCollaborator
+                deactivate Repo
+
+
+
+
+                CTRL -> "AgendaEntryMapper" : toDtoList(agendaEntryListCollaborator)
+                activate "AgendaEntryMapper"
+
+
+                 loop for each agendaEntry in agendaEntryList
+
+                 "AgendaEntryMapper" -> "AgendaEntryDTO"** : agendaEntryDTO = toDTO(agendaEntry)
+
+                  activate "AgendaEntryDTO"
+                  end
+                deactivate "AgendaEntryDTO"
+
+                "AgendaEntryMapper" --> CTRL : agendaEntryDTOList
+                deactivate "AgendaEntryMapper"
+
+                 CTRL --> UI : agendaEntryDTOList
+                 deactivate CTRL
+
+                  UI --> GSM : shows the list of entries in the Agenda\n and asks to select one
+
+
+                 GSM-> UI: selects an entry
+
+
+
+                UI-> CTRL: completedAgendaEntry(AgendaEntryDTO dto)
+                deactivate "AgendaEntryDTO"
+                activate CTRL
+
+                CTRL-> Repo: getAgendaEntryByDescriptionAndGreenSpace(description, greenSpace)
+                activate Repo
+                Repo-->CTRL: agendaEntry
+                deactivate Repo
+
+
+
+                CTRL-> Repo: update(entry, EntryStatus.DONE)
+
+                activate Repo
+                Repo-->CTRL: success/insuccess
+
+
+              deactivate Repo
+
+                CTRL --> UI : success/insuccess
+                deactivate CTRL
+               UI --> GSM : shows (in)success message
+               deactivate UI
+
+
+               deactivate GSM
+
 @enduml

@@ -2,7 +2,6 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.esoft.project.repository.enums.CollaboratorStatusENUM;
 import pt.ipp.isep.dei.esoft.project.repository.enums.DocumentTypeENUM;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,7 +21,7 @@ public class CollaboratorTest {
         job = new Job("Electrician");
         docType = DocumentTypeENUM.CITIZEN_CARD;
 
-        collaborator = new Collaborator("John Doe", 123456789, "01-01-1990", "01-01-2020", "123 Main St", 987654321, job, docType, CollaboratorStatusENUM.DEACTIVATED, 451238965, "siii@euro.lol");
+        collaborator = new Collaborator("John Doe", 123456789, "01-01-1990", "01-01-2020", "123 Main St", 987654321, job, docType, 451238965, "siii@euro.lol");
     }
 
     @Test
@@ -38,7 +37,7 @@ public class CollaboratorTest {
 
     @Test
     public void testEquals_SameTaxpayerNumber() {
-        Collaborator anotherCollaborator = new Collaborator("Jane Doe", 123456789, "02-02-1995", "01-01-2022", "456 Oak St", 123456789, job, docType, CollaboratorStatusENUM.DEACTIVATED, 451238965, "justinbuieber@popo.com");
+        Collaborator anotherCollaborator = new Collaborator("Jane Doe", 123456789, "02-02-1995", "01-01-2022", "456 Oak St", 123456789, job, docType, 451238965, "justinbuieber@popo.com");
         assertTrue(collaborator.equals(anotherCollaborator));
     }
 
@@ -90,12 +89,6 @@ public class CollaboratorTest {
         assertEquals(1, collaborator.getSkills().size());
         assertTrue(collaborator.getSkills().contains(skill1));
     }
-    @Test
-    public void testActivateCollaborator() {
-        assertEquals(CollaboratorStatusENUM.DEACTIVATED, collaborator.getStatus());
-        collaborator.activateCollaborator();
-        assertEquals(CollaboratorStatusENUM.ACTIVATED, collaborator.getStatus());
-    }
 
     @Test
     public void testGetEmail() {
@@ -112,16 +105,7 @@ public class CollaboratorTest {
         assertEquals(451238965, collaborator.getTaxpayerNumber());
     }
 
-    @Test
-    public void testGetStatus() {
-        assertEquals(CollaboratorStatusENUM.DEACTIVATED, collaborator.getStatus());
-    }
 
-    @Test
-    public void testSetStatus() {
-        collaborator.setStatus(CollaboratorStatusENUM.ACTIVATED);
-        assertEquals(CollaboratorStatusENUM.ACTIVATED, collaborator.getStatus());
-    }
 
     @Test
     public void testToString() {

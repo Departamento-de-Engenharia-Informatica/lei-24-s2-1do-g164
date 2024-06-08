@@ -68,10 +68,10 @@ class AgendaEntryRepositoryTest {
         job = new Job("Designer");
         docType = DocumentTypeENUM.CITIZEN_CARD;
 
-        c1 = new Collaborator("John Doe", 123456789, "01-01-1990", "01-01-2020", "123 Main St", 987699321, job, docType, CollaboratorStatusENUM.DEACTIVATED, 451238965, "siii@euro.lol");
-        c2 = new Collaborator("Alice Vieira", 928456689, "15-07-2006", "01-01-2020", "123 Main St", 983554321, job, docType, CollaboratorStatusENUM.DEACTIVATED, 451238965, "siii@euro.lol");
-        c3 = new Collaborator("Ambrosio Leite", 928945689, "19-09-1999", "01-01-2020", "123 Main St", 987554321, job, docType, CollaboratorStatusENUM.DEACTIVATED, 451238965, "siii@euro.lol");
-        c4 = new Collaborator("Elsa Freites", 988955779, "10-06-2005", "01-01-2020", "123 Main St", 987640321, job, docType, CollaboratorStatusENUM.DEACTIVATED, 451238965, "siii@euro.lol");
+        c1 = new Collaborator("John Doe", 123456789, "01-01-1990", "01-01-2020", "123 Main St", 987699321, job, docType, 451238965, "siii@euro.lol");
+        c2 = new Collaborator("Alice Vieira", 928456689, "15-07-2006", "01-01-2020", "123 Main St", 983554321, job, docType,451238965, "siii@euro.lol");
+        c3 = new Collaborator("Ambrosio Leite", 928945689, "19-09-1999", "01-01-2020", "123 Main St", 987554321, job, docType,  451238965, "siii@euro.lol");
+        c4 = new Collaborator("Elsa Freites", 988955779, "10-06-2005", "01-01-2020", "123 Main St", 987640321, job, docType,  451238965, "siii@euro.lol");
 
         collaborators1.add(c1);
         collaborators1.add(c2);

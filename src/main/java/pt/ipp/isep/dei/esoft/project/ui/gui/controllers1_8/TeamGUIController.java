@@ -52,7 +52,7 @@ public class TeamGUIController {
             sb.append("  Name: ").append(collaborator.getName()).append("\n");
             sb.append("  Skills: ").append(collaborator.getSkills()).append("\n");
         }
-        sb.append("--------------------------------------------\n");
+        sb.append("--------------------------------------------\n\n");
         return sb.toString();
     }
 

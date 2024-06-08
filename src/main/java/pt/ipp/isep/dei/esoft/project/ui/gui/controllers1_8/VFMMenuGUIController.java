@@ -73,7 +73,6 @@ public class VFMMenuGUIController {
     private void showVehicles(ArrayList<Vehicle> vehicleList) {
         StringBuilder sb = new StringBuilder();
         sb.append("----------------------------------VEHICLES----------------------------------\n");
-        sb.append("----------------------------------------------------------------------------\n");
         for (Vehicle vehicle : vehicleList) {
             if (vehicle.getLastCheckup() == null) {
                 sb.append(vehicle.getBrand() + " " + vehicle.getModel() + " (" + vehicle.getVehicleID() + ") - Type: " + vehicle.getType() + " - Current Kilometers: " + vehicle.getCurrentKm() + " - Last Check-Up: None").append("\n\n");

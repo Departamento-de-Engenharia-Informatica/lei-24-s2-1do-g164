@@ -47,9 +47,8 @@ public class SkillsMenuGUIController {
     private void showGreenSpaces(ArrayList<Skill> skillList) {
         StringBuilder sb = new StringBuilder();
         sb.append("-------------------SKILLS-------------------\n");
-        sb.append("--------------------------------------------\n");
         for (Skill skill : skillList) {
-            sb.append(skill.getSkillName() + "\n");
+            sb.append(skill.getSkillName() + "\n\n");
         }
         txtText.setText(sb.toString());
     }

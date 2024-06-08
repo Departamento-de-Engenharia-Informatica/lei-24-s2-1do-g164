@@ -51,9 +51,8 @@ public class JobsMenuGUIController {
     private void showGreenSpaces(ArrayList<Job> jobList) {
         StringBuilder sb = new StringBuilder();
         sb.append("-------------------JOBS-------------------\n");
-        sb.append("------------------------------------------\n");
         for (Job job : jobList) {
-            sb.append(job.getJobName()).append("\n");
+            sb.append(job.getJobName()).append("\n\n");
         }
         txtText.setText(sb.toString());
     }

@@ -50,8 +50,9 @@ public class ToDoListGUIController {
     public void update(){
         txtToDoListText.clear();
         ArrayList<ToDoEntryDTO> toDoEntryDTOsList = controller.getToDoEntryDTOsList();
+        txtToDoListText.appendText("-----------------------------AGENDA ENTRIES------------------------------\n");
         for(ToDoEntryDTO toDoEntryDTO : toDoEntryDTOsList){
-            txtToDoListText.appendText(toDoEntryDTO.toString() + "\n");
+            txtToDoListText.appendText(toDoEntryDTO.toString() + "\n\n");
         }
     }
 

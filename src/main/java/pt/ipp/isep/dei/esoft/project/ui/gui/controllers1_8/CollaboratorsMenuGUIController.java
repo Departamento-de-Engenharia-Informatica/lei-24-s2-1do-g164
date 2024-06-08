@@ -50,14 +50,13 @@ public class CollaboratorsMenuGUIController {
     private void showGreenSpaces(ArrayList<Collaborator> collaboratorList) {
         StringBuilder sb = new StringBuilder();
         sb.append("-----------------------------COLLABORATORS-----------------------------\n");
-        sb.append("-----------------------------------------------------------------------\n");
         for (Collaborator collaborator : collaboratorList) {
             sb.append(collaborator.getName()).append(" - Skills: ");
             for(Skill skill : collaborator.getSkills()) {
                 sb.append(skill + ", ");
             }
             sb.deleteCharAt(sb.length()-2);
-            sb.append("\n");
+            sb.append("\n\n");
         }
         txtText.setText(sb.toString());
     }

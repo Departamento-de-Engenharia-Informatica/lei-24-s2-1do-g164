@@ -3,7 +3,6 @@ package pt.ipp.isep.dei.esoft.project.application.controller;
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.Collaborator;
 import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
-import pt.ipp.isep.dei.esoft.project.repository.enums.CollaboratorStatusENUM;
 import pt.ipp.isep.dei.esoft.project.domain.Job;
 import pt.ipp.isep.dei.esoft.project.repository.enums.DocumentTypeENUM;
 import pt.ipp.isep.dei.esoft.project.repository.JobRepository;
@@ -110,9 +109,7 @@ public class RegisterCollaboratorController {
      *
      * @return an ArrayList containing all CollaboratorStatus values
      */
-    public ArrayList<CollaboratorStatusENUM> getCollaboratorStatusList() {
-        return new ArrayList<>(Arrays.asList(CollaboratorStatusENUM.values()));
-    }
+
 
     public ArrayList<Collaborator> getCollaboratorList() {
         return collaboratorRepository.getCollaboratorList();

@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
-import pt.ipp.isep.dei.esoft.project.repository.enums.CollaboratorStatusENUM;
 import pt.ipp.isep.dei.esoft.project.repository.enums.DocumentTypeENUM;
 
 import java.io.Serializable;
@@ -34,7 +33,6 @@ public class Collaborator implements Serializable {
      * @param idDocumentNumber The ID document number of the collaborator.
      * @param job              The job of the collaborator.
      * @param idDocumentType   The ID document type of the collaborator.
-     * @param status           The status of the collaborator.
      * @param taxpayerNumber   The taxpayer number of the collaborator.
      * @param email            The email of the collaborator.
      */

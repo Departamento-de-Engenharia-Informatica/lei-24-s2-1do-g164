@@ -51,10 +51,16 @@ public class CollaboratorsMenuGUIController {
         StringBuilder sb = new StringBuilder();
         sb.append("-----------------------------COLLABORATORS-----------------------------\n");
         for (Collaborator collaborator : collaboratorList) {
-            sb.append(collaborator.getName()).append(" - Skills: ");
-            for(Skill skill : collaborator.getSkills()) {
-                sb.append(skill + ", ");
+            if (collaborator.getSkills().isEmpty()) {
+                sb.append(collaborator.getName()).append(" - No skills  ");
+                continue;
+            }else {
+                sb.append(collaborator.getName()).append(" - Skills: ");
+                for(Skill skill : collaborator.getSkills()) {
+                    sb.append(skill + ", ");
+                }
             }
+
             sb.deleteCharAt(sb.length()-2);
             sb.append("\n\n");
         }

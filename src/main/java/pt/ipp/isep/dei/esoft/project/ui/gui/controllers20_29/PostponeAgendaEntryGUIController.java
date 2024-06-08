@@ -66,6 +66,10 @@ public class PostponeAgendaEntryGUIController {
                 showAlert(Alert.AlertType.ERROR, "Postpone Entry Error", "No entry selected.");
                 return;
             }
+            if (date.getValue() == null) {
+                showAlert(Alert.AlertType.ERROR, "Postpone Entry Error", "No date selected.");
+                return;
+            }
 
             if (date.getValue().isBefore(selectedEntry.getDate())|| date.getValue().isEqual(selectedEntry.getDate())) {
                     showAlert(Alert.AlertType.ERROR, "Postpone Entry Error", "Date must be after last date");

@@ -1,0 +1,38 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+participant ":TasksBetweenDatesUI" as UI
+participant ":TasksBetweenDatesController" as CTRL
+participant "agendaEntryRepository:\nAgendaEntryRepository" as Repo
+participant "AgendaEntryMapper"
+participant "EntriesBetweenDatesDTO"
+
+activate UI
+
+UI -> CTRL : getEntriesBetweenDates(date1,date2)
+activate CTRL
+
+CTRL -> Repo : getEntriesBetweenDates ()
+activate Repo
+
+Repo --> CTRL : entriesBetweenDatesList
+deactivate Repo
+
+CTRL -> "AgendaEntryMapper": toDTO(entriesBetweenDatesList)
+activate "AgendaEntryMapper"
+
+loop for each agendaEntry in entriesBetweenDatesList
+    "AgendaEntryMapper" -> "EntriesBetweenDatesDTO" : agendaEntryDTO = toDTO(agendaEntry)
+    activate "EntriesBetweenDatesDTO"
+    deactivate "EntriesBetweenDatesDTO"
+end
+
+"AgendaEntryMapper" --> CTRL : entriesBetweenDatesListDTO
+deactivate "AgendaEntryMapper"
+
+deactivate CTRL
+@enduml

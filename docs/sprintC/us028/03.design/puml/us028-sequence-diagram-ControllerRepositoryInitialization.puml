@@ -1,0 +1,28 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+participant ":TasksBetweenDatesController" as CTRL
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "agendaEntryRepository:\nAgendaEntryRepository" as Repo
+
+activate CTRL
+
+CTRL -> RepositorySingleton : getInstance()
+activate RepositorySingleton
+
+RepositorySingleton --> CTRL: repositories
+deactivate RepositorySingleton
+
+CTRL -> PLAT : getAgendaEntryRepository()
+activate PLAT
+
+PLAT --> CTRL: AgendaEntryRepository
+deactivate PLAT
+
+deactivate CTRL
+@enduml

@@ -1,10 +1,8 @@
 @startuml
 skinparam classAttributeIconSize 0
-'skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 skinparam linetype polyline
-'skinparam linetype orto
 skinparam classAttributeIconSize 0
 
 class Vehicle {
@@ -20,6 +18,19 @@ class Vehicle {
         checkupFrequency
 
 }
+
+class Collaborator {
+    name
+    phone
+    birthdate
+    admissionDate
+    address
+    idDocumentType
+    idDocumentNumber
+    status
+}
+
+
 
 class VehicleCheckup {
     currentKms

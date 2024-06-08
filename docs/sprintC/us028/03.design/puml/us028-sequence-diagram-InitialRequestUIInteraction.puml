@@ -1,0 +1,24 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "Collaborator" as ADM
+participant ":TasksBetweenDatesUI" as UI
+participant ":TasksBetweenDatesController" as CTRL
+
+activate ADM
+
+ADM -> UI : asks to consult the tasks assigned to him between two dates.
+activate UI
+
+UI -> CTRL : create
+activate CTRL
+
+UI --> ADM : asks for the dates he wants to search
+ADM -> UI : write the desired dates
+
+deactivate ADM
+@enduml

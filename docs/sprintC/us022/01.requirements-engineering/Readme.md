@@ -1,4 +1,4 @@
-# US022 - Add entry to the Agenda
+# US022 - Register an Agenda Entry
 
 
 ## 1. Requirements Engineering

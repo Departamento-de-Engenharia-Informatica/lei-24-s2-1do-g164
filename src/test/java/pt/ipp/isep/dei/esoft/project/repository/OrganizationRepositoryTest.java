@@ -8,7 +8,8 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class      OrganizationRepositoryTest {
+class
+OrganizationRepositoryTest {
 
     @Test
     void testAddOrganization() {

@@ -15,7 +15,6 @@ public class AgendaEntry extends ToDoEntry {
     private Team associatedTeam;
     private ArrayList<Vehicle> associatedVehicles;
 
-
     /**
      * Gets date.
      *
@@ -107,7 +106,4 @@ public class AgendaEntry extends ToDoEntry {
         this.setEntryStatus(entryStatus);
         this.date = date;
     }
-
-
-
 }

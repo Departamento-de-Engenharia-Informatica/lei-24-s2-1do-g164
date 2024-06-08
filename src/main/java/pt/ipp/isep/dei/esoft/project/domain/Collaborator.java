@@ -22,7 +22,6 @@ public class Collaborator implements Serializable {
     private int idDocumentNumber;
     private int taxpayerNumber;
     private ArrayList<Skill> skills;
-    private CollaboratorStatusENUM status;
 
     /**
      * Constructs a new Collaborator with specified details.
@@ -39,7 +38,7 @@ public class Collaborator implements Serializable {
      * @param taxpayerNumber   The taxpayer number of the collaborator.
      * @param email            The email of the collaborator.
      */
-    public Collaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentTypeENUM idDocumentType, CollaboratorStatusENUM status, int taxpayerNumber, String email) {
+    public Collaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentTypeENUM idDocumentType, int taxpayerNumber, String email) {
         this.name = name;
         this.phone = phone;
         this.birthdate = birthdate;
@@ -48,7 +47,6 @@ public class Collaborator implements Serializable {
         this.idDocumentNumber = idDocumentNumber;
         this.job = job;
         this.skills = new ArrayList<>();
-        this.status = status;
         this.taxpayerNumber = taxpayerNumber;
         this.email = email;
     }
@@ -157,9 +155,6 @@ public class Collaborator implements Serializable {
     /**
      * Activates the collaborator.
      */
-    public void activateCollaborator() {
-        this.status = CollaboratorStatusENUM.ACTIVATED;
-    }
 
     /**
      * Retrieves the email of the collaborator.
@@ -193,13 +188,6 @@ public class Collaborator implements Serializable {
      *
      * @return The status of the collaborator.
      */
-    public CollaboratorStatusENUM getStatus() {
-        return status;
-    }
-
-    public void setStatus(CollaboratorStatusENUM status) {
-        this.status = status;
-    }
 
     /**
      * Generates a string representation of the collaborator.

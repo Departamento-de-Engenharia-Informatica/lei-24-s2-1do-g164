@@ -52,9 +52,6 @@ public class CreateTeamProposalController {
         try {
             teamProposalService.acceptTeamProposal(team);
             teamRepository.registerTeam(team);
-            for (var collaborator : team.getCollaborators()) {
-                collaborator.activateCollaborator();
-            }
             return true;
         } catch (Exception e) {
             e.printStackTrace();

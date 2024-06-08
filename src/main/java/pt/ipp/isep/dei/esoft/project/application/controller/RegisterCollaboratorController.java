@@ -48,7 +48,7 @@ public class RegisterCollaboratorController {
      * @return {@code true} if the collaborator is successfully registered, {@code false} otherwise.
      */
     public boolean registerCollaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentTypeENUM idDocumentType, int taxpayerNumber, String email) {
-        if(collaboratorRepository.registerCollaborator(name, phone, birthdate, admissionDate, address, idDocumentNumber, job, idDocumentType, getCollaboratorStatusList().get(1), taxpayerNumber, email)){
+        if(collaboratorRepository.registerCollaborator(name, phone, birthdate, admissionDate, address, idDocumentNumber, job, idDocumentType, taxpayerNumber, email)){
             authenticationRepository.addUserWithRole(name, email, name.toUpperCase()+"1234", AuthenticationController.ROLE_COL);
             System.out.println(name.toUpperCase()+"1234");
             return true;

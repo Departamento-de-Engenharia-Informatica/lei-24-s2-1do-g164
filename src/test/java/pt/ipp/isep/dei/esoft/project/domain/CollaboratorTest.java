@@ -48,7 +48,48 @@ public class CollaboratorTest {
         collaborator.addSkill(skill2);
         assertEquals(2, collaborator.getSkills().size());
     }
+    @Test
+    public void testGetName() {
+        assertEquals("John Doe", collaborator.getName());
+    }
 
+    @Test
+    public void testGetPhone() {
+        assertEquals(123456789, collaborator.getPhone());
+    }
+
+    @Test
+    public void testGetBirthdate() {
+        assertEquals("01-01-1990", collaborator.getBirthdate());
+    }
+
+    @Test
+    public void testGetAdmissionDate() {
+        assertEquals("01-01-2020", collaborator.getAdmissionDate());
+    }
+
+    @Test
+    public void testGetAddress() {
+        assertEquals("123 Main St", collaborator.getAddress());
+    }
+
+    @Test
+    public void testGetIdDocumentNumber() {
+        assertEquals(987654321, collaborator.getIdDocumentNumber());
+    }
+
+    @Test
+    public void testGetJob() {
+        assertEquals(job, collaborator.getJob());
+    }
+
+    @Test
+    public void testGetSkills() {
+        assertTrue(collaborator.getSkills().isEmpty());
+        collaborator.addSkill(skill1);
+        assertEquals(1, collaborator.getSkills().size());
+        assertTrue(collaborator.getSkills().contains(skill1));
+    }
     @Test
     public void testActivateCollaborator() {
         assertEquals(CollaboratorStatusENUM.DEACTIVATED, collaborator.getStatus());
@@ -56,9 +97,42 @@ public class CollaboratorTest {
         assertEquals(CollaboratorStatusENUM.ACTIVATED, collaborator.getStatus());
     }
 
-//    @Test
-//    public void testToString() {
-//        String expected = "John Doe []";
-//        assertEquals(expected, collaborator.toString());
-//    }
+    @Test
+    public void testGetEmail() {
+        assertEquals("siii@euro.lol", collaborator.getEmail());
+    }
+
+    @Test
+    public void testGetIdDocumentType() {
+        assertEquals(docType, collaborator.getIdDocumentType());
+    }
+
+    @Test
+    public void testGetTaxpayerNumber() {
+        assertEquals(451238965, collaborator.getTaxpayerNumber());
+    }
+
+    @Test
+    public void testGetStatus() {
+        assertEquals(CollaboratorStatusENUM.DEACTIVATED, collaborator.getStatus());
+    }
+
+    @Test
+    public void testSetStatus() {
+        collaborator.setStatus(CollaboratorStatusENUM.ACTIVATED);
+        assertEquals(CollaboratorStatusENUM.ACTIVATED, collaborator.getStatus());
+    }
+
+    @Test
+    public void testToString() {
+        String expected = "John Doe - skills: []";
+        assertEquals(expected, collaborator.toString());
+
+        collaborator.addSkill(skill1);
+        expected = "John Doe - skills: [" + skill1 + "]";
+        assertEquals(expected, collaborator.toString());
+    }
+
+
+
 }

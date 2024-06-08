@@ -52,4 +52,9 @@ public class JobTest {
         Job s2 = new Job("bbb");
         assertNotEquals(s1.hashCode(), s2.hashCode());
     }
+    @Test
+    public void testToString() {
+        Job j1 = new Job("aaa");
+        assertEquals("aaa", j1.getJobName().toString());
+    }
 }

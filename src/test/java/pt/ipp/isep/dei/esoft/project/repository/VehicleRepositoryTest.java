@@ -10,6 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class VehicleRepositoryTest {
     private VehicleRepository repository;
@@ -26,16 +28,6 @@ public class VehicleRepositoryTest {
                 "01-01-2022", "01-01-2022", 10000));
         assertEquals(1, repository.size());
     }
-
-
-//    @Test
-//    public void testRegisterDuplicateVehicle() {
-//        repository.registerVehicle("Toyota", "Corolla", "AB-22-KL", VehicleTypeENUM.TRACTOR, 1500.0, 1200.0, 50000,
-//                "01-01-2022", "01-01-2022", 10000);
-//        assertFalse(repository.registerVehicle("Toyota", "Corolla", "AB-22-KL", VehicleTypeENUM.TRACTOR, 1500.0, 1200.0, 50000,
-//                "01-01-2022", "01-01-2022", 10000));
-//        assertEquals(1, repository.size());
-//    }
 
     @Test
     public void testGetVehiclesNeedingCheckup() {
@@ -65,5 +57,18 @@ public class VehicleRepositoryTest {
         int currentKm = 50000;
         boolean result = repository.createVehicleCheckup(null, date, currentKm);
         assertFalse(result);
+    }
+
+    @Test
+    public void testUpdateVehicleCurrentKm_NullVehicle() {
+        assertFalse(repository.updateVehicleCurrentKm(null, 60000));
+    }
+
+    @Test
+    public void testGetVehiclesByIds_NonExistingId() {
+        List<String> vehicleIds = Arrays.asList("NON-EXISTING-ID");
+        ArrayList<Vehicle> vehicles = repository.getVehiclesByIds(vehicleIds);
+
+        assertEquals(0, vehicles.size());
     }
 }

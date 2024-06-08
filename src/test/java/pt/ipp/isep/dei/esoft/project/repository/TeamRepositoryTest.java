@@ -12,6 +12,7 @@ import pt.ipp.isep.dei.esoft.project.repository.enums.DocumentTypeENUM;
 import pt.ipp.isep.dei.esoft.project.repository.enums.TeamStatusENUM;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -92,6 +93,30 @@ class TeamRepositoryTest {
         repo.registerTeam(t1);
         assertEquals(1, repo.size());
     }
+    @Test
+    void testGetTeams() {
+        repo.registerTeam(t1);
+        repo.registerTeam(t2);
+        ArrayList<Team> teams = repo.getTeams();
+        assertEquals(2, teams.size());
+        assertTrue(teams.contains(t1));
+        assertTrue(teams.contains(t2));
+    }
 
+    @Test
+    void testGetTeamByCollaborators_ExistingTeam() {
+        repo.registerTeam(t1);
+        ArrayList<String> collaboratorNames = new ArrayList<>(Arrays.asList("John Doe", "Alice Vieira"));
+        Team team = repo.getTeamByCollaborators(collaboratorNames);
+        assertEquals(t1, team);
+    }
+
+    @Test
+    void testGetTeamByCollaborators_NonExistingTeam() {
+        repo.registerTeam(t1);
+        ArrayList<String> collaboratorNames = new ArrayList<>(Arrays.asList("Ambrosio Leite", "Elsa Freites"));
+        Team team = repo.getTeamByCollaborators(collaboratorNames);
+        assertNull(team);
+    }
 
 }

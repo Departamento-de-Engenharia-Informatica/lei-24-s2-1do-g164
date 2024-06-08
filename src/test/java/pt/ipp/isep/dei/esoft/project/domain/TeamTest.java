@@ -114,5 +114,31 @@ class TeamTest {
         t1.setSkills(newSkills);
         assertEquals(newSkills, t1.getSkills());
     }
+    @Test
+    void ensureGetStatusReturnsCorrectStatus() {
+        TeamStatusENUM result = t1.getStatus();
+        assertEquals(TeamStatusENUM.PENDING, result);
+    }
+
+    @Test
+    void ensureSetStatusUpdatesStatusCorrectly() {
+        t1.setStatus(TeamStatusENUM.ACCEPTED);
+        assertEquals(TeamStatusENUM.ACCEPTED, t1.getStatus());
+    }
+
+    @Test
+    void ensureToStringReturnsCorrectStringForNonEmptyTeam() {
+        String result = t1.toString();
+        assertTrue(result.contains("Team: "));
+        assertTrue(result.contains("John Doe"));
+        assertTrue(result.contains("Alice Vieira"));
+    }
+
+    @Test
+    void ensureToStringReturnsCorrectStringForEmptyTeam() {
+        Team emptyTeam = new Team(new ArrayList<>(), new ArrayList<>(), TeamStatusENUM.PENDING);
+        String result = emptyTeam.toString();
+        assertEquals("No team", result);
+    }
 
 }

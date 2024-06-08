@@ -43,7 +43,6 @@ As a GSM, I want to add an entry from the to do list to the Agenda.
 * The new entry must be associated with a green space man aged by the GSM.
 * The new entry must exist in the To-Do list.
 * The new entry on the agenda cannot be a duplicate.
-* The new entry has to have a date in the future for it to be accepted.
 
 ### 1.4. Found out Dependencies
 

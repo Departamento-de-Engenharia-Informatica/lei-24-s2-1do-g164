@@ -71,7 +71,7 @@ public class RegisterGreenSpaceGUIController {
             }
             GreenSpaceDTO dto = new GreenSpaceDTO(name, address, area, type, authenticationController.getCurrentUserEmail());
             if (controller.registerGreenSpace(dto)) {
-                System.out.println(controller.getGreenSpaceList());
+                showAlert(Alert.AlertType.INFORMATION, "Register Green Space", "Green Space registered successfully.");
                 greenSpaceMenuGUIController.update();
                 closeWindow(event);
             } else {

@@ -18,7 +18,7 @@ activate Employee
 
         System --> Employee : asks for the dates he wants to search
     deactivate System
-        Employee -> System :write the desired dates
+        Employee -> System :select the desired dates and the status of the entries
 
         activate System
 

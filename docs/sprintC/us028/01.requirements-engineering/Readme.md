@@ -11,7 +11,14 @@ As a Collaborator, I wish to consult the tasks assigned to me between two dates.
 
 **From the specifications document:**
 
->??
+>The Agenda is a crucial mechanism for planning the week’s work. Each entry
+in the Agenda defines a task (that was previously included in the to-do list).
+A team will carry out that task in a green space at a certain time interval
+on a specific date. Comparatively analyzing the Agenda entries and the
+pending tasks (to-do list) allows you to evaluate the work still to be done,
+the busyness of the week, and the work performed by a team in a green space
+at a determined time interval and on a specific date.
+
 
 **From the client clarifications:**
 
@@ -50,7 +57,10 @@ Task type is "Prunning trees", a specific task is "Prunning trees" in specific p
 
 ### 1.3. Acceptance Criteria
 
-* A vehicle must fulfill the criteria to need a checkup in order to appear on the list.
+*  **AC1:** The list of tasks spaces must be sorted by date.
+*  **AC2:** The Collaborator should be able to filter the results by the
+  status of the task.
+
 
 ### 1.4. Found out Dependencies
 
@@ -60,11 +70,16 @@ Task type is "Prunning trees", a specific task is "Prunning trees" in specific p
 
 **Input Data:**
 
-* n\a
+Selected data:
+
+* First Date
+* Second Date
+* Status of Entries
+
 
 **Output Data:**
 
-* List of vehicles that need the check-up.
+* List of entries assigned to the collaborator
 
 ### 1.6. System Sequence Diagram (SSD)
 
@@ -72,4 +87,4 @@ Task type is "Prunning trees", a specific task is "Prunning trees" in specific p
 
 ### 1.7 Other Relevant Remarks
 
-* If a check-up has never been registered for a vehicle its kms at last check-up are 0. 
+* none

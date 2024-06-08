@@ -102,7 +102,8 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Records of finance, work, contracts, legal matters**
 
-* n/a
+* To-do-List 
+* Agenda
 
 ---
 
@@ -132,30 +133,24 @@ An association is a relationship between instances of objects that indicates a r
 - etc.
 
 
-| Concept (A) 		          | Association   	 |                  Concept (B) |
-|-------------------------|:---------------:|-----------------------------:|
-| HRM                     |  inherits from  |                   SystemUser |
-| HRM                     |     creates     |                        Skill |
-| HRM                     |     creates     |                          Job |
-| HRM                     |     creates     |                 Collaborator |
-| HRM                     |    requests     |                 TeamProposal |
-| VFM                     |  inherits from  |                   SystemUser |
-| VFM                     |    registers    |                      Vehicle |
-| VFM                     |    registers    |               VehicleCheckUp |
-| VFM                     |    requests     | ListOfVehiclesNeedingCheckUp |
-| VFM                     |     manages     |                      Machine |
-| VFM                     |     manages     |                    Equipment |
-| Collaborator            |  inherits from  |                   SystemUser |
-| Collaborator            |       has       |                          Job |
-| Skill                   | is atributed to |                 Collaborator |
-| TeamProposal            |       has       |                         Team |
-| VehiclesNeedingCheck-Up |       has       |                      Vehicle |
-| Task                    |  occures in a   |                   GreenSpace |
-| Task                    | carried out by  |                         Team |
-| Agenda                  |       has       |                  AgendaEntry |
-| AgendaEntry             |     defines     |                         Task |
-| AgendaEntry             |     defines     |                         Team |
-| ToDoList                |    contains     |                         Task |
+| Concept (A) 		 | Association   	  |    Concept (B) |
+|----------------|:----------------:|---------------:|
+| HRM            |  inherits from   |     SystemUser |
+| HRM            |     creates      |          Skill |
+| HRM            |     creates      |            Job |
+| HRM            |     creates      |   Collaborator |
+| HRM            |     requests     |   TeamProposal |
+| VFM            |  inherits from   |     SystemUser |
+| VFM            |    registers     |        Vehicle |
+| VFM            |    registers     | VehicleCheckUp |
+| VFM            |     manages      |        Machine |
+| VFM            |     manages      |      Equipment |
+| Collaborator   |  inherits from   |     SystemUser |
+| Collaborator   |       has        |            Job |
+| Skill          | is atributed to  |   Collaborator |
+| Agenda         |       has        |    AgendaEntry |
+| AgendaEntry    |    inhertits     |    To do Entry |
+| AgendaEntry    | is attributed to |           Team |
 | VFM                     |  inherits from  |                   SystemUser |
 | VFM                     |     manages     |                      Machine |
 | VFM                     |     manages     |                    Equipment |
@@ -165,9 +160,12 @@ An association is a relationship between instances of objects that indicates a r
 | GSU                     |      makes      |                      Comment |
 | GSU                     |      uses       |        GreenSpacesUserPortal |
 | GSU                     |      uses       |                   GreenSpace |
-| GreenSpacesUserPortal   |       has       |                       Report |
 | GSM                     |  inherits from  |                   SystemUser |
 | GSM                     |     manages     |                   GreenSpace |
+| GSM                     |     manages     |                  AgendaEntry |
+| GSM                     |     manages     |                    ToDoEntry |
+| Team                    |     carries     |                    ToDoEntry |
+| GreenSpacesUserPortal   |       has       |                       Report |
 | MS                      |       has       |                   SystemUser |
 | MS                      |       has       |                      Machine |
 | MS                      |       has       |                      Vehicle |

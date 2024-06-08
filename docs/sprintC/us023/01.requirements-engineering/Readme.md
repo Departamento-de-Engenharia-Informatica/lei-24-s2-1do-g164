@@ -45,8 +45,10 @@ the team that will carry out the tasks.
 **Input Data:**
 
 * Selected data:
+
+  * Agenda Entry
   * Team
-  * Entry
+
 
 **Output Data:**
 

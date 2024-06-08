@@ -12,7 +12,7 @@ participant ":System" as System
 
 activate Employee
 
-    Employee -> System : asks to add a new entry from the "To Do List"\n to the Agend
+    Employee -> System : asks to add a new entry from the "To Do List"\n to the Agenda
     activate System
 
         System --> Employee : displays the "To Do List" entries that are\n not in the Agenda

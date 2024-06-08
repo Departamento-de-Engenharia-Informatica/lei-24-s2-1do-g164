@@ -11,8 +11,9 @@
 
 **From the specifications document:**
 
-> ??
-
+> Vehicles are needed to carry out the tasks assigned to the teams and to
+transport machines and equipment.
+> 
 **From the client clarifications:**
 
 > **Question:**
@@ -58,19 +59,19 @@ Best regards.
 * **AC2** - The vehicle must be available within the period
 ### 1.4. Found out Dependencies
 
-* There is a dependency on US022 - new entry in the Agenda is essential so  that Agenda entries exist.
-* There is a dependency on US006 - creat a new vehicle is essential so that they can be assign.
+* There is a dependency on US022 - new entry in the Agenda is essential so that Agenda entries exist.
+* There is a dependency on US006 - create a new vehicle is essential so that they can be assigned.
 
 ### 1.5 Input and Output Data
 
 **Input Data:**
 
-* entry in the Agenda
+* Agenda Entry
 * one/multiple vehicles
 
 **Output Data:**
 
-* List of collaborator's current skills
+
 * (In)Success of the operation
 
 ### 1.6. System Sequence Diagram (SSD)

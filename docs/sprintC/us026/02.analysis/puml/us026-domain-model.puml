@@ -52,7 +52,7 @@ class GSM {
 
 
 SystemUser <|- GSM
-Vehicle "1..*" - "1" AgendaEntry: is atributed to >
+AgendaEntry"1"-- "1..*" Vehicle: assigned to >
 AgendaEntry --|> ToDoEntry
 Agenda "1" -- "*" AgendaEntry : has >
 GSM"1" - "*" AgendaEntry: manages >

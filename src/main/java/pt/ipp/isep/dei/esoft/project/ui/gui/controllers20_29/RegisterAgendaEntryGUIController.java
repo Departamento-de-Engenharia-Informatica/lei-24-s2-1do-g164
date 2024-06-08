@@ -86,6 +86,8 @@ public class RegisterAgendaEntryGUIController {
             toDoDTO.entryStatus = EntryStatusENUM.PLANNED;
             AgendaEntryDTO agendaDTO = new AgendaEntryDTO(toDoDTO, date);
             if(controller.registerAgendaEntry(agendaDTO)) {
+                showAlert(Alert.AlertType.INFORMATION, "Register Agenda Entry", "Agenda Entry registered successfully.");
+
                 agendaMenuGUIController.update();
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.close();

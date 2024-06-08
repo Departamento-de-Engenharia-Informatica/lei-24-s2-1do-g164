@@ -236,13 +236,6 @@ class AgendaEntryRepositoryTest {
     }
 
     @Test
-    void testGetAgendaEntryListWithoutVehicles() {
-        repository.addEntryToAgenda(agendaEntry);
-        String email = greenSpace.getEmailGSM();
-        ArrayList<AgendaEntry> entries = repository.getAgendaEntryListWithoutVehicles(email);
-        assertTrue(entries.contains(agendaEntry));
-    }
-    @Test
     void testAssignVehicles() {
         repository.addEntryToAgenda(agendaEntry);
         ArrayList<Vehicle> newVehicles = new ArrayList<>();

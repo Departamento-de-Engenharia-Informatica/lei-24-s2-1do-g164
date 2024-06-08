@@ -76,6 +76,7 @@ public class RegisterToDoEntryGUIController {
 
             ToDoEntryDTO dto = new ToDoEntryDTO(description, expectedDuration, greenSpaceMapper.toEntity(greenSpace), urgencyDegree);
             if (controller.registerToDoEntry(dto)) {
+                showAlert(Alert.AlertType.INFORMATION, "Register To-do Entry", "To-do Entry registered successfully.");
                 toDoListGUIController.update();
                 closeWindow(event);
             } else {

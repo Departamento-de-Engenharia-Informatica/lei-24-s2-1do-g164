@@ -45,10 +45,10 @@ activate plat
 plat --> ctrl: vehicleRepository
 deactivate plat
 
-ui -> ctrl : getAgendaEntriesDTOWithoutVehicles()
-ui -> ctrl : showVehiclesDTO()
+ui -> ctrl : getVehiclesListDTO()
+ui -> ctrl : getVehiclesListDTO()
 
-ctrl -> agendaRepo : getAgendaEntryList()
+ctrl -> agendaRepo : getAgendaEntryWithoutDoneList(authenticationController.getCurrentUserEmail()
 activate agendaRepo
 agendaRepo --> ctrl: agendaEntryList
 deactivate agendaRepo
@@ -67,7 +67,7 @@ agendaMapper --> ctrl : agendaEntryDTOList
 deactivate agendaMapper
 deactivate AgendaEntryDTO
 
-ctrl -> vehicleRepo : getVehicles()
+ctrl -> vehicleRepo : getVehicleList()
 activate vehicleRepo
 vehicleRepo --> ctrl: vehicles
 deactivate vehicleRepo
@@ -90,22 +90,16 @@ ui --> GSM : shows the list of entries in the agenda\n and the list of vehicles 
 
 GSM -> ui : selects entry and vehicles
 
-ui -> ctrl : assignVehicles(AgendaEntry agendaEntry, ArrayList<Vehicle> vehicleList)
+ui -> ctrl : assignVehciles(selectedEntry, vehicleList))
 activate ctrl
 
-ctrl -> agendaRepo : getAgendaEntry(selectedEntry.description, selectedEntry.greenSpace)
+ctrl -> agendaRepo : assignVehicles(mapperAgenda.toEntity(agendaEntry), mapperVehicle.toEntityList(vehiclesList)
 activate agendaRepo
-agendaRepo --> ctrl : agendaEntry
+
+agendaRepo -> "AgendaEntry": setAssociatedVehicles(vehicleList)
+
+agendaRepo -> ctrl: success/insuccess
 deactivate agendaRepo
-
-ctrl -> vehicleRepo : getVehicles(selectedVehicles)
-activate vehicleRepo
-vehicleRepo --> ctrl : vehicles
-deactivate vehicleRepo
-
-ctrl -> agendaEntry : assignVehicles(AgendaEntry agendaEntry, ArrayList<Vehicle> vehicleList)
-activate agendaEntry
-agendaEntry -> ctrl: success/insuccess
 deactivate agendaEntry
 
 ctrl --> ui : success/insuccess

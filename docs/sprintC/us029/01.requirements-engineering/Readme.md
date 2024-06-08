@@ -52,17 +52,17 @@ I suppose when a task goes to the Agenda, it leaves the To-Do list but maybe a d
 
 ### 1.4. Found out Dependencies
 
-* n/a
+* There's a dependency on the US022 - Add entry to the Agenda, since there must be an agenda entry to mark as done
 
 ### 1.5 Input and Output Data
 
 **Input Data:**
 
-* Asks to mark a task as completed
+* Agenda Entry
 
 **Output Data:**
 
-* Confirm task completion
+* (in)success message
 
 ### 1.6. System Sequence Diagram (SSD)
 

@@ -18,10 +18,10 @@ activate Employee
         System --> Employee :shows list of entries and the list of vehicles
     deactivate System
 
-     Employee -> System : chooses an entry
+     Employee -> System : chooses an entry and vehicles from list to add
         activate System
 
-         Employee -> System : chooses vehicles from list to add
+
 
             System --> Employee : displays operation success
                 deactivate System

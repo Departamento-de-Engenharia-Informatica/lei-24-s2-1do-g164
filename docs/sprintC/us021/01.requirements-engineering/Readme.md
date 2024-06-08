@@ -45,7 +45,6 @@ As a GSM, I want to add a new entry to the To-Do List.
   
 **Output Data:**
 
-* List of green spaces
 * (In)Success of the operation
 
 

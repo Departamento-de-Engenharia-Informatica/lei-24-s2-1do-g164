@@ -67,6 +67,11 @@ public class PostponeAgendaEntryGUIController {
                 return;
             }
 
+            if (date.getValue().isBefore(selectedEntry.getDate())) {
+                    showAlert(Alert.AlertType.ERROR, "Postpone Entry Error", "Date must be after last date");
+                    return;
+            }
+
             if (selectedEntry.entryStatus == EntryStatusENUM.CANCELLED) {
                 showAlert(Alert.AlertType.ERROR, "Postpone Entry Error", "Selected entry is already cancelled.");
                 return;

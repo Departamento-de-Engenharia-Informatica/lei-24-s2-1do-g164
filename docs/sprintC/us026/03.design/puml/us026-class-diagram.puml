@@ -45,8 +45,8 @@ class SystemUser {
 
 class AgendaEntryRepository {
     - ArrayList<AgendaEntry> agendaEntries
-    + getAgendaEntry(description, greenSpace)
-
+    +getAgendaEntryWithoutDoneList(authenticationController.getCurrentUserEmail()
+    +assignVehicles(mapperAgenda.toEntity(agendaEntry), mapperVehicle.toEntityList(vehiclesList)
 }
 
 class Repositories {
@@ -72,8 +72,7 @@ class AssignVehiclesController {
 
     +getAgendaEntryListDTO()
     +getVehiclesListDTO()
-    +assignTeamToAgendaEntry(selectedEntry, teamEntry)
-    +assignVehciles(AgendaEntryDTO agendaEntry, List<VehicleDTO> vehiclesList)
+     + assignVehciles(selectedEntry, vehicleList))
 }
 
 class AssignVehiclesUI {

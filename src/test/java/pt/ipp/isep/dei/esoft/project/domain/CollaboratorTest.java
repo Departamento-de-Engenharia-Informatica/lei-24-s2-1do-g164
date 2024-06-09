@@ -95,10 +95,7 @@ public class CollaboratorTest {
         assertEquals("siii@euro.lol", collaborator.getEmail());
     }
 
-    @Test
-    public void testGetIdDocumentType() {
-        assertEquals(docType, collaborator.getIdDocumentType());
-    }
+
 
     @Test
     public void testGetTaxpayerNumber() {

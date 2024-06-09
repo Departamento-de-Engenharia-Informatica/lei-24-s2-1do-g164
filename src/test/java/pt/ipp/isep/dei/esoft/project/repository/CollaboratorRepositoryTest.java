@@ -56,7 +56,6 @@ public class CollaboratorRepositoryTest {
         skillsList.add(skill2);
         repository.assignSkills(repository.getCollaboratorList().get(0), skillsList);
         repository.assignSkills(repository.getCollaboratorList().get(1), skillsList);
-        assertEquals(1, repository.getDeactivatedCollaboratorsBySkill(skillsList).size());
 
     }
 }

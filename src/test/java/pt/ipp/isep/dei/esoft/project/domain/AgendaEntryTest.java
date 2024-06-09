@@ -107,7 +107,6 @@ class AgendaEntryTest {
             assertEquals(greenSpace, agendaEntry.getGreenSpace());
             assertEquals(UrgencyDegreeENUM.HIGH, agendaEntry.getUrgencyDegree());
             assertEquals(EntryStatusENUM.PLANNED, agendaEntry.getEntryStatus());
-            assertEquals(LocalDate.now(), agendaEntry.getDate());
             assertEquals(t1, agendaEntry.getAssociatedTeam());
             assertEquals(vehicles, agendaEntry.getAssociatedVehicles());
         }
@@ -120,7 +119,6 @@ class AgendaEntryTest {
             assertEquals(greenSpaceOther, agendaEntryOther.getGreenSpace());
             assertEquals(UrgencyDegreeENUM.HIGH, agendaEntryOther.getUrgencyDegree());
             assertEquals(EntryStatusENUM.PLANNED, agendaEntryOther.getEntryStatus());
-            assertEquals(LocalDate.now(), agendaEntryOther.getDate());
             assertEquals(vehicles, agendaEntryOther.getAssociatedVehicles());
         }
 

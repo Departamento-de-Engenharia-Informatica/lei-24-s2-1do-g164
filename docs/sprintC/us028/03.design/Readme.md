@@ -1,4 +1,4 @@
-# US008 - List the vehicles needing the check-up
+# US028 - Consult the tasks assigned between two dates
 
 ## 3. Design - User Story Realization 
 
@@ -24,16 +24,12 @@ _**Note that SSD - Alternative One is adopted.**_
 | Step 10 (return DTO list to UI)                    | ... sending DTO list to UI?                      | `:TasksBetweenDatesController` | Controller: Responsible for sending data to the UI for display.                                                                                                                                    |
 | Step 11 (displaying the list)                      | ... displaying the success or failure message?   | `:TasksBetweenDatesUI`       | Pure Fabrication: Responsible for user feedback.                                                                                                                                                  |
 
-According to the taken rationale, the conceptual classes promoted to software classes are: 
+According to the taken rationale, the conceptual classes promoted to software classes are:  
 
-* Vehicle
-
-
-Other software classes (i.e. Pure Fabrication) identified: 
-
-*  ListVehivclesCheckupsUI
-*  ListVehivclesCheckupsController
-*  VehiclesRepodsitory
+* TasksBetweenDatesController
+* TasksBetweenDatesUI
+*  AgendaEntryMapper
+* AgendaEntryMapper
 
 
 ## 3.2. Sequence Diagram (SD)

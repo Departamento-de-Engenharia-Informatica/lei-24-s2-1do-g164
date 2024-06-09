@@ -74,7 +74,7 @@ public class JobRepository implements Serializable {
      */
     private boolean jobNameIsUnique(String jName) {
         for (Job j : jobList) {
-            if (j.equals(jName)) {
+            if (j.getJobName().equalsIgnoreCase(jName)) {
                 System.out.println("\nError: Job already exists \"" + jName + "\"");
                 return false;
             }

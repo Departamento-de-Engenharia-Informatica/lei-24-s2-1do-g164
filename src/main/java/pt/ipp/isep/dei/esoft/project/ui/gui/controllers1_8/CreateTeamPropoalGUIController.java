@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
-
 public class CreateTeamPropoalGUIController {
 
     @FXML
@@ -28,7 +27,7 @@ public class CreateTeamPropoalGUIController {
     private TextField txtMinNumber;
 
     @FXML
-    ListView<Skill> skillListSelection;
+    private ListView<Skill> skillListSelection;
 
     @FXML
     private ListView<String> collaboratorListView;
@@ -36,30 +35,29 @@ public class CreateTeamPropoalGUIController {
     private TeamGUIController teamGUIController;
     private CreateTeamProposalController controller = new CreateTeamProposalController();
 
-
     @FXML
     public void initialize() {
-
         skillListSelection.getItems().setAll(controller.getSkillsList());
         skillListSelection.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
     }
 
     @FXML
     private void createProposal(ActionEvent event) {
-
         try {
-
             ArrayList<Skill> skillList = new ArrayList<>(skillListSelection.getSelectionModel().getSelectedItems());
+            if (skillList.isEmpty()) {
+                showAlert(Alert.AlertType.ERROR, "Input Error", "At least one skill must be selected.");
+                return;
+            }
 
-            if (txtMaxNumber.getText() == null || txtMaxNumber.getText().trim().isEmpty()) {
-                showAlert(Alert.AlertType.ERROR, "Input Error", "No maximum typed");
+            if (!isValidNumber(txtMaxNumber.getText())) {
+                showAlert(Alert.AlertType.ERROR, "Input Error", "Invalid maximum number.");
                 return;
             }
             int max = Integer.parseInt(txtMaxNumber.getText());
 
-            if (txtMinNumber.getText() == null || txtMinNumber.getText().trim().isEmpty()) {
-                showAlert(Alert.AlertType.ERROR, "Input Error", "No minimum typed");
+            if (!isValidNumber(txtMinNumber.getText())) {
+                showAlert(Alert.AlertType.ERROR, "Input Error", "Invalid minimum number.");
                 return;
             }
             int min = Integer.parseInt(txtMinNumber.getText());
@@ -68,13 +66,14 @@ public class CreateTeamPropoalGUIController {
                 showAlert(Alert.AlertType.ERROR, "Error", "Minimum cannot be higher than maximum!");
                 return;
             }
+
             var team = controller.createTeamProposal(max, min, skillList);
             openShowTeamWindow(team);
             teamGUIController.update();
 
         } catch (Exception e) {
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Error", "No collaborators found for desired skills .");
+            showAlert(Alert.AlertType.ERROR, "Error", "No collaborators found for desired skills.");
         }
     }
 
@@ -82,17 +81,14 @@ public class CreateTeamPropoalGUIController {
     private void closeWindow() {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
-
     }
 
-        private void showAlert(Alert.AlertType alertType, String title, String message) {
-
-            Alert alert = new Alert(alertType);
-            alert.setTitle(title);
-            alert.setHeaderText(message);
-            alert.showAndWait();
-        }
-
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(message);
+        alert.showAndWait();
+    }
 
     private void openShowTeamWindow(Team team) {
         try {
@@ -104,7 +100,7 @@ public class CreateTeamPropoalGUIController {
             Parent root = loader.load();
             AcceptTeamGUIController controller = loader.getController();
             controller.setTeam(team);
-            controller.setCreateTeamPropoalGUIController(this); // Add this line
+            controller.setCreateTeamPropoalGUIController(this);
             Stage newStage = new Stage();
             newStage.setTitle("Team Proposal Details");
             newStage.setScene(new Scene(root));
@@ -115,14 +111,13 @@ public class CreateTeamPropoalGUIController {
         }
     }
 
-        public void closeWindow(ActionEvent event) {
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.close();
-        }
+    public void closeWindow(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
+    }
 
-
-        public void setTeamGUIController(TeamGUIController teamGUIController) {
-        this.teamGUIController= teamGUIController;
+    public void setTeamGUIController(TeamGUIController teamGUIController) {
+        this.teamGUIController = teamGUIController;
     }
 
     public TeamGUIController getTeamGUIController() {
@@ -131,5 +126,17 @@ public class CreateTeamPropoalGUIController {
 
     public void update() {
         teamGUIController.update();
+    }
+
+    private boolean isValidNumber(String text) {
+        if (text == null || text.trim().isEmpty()) {
+            return false;
+        }
+        for (char c : text.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

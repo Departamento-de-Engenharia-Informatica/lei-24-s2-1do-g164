@@ -13,6 +13,8 @@ import pt.ipp.isep.dei.esoft.project.application.controller.authorization.Authen
 import pt.ipp.isep.dei.esoft.project.dto.GreenSpaceDTO;
 import pt.ipp.isep.dei.esoft.project.repository.enums.GreenSpaceTypeENUM;
 
+import java.util.regex.Pattern;
+
 /**
  * The type Register green space gui controller.
  */
@@ -34,6 +36,8 @@ public class RegisterGreenSpaceGUIController {
     private RegisterGreenSpaceController controller = new RegisterGreenSpaceController();
     private AuthenticationController authenticationController = new AuthenticationController();
 
+    private final static Pattern NAME_PATTERN = Pattern.compile("^[a-zA-Z0-9\\s,]+$");
+
     @FXML
     private void initialize() {
         cmbGreenSpaceTypes.getItems().setAll(GreenSpaceTypeENUM.values());
@@ -48,6 +52,10 @@ public class RegisterGreenSpaceGUIController {
         try {
             String name = txtName.getText();
             if (name == null || name.trim().isEmpty()) {
+                showAlert(Alert.AlertType.ERROR, "Register Error", "Name cannot be empty.");
+                return;
+            }
+            if (isValidName(name)) {
                 showAlert(Alert.AlertType.ERROR, "Register Error", "Name cannot be empty.");
                 return;
             }
@@ -106,5 +114,9 @@ public class RegisterGreenSpaceGUIController {
         alert.setTitle(title);
         alert.setHeaderText(message);
         alert.showAndWait();
+    }
+
+    private boolean isValidName(String name) {
+        return NAME_PATTERN.matcher(name).matches();
     }
 }

@@ -16,124 +16,90 @@ import java.util.List;
 /**
  * The type Vehicles to agenda menu gui controller.
  */
-
 public class AssignVehiclesGUIController {
 
-        /**
-         * The Cmb agenda entries.
-         */
-        @FXML
-        ListView<VehicleDTO> vehicleListSelection;
+    @FXML
+    ListView<VehicleDTO> vehicleListSelection;
 
-        /**
-         * The Cmb vehicles.
-         */
-        @FXML
-        ComboBox<AgendaEntryDTO> cmbAgendaEntries;
+    @FXML
+    ComboBox<AgendaEntryDTO> cmbAgendaEntries;
 
-        /**
-         * The Btn cancel.
-         */
-        @FXML
-        Button btnCancel;
-        /**
-         * The Txt area.
-         */
-        @FXML
-        Button btnConfirm;
+    @FXML
+    Button btnCancel;
 
-        private AgendaMenuGUIController agendaMenuGUIController;
-        private AssignVehiclesController controller = new AssignVehiclesController();
+    @FXML
+    Button btnConfirm;
 
-        /**
-         * Initialize.
-         */
-        @FXML
-        public void initialize() {
-            refreshComboBox();
-            vehicleListSelection.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+    private AgendaMenuGUIController agendaMenuGUIController;
+    private AssignVehiclesController controller = new AssignVehiclesController();
 
-        }
+    @FXML
+    public void initialize() {
+        refreshComboBox();
+        vehicleListSelection.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+    }
 
-        public void  refreshComboBox() {
-            cmbAgendaEntries.getItems().setAll(controller.getAgendaEntryListDTO());
-            vehicleListSelection.getItems().setAll(controller.getVehiclesListDTO());
-        }
+    public void refreshComboBox() {
+        cmbAgendaEntries.getItems().setAll(controller.getAgendaEntryListDTO());
+        vehicleListSelection.getItems().setAll(controller.getVehiclesListDTO());
+    }
 
-        private void selectionChanged(ObservableValue<? extends VehicleDTO> observable, VehicleDTO oldValue, VehicleDTO newValue) {
-            ObservableList<VehicleDTO> selectedItems = vehicleListSelection.getSelectionModel().getSelectedItems();
-            String getSelectedItems = selectedItems.toString();
-        }
-        /**
-         * Handle assign vehicles.
-         *
-         * @param event the event
-         */
-        @FXML
-        public void handleAssignVehicles(ActionEvent event) {
-            try {
-                AgendaEntryDTO selectedEntry = cmbAgendaEntries.getValue();
-                List<VehicleDTO> vehicleList = vehicleListSelection.getSelectionModel().getSelectedItems().stream().toList();
-                System.out.println(vehicleList);
+    private void selectionChanged(ObservableValue<? extends VehicleDTO> observable, VehicleDTO oldValue, VehicleDTO newValue) {
+        ObservableList<VehicleDTO> selectedItems = vehicleListSelection.getSelectionModel().getSelectedItems();
+        String getSelectedItems = selectedItems.toString();
+    }
 
-                if (selectedEntry == null) {
-                    showAlert(Alert.AlertType.ERROR, "Assign Vehicle Error", "No entry selected.");
-                    return;
-                }
+    @FXML
+    public void handleAssignVehicles(ActionEvent event) {
+        try {
+            AgendaEntryDTO selectedEntry = cmbAgendaEntries.getValue();
+            List<VehicleDTO> vehicleList = vehicleListSelection.getSelectionModel().getSelectedItems().stream().toList();
 
-                if (vehicleList == null) {
-                    showAlert(Alert.AlertType.ERROR, "Assign Vehicle Error",  "No team selected");
-                }
-
-                if (controller.assignVehicles(selectedEntry, vehicleList)) {
-                    showAlert(Alert.AlertType.INFORMATION, "Assign Vehicle", "Vehicle assigned successfully to agenda entry.");
-                    agendaMenuGUIController.update();
-                    handleClose();
-                } else {
-                    showAlert(Alert.AlertType.ERROR, "Assign Vehicle Error",  "There are vehicles not available in this period of time");
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                showAlert(Alert.AlertType.ERROR, "Error", "There are vehicles not available in this period of time");
+            if (selectedEntry == null) {
+                showAlert(Alert.AlertType.ERROR, "Assign Vehicle Error", "No entry selected.");
+                return;
             }
 
+            if (vehicleList.isEmpty()) {
+                showAlert(Alert.AlertType.ERROR, "Assign Vehicle Error", "At least one vehicle must be selected.");
+                return;
+            }
+
+            if (controller.assignVehicles(selectedEntry, vehicleList)) {
+                showAlert(Alert.AlertType.INFORMATION, "Assign Vehicle", "Vehicle assigned successfully to agenda entry.");
+                agendaMenuGUIController.update();
+                handleClose();
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Assign Vehicle Error", "There are vehicles not available in this period of time.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Error", "There are vehicles not available in this period of time.");
         }
+    }
 
     public void setAgendaMenuGUIController(AgendaMenuGUIController agendaMenuGUIController) {
         this.agendaMenuGUIController = agendaMenuGUIController;
     }
 
-    /**
-         * Close window.
-         *
-         * @param event the event
-         */
-        public void closeWindow(ActionEvent event) {
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.close();
-        }
+    public void closeWindow(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
+    }
 
-        /**
-         * Sets agenda gui controller.
-         *
-         * @param agendaMenuGUIController the agenda menu gui controller
-         */
-        public void setAgendaGUIController(AgendaMenuGUIController agendaMenuGUIController) {
-            this.agendaMenuGUIController = agendaMenuGUIController;
-        }
+    public void setAgendaGUIController(AgendaMenuGUIController agendaMenuGUIController) {
+        this.agendaMenuGUIController = agendaMenuGUIController;
+    }
 
-        private void handleClose() {
-            Stage stage = (Stage) cmbAgendaEntries.getScene().getWindow();
-            stage.close();
-        }
-        private void showAlert(Alert.AlertType alertType, String title, String message) {
+    private void handleClose() {
+        Stage stage = (Stage) cmbAgendaEntries.getScene().getWindow();
+        stage.close();
+    }
 
-            Alert alert = new Alert(alertType);
-            alert.setTitle(title);
-            alert.setHeaderText(message);
-            alert.showAndWait();
-        }
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(message);
+        alert.showAndWait();
+    }
 }
-
-
-

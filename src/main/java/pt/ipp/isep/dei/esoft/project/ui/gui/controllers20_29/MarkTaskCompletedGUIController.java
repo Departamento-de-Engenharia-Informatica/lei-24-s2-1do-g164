@@ -16,19 +16,12 @@ import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
  */
 public class MarkTaskCompletedGUIController {
 
-    /**
-     * The Btn mark task as completed.
-     */
     @FXML
     Button btnMarkTaskAsCompleted;
-    /**
-     * The Btn cancel.
-     */
+
     @FXML
     Button btnCancel;
-    /**
-     * The Cmb agenda entries.
-     */
+
     @FXML
     ComboBox<AgendaEntryDTO> cmbAgendaEntries;
 
@@ -46,7 +39,7 @@ public class MarkTaskCompletedGUIController {
      * @param event the event
      */
     public void completedAgendaEntry(ActionEvent event) {
-        AgendaEntryDTO selectedEntry = new AgendaEntryDTO(cmbAgendaEntries.getValue().description, cmbAgendaEntries.getValue().greenSpace, cmbAgendaEntries.getValue().entryStatus);
+        AgendaEntryDTO selectedEntry = cmbAgendaEntries.getValue();
 
         try {
             if (selectedEntry == null) {
@@ -84,9 +77,9 @@ public class MarkTaskCompletedGUIController {
     /**
      * Sets agenda gui controller.
      *
-     * @param collaboratorMenuGUIController the agenda gui controller
+     * @param myAgendaGUIController the my agenda gui controller
      */
-        public void setAgendaGUIController(MyAgendaGUIController myAgendaGUIController) {
+    public void setAgendaGUIController(MyAgendaGUIController myAgendaGUIController) {
         this.myAgendaGUIController = myAgendaGUIController;
     }
 

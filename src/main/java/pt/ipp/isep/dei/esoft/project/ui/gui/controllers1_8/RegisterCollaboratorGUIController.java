@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 
 public class RegisterCollaboratorGUIController {
     private final static Pattern NAME_PATTERN = Pattern.compile("^[a-zA-Z\\s]+$");
-    private final static Pattern ADDRESS_PATTERN = Pattern.compile("^[a-zA-Z0-9\\s]+$");
+    private final static Pattern ADDRESS_PATTERN = Pattern.compile("^[a-zA-Z0-9\\s,]+$");
     private final static Pattern PHONE_PATTERN = Pattern.compile("^[0-9]{9}$");
     private final static Pattern EMAIL_PATTERN = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$");
     private final static Pattern TAXPAYER_PATTERN = Pattern.compile("^[0-9]{9}$");
@@ -146,6 +146,7 @@ public class RegisterCollaboratorGUIController {
                 return;
             }
 
+
             Job job = (Job) cmbJobs.getSelectionModel().getSelectedItem();
             if (job == null) {
                 showAlert(Alert.AlertType.ERROR, "Register Error", "You must select a Job.");
@@ -226,7 +227,7 @@ public class RegisterCollaboratorGUIController {
     }
 
     private boolean isValidAdmissionDate(LocalDate birthdate, LocalDate admissionDate) {
-        return admissionDate.isAfter(birthdate);
+        return admissionDate.minusYears(18).isAfter(birthdate);
     }
 
 

@@ -26,9 +26,6 @@ public class Job implements Serializable {
      * @param jobName the job name to compare
      * @return true if the job names are equal, false otherwise
      */
-    public boolean equals(String jobName) {
-        return this.jobName.equals(jobName);
-    }
 
     /**
      * Indicates whether some other object is "equal to" this one.

@@ -266,3 +266,23 @@ To: afonso@hotmail.pt
 Body: Hello Afonso,
 You have been assigned to a new agenda entry!
 
+To: marco2001@hotmail.com
+Body: Hello Marco,
+You have been assigned to a new agenda entry!
+
+To: asdasdas@ass.asad
+Body: Hello vasco azeveod,
+You have been assigned to a new agenda entry!
+
+To: leonor@gmail.com
+Body: Hello Leonor,
+You have been assigned to a new agenda entry!
+
+To: dinis@gmail.com
+Body: Hello Dinis,
+You have been assigned to a new agenda entry!
+
+To: sandra@gmail.com
+Body: Hello Sandra,
+You have been assigned to a new agenda entry!
+

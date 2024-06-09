@@ -53,7 +53,7 @@ public class AgendaMenuGUIController {
     public void update(){
         ArrayList<AgendaEntryDTO> agendaEntryDTOS = controller.getAgendaEntryListDTO();
         txtText.clear();
-        txtText.appendText("-----------------------------AGENDA ENTRIES------------------------------\n");
+        txtText.appendText("--------------------------------------------AGENDA ENTRIES---------------------------------------------\n");
         for(AgendaEntryDTO agendaEntryDTO : agendaEntryDTOS){
             txtText.appendText(agendaEntryDTO.toString() + "\n\n");
         }

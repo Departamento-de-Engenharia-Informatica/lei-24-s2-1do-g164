@@ -77,24 +77,24 @@ public class AssignVehiclesGUIController {
                 System.out.println(vehicleList);
 
                 if (selectedEntry == null) {
-                    showAlert(Alert.AlertType.ERROR, "Cancel Entry Error", "No entry selected.");
+                    showAlert(Alert.AlertType.ERROR, "Assign Vehicle Error", "No entry selected.");
                     return;
                 }
 
                 if (vehicleList == null) {
-                    showAlert(Alert.AlertType.ERROR, "Cancel Entry Error",  "No team selected");
+                    showAlert(Alert.AlertType.ERROR, "Assign Vehicle Error",  "No team selected");
                 }
 
-                if (controller.assignVehciles(selectedEntry, vehicleList)) {
+                if (controller.assignVehicles(selectedEntry, vehicleList)) {
                     showAlert(Alert.AlertType.INFORMATION, "Assign Vehicle", "Vehicle assigned successfully to agenda entry.");
                     agendaMenuGUIController.update();
                     handleClose();
                 } else {
-                    System.out.println("Failed to assign vehicle.");
+                    showAlert(Alert.AlertType.ERROR, "Assign Vehicle Error",  "There are vehicles not available in this period of time");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                showAlert(Alert.AlertType.ERROR, "Error", "An error occurred while assigning vehicle.");
+                showAlert(Alert.AlertType.ERROR, "Error", "There are vehicles not available in this period of time");
             }
 
         }

@@ -1,151 +1,3 @@
-To: adeus@hotmail.pt
-Body: Hello Diogo,
-You have been assigned to a new agenda entry!
-
-To: adeus@hotmail.pt
-Body: Hello Gabi,
-You have been assigned to a new agenda entry!
-
-To: adeus@hotmail.pt
-Body: Hello Diogo,
-You have been assigned to a new agenda entry!
-
-To: adeus@hotmail.pt
-Body: Hello Gabi,
-You have been assigned to a new agenda entry!
-
-To: rita@hotmail.com
-Body: Hello Rita,
-You have been assigned to a new agenda entry!
-
-To: adeus@hotmail.pt
-Body: Hello Afonso,
-You have been assigned to a new agenda entry!
-
-To: leonor@gmail.com
-Body: Hello Leonor,
-You have been assigned to a new agenda entry!
-
-To: dinis@gmail.com
-Body: Hello Dinis,
-You have been assigned to a new agenda entry!
-
-To: sandra@gmail.com
-Body: Hello Sandra,
-You have been assigned to a new agenda entry!
-
-To: diogo@gmail.com
-Body: Hello Diogo,
-You have been assigned to a new agenda entry!
-
-To: gabixux@gmail.com
-Body: Hello Gabi,
-You have been assigned to a new agenda entry!
-
-To: diogo@gmail.com
-Body: Hello Diogo,
-You have been assigned to a new agenda entry!
-
-To: gabixux@gmail.com
-Body: Hello Gabi,
-You have been assigned to a new agenda entry!
-
-To: diogo@gmail.com
-Body: Hello Diogo,
-You have been assigned to a new agenda entry!
-
-To: gabixux@gmail.com
-Body: Hello Gabi,
-You have been assigned to a new agenda entry!
-
-To: leonor@gmail.com
-Body: Hello Leonor,
-You have been assigned to a new agenda entry!
-
-To: dinis@gmail.com
-Body: Hello Dinis,
-You have been assigned to a new agenda entry!
-
-To: sandra@gmail.com
-Body: Hello Sandra,
-You have been assigned to a new agenda entry!
-
-To: diogo@gmail.com
-Body: Hello Diogo,
-You have been assigned to a new agenda entry!
-
-To: gabixux@gmail.com
-Body: Hello Gabi,
-You have been assigned to a new agenda entry!
-
-To: diogo@gmail.com
-Body: Hello Diogo,
-You have been assigned to a new agenda entry!
-
-To: gabixux@gmail.com
-Body: Hello Gabi,
-You have been assigned to a new agenda entry!
-
-To: rita@hotmail.com
-Body: Hello Rita,
-You have been assigned to a new agenda entry!
-
-To: afonso@hotmail.pt
-Body: Hello Afonso,
-You have been assigned to a new agenda entry!
-
-To: rita@hotmail.com
-Body: Hello Rita,
-You have been assigned to a new agenda entry!
-
-To: afonso@hotmail.pt
-Body: Hello Afonso,
-You have been assigned to a new agenda entry!
-
-To: leonor@gmail.com
-Body: Hello Leonor,
-You have been assigned to a new agenda entry!
-
-To: dinis@gmail.com
-Body: Hello Dinis,
-You have been assigned to a new agenda entry!
-
-To: sandra@gmail.com
-Body: Hello Sandra,
-You have been assigned to a new agenda entry!
-
-To: diogo@gmail.com
-Body: Hello Diogo,
-You have been assigned to a new agenda entry!
-
-To: gabixux@gmail.com
-Body: Hello Gabi,
-You have been assigned to a new agenda entry!
-
-To: diogo@gmail.com
-Body: Hello Diogo,
-You have been assigned to a new agenda entry!
-
-To: gabixux@gmail.com
-Body: Hello Gabi,
-You have been assigned to a new agenda entry!
-
-To: diogo@gmail.com
-Body: Hello Diogo,
-You have been assigned to a new agenda entry!
-
-To: gabixux@gmail.com
-Body: Hello Gabi,
-You have been assigned to a new agenda entry!
-
-To: diogo@gmail.com
-Body: Hello Diogo,
-You have been assigned to a new agenda entry!
-
-To: gabixux@gmail.com
-Body: Hello Gabi,
-You have been assigned to a new agenda entry!
-
 To: diogo@gmail.com
 Body: Hello Diogo,
 You have been assigned to a new agenda entry!
@@ -194,6 +46,14 @@ To: afonso@hotmail.pt
 Body: Hello Afonso,
 You have been assigned to a new agenda entry!
 
+To: rita@hotmail.com
+Body: Hello Rita,
+You have been assigned to a new agenda entry!
+
+To: afonso@hotmail.pt
+Body: Hello Afonso,
+You have been assigned to a new agenda entry!
+
 To: diogo@gmail.com
 Body: Hello Diogo,
 You have been assigned to a new agenda entry!
@@ -208,6 +68,94 @@ You have been assigned to a new agenda entry!
 
 To: gabixux@gmail.com
 Body: Hello Gabi,
+You have been assigned to a new agenda entry!
+
+To: leonor@gmail.com
+Body: Hello Leonor,
+You have been assigned to a new agenda entry!
+
+To: dinis@gmail.com
+Body: Hello Dinis,
+You have been assigned to a new agenda entry!
+
+To: sandra@gmail.com
+Body: Hello Sandra,
+You have been assigned to a new agenda entry!
+
+To: leonor@gmail.com
+Body: Hello Leonor,
+You have been assigned to a new agenda entry!
+
+To: dinis@gmail.com
+Body: Hello Dinis,
+You have been assigned to a new agenda entry!
+
+To: sandra@gmail.com
+Body: Hello Sandra,
+You have been assigned to a new agenda entry!
+
+To: marco2001@hotmail.com
+Body: Hello Marco,
+You have been assigned to a new agenda entry!
+
+To: sandra@gmail.com
+Body: Hello Sandra,
+You have been assigned to a new agenda entry!
+
+To: diogo@gmail.com
+Body: Hello Diogo,
+You have been assigned to a new agenda entry!
+
+To: gabixux@gmail.com
+Body: Hello Gabi,
+You have been assigned to a new agenda entry!
+
+To: leonor@gmail.com
+Body: Hello Leonor,
+You have been assigned to a new agenda entry!
+
+To: dinis@gmail.com
+Body: Hello Dinis,
+You have been assigned to a new agenda entry!
+
+To: sandra@gmail.com
+Body: Hello Sandra,
+You have been assigned to a new agenda entry!
+
+To: leonor@gmail.com
+Body: Hello Leonor,
+You have been assigned to a new agenda entry!
+
+To: dinis@gmail.com
+Body: Hello Dinis,
+You have been assigned to a new agenda entry!
+
+To: sandra@gmail.com
+Body: Hello Sandra,
+You have been assigned to a new agenda entry!
+
+To: diogo@gmail.com
+Body: Hello Diogo,
+You have been assigned to a new agenda entry!
+
+To: gabixux@gmail.com
+Body: Hello Gabi,
+You have been assigned to a new agenda entry!
+
+To: rita@hotmail.com
+Body: Hello Rita,
+You have been assigned to a new agenda entry!
+
+To: afonso@hotmail.pt
+Body: Hello Afonso,
+You have been assigned to a new agenda entry!
+
+To: rita@hotmail.com
+Body: Hello Rita,
+You have been assigned to a new agenda entry!
+
+To: afonso@hotmail.pt
+Body: Hello Afonso,
 You have been assigned to a new agenda entry!
 
 To: diogo@gmail.com
@@ -226,19 +174,23 @@ To: abrosio@gmail.com
 Body: Hello Ambrosio,
 You have been assigned to a new agenda entry!
 
-To: ana23@gmail.com
-Body: Hello Ana,
+To: sandra@gmail.com
+Body: Hello Sandra,
 You have been assigned to a new agenda entry!
 
-To: marco2001@hotmail.com
-Body: Hello Marco,
+To: rita@hotmail.com
+Body: Hello Rita,
 You have been assigned to a new agenda entry!
 
-To: abrosio@gmail.com
-Body: Hello Ambrosio,
+To: afonso@hotmail.pt
+Body: Hello Afonso,
 You have been assigned to a new agenda entry!
 
-To: ana23@gmail.com
-Body: Hello Ana,
+To: diogo@gmail.com
+Body: Hello Diogo,
+You have been assigned to a new agenda entry!
+
+To: gabixux@gmail.com
+Body: Hello Gabi,
 You have been assigned to a new agenda entry!
 

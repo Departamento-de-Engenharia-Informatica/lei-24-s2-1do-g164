@@ -9,6 +9,7 @@ import pt.ipp.isep.dei.esoft.project.repository.TeamRepository;
 import pt.ipp.isep.dei.esoft.project.repository.enums.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,8 +83,8 @@ class AgendaEntryTest {
         t2 = new Team(collaborators2, skills2, TeamStatusENUM.PENDING);
         t3 = new Team(collaborators1, skills1, TeamStatusENUM.PENDING);
 
-        agendaEntry = new AgendaEntry("regar", 2, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDate.now(), t1, vehicles);
-        agendaEntryOther = new AgendaEntry("plantar", 3, greenSpaceOther, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDate.now(), vehicles);
+        agendaEntry = new AgendaEntry("regar", 2, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDateTime.now(), t1, vehicles);
+        agendaEntryOther = new AgendaEntry("plantar", 3, greenSpaceOther, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDateTime.now(), vehicles);
 
     }
 
@@ -141,14 +142,14 @@ class AgendaEntryTest {
 
     @Test
         public void testGetDate() {
-        LocalDate expectedDate = LocalDate.of(2022, 6, 7);
+        LocalDateTime expectedDate = LocalDateTime.of(2022, 6, 7, 5,5);
         agendaEntry.setDate(expectedDate);
         assertEquals(expectedDate, agendaEntry.getDate());
     }
 
     @Test
     public void testSetDate() {
-        LocalDate newDate = LocalDate.of(2024, 12, 25);
+        LocalDateTime newDate = LocalDateTime.of(2024, 12, 25, 5, 5);
         agendaEntry.setDate(newDate);
         assertEquals(newDate, agendaEntry.getDate());
     }

@@ -19,7 +19,7 @@ public class AgendaEntryMapper {
      * @return the agenda entry
      */
     public AgendaEntry toEntity(AgendaEntryDTO dto){
-        return new AgendaEntry(dto.description, dto.expectedDuration, dto.greenSpace, dto.urgencyDegree, dto.entryStatus, dto.date, dto.team, dto.vehicles);
+        return new AgendaEntry(dto.description, dto.expectedDuration, dto.greenSpace, dto.urgencyDegree, dto.entryStatus, dto.date.atStartOfDay(), dto.team, dto.vehicles);
     }
 
     /**

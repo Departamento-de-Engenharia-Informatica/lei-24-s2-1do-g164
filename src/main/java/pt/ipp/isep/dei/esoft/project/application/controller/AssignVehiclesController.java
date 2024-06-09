@@ -61,7 +61,11 @@ public class AssignVehiclesController {
      * @return True if the vehicles were assigned successfully, false otherwise.
      */
 
-    public boolean assignVehciles(AgendaEntryDTO agendaEntry, List<VehicleDTO> vehiclesList) {
+    public boolean assignVehicles(AgendaEntryDTO agendaEntry, List<VehicleDTO> vehiclesList) {
         return agendaEntryRepository.assignVehicles(mapperAgenda.toEntity(agendaEntry), mapperVehicle.toEntityList(vehiclesList));
     }
 }
+
+
+
+

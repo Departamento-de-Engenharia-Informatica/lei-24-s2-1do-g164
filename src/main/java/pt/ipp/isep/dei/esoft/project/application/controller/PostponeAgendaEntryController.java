@@ -9,6 +9,7 @@ import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
@@ -33,7 +34,7 @@ public class PostponeAgendaEntryController {
      * @param date The date to which the agenda entry will be postponed.
      * @return True if the agenda entry was postponed successfully, false otherwise.
      */
-    public boolean postponeAgendaEntry(AgendaEntryDTO dto, LocalDate date) {
+    public boolean postponeAgendaEntry(AgendaEntryDTO dto, LocalDateTime date) {
         if (dto.entryStatus == EntryStatusENUM.CANCELLED) {
             return false;
         }

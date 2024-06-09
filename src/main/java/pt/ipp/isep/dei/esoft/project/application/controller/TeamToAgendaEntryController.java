@@ -14,6 +14,7 @@ import pt.ipp.isep.dei.esoft.project.repository.AgendaEntryRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.repository.TeamRepository;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -60,6 +61,40 @@ public class TeamToAgendaEntryController {
     }
 
 
+    private LocalDateTime calculateEndTime(AgendaEntry entry) {
+        LocalDateTime startTime = entry.getDate();
+        int totalDurationInHours = entry.getExpectedDuration();
+        LocalDateTime endTime = startTime;
+
+        int workStartHour = 9;
+        int workEndHour = 17;
+        int workDayHours = workEndHour - workStartHour;
+
+        while (totalDurationInHours > 0) {
+            int currentHour = endTime.getHour();
+
+            if (currentHour < workStartHour) {
+                endTime = endTime.withHour(workStartHour).withMinute(0);
+                currentHour = workStartHour;
+            } else if (currentHour >= workEndHour) {
+                endTime = endTime.plusDays(1).withHour(workStartHour).withMinute(0);
+                currentHour = workStartHour;
+            }
+
+            int hoursToEndOfDay = workEndHour - currentHour;
+            int hoursToAdd = Math.min(totalDurationInHours, hoursToEndOfDay);
+            endTime = endTime.plusHours(hoursToAdd);
+            totalDurationInHours -= hoursToAdd;
+
+            if (totalDurationInHours > 0) {
+                endTime = endTime.plusDays(1).withHour(workStartHour).withMinute(0);
+            }
+        }
+
+        return endTime;
+    }
+
+
     /**
      * Assign team to agenda entry boolean.
      *
@@ -78,6 +113,11 @@ public class TeamToAgendaEntryController {
             throw new InputMismatchException("Team not found!");
         }
 
+        for (Collaborator collaborator : team.getCollaborators()) {
+            if (hasOverlappingEntries(entry, collaborator)) {
+                return false;
+            }
+        }
         if (agendaEntryRepository.assignTeam(entry, team)) {
             sendNotificationEmails(entry.getAssociatedTeam());
             return true;
@@ -96,6 +136,7 @@ public class TeamToAgendaEntryController {
         }
     }
 
+
     private AgendaEntryRepository getAgendaEntryRepository() {
         if (agendaEntryRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -103,4 +144,37 @@ public class TeamToAgendaEntryController {
         }
         return agendaEntryRepository;
     }
+
+    private boolean hasOverlappingEntries(AgendaEntry newEntry, Collaborator collaborator) {
+        LocalDateTime newEntryStart = newEntry.getDate();
+        LocalDateTime newEntryEnd = calculateEndTime(newEntry);
+
+        LocalDateTime currentDate = newEntryStart.toLocalDate().atTime(9, 0);
+        LocalDateTime currentDayEnd = newEntryStart.toLocalDate().atTime(17, 0);
+
+        while (currentDate.isBefore(newEntryEnd) || currentDate.equals(newEntryEnd)) {
+            List<AgendaEntry> collaboratorEntries = new ArrayList<>();
+            for (var entry : agendaEntryRepository.getAgendaEntryList()) {
+                if (entry.getAssociatedTeam().getCollaborators().contains(collaborator)) {
+                    collaboratorEntries.add(entry);
+                }
+            }
+
+            for (var entry : collaboratorEntries) {
+                LocalDateTime entryStart = entry.getDate();
+                LocalDateTime entryEnd = calculateEndTime(entry);
+
+                if (newEntryStart.isBefore(entryEnd) && newEntryEnd.isAfter(entryStart)) {
+                    return true;
+                }
+            }
+
+            currentDate = currentDate.plusDays(1).withHour(9).withMinute(0);
+            currentDayEnd = currentDayEnd.plusDays(1).withHour(17).withMinute(0);
+        }
+        return false;
+    }
+
+
 }
+

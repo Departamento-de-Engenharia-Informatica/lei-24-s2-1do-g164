@@ -5,6 +5,7 @@ import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class AgendaEntryRepository implements Serializable {
@@ -63,7 +64,6 @@ public class AgendaEntryRepository implements Serializable {
     }
 
 
-
     public ArrayList<AgendaEntry> getAgendaEntryListWithoutCancelled(String email) {
         ArrayList<AgendaEntry> agendaEntryListGSM = new ArrayList<>();
         for (AgendaEntry agendaEntry : this.agendaEntryList) {
@@ -75,7 +75,7 @@ public class AgendaEntryRepository implements Serializable {
     }
 
 
-    public boolean updateDate(AgendaEntry updatedEntry, LocalDate date) {
+    public boolean updateDate(AgendaEntry updatedEntry, LocalDateTime date) {
         for (AgendaEntry entry : agendaEntryList) {
             if (entry.equals(updatedEntry)) {
                 entry.setDate(date);
@@ -131,17 +131,20 @@ public class AgendaEntryRepository implements Serializable {
         }
         return false;
     }
-        public ArrayList<AgendaEntry> getEntriesByCollaborator(String currentUserEmail){
-            ArrayList<AgendaEntry> agendaEntryListCollaborator = new ArrayList<>();
-            for (AgendaEntry agendaEntry : this.agendaEntryList) {
-                Team team = agendaEntry.getAssociatedTeam();
-                for (Collaborator c : team.getCollaborators()) {
-                    if (c.getEmail().equals(currentUserEmail) && !agendaEntry.getEntryStatus().equals(EntryStatusENUM.CANCELLED) && !agendaEntry.getEntryStatus().equals(EntryStatusENUM.DONE)) {
-                        agendaEntryListCollaborator.add(agendaEntry);
-                    }
-                }
 
+    public ArrayList<AgendaEntry> getEntriesByCollaborator(String currentUserEmail) {
+        ArrayList<AgendaEntry> agendaEntryListCollaborator = new ArrayList<>();
+        for (AgendaEntry agendaEntry : this.agendaEntryList) {
+            Team team = agendaEntry.getAssociatedTeam();
+            for (Collaborator c : team.getCollaborators()) {
+                if (c.getEmail().equals(currentUserEmail) && !agendaEntry.getEntryStatus().equals(EntryStatusENUM.CANCELLED) && !agendaEntry.getEntryStatus().equals(EntryStatusENUM.DONE)) {
+                    agendaEntryListCollaborator.add(agendaEntry);
+                }
             }
-            return agendaEntryListCollaborator;
+
         }
+        return agendaEntryListCollaborator;
     }
+
+
+}

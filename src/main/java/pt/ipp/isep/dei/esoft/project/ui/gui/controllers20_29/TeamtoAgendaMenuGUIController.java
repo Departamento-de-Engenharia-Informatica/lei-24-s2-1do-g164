@@ -69,12 +69,12 @@ public class TeamtoAgendaMenuGUIController {
             TeamDTO teamEntry = cmbTeams.getValue();
 
             if (selectedEntry == null) {
-                showAlert(Alert.AlertType.ERROR, "Cancel Entry Error", "No entry selected.");
+                showAlert(Alert.AlertType.ERROR, "Assign Team Error", "No entry selected.");
                 return;
             }
 
             if (teamEntry == null) {
-                showAlert(Alert.AlertType.ERROR, "Cancel Entry Error",  "No team selected");
+                showAlert(Alert.AlertType.ERROR, "Assign Team Error",  "No team selected");
             }
 
             if (controller.assignTeamToAgendaEntry(selectedEntry, teamEntry)) {
@@ -82,7 +82,7 @@ public class TeamtoAgendaMenuGUIController {
                 agendaMenuGUIController.update();
                 handleClose();
             } else {
-                System.out.println("Failed to assign team.");
+                showAlert(Alert.AlertType.ERROR, "Assign Team Error",  "The team has another entry in the same period!");
             }
         } catch (Exception e) {
         e.printStackTrace();

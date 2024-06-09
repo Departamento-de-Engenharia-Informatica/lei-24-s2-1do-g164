@@ -4,6 +4,7 @@ import pt.ipp.isep.dei.esoft.project.repository.enums.EntryStatusENUM;
 import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegreeENUM;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 
@@ -11,7 +12,7 @@ import java.util.ArrayList;
  * The type Agenda entry.
  */
 public class AgendaEntry extends ToDoEntry {
-    private LocalDate date;
+    private LocalDateTime date;
     private Team associatedTeam;
     private ArrayList<Vehicle> associatedVehicles;
 
@@ -20,7 +21,7 @@ public class AgendaEntry extends ToDoEntry {
      *
      * @return the date
      */
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
@@ -29,7 +30,7 @@ public class AgendaEntry extends ToDoEntry {
      *
      * @param date the date
      */
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
@@ -81,7 +82,7 @@ public class AgendaEntry extends ToDoEntry {
      * @param team             the team
      * @param vehicles         the vehicles
      */
-    public AgendaEntry(String description, int expectedDuration, GreenSpace greenSpace, UrgencyDegreeENUM urgencyDegree, EntryStatusENUM entryStatus, LocalDate date, Team team, ArrayList<Vehicle> vehicles) {
+    public AgendaEntry(String description, int expectedDuration, GreenSpace greenSpace, UrgencyDegreeENUM urgencyDegree, EntryStatusENUM entryStatus, LocalDateTime date, Team team, ArrayList<Vehicle> vehicles) {
         super(description, expectedDuration, greenSpace, urgencyDegree);
         this.associatedTeam = team;
         this.associatedVehicles = vehicles;
@@ -100,10 +101,12 @@ public class AgendaEntry extends ToDoEntry {
      * @param date             the date
      * @param vehicles         the vehicles
      */
-    public AgendaEntry(String description, int expectedDuration, GreenSpace greenSpace, UrgencyDegreeENUM urgencyDegree, EntryStatusENUM entryStatus, LocalDate date,  ArrayList<Vehicle> vehicles) {
+    public AgendaEntry(String description, int expectedDuration, GreenSpace greenSpace, UrgencyDegreeENUM urgencyDegree, EntryStatusENUM entryStatus, LocalDateTime date, ArrayList<Vehicle> vehicles) {
         super(description, expectedDuration, greenSpace, urgencyDegree);
         this.associatedVehicles = vehicles;
         this.setEntryStatus(entryStatus);
         this.date = date;
     }
 }
+
+

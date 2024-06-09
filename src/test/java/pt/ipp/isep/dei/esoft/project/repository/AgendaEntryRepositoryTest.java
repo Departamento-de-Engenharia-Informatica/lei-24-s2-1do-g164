@@ -7,6 +7,7 @@ import pt.ipp.isep.dei.esoft.project.repository.AgendaEntryRepository;
 import pt.ipp.isep.dei.esoft.project.repository.enums.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -82,8 +83,8 @@ class AgendaEntryRepositoryTest {
         t2 = new Team(collaborators2, skills2, TeamStatusENUM.PENDING);
         t3 = new Team(collaborators1, skills1,  TeamStatusENUM.PENDING);
 
-        agendaEntry = new AgendaEntry("regar", 2, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDate.now(), t1, vehicles);
-        agendaEntryOther = new AgendaEntry("plantar", 3, greenSpaceOther, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDate.now(), vehicles);
+        agendaEntry = new AgendaEntry("regar", 2, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDateTime.now(), t1, vehicles);
+        agendaEntryOther = new AgendaEntry("plantar", 3, greenSpaceOther, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDateTime.now(), vehicles);
     }
 
     @Test
@@ -131,7 +132,7 @@ class AgendaEntryRepositoryTest {
     @Test
     void testUpdateDate() {
         repository.addEntryToAgenda(agendaEntry);
-        LocalDate newDate = LocalDate.now().plusDays(1);
+        LocalDateTime newDate = LocalDateTime.now().plusDays(1);
         boolean result = repository.updateDate(agendaEntry, newDate);
         assertTrue(result);
         assertEquals(newDate, agendaEntry.getDate());
@@ -139,15 +140,15 @@ class AgendaEntryRepositoryTest {
 
     @Test
     void testUpdateDateEntryNotFound() {
-        AgendaEntry nonExistentEntry = new AgendaEntry("Nonexistent Description", 2, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDate.now(), t1, vehicles);
-        LocalDate newDate = LocalDate.now().plusDays(1);
+        AgendaEntry nonExistentEntry = new AgendaEntry("Nonexistent Description", 2, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDateTime.now(), t1, vehicles);
+        LocalDateTime newDate = LocalDateTime.now().plusDays(1);
         boolean result = repository.updateDate(nonExistentEntry, newDate);
         assertFalse(result);
     }
 
     @Test
     void testUpdateStatusEntryNotFound() {
-        AgendaEntry nonExistentEntry = new AgendaEntry("Nonexistent Description", 2, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDate.now(), t1, vehicles);
+        AgendaEntry nonExistentEntry = new AgendaEntry("Nonexistent Description", 2, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDateTime.now(), t1, vehicles);
         boolean result = repository.updateStatus(nonExistentEntry, EntryStatusENUM.DONE);
         assertFalse(result);
     }
@@ -170,7 +171,7 @@ class AgendaEntryRepositoryTest {
     }
     @Test
     void testAssignTeamEntryNotFound() {
-        AgendaEntry nonExistentEntry = new AgendaEntry("Nonexistent Description", 2, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDate.now(), t1, vehicles);
+        AgendaEntry nonExistentEntry = new AgendaEntry("Nonexistent Description", 2, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDateTime.now(), t1, vehicles);
         boolean result = repository.assignTeam(nonExistentEntry, t1);
         assertFalse(result);
     }
@@ -215,7 +216,7 @@ class AgendaEntryRepositoryTest {
         var collaborators2= new ArrayList<Collaborator>();
         var skills = new ArrayList<Skill>();
         Team team3= new Team(collaborators2, skills, TeamStatusENUM.PENDING);
-        var plannedEntry = new AgendaEntry("Planned Description", 2, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDate.now(), team3, vehicles);
+        var plannedEntry = new AgendaEntry("Planned Description", 2, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDateTime.now(), team3, vehicles);
         repository.addEntryToAgenda(plannedEntry);
         ArrayList<AgendaEntry> result = repository.getAgendaEntryListWithoutTeam(greenSpace.getEmailGSM());
         assertTrue(result.contains(plannedEntry));
@@ -226,8 +227,8 @@ class AgendaEntryRepositoryTest {
         var collaborators2= new ArrayList<Collaborator>();
         var skills = new ArrayList<Skill>();
         Team team3= new Team(collaborators2, skills, TeamStatusENUM.PENDING);
-        var doneEntry = new AgendaEntry("Postponed Description", 2, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.DONE, LocalDate.now(), team3, vehicles);
-        var postponedEntry = new AgendaEntry("Postponed Description", 2, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.POSTPONED, LocalDate.now(), team3, vehicles);
+        var doneEntry = new AgendaEntry("Postponed Description", 2, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.DONE, LocalDateTime.now(), team3, vehicles);
+        var postponedEntry = new AgendaEntry("Postponed Description", 2, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.POSTPONED, LocalDateTime.now(), team3, vehicles);
         repository.addEntryToAgenda(postponedEntry);
         repository.addEntryToAgenda(doneEntry);
         ArrayList<AgendaEntry> result = repository.getAgendaEntryListWithoutTeam(greenSpace.getEmailGSM());
@@ -248,7 +249,7 @@ class AgendaEntryRepositoryTest {
 
     @Test
     void testAssignVehiclesEntryNotFound() {
-        AgendaEntry nonExistentEntry = new AgendaEntry("Nonexistent Description", 2, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDate.now(), t1, vehicles);
+        AgendaEntry nonExistentEntry = new AgendaEntry("Nonexistent Description", 2, greenSpace, UrgencyDegreeENUM.HIGH, EntryStatusENUM.PLANNED, LocalDateTime.now(), t1, vehicles);
         ArrayList<Vehicle> newVehicles = new ArrayList<>();
         newVehicles.add(new Vehicle("Mercedes", "Class A", "87-UI-28", VehicleTypeENUM.LIGHT_VEHICLE,
                 1415, 1200, 25000, "02-07-2020", "12-09-2018", 20000));

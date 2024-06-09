@@ -7,6 +7,7 @@ import pt.ipp.isep.dei.esoft.project.repository.enums.TeamStatusENUM;
 import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegreeENUM;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class AgendaEntryDTO {
@@ -36,12 +37,12 @@ public class AgendaEntryDTO {
         this.entryStatus = toDoEntryDTO.entryStatus;
     }
 
-    public AgendaEntryDTO(String description, int expectedDuration, GreenSpace greenSpace, UrgencyDegreeENUM urgencyDegree, EntryStatusENUM entryStatus, LocalDate date, Team team, ArrayList<Vehicle> vehicles) {
+    public AgendaEntryDTO(String description, int expectedDuration, GreenSpace greenSpace, UrgencyDegreeENUM urgencyDegree, EntryStatusENUM entryStatus, LocalDateTime date, Team team, ArrayList<Vehicle> vehicles) {
         this.description = description;
         this.expectedDuration = expectedDuration;
         this.greenSpace = greenSpace;
         this.urgencyDegree = urgencyDegree;
-        this.date = date;
+        this.date = LocalDate.from(date);
         this.team = team;
         this.vehicles = vehicles;
         this.entryStatus = entryStatus;

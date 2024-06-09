@@ -81,7 +81,7 @@ public class PostponeAgendaEntryGUIController {
                 return;
             }
 
-            if (controller.postponeAgendaEntry(selectedEntry, date.getValue())) {
+            if (controller.postponeAgendaEntry(selectedEntry, date.getValue().atStartOfDay())) {
                 cmbAgendaEntries.getItems().setAll(controller.getAgendaEntryDTOsList());
                 agendaGUIController.update();
                 closeWindow(event);

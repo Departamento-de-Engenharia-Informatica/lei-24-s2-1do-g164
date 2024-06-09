@@ -77,4 +77,5 @@ public class VehicleRepository implements Serializable {
         }
         return vehicles;
     }
-}
+
+ }

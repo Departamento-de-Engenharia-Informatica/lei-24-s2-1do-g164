@@ -36,7 +36,8 @@ public class RegisterGreenSpaceGUIController {
     private RegisterGreenSpaceController controller = new RegisterGreenSpaceController();
     private AuthenticationController authenticationController = new AuthenticationController();
 
-    private final static Pattern NAME_PATTERN = Pattern.compile("^[a-zA-Z0-9\\s,]+$");
+    private static final Pattern NAME_PATTERN = Pattern.compile("^[a-zA-Z\\s]+$");
+
 
     @FXML
     private void initialize() {
@@ -55,8 +56,8 @@ public class RegisterGreenSpaceGUIController {
                 showAlert(Alert.AlertType.ERROR, "Register Error", "Name cannot be empty.");
                 return;
             }
-            if (isValidName(name)) {
-                showAlert(Alert.AlertType.ERROR, "Register Error", "Name cannot be empty.");
+            if (!isValidName(name)) {
+                showAlert(Alert.AlertType.ERROR, "Register Error", "Name can't have special characters");
                 return;
             }
 
@@ -65,6 +66,7 @@ public class RegisterGreenSpaceGUIController {
                 showAlert(Alert.AlertType.ERROR, "Register Error", "Address cannot be empty.");
                 return;
             }
+
 
             int area = Integer.parseInt(txtArea.getText());
             if (area <= 0) {
@@ -119,4 +121,5 @@ public class RegisterGreenSpaceGUIController {
     private boolean isValidName(String name) {
         return NAME_PATTERN.matcher(name).matches();
     }
+
 }

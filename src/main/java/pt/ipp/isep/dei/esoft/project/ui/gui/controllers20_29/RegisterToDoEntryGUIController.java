@@ -14,6 +14,8 @@ import pt.ipp.isep.dei.esoft.project.dto.ToDoEntryDTO;
 import pt.ipp.isep.dei.esoft.project.mappers.GreenSpaceMapper;
 import pt.ipp.isep.dei.esoft.project.repository.enums.UrgencyDegreeENUM;
 
+import java.util.regex.Pattern;
+
 /**
  * The type Register to do entry gui controller.
  */
@@ -36,6 +38,9 @@ public class RegisterToDoEntryGUIController {
     private final RegisterToDoEntryController controller = new RegisterToDoEntryController();
     private final GreenSpaceMapper greenSpaceMapper = new GreenSpaceMapper();
 
+    private static final Pattern NAME_PATTERN = Pattern.compile("^[a-zA-Z\\s]+$");
+
+
 
     @FXML
     private void initialize() {
@@ -53,6 +58,11 @@ public class RegisterToDoEntryGUIController {
             String description = txtDescription.getText();
             if (description == null || description.trim().isEmpty()) {
                 showAlert(Alert.AlertType.ERROR, "Register Error", "Description cannot be empty.");
+                return;
+            }
+
+            if (!isValidName(description)) {
+                showAlert(Alert.AlertType.ERROR, "Register Error", "Description can't have special characters");
                 return;
             }
 
@@ -111,5 +121,9 @@ public class RegisterToDoEntryGUIController {
         alert.setTitle(title);
         alert.setHeaderText(message);
         alert.showAndWait();
+    }
+
+    private boolean isValidName(String name) {
+        return NAME_PATTERN.matcher(name).matches();
     }
 }

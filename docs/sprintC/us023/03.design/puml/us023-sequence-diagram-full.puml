@@ -136,6 +136,9 @@ activate GSM
                  teamRepo --> ctrl: team
                  deactivate teamRepo
 
+                 ctrl -> ctrl : hasOverlappingEntries(entry, collaborator)
+                 note right: checks if the team is available in that period of time and returns a boolean
+
                  ctrl -> agendaRepo: assignTeam(entry, team)
                  activate agendaRepo
 

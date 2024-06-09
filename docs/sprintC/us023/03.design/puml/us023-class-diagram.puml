@@ -66,6 +66,7 @@ class TeamToAgendaEntryController {
 
     +getAgendaEntriesDTOWithoutTeam()
     +showAvailableTeamsDTO()
+    +hasOverlappingEntries(entry, collaborator)
     +assignTeamToAgendaEntry(selectedEntry, teamEntry)
     +sendNotificationEmails(entry.getAssociatedTeam()
 }

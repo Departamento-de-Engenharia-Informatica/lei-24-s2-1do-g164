@@ -1,0 +1,56 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "GSM" as Employee
+participant ":AgendaGUI" as UI
+participant ":AgendaController" as CTRL
+participant ":Repositories" as RepositorySingleton
+participant "ToDoEntryRepository\n:toDoEntryRepository" as TaskRepo
+participant "ToDoEntryMapper"
+participant "ToDoEntryDTO"
+
+activate Employee
+
+    Employee -> UI : asks to add a new entry from the "To Do List"\n to the Agenda
+    activate UI
+
+        UI -> CTRL : getAvailableToDoEntries()
+        activate CTRL
+
+            CTRL -> RepositorySingleton : getInstance()
+            activate RepositorySingleton
+
+                RepositorySingleton --> CTRL: repositories
+            deactivate RepositorySingleton
+
+            CTRL -> TaskRepo : getToDoEntryList()
+            activate TaskRepo
+
+                TaskRepo --> CTRL : availableToDoEntryList
+            deactivate TaskRepo
+
+            CTRL -> "ToDoEntryMapper" : getToDoEntriesDTOs(availableToDoEntryList)
+            activate "ToDoEntryMapper"
+
+            loop for each toDoEntry in availableToDoEntryList
+                ToDoEntryMapper -> ToDoEntryDTO: toDoEntryDTO = toDTO(toDoEntry)
+                activate ToDoEntryDTO
+                ToDoEntryDTO --> ToDoEntryMapper: toDoentryDTO
+                deactivate ToDoEntryDTO
+            end
+
+            ToDoEntryMapper --> CTRL: toDoEntryDTOList
+            deactivate ToDoEntryMapper
+
+            CTRL --> UI : availableToDoEntryDTOList
+        deactivate CTRL
+
+        UI --> Employee : displays the "To Do List" entries that are\n not in the Agenda
+    deactivate UI
+
+deactivate Employee
+@enduml

@@ -1,0 +1,30 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "GSM" as Employee
+participant ":AgendaGUI" as UI
+participant "AgendaEntryDTO"
+
+activate Employee
+
+    Employee -> UI : selects the desired entry
+    activate UI
+
+        UI -> Employee : asks for a date for the entry on the Agenda
+    deactivate UI
+
+    Employee -> UI : selects date for the entry
+    activate UI
+
+        UI -> AgendaEntryDTO : create(toDoEntryDTO, date)
+        activate AgendaEntryDTO
+        UI <-- AgendaEntryDTO : agendaEntryDTO
+        deactivate AgendaEntryDTO
+
+deactivate UI
+deactivate Employee
+@enduml

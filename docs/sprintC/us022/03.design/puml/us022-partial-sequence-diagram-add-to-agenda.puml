@@ -1,0 +1,39 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+participant ":AgendaGUI" as UI
+participant ":AgendaController" as CTRL
+participant "AgendaEntryMapper"
+participant "AgendaEntry"
+participant "AgendaEntryRepository:\nagendaEntryRepository"
+
+activate UI
+
+    UI -> CTRL : addEntryToAgenda(agendaEntryDTO)
+    activate CTRL
+
+        CTRL -> "AgendaEntryMapper" :toEntity(agendaEntryDTO)
+        activate "AgendaEntryMapper"
+
+            AgendaEntryMapper -> AgendaEntry : AgendaEntry(dto.description, dto.greenspace, dto.urgencyDegree\n, dto.status, dto.expectedDuration, dto.date, dto.associatedTeam\n, dto.associatedVehicles)
+            activate AgendaEntry
+            AgendaEntry --> AgendaEntryMapper : agendaEntry
+            deactivate AgendaEntry
+            AgendaEntryMapper --> CTRL : agendaEntry
+        deactivate "AgendaEntryMapper"
+
+        CTRL -> "AgendaEntryRepository:\nagendaEntryRepository" : addEntryToAgenda(agendaEntry)
+        activate "AgendaEntryRepository:\nagendaEntryRepository"
+
+            "AgendaEntryRepository:\nagendaEntryRepository" --> CTRL : success/failure
+        deactivate "AgendaEntryRepository:\nagendaEntryRepository"
+
+        CTRL --> UI : message of (in)success
+    deactivate CTRL
+
+deactivate UI
+@enduml

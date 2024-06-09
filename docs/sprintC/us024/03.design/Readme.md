@@ -40,6 +40,18 @@ This diagram shows the full sequence of interactions between the classes involve
 
 ![Sequence Diagram - Full](svg/us024-sequence-diagram-full-System_Sequence_Diagram__SSD_.svg)
 
+**Get Agenda Entries**
+
+![Sequence Diagram - Partial - Get Task Category List](svg/us024-partial-sequence-diagram-get-agenda-entries.svg)
+
+**Select Entry and new Date**
+
+![Sequence Diagram - Partial - Get Task Category Object](svg/us024-partial-sequence-diagram-select-entry-and-date.svg)
+
+**Update Agenda Entry Date**
+
+![Sequence Diagram - Partial - Get Employee](svg/us024-partial-sequence-diagram-update-agenda-entry-date.svg)
+
 ## 3.3. Class Diagram (CD)
 
 ![Class Diagram](svg/us024-class-diagram-Class_Diagram.svg)

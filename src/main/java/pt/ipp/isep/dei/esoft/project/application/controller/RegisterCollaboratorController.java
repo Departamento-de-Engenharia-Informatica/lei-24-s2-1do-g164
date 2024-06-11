@@ -49,10 +49,8 @@ public class RegisterCollaboratorController {
     public boolean registerCollaborator(String name, int phone, String birthdate, String admissionDate, String address, int idDocumentNumber, Job job, DocumentTypeENUM idDocumentType, int taxpayerNumber, String email) {
         if(collaboratorRepository.registerCollaborator(name, phone, birthdate, admissionDate, address, idDocumentNumber, job, idDocumentType, taxpayerNumber, email)){
             authenticationRepository.addUserWithRole(name, email, name.toUpperCase()+"1234", AuthenticationController.ROLE_COL);
-            System.out.println(name.toUpperCase()+"1234");
             return true;
         } else {
-            System.out.println("falsoo");
             return false;
         }
     }

@@ -34,7 +34,6 @@ public class CancelAgendaEntryController {
      */
     public ArrayList<AgendaEntryDTO> getAgendaEntryWithoutCancelledDTOList() {
         ArrayList<AgendaEntry> agendaEntryListGSM = agendaEntryRepository.getAgendaEntryListWithoutCancelled(authenticationController.getCurrentUserEmail());
-        System.out.println("lista sem cancelados: " + agendaEntryListGSM);
         return agendaEntryMapper.toDtoList(agendaEntryListGSM);
     }
 

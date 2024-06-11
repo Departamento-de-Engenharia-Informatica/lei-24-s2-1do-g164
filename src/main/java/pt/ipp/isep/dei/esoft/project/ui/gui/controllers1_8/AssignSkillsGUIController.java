@@ -97,7 +97,6 @@ public class AssignSkillsGUIController {
         try {
             Collaborator selectedEntry = cmbCollaborators.getValue();
             ArrayList<Skill> skillList = new ArrayList<>(skillListSelection.getSelectionModel().getSelectedItems());
-            System.out.println(skillList);
 
             if (selectedEntry == null) {
                 showAlert(Alert.AlertType.ERROR, "Error", "No collaborator selected.");

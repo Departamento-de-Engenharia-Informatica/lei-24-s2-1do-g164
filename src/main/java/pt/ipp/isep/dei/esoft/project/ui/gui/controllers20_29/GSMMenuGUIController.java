@@ -51,7 +51,6 @@ public class GSMMenuGUIController {
             e.printStackTrace();
         }
 
-        System.out.println("Green Spaces button clicked");
     }
 
     @FXML
@@ -73,7 +72,6 @@ public class GSMMenuGUIController {
             e.printStackTrace();
         }
 
-        System.out.println("To Do List button clicked");
     }
 
     @FXML
@@ -95,13 +93,11 @@ public class GSMMenuGUIController {
             e.printStackTrace();
         }
 
-        System.out.println("Agenda button clicked");
     }
 
     @FXML
     private void closeWindow(ActionEvent event) {
         // Logic to close the window
-        System.out.println("Exit button clicked");
         try {
             File file = new File("src/main/resources/fxml/loginmenu.fxml");
             FXMLLoader loader = new FXMLLoader(file.toURI().toURL());
@@ -110,9 +106,7 @@ public class GSMMenuGUIController {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root, 350, 400));
             stage.getScene().setRoot(root);
-            System.out.println(authenticationController.getCurrentUserEmail());
             authenticationController.doLogout();
-            System.out.println(authenticationController.getCurrentUserEmail());
         } catch (IOException e) {
             e.printStackTrace();
         }

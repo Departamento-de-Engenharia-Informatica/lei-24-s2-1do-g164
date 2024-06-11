@@ -61,9 +61,6 @@ public class JobRepository implements Serializable {
             return false;
         }
         Matcher m = p.matcher(jName);
-        if (!m.matches()){
-            System.out.println("\nError: Inserted job \"" + jName + "\" is not valid");
-        }
         return m.matches();
     }
     /**
@@ -75,7 +72,6 @@ public class JobRepository implements Serializable {
     private boolean jobNameIsUnique(String jName) {
         for (Job j : jobList) {
             if (j.getJobName().equalsIgnoreCase(jName)) {
-                System.out.println("\nError: Job already exists \"" + jName + "\"");
                 return false;
             }
         }

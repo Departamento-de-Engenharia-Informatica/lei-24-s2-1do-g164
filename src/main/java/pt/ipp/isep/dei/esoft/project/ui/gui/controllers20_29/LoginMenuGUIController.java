@@ -91,9 +91,7 @@ public class LoginMenuGUIController {
                 }
             }
         }
-        System.out.println(controller.getCurrentUserEmail());
         //logout();
-        System.out.println(controller.getCurrentUserEmail());
     }
 
     /**

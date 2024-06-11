@@ -36,7 +36,6 @@ public class CollaboratorMenuGUIController {
             e.printStackTrace();
         }
 
-        System.out.println("My Agenda button clicked");
     }
 
 

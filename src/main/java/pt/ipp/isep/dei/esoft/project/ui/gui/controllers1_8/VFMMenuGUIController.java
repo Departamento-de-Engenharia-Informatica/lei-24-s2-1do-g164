@@ -141,7 +141,6 @@ public class VFMMenuGUIController {
 
     @FXML
     private void handleNeedingCheckUp(ActionEvent event) {
-        System.out.println("Needing CheckUp");
         needingCheckUp = !needingCheckUp;
 
         if (needingCheckUp) {

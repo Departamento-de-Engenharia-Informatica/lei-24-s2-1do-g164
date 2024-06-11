@@ -22,9 +22,7 @@ public class ToDoEntryRepository implements Serializable {
      * @return the boolean
      */
     public boolean registerToDoEntry(ToDoEntry td) {
-        System.out.println(td);
         if(toDoEntryIsUnique(td)){
-            System.out.println(toDoEntryList);
             return toDoEntryList.add(td);
         }
         return false;
@@ -47,11 +45,9 @@ public class ToDoEntryRepository implements Serializable {
      * @return the boolean
      */
     public boolean updateStatus(ToDoEntry toDoEntry, EntryStatusENUM status) {
-        System.out.println("merda dfff");
         for (ToDoEntry entry : toDoEntryList) {
             if (entry.equals(toDoEntry)) {
                 entry.setEntryStatus(status);
-                System.out.println(toDoEntry.getDescription() + " " + toDoEntry.getEntryStatus());
                 return true;
             }
         }
@@ -65,7 +61,6 @@ public class ToDoEntryRepository implements Serializable {
      * @return the to do entry list
      */
     public ArrayList<ToDoEntry> getToDoEntryList(String email) {
-        System.out.println(toDoEntryList);
         ArrayList<ToDoEntry> toDoEntryListGSM = new ArrayList<>();
         for (ToDoEntry td : this.toDoEntryList) {
             if (td.getGreenSpace().getEmailGSM().equals(email)) {
@@ -83,7 +78,6 @@ public class ToDoEntryRepository implements Serializable {
      * @return the to do entry list by status
      */
     public ArrayList<ToDoEntry> getToDoEntryListByStatus(String email, EntryStatusENUM status) {
-        System.out.println(toDoEntryList);
         ArrayList<ToDoEntry> toDoEntryListGSM = new ArrayList<>();
         for (ToDoEntry td : this.toDoEntryList) {
             if (td.getGreenSpace().getEmailGSM().equals(email)) {

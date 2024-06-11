@@ -62,7 +62,7 @@ public class SkillRepository implements Serializable {
         }
         Matcher m = p.matcher(sName);
         if (!m.matches()){
-            System.out.println("\nError: Inserted name \"" + sName + "\" is not valid");
+            //System.out.println("\nError: Inserted name \"" + sName + "\" is not valid");
         }
         return m.matches();
     }
@@ -75,7 +75,7 @@ public class SkillRepository implements Serializable {
     private boolean skillNameIsUnique(String sName) {
         for (Skill s : skillList) {
             if (s.getSkillName().equalsIgnoreCase(sName)) {
-                System.out.println("\nError: Skill already exists \"" + sName + "\"");
+                //System.out.println("\nError: Skill already exists \"" + sName + "\"");
                 return false;
             }
         }

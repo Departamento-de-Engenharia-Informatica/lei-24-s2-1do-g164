@@ -35,7 +35,6 @@ public class LogoutTestController {
         alert.setContentText("Do you want to save before exiting");
         if(alert.showAndWait().get() == ButtonType.OK) {
             stage = (Stage) scenePane.getScene().getWindow();
-            System.out.println("You logged out!");
             stage.close();
         }
     }

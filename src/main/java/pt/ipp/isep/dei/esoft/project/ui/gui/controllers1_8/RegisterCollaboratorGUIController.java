@@ -167,7 +167,6 @@ public class RegisterCollaboratorGUIController {
 
 
             if (controller.registerCollaborator(name, Integer.parseInt(phone), String.valueOf(birthdate), String.valueOf(admissionDate), address, Integer.parseInt(documentNumber) ,job, type,Integer.parseInt(taxpayerNumber), email)) {
-                System.out.println(controller.getCollaboratorList());
                 collaboratorsMenuGUIController.update();
                 closeWindow(event);
             } else {

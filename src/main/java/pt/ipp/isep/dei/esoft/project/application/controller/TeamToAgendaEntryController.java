@@ -54,9 +54,7 @@ public class TeamToAgendaEntryController {
      * @return the agenda entries dto without team
      */
     public ArrayList<AgendaEntryDTO> getAgendaEntriesDTOWithoutTeam() {
-        System.out.println(authenticationController.getCurrentUserEmail());
         ArrayList<AgendaEntry> agendaEntryList = agendaEntryRepository.getAgendaEntryListWithoutTeam(authenticationController.getCurrentUserEmail());
-        System.out.println(agendaEntryList);
         return agendaEntryMapper.toDtoList(agendaEntryList);
     }
 

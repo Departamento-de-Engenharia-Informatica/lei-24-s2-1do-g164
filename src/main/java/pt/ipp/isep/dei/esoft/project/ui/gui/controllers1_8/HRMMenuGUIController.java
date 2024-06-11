@@ -116,7 +116,6 @@ public class HRMMenuGUIController {
     @FXML
     private void closeWindow(ActionEvent event) {
         // Logic to close the window
-        System.out.println("Exit button clicked");
         try {
             File file = new File("src/main/resources/fxml/loginmenu.fxml");
             FXMLLoader loader = new FXMLLoader(file.toURI().toURL());
@@ -125,9 +124,7 @@ public class HRMMenuGUIController {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root, 350, 400));
             stage.getScene().setRoot(root);
-            System.out.println(authenticationController.getCurrentUserEmail());
             authenticationController.doLogout();
-            System.out.println(authenticationController.getCurrentUserEmail());
         } catch (IOException e) {
             e.printStackTrace();
         }
